@@ -1,6 +1,6 @@
 # ReloadPro-LCD-128x64.<br>
 ReloadPro for LCD 128x64(PCF8535).<br>
-Fork of https://github.com/Aleksei521/reload-pro<br>
+Fork of https://github.com/arachnidlabs/reload-pro<br>
 Change display to 128x64 on the controller PCF8535.<br>
 Change IDE version to v4.2<br>
 Add temperarure measure on NTC resistor.<br>
