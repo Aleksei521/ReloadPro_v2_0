@@ -1,0 +1,31 @@
+/* ========================================
+ *
+ * Copyright Arachnid Labs, 2013
+ * All Rights Reserved
+ * UNPUBLISHED, LICENSED SOFTWARE.
+ *
+ * CONFIDENTIAL AND PROPRIETARY INFORMATION
+ * WHICH IS THE PROPERTY OF your company.
+ *
+ * ========================================
+*/
+
+#define FONT_GLYPH_PAGES 2
+#define FONT_GLYPH_COLUMNS 12
+#define FONT_GLYPH_COUNT 192
+#define FONT_GLYPH_OFFSET 32
+#define FONT_BIGDIGIT_OFFSET (102 + FONT_GLYPH_OFFSET)
+#define FONT_BIGDIGIT_ROW_WIDTH 30
+
+#define GLYPH_CHAR(x) (x[0])
+#define FONT_GLYPH_OHM "\x7F"   //125+32
+#define FONT_GLYPH_LARR "\x80"  //126+32
+#define FONT_GLYPH_RARR "\x81"  //127+32
+#define FONT_GLYPH_UARR "\x82"  //158+32
+#define FONT_GLYPH_DARR "\x83"  //159+32
+#define FONT_GLYPH_BIGPERIOD "\x84" //190+32
+#define FONT_GLYPH_ENTER "\x85" //ENTER 191+32
+
+extern char glyphs[192][FONT_GLYPH_PAGES][FONT_GLYPH_COLUMNS];
+
+/* [] END OF FILE */

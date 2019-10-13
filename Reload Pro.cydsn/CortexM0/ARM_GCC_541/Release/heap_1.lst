@@ -1,0 +1,1194 @@
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccyoIjpk.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"heap_1.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.pvPortMalloc,"ax",%progbits
+  20              		.align	1
+  21              		.global	pvPortMalloc
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	pvPortMalloc, %function
+  25              	pvPortMalloc:
+  26              	.LFB32:
+  27              		.file 1 "freertos\\src\\heap_1.c"
+   1:freertos\src/heap_1.c **** /*
+   2:freertos\src/heap_1.c ****     FreeRTOS V7.6.0 - Copyright (C) 2013 Real Time Engineers Ltd. 
+   3:freertos\src/heap_1.c ****     All rights reserved
+   4:freertos\src/heap_1.c **** 
+   5:freertos\src/heap_1.c ****     VISIT http://www.FreeRTOS.org TO ENSURE YOU ARE USING THE LATEST VERSION.
+   6:freertos\src/heap_1.c **** 
+   7:freertos\src/heap_1.c ****     ***************************************************************************
+   8:freertos\src/heap_1.c ****      *                                                                       *
+   9:freertos\src/heap_1.c ****      *    FreeRTOS provides completely free yet professionally developed,    *
+  10:freertos\src/heap_1.c ****      *    robust, strictly quality controlled, supported, and cross          *
+  11:freertos\src/heap_1.c ****      *    platform software that has become a de facto standard.             *
+  12:freertos\src/heap_1.c ****      *                                                                       *
+  13:freertos\src/heap_1.c ****      *    Help yourself get started quickly and support the FreeRTOS         *
+  14:freertos\src/heap_1.c ****      *    project by purchasing a FreeRTOS tutorial book, reference          *
+  15:freertos\src/heap_1.c ****      *    manual, or both from: http://www.FreeRTOS.org/Documentation        *
+  16:freertos\src/heap_1.c ****      *                                                                       *
+  17:freertos\src/heap_1.c ****      *    Thank you!                                                         *
+  18:freertos\src/heap_1.c ****      *                                                                       *
+  19:freertos\src/heap_1.c ****     ***************************************************************************
+  20:freertos\src/heap_1.c **** 
+  21:freertos\src/heap_1.c ****     This file is part of the FreeRTOS distribution.
+  22:freertos\src/heap_1.c **** 
+  23:freertos\src/heap_1.c ****     FreeRTOS is free software; you can redistribute it and/or modify it under
+  24:freertos\src/heap_1.c ****     the terms of the GNU General Public License (version 2) as published by the
+  25:freertos\src/heap_1.c ****     Free Software Foundation >>!AND MODIFIED BY!<< the FreeRTOS exception.
+  26:freertos\src/heap_1.c **** 
+  27:freertos\src/heap_1.c ****     >>! NOTE: The modification to the GPL is included to allow you to distribute
+  28:freertos\src/heap_1.c ****     >>! a combined work that includes FreeRTOS without being obliged to provide
+  29:freertos\src/heap_1.c ****     >>! the source code for proprietary components outside of the FreeRTOS
+  30:freertos\src/heap_1.c ****     >>! kernel.
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccyoIjpk.s 			page 2
+
+
+  31:freertos\src/heap_1.c **** 
+  32:freertos\src/heap_1.c ****     FreeRTOS is distributed in the hope that it will be useful, but WITHOUT ANY
+  33:freertos\src/heap_1.c ****     WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+  34:freertos\src/heap_1.c ****     FOR A PARTICULAR PURPOSE.  Full license text is available from the following
+  35:freertos\src/heap_1.c ****     link: http://www.freertos.org/a00114.html
+  36:freertos\src/heap_1.c **** 
+  37:freertos\src/heap_1.c ****     1 tab == 4 spaces!
+  38:freertos\src/heap_1.c **** 
+  39:freertos\src/heap_1.c ****     ***************************************************************************
+  40:freertos\src/heap_1.c ****      *                                                                       *
+  41:freertos\src/heap_1.c ****      *    Having a problem?  Start by reading the FAQ "My application does   *
+  42:freertos\src/heap_1.c ****      *    not run, what could be wrong?"                                     *
+  43:freertos\src/heap_1.c ****      *                                                                       *
+  44:freertos\src/heap_1.c ****      *    http://www.FreeRTOS.org/FAQHelp.html                               *
+  45:freertos\src/heap_1.c ****      *                                                                       *
+  46:freertos\src/heap_1.c ****     ***************************************************************************
+  47:freertos\src/heap_1.c **** 
+  48:freertos\src/heap_1.c ****     http://www.FreeRTOS.org - Documentation, books, training, latest versions,
+  49:freertos\src/heap_1.c ****     license and Real Time Engineers Ltd. contact details.
+  50:freertos\src/heap_1.c **** 
+  51:freertos\src/heap_1.c ****     http://www.FreeRTOS.org/plus - A selection of FreeRTOS ecosystem products,
+  52:freertos\src/heap_1.c ****     including FreeRTOS+Trace - an indispensable productivity tool, a DOS
+  53:freertos\src/heap_1.c ****     compatible FAT file system, and our tiny thread aware UDP/IP stack.
+  54:freertos\src/heap_1.c **** 
+  55:freertos\src/heap_1.c ****     http://www.OpenRTOS.com - Real Time Engineers ltd license FreeRTOS to High
+  56:freertos\src/heap_1.c ****     Integrity Systems to sell under the OpenRTOS brand.  Low cost OpenRTOS
+  57:freertos\src/heap_1.c ****     licenses offer ticketed support, indemnification and middleware.
+  58:freertos\src/heap_1.c **** 
+  59:freertos\src/heap_1.c ****     http://www.SafeRTOS.com - High Integrity Systems also provide a safety
+  60:freertos\src/heap_1.c ****     engineered and independently SIL3 certified version for use in safety and
+  61:freertos\src/heap_1.c ****     mission critical applications that require provable dependability.
+  62:freertos\src/heap_1.c **** 
+  63:freertos\src/heap_1.c ****     1 tab == 4 spaces!
+  64:freertos\src/heap_1.c **** */
+  65:freertos\src/heap_1.c **** 
+  66:freertos\src/heap_1.c **** 
+  67:freertos\src/heap_1.c **** /*
+  68:freertos\src/heap_1.c ****  * The simplest possible implementation of pvPortMalloc().  Note that this
+  69:freertos\src/heap_1.c ****  * implementation does NOT allow allocated memory to be freed again.
+  70:freertos\src/heap_1.c ****  *
+  71:freertos\src/heap_1.c ****  * See heap_2.c, heap_3.c and heap_4.c for alternative implementations, and the
+  72:freertos\src/heap_1.c ****  * memory management pages of http://www.FreeRTOS.org for more information.
+  73:freertos\src/heap_1.c ****  */
+  74:freertos\src/heap_1.c **** #include <stdlib.h>
+  75:freertos\src/heap_1.c **** 
+  76:freertos\src/heap_1.c **** /* Defining MPU_WRAPPERS_INCLUDED_FROM_API_FILE prevents task.h from redefining
+  77:freertos\src/heap_1.c **** all the API functions to use the MPU wrappers.  That should only be done when
+  78:freertos\src/heap_1.c **** task.h is included from an application file. */
+  79:freertos\src/heap_1.c **** #define MPU_WRAPPERS_INCLUDED_FROM_API_FILE
+  80:freertos\src/heap_1.c **** 
+  81:freertos\src/heap_1.c **** #include "FreeRTOS.h"
+  82:freertos\src/heap_1.c **** #include "task.h"
+  83:freertos\src/heap_1.c **** 
+  84:freertos\src/heap_1.c **** #undef MPU_WRAPPERS_INCLUDED_FROM_API_FILE
+  85:freertos\src/heap_1.c **** 
+  86:freertos\src/heap_1.c **** /* A few bytes might be lost to byte aligning the heap start address. */
+  87:freertos\src/heap_1.c **** #define configADJUSTED_HEAP_SIZE	( configTOTAL_HEAP_SIZE - portBYTE_ALIGNMENT )
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccyoIjpk.s 			page 3
+
+
+  88:freertos\src/heap_1.c **** 
+  89:freertos\src/heap_1.c **** /* Allocate the memory for the heap. */
+  90:freertos\src/heap_1.c **** static unsigned char ucHeap[ configTOTAL_HEAP_SIZE ];
+  91:freertos\src/heap_1.c **** static size_t xNextFreeByte = ( size_t ) 0;
+  92:freertos\src/heap_1.c **** 
+  93:freertos\src/heap_1.c **** /*-----------------------------------------------------------*/
+  94:freertos\src/heap_1.c **** 
+  95:freertos\src/heap_1.c **** void *pvPortMalloc( size_t xWantedSize )
+  96:freertos\src/heap_1.c **** {
+  28              		.loc 1 96 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              	.LVL0:
+  97:freertos\src/heap_1.c **** void *pvReturn = NULL;
+  98:freertos\src/heap_1.c **** static unsigned char *pucAlignedHeap = NULL;
+  99:freertos\src/heap_1.c **** 
+ 100:freertos\src/heap_1.c **** 	/* Ensure that blocks are always aligned to the required number of bytes. */
+ 101:freertos\src/heap_1.c **** 	#if portBYTE_ALIGNMENT != 1
+ 102:freertos\src/heap_1.c **** 		if( xWantedSize & portBYTE_ALIGNMENT_MASK )
+  33              		.loc 1 102 0
+  34 0000 0723     		movs	r3, #7
+  96:freertos\src/heap_1.c **** void *pvReturn = NULL;
+  35              		.loc 1 96 0
+  36 0002 70B5     		push	{r4, r5, r6, lr}
+  37              		.cfi_def_cfa_offset 16
+  38              		.cfi_offset 4, -16
+  39              		.cfi_offset 5, -12
+  40              		.cfi_offset 6, -8
+  41              		.cfi_offset 14, -4
+  96:freertos\src/heap_1.c **** void *pvReturn = NULL;
+  42              		.loc 1 96 0
+  43 0004 0400     		movs	r4, r0
+  44              		.loc 1 102 0
+  45 0006 1842     		tst	r0, r3
+  46 0008 01D0     		beq	.L2
+ 103:freertos\src/heap_1.c **** 		{
+ 104:freertos\src/heap_1.c **** 			/* Byte alignment required. */
+ 105:freertos\src/heap_1.c **** 			xWantedSize += ( portBYTE_ALIGNMENT - ( xWantedSize & portBYTE_ALIGNMENT_MASK ) );
+  47              		.loc 1 105 0
+  48 000a 9C43     		bics	r4, r3
+  49 000c 0834     		adds	r4, r4, #8
+  50              	.LVL1:
+  51              	.L2:
+ 106:freertos\src/heap_1.c **** 		}
+ 107:freertos\src/heap_1.c **** 	#endif
+ 108:freertos\src/heap_1.c **** 
+ 109:freertos\src/heap_1.c **** 	vTaskSuspendAll();
+  52              		.loc 1 109 0
+  53 000e FFF7FEFF 		bl	vTaskSuspendAll
+  54              	.LVL2:
+ 110:freertos\src/heap_1.c **** 	{
+ 111:freertos\src/heap_1.c **** 		if( pucAlignedHeap == NULL )
+  55              		.loc 1 111 0
+  56 0012 0E4B     		ldr	r3, .L12
+  57 0014 1A68     		ldr	r2, [r3]
+  58 0016 002A     		cmp	r2, #0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccyoIjpk.s 			page 4
+
+
+  59 0018 04D1     		bne	.L3
+ 112:freertos\src/heap_1.c **** 		{
+ 113:freertos\src/heap_1.c **** 			/* Ensure the heap starts on a correctly aligned boundary. */
+ 114:freertos\src/heap_1.c **** 			pucAlignedHeap = ( unsigned char * ) ( ( ( portPOINTER_SIZE_TYPE ) &ucHeap[ portBYTE_ALIGNMENT ]
+  60              		.loc 1 114 0
+  61 001a 1A00     		movs	r2, r3
+  62 001c 0721     		movs	r1, #7
+  63 001e 0C32     		adds	r2, r2, #12
+  64 0020 8A43     		bics	r2, r1
+  65 0022 1A60     		str	r2, [r3]
+  66              	.L3:
+ 115:freertos\src/heap_1.c **** 		}
+ 116:freertos\src/heap_1.c **** 
+ 117:freertos\src/heap_1.c **** 		/* Check there is enough room left for the allocation. */
+ 118:freertos\src/heap_1.c **** 		if( ( ( xNextFreeByte + xWantedSize ) < configADJUSTED_HEAP_SIZE ) &&
+  67              		.loc 1 118 0
+  68 0024 0A49     		ldr	r1, .L12+4
+  69 0026 0B48     		ldr	r0, .L12+8
+  70 0028 4A68     		ldr	r2, [r1, #4]
+  97:freertos\src/heap_1.c **** static unsigned char *pucAlignedHeap = NULL;
+  71              		.loc 1 97 0
+  72 002a 0025     		movs	r5, #0
+  73              		.loc 1 118 0
+  74 002c A418     		adds	r4, r4, r2
+  75              	.LVL3:
+  76 002e 8442     		cmp	r4, r0
+  77 0030 04D8     		bhi	.L4
+  78              		.loc 1 118 0 is_stmt 0 discriminator 1
+  79 0032 A242     		cmp	r2, r4
+  80 0034 02D2     		bcs	.L4
+ 119:freertos\src/heap_1.c **** 			( ( xNextFreeByte + xWantedSize ) > xNextFreeByte )	)/* Check for overflow. */
+ 120:freertos\src/heap_1.c **** 		{
+ 121:freertos\src/heap_1.c **** 			/* Return the next free byte then increment the index past this
+ 122:freertos\src/heap_1.c **** 			block. */
+ 123:freertos\src/heap_1.c **** 			pvReturn = pucAlignedHeap + xNextFreeByte;
+  81              		.loc 1 123 0 is_stmt 1
+  82 0036 1D68     		ldr	r5, [r3]
+ 124:freertos\src/heap_1.c **** 			xNextFreeByte += xWantedSize;
+  83              		.loc 1 124 0
+  84 0038 4C60     		str	r4, [r1, #4]
+ 123:freertos\src/heap_1.c **** 			xNextFreeByte += xWantedSize;
+  85              		.loc 1 123 0
+  86 003a AD18     		adds	r5, r5, r2
+  87              	.LVL4:
+  88              	.L4:
+ 125:freertos\src/heap_1.c **** 		}
+ 126:freertos\src/heap_1.c **** 
+ 127:freertos\src/heap_1.c **** 		traceMALLOC( pvReturn, xWantedSize );
+ 128:freertos\src/heap_1.c **** 	}	
+ 129:freertos\src/heap_1.c **** 	xTaskResumeAll();
+  89              		.loc 1 129 0
+  90 003c FFF7FEFF 		bl	xTaskResumeAll
+  91              	.LVL5:
+ 130:freertos\src/heap_1.c **** 
+ 131:freertos\src/heap_1.c **** 	#if( configUSE_MALLOC_FAILED_HOOK == 1 )
+ 132:freertos\src/heap_1.c **** 	{
+ 133:freertos\src/heap_1.c **** 		if( pvReturn == NULL )
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccyoIjpk.s 			page 5
+
+
+  92              		.loc 1 133 0
+  93 0040 002D     		cmp	r5, #0
+  94 0042 01D1     		bne	.L5
+  95              	.LVL6:
+  96              	.LBB2:
+ 134:freertos\src/heap_1.c **** 		{
+ 135:freertos\src/heap_1.c **** 			extern void vApplicationMallocFailedHook( void );
+ 136:freertos\src/heap_1.c **** 			vApplicationMallocFailedHook();
+  97              		.loc 1 136 0
+  98 0044 FFF7FEFF 		bl	vApplicationMallocFailedHook
+  99              	.LVL7:
+ 100              	.L5:
+ 101              	.LBE2:
+ 137:freertos\src/heap_1.c **** 		}
+ 138:freertos\src/heap_1.c **** 	}
+ 139:freertos\src/heap_1.c **** 	#endif
+ 140:freertos\src/heap_1.c **** 
+ 141:freertos\src/heap_1.c **** 	return pvReturn;
+ 142:freertos\src/heap_1.c **** }
+ 102              		.loc 1 142 0
+ 103 0048 2800     		movs	r0, r5
+ 104              		@ sp needed
+ 105 004a 70BD     		pop	{r4, r5, r6, pc}
+ 106              	.L13:
+ 107              		.align	2
+ 108              	.L12:
+ 109 004c 00000000 		.word	.LANCHOR0
+ 110 0050 80080000 		.word	.LANCHOR1
+ 111 0054 77080000 		.word	2167
+ 112              		.cfi_endproc
+ 113              	.LFE32:
+ 114              		.size	pvPortMalloc, .-pvPortMalloc
+ 115              		.section	.text.vPortFree,"ax",%progbits
+ 116              		.align	1
+ 117              		.global	vPortFree
+ 118              		.code	16
+ 119              		.thumb_func
+ 120              		.type	vPortFree, %function
+ 121              	vPortFree:
+ 122              	.LFB33:
+ 143:freertos\src/heap_1.c **** /*-----------------------------------------------------------*/
+ 144:freertos\src/heap_1.c **** 
+ 145:freertos\src/heap_1.c **** void vPortFree( void *pv )
+ 146:freertos\src/heap_1.c **** {
+ 123              		.loc 1 146 0
+ 124              		.cfi_startproc
+ 125              		@ args = 0, pretend = 0, frame = 0
+ 126              		@ frame_needed = 0, uses_anonymous_args = 0
+ 127              		@ link register save eliminated.
+ 128              	.LVL8:
+ 147:freertos\src/heap_1.c **** 	/* Memory cannot be freed using this scheme.  See heap_2.c, heap_3.c and
+ 148:freertos\src/heap_1.c **** 	heap_4.c for alternative implementations, and the memory management pages of
+ 149:freertos\src/heap_1.c **** 	http://www.FreeRTOS.org for more information. */
+ 150:freertos\src/heap_1.c **** 	( void ) pv;
+ 151:freertos\src/heap_1.c **** 
+ 152:freertos\src/heap_1.c **** 	/* Force an assert as it is invalid to call this function. */
+ 153:freertos\src/heap_1.c **** 	configASSERT( pv == NULL );
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccyoIjpk.s 			page 6
+
+
+ 154:freertos\src/heap_1.c **** }
+ 129              		.loc 1 154 0
+ 130              		@ sp needed
+ 131 0000 7047     		bx	lr
+ 132              		.cfi_endproc
+ 133              	.LFE33:
+ 134              		.size	vPortFree, .-vPortFree
+ 135              		.section	.text.vPortInitialiseBlocks,"ax",%progbits
+ 136              		.align	1
+ 137              		.global	vPortInitialiseBlocks
+ 138              		.code	16
+ 139              		.thumb_func
+ 140              		.type	vPortInitialiseBlocks, %function
+ 141              	vPortInitialiseBlocks:
+ 142              	.LFB34:
+ 155:freertos\src/heap_1.c **** /*-----------------------------------------------------------*/
+ 156:freertos\src/heap_1.c **** 
+ 157:freertos\src/heap_1.c **** void vPortInitialiseBlocks( void )
+ 158:freertos\src/heap_1.c **** {
+ 143              		.loc 1 158 0
+ 144              		.cfi_startproc
+ 145              		@ args = 0, pretend = 0, frame = 0
+ 146              		@ frame_needed = 0, uses_anonymous_args = 0
+ 147              		@ link register save eliminated.
+ 159:freertos\src/heap_1.c **** 	/* Only required when static memory is not cleared. */
+ 160:freertos\src/heap_1.c **** 	xNextFreeByte = ( size_t ) 0;
+ 148              		.loc 1 160 0
+ 149 0000 0022     		movs	r2, #0
+ 150 0002 014B     		ldr	r3, .L16
+ 161:freertos\src/heap_1.c **** }
+ 151              		.loc 1 161 0
+ 152              		@ sp needed
+ 160:freertos\src/heap_1.c **** }
+ 153              		.loc 1 160 0
+ 154 0004 5A60     		str	r2, [r3, #4]
+ 155              		.loc 1 161 0
+ 156 0006 7047     		bx	lr
+ 157              	.L17:
+ 158              		.align	2
+ 159              	.L16:
+ 160 0008 80080000 		.word	.LANCHOR1
+ 161              		.cfi_endproc
+ 162              	.LFE34:
+ 163              		.size	vPortInitialiseBlocks, .-vPortInitialiseBlocks
+ 164              		.section	.text.xPortGetFreeHeapSize,"ax",%progbits
+ 165              		.align	1
+ 166              		.global	xPortGetFreeHeapSize
+ 167              		.code	16
+ 168              		.thumb_func
+ 169              		.type	xPortGetFreeHeapSize, %function
+ 170              	xPortGetFreeHeapSize:
+ 171              	.LFB35:
+ 162:freertos\src/heap_1.c **** /*-----------------------------------------------------------*/
+ 163:freertos\src/heap_1.c **** 
+ 164:freertos\src/heap_1.c **** size_t xPortGetFreeHeapSize( void )
+ 165:freertos\src/heap_1.c **** {
+ 172              		.loc 1 165 0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccyoIjpk.s 			page 7
+
+
+ 173              		.cfi_startproc
+ 174              		@ args = 0, pretend = 0, frame = 0
+ 175              		@ frame_needed = 0, uses_anonymous_args = 0
+ 176              		@ link register save eliminated.
+ 166:freertos\src/heap_1.c **** 	return ( configADJUSTED_HEAP_SIZE - xNextFreeByte );
+ 177              		.loc 1 166 0
+ 178 0000 024B     		ldr	r3, .L19
+ 167:freertos\src/heap_1.c **** }
+ 179              		.loc 1 167 0
+ 180              		@ sp needed
+ 166:freertos\src/heap_1.c **** 	return ( configADJUSTED_HEAP_SIZE - xNextFreeByte );
+ 181              		.loc 1 166 0
+ 182 0002 5868     		ldr	r0, [r3, #4]
+ 183 0004 024B     		ldr	r3, .L19+4
+ 184 0006 181A     		subs	r0, r3, r0
+ 185              		.loc 1 167 0
+ 186 0008 7047     		bx	lr
+ 187              	.L20:
+ 188 000a C046     		.align	2
+ 189              	.L19:
+ 190 000c 80080000 		.word	.LANCHOR1
+ 191 0010 78080000 		.word	2168
+ 192              		.cfi_endproc
+ 193              	.LFE35:
+ 194              		.size	xPortGetFreeHeapSize, .-xPortGetFreeHeapSize
+ 195              		.bss
+ 196              		.align	2
+ 197              		.set	.LANCHOR0,. + 0
+ 198              		.set	.LANCHOR1,. + 2176
+ 199              		.type	pucAlignedHeap.6712, %object
+ 200              		.size	pucAlignedHeap.6712, 4
+ 201              	pucAlignedHeap.6712:
+ 202 0000 00000000 		.space	4
+ 203              		.type	ucHeap, %object
+ 204              		.size	ucHeap, 2176
+ 205              	ucHeap:
+ 206 0004 00000000 		.space	2176
+ 206      00000000 
+ 206      00000000 
+ 206      00000000 
+ 206      00000000 
+ 207              		.type	xNextFreeByte, %object
+ 208              		.size	xNextFreeByte, 4
+ 209              	xNextFreeByte:
+ 210 0884 00000000 		.space	4
+ 211              		.text
+ 212              	.Letext0:
+ 213              		.file 2 ".\\freertos\\include/task.h"
+ 214              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 215              		.section	.debug_info,"",%progbits
+ 216              	.Ldebug_info0:
+ 217 0000 AE010000 		.4byte	0x1ae
+ 218 0004 0400     		.2byte	0x4
+ 219 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 220 000a 04       		.byte	0x4
+ 221 000b 01       		.uleb128 0x1
+ 222 000c 7B000000 		.4byte	.LASF21
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccyoIjpk.s 			page 8
+
+
+ 223 0010 0C       		.byte	0xc
+ 224 0011 14010000 		.4byte	.LASF22
+ 225 0015 91010000 		.4byte	.LASF23
+ 226 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 227 001d 00000000 		.4byte	0
+ 228 0021 00000000 		.4byte	.Ldebug_line0
+ 229 0025 02       		.uleb128 0x2
+ 230 0026 00000000 		.4byte	.LASF24
+ 231 002a 03       		.byte	0x3
+ 232 002b D8       		.byte	0xd8
+ 233 002c 30000000 		.4byte	0x30
+ 234 0030 03       		.uleb128 0x3
+ 235 0031 04       		.byte	0x4
+ 236 0032 07       		.byte	0x7
+ 237 0033 50010000 		.4byte	.LASF0
+ 238 0037 04       		.uleb128 0x4
+ 239 0038 04       		.byte	0x4
+ 240 0039 05       		.byte	0x5
+ 241 003a 696E7400 		.ascii	"int\000"
+ 242 003e 03       		.uleb128 0x3
+ 243 003f 01       		.byte	0x1
+ 244 0040 06       		.byte	0x6
+ 245 0041 2D020000 		.4byte	.LASF1
+ 246 0045 03       		.uleb128 0x3
+ 247 0046 01       		.byte	0x1
+ 248 0047 08       		.byte	0x8
+ 249 0048 41000000 		.4byte	.LASF2
+ 250 004c 03       		.uleb128 0x3
+ 251 004d 02       		.byte	0x2
+ 252 004e 05       		.byte	0x5
+ 253 004f 10020000 		.4byte	.LASF3
+ 254 0053 03       		.uleb128 0x3
+ 255 0054 02       		.byte	0x2
+ 256 0055 07       		.byte	0x7
+ 257 0056 61000000 		.4byte	.LASF4
+ 258 005a 03       		.uleb128 0x3
+ 259 005b 04       		.byte	0x4
+ 260 005c 05       		.byte	0x5
+ 261 005d 24020000 		.4byte	.LASF5
+ 262 0061 03       		.uleb128 0x3
+ 263 0062 04       		.byte	0x4
+ 264 0063 07       		.byte	0x7
+ 265 0064 4F000000 		.4byte	.LASF6
+ 266 0068 03       		.uleb128 0x3
+ 267 0069 08       		.byte	0x8
+ 268 006a 05       		.byte	0x5
+ 269 006b D5010000 		.4byte	.LASF7
+ 270 006f 03       		.uleb128 0x3
+ 271 0070 08       		.byte	0x8
+ 272 0071 07       		.byte	0x7
+ 273 0072 5D010000 		.4byte	.LASF8
+ 274 0076 03       		.uleb128 0x3
+ 275 0077 04       		.byte	0x4
+ 276 0078 07       		.byte	0x7
+ 277 0079 CC010000 		.4byte	.LASF9
+ 278 007d 05       		.uleb128 0x5
+ 279 007e 04       		.byte	0x4
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccyoIjpk.s 			page 9
+
+
+ 280 007f 03       		.uleb128 0x3
+ 281 0080 01       		.byte	0x1
+ 282 0081 08       		.byte	0x8
+ 283 0082 EF010000 		.4byte	.LASF10
+ 284 0086 06       		.uleb128 0x6
+ 285 0087 04       		.byte	0x4
+ 286 0088 45000000 		.4byte	0x45
+ 287 008c 03       		.uleb128 0x3
+ 288 008d 04       		.byte	0x4
+ 289 008e 04       		.byte	0x4
+ 290 008f 3B000000 		.4byte	.LASF11
+ 291 0093 03       		.uleb128 0x3
+ 292 0094 08       		.byte	0x8
+ 293 0095 04       		.byte	0x4
+ 294 0096 74000000 		.4byte	.LASF12
+ 295 009a 07       		.uleb128 0x7
+ 296 009b 03020000 		.4byte	.LASF25
+ 297 009f 01       		.byte	0x1
+ 298 00a0 5F       		.byte	0x5f
+ 299 00a1 7D000000 		.4byte	0x7d
+ 300 00a5 00000000 		.4byte	.LFB32
+ 301 00a9 58000000 		.4byte	.LFE32-.LFB32
+ 302 00ad 01       		.uleb128 0x1
+ 303 00ae 9C       		.byte	0x9c
+ 304 00af 13010000 		.4byte	0x113
+ 305 00b3 08       		.uleb128 0x8
+ 306 00b4 E3010000 		.4byte	.LASF15
+ 307 00b8 01       		.byte	0x1
+ 308 00b9 5F       		.byte	0x5f
+ 309 00ba 25000000 		.4byte	0x25
+ 310 00be 00000000 		.4byte	.LLST0
+ 311 00c2 09       		.uleb128 0x9
+ 312 00c3 2A010000 		.4byte	.LASF13
+ 313 00c7 01       		.byte	0x1
+ 314 00c8 61       		.byte	0x61
+ 315 00c9 7D000000 		.4byte	0x7d
+ 316 00cd 1E000000 		.4byte	.LLST1
+ 317 00d1 0A       		.uleb128 0xa
+ 318 00d2 F4010000 		.4byte	.LASF14
+ 319 00d6 01       		.byte	0x1
+ 320 00d7 62       		.byte	0x62
+ 321 00d8 86000000 		.4byte	0x86
+ 322 00dc 05       		.uleb128 0x5
+ 323 00dd 03       		.byte	0x3
+ 324 00de 00000000 		.4byte	pucAlignedHeap.6712
+ 325 00e2 0B       		.uleb128 0xb
+ 326 00e3 44000000 		.4byte	.LBB2
+ 327 00e7 04000000 		.4byte	.LBE2-.LBB2
+ 328 00eb 00010000 		.4byte	0x100
+ 329 00ef 0C       		.uleb128 0xc
+ 330 00f0 74010000 		.4byte	.LASF18
+ 331 00f4 01       		.byte	0x1
+ 332 00f5 87       		.byte	0x87
+ 333 00f6 0D       		.uleb128 0xd
+ 334 00f7 48000000 		.4byte	.LVL7
+ 335 00fb 8E010000 		.4byte	0x18e
+ 336 00ff 00       		.byte	0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccyoIjpk.s 			page 10
+
+
+ 337 0100 0D       		.uleb128 0xd
+ 338 0101 12000000 		.4byte	.LVL2
+ 339 0105 99010000 		.4byte	0x199
+ 340 0109 0D       		.uleb128 0xd
+ 341 010a 40000000 		.4byte	.LVL5
+ 342 010e A5010000 		.4byte	0x1a5
+ 343 0112 00       		.byte	0
+ 344 0113 0E       		.uleb128 0xe
+ 345 0114 1A020000 		.4byte	.LASF26
+ 346 0118 01       		.byte	0x1
+ 347 0119 91       		.byte	0x91
+ 348 011a 00000000 		.4byte	.LFB33
+ 349 011e 02000000 		.4byte	.LFE33-.LFB33
+ 350 0122 01       		.uleb128 0x1
+ 351 0123 9C       		.byte	0x9c
+ 352 0124 35010000 		.4byte	0x135
+ 353 0128 0F       		.uleb128 0xf
+ 354 0129 707600   		.ascii	"pv\000"
+ 355 012c 01       		.byte	0x1
+ 356 012d 91       		.byte	0x91
+ 357 012e 7D000000 		.4byte	0x7d
+ 358 0132 01       		.uleb128 0x1
+ 359 0133 50       		.byte	0x50
+ 360 0134 00       		.byte	0
+ 361 0135 10       		.uleb128 0x10
+ 362 0136 3A010000 		.4byte	.LASF27
+ 363 013a 01       		.byte	0x1
+ 364 013b 9D       		.byte	0x9d
+ 365 013c 00000000 		.4byte	.LFB34
+ 366 0140 0C000000 		.4byte	.LFE34-.LFB34
+ 367 0144 01       		.uleb128 0x1
+ 368 0145 9C       		.byte	0x9c
+ 369 0146 11       		.uleb128 0x11
+ 370 0147 17000000 		.4byte	.LASF28
+ 371 014b 01       		.byte	0x1
+ 372 014c A4       		.byte	0xa4
+ 373 014d 25000000 		.4byte	0x25
+ 374 0151 00000000 		.4byte	.LFB35
+ 375 0155 14000000 		.4byte	.LFE35-.LFB35
+ 376 0159 01       		.uleb128 0x1
+ 377 015a 9C       		.byte	0x9c
+ 378 015b 12       		.uleb128 0x12
+ 379 015c 45000000 		.4byte	0x45
+ 380 0160 6C010000 		.4byte	0x16c
+ 381 0164 13       		.uleb128 0x13
+ 382 0165 76000000 		.4byte	0x76
+ 383 0169 7F08     		.2byte	0x87f
+ 384 016b 00       		.byte	0
+ 385 016c 0A       		.uleb128 0xa
+ 386 016d 33010000 		.4byte	.LASF16
+ 387 0171 01       		.byte	0x1
+ 388 0172 5A       		.byte	0x5a
+ 389 0173 5B010000 		.4byte	0x15b
+ 390 0177 05       		.uleb128 0x5
+ 391 0178 03       		.byte	0x3
+ 392 0179 04000000 		.4byte	ucHeap
+ 393 017d 0A       		.uleb128 0xa
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccyoIjpk.s 			page 11
+
+
+ 394 017e 39020000 		.4byte	.LASF17
+ 395 0182 01       		.byte	0x1
+ 396 0183 5B       		.byte	0x5b
+ 397 0184 25000000 		.4byte	0x25
+ 398 0188 05       		.uleb128 0x5
+ 399 0189 03       		.byte	0x3
+ 400 018a 84080000 		.4byte	xNextFreeByte
+ 401 018e 14       		.uleb128 0x14
+ 402 018f 74010000 		.4byte	.LASF18
+ 403 0193 74010000 		.4byte	.LASF18
+ 404 0197 01       		.byte	0x1
+ 405 0198 87       		.byte	0x87
+ 406 0199 15       		.uleb128 0x15
+ 407 019a 07000000 		.4byte	.LASF19
+ 408 019e 07000000 		.4byte	.LASF19
+ 409 01a2 02       		.byte	0x2
+ 410 01a3 BA03     		.2byte	0x3ba
+ 411 01a5 15       		.uleb128 0x15
+ 412 01a6 2C000000 		.4byte	.LASF20
+ 413 01aa 2C000000 		.4byte	.LASF20
+ 414 01ae 02       		.byte	0x2
+ 415 01af EE03     		.2byte	0x3ee
+ 416 01b1 00       		.byte	0
+ 417              		.section	.debug_abbrev,"",%progbits
+ 418              	.Ldebug_abbrev0:
+ 419 0000 01       		.uleb128 0x1
+ 420 0001 11       		.uleb128 0x11
+ 421 0002 01       		.byte	0x1
+ 422 0003 25       		.uleb128 0x25
+ 423 0004 0E       		.uleb128 0xe
+ 424 0005 13       		.uleb128 0x13
+ 425 0006 0B       		.uleb128 0xb
+ 426 0007 03       		.uleb128 0x3
+ 427 0008 0E       		.uleb128 0xe
+ 428 0009 1B       		.uleb128 0x1b
+ 429 000a 0E       		.uleb128 0xe
+ 430 000b 55       		.uleb128 0x55
+ 431 000c 17       		.uleb128 0x17
+ 432 000d 11       		.uleb128 0x11
+ 433 000e 01       		.uleb128 0x1
+ 434 000f 10       		.uleb128 0x10
+ 435 0010 17       		.uleb128 0x17
+ 436 0011 00       		.byte	0
+ 437 0012 00       		.byte	0
+ 438 0013 02       		.uleb128 0x2
+ 439 0014 16       		.uleb128 0x16
+ 440 0015 00       		.byte	0
+ 441 0016 03       		.uleb128 0x3
+ 442 0017 0E       		.uleb128 0xe
+ 443 0018 3A       		.uleb128 0x3a
+ 444 0019 0B       		.uleb128 0xb
+ 445 001a 3B       		.uleb128 0x3b
+ 446 001b 0B       		.uleb128 0xb
+ 447 001c 49       		.uleb128 0x49
+ 448 001d 13       		.uleb128 0x13
+ 449 001e 00       		.byte	0
+ 450 001f 00       		.byte	0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccyoIjpk.s 			page 12
+
+
+ 451 0020 03       		.uleb128 0x3
+ 452 0021 24       		.uleb128 0x24
+ 453 0022 00       		.byte	0
+ 454 0023 0B       		.uleb128 0xb
+ 455 0024 0B       		.uleb128 0xb
+ 456 0025 3E       		.uleb128 0x3e
+ 457 0026 0B       		.uleb128 0xb
+ 458 0027 03       		.uleb128 0x3
+ 459 0028 0E       		.uleb128 0xe
+ 460 0029 00       		.byte	0
+ 461 002a 00       		.byte	0
+ 462 002b 04       		.uleb128 0x4
+ 463 002c 24       		.uleb128 0x24
+ 464 002d 00       		.byte	0
+ 465 002e 0B       		.uleb128 0xb
+ 466 002f 0B       		.uleb128 0xb
+ 467 0030 3E       		.uleb128 0x3e
+ 468 0031 0B       		.uleb128 0xb
+ 469 0032 03       		.uleb128 0x3
+ 470 0033 08       		.uleb128 0x8
+ 471 0034 00       		.byte	0
+ 472 0035 00       		.byte	0
+ 473 0036 05       		.uleb128 0x5
+ 474 0037 0F       		.uleb128 0xf
+ 475 0038 00       		.byte	0
+ 476 0039 0B       		.uleb128 0xb
+ 477 003a 0B       		.uleb128 0xb
+ 478 003b 00       		.byte	0
+ 479 003c 00       		.byte	0
+ 480 003d 06       		.uleb128 0x6
+ 481 003e 0F       		.uleb128 0xf
+ 482 003f 00       		.byte	0
+ 483 0040 0B       		.uleb128 0xb
+ 484 0041 0B       		.uleb128 0xb
+ 485 0042 49       		.uleb128 0x49
+ 486 0043 13       		.uleb128 0x13
+ 487 0044 00       		.byte	0
+ 488 0045 00       		.byte	0
+ 489 0046 07       		.uleb128 0x7
+ 490 0047 2E       		.uleb128 0x2e
+ 491 0048 01       		.byte	0x1
+ 492 0049 3F       		.uleb128 0x3f
+ 493 004a 19       		.uleb128 0x19
+ 494 004b 03       		.uleb128 0x3
+ 495 004c 0E       		.uleb128 0xe
+ 496 004d 3A       		.uleb128 0x3a
+ 497 004e 0B       		.uleb128 0xb
+ 498 004f 3B       		.uleb128 0x3b
+ 499 0050 0B       		.uleb128 0xb
+ 500 0051 27       		.uleb128 0x27
+ 501 0052 19       		.uleb128 0x19
+ 502 0053 49       		.uleb128 0x49
+ 503 0054 13       		.uleb128 0x13
+ 504 0055 11       		.uleb128 0x11
+ 505 0056 01       		.uleb128 0x1
+ 506 0057 12       		.uleb128 0x12
+ 507 0058 06       		.uleb128 0x6
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccyoIjpk.s 			page 13
+
+
+ 508 0059 40       		.uleb128 0x40
+ 509 005a 18       		.uleb128 0x18
+ 510 005b 9742     		.uleb128 0x2117
+ 511 005d 19       		.uleb128 0x19
+ 512 005e 01       		.uleb128 0x1
+ 513 005f 13       		.uleb128 0x13
+ 514 0060 00       		.byte	0
+ 515 0061 00       		.byte	0
+ 516 0062 08       		.uleb128 0x8
+ 517 0063 05       		.uleb128 0x5
+ 518 0064 00       		.byte	0
+ 519 0065 03       		.uleb128 0x3
+ 520 0066 0E       		.uleb128 0xe
+ 521 0067 3A       		.uleb128 0x3a
+ 522 0068 0B       		.uleb128 0xb
+ 523 0069 3B       		.uleb128 0x3b
+ 524 006a 0B       		.uleb128 0xb
+ 525 006b 49       		.uleb128 0x49
+ 526 006c 13       		.uleb128 0x13
+ 527 006d 02       		.uleb128 0x2
+ 528 006e 17       		.uleb128 0x17
+ 529 006f 00       		.byte	0
+ 530 0070 00       		.byte	0
+ 531 0071 09       		.uleb128 0x9
+ 532 0072 34       		.uleb128 0x34
+ 533 0073 00       		.byte	0
+ 534 0074 03       		.uleb128 0x3
+ 535 0075 0E       		.uleb128 0xe
+ 536 0076 3A       		.uleb128 0x3a
+ 537 0077 0B       		.uleb128 0xb
+ 538 0078 3B       		.uleb128 0x3b
+ 539 0079 0B       		.uleb128 0xb
+ 540 007a 49       		.uleb128 0x49
+ 541 007b 13       		.uleb128 0x13
+ 542 007c 02       		.uleb128 0x2
+ 543 007d 17       		.uleb128 0x17
+ 544 007e 00       		.byte	0
+ 545 007f 00       		.byte	0
+ 546 0080 0A       		.uleb128 0xa
+ 547 0081 34       		.uleb128 0x34
+ 548 0082 00       		.byte	0
+ 549 0083 03       		.uleb128 0x3
+ 550 0084 0E       		.uleb128 0xe
+ 551 0085 3A       		.uleb128 0x3a
+ 552 0086 0B       		.uleb128 0xb
+ 553 0087 3B       		.uleb128 0x3b
+ 554 0088 0B       		.uleb128 0xb
+ 555 0089 49       		.uleb128 0x49
+ 556 008a 13       		.uleb128 0x13
+ 557 008b 02       		.uleb128 0x2
+ 558 008c 18       		.uleb128 0x18
+ 559 008d 00       		.byte	0
+ 560 008e 00       		.byte	0
+ 561 008f 0B       		.uleb128 0xb
+ 562 0090 0B       		.uleb128 0xb
+ 563 0091 01       		.byte	0x1
+ 564 0092 11       		.uleb128 0x11
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccyoIjpk.s 			page 14
+
+
+ 565 0093 01       		.uleb128 0x1
+ 566 0094 12       		.uleb128 0x12
+ 567 0095 06       		.uleb128 0x6
+ 568 0096 01       		.uleb128 0x1
+ 569 0097 13       		.uleb128 0x13
+ 570 0098 00       		.byte	0
+ 571 0099 00       		.byte	0
+ 572 009a 0C       		.uleb128 0xc
+ 573 009b 2E       		.uleb128 0x2e
+ 574 009c 00       		.byte	0
+ 575 009d 3F       		.uleb128 0x3f
+ 576 009e 19       		.uleb128 0x19
+ 577 009f 03       		.uleb128 0x3
+ 578 00a0 0E       		.uleb128 0xe
+ 579 00a1 3A       		.uleb128 0x3a
+ 580 00a2 0B       		.uleb128 0xb
+ 581 00a3 3B       		.uleb128 0x3b
+ 582 00a4 0B       		.uleb128 0xb
+ 583 00a5 27       		.uleb128 0x27
+ 584 00a6 19       		.uleb128 0x19
+ 585 00a7 3C       		.uleb128 0x3c
+ 586 00a8 19       		.uleb128 0x19
+ 587 00a9 00       		.byte	0
+ 588 00aa 00       		.byte	0
+ 589 00ab 0D       		.uleb128 0xd
+ 590 00ac 898201   		.uleb128 0x4109
+ 591 00af 00       		.byte	0
+ 592 00b0 11       		.uleb128 0x11
+ 593 00b1 01       		.uleb128 0x1
+ 594 00b2 31       		.uleb128 0x31
+ 595 00b3 13       		.uleb128 0x13
+ 596 00b4 00       		.byte	0
+ 597 00b5 00       		.byte	0
+ 598 00b6 0E       		.uleb128 0xe
+ 599 00b7 2E       		.uleb128 0x2e
+ 600 00b8 01       		.byte	0x1
+ 601 00b9 3F       		.uleb128 0x3f
+ 602 00ba 19       		.uleb128 0x19
+ 603 00bb 03       		.uleb128 0x3
+ 604 00bc 0E       		.uleb128 0xe
+ 605 00bd 3A       		.uleb128 0x3a
+ 606 00be 0B       		.uleb128 0xb
+ 607 00bf 3B       		.uleb128 0x3b
+ 608 00c0 0B       		.uleb128 0xb
+ 609 00c1 27       		.uleb128 0x27
+ 610 00c2 19       		.uleb128 0x19
+ 611 00c3 11       		.uleb128 0x11
+ 612 00c4 01       		.uleb128 0x1
+ 613 00c5 12       		.uleb128 0x12
+ 614 00c6 06       		.uleb128 0x6
+ 615 00c7 40       		.uleb128 0x40
+ 616 00c8 18       		.uleb128 0x18
+ 617 00c9 9742     		.uleb128 0x2117
+ 618 00cb 19       		.uleb128 0x19
+ 619 00cc 01       		.uleb128 0x1
+ 620 00cd 13       		.uleb128 0x13
+ 621 00ce 00       		.byte	0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccyoIjpk.s 			page 15
+
+
+ 622 00cf 00       		.byte	0
+ 623 00d0 0F       		.uleb128 0xf
+ 624 00d1 05       		.uleb128 0x5
+ 625 00d2 00       		.byte	0
+ 626 00d3 03       		.uleb128 0x3
+ 627 00d4 08       		.uleb128 0x8
+ 628 00d5 3A       		.uleb128 0x3a
+ 629 00d6 0B       		.uleb128 0xb
+ 630 00d7 3B       		.uleb128 0x3b
+ 631 00d8 0B       		.uleb128 0xb
+ 632 00d9 49       		.uleb128 0x49
+ 633 00da 13       		.uleb128 0x13
+ 634 00db 02       		.uleb128 0x2
+ 635 00dc 18       		.uleb128 0x18
+ 636 00dd 00       		.byte	0
+ 637 00de 00       		.byte	0
+ 638 00df 10       		.uleb128 0x10
+ 639 00e0 2E       		.uleb128 0x2e
+ 640 00e1 00       		.byte	0
+ 641 00e2 3F       		.uleb128 0x3f
+ 642 00e3 19       		.uleb128 0x19
+ 643 00e4 03       		.uleb128 0x3
+ 644 00e5 0E       		.uleb128 0xe
+ 645 00e6 3A       		.uleb128 0x3a
+ 646 00e7 0B       		.uleb128 0xb
+ 647 00e8 3B       		.uleb128 0x3b
+ 648 00e9 0B       		.uleb128 0xb
+ 649 00ea 27       		.uleb128 0x27
+ 650 00eb 19       		.uleb128 0x19
+ 651 00ec 11       		.uleb128 0x11
+ 652 00ed 01       		.uleb128 0x1
+ 653 00ee 12       		.uleb128 0x12
+ 654 00ef 06       		.uleb128 0x6
+ 655 00f0 40       		.uleb128 0x40
+ 656 00f1 18       		.uleb128 0x18
+ 657 00f2 9742     		.uleb128 0x2117
+ 658 00f4 19       		.uleb128 0x19
+ 659 00f5 00       		.byte	0
+ 660 00f6 00       		.byte	0
+ 661 00f7 11       		.uleb128 0x11
+ 662 00f8 2E       		.uleb128 0x2e
+ 663 00f9 00       		.byte	0
+ 664 00fa 3F       		.uleb128 0x3f
+ 665 00fb 19       		.uleb128 0x19
+ 666 00fc 03       		.uleb128 0x3
+ 667 00fd 0E       		.uleb128 0xe
+ 668 00fe 3A       		.uleb128 0x3a
+ 669 00ff 0B       		.uleb128 0xb
+ 670 0100 3B       		.uleb128 0x3b
+ 671 0101 0B       		.uleb128 0xb
+ 672 0102 27       		.uleb128 0x27
+ 673 0103 19       		.uleb128 0x19
+ 674 0104 49       		.uleb128 0x49
+ 675 0105 13       		.uleb128 0x13
+ 676 0106 11       		.uleb128 0x11
+ 677 0107 01       		.uleb128 0x1
+ 678 0108 12       		.uleb128 0x12
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccyoIjpk.s 			page 16
+
+
+ 679 0109 06       		.uleb128 0x6
+ 680 010a 40       		.uleb128 0x40
+ 681 010b 18       		.uleb128 0x18
+ 682 010c 9742     		.uleb128 0x2117
+ 683 010e 19       		.uleb128 0x19
+ 684 010f 00       		.byte	0
+ 685 0110 00       		.byte	0
+ 686 0111 12       		.uleb128 0x12
+ 687 0112 01       		.uleb128 0x1
+ 688 0113 01       		.byte	0x1
+ 689 0114 49       		.uleb128 0x49
+ 690 0115 13       		.uleb128 0x13
+ 691 0116 01       		.uleb128 0x1
+ 692 0117 13       		.uleb128 0x13
+ 693 0118 00       		.byte	0
+ 694 0119 00       		.byte	0
+ 695 011a 13       		.uleb128 0x13
+ 696 011b 21       		.uleb128 0x21
+ 697 011c 00       		.byte	0
+ 698 011d 49       		.uleb128 0x49
+ 699 011e 13       		.uleb128 0x13
+ 700 011f 2F       		.uleb128 0x2f
+ 701 0120 05       		.uleb128 0x5
+ 702 0121 00       		.byte	0
+ 703 0122 00       		.byte	0
+ 704 0123 14       		.uleb128 0x14
+ 705 0124 2E       		.uleb128 0x2e
+ 706 0125 00       		.byte	0
+ 707 0126 3F       		.uleb128 0x3f
+ 708 0127 19       		.uleb128 0x19
+ 709 0128 3C       		.uleb128 0x3c
+ 710 0129 19       		.uleb128 0x19
+ 711 012a 6E       		.uleb128 0x6e
+ 712 012b 0E       		.uleb128 0xe
+ 713 012c 03       		.uleb128 0x3
+ 714 012d 0E       		.uleb128 0xe
+ 715 012e 3A       		.uleb128 0x3a
+ 716 012f 0B       		.uleb128 0xb
+ 717 0130 3B       		.uleb128 0x3b
+ 718 0131 0B       		.uleb128 0xb
+ 719 0132 00       		.byte	0
+ 720 0133 00       		.byte	0
+ 721 0134 15       		.uleb128 0x15
+ 722 0135 2E       		.uleb128 0x2e
+ 723 0136 00       		.byte	0
+ 724 0137 3F       		.uleb128 0x3f
+ 725 0138 19       		.uleb128 0x19
+ 726 0139 3C       		.uleb128 0x3c
+ 727 013a 19       		.uleb128 0x19
+ 728 013b 6E       		.uleb128 0x6e
+ 729 013c 0E       		.uleb128 0xe
+ 730 013d 03       		.uleb128 0x3
+ 731 013e 0E       		.uleb128 0xe
+ 732 013f 3A       		.uleb128 0x3a
+ 733 0140 0B       		.uleb128 0xb
+ 734 0141 3B       		.uleb128 0x3b
+ 735 0142 05       		.uleb128 0x5
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccyoIjpk.s 			page 17
+
+
+ 736 0143 00       		.byte	0
+ 737 0144 00       		.byte	0
+ 738 0145 00       		.byte	0
+ 739              		.section	.debug_loc,"",%progbits
+ 740              	.Ldebug_loc0:
+ 741              	.LLST0:
+ 742 0000 00000000 		.4byte	.LVL0
+ 743 0004 0E000000 		.4byte	.LVL1
+ 744 0008 0100     		.2byte	0x1
+ 745 000a 50       		.byte	0x50
+ 746 000b 0E000000 		.4byte	.LVL1
+ 747 000f 2E000000 		.4byte	.LVL3
+ 748 0013 0100     		.2byte	0x1
+ 749 0015 54       		.byte	0x54
+ 750 0016 00000000 		.4byte	0
+ 751 001a 00000000 		.4byte	0
+ 752              	.LLST1:
+ 753 001e 00000000 		.4byte	.LVL0
+ 754 0022 3C000000 		.4byte	.LVL4
+ 755 0026 0200     		.2byte	0x2
+ 756 0028 30       		.byte	0x30
+ 757 0029 9F       		.byte	0x9f
+ 758 002a 3C000000 		.4byte	.LVL4
+ 759 002e 44000000 		.4byte	.LVL6
+ 760 0032 0100     		.2byte	0x1
+ 761 0034 55       		.byte	0x55
+ 762 0035 44000000 		.4byte	.LVL6
+ 763 0039 48000000 		.4byte	.LVL7
+ 764 003d 0200     		.2byte	0x2
+ 765 003f 30       		.byte	0x30
+ 766 0040 9F       		.byte	0x9f
+ 767 0041 00000000 		.4byte	0
+ 768 0045 00000000 		.4byte	0
+ 769              		.section	.debug_aranges,"",%progbits
+ 770 0000 34000000 		.4byte	0x34
+ 771 0004 0200     		.2byte	0x2
+ 772 0006 00000000 		.4byte	.Ldebug_info0
+ 773 000a 04       		.byte	0x4
+ 774 000b 00       		.byte	0
+ 775 000c 0000     		.2byte	0
+ 776 000e 0000     		.2byte	0
+ 777 0010 00000000 		.4byte	.LFB32
+ 778 0014 58000000 		.4byte	.LFE32-.LFB32
+ 779 0018 00000000 		.4byte	.LFB33
+ 780 001c 02000000 		.4byte	.LFE33-.LFB33
+ 781 0020 00000000 		.4byte	.LFB34
+ 782 0024 0C000000 		.4byte	.LFE34-.LFB34
+ 783 0028 00000000 		.4byte	.LFB35
+ 784 002c 14000000 		.4byte	.LFE35-.LFB35
+ 785 0030 00000000 		.4byte	0
+ 786 0034 00000000 		.4byte	0
+ 787              		.section	.debug_ranges,"",%progbits
+ 788              	.Ldebug_ranges0:
+ 789 0000 00000000 		.4byte	.LFB32
+ 790 0004 58000000 		.4byte	.LFE32
+ 791 0008 00000000 		.4byte	.LFB33
+ 792 000c 02000000 		.4byte	.LFE33
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccyoIjpk.s 			page 18
+
+
+ 793 0010 00000000 		.4byte	.LFB34
+ 794 0014 0C000000 		.4byte	.LFE34
+ 795 0018 00000000 		.4byte	.LFB35
+ 796 001c 14000000 		.4byte	.LFE35
+ 797 0020 00000000 		.4byte	0
+ 798 0024 00000000 		.4byte	0
+ 799              		.section	.debug_line,"",%progbits
+ 800              	.Ldebug_line0:
+ 801 0000 39010000 		.section	.debug_str,"MS",%progbits,1
+ 801      0200CB00 
+ 801      00000201 
+ 801      FB0E0D00 
+ 801      01010101 
+ 802              	.LASF24:
+ 803 0000 73697A65 		.ascii	"size_t\000"
+ 803      5F7400
+ 804              	.LASF19:
+ 805 0007 76546173 		.ascii	"vTaskSuspendAll\000"
+ 805      6B537573 
+ 805      70656E64 
+ 805      416C6C00 
+ 806              	.LASF28:
+ 807 0017 78506F72 		.ascii	"xPortGetFreeHeapSize\000"
+ 807      74476574 
+ 807      46726565 
+ 807      48656170 
+ 807      53697A65 
+ 808              	.LASF20:
+ 809 002c 78546173 		.ascii	"xTaskResumeAll\000"
+ 809      6B526573 
+ 809      756D6541 
+ 809      6C6C00
+ 810              	.LASF11:
+ 811 003b 666C6F61 		.ascii	"float\000"
+ 811      7400
+ 812              	.LASF2:
+ 813 0041 756E7369 		.ascii	"unsigned char\000"
+ 813      676E6564 
+ 813      20636861 
+ 813      7200
+ 814              	.LASF6:
+ 815 004f 6C6F6E67 		.ascii	"long unsigned int\000"
+ 815      20756E73 
+ 815      69676E65 
+ 815      6420696E 
+ 815      7400
+ 816              	.LASF4:
+ 817 0061 73686F72 		.ascii	"short unsigned int\000"
+ 817      7420756E 
+ 817      7369676E 
+ 817      65642069 
+ 817      6E7400
+ 818              	.LASF12:
+ 819 0074 646F7562 		.ascii	"double\000"
+ 819      6C6500
+ 820              	.LASF21:
+ 821 007b 474E5520 		.ascii	"GNU C99 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccyoIjpk.s 			page 19
+
+
+ 821      43393920 
+ 821      352E342E 
+ 821      31203230 
+ 821      31363036 
+ 822 00ae 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 822      20726576 
+ 822      6973696F 
+ 822      6E203233 
+ 822      37373135 
+ 823 00e1 73202D73 		.ascii	"s -std=gnu99 -ffunction-sections -ffat-lto-objects\000"
+ 823      74643D67 
+ 823      6E753939 
+ 823      202D6666 
+ 823      756E6374 
+ 824              	.LASF22:
+ 825 0114 66726565 		.ascii	"freertos\\src\\heap_1.c\000"
+ 825      72746F73 
+ 825      5C737263 
+ 825      5C686561 
+ 825      705F312E 
+ 826              	.LASF13:
+ 827 012a 70765265 		.ascii	"pvReturn\000"
+ 827      7475726E 
+ 827      00
+ 828              	.LASF16:
+ 829 0133 75634865 		.ascii	"ucHeap\000"
+ 829      617000
+ 830              	.LASF27:
+ 831 013a 76506F72 		.ascii	"vPortInitialiseBlocks\000"
+ 831      74496E69 
+ 831      7469616C 
+ 831      69736542 
+ 831      6C6F636B 
+ 832              	.LASF0:
+ 833 0150 756E7369 		.ascii	"unsigned int\000"
+ 833      676E6564 
+ 833      20696E74 
+ 833      00
+ 834              	.LASF8:
+ 835 015d 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 835      206C6F6E 
+ 835      6720756E 
+ 835      7369676E 
+ 835      65642069 
+ 836              	.LASF18:
+ 837 0174 76417070 		.ascii	"vApplicationMallocFailedHook\000"
+ 837      6C696361 
+ 837      74696F6E 
+ 837      4D616C6C 
+ 837      6F634661 
+ 838              	.LASF23:
+ 839 0191 443A5C31 		.ascii	"D:\\1_work\\my_project\\ReloadPro\\psoc42boot\\Relo"
+ 839      5F776F72 
+ 839      6B5C6D79 
+ 839      5F70726F 
+ 839      6A656374 
+ 840 01bf 61642050 		.ascii	"ad Pro.cydsn\000"
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccyoIjpk.s 			page 20
+
+
+ 840      726F2E63 
+ 840      7964736E 
+ 840      00
+ 841              	.LASF9:
+ 842 01cc 73697A65 		.ascii	"sizetype\000"
+ 842      74797065 
+ 842      00
+ 843              	.LASF7:
+ 844 01d5 6C6F6E67 		.ascii	"long long int\000"
+ 844      206C6F6E 
+ 844      6720696E 
+ 844      7400
+ 845              	.LASF15:
+ 846 01e3 7857616E 		.ascii	"xWantedSize\000"
+ 846      74656453 
+ 846      697A6500 
+ 847              	.LASF10:
+ 848 01ef 63686172 		.ascii	"char\000"
+ 848      00
+ 849              	.LASF14:
+ 850 01f4 70756341 		.ascii	"pucAlignedHeap\000"
+ 850      6C69676E 
+ 850      65644865 
+ 850      617000
+ 851              	.LASF25:
+ 852 0203 7076506F 		.ascii	"pvPortMalloc\000"
+ 852      72744D61 
+ 852      6C6C6F63 
+ 852      00
+ 853              	.LASF3:
+ 854 0210 73686F72 		.ascii	"short int\000"
+ 854      7420696E 
+ 854      7400
+ 855              	.LASF26:
+ 856 021a 76506F72 		.ascii	"vPortFree\000"
+ 856      74467265 
+ 856      6500
+ 857              	.LASF5:
+ 858 0224 6C6F6E67 		.ascii	"long int\000"
+ 858      20696E74 
+ 858      00
+ 859              	.LASF1:
+ 860 022d 7369676E 		.ascii	"signed char\000"
+ 860      65642063 
+ 860      68617200 
+ 861              	.LASF17:
+ 862 0239 784E6578 		.ascii	"xNextFreeByte\000"
+ 862      74467265 
+ 862      65427974 
+ 862      6500
+ 863              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

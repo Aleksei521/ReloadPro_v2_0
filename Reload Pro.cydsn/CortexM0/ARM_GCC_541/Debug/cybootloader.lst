@@ -1,0 +1,4761 @@
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"cybootloader.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.global	cy_meta_chipprotect
+  20              		.global	cy_meta_flashprotect
+  21              		.global	cy_metadata
+  22              		.global	cy_bootloader
+  23              		.global	cy_meta_loader
+  24              		.section	.cychipprotect,"a",%progbits
+  25              		.align	2
+  26              		.type	cy_meta_chipprotect, %object
+  27              		.size	cy_meta_chipprotect, 1
+  28              	cy_meta_chipprotect:
+  29 0000 01       		.byte	1
+  30              		.section	.cyloadermeta,"a",%progbits
+  31              		.align	2
+  32              		.type	cy_meta_loader, %object
+  33              		.size	cy_meta_loader, 64
+  34              	cy_meta_loader:
+  35 0000 00       		.byte	0
+  36 0001 00       		.byte	0
+  37 0002 00       		.byte	0
+  38 0003 00       		.byte	0
+  39 0004 00       		.byte	0
+  40 0005 00       		.byte	0
+  41 0006 00       		.byte	0
+  42 0007 00       		.byte	0
+  43 0008 00       		.byte	0
+  44 0009 00       		.byte	0
+  45 000a 00       		.byte	0
+  46 000b 00       		.byte	0
+  47 000c 00       		.byte	0
+  48 000d 00       		.byte	0
+  49 000e 00       		.byte	0
+  50 000f 00       		.byte	0
+  51 0010 00       		.byte	0
+  52 0011 00       		.byte	0
+  53 0012 00       		.byte	0
+  54 0013 00       		.byte	0
+  55 0014 01       		.byte	1
+  56 0015 01       		.byte	1
+  57 0016 00       		.byte	0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 2
+
+
+  58 0017 00       		.byte	0
+  59 0018 00       		.byte	0
+  60 0019 00       		.byte	0
+  61 001a 00       		.byte	0
+  62 001b 00       		.byte	0
+  63 001c 00       		.byte	0
+  64 001d 00       		.byte	0
+  65 001e 00       		.byte	0
+  66 001f 00       		.byte	0
+  67 0020 00       		.byte	0
+  68 0021 00       		.byte	0
+  69 0022 00       		.byte	0
+  70 0023 00       		.byte	0
+  71 0024 00       		.byte	0
+  72 0025 00       		.byte	0
+  73 0026 00       		.byte	0
+  74 0027 00       		.byte	0
+  75 0028 00       		.byte	0
+  76 0029 00       		.byte	0
+  77 002a 00       		.byte	0
+  78 002b 00       		.byte	0
+  79 002c 00       		.byte	0
+  80 002d 00       		.byte	0
+  81 002e 00       		.byte	0
+  82 002f 00       		.byte	0
+  83 0030 00       		.byte	0
+  84 0031 00       		.byte	0
+  85 0032 00       		.byte	0
+  86 0033 00       		.byte	0
+  87 0034 00       		.byte	0
+  88 0035 00       		.byte	0
+  89 0036 00       		.byte	0
+  90 0037 00       		.byte	0
+  91 0038 00       		.byte	0
+  92 0039 00       		.byte	0
+  93 003a 00       		.byte	0
+  94 003b 00       		.byte	0
+  95 003c 00       		.byte	0
+  96 003d 00       		.byte	0
+  97 003e 00       		.byte	0
+  98 003f 00       		.byte	0
+  99              		.section	.cymeta,"a",%progbits
+ 100              		.align	2
+ 101              		.type	cy_metadata, %object
+ 102              		.size	cy_metadata, 12
+ 103              	cy_metadata:
+ 104 0000 00       		.byte	0
+ 105 0001 02       		.byte	2
+ 106 0002 04       		.byte	4
+ 107 0003 C8       		.byte	-56
+ 108 0004 11       		.byte	17
+ 109 0005 93       		.byte	-109
+ 110 0006 11       		.byte	17
+ 111 0007 01       		.byte	1
+ 112 0008 04       		.byte	4
+ 113 0009 CD       		.byte	-51
+ 114 000a 17       		.byte	23
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 3
+
+
+ 115 000b 53       		.byte	83
+ 116              		.section	.cybootloader,"a",%progbits
+ 117              		.align	2
+ 118              		.type	cy_bootloader, %object
+ 119              		.size	cy_bootloader, 3968
+ 120              	cy_bootloader:
+ 121 0000 00       		.byte	0
+ 122 0001 10       		.byte	16
+ 123 0002 00       		.byte	0
+ 124 0003 20       		.byte	32
+ 125 0004 11       		.byte	17
+ 126 0005 00       		.byte	0
+ 127 0006 00       		.byte	0
+ 128 0007 00       		.byte	0
+ 129 0008 31       		.byte	49
+ 130 0009 02       		.byte	2
+ 131 000a 00       		.byte	0
+ 132 000b 00       		.byte	0
+ 133 000c 31       		.byte	49
+ 134 000d 02       		.byte	2
+ 135 000e 00       		.byte	0
+ 136 000f 00       		.byte	0
+ 137 0010 10       		.byte	16
+ 138 0011 B5       		.byte	-75
+ 139 0012 00       		.byte	0
+ 140 0013 F0       		.byte	-16
+ 141 0014 E1       		.byte	-31
+ 142 0015 F9       		.byte	-7
+ 143 0016 00       		.byte	0
+ 144 0017 F0       		.byte	-16
+ 145 0018 13       		.byte	19
+ 146 0019 F9       		.byte	-7
+ 147 001a 00       		.byte	0
+ 148 001b 00       		.byte	0
+ 149 001c 10       		.byte	16
+ 150 001d B5       		.byte	-75
+ 151 001e 72       		.byte	114
+ 152 001f B6       		.byte	-74
+ 153 0020 80       		.byte	-128
+ 154 0021 24       		.byte	36
+ 155 0022 E4       		.byte	-28
+ 156 0023 00       		.byte	0
+ 157 0024 22       		.byte	34
+ 158 0025 00       		.byte	0
+ 159 0026 00       		.byte	0
+ 160 0027 21       		.byte	33
+ 161 0028 26       		.byte	38
+ 162 0029 48       		.byte	72
+ 163 002a 00       		.byte	0
+ 164 002b F0       		.byte	-16
+ 165 002c 18       		.byte	24
+ 166 002d FF       		.byte	-1
+ 167 002e 22       		.byte	34
+ 168 002f 00       		.byte	0
+ 169 0030 00       		.byte	0
+ 170 0031 21       		.byte	33
+ 171 0032 25       		.byte	37
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 4
+
+
+ 172 0033 48       		.byte	72
+ 173 0034 00       		.byte	0
+ 174 0035 F0       		.byte	-16
+ 175 0036 13       		.byte	19
+ 176 0037 FF       		.byte	-1
+ 177 0038 EE       		.byte	-18
+ 178 0039 22       		.byte	34
+ 179 003a 24       		.byte	36
+ 180 003b 4B       		.byte	75
+ 181 003c 12       		.byte	18
+ 182 003d 02       		.byte	2
+ 183 003e 1A       		.byte	26
+ 184 003f 60       		.byte	96
+ 185 0040 99       		.byte	-103
+ 186 0041 22       		.byte	34
+ 187 0042 23       		.byte	35
+ 188 0043 4B       		.byte	75
+ 189 0044 06       		.byte	6
+ 190 0045 21       		.byte	33
+ 191 0046 1A       		.byte	26
+ 192 0047 60       		.byte	96
+ 193 0048 99       		.byte	-103
+ 194 0049 23       		.byte	35
+ 195 004a 22       		.byte	34
+ 196 004b 4A       		.byte	74
+ 197 004c 1B       		.byte	27
+ 198 004d 04       		.byte	4
+ 199 004e 13       		.byte	19
+ 200 004f 60       		.byte	96
+ 201 0050 21       		.byte	33
+ 202 0051 4A       		.byte	74
+ 203 0052 22       		.byte	34
+ 204 0053 4C       		.byte	76
+ 205 0054 13       		.byte	19
+ 206 0055 60       		.byte	96
+ 207 0056 22       		.byte	34
+ 208 0057 4A       		.byte	74
+ 209 0058 18       		.byte	24
+ 210 0059 20       		.byte	32
+ 211 005a 13       		.byte	19
+ 212 005b 78       		.byte	120
+ 213 005c 0B       		.byte	11
+ 214 005d 43       		.byte	67
+ 215 005e 13       		.byte	19
+ 216 005f 70       		.byte	112
+ 217 0060 80       		.byte	-128
+ 218 0061 22       		.byte	34
+ 219 0062 20       		.byte	32
+ 220 0063 4B       		.byte	75
+ 221 0064 1A       		.byte	26
+ 222 0065 60       		.byte	96
+ 223 0066 C0       		.byte	-64
+ 224 0067 22       		.byte	34
+ 225 0068 1F       		.byte	31
+ 226 0069 4B       		.byte	75
+ 227 006a 12       		.byte	18
+ 228 006b 04       		.byte	4
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 5
+
+
+ 229 006c 1A       		.byte	26
+ 230 006d 60       		.byte	96
+ 231 006e D8       		.byte	-40
+ 232 006f 22       		.byte	34
+ 233 0070 1E       		.byte	30
+ 234 0071 4B       		.byte	75
+ 235 0072 12       		.byte	18
+ 236 0073 01       		.byte	1
+ 237 0074 1A       		.byte	26
+ 238 0075 60       		.byte	96
+ 239 0076 0A       		.byte	10
+ 240 0077 22       		.byte	34
+ 241 0078 1D       		.byte	29
+ 242 0079 4B       		.byte	75
+ 243 007a 1A       		.byte	26
+ 244 007b 60       		.byte	96
+ 245 007c 1D       		.byte	29
+ 246 007d 4A       		.byte	74
+ 247 007e 1E       		.byte	30
+ 248 007f 4B       		.byte	75
+ 249 0080 1A       		.byte	26
+ 250 0081 60       		.byte	96
+ 251 0082 02       		.byte	2
+ 252 0083 22       		.byte	34
+ 253 0084 1D       		.byte	29
+ 254 0085 4B       		.byte	75
+ 255 0086 1A       		.byte	26
+ 256 0087 60       		.byte	96
+ 257 0088 80       		.byte	-128
+ 258 0089 22       		.byte	34
+ 259 008a 23       		.byte	35
+ 260 008b 68       		.byte	104
+ 261 008c D2       		.byte	-46
+ 262 008d 02       		.byte	2
+ 263 008e 13       		.byte	19
+ 264 008f 43       		.byte	67
+ 265 0090 23       		.byte	35
+ 266 0091 60       		.byte	96
+ 267 0092 00       		.byte	0
+ 268 0093 F0       		.byte	-16
+ 269 0094 F7       		.byte	-9
+ 270 0095 FD       		.byte	-3
+ 271 0096 22       		.byte	34
+ 272 0097 68       		.byte	104
+ 273 0098 19       		.byte	25
+ 274 0099 4B       		.byte	75
+ 275 009a 1A       		.byte	26
+ 276 009b 49       		.byte	73
+ 277 009c 13       		.byte	19
+ 278 009d 40       		.byte	64
+ 279 009e 23       		.byte	35
+ 280 009f 60       		.byte	96
+ 281 00a0 19       		.byte	25
+ 282 00a1 4A       		.byte	74
+ 283 00a2 1A       		.byte	26
+ 284 00a3 4B       		.byte	75
+ 285 00a4 1A       		.byte	26
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 6
+
+
+ 286 00a5 60       		.byte	96
+ 287 00a6 13       		.byte	19
+ 288 00a7 22       		.byte	34
+ 289 00a8 19       		.byte	25
+ 290 00a9 4B       		.byte	75
+ 291 00aa 1A       		.byte	26
+ 292 00ab 60       		.byte	96
+ 293 00ac 80       		.byte	-128
+ 294 00ad 22       		.byte	34
+ 295 00ae 19       		.byte	25
+ 296 00af 4B       		.byte	75
+ 297 00b0 12       		.byte	18
+ 298 00b1 06       		.byte	6
+ 299 00b2 1A       		.byte	26
+ 300 00b3 60       		.byte	96
+ 301 00b4 00       		.byte	0
+ 302 00b5 23       		.byte	35
+ 303 00b6 18       		.byte	24
+ 304 00b7 4A       		.byte	74
+ 305 00b8 23       		.byte	35
+ 306 00b9 60       		.byte	96
+ 307 00ba 11       		.byte	17
+ 308 00bb 60       		.byte	96
+ 309 00bc 17       		.byte	23
+ 310 00bd 4A       		.byte	74
+ 311 00be 13       		.byte	19
+ 312 00bf 60       		.byte	96
+ 313 00c0 10       		.byte	16
+ 314 00c1 BD       		.byte	-67
+ 315 00c2 C0       		.byte	-64
+ 316 00c3 46       		.byte	70
+ 317 00c4 00       		.byte	0
+ 318 00c5 30       		.byte	48
+ 319 00c6 0F       		.byte	15
+ 320 00c7 40       		.byte	64
+ 321 00c8 00       		.byte	0
+ 322 00c9 40       		.byte	64
+ 323 00ca 0F       		.byte	15
+ 324 00cb 40       		.byte	64
+ 325 00cc 0C       		.byte	12
+ 326 00cd 00       		.byte	0
+ 327 00ce 01       		.byte	1
+ 328 00cf 40       		.byte	64
+ 329 00d0 10       		.byte	16
+ 330 00d1 00       		.byte	0
+ 331 00d2 01       		.byte	1
+ 332 00d3 40       		.byte	64
+ 333 00d4 00       		.byte	0
+ 334 00d5 50       		.byte	80
+ 335 00d6 0F       		.byte	15
+ 336 00d7 40       		.byte	64
+ 337 00d8 30       		.byte	48
+ 338 00d9 50       		.byte	80
+ 339 00da 0F       		.byte	15
+ 340 00db 40       		.byte	64
+ 341 00dc 00       		.byte	0
+ 342 00dd 01       		.byte	1
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 7
+
+
+ 343 00de 0B       		.byte	11
+ 344 00df 40       		.byte	64
+ 345 00e0 00       		.byte	0
+ 346 00e1 70       		.byte	112
+ 347 00e2 0F       		.byte	15
+ 348 00e3 40       		.byte	64
+ 349 00e4 00       		.byte	0
+ 350 00e5 00       		.byte	0
+ 351 00e6 04       		.byte	4
+ 352 00e7 40       		.byte	64
+ 353 00e8 08       		.byte	8
+ 354 00e9 00       		.byte	0
+ 355 00ea 04       		.byte	4
+ 356 00eb 40       		.byte	64
+ 357 00ec 08       		.byte	8
+ 358 00ed 03       		.byte	3
+ 359 00ee 04       		.byte	4
+ 360 00ef 40       		.byte	64
+ 361 00f0 00       		.byte	0
+ 362 00f1 04       		.byte	4
+ 363 00f2 04       		.byte	4
+ 364 00f3 40       		.byte	64
+ 365 00f4 31       		.byte	49
+ 366 00f5 04       		.byte	4
+ 367 00f6 00       		.byte	0
+ 368 00f7 00       		.byte	0
+ 369 00f8 08       		.byte	8
+ 370 00f9 04       		.byte	4
+ 371 00fa 04       		.byte	4
+ 372 00fb 40       		.byte	64
+ 373 00fc 18       		.byte	24
+ 374 00fd 04       		.byte	4
+ 375 00fe 04       		.byte	4
+ 376 00ff 40       		.byte	64
+ 377 0100 FF       		.byte	-1
+ 378 0101 FF       		.byte	-1
+ 379 0102 FB       		.byte	-5
+ 380 0103 FF       		.byte	-1
+ 381 0104 10       		.byte	16
+ 382 0105 00       		.byte	0
+ 383 0106 0C       		.byte	12
+ 384 0107 80       		.byte	-128
+ 385 0108 06       		.byte	6
+ 386 0109 00       		.byte	0
+ 387 010a 00       		.byte	0
+ 388 010b 80       		.byte	-128
+ 389 010c 04       		.byte	4
+ 390 010d 01       		.byte	1
+ 391 010e 0B       		.byte	11
+ 392 010f 40       		.byte	64
+ 393 0110 08       		.byte	8
+ 394 0111 02       		.byte	2
+ 395 0112 02       		.byte	2
+ 396 0113 40       		.byte	64
+ 397 0114 08       		.byte	8
+ 398 0115 01       		.byte	1
+ 399 0116 0B       		.byte	11
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 8
+
+
+ 400 0117 40       		.byte	64
+ 401 0118 00       		.byte	0
+ 402 0119 01       		.byte	1
+ 403 011a 02       		.byte	2
+ 404 011b 40       		.byte	64
+ 405 011c 0C       		.byte	12
+ 406 011d 02       		.byte	2
+ 407 011e 0B       		.byte	11
+ 408 011f 40       		.byte	64
+ 409 0120 10       		.byte	16
+ 410 0121 B5       		.byte	-75
+ 411 0122 06       		.byte	6
+ 412 0123 4C       		.byte	76
+ 413 0124 23       		.byte	35
+ 414 0125 78       		.byte	120
+ 415 0126 00       		.byte	0
+ 416 0127 2B       		.byte	43
+ 417 0128 07       		.byte	7
+ 418 0129 D1       		.byte	-47
+ 419 012a 05       		.byte	5
+ 420 012b 4B       		.byte	75
+ 421 012c 00       		.byte	0
+ 422 012d 2B       		.byte	43
+ 423 012e 02       		.byte	2
+ 424 012f D0       		.byte	-48
+ 425 0130 04       		.byte	4
+ 426 0131 48       		.byte	72
+ 427 0132 00       		.byte	0
+ 428 0133 E0       		.byte	-32
+ 429 0134 00       		.byte	0
+ 430 0135 BF       		.byte	-65
+ 431 0136 01       		.byte	1
+ 432 0137 23       		.byte	35
+ 433 0138 23       		.byte	35
+ 434 0139 70       		.byte	112
+ 435 013a 10       		.byte	16
+ 436 013b BD       		.byte	-67
+ 437 013c 50       		.byte	80
+ 438 013d 01       		.byte	1
+ 439 013e 00       		.byte	0
+ 440 013f 20       		.byte	32
+ 441 0140 00       		.byte	0
+ 442 0141 00       		.byte	0
+ 443 0142 00       		.byte	0
+ 444 0143 00       		.byte	0
+ 445 0144 78       		.byte	120
+ 446 0145 0E       		.byte	14
+ 447 0146 00       		.byte	0
+ 448 0147 00       		.byte	0
+ 449 0148 08       		.byte	8
+ 450 0149 4B       		.byte	75
+ 451 014a 10       		.byte	16
+ 452 014b B5       		.byte	-75
+ 453 014c 00       		.byte	0
+ 454 014d 2B       		.byte	43
+ 455 014e 03       		.byte	3
+ 456 014f D0       		.byte	-48
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 9
+
+
+ 457 0150 07       		.byte	7
+ 458 0151 49       		.byte	73
+ 459 0152 08       		.byte	8
+ 460 0153 48       		.byte	72
+ 461 0154 00       		.byte	0
+ 462 0155 E0       		.byte	-32
+ 463 0156 00       		.byte	0
+ 464 0157 BF       		.byte	-65
+ 465 0158 07       		.byte	7
+ 466 0159 48       		.byte	72
+ 467 015a 03       		.byte	3
+ 468 015b 68       		.byte	104
+ 469 015c 00       		.byte	0
+ 470 015d 2B       		.byte	43
+ 471 015e 00       		.byte	0
+ 472 015f D1       		.byte	-47
+ 473 0160 10       		.byte	16
+ 474 0161 BD       		.byte	-67
+ 475 0162 06       		.byte	6
+ 476 0163 4B       		.byte	75
+ 477 0164 00       		.byte	0
+ 478 0165 2B       		.byte	43
+ 479 0166 FB       		.byte	-5
+ 480 0167 D0       		.byte	-48
+ 481 0168 98       		.byte	-104
+ 482 0169 47       		.byte	71
+ 483 016a F9       		.byte	-7
+ 484 016b E7       		.byte	-25
+ 485 016c 00       		.byte	0
+ 486 016d 00       		.byte	0
+ 487 016e 00       		.byte	0
+ 488 016f 00       		.byte	0
+ 489 0170 54       		.byte	84
+ 490 0171 01       		.byte	1
+ 491 0172 00       		.byte	0
+ 492 0173 20       		.byte	32
+ 493 0174 78       		.byte	120
+ 494 0175 0E       		.byte	14
+ 495 0176 00       		.byte	0
+ 496 0177 00       		.byte	0
+ 497 0178 C8       		.byte	-56
+ 498 0179 00       		.byte	0
+ 499 017a 00       		.byte	0
+ 500 017b 20       		.byte	32
+ 501 017c 00       		.byte	0
+ 502 017d 00       		.byte	0
+ 503 017e 00       		.byte	0
+ 504 017f 00       		.byte	0
+ 505 0180 10       		.byte	16
+ 506 0181 B5       		.byte	-75
+ 507 0182 00       		.byte	0
+ 508 0183 F0       		.byte	-16
+ 509 0184 AB       		.byte	-85
+ 510 0185 FB       		.byte	-5
+ 511 0186 10       		.byte	16
+ 512 0187 BD       		.byte	-67
+ 513 0188 10       		.byte	16
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 10
+
+
+ 514 0189 B5       		.byte	-75
+ 515 018a 00       		.byte	0
+ 516 018b F0       		.byte	-16
+ 517 018c B5       		.byte	-75
+ 518 018d FB       		.byte	-5
+ 519 018e 10       		.byte	16
+ 520 018f BD       		.byte	-67
+ 521 0190 70       		.byte	112
+ 522 0191 B5       		.byte	-75
+ 523 0192 00       		.byte	0
+ 524 0193 23       		.byte	35
+ 525 0194 06       		.byte	6
+ 526 0195 00       		.byte	0
+ 527 0196 0D       		.byte	13
+ 528 0197 00       		.byte	0
+ 529 0198 14       		.byte	20
+ 530 0199 00       		.byte	0
+ 531 019a 23       		.byte	35
+ 532 019b 80       		.byte	-128
+ 533 019c 23       		.byte	35
+ 534 019d 88       		.byte	-120
+ 535 019e AB       		.byte	-85
+ 536 019f 42       		.byte	66
+ 537 01a0 05       		.byte	5
+ 538 01a1 D2       		.byte	-46
+ 539 01a2 F0       		.byte	-16
+ 540 01a3 5C       		.byte	92
+ 541 01a4 00       		.byte	0
+ 542 01a5 F0       		.byte	-16
+ 543 01a6 C6       		.byte	-58
+ 544 01a7 FB       		.byte	-5
+ 545 01a8 23       		.byte	35
+ 546 01a9 88       		.byte	-120
+ 547 01aa 01       		.byte	1
+ 548 01ab 33       		.byte	51
+ 549 01ac F5       		.byte	-11
+ 550 01ad E7       		.byte	-25
+ 551 01ae 00       		.byte	0
+ 552 01af 20       		.byte	32
+ 553 01b0 70       		.byte	112
+ 554 01b1 BD       		.byte	-67
+ 555 01b2 00       		.byte	0
+ 556 01b3 00       		.byte	0
+ 557 01b4 F7       		.byte	-9
+ 558 01b5 B5       		.byte	-75
+ 559 01b6 11       		.byte	17
+ 560 01b7 4C       		.byte	76
+ 561 01b8 07       		.byte	7
+ 562 01b9 00       		.byte	0
+ 563 01ba 5C       		.byte	92
+ 564 01bb 43       		.byte	67
+ 565 01bc 00       		.byte	0
+ 566 01bd 23       		.byte	35
+ 567 01be 15       		.byte	21
+ 568 01bf 00       		.byte	0
+ 569 01c0 10       		.byte	16
+ 570 01c1 26       		.byte	38
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 11
+
+
+ 571 01c2 01       		.byte	1
+ 572 01c3 91       		.byte	-111
+ 573 01c4 13       		.byte	19
+ 574 01c5 80       		.byte	-128
+ 575 01c6 2B       		.byte	43
+ 576 01c7 88       		.byte	-120
+ 577 01c8 01       		.byte	1
+ 578 01c9 9A       		.byte	-102
+ 579 01ca 93       		.byte	-109
+ 580 01cb 42       		.byte	66
+ 581 01cc 14       		.byte	20
+ 582 01cd D2       		.byte	-46
+ 583 01ce 00       		.byte	0
+ 584 01cf 2C       		.byte	44
+ 585 01d0 12       		.byte	18
+ 586 01d1 DB       		.byte	-37
+ 587 01d2 00       		.byte	0
+ 588 01d3 F0       		.byte	-16
+ 589 01d4 A7       		.byte	-89
+ 590 01d5 FB       		.byte	-5
+ 591 01d6 00       		.byte	0
+ 592 01d7 28       		.byte	40
+ 593 01d8 09       		.byte	9
+ 594 01d9 D0       		.byte	-48
+ 595 01da 2B       		.byte	43
+ 596 01db 88       		.byte	-120
+ 597 01dc 00       		.byte	0
+ 598 01dd 26       		.byte	38
+ 599 01de 5A       		.byte	90
+ 600 01df 1C       		.byte	28
+ 601 01e0 2A       		.byte	42
+ 602 01e1 80       		.byte	-128
+ 603 01e2 FC       		.byte	-4
+ 604 01e3 18       		.byte	24
+ 605 01e4 00       		.byte	0
+ 606 01e5 F0       		.byte	-16
+ 607 01e6 28       		.byte	40
+ 608 01e7 FC       		.byte	-4
+ 609 01e8 20       		.byte	32
+ 610 01e9 70       		.byte	112
+ 611 01ea 04       		.byte	4
+ 612 01eb 4C       		.byte	76
+ 613 01ec EB       		.byte	-21
+ 614 01ed E7       		.byte	-25
+ 615 01ee 0A       		.byte	10
+ 616 01ef 20       		.byte	32
+ 617 01f0 00       		.byte	0
+ 618 01f1 F0       		.byte	-16
+ 619 01f2 3E       		.byte	62
+ 620 01f3 FD       		.byte	-3
+ 621 01f4 0A       		.byte	10
+ 622 01f5 3C       		.byte	60
+ 623 01f6 E6       		.byte	-26
+ 624 01f7 E7       		.byte	-25
+ 625 01f8 30       		.byte	48
+ 626 01f9 00       		.byte	0
+ 627 01fa FE       		.byte	-2
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 12
+
+
+ 628 01fb BD       		.byte	-67
+ 629 01fc 10       		.byte	16
+ 630 01fd 27       		.byte	39
+ 631 01fe 00       		.byte	0
+ 632 01ff 00       		.byte	0
+ 633 0200 10       		.byte	16
+ 634 0201 B5       		.byte	-75
+ 635 0202 0A       		.byte	10
+ 636 0203 4C       		.byte	76
+ 637 0204 23       		.byte	35
+ 638 0205 68       		.byte	104
+ 639 0206 40       		.byte	64
+ 640 0207 2B       		.byte	43
+ 641 0208 01       		.byte	1
+ 642 0209 D1       		.byte	-47
+ 643 020a 00       		.byte	0
+ 644 020b F0       		.byte	-16
+ 645 020c 29       		.byte	41
+ 646 020d FB       		.byte	-5
+ 647 020e 01       		.byte	1
+ 648 020f 20       		.byte	32
+ 649 0210 00       		.byte	0
+ 650 0211 F0       		.byte	-16
+ 651 0212 18       		.byte	24
+ 652 0213 FD       		.byte	-3
+ 653 0214 00       		.byte	0
+ 654 0215 F0       		.byte	-16
+ 655 0216 2A       		.byte	42
+ 656 0217 FC       		.byte	-4
+ 657 0218 80       		.byte	-128
+ 658 0219 23       		.byte	35
+ 659 021a 00       		.byte	0
+ 660 021b 28       		.byte	40
+ 661 021c 00       		.byte	0
+ 662 021d D1       		.byte	-47
+ 663 021e 40       		.byte	64
+ 664 021f 23       		.byte	35
+ 665 0220 23       		.byte	35
+ 666 0221 60       		.byte	96
+ 667 0222 00       		.byte	0
+ 668 0223 F0       		.byte	-16
+ 669 0224 1D       		.byte	29
+ 670 0225 FB       		.byte	-5
+ 671 0226 00       		.byte	0
+ 672 0227 20       		.byte	32
+ 673 0228 10       		.byte	16
+ 674 0229 BD       		.byte	-67
+ 675 022a C0       		.byte	-64
+ 676 022b 46       		.byte	70
+ 677 022c C0       		.byte	-64
+ 678 022d 00       		.byte	0
+ 679 022e 00       		.byte	0
+ 680 022f 20       		.byte	32
+ 681 0230 10       		.byte	16
+ 682 0231 B5       		.byte	-75
+ 683 0232 00       		.byte	0
+ 684 0233 F0       		.byte	-16
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 13
+
+
+ 685 0234 DF       		.byte	-33
+ 686 0235 FD       		.byte	-3
+ 687 0236 03       		.byte	3
+ 688 0237 68       		.byte	104
+ 689 0238 0C       		.byte	12
+ 690 0239 2B       		.byte	43
+ 691 023a 00       		.byte	0
+ 692 023b D1       		.byte	-47
+ 693 023c FE       		.byte	-2
+ 694 023d E7       		.byte	-25
+ 695 023e FE       		.byte	-2
+ 696 023f E7       		.byte	-25
+ 697 0240 F8       		.byte	-8
+ 698 0241 B5       		.byte	-75
+ 699 0242 00       		.byte	0
+ 700 0243 25       		.byte	37
+ 701 0244 0F       		.byte	15
+ 702 0245 49       		.byte	73
+ 703 0246 10       		.byte	16
+ 704 0247 4B       		.byte	75
+ 705 0248 01       		.byte	1
+ 706 0249 39       		.byte	57
+ 707 024a 4A       		.byte	74
+ 708 024b 1C       		.byte	28
+ 709 024c 14       		.byte	20
+ 710 024d D0       		.byte	-48
+ 711 024e 00       		.byte	0
+ 712 024f 22       		.byte	34
+ 713 0250 1F       		.byte	31
+ 714 0251 68       		.byte	104
+ 715 0252 5C       		.byte	92
+ 716 0253 68       		.byte	104
+ 717 0254 9E       		.byte	-98
+ 718 0255 68       		.byte	104
+ 719 0256 A0       		.byte	-96
+ 720 0257 18       		.byte	24
+ 721 0258 B2       		.byte	-78
+ 722 0259 42       		.byte	66
+ 723 025a 03       		.byte	3
+ 724 025b D0       		.byte	-48
+ 725 025c B8       		.byte	-72
+ 726 025d 58       		.byte	88
+ 727 025e A0       		.byte	-96
+ 728 025f 50       		.byte	80
+ 729 0260 04       		.byte	4
+ 730 0261 32       		.byte	50
+ 731 0262 F8       		.byte	-8
+ 732 0263 E7       		.byte	-25
+ 733 0264 02       		.byte	2
+ 734 0265 00       		.byte	0
+ 735 0266 DE       		.byte	-34
+ 736 0267 68       		.byte	104
+ 737 0268 14       		.byte	20
+ 738 0269 1A       		.byte	26
+ 739 026a A6       		.byte	-90
+ 740 026b 42       		.byte	66
+ 741 026c 01       		.byte	1
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 14
+
+
+ 742 026d D0       		.byte	-48
+ 743 026e 20       		.byte	32
+ 744 026f C2       		.byte	-62
+ 745 0270 FA       		.byte	-6
+ 746 0271 E7       		.byte	-25
+ 747 0272 10       		.byte	16
+ 748 0273 33       		.byte	51
+ 749 0274 01       		.byte	1
+ 750 0275 39       		.byte	57
+ 751 0276 E8       		.byte	-24
+ 752 0277 E7       		.byte	-25
+ 753 0278 00       		.byte	0
+ 754 0279 F0       		.byte	-16
+ 755 027a C2       		.byte	-62
+ 756 027b FD       		.byte	-3
+ 757 027c FF       		.byte	-1
+ 758 027d F7       		.byte	-9
+ 759 027e C0       		.byte	-64
+ 760 027f FF       		.byte	-1
+ 761 0280 FE       		.byte	-2
+ 762 0281 E7       		.byte	-25
+ 763 0282 C0       		.byte	-64
+ 764 0283 46       		.byte	70
+ 765 0284 01       		.byte	1
+ 766 0285 00       		.byte	0
+ 767 0286 00       		.byte	0
+ 768 0287 00       		.byte	0
+ 769 0288 D8       		.byte	-40
+ 770 0289 0E       		.byte	14
+ 771 028a 00       		.byte	0
+ 772 028b 00       		.byte	0
+ 773 028c 00       		.byte	0
+ 774 028d 23       		.byte	35
+ 775 028e 70       		.byte	112
+ 776 028f B5       		.byte	-75
+ 777 0290 0C       		.byte	12
+ 778 0291 48       		.byte	72
+ 779 0292 0D       		.byte	13
+ 780 0293 4C       		.byte	76
+ 781 0294 0D       		.byte	13
+ 782 0295 4D       		.byte	77
+ 783 0296 9A       		.byte	-102
+ 784 0297 00       		.byte	0
+ 785 0298 21       		.byte	33
+ 786 0299 00       		.byte	0
+ 787 029a 03       		.byte	3
+ 788 029b 2B       		.byte	43
+ 789 029c 00       		.byte	0
+ 790 029d D8       		.byte	-40
+ 791 029e A9       		.byte	-87
+ 792 029f 58       		.byte	88
+ 793 02a0 01       		.byte	1
+ 794 02a1 33       		.byte	51
+ 795 02a2 81       		.byte	-127
+ 796 02a3 50       		.byte	80
+ 797 02a4 30       		.byte	48
+ 798 02a5 2B       		.byte	43
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 15
+
+
+ 799 02a6 F6       		.byte	-10
+ 800 02a7 D1       		.byte	-47
+ 801 02a8 FF       		.byte	-1
+ 802 02a9 F7       		.byte	-9
+ 803 02aa B8       		.byte	-72
+ 804 02ab FE       		.byte	-2
+ 805 02ac 08       		.byte	8
+ 806 02ad 4B       		.byte	75
+ 807 02ae 1A       		.byte	26
+ 808 02af 68       		.byte	104
+ 809 02b0 00       		.byte	0
+ 810 02b1 2A       		.byte	42
+ 811 02b2 00       		.byte	0
+ 812 02b3 D1       		.byte	-47
+ 813 02b4 1A       		.byte	26
+ 814 02b5 60       		.byte	96
+ 815 02b6 80       		.byte	-128
+ 816 02b7 22       		.byte	34
+ 817 02b8 01       		.byte	1
+ 818 02b9 21       		.byte	33
+ 819 02ba D2       		.byte	-46
+ 820 02bb 05       		.byte	5
+ 821 02bc 13       		.byte	19
+ 822 02bd 68       		.byte	104
+ 823 02be 0B       		.byte	11
+ 824 02bf 43       		.byte	67
+ 825 02c0 13       		.byte	19
+ 826 02c1 60       		.byte	96
+ 827 02c2 70       		.byte	112
+ 828 02c3 BD       		.byte	-67
+ 829 02c4 00       		.byte	0
+ 830 02c5 00       		.byte	0
+ 831 02c6 00       		.byte	0
+ 832 02c7 20       		.byte	32
+ 833 02c8 31       		.byte	49
+ 834 02c9 02       		.byte	2
+ 835 02ca 00       		.byte	0
+ 836 02cb 00       		.byte	0
+ 837 02cc 00       		.byte	0
+ 838 02cd 00       		.byte	0
+ 839 02ce 00       		.byte	0
+ 840 02cf 00       		.byte	0
+ 841 02d0 C0       		.byte	-64
+ 842 02d1 00       		.byte	0
+ 843 02d2 00       		.byte	0
+ 844 02d3 20       		.byte	32
+ 845 02d4 00       		.byte	0
+ 846 02d5 47       		.byte	71
+ 847 02d6 00       		.byte	0
+ 848 02d7 00       		.byte	0
+ 849 02d8 0A       		.byte	10
+ 850 02d9 00       		.byte	0
+ 851 02da F0       		.byte	-16
+ 852 02db B5       		.byte	-75
+ 853 02dc 0C       		.byte	12
+ 854 02dd 4B       		.byte	75
+ 855 02de 8C       		.byte	-116
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 16
+
+
+ 856 02df 1A       		.byte	26
+ 857 02e0 07       		.byte	7
+ 858 02e1 5D       		.byte	93
+ 859 02e2 08       		.byte	8
+ 860 02e3 24       		.byte	36
+ 861 02e4 1D       		.byte	29
+ 862 02e5 00       		.byte	0
+ 863 02e6 01       		.byte	1
+ 864 02e7 26       		.byte	38
+ 865 02e8 7D       		.byte	125
+ 866 02e9 40       		.byte	64
+ 867 02ea 5B       		.byte	91
+ 868 02eb 08       		.byte	8
+ 869 02ec 35       		.byte	53
+ 870 02ed 42       		.byte	66
+ 871 02ee 02       		.byte	2
+ 872 02ef D0       		.byte	-48
+ 873 02f0 08       		.byte	8
+ 874 02f1 4D       		.byte	77
+ 875 02f2 6B       		.byte	107
+ 876 02f3 40       		.byte	64
+ 877 02f4 9B       		.byte	-101
+ 878 02f5 B2       		.byte	-78
+ 879 02f6 01       		.byte	1
+ 880 02f7 3C       		.byte	60
+ 881 02f8 E4       		.byte	-28
+ 882 02f9 B2       		.byte	-78
+ 883 02fa 7F       		.byte	127
+ 884 02fb 08       		.byte	8
+ 885 02fc 00       		.byte	0
+ 886 02fd 2C       		.byte	44
+ 887 02fe F1       		.byte	-15
+ 888 02ff D1       		.byte	-47
+ 889 0300 01       		.byte	1
+ 890 0301 3A       		.byte	58
+ 891 0302 92       		.byte	-110
+ 892 0303 B2       		.byte	-78
+ 893 0304 00       		.byte	0
+ 894 0305 2A       		.byte	42
+ 895 0306 EA       		.byte	-22
+ 896 0307 D1       		.byte	-47
+ 897 0308 D8       		.byte	-40
+ 898 0309 43       		.byte	67
+ 899 030a 40       		.byte	64
+ 900 030b BA       		.byte	-70
+ 901 030c 80       		.byte	-128
+ 902 030d B2       		.byte	-78
+ 903 030e F0       		.byte	-16
+ 904 030f BD       		.byte	-67
+ 905 0310 FF       		.byte	-1
+ 906 0311 FF       		.byte	-1
+ 907 0312 00       		.byte	0
+ 908 0313 00       		.byte	0
+ 909 0314 08       		.byte	8
+ 910 0315 84       		.byte	-124
+ 911 0316 FF       		.byte	-1
+ 912 0317 FF       		.byte	-1
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 17
+
+
+ 913 0318 00       		.byte	0
+ 914 0319 23       		.byte	35
+ 915 031a 41       		.byte	65
+ 916 031b 18       		.byte	24
+ 917 031c 00       		.byte	0
+ 918 031d 2A       		.byte	42
+ 919 031e 05       		.byte	5
+ 920 031f D0       		.byte	-48
+ 921 0320 01       		.byte	1
+ 922 0321 3A       		.byte	58
+ 923 0322 88       		.byte	-120
+ 924 0323 18       		.byte	24
+ 925 0324 00       		.byte	0
+ 926 0325 78       		.byte	120
+ 927 0326 1B       		.byte	27
+ 928 0327 18       		.byte	24
+ 929 0328 DB       		.byte	-37
+ 930 0329 B2       		.byte	-78
+ 931 032a F7       		.byte	-9
+ 932 032b E7       		.byte	-25
+ 933 032c 18       		.byte	24
+ 934 032d 00       		.byte	0
+ 935 032e 70       		.byte	112
+ 936 032f 47       		.byte	71
+ 937 0330 01       		.byte	1
+ 938 0331 38       		.byte	56
+ 939 0332 10       		.byte	16
+ 940 0333 B5       		.byte	-75
+ 941 0334 0B       		.byte	11
+ 942 0335 28       		.byte	40
+ 943 0336 30       		.byte	48
+ 944 0337 D8       		.byte	-40
+ 945 0338 C9       		.byte	-55
+ 946 0339 01       		.byte	1
+ 947 033a 49       		.byte	73
+ 948 033b 42       		.byte	66
+ 949 033c 00       		.byte	0
+ 950 033d F0       		.byte	-16
+ 951 033e 46       		.byte	70
+ 952 033f FD       		.byte	-3
+ 953 0340 06       		.byte	6
+ 954 0341 08       		.byte	8
+ 955 0342 0A       		.byte	10
+ 956 0343 0C       		.byte	12
+ 957 0344 0E       		.byte	14
+ 958 0345 10       		.byte	16
+ 959 0346 14       		.byte	20
+ 960 0347 12       		.byte	18
+ 961 0348 16       		.byte	22
+ 962 0349 19       		.byte	25
+ 963 034a 1B       		.byte	27
+ 964 034b 20       		.byte	32
+ 965 034c 16       		.byte	22
+ 966 034d 4B       		.byte	75
+ 967 034e 13       		.byte	19
+ 968 034f E0       		.byte	-32
+ 969 0350 16       		.byte	22
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 18
+
+
+ 970 0351 4B       		.byte	75
+ 971 0352 16       		.byte	22
+ 972 0353 E0       		.byte	-32
+ 973 0354 16       		.byte	22
+ 974 0355 4B       		.byte	75
+ 975 0356 0A       		.byte	10
+ 976 0357 E0       		.byte	-32
+ 977 0358 16       		.byte	22
+ 978 0359 4B       		.byte	75
+ 979 035a 12       		.byte	18
+ 980 035b E0       		.byte	-32
+ 981 035c 16       		.byte	22
+ 982 035d 4B       		.byte	75
+ 983 035e 0B       		.byte	11
+ 984 035f E0       		.byte	-32
+ 985 0360 16       		.byte	22
+ 986 0361 4B       		.byte	75
+ 987 0362 09       		.byte	9
+ 988 0363 E0       		.byte	-32
+ 989 0364 16       		.byte	22
+ 990 0365 4B       		.byte	75
+ 991 0366 02       		.byte	2
+ 992 0367 E0       		.byte	-32
+ 993 0368 16       		.byte	22
+ 994 0369 4B       		.byte	75
+ 995 036a 00       		.byte	0
+ 996 036b E0       		.byte	-32
+ 997 036c 16       		.byte	22
+ 998 036d 4B       		.byte	75
+ 999 036e C9       		.byte	-55
+ 1000 036f 18       		.byte	24
+ 1001 0370 14       		.byte	20
+ 1002 0371 E0       		.byte	-32
+ 1003 0372 16       		.byte	22
+ 1004 0373 4B       		.byte	75
+ 1005 0374 05       		.byte	5
+ 1006 0375 E0       		.byte	-32
+ 1007 0376 16       		.byte	22
+ 1008 0377 4B       		.byte	75
+ 1009 0378 C9       		.byte	-55
+ 1010 0379 18       		.byte	24
+ 1011 037a 08       		.byte	8
+ 1012 037b 78       		.byte	120
+ 1013 037c C0       		.byte	-64
+ 1014 037d B2       		.byte	-78
+ 1015 037e 11       		.byte	17
+ 1016 037f E0       		.byte	-32
+ 1017 0380 14       		.byte	20
+ 1018 0381 4B       		.byte	75
+ 1019 0382 C9       		.byte	-55
+ 1020 0383 18       		.byte	24
+ 1021 0384 0A       		.byte	10
+ 1022 0385 78       		.byte	120
+ 1023 0386 48       		.byte	72
+ 1024 0387 78       		.byte	120
+ 1025 0388 8C       		.byte	-116
+ 1026 0389 78       		.byte	120
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 19
+
+
+ 1027 038a 00       		.byte	0
+ 1028 038b 02       		.byte	2
+ 1029 038c 23       		.byte	35
+ 1030 038d 04       		.byte	4
+ 1031 038e 18       		.byte	24
+ 1032 038f 43       		.byte	67
+ 1033 0390 03       		.byte	3
+ 1034 0391 00       		.byte	0
+ 1035 0392 C8       		.byte	-56
+ 1036 0393 78       		.byte	120
+ 1037 0394 13       		.byte	19
+ 1038 0395 43       		.byte	67
+ 1039 0396 00       		.byte	0
+ 1040 0397 06       		.byte	6
+ 1041 0398 03       		.byte	3
+ 1042 0399 E0       		.byte	-32
+ 1043 039a 00       		.byte	0
+ 1044 039b 21       		.byte	33
+ 1045 039c 0B       		.byte	11
+ 1046 039d 78       		.byte	120
+ 1047 039e 48       		.byte	72
+ 1048 039f 78       		.byte	120
+ 1049 03a0 00       		.byte	0
+ 1050 03a1 02       		.byte	2
+ 1051 03a2 18       		.byte	24
+ 1052 03a3 43       		.byte	67
+ 1053 03a4 10       		.byte	16
+ 1054 03a5 BD       		.byte	-67
+ 1055 03a6 C0       		.byte	-64
+ 1056 03a7 46       		.byte	70
+ 1057 03a8 C0       		.byte	-64
+ 1058 03a9 7F       		.byte	127
+ 1059 03aa 00       		.byte	0
+ 1060 03ab 00       		.byte	0
+ 1061 03ac C1       		.byte	-63
+ 1062 03ad 7F       		.byte	127
+ 1063 03ae 00       		.byte	0
+ 1064 03af 00       		.byte	0
+ 1065 03b0 C5       		.byte	-59
+ 1066 03b1 7F       		.byte	127
+ 1067 03b2 00       		.byte	0
+ 1068 03b3 00       		.byte	0
+ 1069 03b4 C9       		.byte	-55
+ 1070 03b5 7F       		.byte	127
+ 1071 03b6 00       		.byte	0
+ 1072 03b7 00       		.byte	0
+ 1073 03b8 D0       		.byte	-48
+ 1074 03b9 7F       		.byte	127
+ 1075 03ba 00       		.byte	0
+ 1076 03bb 00       		.byte	0
+ 1077 03bc D1       		.byte	-47
+ 1078 03bd 7F       		.byte	127
+ 1079 03be 00       		.byte	0
+ 1080 03bf 00       		.byte	0
+ 1081 03c0 D6       		.byte	-42
+ 1082 03c1 7F       		.byte	127
+ 1083 03c2 00       		.byte	0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 20
+
+
+ 1084 03c3 00       		.byte	0
+ 1085 03c4 D2       		.byte	-46
+ 1086 03c5 7F       		.byte	127
+ 1087 03c6 00       		.byte	0
+ 1088 03c7 00       		.byte	0
+ 1089 03c8 D4       		.byte	-44
+ 1090 03c9 7F       		.byte	127
+ 1091 03ca 00       		.byte	0
+ 1092 03cb 00       		.byte	0
+ 1093 03cc D8       		.byte	-40
+ 1094 03cd 7F       		.byte	127
+ 1095 03ce 00       		.byte	0
+ 1096 03cf 00       		.byte	0
+ 1097 03d0 DC       		.byte	-36
+ 1098 03d1 7F       		.byte	127
+ 1099 03d2 00       		.byte	0
+ 1100 03d3 00       		.byte	0
+ 1101 03d4 E0       		.byte	-32
+ 1102 03d5 7F       		.byte	127
+ 1103 03d6 00       		.byte	0
+ 1104 03d7 00       		.byte	0
+ 1105 03d8 0C       		.byte	12
+ 1106 03d9 4B       		.byte	75
+ 1107 03da 10       		.byte	16
+ 1108 03db B5       		.byte	-75
+ 1109 03dc 1A       		.byte	26
+ 1110 03dd 68       		.byte	104
+ 1111 03de 10       		.byte	16
+ 1112 03df 23       		.byte	35
+ 1113 03e0 13       		.byte	19
+ 1114 03e1 40       		.byte	64
+ 1115 03e2 0B       		.byte	11
+ 1116 03e3 4A       		.byte	74
+ 1117 03e4 00       		.byte	0
+ 1118 03e5 D1       		.byte	-47
+ 1119 03e6 13       		.byte	19
+ 1120 03e7 60       		.byte	96
+ 1121 03e8 13       		.byte	19
+ 1122 03e9 68       		.byte	104
+ 1123 03ea 80       		.byte	-128
+ 1124 03eb 2B       		.byte	43
+ 1125 03ec 0D       		.byte	13
+ 1126 03ed D1       		.byte	-47
+ 1127 03ee 00       		.byte	0
+ 1128 03ef 24       		.byte	36
+ 1129 03f0 02       		.byte	2
+ 1130 03f1 20       		.byte	32
+ 1131 03f2 21       		.byte	33
+ 1132 03f3 00       		.byte	0
+ 1133 03f4 14       		.byte	20
+ 1134 03f5 60       		.byte	96
+ 1135 03f6 FF       		.byte	-1
+ 1136 03f7 F7       		.byte	-9
+ 1137 03f8 9B       		.byte	-101
+ 1138 03f9 FF       		.byte	-1
+ 1139 03fa A0       		.byte	-96
+ 1140 03fb 42       		.byte	66
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 21
+
+
+ 1141 03fc 05       		.byte	5
+ 1142 03fd D0       		.byte	-48
+ 1143 03fe 21       		.byte	33
+ 1144 03ff 00       		.byte	0
+ 1145 0400 02       		.byte	2
+ 1146 0401 20       		.byte	32
+ 1147 0402 FF       		.byte	-1
+ 1148 0403 F7       		.byte	-9
+ 1149 0404 95       		.byte	-107
+ 1150 0405 FF       		.byte	-1
+ 1151 0406 FF       		.byte	-1
+ 1152 0407 F7       		.byte	-9
+ 1153 0408 65       		.byte	101
+ 1154 0409 FF       		.byte	-1
+ 1155 040a 10       		.byte	16
+ 1156 040b BD       		.byte	-67
+ 1157 040c 00       		.byte	0
+ 1158 040d 03       		.byte	3
+ 1159 040e 0B       		.byte	11
+ 1160 040f 40       		.byte	64
+ 1161 0410 C0       		.byte	-64
+ 1162 0411 00       		.byte	0
+ 1163 0412 00       		.byte	0
+ 1164 0413 20       		.byte	32
+ 1165 0414 F8       		.byte	-8
+ 1166 0415 B5       		.byte	-75
+ 1167 0416 01       		.byte	1
+ 1168 0417 00       		.byte	0
+ 1169 0418 06       		.byte	6
+ 1170 0419 00       		.byte	0
+ 1171 041a 03       		.byte	3
+ 1172 041b 20       		.byte	32
+ 1173 041c FF       		.byte	-1
+ 1174 041d F7       		.byte	-9
+ 1175 041e 88       		.byte	-120
+ 1176 041f FF       		.byte	-1
+ 1177 0420 04       		.byte	4
+ 1178 0421 00       		.byte	0
+ 1179 0422 31       		.byte	49
+ 1180 0423 00       		.byte	0
+ 1181 0424 04       		.byte	4
+ 1182 0425 20       		.byte	32
+ 1183 0426 FF       		.byte	-1
+ 1184 0427 F7       		.byte	-9
+ 1185 0428 83       		.byte	-125
+ 1186 0429 FF       		.byte	-1
+ 1187 042a 01       		.byte	1
+ 1188 042b 34       		.byte	52
+ 1189 042c E4       		.byte	-28
+ 1190 042d 01       		.byte	1
+ 1191 042e 27       		.byte	39
+ 1192 042f 18       		.byte	24
+ 1193 0430 00       		.byte	0
+ 1194 0431 24       		.byte	36
+ 1195 0432 31       		.byte	49
+ 1196 0433 00       		.byte	0
+ 1197 0434 03       		.byte	3
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 22
+
+
+ 1198 0435 20       		.byte	32
+ 1199 0436 FF       		.byte	-1
+ 1200 0437 F7       		.byte	-9
+ 1201 0438 7B       		.byte	123
+ 1202 0439 FF       		.byte	-1
+ 1203 043a 25       		.byte	37
+ 1204 043b 00       		.byte	0
+ 1205 043c 01       		.byte	1
+ 1206 043d 30       		.byte	48
+ 1207 043e C0       		.byte	-64
+ 1208 043f 01       		.byte	1
+ 1209 0440 B8       		.byte	-72
+ 1210 0441 42       		.byte	66
+ 1211 0442 09       		.byte	9
+ 1212 0443 D2       		.byte	-46
+ 1213 0444 03       		.byte	3
+ 1214 0445 78       		.byte	120
+ 1215 0446 5A       		.byte	90
+ 1216 0447 1E       		.byte	30
+ 1217 0448 D2       		.byte	-46
+ 1218 0449 B2       		.byte	-78
+ 1219 044a FD       		.byte	-3
+ 1220 044b 2A       		.byte	42
+ 1221 044c 00       		.byte	0
+ 1222 044d D8       		.byte	-40
+ 1223 044e 01       		.byte	1
+ 1224 044f 25       		.byte	37
+ 1225 0450 E4       		.byte	-28
+ 1226 0451 18       		.byte	24
+ 1227 0452 E4       		.byte	-28
+ 1228 0453 B2       		.byte	-78
+ 1229 0454 01       		.byte	1
+ 1230 0455 30       		.byte	48
+ 1231 0456 F3       		.byte	-13
+ 1232 0457 E7       		.byte	-25
+ 1233 0458 31       		.byte	49
+ 1234 0459 00       		.byte	0
+ 1235 045a 01       		.byte	1
+ 1236 045b 20       		.byte	32
+ 1237 045c FF       		.byte	-1
+ 1238 045d F7       		.byte	-9
+ 1239 045e 68       		.byte	104
+ 1240 045f FF       		.byte	-1
+ 1241 0460 64       		.byte	100
+ 1242 0461 42       		.byte	66
+ 1243 0462 E4       		.byte	-28
+ 1244 0463 B2       		.byte	-78
+ 1245 0464 06       		.byte	6
+ 1246 0465 23       		.byte	35
+ 1247 0466 84       		.byte	-124
+ 1248 0467 42       		.byte	66
+ 1249 0468 03       		.byte	3
+ 1250 0469 D1       		.byte	-47
+ 1251 046a 6A       		.byte	106
+ 1252 046b 42       		.byte	66
+ 1253 046c 55       		.byte	85
+ 1254 046d 41       		.byte	65
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 23
+
+
+ 1255 046e 6D       		.byte	109
+ 1256 046f 42       		.byte	66
+ 1257 0470 2B       		.byte	43
+ 1258 0471 40       		.byte	64
+ 1259 0472 18       		.byte	24
+ 1260 0473 00       		.byte	0
+ 1261 0474 F8       		.byte	-8
+ 1262 0475 BD       		.byte	-67
+ 1263 0476 00       		.byte	0
+ 1264 0477 00       		.byte	0
+ 1265 0478 F0       		.byte	-16
+ 1266 0479 B5       		.byte	-75
+ 1267 047a C2       		.byte	-62
+ 1268 047b 4C       		.byte	76
+ 1269 047c A5       		.byte	-91
+ 1270 047d 44       		.byte	68
+ 1271 047e FF       		.byte	-1
+ 1272 047f F7       		.byte	-9
+ 1273 0480 7F       		.byte	127
+ 1274 0481 FE       		.byte	-2
+ 1275 0482 62       		.byte	98
+ 1276 0483 B6       		.byte	-74
+ 1277 0484 00       		.byte	0
+ 1278 0485 23       		.byte	35
+ 1279 0486 1D       		.byte	29
+ 1280 0487 00       		.byte	0
+ 1281 0488 00       		.byte	0
+ 1282 0489 93       		.byte	-109
+ 1283 048a 96       		.byte	-106
+ 1284 048b 21       		.byte	33
+ 1285 048c 08       		.byte	8
+ 1286 048d AE       		.byte	-82
+ 1287 048e FF       		.byte	-1
+ 1288 048f 23       		.byte	35
+ 1289 0490 02       		.byte	2
+ 1290 0491 AA       		.byte	-86
+ 1291 0492 49       		.byte	73
+ 1292 0493 00       		.byte	0
+ 1293 0494 30       		.byte	48
+ 1294 0495 00       		.byte	0
+ 1295 0496 FF       		.byte	-1
+ 1296 0497 F7       		.byte	-9
+ 1297 0498 8D       		.byte	-115
+ 1298 0499 FE       		.byte	-2
+ 1299 049a 00       		.byte	0
+ 1300 049b 28       		.byte	40
+ 1301 049c F5       		.byte	-11
+ 1302 049d D1       		.byte	-47
+ 1303 049e 02       		.byte	2
+ 1304 049f AB       		.byte	-85
+ 1305 04a0 19       		.byte	25
+ 1306 04a1 88       		.byte	-120
+ 1307 04a2 06       		.byte	6
+ 1308 04a3 29       		.byte	41
+ 1309 04a4 26       		.byte	38
+ 1310 04a5 D9       		.byte	-39
+ 1311 04a6 32       		.byte	50
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 24
+
+
+ 1312 04a7 78       		.byte	120
+ 1313 04a8 04       		.byte	4
+ 1314 04a9 23       		.byte	35
+ 1315 04aa 01       		.byte	1
+ 1316 04ab 2A       		.byte	42
+ 1317 04ac 27       		.byte	39
+ 1318 04ad D1       		.byte	-47
+ 1319 04ae 77       		.byte	119
+ 1320 04af 88       		.byte	-120
+ 1321 04b0 FA       		.byte	-6
+ 1322 04b1 1D       		.byte	29
+ 1323 04b2 8A       		.byte	-118
+ 1324 04b3 42       		.byte	66
+ 1325 04b4 00       		.byte	0
+ 1326 04b5 D9       		.byte	-39
+ 1327 04b6 90       		.byte	-112
+ 1328 04b7 E1       		.byte	-31
+ 1329 04b8 96       		.byte	-106
+ 1330 04b9 21       		.byte	33
+ 1331 04ba 49       		.byte	73
+ 1332 04bb 00       		.byte	0
+ 1333 04bc 8A       		.byte	-118
+ 1334 04bd 42       		.byte	66
+ 1335 04be 00       		.byte	0
+ 1336 04bf D9       		.byte	-39
+ 1337 04c0 8B       		.byte	-117
+ 1338 04c1 E1       		.byte	-31
+ 1339 04c2 F2       		.byte	-14
+ 1340 04c3 19       		.byte	25
+ 1341 04c4 92       		.byte	-110
+ 1342 04c5 79       		.byte	121
+ 1343 04c6 17       		.byte	23
+ 1344 04c7 2A       		.byte	42
+ 1345 04c8 19       		.byte	25
+ 1346 04c9 D1       		.byte	-47
+ 1347 04ca F9       		.byte	-7
+ 1348 04cb 18       		.byte	24
+ 1349 04cc 89       		.byte	-119
+ 1350 04cd B2       		.byte	-78
+ 1351 04ce 00       		.byte	0
+ 1352 04cf 29       		.byte	41
+ 1353 04d0 02       		.byte	2
+ 1354 04d1 D0       		.byte	-48
+ 1355 04d2 30       		.byte	48
+ 1356 04d3 00       		.byte	0
+ 1357 04d4 FF       		.byte	-1
+ 1358 04d5 F7       		.byte	-9
+ 1359 04d6 00       		.byte	0
+ 1360 04d7 FF       		.byte	-1
+ 1361 04d8 F3       		.byte	-13
+ 1362 04d9 19       		.byte	25
+ 1363 04da 5A       		.byte	90
+ 1364 04db 79       		.byte	121
+ 1365 04dc 1B       		.byte	27
+ 1366 04dd 79       		.byte	121
+ 1367 04de 12       		.byte	18
+ 1368 04df 02       		.byte	2
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 25
+
+
+ 1369 04e0 1A       		.byte	26
+ 1370 04e1 43       		.byte	67
+ 1371 04e2 08       		.byte	8
+ 1372 04e3 23       		.byte	35
+ 1373 04e4 82       		.byte	-126
+ 1374 04e5 42       		.byte	66
+ 1375 04e6 0A       		.byte	10
+ 1376 04e7 D1       		.byte	-47
+ 1377 04e8 3E       		.byte	62
+ 1378 04e9 E0       		.byte	-32
+ 1379 04ea 01       		.byte	1
+ 1380 04eb 2D       		.byte	45
+ 1381 04ec 00       		.byte	0
+ 1382 04ed D0       		.byte	-48
+ 1383 04ee 71       		.byte	113
+ 1384 04ef E1       		.byte	-31
+ 1385 04f0 01       		.byte	1
+ 1386 04f1 2F       		.byte	47
+ 1387 04f2 01       		.byte	1
+ 1388 04f3 D0       		.byte	-48
+ 1389 04f4 04       		.byte	4
+ 1390 04f5 23       		.byte	35
+ 1391 04f6 02       		.byte	2
+ 1392 04f7 E0       		.byte	-32
+ 1393 04f8 0C       		.byte	12
+ 1394 04f9 23       		.byte	35
+ 1395 04fa 00       		.byte	0
+ 1396 04fb 2C       		.byte	44
+ 1397 04fc 01       		.byte	1
+ 1398 04fd D0       		.byte	-48
+ 1399 04fe 00       		.byte	0
+ 1400 04ff 24       		.byte	36
+ 1401 0500 0C       		.byte	12
+ 1402 0501 E0       		.byte	-32
+ 1403 0502 20       		.byte	32
+ 1404 0503 00       		.byte	0
+ 1405 0504 FF       		.byte	-1
+ 1406 0505 F7       		.byte	-9
+ 1407 0506 86       		.byte	-122
+ 1408 0507 FF       		.byte	-1
+ 1409 0508 0C       		.byte	12
+ 1410 0509 23       		.byte	35
+ 1411 050a 00       		.byte	0
+ 1412 050b 28       		.byte	40
+ 1413 050c 06       		.byte	6
+ 1414 050d D1       		.byte	-47
+ 1415 050e 38       		.byte	56
+ 1416 050f 22       		.byte	34
+ 1417 0510 9D       		.byte	-99
+ 1418 0511 49       		.byte	73
+ 1419 0512 09       		.byte	9
+ 1420 0513 A8       		.byte	-88
+ 1421 0514 00       		.byte	0
+ 1422 0515 F0       		.byte	-16
+ 1423 0516 9A       		.byte	-102
+ 1424 0517 FC       		.byte	-4
+ 1425 0518 23       		.byte	35
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 26
+
+
+ 1426 0519 00       		.byte	0
+ 1427 051a 38       		.byte	56
+ 1428 051b 34       		.byte	52
+ 1429 051c 02       		.byte	2
+ 1430 051d AA       		.byte	-86
+ 1431 051e 97       		.byte	-105
+ 1432 051f 1C       		.byte	28
+ 1433 0520 00       		.byte	0
+ 1434 0521 20       		.byte	32
+ 1435 0522 01       		.byte	1
+ 1436 0523 22       		.byte	34
+ 1437 0524 21       		.byte	33
+ 1438 0525 1D       		.byte	29
+ 1439 0526 73       		.byte	115
+ 1440 0527 70       		.byte	112
+ 1441 0528 89       		.byte	-119
+ 1442 0529 B2       		.byte	-78
+ 1443 052a 23       		.byte	35
+ 1444 052b 0A       		.byte	10
+ 1445 052c 3C       		.byte	60
+ 1446 052d 80       		.byte	-128
+ 1447 052e 32       		.byte	50
+ 1448 052f 70       		.byte	112
+ 1449 0530 B4       		.byte	-76
+ 1450 0531 70       		.byte	112
+ 1451 0532 F3       		.byte	-13
+ 1452 0533 70       		.byte	112
+ 1453 0534 81       		.byte	-127
+ 1454 0535 42       		.byte	66
+ 1455 0536 02       		.byte	2
+ 1456 0537 D0       		.byte	-48
+ 1457 0538 30       		.byte	48
+ 1458 0539 00       		.byte	0
+ 1459 053a FF       		.byte	-1
+ 1460 053b F7       		.byte	-9
+ 1461 053c CD       		.byte	-51
+ 1462 053d FE       		.byte	-2
+ 1463 053e 9E       		.byte	-98
+ 1464 053f AB       		.byte	-85
+ 1465 0540 92       		.byte	-110
+ 1466 0541 4A       		.byte	74
+ 1467 0542 1B       		.byte	27
+ 1468 0543 19       		.byte	25
+ 1469 0544 9A       		.byte	-102
+ 1470 0545 18       		.byte	24
+ 1471 0546 10       		.byte	16
+ 1472 0547 70       		.byte	112
+ 1473 0548 91       		.byte	-111
+ 1474 0549 4A       		.byte	74
+ 1475 054a 00       		.byte	0
+ 1476 054b 0A       		.byte	10
+ 1477 054c 9A       		.byte	-102
+ 1478 054d 18       		.byte	24
+ 1479 054e 10       		.byte	16
+ 1480 054f 70       		.byte	112
+ 1481 0550 90       		.byte	-112
+ 1482 0551 4A       		.byte	74
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 27
+
+
+ 1483 0552 07       		.byte	7
+ 1484 0553 34       		.byte	52
+ 1485 0554 9B       		.byte	-101
+ 1486 0555 18       		.byte	24
+ 1487 0556 17       		.byte	23
+ 1488 0557 22       		.byte	34
+ 1489 0558 A1       		.byte	-95
+ 1490 0559 B2       		.byte	-78
+ 1491 055a 1A       		.byte	26
+ 1492 055b 70       		.byte	112
+ 1493 055c 30       		.byte	48
+ 1494 055d 00       		.byte	0
+ 1495 055e 96       		.byte	-106
+ 1496 055f 23       		.byte	35
+ 1497 0560 3A       		.byte	58
+ 1498 0561 00       		.byte	0
+ 1499 0562 FF       		.byte	-1
+ 1500 0563 F7       		.byte	-9
+ 1501 0564 15       		.byte	21
+ 1502 0565 FE       		.byte	-2
+ 1503 0566 90       		.byte	-112
+ 1504 0567 E7       		.byte	-25
+ 1505 0568 73       		.byte	115
+ 1506 0569 78       		.byte	120
+ 1507 056a 34       		.byte	52
+ 1508 056b 79       		.byte	121
+ 1509 056c 18       		.byte	24
+ 1510 056d 00       		.byte	0
+ 1511 056e 31       		.byte	49
+ 1512 056f 38       		.byte	56
+ 1513 0570 14       		.byte	20
+ 1514 0571 28       		.byte	40
+ 1515 0572 2F       		.byte	47
+ 1516 0573 D9       		.byte	-39
+ 1517 0574 88       		.byte	-120
+ 1518 0575 4A       		.byte	74
+ 1519 0576 14       		.byte	20
+ 1520 0577 68       		.byte	104
+ 1521 0578 00       		.byte	0
+ 1522 0579 2C       		.byte	44
+ 1523 057a 25       		.byte	37
+ 1524 057b D0       		.byte	-48
+ 1525 057c 01       		.byte	1
+ 1526 057d 2D       		.byte	45
+ 1527 057e 25       		.byte	37
+ 1528 057f D1       		.byte	-47
+ 1529 0580 02       		.byte	2
+ 1530 0581 AA       		.byte	-86
+ 1531 0582 D7       		.byte	-41
+ 1532 0583 80       		.byte	-128
+ 1533 0584 05       		.byte	5
+ 1534 0585 AF       		.byte	-81
+ 1535 0586 13       		.byte	19
+ 1536 0587 71       		.byte	113
+ 1537 0588 00       		.byte	0
+ 1538 0589 21       		.byte	33
+ 1539 058a 09       		.byte	9
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 28
+
+
+ 1540 058b AB       		.byte	-85
+ 1541 058c 0C       		.byte	12
+ 1542 058d 22       		.byte	34
+ 1543 058e 38       		.byte	56
+ 1544 058f 00       		.byte	0
+ 1545 0590 04       		.byte	4
+ 1546 0591 93       		.byte	-109
+ 1547 0592 00       		.byte	0
+ 1548 0593 F0       		.byte	-16
+ 1549 0594 64       		.byte	100
+ 1550 0595 FC       		.byte	-4
+ 1551 0596 09       		.byte	9
+ 1552 0597 AB       		.byte	-85
+ 1553 0598 BB       		.byte	-69
+ 1554 0599 60       		.byte	96
+ 1555 059a 39       		.byte	57
+ 1556 059b 00       		.byte	0
+ 1557 059c 03       		.byte	3
+ 1558 059d A8       		.byte	-88
+ 1559 059e A0       		.byte	-96
+ 1560 059f 47       		.byte	71
+ 1561 05a0 26       		.byte	38
+ 1562 05a1 23       		.byte	35
+ 1563 05a2 BC       		.byte	-68
+ 1564 05a3 88       		.byte	-120
+ 1565 05a4 FF       		.byte	-1
+ 1566 05a5 33       		.byte	51
+ 1567 05a6 9C       		.byte	-100
+ 1568 05a7 42       		.byte	66
+ 1569 05a8 04       		.byte	4
+ 1570 05a9 D9       		.byte	-39
+ 1571 05aa BB       		.byte	-69
+ 1572 05ab 68       		.byte	104
+ 1573 05ac 1A       		.byte	26
+ 1574 05ad 00       		.byte	0
+ 1575 05ae 09       		.byte	9
+ 1576 05af AB       		.byte	-85
+ 1577 05b0 9A       		.byte	-102
+ 1578 05b1 42       		.byte	66
+ 1579 05b2 07       		.byte	7
+ 1580 05b3 D0       		.byte	-48
+ 1581 05b4 BA       		.byte	-70
+ 1582 05b5 68       		.byte	104
+ 1583 05b6 00       		.byte	0
+ 1584 05b7 2A       		.byte	42
+ 1585 05b8 01       		.byte	1
+ 1586 05b9 D1       		.byte	-47
+ 1587 05ba 00       		.byte	0
+ 1588 05bb 2C       		.byte	44
+ 1589 05bc 02       		.byte	2
+ 1590 05bd D1       		.byte	-47
+ 1591 05be 3B       		.byte	59
+ 1592 05bf 68       		.byte	104
+ 1593 05c0 DB       		.byte	-37
+ 1594 05c1 B2       		.byte	-78
+ 1595 05c2 AB       		.byte	-85
+ 1596 05c3 E7       		.byte	-25
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 29
+
+
+ 1597 05c4 0E       		.byte	14
+ 1598 05c5 23       		.byte	35
+ 1599 05c6 9A       		.byte	-102
+ 1600 05c7 E7       		.byte	-25
+ 1601 05c8 05       		.byte	5
+ 1602 05c9 23       		.byte	35
+ 1603 05ca A7       		.byte	-89
+ 1604 05cb E7       		.byte	-25
+ 1605 05cc 00       		.byte	0
+ 1606 05cd 25       		.byte	37
+ 1607 05ce 05       		.byte	5
+ 1608 05cf 23       		.byte	35
+ 1609 05d0 2C       		.byte	44
+ 1610 05d1 00       		.byte	0
+ 1611 05d2 A3       		.byte	-93
+ 1612 05d3 E7       		.byte	-25
+ 1613 05d4 00       		.byte	0
+ 1614 05d5 F0       		.byte	-16
+ 1615 05d6 04       		.byte	4
+ 1616 05d7 FC       		.byte	-4
+ 1617 05d8 15       		.byte	21
+ 1618 05d9 00       		.byte	0
+ 1619 05da 52       		.byte	82
+ 1620 05db 00       		.byte	0
+ 1621 05dc CE       		.byte	-50
+ 1622 05dd FF       		.byte	-1
+ 1623 05de 6F       		.byte	111
+ 1624 05df 00       		.byte	0
+ 1625 05e0 9C       		.byte	-100
+ 1626 05e1 00       		.byte	0
+ 1627 05e2 CE       		.byte	-50
+ 1628 05e3 FF       		.byte	-1
+ 1629 05e4 A1       		.byte	-95
+ 1630 05e5 00       		.byte	0
+ 1631 05e6 B6       		.byte	-74
+ 1632 05e7 00       		.byte	0
+ 1633 05e8 6F       		.byte	111
+ 1634 05e9 00       		.byte	0
+ 1635 05ea C6       		.byte	-58
+ 1636 05eb 00       		.byte	0
+ 1637 05ec E6       		.byte	-26
+ 1638 05ed 00       		.byte	0
+ 1639 05ee 89       		.byte	-119
+ 1640 05ef FF       		.byte	-1
+ 1641 05f0 CE       		.byte	-50
+ 1642 05f1 FF       		.byte	-1
+ 1643 05f2 CE       		.byte	-50
+ 1644 05f3 FF       		.byte	-1
+ 1645 05f4 CE       		.byte	-50
+ 1646 05f5 FF       		.byte	-1
+ 1647 05f6 CE       		.byte	-50
+ 1648 05f7 FF       		.byte	-1
+ 1649 05f8 CE       		.byte	-50
+ 1650 05f9 FF       		.byte	-1
+ 1651 05fa CE       		.byte	-50
+ 1652 05fb FF       		.byte	-1
+ 1653 05fc CE       		.byte	-50
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 30
+
+
+ 1654 05fd FF       		.byte	-1
+ 1655 05fe CE       		.byte	-50
+ 1656 05ff FF       		.byte	-1
+ 1657 0600 23       		.byte	35
+ 1658 0601 00       		.byte	0
+ 1659 0602 01       		.byte	1
+ 1660 0603 2D       		.byte	45
+ 1661 0604 00       		.byte	0
+ 1662 0605 D0       		.byte	-48
+ 1663 0606 E5       		.byte	-27
+ 1664 0607 E0       		.byte	-32
+ 1665 0608 00       		.byte	0
+ 1666 0609 2F       		.byte	47
+ 1667 060a 00       		.byte	0
+ 1668 060b D0       		.byte	-48
+ 1669 060c 72       		.byte	114
+ 1670 060d E7       		.byte	-25
+ 1671 060e 38       		.byte	56
+ 1672 060f 00       		.byte	0
+ 1673 0610 FF       		.byte	-1
+ 1674 0611 F7       		.byte	-9
+ 1675 0612 00       		.byte	0
+ 1676 0613 FF       		.byte	-1
+ 1677 0614 43       		.byte	67
+ 1678 0615 42       		.byte	66
+ 1679 0616 43       		.byte	67
+ 1680 0617 41       		.byte	65
+ 1681 0618 33       		.byte	51
+ 1682 0619 71       		.byte	113
+ 1683 061a 3B       		.byte	59
+ 1684 061b 00       		.byte	0
+ 1685 061c D8       		.byte	-40
+ 1686 061d E7       		.byte	-25
+ 1687 061e 01       		.byte	1
+ 1688 061f 2D       		.byte	45
+ 1689 0620 00       		.byte	0
+ 1690 0621 D0       		.byte	-48
+ 1691 0622 D7       		.byte	-41
+ 1692 0623 E0       		.byte	-32
+ 1693 0624 80       		.byte	-128
+ 1694 0625 23       		.byte	35
+ 1695 0626 3A       		.byte	58
+ 1696 0627 00       		.byte	0
+ 1697 0628 9A       		.byte	-102
+ 1698 0629 43       		.byte	67
+ 1699 062a 03       		.byte	3
+ 1700 062b 2A       		.byte	42
+ 1701 062c 00       		.byte	0
+ 1702 062d D0       		.byte	-48
+ 1703 062e 61       		.byte	97
+ 1704 062f E7       		.byte	-25
+ 1705 0630 02       		.byte	2
+ 1706 0631 AB       		.byte	-85
+ 1707 0632 5A       		.byte	90
+ 1708 0633 7F       		.byte	127
+ 1709 0634 9B       		.byte	-101
+ 1710 0635 7F       		.byte	127
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 31
+
+
+ 1711 0636 1B       		.byte	27
+ 1712 0637 02       		.byte	2
+ 1713 0638 13       		.byte	19
+ 1714 0639 43       		.byte	67
+ 1715 063a 01       		.byte	1
+ 1716 063b 93       		.byte	-109
+ 1717 063c 03       		.byte	3
+ 1718 063d 2F       		.byte	47
+ 1719 063e 06       		.byte	6
+ 1720 063f D0       		.byte	-48
+ 1721 0640 1F       		.byte	31
+ 1722 0641 21       		.byte	33
+ 1723 0642 02       		.byte	2
+ 1724 0643 AB       		.byte	-85
+ 1725 0644 FA       		.byte	-6
+ 1726 0645 1E       		.byte	30
+ 1727 0646 C9       		.byte	-55
+ 1728 0647 18       		.byte	24
+ 1729 0648 53       		.byte	83
+ 1730 0649 A8       		.byte	-88
+ 1731 064a 00       		.byte	0
+ 1732 064b F0       		.byte	-16
+ 1733 064c FF       		.byte	-1
+ 1734 064d FB       		.byte	-5
+ 1735 064e 00       		.byte	0
+ 1736 064f 2C       		.byte	44
+ 1737 0650 00       		.byte	0
+ 1738 0651 D0       		.byte	-48
+ 1739 0652 B4       		.byte	-76
+ 1740 0653 E0       		.byte	-32
+ 1741 0654 01       		.byte	1
+ 1742 0655 9B       		.byte	-101
+ 1743 0656 FF       		.byte	-1
+ 1744 0657 2B       		.byte	43
+ 1745 0658 00       		.byte	0
+ 1746 0659 D9       		.byte	-39
+ 1747 065a B2       		.byte	-78
+ 1748 065b E0       		.byte	-32
+ 1749 065c DB       		.byte	-37
+ 1750 065d 01       		.byte	1
+ 1751 065e 19       		.byte	25
+ 1752 065f 00       		.byte	0
+ 1753 0660 53       		.byte	83
+ 1754 0661 AA       		.byte	-86
+ 1755 0662 80       		.byte	-128
+ 1756 0663 31       		.byte	49
+ 1757 0664 D2       		.byte	-46
+ 1758 0665 1A       		.byte	26
+ 1759 0666 18       		.byte	24
+ 1760 0667 78       		.byte	120
+ 1761 0668 D4       		.byte	-44
+ 1762 0669 5C       		.byte	92
+ 1763 066a 84       		.byte	-124
+ 1764 066b 42       		.byte	66
+ 1765 066c 00       		.byte	0
+ 1766 066d D0       		.byte	-48
+ 1767 066e AA       		.byte	-86
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 32
+
+
+ 1768 066f E0       		.byte	-32
+ 1769 0670 01       		.byte	1
+ 1770 0671 33       		.byte	51
+ 1771 0672 8B       		.byte	-117
+ 1772 0673 42       		.byte	66
+ 1773 0674 F7       		.byte	-9
+ 1774 0675 D1       		.byte	-47
+ 1775 0676 00       		.byte	0
+ 1776 0677 23       		.byte	35
+ 1777 0678 1C       		.byte	28
+ 1778 0679 00       		.byte	0
+ 1779 067a 4F       		.byte	79
+ 1780 067b E7       		.byte	-25
+ 1781 067c 01       		.byte	1
+ 1782 067d 2D       		.byte	45
+ 1783 067e 00       		.byte	0
+ 1784 067f D0       		.byte	-48
+ 1785 0680 A8       		.byte	-88
+ 1786 0681 E0       		.byte	-32
+ 1787 0682 01       		.byte	1
+ 1788 0683 2F       		.byte	47
+ 1789 0684 00       		.byte	0
+ 1790 0685 D0       		.byte	-48
+ 1791 0686 35       		.byte	53
+ 1792 0687 E7       		.byte	-25
+ 1793 0688 00       		.byte	0
+ 1794 0689 2C       		.byte	44
+ 1795 068a 00       		.byte	0
+ 1796 068b D0       		.byte	-48
+ 1797 068c 32       		.byte	50
+ 1798 068d E7       		.byte	-25
+ 1799 068e 43       		.byte	67
+ 1800 068f 4B       		.byte	75
+ 1801 0690 1B       		.byte	27
+ 1802 0691 68       		.byte	104
+ 1803 0692 1B       		.byte	27
+ 1804 0693 68       		.byte	104
+ 1805 0694 DA       		.byte	-38
+ 1806 0695 0B       		.byte	11
+ 1807 0696 D2       		.byte	-46
+ 1808 0697 B2       		.byte	-78
+ 1809 0698 DB       		.byte	-37
+ 1810 0699 09       		.byte	9
+ 1811 069a DB       		.byte	-37
+ 1812 069b B2       		.byte	-78
+ 1813 069c 00       		.byte	0
+ 1814 069d 2A       		.byte	42
+ 1815 069e 01       		.byte	1
+ 1816 069f D0       		.byte	-48
+ 1817 06a0 80       		.byte	-128
+ 1818 06a1 23       		.byte	35
+ 1819 06a2 5B       		.byte	91
+ 1820 06a3 00       		.byte	0
+ 1821 06a4 33       		.byte	51
+ 1822 06a5 71       		.byte	113
+ 1823 06a6 1B       		.byte	27
+ 1824 06a7 0A       		.byte	10
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 33
+
+
+ 1825 06a8 73       		.byte	115
+ 1826 06a9 71       		.byte	113
+ 1827 06aa FF       		.byte	-1
+ 1828 06ab 23       		.byte	35
+ 1829 06ac B3       		.byte	-77
+ 1830 06ad 71       		.byte	113
+ 1831 06ae 00       		.byte	0
+ 1832 06af 23       		.byte	35
+ 1833 06b0 04       		.byte	4
+ 1834 06b1 24       		.byte	36
+ 1835 06b2 F3       		.byte	-13
+ 1836 06b3 71       		.byte	113
+ 1837 06b4 32       		.byte	50
+ 1838 06b5 E7       		.byte	-25
+ 1839 06b6 34       		.byte	52
+ 1840 06b7 2B       		.byte	43
+ 1841 06b8 0D       		.byte	13
+ 1842 06b9 D1       		.byte	-47
+ 1843 06ba 01       		.byte	1
+ 1844 06bb 2D       		.byte	45
+ 1845 06bc 00       		.byte	0
+ 1846 06bd D0       		.byte	-48
+ 1847 06be 89       		.byte	-119
+ 1848 06bf E0       		.byte	-32
+ 1849 06c0 03       		.byte	3
+ 1850 06c1 2F       		.byte	47
+ 1851 06c2 00       		.byte	0
+ 1852 06c3 D0       		.byte	-48
+ 1853 06c4 16       		.byte	22
+ 1854 06c5 E7       		.byte	-25
+ 1855 06c6 80       		.byte	-128
+ 1856 06c7 22       		.byte	34
+ 1857 06c8 00       		.byte	0
+ 1858 06c9 21       		.byte	33
+ 1859 06ca 53       		.byte	83
+ 1860 06cb A8       		.byte	-88
+ 1861 06cc 00       		.byte	0
+ 1862 06cd F0       		.byte	-16
+ 1863 06ce C7       		.byte	-57
+ 1864 06cf FB       		.byte	-5
+ 1865 06d0 80       		.byte	-128
+ 1866 06d1 23       		.byte	35
+ 1867 06d2 00       		.byte	0
+ 1868 06d3 93       		.byte	-109
+ 1869 06d4 04       		.byte	4
+ 1870 06d5 E0       		.byte	-32
+ 1871 06d6 01       		.byte	1
+ 1872 06d7 2D       		.byte	45
+ 1873 06d8 7C       		.byte	124
+ 1874 06d9 D1       		.byte	-47
+ 1875 06da 02       		.byte	2
+ 1876 06db 2F       		.byte	47
+ 1877 06dc 00       		.byte	0
+ 1878 06dd D8       		.byte	-40
+ 1879 06de 09       		.byte	9
+ 1880 06df E7       		.byte	-25
+ 1881 06e0 1F       		.byte	31
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 34
+
+
+ 1882 06e1 21       		.byte	33
+ 1883 06e2 00       		.byte	0
+ 1884 06e3 9A       		.byte	-102
+ 1885 06e4 53       		.byte	83
+ 1886 06e5 AB       		.byte	-85
+ 1887 06e6 98       		.byte	-104
+ 1888 06e7 18       		.byte	24
+ 1889 06e8 02       		.byte	2
+ 1890 06e9 AB       		.byte	-85
+ 1891 06ea FA       		.byte	-6
+ 1892 06eb 1E       		.byte	30
+ 1893 06ec C9       		.byte	-55
+ 1894 06ed 18       		.byte	24
+ 1895 06ee 00       		.byte	0
+ 1896 06ef F0       		.byte	-16
+ 1897 06f0 AD       		.byte	-83
+ 1898 06f1 FB       		.byte	-5
+ 1899 06f2 00       		.byte	0
+ 1900 06f3 9B       		.byte	-101
+ 1901 06f4 FF       		.byte	-1
+ 1902 06f5 18       		.byte	24
+ 1903 06f6 BF       		.byte	-65
+ 1904 06f7 B2       		.byte	-78
+ 1905 06f8 83       		.byte	-125
+ 1906 06f9 2F       		.byte	47
+ 1907 06fa 66       		.byte	102
+ 1908 06fb D1       		.byte	-47
+ 1909 06fc 02       		.byte	2
+ 1910 06fd AB       		.byte	-85
+ 1911 06fe 9F       		.byte	-97
+ 1912 06ff 7F       		.byte	127
+ 1913 0700 58       		.byte	88
+ 1914 0701 7F       		.byte	127
+ 1915 0702 3F       		.byte	63
+ 1916 0703 02       		.byte	2
+ 1917 0704 07       		.byte	7
+ 1918 0705 43       		.byte	67
+ 1919 0706 00       		.byte	0
+ 1920 0707 97       		.byte	-105
+ 1921 0708 01       		.byte	1
+ 1922 0709 25       		.byte	37
+ 1923 070a FF       		.byte	-1
+ 1924 070b 2F       		.byte	47
+ 1925 070c 37       		.byte	55
+ 1926 070d D8       		.byte	-40
+ 1927 070e 66       		.byte	102
+ 1928 070f E0       		.byte	-32
+ 1929 0710 01       		.byte	1
+ 1930 0711 2D       		.byte	45
+ 1931 0712 5F       		.byte	95
+ 1932 0713 D1       		.byte	-47
+ 1933 0714 00       		.byte	0
+ 1934 0715 23       		.byte	35
+ 1935 0716 00       		.byte	0
+ 1936 0717 93       		.byte	-109
+ 1937 0718 B7       		.byte	-73
+ 1938 0719 E6       		.byte	-26
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 35
+
+
+ 1939 071a 01       		.byte	1
+ 1940 071b 2D       		.byte	45
+ 1941 071c 5A       		.byte	90
+ 1942 071d D1       		.byte	-47
+ 1943 071e 00       		.byte	0
+ 1944 071f 9B       		.byte	-101
+ 1945 0720 FC       		.byte	-4
+ 1946 0721 18       		.byte	24
+ 1947 0722 96       		.byte	-106
+ 1948 0723 23       		.byte	35
+ 1949 0724 5B       		.byte	91
+ 1950 0725 00       		.byte	0
+ 1951 0726 9C       		.byte	-100
+ 1952 0727 42       		.byte	66
+ 1953 0728 57       		.byte	87
+ 1954 0729 DC       		.byte	-36
+ 1955 072a 53       		.byte	83
+ 1956 072b AA       		.byte	-86
+ 1957 072c 94       		.byte	-108
+ 1958 072d 46       		.byte	70
+ 1959 072e 00       		.byte	0
+ 1960 072f 9B       		.byte	-101
+ 1961 0730 3A       		.byte	58
+ 1962 0731 00       		.byte	0
+ 1963 0732 63       		.byte	99
+ 1964 0733 44       		.byte	68
+ 1965 0734 18       		.byte	24
+ 1966 0735 00       		.byte	0
+ 1967 0736 09       		.byte	9
+ 1968 0737 A9       		.byte	-87
+ 1969 0738 00       		.byte	0
+ 1970 0739 F0       		.byte	-16
+ 1971 073a 88       		.byte	-120
+ 1972 073b FB       		.byte	-5
+ 1973 073c A3       		.byte	-93
+ 1974 073d B2       		.byte	-78
+ 1975 073e 00       		.byte	0
+ 1976 073f 93       		.byte	-109
+ 1977 0740 00       		.byte	0
+ 1978 0741 23       		.byte	35
+ 1979 0742 DC       		.byte	-36
+ 1980 0743 E6       		.byte	-26
+ 1981 0744 00       		.byte	0
+ 1982 0745 2F       		.byte	47
+ 1983 0746 00       		.byte	0
+ 1984 0747 D0       		.byte	-48
+ 1985 0748 D4       		.byte	-44
+ 1986 0749 E6       		.byte	-26
+ 1987 074a 05       		.byte	5
+ 1988 074b AB       		.byte	-85
+ 1989 074c 19       		.byte	25
+ 1990 074d 00       		.byte	0
+ 1991 074e 14       		.byte	20
+ 1992 074f 4A       		.byte	74
+ 1993 0750 01       		.byte	1
+ 1994 0751 25       		.byte	37
+ 1995 0752 11       		.byte	17
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 36
+
+
+ 1996 0753 CA       		.byte	-54
+ 1997 0754 11       		.byte	17
+ 1998 0755 C1       		.byte	-63
+ 1999 0756 09       		.byte	9
+ 2000 0757 AA       		.byte	-86
+ 2001 0758 03       		.byte	3
+ 2002 0759 CB       		.byte	-53
+ 2003 075a 03       		.byte	3
+ 2004 075b C2       		.byte	-62
+ 2005 075c 08       		.byte	8
+ 2006 075d 24       		.byte	36
+ 2007 075e 00       		.byte	0
+ 2008 075f 97       		.byte	-105
+ 2009 0760 3B       		.byte	59
+ 2010 0761 00       		.byte	0
+ 2011 0762 DB       		.byte	-37
+ 2012 0763 E6       		.byte	-26
+ 2013 0764 01       		.byte	1
+ 2014 0765 2D       		.byte	45
+ 2015 0766 35       		.byte	53
+ 2016 0767 D1       		.byte	-47
+ 2017 0768 03       		.byte	3
+ 2018 0769 2F       		.byte	47
+ 2019 076a 00       		.byte	0
+ 2020 076b D0       		.byte	-48
+ 2021 076c C2       		.byte	-62
+ 2022 076d E6       		.byte	-26
+ 2023 076e 02       		.byte	2
+ 2024 076f AB       		.byte	-85
+ 2025 0770 5A       		.byte	90
+ 2026 0771 7F       		.byte	127
+ 2027 0772 9B       		.byte	-101
+ 2028 0773 7F       		.byte	127
+ 2029 0774 1B       		.byte	27
+ 2030 0775 02       		.byte	2
+ 2031 0776 13       		.byte	19
+ 2032 0777 43       		.byte	67
+ 2033 0778 01       		.byte	1
+ 2034 0779 93       		.byte	-109
+ 2035 077a FF       		.byte	-1
+ 2036 077b 2B       		.byte	43
+ 2037 077c 4C       		.byte	76
+ 2038 077d D9       		.byte	-39
+ 2039 077e 0A       		.byte	10
+ 2040 077f 23       		.byte	35
+ 2041 0780 BD       		.byte	-67
+ 2042 0781 E6       		.byte	-26
+ 2043 0782 C0       		.byte	-64
+ 2044 0783 46       		.byte	70
+ 2045 0784 84       		.byte	-124
+ 2046 0785 FD       		.byte	-3
+ 2047 0786 FF       		.byte	-1
+ 2048 0787 FF       		.byte	-1
+ 2049 0788 C0       		.byte	-64
+ 2050 0789 7F       		.byte	127
+ 2051 078a 00       		.byte	0
+ 2052 078b 00       		.byte	0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 37
+
+
+ 2053 078c AC       		.byte	-84
+ 2054 078d FD       		.byte	-3
+ 2055 078e FF       		.byte	-1
+ 2056 078f FF       		.byte	-1
+ 2057 0790 AD       		.byte	-83
+ 2058 0791 FD       		.byte	-3
+ 2059 0792 FF       		.byte	-1
+ 2060 0793 FF       		.byte	-1
+ 2061 0794 AE       		.byte	-82
+ 2062 0795 FD       		.byte	-3
+ 2063 0796 FF       		.byte	-1
+ 2064 0797 FF       		.byte	-1
+ 2065 0798 6C       		.byte	108
+ 2066 0799 01       		.byte	1
+ 2067 079a 00       		.byte	0
+ 2068 079b 20       		.byte	32
+ 2069 079c CC       		.byte	-52
+ 2070 079d 00       		.byte	0
+ 2071 079e 00       		.byte	0
+ 2072 079f 20       		.byte	32
+ 2073 07a0 7C       		.byte	124
+ 2074 07a1 0E       		.byte	14
+ 2075 07a2 00       		.byte	0
+ 2076 07a3 00       		.byte	0
+ 2077 07a4 00       		.byte	0
+ 2078 07a5 20       		.byte	32
+ 2079 07a6 FF       		.byte	-1
+ 2080 07a7 F7       		.byte	-9
+ 2081 07a8 35       		.byte	53
+ 2082 07a9 FE       		.byte	-2
+ 2083 07aa 00       		.byte	0
+ 2084 07ab 28       		.byte	40
+ 2085 07ac 02       		.byte	2
+ 2086 07ad D1       		.byte	-47
+ 2087 07ae 80       		.byte	-128
+ 2088 07af 22       		.byte	34
+ 2089 07b0 29       		.byte	41
+ 2090 07b1 4B       		.byte	75
+ 2091 07b2 1A       		.byte	26
+ 2092 07b3 60       		.byte	96
+ 2093 07b4 FF       		.byte	-1
+ 2094 07b5 F7       		.byte	-9
+ 2095 07b6 E8       		.byte	-24
+ 2096 07b7 FC       		.byte	-4
+ 2097 07b8 00       		.byte	0
+ 2098 07b9 F0       		.byte	-16
+ 2099 07ba 38       		.byte	56
+ 2100 07bb FA       		.byte	-6
+ 2101 07bc 9A       		.byte	-102
+ 2102 07bd E6       		.byte	-26
+ 2103 07be 09       		.byte	9
+ 2104 07bf 23       		.byte	35
+ 2105 07c0 9D       		.byte	-99
+ 2106 07c1 E6       		.byte	-26
+ 2107 07c2 0A       		.byte	10
+ 2108 07c3 23       		.byte	35
+ 2109 07c4 AA       		.byte	-86
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 38
+
+
+ 2110 07c5 E6       		.byte	-26
+ 2111 07c6 02       		.byte	2
+ 2112 07c7 23       		.byte	35
+ 2113 07c8 99       		.byte	-103
+ 2114 07c9 E6       		.byte	-26
+ 2115 07ca 00       		.byte	0
+ 2116 07cb 23       		.byte	35
+ 2117 07cc 01       		.byte	1
+ 2118 07cd 25       		.byte	37
+ 2119 07ce 00       		.byte	0
+ 2120 07cf 93       		.byte	-109
+ 2121 07d0 03       		.byte	3
+ 2122 07d1 33       		.byte	51
+ 2123 07d2 94       		.byte	-108
+ 2124 07d3 E6       		.byte	-26
+ 2125 07d4 00       		.byte	0
+ 2126 07d5 25       		.byte	37
+ 2127 07d6 04       		.byte	4
+ 2128 07d7 23       		.byte	35
+ 2129 07d8 FA       		.byte	-6
+ 2130 07d9 E6       		.byte	-26
+ 2131 07da 03       		.byte	3
+ 2132 07db 23       		.byte	35
+ 2133 07dc 8F       		.byte	-113
+ 2134 07dd E6       		.byte	-26
+ 2135 07de 00       		.byte	0
+ 2136 07df 9B       		.byte	-101
+ 2137 07e0 20       		.byte	32
+ 2138 07e1 02       		.byte	2
+ 2139 07e2 18       		.byte	24
+ 2140 07e3 18       		.byte	24
+ 2141 07e4 1D       		.byte	29
+ 2142 07e5 4B       		.byte	75
+ 2143 07e6 80       		.byte	-128
+ 2144 07e7 B2       		.byte	-78
+ 2145 07e8 1B       		.byte	27
+ 2146 07e9 68       		.byte	104
+ 2147 07ea 1A       		.byte	26
+ 2148 07eb 68       		.byte	104
+ 2149 07ec D3       		.byte	-45
+ 2150 07ed 09       		.byte	9
+ 2151 07ee 9B       		.byte	-101
+ 2152 07ef B2       		.byte	-78
+ 2153 07f0 52       		.byte	82
+ 2154 07f1 06       		.byte	6
+ 2155 07f2 01       		.byte	1
+ 2156 07f3 D0       		.byte	-48
+ 2157 07f4 01       		.byte	1
+ 2158 07f5 33       		.byte	51
+ 2159 07f6 9B       		.byte	-101
+ 2160 07f7 B2       		.byte	-78
+ 2161 07f8 98       		.byte	-104
+ 2162 07f9 42       		.byte	66
+ 2163 07fa 04       		.byte	4
+ 2164 07fb D2       		.byte	-46
+ 2165 07fc 00       		.byte	0
+ 2166 07fd 23       		.byte	35
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 39
+
+
+ 2167 07fe 01       		.byte	1
+ 2168 07ff 25       		.byte	37
+ 2169 0800 00       		.byte	0
+ 2170 0801 93       		.byte	-109
+ 2171 0802 0A       		.byte	10
+ 2172 0803 33       		.byte	51
+ 2173 0804 7B       		.byte	123
+ 2174 0805 E6       		.byte	-26
+ 2175 0806 53       		.byte	83
+ 2176 0807 A9       		.byte	-87
+ 2177 0808 00       		.byte	0
+ 2178 0809 F0       		.byte	-16
+ 2179 080a 38       		.byte	56
+ 2180 080b F9       		.byte	-7
+ 2181 080c 00       		.byte	0
+ 2182 080d 28       		.byte	40
+ 2183 080e F5       		.byte	-11
+ 2184 080f D1       		.byte	-47
+ 2185 0810 00       		.byte	0
+ 2186 0811 90       		.byte	-112
+ 2187 0812 01       		.byte	1
+ 2188 0813 25       		.byte	37
+ 2189 0814 03       		.byte	3
+ 2190 0815 00       		.byte	0
+ 2191 0816 72       		.byte	114
+ 2192 0817 E6       		.byte	-26
+ 2193 0818 01       		.byte	1
+ 2194 0819 9B       		.byte	-101
+ 2195 081a 21       		.byte	33
+ 2196 081b 02       		.byte	2
+ 2197 081c C9       		.byte	-55
+ 2198 081d 18       		.byte	24
+ 2199 081e C9       		.byte	-55
+ 2200 081f 01       		.byte	1
+ 2201 0820 80       		.byte	-128
+ 2202 0821 22       		.byte	34
+ 2203 0822 00       		.byte	0
+ 2204 0823 20       		.byte	32
+ 2205 0824 FF       		.byte	-1
+ 2206 0825 F7       		.byte	-9
+ 2207 0826 78       		.byte	120
+ 2208 0827 FD       		.byte	-3
+ 2209 0828 07       		.byte	7
+ 2210 0829 00       		.byte	0
+ 2211 082a 00       		.byte	0
+ 2212 082b 2C       		.byte	44
+ 2213 082c 0E       		.byte	14
+ 2214 082d D1       		.byte	-47
+ 2215 082e 01       		.byte	1
+ 2216 082f 9B       		.byte	-101
+ 2217 0830 FF       		.byte	-1
+ 2218 0831 2B       		.byte	43
+ 2219 0832 0B       		.byte	11
+ 2220 0833 D1       		.byte	-47
+ 2221 0834 21       		.byte	33
+ 2222 0835 00       		.byte	0
+ 2223 0836 05       		.byte	5
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 40
+
+
+ 2224 0837 20       		.byte	32
+ 2225 0838 FF       		.byte	-1
+ 2226 0839 F7       		.byte	-9
+ 2227 083a 7A       		.byte	122
+ 2228 083b FD       		.byte	-3
+ 2229 083c 21       		.byte	33
+ 2230 083d 00       		.byte	0
+ 2231 083e 3F       		.byte	63
+ 2232 083f 1A       		.byte	26
+ 2233 0840 06       		.byte	6
+ 2234 0841 20       		.byte	32
+ 2235 0842 FF       		.byte	-1
+ 2236 0843 F7       		.byte	-9
+ 2237 0844 75       		.byte	117
+ 2238 0845 FD       		.byte	-3
+ 2239 0846 FF       		.byte	-1
+ 2240 0847 B2       		.byte	-78
+ 2241 0848 3F       		.byte	63
+ 2242 0849 1A       		.byte	26
+ 2243 084a FF       		.byte	-1
+ 2244 084b B2       		.byte	-78
+ 2245 084c 7F       		.byte	127
+ 2246 084d 42       		.byte	66
+ 2247 084e 37       		.byte	55
+ 2248 084f 71       		.byte	113
+ 2249 0850 00       		.byte	0
+ 2250 0851 23       		.byte	35
+ 2251 0852 01       		.byte	1
+ 2252 0853 24       		.byte	36
+ 2253 0854 62       		.byte	98
+ 2254 0855 E6       		.byte	-26
+ 2255 0856 C0       		.byte	-64
+ 2256 0857 46       		.byte	70
+ 2257 0858 C0       		.byte	-64
+ 2258 0859 00       		.byte	0
+ 2259 085a 00       		.byte	0
+ 2260 085b 20       		.byte	32
+ 2261 085c CC       		.byte	-52
+ 2262 085d 00       		.byte	0
+ 2263 085e 00       		.byte	0
+ 2264 085f 20       		.byte	32
+ 2265 0860 70       		.byte	112
+ 2266 0861 B5       		.byte	-75
+ 2267 0862 00       		.byte	0
+ 2268 0863 20       		.byte	32
+ 2269 0864 FF       		.byte	-1
+ 2270 0865 F7       		.byte	-9
+ 2271 0866 D6       		.byte	-42
+ 2272 0867 FD       		.byte	-3
+ 2273 0868 43       		.byte	67
+ 2274 0869 1E       		.byte	30
+ 2275 086a 98       		.byte	-104
+ 2276 086b 41       		.byte	65
+ 2277 086c 06       		.byte	6
+ 2278 086d 24       		.byte	36
+ 2279 086e 13       		.byte	19
+ 2280 086f 4D       		.byte	77
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 41
+
+
+ 2281 0870 40       		.byte	64
+ 2282 0871 42       		.byte	66
+ 2283 0872 2B       		.byte	43
+ 2284 0873 68       		.byte	104
+ 2285 0874 04       		.byte	4
+ 2286 0875 40       		.byte	64
+ 2287 0876 1A       		.byte	26
+ 2288 0877 68       		.byte	104
+ 2289 0878 C0       		.byte	-64
+ 2290 0879 21       		.byte	33
+ 2291 087a C0       		.byte	-64
+ 2292 087b 3A       		.byte	58
+ 2293 087c 00       		.byte	0
+ 2294 087d 20       		.byte	32
+ 2295 087e FF       		.byte	-1
+ 2296 087f F7       		.byte	-9
+ 2297 0880 4B       		.byte	75
+ 2298 0881 FD       		.byte	-3
+ 2299 0882 6B       		.byte	107
+ 2300 0883 68       		.byte	104
+ 2301 0884 1B       		.byte	27
+ 2302 0885 78       		.byte	120
+ 2303 0886 18       		.byte	24
+ 2304 0887 1A       		.byte	26
+ 2305 0888 C0       		.byte	-64
+ 2306 0889 B2       		.byte	-78
+ 2307 088a 83       		.byte	-125
+ 2308 088b 42       		.byte	66
+ 2309 088c 03       		.byte	3
+ 2310 088d D1       		.byte	-47
+ 2311 088e 2B       		.byte	43
+ 2312 088f 68       		.byte	104
+ 2313 0890 1B       		.byte	27
+ 2314 0891 68       		.byte	104
+ 2315 0892 00       		.byte	0
+ 2316 0893 2B       		.byte	43
+ 2317 0894 02       		.byte	2
+ 2318 0895 D1       		.byte	-47
+ 2319 0896 00       		.byte	0
+ 2320 0897 20       		.byte	32
+ 2321 0898 00       		.byte	0
+ 2322 0899 F0       		.byte	-16
+ 2323 089a C6       		.byte	-58
+ 2324 089b F9       		.byte	-7
+ 2325 089c 08       		.byte	8
+ 2326 089d 4B       		.byte	75
+ 2327 089e 19       		.byte	25
+ 2328 089f 68       		.byte	104
+ 2329 08a0 1A       		.byte	26
+ 2330 08a1 00       		.byte	0
+ 2331 08a2 40       		.byte	64
+ 2332 08a3 29       		.byte	41
+ 2333 08a4 01       		.byte	1
+ 2334 08a5 D0       		.byte	-48
+ 2335 08a6 00       		.byte	0
+ 2336 08a7 2C       		.byte	44
+ 2337 08a8 03       		.byte	3
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 42
+
+
+ 2338 08a9 D0       		.byte	-48
+ 2339 08aa 00       		.byte	0
+ 2340 08ab 23       		.byte	35
+ 2341 08ac 13       		.byte	19
+ 2342 08ad 60       		.byte	96
+ 2343 08ae FF       		.byte	-1
+ 2344 08af F7       		.byte	-9
+ 2345 08b0 E3       		.byte	-29
+ 2346 08b1 FD       		.byte	-3
+ 2347 08b2 80       		.byte	-128
+ 2348 08b3 22       		.byte	34
+ 2349 08b4 1A       		.byte	26
+ 2350 08b5 60       		.byte	96
+ 2351 08b6 00       		.byte	0
+ 2352 08b7 F0       		.byte	-16
+ 2353 08b8 B9       		.byte	-71
+ 2354 08b9 F9       		.byte	-7
+ 2355 08ba 70       		.byte	112
+ 2356 08bb BD       		.byte	-67
+ 2357 08bc CC       		.byte	-52
+ 2358 08bd 00       		.byte	0
+ 2359 08be 00       		.byte	0
+ 2360 08bf 20       		.byte	32
+ 2361 08c0 C0       		.byte	-64
+ 2362 08c1 00       		.byte	0
+ 2363 08c2 00       		.byte	0
+ 2364 08c3 20       		.byte	32
+ 2365 08c4 80       		.byte	-128
+ 2366 08c5 21       		.byte	33
+ 2367 08c6 04       		.byte	4
+ 2368 08c7 4A       		.byte	74
+ 2369 08c8 10       		.byte	16
+ 2370 08c9 B5       		.byte	-75
+ 2371 08ca 13       		.byte	19
+ 2372 08cb 68       		.byte	104
+ 2373 08cc 09       		.byte	9
+ 2374 08cd 06       		.byte	6
+ 2375 08ce 0B       		.byte	11
+ 2376 08cf 43       		.byte	67
+ 2377 08d0 13       		.byte	19
+ 2378 08d1 60       		.byte	96
+ 2379 08d2 00       		.byte	0
+ 2380 08d3 F0       		.byte	-16
+ 2381 08d4 8B       		.byte	-117
+ 2382 08d5 F8       		.byte	-8
+ 2383 08d6 10       		.byte	16
+ 2384 08d7 BD       		.byte	-67
+ 2385 08d8 00       		.byte	0
+ 2386 08d9 00       		.byte	0
+ 2387 08da 06       		.byte	6
+ 2388 08db 40       		.byte	64
+ 2389 08dc 10       		.byte	16
+ 2390 08dd B5       		.byte	-75
+ 2391 08de 05       		.byte	5
+ 2392 08df 4C       		.byte	76
+ 2393 08e0 23       		.byte	35
+ 2394 08e1 78       		.byte	120
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 43
+
+
+ 2395 08e2 00       		.byte	0
+ 2396 08e3 2B       		.byte	43
+ 2397 08e4 03       		.byte	3
+ 2398 08e5 D1       		.byte	-47
+ 2399 08e6 00       		.byte	0
+ 2400 08e7 F0       		.byte	-16
+ 2401 08e8 33       		.byte	51
+ 2402 08e9 F8       		.byte	-8
+ 2403 08ea 01       		.byte	1
+ 2404 08eb 23       		.byte	35
+ 2405 08ec 23       		.byte	35
+ 2406 08ed 70       		.byte	112
+ 2407 08ee FF       		.byte	-1
+ 2408 08ef F7       		.byte	-9
+ 2409 08f0 E9       		.byte	-23
+ 2410 08f1 FF       		.byte	-1
+ 2411 08f2 10       		.byte	16
+ 2412 08f3 BD       		.byte	-67
+ 2413 08f4 70       		.byte	112
+ 2414 08f5 01       		.byte	1
+ 2415 08f6 00       		.byte	0
+ 2416 08f7 20       		.byte	32
+ 2417 08f8 10       		.byte	16
+ 2418 08f9 B5       		.byte	-75
+ 2419 08fa 00       		.byte	0
+ 2420 08fb F0       		.byte	-16
+ 2421 08fc 89       		.byte	-119
+ 2422 08fd F8       		.byte	-8
+ 2423 08fe 04       		.byte	4
+ 2424 08ff 4A       		.byte	74
+ 2425 0900 13       		.byte	19
+ 2426 0901 68       		.byte	104
+ 2427 0902 5B       		.byte	91
+ 2428 0903 00       		.byte	0
+ 2429 0904 5B       		.byte	91
+ 2430 0905 08       		.byte	8
+ 2431 0906 13       		.byte	19
+ 2432 0907 60       		.byte	96
+ 2433 0908 00       		.byte	0
+ 2434 0909 22       		.byte	34
+ 2435 090a 02       		.byte	2
+ 2436 090b 4B       		.byte	75
+ 2437 090c 1A       		.byte	26
+ 2438 090d 60       		.byte	96
+ 2439 090e 10       		.byte	16
+ 2440 090f BD       		.byte	-67
+ 2441 0910 00       		.byte	0
+ 2442 0911 00       		.byte	0
+ 2443 0912 06       		.byte	6
+ 2444 0913 40       		.byte	64
+ 2445 0914 88       		.byte	-120
+ 2446 0915 0F       		.byte	15
+ 2447 0916 06       		.byte	6
+ 2448 0917 40       		.byte	64
+ 2449 0918 01       		.byte	1
+ 2450 0919 4B       		.byte	75
+ 2451 091a 18       		.byte	24
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 44
+
+
+ 2452 091b 68       		.byte	104
+ 2453 091c 70       		.byte	112
+ 2454 091d 47       		.byte	71
+ 2455 091e C0       		.byte	-64
+ 2456 091f 46       		.byte	70
+ 2457 0920 40       		.byte	64
+ 2458 0921 03       		.byte	3
+ 2459 0922 06       		.byte	6
+ 2460 0923 40       		.byte	64
+ 2461 0924 02       		.byte	2
+ 2462 0925 4B       		.byte	75
+ 2463 0926 18       		.byte	24
+ 2464 0927 68       		.byte	104
+ 2465 0928 0F       		.byte	15
+ 2466 0929 23       		.byte	35
+ 2467 092a 18       		.byte	24
+ 2468 092b 40       		.byte	64
+ 2469 092c 70       		.byte	112
+ 2470 092d 47       		.byte	71
+ 2471 092e C0       		.byte	-64
+ 2472 092f 46       		.byte	70
+ 2473 0930 08       		.byte	8
+ 2474 0931 03       		.byte	3
+ 2475 0932 06       		.byte	6
+ 2476 0933 40       		.byte	64
+ 2477 0934 0F       		.byte	15
+ 2478 0935 22       		.byte	34
+ 2479 0936 04       		.byte	4
+ 2480 0937 49       		.byte	73
+ 2481 0938 0B       		.byte	11
+ 2482 0939 68       		.byte	104
+ 2483 093a 13       		.byte	19
+ 2484 093b 40       		.byte	64
+ 2485 093c 08       		.byte	8
+ 2486 093d 2B       		.byte	43
+ 2487 093e FB       		.byte	-5
+ 2488 093f D0       		.byte	-48
+ 2489 0940 02       		.byte	2
+ 2490 0941 4B       		.byte	75
+ 2491 0942 18       		.byte	24
+ 2492 0943 60       		.byte	96
+ 2493 0944 70       		.byte	112
+ 2494 0945 47       		.byte	71
+ 2495 0946 C0       		.byte	-64
+ 2496 0947 46       		.byte	70
+ 2497 0948 08       		.byte	8
+ 2498 0949 02       		.byte	2
+ 2499 094a 06       		.byte	6
+ 2500 094b 40       		.byte	64
+ 2501 094c 40       		.byte	64
+ 2502 094d 02       		.byte	2
+ 2503 094e 06       		.byte	6
+ 2504 094f 40       		.byte	64
+ 2505 0950 13       		.byte	19
+ 2506 0951 4A       		.byte	74
+ 2507 0952 14       		.byte	20
+ 2508 0953 4B       		.byte	75
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 45
+
+
+ 2509 0954 07       		.byte	7
+ 2510 0955 20       		.byte	32
+ 2511 0956 1A       		.byte	26
+ 2512 0957 60       		.byte	96
+ 2513 0958 00       		.byte	0
+ 2514 0959 23       		.byte	35
+ 2515 095a 13       		.byte	19
+ 2516 095b 4A       		.byte	74
+ 2517 095c 13       		.byte	19
+ 2518 095d 49       		.byte	73
+ 2519 095e 13       		.byte	19
+ 2520 095f 60       		.byte	96
+ 2521 0960 13       		.byte	19
+ 2522 0961 4A       		.byte	74
+ 2523 0962 11       		.byte	17
+ 2524 0963 60       		.byte	96
+ 2525 0964 13       		.byte	19
+ 2526 0965 4A       		.byte	74
+ 2527 0966 14       		.byte	20
+ 2528 0967 49       		.byte	73
+ 2529 0968 0A       		.byte	10
+ 2530 0969 60       		.byte	96
+ 2531 096a 14       		.byte	20
+ 2532 096b 49       		.byte	73
+ 2533 096c 08       		.byte	8
+ 2534 096d 60       		.byte	96
+ 2535 096e 14       		.byte	20
+ 2536 096f 49       		.byte	73
+ 2537 0970 06       		.byte	6
+ 2538 0971 38       		.byte	56
+ 2539 0972 0B       		.byte	11
+ 2540 0973 60       		.byte	96
+ 2541 0974 13       		.byte	19
+ 2542 0975 49       		.byte	73
+ 2543 0976 08       		.byte	8
+ 2544 0977 60       		.byte	96
+ 2545 0978 13       		.byte	19
+ 2546 0979 49       		.byte	73
+ 2547 097a 0A       		.byte	10
+ 2548 097b 60       		.byte	96
+ 2549 097c 13       		.byte	19
+ 2550 097d 4A       		.byte	74
+ 2551 097e 13       		.byte	19
+ 2552 097f 60       		.byte	96
+ 2553 0980 13       		.byte	19
+ 2554 0981 4A       		.byte	74
+ 2555 0982 13       		.byte	19
+ 2556 0983 60       		.byte	96
+ 2557 0984 13       		.byte	19
+ 2558 0985 4A       		.byte	74
+ 2559 0986 13       		.byte	19
+ 2560 0987 60       		.byte	96
+ 2561 0988 13       		.byte	19
+ 2562 0989 4A       		.byte	74
+ 2563 098a 13       		.byte	19
+ 2564 098b 60       		.byte	96
+ 2565 098c 13       		.byte	19
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 46
+
+
+ 2566 098d 4A       		.byte	74
+ 2567 098e 13       		.byte	19
+ 2568 098f 60       		.byte	96
+ 2569 0990 13       		.byte	19
+ 2570 0991 4A       		.byte	74
+ 2571 0992 13       		.byte	19
+ 2572 0993 60       		.byte	96
+ 2573 0994 13       		.byte	19
+ 2574 0995 4A       		.byte	74
+ 2575 0996 13       		.byte	19
+ 2576 0997 60       		.byte	96
+ 2577 0998 12       		.byte	18
+ 2578 0999 68       		.byte	104
+ 2579 099a 13       		.byte	19
+ 2580 099b 4B       		.byte	75
+ 2581 099c 1A       		.byte	26
+ 2582 099d 80       		.byte	-128
+ 2583 099e 70       		.byte	112
+ 2584 099f 47       		.byte	71
+ 2585 09a0 0B       		.byte	11
+ 2586 09a1 00       		.byte	0
+ 2587 09a2 00       		.byte	0
+ 2588 09a3 02       		.byte	2
+ 2589 09a4 00       		.byte	0
+ 2590 09a5 00       		.byte	0
+ 2591 09a6 06       		.byte	6
+ 2592 09a7 40       		.byte	64
+ 2593 09a8 40       		.byte	64
+ 2594 09a9 00       		.byte	0
+ 2595 09aa 06       		.byte	6
+ 2596 09ab 40       		.byte	64
+ 2597 09ac 01       		.byte	1
+ 2598 09ad 00       		.byte	0
+ 2599 09ae 0A       		.byte	10
+ 2600 09af 00       		.byte	0
+ 2601 09b0 48       		.byte	72
+ 2602 09b1 00       		.byte	0
+ 2603 09b2 06       		.byte	6
+ 2604 09b3 40       		.byte	64
+ 2605 09b4 07       		.byte	7
+ 2606 09b5 00       		.byte	0
+ 2607 09b6 00       		.byte	0
+ 2608 09b7 80       		.byte	-128
+ 2609 09b8 00       		.byte	0
+ 2610 09b9 03       		.byte	3
+ 2611 09ba 06       		.byte	6
+ 2612 09bb 40       		.byte	64
+ 2613 09bc 04       		.byte	4
+ 2614 09bd 03       		.byte	3
+ 2615 09be 06       		.byte	6
+ 2616 09bf 40       		.byte	64
+ 2617 09c0 10       		.byte	16
+ 2618 09c1 03       		.byte	3
+ 2619 09c2 06       		.byte	6
+ 2620 09c3 40       		.byte	64
+ 2621 09c4 44       		.byte	68
+ 2622 09c5 00       		.byte	0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 47
+
+
+ 2623 09c6 06       		.byte	6
+ 2624 09c7 40       		.byte	64
+ 2625 09c8 00       		.byte	0
+ 2626 09c9 02       		.byte	2
+ 2627 09ca 06       		.byte	6
+ 2628 09cb 40       		.byte	64
+ 2629 09cc 04       		.byte	4
+ 2630 09cd 02       		.byte	2
+ 2631 09ce 06       		.byte	6
+ 2632 09cf 40       		.byte	64
+ 2633 09d0 88       		.byte	-120
+ 2634 09d1 0E       		.byte	14
+ 2635 09d2 06       		.byte	6
+ 2636 09d3 40       		.byte	64
+ 2637 09d4 C8       		.byte	-56
+ 2638 09d5 0E       		.byte	14
+ 2639 09d6 06       		.byte	6
+ 2640 09d7 40       		.byte	64
+ 2641 09d8 48       		.byte	72
+ 2642 09d9 0F       		.byte	15
+ 2643 09da 06       		.byte	6
+ 2644 09db 40       		.byte	64
+ 2645 09dc 08       		.byte	8
+ 2646 09dd 0F       		.byte	15
+ 2647 09de 06       		.byte	6
+ 2648 09df 40       		.byte	64
+ 2649 09e0 C8       		.byte	-56
+ 2650 09e1 0F       		.byte	15
+ 2651 09e2 06       		.byte	6
+ 2652 09e3 40       		.byte	64
+ 2653 09e4 88       		.byte	-120
+ 2654 09e5 0F       		.byte	15
+ 2655 09e6 06       		.byte	6
+ 2656 09e7 40       		.byte	64
+ 2657 09e8 72       		.byte	114
+ 2658 09e9 01       		.byte	1
+ 2659 09ea 00       		.byte	0
+ 2660 09eb 20       		.byte	32
+ 2661 09ec F0       		.byte	-16
+ 2662 09ed 21       		.byte	33
+ 2663 09ee 05       		.byte	5
+ 2664 09ef 4A       		.byte	74
+ 2665 09f0 13       		.byte	19
+ 2666 09f1 68       		.byte	104
+ 2667 09f2 8B       		.byte	-117
+ 2668 09f3 43       		.byte	67
+ 2669 09f4 60       		.byte	96
+ 2670 09f5 39       		.byte	57
+ 2671 09f6 0B       		.byte	11
+ 2672 09f7 43       		.byte	67
+ 2673 09f8 13       		.byte	19
+ 2674 09f9 60       		.byte	96
+ 2675 09fa 03       		.byte	3
+ 2676 09fb 4B       		.byte	75
+ 2677 09fc 1A       		.byte	26
+ 2678 09fd 88       		.byte	-120
+ 2679 09fe 03       		.byte	3
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 48
+
+
+ 2680 09ff 4B       		.byte	75
+ 2681 0a00 1A       		.byte	26
+ 2682 0a01 60       		.byte	96
+ 2683 0a02 70       		.byte	112
+ 2684 0a03 47       		.byte	71
+ 2685 0a04 10       		.byte	16
+ 2686 0a05 00       		.byte	0
+ 2687 0a06 01       		.byte	1
+ 2688 0a07 40       		.byte	64
+ 2689 0a08 72       		.byte	114
+ 2690 0a09 01       		.byte	1
+ 2691 0a0a 00       		.byte	0
+ 2692 0a0b 20       		.byte	32
+ 2693 0a0c 88       		.byte	-120
+ 2694 0a0d 0F       		.byte	15
+ 2695 0a0e 06       		.byte	6
+ 2696 0a0f 40       		.byte	64
+ 2697 0a10 F0       		.byte	-16
+ 2698 0a11 21       		.byte	33
+ 2699 0a12 06       		.byte	6
+ 2700 0a13 4A       		.byte	74
+ 2701 0a14 13       		.byte	19
+ 2702 0a15 68       		.byte	104
+ 2703 0a16 8B       		.byte	-117
+ 2704 0a17 43       		.byte	67
+ 2705 0a18 13       		.byte	19
+ 2706 0a19 60       		.byte	96
+ 2707 0a1a 05       		.byte	5
+ 2708 0a1b 4B       		.byte	75
+ 2709 0a1c 1A       		.byte	26
+ 2710 0a1d 68       		.byte	104
+ 2711 0a1e E4       		.byte	-28
+ 2712 0a1f 23       		.byte	35
+ 2713 0a20 DB       		.byte	-37
+ 2714 0a21 00       		.byte	0
+ 2715 0a22 13       		.byte	19
+ 2716 0a23 40       		.byte	64
+ 2717 0a24 03       		.byte	3
+ 2718 0a25 4A       		.byte	74
+ 2719 0a26 13       		.byte	19
+ 2720 0a27 80       		.byte	-128
+ 2721 0a28 70       		.byte	112
+ 2722 0a29 47       		.byte	71
+ 2723 0a2a C0       		.byte	-64
+ 2724 0a2b 46       		.byte	70
+ 2725 0a2c 10       		.byte	16
+ 2726 0a2d 00       		.byte	0
+ 2727 0a2e 01       		.byte	1
+ 2728 0a2f 40       		.byte	64
+ 2729 0a30 88       		.byte	-120
+ 2730 0a31 0F       		.byte	15
+ 2731 0a32 06       		.byte	6
+ 2732 0a33 40       		.byte	64
+ 2733 0a34 72       		.byte	114
+ 2734 0a35 01       		.byte	1
+ 2735 0a36 00       		.byte	0
+ 2736 0a37 20       		.byte	32
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 49
+
+
+ 2737 0a38 10       		.byte	16
+ 2738 0a39 B5       		.byte	-75
+ 2739 0a3a FF       		.byte	-1
+ 2740 0a3b F7       		.byte	-9
+ 2741 0a3c 73       		.byte	115
+ 2742 0a3d FF       		.byte	-1
+ 2743 0a3e 00       		.byte	0
+ 2744 0a3f 28       		.byte	40
+ 2745 0a40 02       		.byte	2
+ 2746 0a41 D0       		.byte	-48
+ 2747 0a42 FF       		.byte	-1
+ 2748 0a43 F7       		.byte	-9
+ 2749 0a44 69       		.byte	105
+ 2750 0a45 FF       		.byte	-1
+ 2751 0a46 01       		.byte	1
+ 2752 0a47 E0       		.byte	-32
+ 2753 0a48 06       		.byte	6
+ 2754 0a49 4B       		.byte	75
+ 2755 0a4a 18       		.byte	24
+ 2756 0a4b 68       		.byte	104
+ 2757 0a4c D8       		.byte	-40
+ 2758 0a4d 21       		.byte	33
+ 2759 0a4e 06       		.byte	6
+ 2760 0a4f 4A       		.byte	74
+ 2761 0a50 89       		.byte	-119
+ 2762 0a51 00       		.byte	0
+ 2763 0a52 13       		.byte	19
+ 2764 0a53 68       		.byte	104
+ 2765 0a54 11       		.byte	17
+ 2766 0a55 60       		.byte	96
+ 2767 0a56 D8       		.byte	-40
+ 2768 0a57 22       		.byte	34
+ 2769 0a58 1B       		.byte	27
+ 2770 0a59 02       		.byte	2
+ 2771 0a5a 92       		.byte	-110
+ 2772 0a5b 02       		.byte	2
+ 2773 0a5c 13       		.byte	19
+ 2774 0a5d 40       		.byte	64
+ 2775 0a5e 18       		.byte	24
+ 2776 0a5f 43       		.byte	67
+ 2777 0a60 10       		.byte	16
+ 2778 0a61 BD       		.byte	-67
+ 2779 0a62 C0       		.byte	-64
+ 2780 0a63 46       		.byte	70
+ 2781 0a64 40       		.byte	64
+ 2782 0a65 03       		.byte	3
+ 2783 0a66 06       		.byte	6
+ 2784 0a67 40       		.byte	64
+ 2785 0a68 C0       		.byte	-64
+ 2786 0a69 0F       		.byte	15
+ 2787 0a6a 06       		.byte	6
+ 2788 0a6b 40       		.byte	64
+ 2789 0a6c 02       		.byte	2
+ 2790 0a6d 4B       		.byte	75
+ 2791 0a6e 18       		.byte	24
+ 2792 0a6f 68       		.byte	104
+ 2793 0a70 00       		.byte	0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 50
+
+
+ 2794 0a71 07       		.byte	7
+ 2795 0a72 C0       		.byte	-64
+ 2796 0a73 0F       		.byte	15
+ 2797 0a74 70       		.byte	112
+ 2798 0a75 47       		.byte	71
+ 2799 0a76 C0       		.byte	-64
+ 2800 0a77 46       		.byte	70
+ 2801 0a78 04       		.byte	4
+ 2802 0a79 04       		.byte	4
+ 2803 0a7a 04       		.byte	4
+ 2804 0a7b 40       		.byte	64
+ 2805 0a7c F0       		.byte	-16
+ 2806 0a7d B5       		.byte	-75
+ 2807 0a7e 00       		.byte	0
+ 2808 0a7f 24       		.byte	36
+ 2809 0a80 AD       		.byte	-83
+ 2810 0a81 B0       		.byte	-80
+ 2811 0a82 08       		.byte	8
+ 2812 0a83 94       		.byte	-108
+ 2813 0a84 03       		.byte	3
+ 2814 0a85 90       		.byte	-112
+ 2815 0a86 09       		.byte	9
+ 2816 0a87 94       		.byte	-108
+ 2817 0a88 FF       		.byte	-1
+ 2818 0a89 28       		.byte	40
+ 2819 0a8a 00       		.byte	0
+ 2820 0a8b D9       		.byte	-39
+ 2821 0a8c AB       		.byte	-85
+ 2822 0a8d E0       		.byte	-32
+ 2823 0a8e A1       		.byte	-95
+ 2824 0a8f 42       		.byte	66
+ 2825 0a90 00       		.byte	0
+ 2826 0a91 D1       		.byte	-47
+ 2827 0a92 A8       		.byte	-88
+ 2828 0a93 E0       		.byte	-32
+ 2829 0a94 80       		.byte	-128
+ 2830 0a95 22       		.byte	34
+ 2831 0a96 0C       		.byte	12
+ 2832 0a97 A8       		.byte	-88
+ 2833 0a98 00       		.byte	0
+ 2834 0a99 F0       		.byte	-16
+ 2835 0a9a D8       		.byte	-40
+ 2836 0a9b F9       		.byte	-7
+ 2837 0a9c 02       		.byte	2
+ 2838 0a9d 22       		.byte	34
+ 2839 0a9e 23       		.byte	35
+ 2840 0a9f 00       		.byte	0
+ 2841 0aa0 21       		.byte	33
+ 2842 0aa1 00       		.byte	0
+ 2843 0aa2 01       		.byte	1
+ 2844 0aa3 94       		.byte	-108
+ 2845 0aa4 0A       		.byte	10
+ 2846 0aa5 AD       		.byte	-83
+ 2847 0aa6 90       		.byte	-112
+ 2848 0aa7 00       		.byte	0
+ 2849 0aa8 40       		.byte	64
+ 2850 0aa9 59       		.byte	89
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 51
+
+
+ 2851 0aaa 00       		.byte	0
+ 2852 0aab 28       		.byte	40
+ 2853 0aac 02       		.byte	2
+ 2854 0aad D0       		.byte	-48
+ 2855 0aae 09       		.byte	9
+ 2856 0aaf 18       		.byte	24
+ 2857 0ab0 03       		.byte	3
+ 2858 0ab1 43       		.byte	67
+ 2859 0ab2 01       		.byte	1
+ 2860 0ab3 92       		.byte	-110
+ 2861 0ab4 01       		.byte	1
+ 2862 0ab5 32       		.byte	50
+ 2863 0ab6 22       		.byte	34
+ 2864 0ab7 2A       		.byte	42
+ 2865 0ab8 F5       		.byte	-11
+ 2866 0ab9 D1       		.byte	-47
+ 2867 0aba 00       		.byte	0
+ 2868 0abb 29       		.byte	41
+ 2869 0abc 02       		.byte	2
+ 2870 0abd D1       		.byte	-47
+ 2871 0abe 00       		.byte	0
+ 2872 0abf 2B       		.byte	43
+ 2873 0ac0 00       		.byte	0
+ 2874 0ac1 D0       		.byte	-48
+ 2875 0ac2 93       		.byte	-109
+ 2876 0ac3 E0       		.byte	-32
+ 2877 0ac4 00       		.byte	0
+ 2878 0ac5 27       		.byte	39
+ 2879 0ac6 02       		.byte	2
+ 2880 0ac7 97       		.byte	-105
+ 2881 0ac8 7F       		.byte	127
+ 2882 0ac9 23       		.byte	35
+ 2883 0aca 4D       		.byte	77
+ 2884 0acb 49       		.byte	73
+ 2885 0acc 4D       		.byte	77
+ 2886 0acd 4C       		.byte	76
+ 2887 0ace 4E       		.byte	78
+ 2888 0acf 4E       		.byte	78
+ 2889 0ad0 4E       		.byte	78
+ 2890 0ad1 4A       		.byte	74
+ 2891 0ad2 0A       		.byte	10
+ 2892 0ad3 91       		.byte	-111
+ 2893 0ad4 6B       		.byte	107
+ 2894 0ad5 60       		.byte	96
+ 2895 0ad6 25       		.byte	37
+ 2896 0ad7 60       		.byte	96
+ 2897 0ad8 32       		.byte	50
+ 2898 0ad9 60       		.byte	96
+ 2899 0ada C0       		.byte	-64
+ 2900 0adb 46       		.byte	70
+ 2901 0adc 23       		.byte	35
+ 2902 0add 68       		.byte	104
+ 2903 0ade 06       		.byte	6
+ 2904 0adf 91       		.byte	-111
+ 2905 0ae0 1B       		.byte	27
+ 2906 0ae1 0F       		.byte	15
+ 2907 0ae2 07       		.byte	7
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 52
+
+
+ 2908 0ae3 92       		.byte	-110
+ 2909 0ae4 0F       		.byte	15
+ 2910 0ae5 2B       		.byte	43
+ 2911 0ae6 04       		.byte	4
+ 2912 0ae7 D0       		.byte	-48
+ 2913 0ae8 22       		.byte	34
+ 2914 0ae9 68       		.byte	104
+ 2915 0aea 00       		.byte	0
+ 2916 0aeb 23       		.byte	35
+ 2917 0aec 12       		.byte	18
+ 2918 0aed 0F       		.byte	15
+ 2919 0aee 0A       		.byte	10
+ 2920 0aef 2A       		.byte	42
+ 2921 0af0 01       		.byte	1
+ 2922 0af1 D0       		.byte	-48
+ 2923 0af2 23       		.byte	35
+ 2924 0af3 68       		.byte	104
+ 2925 0af4 DB       		.byte	-37
+ 2926 0af5 B2       		.byte	-78
+ 2927 0af6 08       		.byte	8
+ 2928 0af7 93       		.byte	-109
+ 2929 0af8 08       		.byte	8
+ 2930 0af9 9B       		.byte	-101
+ 2931 0afa 04       		.byte	4
+ 2932 0afb 93       		.byte	-109
+ 2933 0afc 00       		.byte	0
+ 2934 0afd 2B       		.byte	43
+ 2935 0afe 00       		.byte	0
+ 2936 0aff D0       		.byte	-48
+ 2937 0b00 7B       		.byte	123
+ 2938 0b01 E0       		.byte	-32
+ 2939 0b02 00       		.byte	0
+ 2940 0b03 F0       		.byte	-16
+ 2941 0b04 5B       		.byte	91
+ 2942 0b05 F9       		.byte	-7
+ 2943 0b06 42       		.byte	66
+ 2944 0b07 4A       		.byte	74
+ 2945 0b08 42       		.byte	66
+ 2946 0b09 4B       		.byte	75
+ 2947 0b0a 11       		.byte	17
+ 2948 0b0b 68       		.byte	104
+ 2949 0b0c 05       		.byte	5
+ 2950 0b0d 90       		.byte	-112
+ 2951 0b0e 19       		.byte	25
+ 2952 0b0f 60       		.byte	96
+ 2953 0b10 04       		.byte	4
+ 2954 0b11 9B       		.byte	-101
+ 2955 0b12 04       		.byte	4
+ 2956 0b13 92       		.byte	-110
+ 2957 0b14 09       		.byte	9
+ 2958 0b15 93       		.byte	-109
+ 2959 0b16 08       		.byte	8
+ 2960 0b17 9B       		.byte	-101
+ 2961 0b18 00       		.byte	0
+ 2962 0b19 2B       		.byte	43
+ 2963 0b1a 16       		.byte	22
+ 2964 0b1b D1       		.byte	-47
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 53
+
+
+ 2965 0b1c 3E       		.byte	62
+ 2966 0b1d 4A       		.byte	74
+ 2967 0b1e 03       		.byte	3
+ 2968 0b1f 99       		.byte	-103
+ 2969 0b20 0A       		.byte	10
+ 2970 0b21 92       		.byte	-110
+ 2971 0b22 0A       		.byte	10
+ 2972 0b23 9A       		.byte	-102
+ 2973 0b24 09       		.byte	9
+ 2974 0b25 04       		.byte	4
+ 2975 0b26 0A       		.byte	10
+ 2976 0b27 43       		.byte	67
+ 2977 0b28 3C       		.byte	60
+ 2978 0b29 49       		.byte	73
+ 2979 0b2a 0A       		.byte	10
+ 2980 0b2b 92       		.byte	-110
+ 2981 0b2c 25       		.byte	37
+ 2982 0b2d 60       		.byte	96
+ 2983 0b2e 35       		.byte	53
+ 2984 0b2f 4A       		.byte	74
+ 2985 0b30 31       		.byte	49
+ 2986 0b31 60       		.byte	96
+ 2987 0b32 C0       		.byte	-64
+ 2988 0b33 46       		.byte	70
+ 2989 0b34 21       		.byte	33
+ 2990 0b35 68       		.byte	104
+ 2991 0b36 09       		.byte	9
+ 2992 0b37 0F       		.byte	15
+ 2993 0b38 0F       		.byte	15
+ 2994 0b39 29       		.byte	41
+ 2995 0b3a 03       		.byte	3
+ 2996 0b3b D0       		.byte	-48
+ 2997 0b3c 11       		.byte	17
+ 2998 0b3d 68       		.byte	104
+ 2999 0b3e 09       		.byte	9
+ 3000 0b3f 0F       		.byte	15
+ 3001 0b40 0A       		.byte	10
+ 3002 0b41 29       		.byte	41
+ 3003 0b42 01       		.byte	1
+ 3004 0b43 D0       		.byte	-48
+ 3005 0b44 13       		.byte	19
+ 3006 0b45 68       		.byte	104
+ 3007 0b46 DB       		.byte	-37
+ 3008 0b47 B2       		.byte	-78
+ 3009 0b48 08       		.byte	8
+ 3010 0b49 93       		.byte	-109
+ 3011 0b4a 08       		.byte	8
+ 3012 0b4b 9D       		.byte	-99
+ 3013 0b4c 00       		.byte	0
+ 3014 0b4d 2D       		.byte	45
+ 3015 0b4e 39       		.byte	57
+ 3016 0b4f D1       		.byte	-47
+ 3017 0b50 00       		.byte	0
+ 3018 0b51 2F       		.byte	47
+ 3019 0b52 37       		.byte	55
+ 3020 0b53 D0       		.byte	-48
+ 3021 0b54 80       		.byte	-128
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 54
+
+
+ 3022 0b55 22       		.byte	34
+ 3023 0b56 29       		.byte	41
+ 3024 0b57 00       		.byte	0
+ 3025 0b58 0C       		.byte	12
+ 3026 0b59 A8       		.byte	-88
+ 3027 0b5a 00       		.byte	0
+ 3028 0b5b F0       		.byte	-16
+ 3029 0b5c 80       		.byte	-128
+ 3030 0b5d F9       		.byte	-7
+ 3031 0b5e 01       		.byte	1
+ 3032 0b5f 9B       		.byte	-101
+ 3033 0b60 02       		.byte	2
+ 3034 0b61 9A       		.byte	-102
+ 3035 0b62 0A       		.byte	10
+ 3036 0b63 AF       		.byte	-81
+ 3037 0b64 9B       		.byte	-101
+ 3038 0b65 00       		.byte	0
+ 3039 0b66 DA       		.byte	-38
+ 3040 0b67 51       		.byte	81
+ 3041 0b68 06       		.byte	6
+ 3042 0b69 9B       		.byte	-101
+ 3043 0b6a 07       		.byte	7
+ 3044 0b6b 9A       		.byte	-102
+ 3045 0b6c 0A       		.byte	10
+ 3046 0b6d 93       		.byte	-109
+ 3047 0b6e 7F       		.byte	127
+ 3048 0b6f 23       		.byte	35
+ 3049 0b70 7B       		.byte	123
+ 3050 0b71 60       		.byte	96
+ 3051 0b72 27       		.byte	39
+ 3052 0b73 60       		.byte	96
+ 3053 0b74 23       		.byte	35
+ 3054 0b75 4B       		.byte	75
+ 3055 0b76 32       		.byte	50
+ 3056 0b77 60       		.byte	96
+ 3057 0b78 C0       		.byte	-64
+ 3058 0b79 46       		.byte	70
+ 3059 0b7a 22       		.byte	34
+ 3060 0b7b 68       		.byte	104
+ 3061 0b7c 12       		.byte	18
+ 3062 0b7d 0F       		.byte	15
+ 3063 0b7e 0F       		.byte	15
+ 3064 0b7f 2A       		.byte	42
+ 3065 0b80 03       		.byte	3
+ 3066 0b81 D0       		.byte	-48
+ 3067 0b82 1A       		.byte	26
+ 3068 0b83 68       		.byte	104
+ 3069 0b84 12       		.byte	18
+ 3070 0b85 0F       		.byte	15
+ 3071 0b86 0A       		.byte	10
+ 3072 0b87 2A       		.byte	42
+ 3073 0b88 01       		.byte	1
+ 3074 0b89 D0       		.byte	-48
+ 3075 0b8a 1D       		.byte	29
+ 3076 0b8b 68       		.byte	104
+ 3077 0b8c ED       		.byte	-19
+ 3078 0b8d B2       		.byte	-78
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 55
+
+
+ 3079 0b8e 08       		.byte	8
+ 3080 0b8f 95       		.byte	-107
+ 3081 0b90 08       		.byte	8
+ 3082 0b91 9B       		.byte	-101
+ 3083 0b92 00       		.byte	0
+ 3084 0b93 2B       		.byte	43
+ 3085 0b94 16       		.byte	22
+ 3086 0b95 D1       		.byte	-47
+ 3087 0b96 22       		.byte	34
+ 3088 0b97 4A       		.byte	74
+ 3089 0b98 03       		.byte	3
+ 3090 0b99 99       		.byte	-103
+ 3091 0b9a 0A       		.byte	10
+ 3092 0b9b 92       		.byte	-110
+ 3093 0b9c 0A       		.byte	10
+ 3094 0b9d 9A       		.byte	-102
+ 3095 0b9e 09       		.byte	9
+ 3096 0b9f 04       		.byte	4
+ 3097 0ba0 0A       		.byte	10
+ 3098 0ba1 43       		.byte	67
+ 3099 0ba2 20       		.byte	32
+ 3100 0ba3 49       		.byte	73
+ 3101 0ba4 0A       		.byte	10
+ 3102 0ba5 92       		.byte	-110
+ 3103 0ba6 27       		.byte	39
+ 3104 0ba7 60       		.byte	96
+ 3105 0ba8 16       		.byte	22
+ 3106 0ba9 4A       		.byte	74
+ 3107 0baa 31       		.byte	49
+ 3108 0bab 60       		.byte	96
+ 3109 0bac C0       		.byte	-64
+ 3110 0bad 46       		.byte	70
+ 3111 0bae 21       		.byte	33
+ 3112 0baf 68       		.byte	104
+ 3113 0bb0 09       		.byte	9
+ 3114 0bb1 0F       		.byte	15
+ 3115 0bb2 0F       		.byte	15
+ 3116 0bb3 29       		.byte	41
+ 3117 0bb4 03       		.byte	3
+ 3118 0bb5 D0       		.byte	-48
+ 3119 0bb6 11       		.byte	17
+ 3120 0bb7 68       		.byte	104
+ 3121 0bb8 09       		.byte	9
+ 3122 0bb9 0F       		.byte	15
+ 3123 0bba 0A       		.byte	10
+ 3124 0bbb 29       		.byte	41
+ 3125 0bbc 01       		.byte	1
+ 3126 0bbd D0       		.byte	-48
+ 3127 0bbe 13       		.byte	19
+ 3128 0bbf 68       		.byte	104
+ 3129 0bc0 DB       		.byte	-37
+ 3130 0bc1 B2       		.byte	-78
+ 3131 0bc2 08       		.byte	8
+ 3132 0bc3 93       		.byte	-109
+ 3133 0bc4 09       		.byte	9
+ 3134 0bc5 9B       		.byte	-101
+ 3135 0bc6 00       		.byte	0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 56
+
+
+ 3136 0bc7 2B       		.byte	43
+ 3137 0bc8 09       		.byte	9
+ 3138 0bc9 D1       		.byte	-47
+ 3139 0bca 12       		.byte	18
+ 3140 0bcb 4A       		.byte	74
+ 3141 0bcc 04       		.byte	4
+ 3142 0bcd 99       		.byte	-103
+ 3143 0bce 12       		.byte	18
+ 3144 0bcf 68       		.byte	104
+ 3145 0bd0 0A       		.byte	10
+ 3146 0bd1 60       		.byte	96
+ 3147 0bd2 09       		.byte	9
+ 3148 0bd3 93       		.byte	-109
+ 3149 0bd4 09       		.byte	9
+ 3150 0bd5 9B       		.byte	-101
+ 3151 0bd6 00       		.byte	0
+ 3152 0bd7 2B       		.byte	43
+ 3153 0bd8 01       		.byte	1
+ 3154 0bd9 D0       		.byte	-48
+ 3155 0bda 09       		.byte	9
+ 3156 0bdb 9B       		.byte	-101
+ 3157 0bdc 08       		.byte	8
+ 3158 0bdd 93       		.byte	-109
+ 3159 0bde 05       		.byte	5
+ 3160 0bdf 98       		.byte	-104
+ 3161 0be0 00       		.byte	0
+ 3162 0be1 F0       		.byte	-16
+ 3163 0be2 F0       		.byte	-16
+ 3164 0be3 F8       		.byte	-8
+ 3165 0be4 09       		.byte	9
+ 3166 0be5 E0       		.byte	-32
+ 3167 0be6 04       		.byte	4
+ 3168 0be7 23       		.byte	35
+ 3169 0be8 08       		.byte	8
+ 3170 0be9 93       		.byte	-109
+ 3171 0bea 06       		.byte	6
+ 3172 0beb E0       		.byte	-32
+ 3173 0bec 01       		.byte	1
+ 3174 0bed 9B       		.byte	-101
+ 3175 0bee 01       		.byte	1
+ 3176 0bef 27       		.byte	39
+ 3177 0bf0 9B       		.byte	-101
+ 3178 0bf1 00       		.byte	0
+ 3179 0bf2 EA       		.byte	-22
+ 3180 0bf3 58       		.byte	88
+ 3181 0bf4 E9       		.byte	-23
+ 3182 0bf5 50       		.byte	80
+ 3183 0bf6 02       		.byte	2
+ 3184 0bf7 92       		.byte	-110
+ 3185 0bf8 66       		.byte	102
+ 3186 0bf9 E7       		.byte	-25
+ 3187 0bfa 08       		.byte	8
+ 3188 0bfb 98       		.byte	-104
+ 3189 0bfc 2D       		.byte	45
+ 3190 0bfd B0       		.byte	-80
+ 3191 0bfe F0       		.byte	-16
+ 3192 0bff BD       		.byte	-67
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 57
+
+
+ 3193 0c00 B6       		.byte	-74
+ 3194 0c01 D7       		.byte	-41
+ 3195 0c02 00       		.byte	0
+ 3196 0c03 00       		.byte	0
+ 3197 0c04 08       		.byte	8
+ 3198 0c05 00       		.byte	0
+ 3199 0c06 00       		.byte	0
+ 3200 0c07 40       		.byte	64
+ 3201 0c08 04       		.byte	4
+ 3202 0c09 00       		.byte	0
+ 3203 0c0a 00       		.byte	0
+ 3204 0c0b 40       		.byte	64
+ 3205 0c0c 04       		.byte	4
+ 3206 0c0d 00       		.byte	0
+ 3207 0c0e 00       		.byte	0
+ 3208 0c0f 80       		.byte	-128
+ 3209 0c10 08       		.byte	8
+ 3210 0c11 01       		.byte	1
+ 3211 0c12 0B       		.byte	11
+ 3212 0c13 40       		.byte	64
+ 3213 0c14 74       		.byte	116
+ 3214 0c15 01       		.byte	1
+ 3215 0c16 00       		.byte	0
+ 3216 0c17 20       		.byte	32
+ 3217 0c18 B6       		.byte	-74
+ 3218 0c19 D8       		.byte	-40
+ 3219 0c1a 00       		.byte	0
+ 3220 0c1b 00       		.byte	0
+ 3221 0c1c 05       		.byte	5
+ 3222 0c1d 00       		.byte	0
+ 3223 0c1e 00       		.byte	0
+ 3224 0c1f 80       		.byte	-128
+ 3225 0c20 B6       		.byte	-74
+ 3226 0c21 D9       		.byte	-39
+ 3227 0c22 00       		.byte	0
+ 3228 0c23 00       		.byte	0
+ 3229 0c24 06       		.byte	6
+ 3230 0c25 00       		.byte	0
+ 3231 0c26 00       		.byte	0
+ 3232 0c27 80       		.byte	-128
+ 3233 0c28 01       		.byte	1
+ 3234 0c29 BE       		.byte	-66
+ 3235 0c2a 70       		.byte	112
+ 3236 0c2b 47       		.byte	71
+ 3237 0c2c 03       		.byte	3
+ 3238 0c2d 4A       		.byte	74
+ 3239 0c2e 04       		.byte	4
+ 3240 0c2f 49       		.byte	73
+ 3241 0c30 13       		.byte	19
+ 3242 0c31 68       		.byte	104
+ 3243 0c32 9B       		.byte	-101
+ 3244 0c33 B2       		.byte	-78
+ 3245 0c34 0B       		.byte	11
+ 3246 0c35 43       		.byte	67
+ 3247 0c36 13       		.byte	19
+ 3248 0c37 60       		.byte	96
+ 3249 0c38 70       		.byte	112
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 58
+
+
+ 3250 0c39 47       		.byte	71
+ 3251 0c3a C0       		.byte	-64
+ 3252 0c3b 46       		.byte	70
+ 3253 0c3c 0C       		.byte	12
+ 3254 0c3d ED       		.byte	-19
+ 3255 0c3e 00       		.byte	0
+ 3256 0c3f E0       		.byte	-32
+ 3257 0c40 04       		.byte	4
+ 3258 0c41 00       		.byte	0
+ 3259 0c42 FA       		.byte	-6
+ 3260 0c43 05       		.byte	5
+ 3261 0c44 70       		.byte	112
+ 3262 0c45 B5       		.byte	-75
+ 3263 0c46 80       		.byte	-128
+ 3264 0c47 25       		.byte	37
+ 3265 0c48 04       		.byte	4
+ 3266 0c49 00       		.byte	0
+ 3267 0c4a 2D       		.byte	45
+ 3268 0c4b 02       		.byte	2
+ 3269 0c4c 06       		.byte	6
+ 3270 0c4d 4B       		.byte	75
+ 3271 0c4e AC       		.byte	-84
+ 3272 0c4f 42       		.byte	66
+ 3273 0c50 05       		.byte	5
+ 3274 0c51 D9       		.byte	-39
+ 3275 0c52 58       		.byte	88
+ 3276 0c53 68       		.byte	104
+ 3277 0c54 00       		.byte	0
+ 3278 0c55 F0       		.byte	-16
+ 3279 0c56 A8       		.byte	-88
+ 3280 0c57 F8       		.byte	-8
+ 3281 0c58 04       		.byte	4
+ 3282 0c59 4B       		.byte	75
+ 3283 0c5a E4       		.byte	-28
+ 3284 0c5b 18       		.byte	24
+ 3285 0c5c F6       		.byte	-10
+ 3286 0c5d E7       		.byte	-25
+ 3287 0c5e 98       		.byte	-104
+ 3288 0c5f 68       		.byte	104
+ 3289 0c60 60       		.byte	96
+ 3290 0c61 43       		.byte	67
+ 3291 0c62 00       		.byte	0
+ 3292 0c63 F0       		.byte	-16
+ 3293 0c64 A1       		.byte	-95
+ 3294 0c65 F8       		.byte	-8
+ 3295 0c66 70       		.byte	112
+ 3296 0c67 BD       		.byte	-67
+ 3297 0c68 D4       		.byte	-44
+ 3298 0c69 00       		.byte	0
+ 3299 0c6a 00       		.byte	0
+ 3300 0c6b 20       		.byte	32
+ 3301 0c6c 00       		.byte	0
+ 3302 0c6d 80       		.byte	-128
+ 3303 0c6e FF       		.byte	-1
+ 3304 0c6f FF       		.byte	-1
+ 3305 0c70 10       		.byte	16
+ 3306 0c71 B5       		.byte	-75
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 59
+
+
+ 3307 0c72 03       		.byte	3
+ 3308 0c73 4B       		.byte	75
+ 3309 0c74 1B       		.byte	27
+ 3310 0c75 7B       		.byte	123
+ 3311 0c76 58       		.byte	88
+ 3312 0c77 43       		.byte	67
+ 3313 0c78 00       		.byte	0
+ 3314 0c79 F0       		.byte	-16
+ 3315 0c7a 96       		.byte	-106
+ 3316 0c7b F8       		.byte	-8
+ 3317 0c7c 10       		.byte	16
+ 3318 0c7d BD       		.byte	-67
+ 3319 0c7e C0       		.byte	-64
+ 3320 0c7f 46       		.byte	70
+ 3321 0c80 D4       		.byte	-44
+ 3322 0c81 00       		.byte	0
+ 3323 0c82 00       		.byte	0
+ 3324 0c83 20       		.byte	32
+ 3325 0c84 F0       		.byte	-16
+ 3326 0c85 B5       		.byte	-75
+ 3327 0c86 05       		.byte	5
+ 3328 0c87 00       		.byte	0
+ 3329 0c88 87       		.byte	-121
+ 3330 0c89 B0       		.byte	-80
+ 3331 0c8a 00       		.byte	0
+ 3332 0c8b F0       		.byte	-16
+ 3333 0c8c 97       		.byte	-105
+ 3334 0c8d F8       		.byte	-8
+ 3335 0c8e EB       		.byte	-21
+ 3336 0c8f 1E       		.byte	30
+ 3337 0c90 04       		.byte	4
+ 3338 0c91 90       		.byte	-112
+ 3339 0c92 03       		.byte	3
+ 3340 0c93 93       		.byte	-109
+ 3341 0c94 2D       		.byte	45
+ 3342 0c95 2B       		.byte	43
+ 3343 0c96 5B       		.byte	91
+ 3344 0c97 D8       		.byte	-40
+ 3345 0c98 30       		.byte	48
+ 3346 0c99 4B       		.byte	75
+ 3347 0c9a 1B       		.byte	27
+ 3348 0c9b 78       		.byte	120
+ 3349 0c9c 9D       		.byte	-99
+ 3350 0c9d 42       		.byte	66
+ 3351 0c9e 04       		.byte	4
+ 3352 0c9f D8       		.byte	-40
+ 3353 0ca0 2F       		.byte	47
+ 3354 0ca1 4B       		.byte	75
+ 3355 0ca2 1C       		.byte	28
+ 3356 0ca3 78       		.byte	120
+ 3357 0ca4 2F       		.byte	47
+ 3358 0ca5 4B       		.byte	75
+ 3359 0ca6 E4       		.byte	-28
+ 3360 0ca7 B2       		.byte	-78
+ 3361 0ca8 1E       		.byte	30
+ 3362 0ca9 E0       		.byte	-32
+ 3363 0caa 2F       		.byte	47
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 60
+
+
+ 3364 0cab 4B       		.byte	75
+ 3365 0cac 1B       		.byte	27
+ 3366 0cad 78       		.byte	120
+ 3367 0cae 9D       		.byte	-99
+ 3368 0caf 42       		.byte	66
+ 3369 0cb0 04       		.byte	4
+ 3370 0cb1 D8       		.byte	-40
+ 3371 0cb2 2E       		.byte	46
+ 3372 0cb3 4B       		.byte	75
+ 3373 0cb4 1C       		.byte	28
+ 3374 0cb5 78       		.byte	120
+ 3375 0cb6 2E       		.byte	46
+ 3376 0cb7 4B       		.byte	75
+ 3377 0cb8 E4       		.byte	-28
+ 3378 0cb9 B2       		.byte	-78
+ 3379 0cba 15       		.byte	21
+ 3380 0cbb E0       		.byte	-32
+ 3381 0cbc 2D       		.byte	45
+ 3382 0cbd 4B       		.byte	75
+ 3383 0cbe 1B       		.byte	27
+ 3384 0cbf 78       		.byte	120
+ 3385 0cc0 9D       		.byte	-99
+ 3386 0cc1 42       		.byte	66
+ 3387 0cc2 04       		.byte	4
+ 3388 0cc3 D8       		.byte	-40
+ 3389 0cc4 2C       		.byte	44
+ 3390 0cc5 4B       		.byte	75
+ 3391 0cc6 1C       		.byte	28
+ 3392 0cc7 78       		.byte	120
+ 3393 0cc8 2C       		.byte	44
+ 3394 0cc9 4B       		.byte	75
+ 3395 0cca E4       		.byte	-28
+ 3396 0ccb B2       		.byte	-78
+ 3397 0ccc 0C       		.byte	12
+ 3398 0ccd E0       		.byte	-32
+ 3399 0cce 2C       		.byte	44
+ 3400 0ccf 4B       		.byte	75
+ 3401 0cd0 1B       		.byte	27
+ 3402 0cd1 78       		.byte	120
+ 3403 0cd2 9D       		.byte	-99
+ 3404 0cd3 42       		.byte	66
+ 3405 0cd4 04       		.byte	4
+ 3406 0cd5 D8       		.byte	-40
+ 3407 0cd6 2B       		.byte	43
+ 3408 0cd7 4B       		.byte	75
+ 3409 0cd8 1C       		.byte	28
+ 3410 0cd9 78       		.byte	120
+ 3411 0cda 2B       		.byte	43
+ 3412 0cdb 4B       		.byte	75
+ 3413 0cdc E4       		.byte	-28
+ 3414 0cdd B2       		.byte	-78
+ 3415 0cde 03       		.byte	3
+ 3416 0cdf E0       		.byte	-32
+ 3417 0ce0 2A       		.byte	42
+ 3418 0ce1 4B       		.byte	75
+ 3419 0ce2 1C       		.byte	28
+ 3420 0ce3 78       		.byte	120
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 61
+
+
+ 3421 0ce4 2A       		.byte	42
+ 3422 0ce5 4B       		.byte	75
+ 3423 0ce6 E4       		.byte	-28
+ 3424 0ce7 B2       		.byte	-78
+ 3425 0ce8 1B       		.byte	27
+ 3426 0ce9 78       		.byte	120
+ 3427 0cea EA       		.byte	-22
+ 3428 0ceb 1E       		.byte	30
+ 3429 0cec DB       		.byte	-37
+ 3430 0ced B2       		.byte	-78
+ 3431 0cee 01       		.byte	1
+ 3432 0cef 93       		.byte	-109
+ 3433 0cf0 28       		.byte	40
+ 3434 0cf1 4B       		.byte	75
+ 3435 0cf2 29       		.byte	41
+ 3436 0cf3 4F       		.byte	79
+ 3437 0cf4 9A       		.byte	-102
+ 3438 0cf5 5C       		.byte	92
+ 3439 0cf6 05       		.byte	5
+ 3440 0cf7 93       		.byte	-109
+ 3441 0cf8 02       		.byte	2
+ 3442 0cf9 92       		.byte	-110
+ 3443 0cfa 2F       		.byte	47
+ 3444 0cfb 2A       		.byte	42
+ 3445 0cfc 04       		.byte	4
+ 3446 0cfd D9       		.byte	-39
+ 3447 0cfe 2A       		.byte	42
+ 3448 0cff 2D       		.byte	45
+ 3449 0d00 02       		.byte	2
+ 3450 0d01 D9       		.byte	-39
+ 3451 0d02 19       		.byte	25
+ 3452 0d03 26       		.byte	38
+ 3453 0d04 3E       		.byte	62
+ 3454 0d05 60       		.byte	96
+ 3455 0d06 08       		.byte	8
+ 3456 0d07 E0       		.byte	-32
+ 3457 0d08 3F       		.byte	63
+ 3458 0d09 23       		.byte	35
+ 3459 0d0a 3E       		.byte	62
+ 3460 0d0b 68       		.byte	104
+ 3461 0d0c 1E       		.byte	30
+ 3462 0d0d 40       		.byte	64
+ 3463 0d0e 02       		.byte	2
+ 3464 0d0f 9B       		.byte	-101
+ 3465 0d10 B3       		.byte	-77
+ 3466 0d11 42       		.byte	66
+ 3467 0d12 05       		.byte	5
+ 3468 0d13 D2       		.byte	-46
+ 3469 0d14 20       		.byte	32
+ 3470 0d15 4B       		.byte	75
+ 3471 0d16 02       		.byte	2
+ 3472 0d17 9A       		.byte	-102
+ 3473 0d18 1A       		.byte	26
+ 3474 0d19 60       		.byte	96
+ 3475 0d1a 05       		.byte	5
+ 3476 0d1b 20       		.byte	32
+ 3477 0d1c 00       		.byte	0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 62
+
+
+ 3478 0d1d F0       		.byte	-16
+ 3479 0d1e 44       		.byte	68
+ 3480 0d1f F8       		.byte	-8
+ 3481 0d20 1B       		.byte	27
+ 3482 0d21 4B       		.byte	75
+ 3483 0d22 1E       		.byte	30
+ 3484 0d23 4A       		.byte	74
+ 3485 0d24 ED       		.byte	-19
+ 3486 0d25 18       		.byte	24
+ 3487 0d26 2B       		.byte	43
+ 3488 0d27 78       		.byte	120
+ 3489 0d28 05       		.byte	5
+ 3490 0d29 20       		.byte	32
+ 3491 0d2a DB       		.byte	-37
+ 3492 0d2b B2       		.byte	-78
+ 3493 0d2c 13       		.byte	19
+ 3494 0d2d 60       		.byte	96
+ 3495 0d2e 1C       		.byte	28
+ 3496 0d2f 4B       		.byte	75
+ 3497 0d30 01       		.byte	1
+ 3498 0d31 9A       		.byte	-102
+ 3499 0d32 1C       		.byte	28
+ 3500 0d33 60       		.byte	96
+ 3501 0d34 1B       		.byte	27
+ 3502 0d35 4B       		.byte	75
+ 3503 0d36 1A       		.byte	26
+ 3504 0d37 60       		.byte	96
+ 3505 0d38 FF       		.byte	-1
+ 3506 0d39 F7       		.byte	-9
+ 3507 0d3a 9A       		.byte	-102
+ 3508 0d3b FF       		.byte	-1
+ 3509 0d3c 02       		.byte	2
+ 3510 0d3d 9B       		.byte	-101
+ 3511 0d3e B3       		.byte	-77
+ 3512 0d3f 42       		.byte	66
+ 3513 0d40 06       		.byte	6
+ 3514 0d41 D9       		.byte	-39
+ 3515 0d42 05       		.byte	5
+ 3516 0d43 9B       		.byte	-101
+ 3517 0d44 03       		.byte	3
+ 3518 0d45 9A       		.byte	-102
+ 3519 0d46 05       		.byte	5
+ 3520 0d47 20       		.byte	32
+ 3521 0d48 9B       		.byte	-101
+ 3522 0d49 5C       		.byte	92
+ 3523 0d4a 3B       		.byte	59
+ 3524 0d4b 60       		.byte	96
+ 3525 0d4c 00       		.byte	0
+ 3526 0d4d F0       		.byte	-16
+ 3527 0d4e 2C       		.byte	44
+ 3528 0d4f F8       		.byte	-8
+ 3529 0d50 04       		.byte	4
+ 3530 0d51 98       		.byte	-104
+ 3531 0d52 00       		.byte	0
+ 3532 0d53 F0       		.byte	-16
+ 3533 0d54 37       		.byte	55
+ 3534 0d55 F8       		.byte	-8
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 63
+
+
+ 3535 0d56 07       		.byte	7
+ 3536 0d57 B0       		.byte	-80
+ 3537 0d58 F0       		.byte	-16
+ 3538 0d59 BD       		.byte	-67
+ 3539 0d5a C0       		.byte	-64
+ 3540 0d5b 46       		.byte	70
+ 3541 0d5c C0       		.byte	-64
+ 3542 0d5d F1       		.byte	-15
+ 3543 0d5e FF       		.byte	-1
+ 3544 0d5f 0F       		.byte	15
+ 3545 0d60 C1       		.byte	-63
+ 3546 0d61 F1       		.byte	-15
+ 3547 0d62 FF       		.byte	-1
+ 3548 0d63 0F       		.byte	15
+ 3549 0d64 C2       		.byte	-62
+ 3550 0d65 F1       		.byte	-15
+ 3551 0d66 FF       		.byte	-1
+ 3552 0d67 0F       		.byte	15
+ 3553 0d68 C3       		.byte	-61
+ 3554 0d69 F1       		.byte	-15
+ 3555 0d6a FF       		.byte	-1
+ 3556 0d6b 0F       		.byte	15
+ 3557 0d6c C4       		.byte	-60
+ 3558 0d6d F1       		.byte	-15
+ 3559 0d6e FF       		.byte	-1
+ 3560 0d6f 0F       		.byte	15
+ 3561 0d70 C5       		.byte	-59
+ 3562 0d71 F1       		.byte	-15
+ 3563 0d72 FF       		.byte	-1
+ 3564 0d73 0F       		.byte	15
+ 3565 0d74 C6       		.byte	-58
+ 3566 0d75 F1       		.byte	-15
+ 3567 0d76 FF       		.byte	-1
+ 3568 0d77 0F       		.byte	15
+ 3569 0d78 C7       		.byte	-57
+ 3570 0d79 F1       		.byte	-15
+ 3571 0d7a FF       		.byte	-1
+ 3572 0d7b 0F       		.byte	15
+ 3573 0d7c C8       		.byte	-56
+ 3574 0d7d F1       		.byte	-15
+ 3575 0d7e FF       		.byte	-1
+ 3576 0d7f 0F       		.byte	15
+ 3577 0d80 C9       		.byte	-55
+ 3578 0d81 F1       		.byte	-15
+ 3579 0d82 FF       		.byte	-1
+ 3580 0d83 0F       		.byte	15
+ 3581 0d84 CA       		.byte	-54
+ 3582 0d85 F1       		.byte	-15
+ 3583 0d86 FF       		.byte	-1
+ 3584 0d87 0F       		.byte	15
+ 3585 0d88 CB       		.byte	-53
+ 3586 0d89 F1       		.byte	-15
+ 3587 0d8a FF       		.byte	-1
+ 3588 0d8b 0F       		.byte	15
+ 3589 0d8c CC       		.byte	-52
+ 3590 0d8d F1       		.byte	-15
+ 3591 0d8e FF       		.byte	-1
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 64
+
+
+ 3592 0d8f 0F       		.byte	15
+ 3593 0d90 CD       		.byte	-51
+ 3594 0d91 F1       		.byte	-15
+ 3595 0d92 FF       		.byte	-1
+ 3596 0d93 0F       		.byte	15
+ 3597 0d94 84       		.byte	-124
+ 3598 0d95 0E       		.byte	14
+ 3599 0d96 00       		.byte	0
+ 3600 0d97 00       		.byte	0
+ 3601 0d98 2C       		.byte	44
+ 3602 0d99 FF       		.byte	-1
+ 3603 0d9a 0B       		.byte	11
+ 3604 0d9b 40       		.byte	64
+ 3605 0d9c 28       		.byte	40
+ 3606 0d9d FF       		.byte	-1
+ 3607 0d9e 0B       		.byte	11
+ 3608 0d9f 40       		.byte	64
+ 3609 0da0 1C       		.byte	28
+ 3610 0da1 FF       		.byte	-1
+ 3611 0da2 0B       		.byte	11
+ 3612 0da3 40       		.byte	64
+ 3613 0da4 20       		.byte	32
+ 3614 0da5 FF       		.byte	-1
+ 3615 0da6 0B       		.byte	11
+ 3616 0da7 40       		.byte	64
+ 3617 0da8 02       		.byte	2
+ 3618 0da9 30       		.byte	48
+ 3619 0daa 80       		.byte	-128
+ 3620 0dab 08       		.byte	8
+ 3621 0dac 04       		.byte	4
+ 3622 0dad D0       		.byte	-48
+ 3623 0dae C0       		.byte	-64
+ 3624 0daf 46       		.byte	70
+ 3625 0db0 01       		.byte	1
+ 3626 0db1 38       		.byte	56
+ 3627 0db2 FD       		.byte	-3
+ 3628 0db3 D1       		.byte	-47
+ 3629 0db4 C0       		.byte	-64
+ 3630 0db5 46       		.byte	70
+ 3631 0db6 C0       		.byte	-64
+ 3632 0db7 46       		.byte	70
+ 3633 0db8 C0       		.byte	-64
+ 3634 0db9 46       		.byte	70
+ 3635 0dba 70       		.byte	112
+ 3636 0dbb 47       		.byte	71
+ 3637 0dbc EF       		.byte	-17
+ 3638 0dbd F3       		.byte	-13
+ 3639 0dbe 10       		.byte	16
+ 3640 0dbf 80       		.byte	-128
+ 3641 0dc0 72       		.byte	114
+ 3642 0dc1 B6       		.byte	-74
+ 3643 0dc2 70       		.byte	112
+ 3644 0dc3 47       		.byte	71
+ 3645 0dc4 80       		.byte	-128
+ 3646 0dc5 F3       		.byte	-13
+ 3647 0dc6 10       		.byte	16
+ 3648 0dc7 88       		.byte	-120
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 65
+
+
+ 3649 0dc8 70       		.byte	112
+ 3650 0dc9 47       		.byte	71
+ 3651 0dca C0       		.byte	-64
+ 3652 0dcb 46       		.byte	70
+ 3653 0dcc 02       		.byte	2
+ 3654 0dcd B4       		.byte	-76
+ 3655 0dce 71       		.byte	113
+ 3656 0dcf 46       		.byte	70
+ 3657 0dd0 49       		.byte	73
+ 3658 0dd1 08       		.byte	8
+ 3659 0dd2 49       		.byte	73
+ 3660 0dd3 00       		.byte	0
+ 3661 0dd4 09       		.byte	9
+ 3662 0dd5 5C       		.byte	92
+ 3663 0dd6 49       		.byte	73
+ 3664 0dd7 00       		.byte	0
+ 3665 0dd8 8E       		.byte	-114
+ 3666 0dd9 44       		.byte	68
+ 3667 0dda 02       		.byte	2
+ 3668 0ddb BC       		.byte	-68
+ 3669 0ddc 70       		.byte	112
+ 3670 0ddd 47       		.byte	71
+ 3671 0dde C0       		.byte	-64
+ 3672 0ddf 46       		.byte	70
+ 3673 0de0 03       		.byte	3
+ 3674 0de1 B4       		.byte	-76
+ 3675 0de2 71       		.byte	113
+ 3676 0de3 46       		.byte	70
+ 3677 0de4 49       		.byte	73
+ 3678 0de5 08       		.byte	8
+ 3679 0de6 40       		.byte	64
+ 3680 0de7 00       		.byte	0
+ 3681 0de8 49       		.byte	73
+ 3682 0de9 00       		.byte	0
+ 3683 0dea 09       		.byte	9
+ 3684 0deb 5E       		.byte	94
+ 3685 0dec 49       		.byte	73
+ 3686 0ded 00       		.byte	0
+ 3687 0dee 8E       		.byte	-114
+ 3688 0def 44       		.byte	68
+ 3689 0df0 03       		.byte	3
+ 3690 0df1 BC       		.byte	-68
+ 3691 0df2 70       		.byte	112
+ 3692 0df3 47       		.byte	71
+ 3693 0df4 01       		.byte	1
+ 3694 0df5 4B       		.byte	75
+ 3695 0df6 18       		.byte	24
+ 3696 0df7 68       		.byte	104
+ 3697 0df8 70       		.byte	112
+ 3698 0df9 47       		.byte	71
+ 3699 0dfa C0       		.byte	-64
+ 3700 0dfb 46       		.byte	70
+ 3701 0dfc 48       		.byte	72
+ 3702 0dfd 01       		.byte	1
+ 3703 0dfe 00       		.byte	0
+ 3704 0dff 20       		.byte	32
+ 3705 0e00 0E       		.byte	14
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 66
+
+
+ 3706 0e01 4B       		.byte	75
+ 3707 0e02 70       		.byte	112
+ 3708 0e03 B5       		.byte	-75
+ 3709 0e04 00       		.byte	0
+ 3710 0e05 25       		.byte	37
+ 3711 0e06 1E       		.byte	30
+ 3712 0e07 00       		.byte	0
+ 3713 0e08 0D       		.byte	13
+ 3714 0e09 4C       		.byte	76
+ 3715 0e0a E4       		.byte	-28
+ 3716 0e0b 1A       		.byte	26
+ 3717 0e0c A4       		.byte	-92
+ 3718 0e0d 10       		.byte	16
+ 3719 0e0e A5       		.byte	-91
+ 3720 0e0f 42       		.byte	66
+ 3721 0e10 04       		.byte	4
+ 3722 0e11 D0       		.byte	-48
+ 3723 0e12 AB       		.byte	-85
+ 3724 0e13 00       		.byte	0
+ 3725 0e14 F3       		.byte	-13
+ 3726 0e15 58       		.byte	88
+ 3727 0e16 98       		.byte	-104
+ 3728 0e17 47       		.byte	71
+ 3729 0e18 01       		.byte	1
+ 3730 0e19 35       		.byte	53
+ 3731 0e1a F8       		.byte	-8
+ 3732 0e1b E7       		.byte	-25
+ 3733 0e1c 00       		.byte	0
+ 3734 0e1d F0       		.byte	-16
+ 3735 0e1e 4A       		.byte	74
+ 3736 0e1f F8       		.byte	-8
+ 3737 0e20 08       		.byte	8
+ 3738 0e21 4B       		.byte	75
+ 3739 0e22 00       		.byte	0
+ 3740 0e23 25       		.byte	37
+ 3741 0e24 1E       		.byte	30
+ 3742 0e25 00       		.byte	0
+ 3743 0e26 08       		.byte	8
+ 3744 0e27 4C       		.byte	76
+ 3745 0e28 E4       		.byte	-28
+ 3746 0e29 1A       		.byte	26
+ 3747 0e2a A4       		.byte	-92
+ 3748 0e2b 10       		.byte	16
+ 3749 0e2c A5       		.byte	-91
+ 3750 0e2d 42       		.byte	66
+ 3751 0e2e 04       		.byte	4
+ 3752 0e2f D0       		.byte	-48
+ 3753 0e30 AB       		.byte	-85
+ 3754 0e31 00       		.byte	0
+ 3755 0e32 F3       		.byte	-13
+ 3756 0e33 58       		.byte	88
+ 3757 0e34 98       		.byte	-104
+ 3758 0e35 47       		.byte	71
+ 3759 0e36 01       		.byte	1
+ 3760 0e37 35       		.byte	53
+ 3761 0e38 F8       		.byte	-8
+ 3762 0e39 E7       		.byte	-25
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 67
+
+
+ 3763 0e3a 70       		.byte	112
+ 3764 0e3b BD       		.byte	-67
+ 3765 0e3c C0       		.byte	-64
+ 3766 0e3d 0E       		.byte	14
+ 3767 0e3e 00       		.byte	0
+ 3768 0e3f 00       		.byte	0
+ 3769 0e40 C0       		.byte	-64
+ 3770 0e41 0E       		.byte	14
+ 3771 0e42 00       		.byte	0
+ 3772 0e43 00       		.byte	0
+ 3773 0e44 C0       		.byte	-64
+ 3774 0e45 0E       		.byte	14
+ 3775 0e46 00       		.byte	0
+ 3776 0e47 00       		.byte	0
+ 3777 0e48 C8       		.byte	-56
+ 3778 0e49 0E       		.byte	14
+ 3779 0e4a 00       		.byte	0
+ 3780 0e4b 00       		.byte	0
+ 3781 0e4c 00       		.byte	0
+ 3782 0e4d 23       		.byte	35
+ 3783 0e4e 10       		.byte	16
+ 3784 0e4f B5       		.byte	-75
+ 3785 0e50 9A       		.byte	-102
+ 3786 0e51 42       		.byte	66
+ 3787 0e52 03       		.byte	3
+ 3788 0e53 D0       		.byte	-48
+ 3789 0e54 CC       		.byte	-52
+ 3790 0e55 5C       		.byte	92
+ 3791 0e56 C4       		.byte	-60
+ 3792 0e57 54       		.byte	84
+ 3793 0e58 01       		.byte	1
+ 3794 0e59 33       		.byte	51
+ 3795 0e5a F9       		.byte	-7
+ 3796 0e5b E7       		.byte	-25
+ 3797 0e5c 10       		.byte	16
+ 3798 0e5d BD       		.byte	-67
+ 3799 0e5e 03       		.byte	3
+ 3800 0e5f 00       		.byte	0
+ 3801 0e60 82       		.byte	-126
+ 3802 0e61 18       		.byte	24
+ 3803 0e62 93       		.byte	-109
+ 3804 0e63 42       		.byte	66
+ 3805 0e64 02       		.byte	2
+ 3806 0e65 D0       		.byte	-48
+ 3807 0e66 19       		.byte	25
+ 3808 0e67 70       		.byte	112
+ 3809 0e68 01       		.byte	1
+ 3810 0e69 33       		.byte	51
+ 3811 0e6a FA       		.byte	-6
+ 3812 0e6b E7       		.byte	-25
+ 3813 0e6c 70       		.byte	112
+ 3814 0e6d 47       		.byte	71
+ 3815 0e6e 00       		.byte	0
+ 3816 0e6f 00       		.byte	0
+ 3817 0e70 80       		.byte	-128
+ 3818 0e71 0F       		.byte	15
+ 3819 0e72 00       		.byte	0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 68
+
+
+ 3820 0e73 00       		.byte	0
+ 3821 0e74 52       		.byte	82
+ 3822 0e75 00       		.byte	0
+ 3823 0e76 00       		.byte	0
+ 3824 0e77 00       		.byte	0
+ 3825 0e78 00       		.byte	0
+ 3826 0e79 00       		.byte	0
+ 3827 0e7a 00       		.byte	0
+ 3828 0e7b 00       		.byte	0
+ 3829 0e7c 93       		.byte	-109
+ 3830 0e7d 11       		.byte	17
+ 3831 0e7e C8       		.byte	-56
+ 3832 0e7f 04       		.byte	4
+ 3833 0e80 11       		.byte	17
+ 3834 0e81 3C       		.byte	60
+ 3835 0e82 01       		.byte	1
+ 3836 0e83 01       		.byte	1
+ 3837 0e84 03       		.byte	3
+ 3838 0e85 04       		.byte	4
+ 3839 0e86 05       		.byte	5
+ 3840 0e87 06       		.byte	6
+ 3841 0e88 07       		.byte	7
+ 3842 0e89 08       		.byte	8
+ 3843 0e8a 09       		.byte	9
+ 3844 0e8b 0A       		.byte	10
+ 3845 0e8c 0B       		.byte	11
+ 3846 0e8d 0C       		.byte	12
+ 3847 0e8e 0E       		.byte	14
+ 3848 0e8f 0F       		.byte	15
+ 3849 0e90 10       		.byte	16
+ 3850 0e91 11       		.byte	17
+ 3851 0e92 12       		.byte	18
+ 3852 0e93 13       		.byte	19
+ 3853 0e94 14       		.byte	20
+ 3854 0e95 15       		.byte	21
+ 3855 0e96 16       		.byte	22
+ 3856 0e97 17       		.byte	23
+ 3857 0e98 18       		.byte	24
+ 3858 0e99 19       		.byte	25
+ 3859 0e9a 1B       		.byte	27
+ 3860 0e9b 1C       		.byte	28
+ 3861 0e9c 1D       		.byte	29
+ 3862 0e9d 1E       		.byte	30
+ 3863 0e9e 1F       		.byte	31
+ 3864 0e9f 20       		.byte	32
+ 3865 0ea0 21       		.byte	33
+ 3866 0ea1 22       		.byte	34
+ 3867 0ea2 23       		.byte	35
+ 3868 0ea3 25       		.byte	37
+ 3869 0ea4 26       		.byte	38
+ 3870 0ea5 27       		.byte	39
+ 3871 0ea6 28       		.byte	40
+ 3872 0ea7 29       		.byte	41
+ 3873 0ea8 2A       		.byte	42
+ 3874 0ea9 2B       		.byte	43
+ 3875 0eaa 2E       		.byte	46
+ 3876 0eab 2F       		.byte	47
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 69
+
+
+ 3877 0eac 30       		.byte	48
+ 3878 0ead 31       		.byte	49
+ 3879 0eae 32       		.byte	50
+ 3880 0eaf 33       		.byte	51
+ 3881 0eb0 34       		.byte	52
+ 3882 0eb1 35       		.byte	53
+ 3883 0eb2 43       		.byte	67
+ 3884 0eb3 00       		.byte	0
+ 3885 0eb4 F8       		.byte	-8
+ 3886 0eb5 B5       		.byte	-75
+ 3887 0eb6 C0       		.byte	-64
+ 3888 0eb7 46       		.byte	70
+ 3889 0eb8 F8       		.byte	-8
+ 3890 0eb9 BC       		.byte	-68
+ 3891 0eba 08       		.byte	8
+ 3892 0ebb BC       		.byte	-68
+ 3893 0ebc 9E       		.byte	-98
+ 3894 0ebd 46       		.byte	70
+ 3895 0ebe 70       		.byte	112
+ 3896 0ebf 47       		.byte	71
+ 3897 0ec0 49       		.byte	73
+ 3898 0ec1 01       		.byte	1
+ 3899 0ec2 00       		.byte	0
+ 3900 0ec3 00       		.byte	0
+ 3901 0ec4 8D       		.byte	-115
+ 3902 0ec5 02       		.byte	2
+ 3903 0ec6 00       		.byte	0
+ 3904 0ec7 00       		.byte	0
+ 3905 0ec8 F8       		.byte	-8
+ 3906 0ec9 B5       		.byte	-75
+ 3907 0eca C0       		.byte	-64
+ 3908 0ecb 46       		.byte	70
+ 3909 0ecc F8       		.byte	-8
+ 3910 0ecd BC       		.byte	-68
+ 3911 0ece 08       		.byte	8
+ 3912 0ecf BC       		.byte	-68
+ 3913 0ed0 9E       		.byte	-98
+ 3914 0ed1 46       		.byte	70
+ 3915 0ed2 70       		.byte	112
+ 3916 0ed3 47       		.byte	71
+ 3917 0ed4 21       		.byte	33
+ 3918 0ed5 01       		.byte	1
+ 3919 0ed6 00       		.byte	0
+ 3920 0ed7 00       		.byte	0
+ 3921 0ed8 E8       		.byte	-24
+ 3922 0ed9 0E       		.byte	14
+ 3923 0eda 00       		.byte	0
+ 3924 0edb 00       		.byte	0
+ 3925 0edc C8       		.byte	-56
+ 3926 0edd 00       		.byte	0
+ 3927 0ede 00       		.byte	0
+ 3928 0edf 20       		.byte	32
+ 3929 0ee0 88       		.byte	-120
+ 3930 0ee1 00       		.byte	0
+ 3931 0ee2 00       		.byte	0
+ 3932 0ee3 00       		.byte	0
+ 3933 0ee4 28       		.byte	40
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 70
+
+
+ 3934 0ee5 00       		.byte	0
+ 3935 0ee6 00       		.byte	0
+ 3936 0ee7 00       		.byte	0
+ 3937 0ee8 00       		.byte	0
+ 3938 0ee9 00       		.byte	0
+ 3939 0eea 00       		.byte	0
+ 3940 0eeb 00       		.byte	0
+ 3941 0eec 70       		.byte	112
+ 3942 0eed 0E       		.byte	14
+ 3943 0eee 00       		.byte	0
+ 3944 0eef 00       		.byte	0
+ 3945 0ef0 74       		.byte	116
+ 3946 0ef1 0E       		.byte	14
+ 3947 0ef2 00       		.byte	0
+ 3948 0ef3 00       		.byte	0
+ 3949 0ef4 01       		.byte	1
+ 3950 0ef5 00       		.byte	0
+ 3951 0ef6 00       		.byte	0
+ 3952 0ef7 00       		.byte	0
+ 3953 0ef8 00       		.byte	0
+ 3954 0ef9 00       		.byte	0
+ 3955 0efa E0       		.byte	-32
+ 3956 0efb 2E       		.byte	46
+ 3957 0efc C0       		.byte	-64
+ 3958 0efd 5D       		.byte	93
+ 3959 0efe 00       		.byte	0
+ 3960 0eff 00       		.byte	0
+ 3961 0f00 18       		.byte	24
+ 3962 0f01 00       		.byte	0
+ 3963 0f02 00       		.byte	0
+ 3964 0f03 00       		.byte	0
+ 3965 0f04 00       		.byte	0
+ 3966 0f05 36       		.byte	54
+ 3967 0f06 6E       		.byte	110
+ 3968 0f07 01       		.byte	1
+ 3969 0f08 00       		.byte	0
+ 3970 0f09 00       		.byte	0
+ 3971 0f0a 00       		.byte	0
+ 3972 0f0b 00       		.byte	0
+ 3973 0f0c 00       		.byte	0
+ 3974 0f0d 00       		.byte	0
+ 3975 0f0e 00       		.byte	0
+ 3976 0f0f 00       		.byte	0
+ 3977 0f10 00       		.byte	0
+ 3978 0f11 00       		.byte	0
+ 3979 0f12 00       		.byte	0
+ 3980 0f13 00       		.byte	0
+ 3981 0f14 00       		.byte	0
+ 3982 0f15 00       		.byte	0
+ 3983 0f16 00       		.byte	0
+ 3984 0f17 00       		.byte	0
+ 3985 0f18 00       		.byte	0
+ 3986 0f19 00       		.byte	0
+ 3987 0f1a 00       		.byte	0
+ 3988 0f1b 00       		.byte	0
+ 3989 0f1c 00       		.byte	0
+ 3990 0f1d 00       		.byte	0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 71
+
+
+ 3991 0f1e 00       		.byte	0
+ 3992 0f1f 00       		.byte	0
+ 3993 0f20 00       		.byte	0
+ 3994 0f21 00       		.byte	0
+ 3995 0f22 00       		.byte	0
+ 3996 0f23 00       		.byte	0
+ 3997 0f24 00       		.byte	0
+ 3998 0f25 00       		.byte	0
+ 3999 0f26 00       		.byte	0
+ 4000 0f27 00       		.byte	0
+ 4001 0f28 B2       		.byte	-78
+ 4002 0f29 0E       		.byte	14
+ 4003 0f2a 00       		.byte	0
+ 4004 0f2b 00       		.byte	0
+ 4005 0f2c 00       		.byte	0
+ 4006 0f2d 00       		.byte	0
+ 4007 0f2e 00       		.byte	0
+ 4008 0f2f 00       		.byte	0
+ 4009 0f30 00       		.byte	0
+ 4010 0f31 00       		.byte	0
+ 4011 0f32 00       		.byte	0
+ 4012 0f33 00       		.byte	0
+ 4013 0f34 00       		.byte	0
+ 4014 0f35 00       		.byte	0
+ 4015 0f36 00       		.byte	0
+ 4016 0f37 00       		.byte	0
+ 4017 0f38 00       		.byte	0
+ 4018 0f39 00       		.byte	0
+ 4019 0f3a 00       		.byte	0
+ 4020 0f3b 00       		.byte	0
+ 4021 0f3c 00       		.byte	0
+ 4022 0f3d 00       		.byte	0
+ 4023 0f3e 00       		.byte	0
+ 4024 0f3f 00       		.byte	0
+ 4025 0f40 00       		.byte	0
+ 4026 0f41 00       		.byte	0
+ 4027 0f42 00       		.byte	0
+ 4028 0f43 00       		.byte	0
+ 4029 0f44 00       		.byte	0
+ 4030 0f45 00       		.byte	0
+ 4031 0f46 00       		.byte	0
+ 4032 0f47 00       		.byte	0
+ 4033 0f48 00       		.byte	0
+ 4034 0f49 00       		.byte	0
+ 4035 0f4a 00       		.byte	0
+ 4036 0f4b 00       		.byte	0
+ 4037 0f4c 00       		.byte	0
+ 4038 0f4d 00       		.byte	0
+ 4039 0f4e 00       		.byte	0
+ 4040 0f4f 00       		.byte	0
+ 4041 0f50 00       		.byte	0
+ 4042 0f51 00       		.byte	0
+ 4043 0f52 00       		.byte	0
+ 4044 0f53 00       		.byte	0
+ 4045 0f54 00       		.byte	0
+ 4046 0f55 00       		.byte	0
+ 4047 0f56 00       		.byte	0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 72
+
+
+ 4048 0f57 00       		.byte	0
+ 4049 0f58 00       		.byte	0
+ 4050 0f59 00       		.byte	0
+ 4051 0f5a 00       		.byte	0
+ 4052 0f5b 00       		.byte	0
+ 4053 0f5c 00       		.byte	0
+ 4054 0f5d 00       		.byte	0
+ 4055 0f5e 00       		.byte	0
+ 4056 0f5f 00       		.byte	0
+ 4057 0f60 00       		.byte	0
+ 4058 0f61 00       		.byte	0
+ 4059 0f62 00       		.byte	0
+ 4060 0f63 00       		.byte	0
+ 4061 0f64 00       		.byte	0
+ 4062 0f65 00       		.byte	0
+ 4063 0f66 00       		.byte	0
+ 4064 0f67 00       		.byte	0
+ 4065 0f68 E8       		.byte	-24
+ 4066 0f69 00       		.byte	0
+ 4067 0f6a 00       		.byte	0
+ 4068 0f6b 20       		.byte	32
+ 4069 0f6c 00       		.byte	0
+ 4070 0f6d 00       		.byte	0
+ 4071 0f6e 00       		.byte	0
+ 4072 0f6f 00       		.byte	0
+ 4073 0f70 00       		.byte	0
+ 4074 0f71 00       		.byte	0
+ 4075 0f72 00       		.byte	0
+ 4076 0f73 00       		.byte	0
+ 4077 0f74 00       		.byte	0
+ 4078 0f75 00       		.byte	0
+ 4079 0f76 00       		.byte	0
+ 4080 0f77 00       		.byte	0
+ 4081 0f78 00       		.byte	0
+ 4082 0f79 00       		.byte	0
+ 4083 0f7a 00       		.byte	0
+ 4084 0f7b 00       		.byte	0
+ 4085 0f7c 00       		.byte	0
+ 4086 0f7d 00       		.byte	0
+ 4087 0f7e 00       		.byte	0
+ 4088 0f7f 00       		.byte	0
+ 4089              		.section	.cyflashprotect,"a",%progbits
+ 4090              		.align	2
+ 4091              		.type	cy_meta_flashprotect, %object
+ 4092              		.size	cy_meta_flashprotect, 32
+ 4093              	cy_meta_flashprotect:
+ 4094 0000 00000000 		.space	32
+ 4094      00000000 
+ 4094      00000000 
+ 4094      00000000 
+ 4094      00000000 
+ 4095              		.text
+ 4096              	.Letext0:
+ 4097              		.file 1 "Generated_Source\\PSoC4\\cybootloader.c"
+ 4098              		.file 2 "Generated_Source\\PSoC4\\cytypes.h"
+ 4099              		.section	.debug_info,"",%progbits
+ 4100              	.Ldebug_info0:
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 73
+
+
+ 4101 0000 4F010000 		.4byte	0x14f
+ 4102 0004 0400     		.2byte	0x4
+ 4103 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 4104 000a 04       		.byte	0x4
+ 4105 000b 01       		.uleb128 0x1
+ 4106 000c 22000000 		.4byte	.LASF18
+ 4107 0010 0C       		.byte	0xc
+ 4108 0011 B6010000 		.4byte	.LASF19
+ 4109 0015 55010000 		.4byte	.LASF20
+ 4110 0019 00000000 		.4byte	.Ldebug_line0
+ 4111 001d 02       		.uleb128 0x2
+ 4112 001e 01       		.byte	0x1
+ 4113 001f 06       		.byte	0x6
+ 4114 0020 E5010000 		.4byte	.LASF0
+ 4115 0024 02       		.uleb128 0x2
+ 4116 0025 01       		.byte	0x1
+ 4117 0026 08       		.byte	0x8
+ 4118 0027 E2000000 		.4byte	.LASF1
+ 4119 002b 02       		.uleb128 0x2
+ 4120 002c 02       		.byte	0x2
+ 4121 002d 05       		.byte	0x5
+ 4122 002e AC010000 		.4byte	.LASF2
+ 4123 0032 02       		.uleb128 0x2
+ 4124 0033 02       		.byte	0x2
+ 4125 0034 07       		.byte	0x7
+ 4126 0035 02010000 		.4byte	.LASF3
+ 4127 0039 02       		.uleb128 0x2
+ 4128 003a 04       		.byte	0x4
+ 4129 003b 05       		.byte	0x5
+ 4130 003c DC010000 		.4byte	.LASF4
+ 4131 0040 02       		.uleb128 0x2
+ 4132 0041 04       		.byte	0x4
+ 4133 0042 07       		.byte	0x7
+ 4134 0043 F0000000 		.4byte	.LASF5
+ 4135 0047 02       		.uleb128 0x2
+ 4136 0048 08       		.byte	0x8
+ 4137 0049 05       		.byte	0x5
+ 4138 004a 99010000 		.4byte	.LASF6
+ 4139 004e 02       		.uleb128 0x2
+ 4140 004f 08       		.byte	0x8
+ 4141 0050 07       		.byte	0x7
+ 4142 0051 29010000 		.4byte	.LASF7
+ 4143 0055 03       		.uleb128 0x3
+ 4144 0056 04       		.byte	0x4
+ 4145 0057 05       		.byte	0x5
+ 4146 0058 696E7400 		.ascii	"int\000"
+ 4147 005c 02       		.uleb128 0x2
+ 4148 005d 04       		.byte	0x4
+ 4149 005e 07       		.byte	0x7
+ 4150 005f 1C010000 		.4byte	.LASF8
+ 4151 0063 04       		.uleb128 0x4
+ 4152 0064 DC000000 		.4byte	.LASF21
+ 4153 0068 02       		.byte	0x2
+ 4154 0069 E401     		.2byte	0x1e4
+ 4155 006b 24000000 		.4byte	0x24
+ 4156 006f 02       		.uleb128 0x2
+ 4157 0070 04       		.byte	0x4
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 74
+
+
+ 4158 0071 04       		.byte	0x4
+ 4159 0072 D6000000 		.4byte	.LASF9
+ 4160 0076 02       		.uleb128 0x2
+ 4161 0077 08       		.byte	0x8
+ 4162 0078 04       		.byte	0x4
+ 4163 0079 15010000 		.4byte	.LASF10
+ 4164 007d 02       		.uleb128 0x2
+ 4165 007e 01       		.byte	0x1
+ 4166 007f 08       		.byte	0x8
+ 4167 0080 A7010000 		.4byte	.LASF11
+ 4168 0084 05       		.uleb128 0x5
+ 4169 0085 9B000000 		.4byte	0x9b
+ 4170 0089 94000000 		.4byte	0x94
+ 4171 008d 06       		.uleb128 0x6
+ 4172 008e 94000000 		.4byte	0x94
+ 4173 0092 3F       		.byte	0x3f
+ 4174 0093 00       		.byte	0
+ 4175 0094 02       		.uleb128 0x2
+ 4176 0095 04       		.byte	0x4
+ 4177 0096 07       		.byte	0x7
+ 4178 0097 90010000 		.4byte	.LASF12
+ 4179 009b 07       		.uleb128 0x7
+ 4180 009c 63000000 		.4byte	0x63
+ 4181 00a0 08       		.uleb128 0x8
+ 4182 00a1 BB000000 		.4byte	.LASF13
+ 4183 00a5 01       		.byte	0x1
+ 4184 00a6 0E       		.byte	0xe
+ 4185 00a7 B1000000 		.4byte	0xb1
+ 4186 00ab 05       		.uleb128 0x5
+ 4187 00ac 03       		.byte	0x3
+ 4188 00ad 00000000 		.4byte	cy_meta_loader
+ 4189 00b1 07       		.uleb128 0x7
+ 4190 00b2 84000000 		.4byte	0x84
+ 4191 00b6 05       		.uleb128 0x5
+ 4192 00b7 9B000000 		.4byte	0x9b
+ 4193 00bb C7000000 		.4byte	0xc7
+ 4194 00bf 09       		.uleb128 0x9
+ 4195 00c0 94000000 		.4byte	0x94
+ 4196 00c4 7F0F     		.2byte	0xf7f
+ 4197 00c6 00       		.byte	0
+ 4198 00c7 08       		.uleb128 0x8
+ 4199 00c8 14000000 		.4byte	.LASF14
+ 4200 00cc 01       		.byte	0x1
+ 4201 00cd 21       		.byte	0x21
+ 4202 00ce D8000000 		.4byte	0xd8
+ 4203 00d2 05       		.uleb128 0x5
+ 4204 00d3 03       		.byte	0x3
+ 4205 00d4 00000000 		.4byte	cy_bootloader
+ 4206 00d8 07       		.uleb128 0x7
+ 4207 00d9 B6000000 		.4byte	0xb6
+ 4208 00dd 05       		.uleb128 0x5
+ 4209 00de 9B000000 		.4byte	0x9b
+ 4210 00e2 ED000000 		.4byte	0xed
+ 4211 00e6 06       		.uleb128 0x6
+ 4212 00e7 94000000 		.4byte	0x94
+ 4213 00eb 0B       		.byte	0xb
+ 4214 00ec 00       		.byte	0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 75
+
+
+ 4215 00ed 0A       		.uleb128 0xa
+ 4216 00ee CA000000 		.4byte	.LASF15
+ 4217 00f2 01       		.byte	0x1
+ 4218 00f3 1A02     		.2byte	0x21a
+ 4219 00f5 FF000000 		.4byte	0xff
+ 4220 00f9 05       		.uleb128 0x5
+ 4221 00fa 03       		.byte	0x3
+ 4222 00fb 00000000 		.4byte	cy_metadata
+ 4223 00ff 07       		.uleb128 0x7
+ 4224 0100 DD000000 		.4byte	0xdd
+ 4225 0104 05       		.uleb128 0x5
+ 4226 0105 9B000000 		.4byte	0x9b
+ 4227 0109 14010000 		.4byte	0x114
+ 4228 010d 06       		.uleb128 0x6
+ 4229 010e 94000000 		.4byte	0x94
+ 4230 0112 1F       		.byte	0x1f
+ 4231 0113 00       		.byte	0
+ 4232 0114 0A       		.uleb128 0xa
+ 4233 0115 40010000 		.4byte	.LASF16
+ 4234 0119 01       		.byte	0x1
+ 4235 011a 2502     		.2byte	0x225
+ 4236 011c 26010000 		.4byte	0x126
+ 4237 0120 05       		.uleb128 0x5
+ 4238 0121 03       		.byte	0x3
+ 4239 0122 00000000 		.4byte	cy_meta_flashprotect
+ 4240 0126 07       		.uleb128 0x7
+ 4241 0127 04010000 		.4byte	0x104
+ 4242 012b 05       		.uleb128 0x5
+ 4243 012c 9B000000 		.4byte	0x9b
+ 4244 0130 3B010000 		.4byte	0x13b
+ 4245 0134 06       		.uleb128 0x6
+ 4246 0135 94000000 		.4byte	0x94
+ 4247 0139 00       		.byte	0
+ 4248 013a 00       		.byte	0
+ 4249 013b 0A       		.uleb128 0xa
+ 4250 013c 00000000 		.4byte	.LASF17
+ 4251 0140 01       		.byte	0x1
+ 4252 0141 3202     		.2byte	0x232
+ 4253 0143 4D010000 		.4byte	0x14d
+ 4254 0147 05       		.uleb128 0x5
+ 4255 0148 03       		.byte	0x3
+ 4256 0149 00000000 		.4byte	cy_meta_chipprotect
+ 4257 014d 07       		.uleb128 0x7
+ 4258 014e 2B010000 		.4byte	0x12b
+ 4259 0152 00       		.byte	0
+ 4260              		.section	.debug_abbrev,"",%progbits
+ 4261              	.Ldebug_abbrev0:
+ 4262 0000 01       		.uleb128 0x1
+ 4263 0001 11       		.uleb128 0x11
+ 4264 0002 01       		.byte	0x1
+ 4265 0003 25       		.uleb128 0x25
+ 4266 0004 0E       		.uleb128 0xe
+ 4267 0005 13       		.uleb128 0x13
+ 4268 0006 0B       		.uleb128 0xb
+ 4269 0007 03       		.uleb128 0x3
+ 4270 0008 0E       		.uleb128 0xe
+ 4271 0009 1B       		.uleb128 0x1b
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 76
+
+
+ 4272 000a 0E       		.uleb128 0xe
+ 4273 000b 10       		.uleb128 0x10
+ 4274 000c 17       		.uleb128 0x17
+ 4275 000d 00       		.byte	0
+ 4276 000e 00       		.byte	0
+ 4277 000f 02       		.uleb128 0x2
+ 4278 0010 24       		.uleb128 0x24
+ 4279 0011 00       		.byte	0
+ 4280 0012 0B       		.uleb128 0xb
+ 4281 0013 0B       		.uleb128 0xb
+ 4282 0014 3E       		.uleb128 0x3e
+ 4283 0015 0B       		.uleb128 0xb
+ 4284 0016 03       		.uleb128 0x3
+ 4285 0017 0E       		.uleb128 0xe
+ 4286 0018 00       		.byte	0
+ 4287 0019 00       		.byte	0
+ 4288 001a 03       		.uleb128 0x3
+ 4289 001b 24       		.uleb128 0x24
+ 4290 001c 00       		.byte	0
+ 4291 001d 0B       		.uleb128 0xb
+ 4292 001e 0B       		.uleb128 0xb
+ 4293 001f 3E       		.uleb128 0x3e
+ 4294 0020 0B       		.uleb128 0xb
+ 4295 0021 03       		.uleb128 0x3
+ 4296 0022 08       		.uleb128 0x8
+ 4297 0023 00       		.byte	0
+ 4298 0024 00       		.byte	0
+ 4299 0025 04       		.uleb128 0x4
+ 4300 0026 16       		.uleb128 0x16
+ 4301 0027 00       		.byte	0
+ 4302 0028 03       		.uleb128 0x3
+ 4303 0029 0E       		.uleb128 0xe
+ 4304 002a 3A       		.uleb128 0x3a
+ 4305 002b 0B       		.uleb128 0xb
+ 4306 002c 3B       		.uleb128 0x3b
+ 4307 002d 05       		.uleb128 0x5
+ 4308 002e 49       		.uleb128 0x49
+ 4309 002f 13       		.uleb128 0x13
+ 4310 0030 00       		.byte	0
+ 4311 0031 00       		.byte	0
+ 4312 0032 05       		.uleb128 0x5
+ 4313 0033 01       		.uleb128 0x1
+ 4314 0034 01       		.byte	0x1
+ 4315 0035 49       		.uleb128 0x49
+ 4316 0036 13       		.uleb128 0x13
+ 4317 0037 01       		.uleb128 0x1
+ 4318 0038 13       		.uleb128 0x13
+ 4319 0039 00       		.byte	0
+ 4320 003a 00       		.byte	0
+ 4321 003b 06       		.uleb128 0x6
+ 4322 003c 21       		.uleb128 0x21
+ 4323 003d 00       		.byte	0
+ 4324 003e 49       		.uleb128 0x49
+ 4325 003f 13       		.uleb128 0x13
+ 4326 0040 2F       		.uleb128 0x2f
+ 4327 0041 0B       		.uleb128 0xb
+ 4328 0042 00       		.byte	0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 77
+
+
+ 4329 0043 00       		.byte	0
+ 4330 0044 07       		.uleb128 0x7
+ 4331 0045 26       		.uleb128 0x26
+ 4332 0046 00       		.byte	0
+ 4333 0047 49       		.uleb128 0x49
+ 4334 0048 13       		.uleb128 0x13
+ 4335 0049 00       		.byte	0
+ 4336 004a 00       		.byte	0
+ 4337 004b 08       		.uleb128 0x8
+ 4338 004c 34       		.uleb128 0x34
+ 4339 004d 00       		.byte	0
+ 4340 004e 03       		.uleb128 0x3
+ 4341 004f 0E       		.uleb128 0xe
+ 4342 0050 3A       		.uleb128 0x3a
+ 4343 0051 0B       		.uleb128 0xb
+ 4344 0052 3B       		.uleb128 0x3b
+ 4345 0053 0B       		.uleb128 0xb
+ 4346 0054 49       		.uleb128 0x49
+ 4347 0055 13       		.uleb128 0x13
+ 4348 0056 3F       		.uleb128 0x3f
+ 4349 0057 19       		.uleb128 0x19
+ 4350 0058 02       		.uleb128 0x2
+ 4351 0059 18       		.uleb128 0x18
+ 4352 005a 00       		.byte	0
+ 4353 005b 00       		.byte	0
+ 4354 005c 09       		.uleb128 0x9
+ 4355 005d 21       		.uleb128 0x21
+ 4356 005e 00       		.byte	0
+ 4357 005f 49       		.uleb128 0x49
+ 4358 0060 13       		.uleb128 0x13
+ 4359 0061 2F       		.uleb128 0x2f
+ 4360 0062 05       		.uleb128 0x5
+ 4361 0063 00       		.byte	0
+ 4362 0064 00       		.byte	0
+ 4363 0065 0A       		.uleb128 0xa
+ 4364 0066 34       		.uleb128 0x34
+ 4365 0067 00       		.byte	0
+ 4366 0068 03       		.uleb128 0x3
+ 4367 0069 0E       		.uleb128 0xe
+ 4368 006a 3A       		.uleb128 0x3a
+ 4369 006b 0B       		.uleb128 0xb
+ 4370 006c 3B       		.uleb128 0x3b
+ 4371 006d 05       		.uleb128 0x5
+ 4372 006e 49       		.uleb128 0x49
+ 4373 006f 13       		.uleb128 0x13
+ 4374 0070 3F       		.uleb128 0x3f
+ 4375 0071 19       		.uleb128 0x19
+ 4376 0072 02       		.uleb128 0x2
+ 4377 0073 18       		.uleb128 0x18
+ 4378 0074 00       		.byte	0
+ 4379 0075 00       		.byte	0
+ 4380 0076 00       		.byte	0
+ 4381              		.section	.debug_aranges,"",%progbits
+ 4382 0000 14000000 		.4byte	0x14
+ 4383 0004 0200     		.2byte	0x2
+ 4384 0006 00000000 		.4byte	.Ldebug_info0
+ 4385 000a 04       		.byte	0x4
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 78
+
+
+ 4386 000b 00       		.byte	0
+ 4387 000c 0000     		.2byte	0
+ 4388 000e 0000     		.2byte	0
+ 4389 0010 00000000 		.4byte	0
+ 4390 0014 00000000 		.4byte	0
+ 4391              		.section	.debug_line,"",%progbits
+ 4392              	.Ldebug_line0:
+ 4393 0000 4F000000 		.section	.debug_str,"MS",%progbits,1
+ 4393      02004900 
+ 4393      00000201 
+ 4393      FB0E0D00 
+ 4393      01010101 
+ 4394              	.LASF17:
+ 4395 0000 63795F6D 		.ascii	"cy_meta_chipprotect\000"
+ 4395      6574615F 
+ 4395      63686970 
+ 4395      70726F74 
+ 4395      65637400 
+ 4396              	.LASF14:
+ 4397 0014 63795F62 		.ascii	"cy_bootloader\000"
+ 4397      6F6F746C 
+ 4397      6F616465 
+ 4397      7200
+ 4398              	.LASF18:
+ 4399 0022 474E5520 		.ascii	"GNU C99 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 4399      43393920 
+ 4399      352E342E 
+ 4399      31203230 
+ 4399      31363036 
+ 4400 0055 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 4400      20726576 
+ 4400      6973696F 
+ 4400      6E203233 
+ 4400      37373135 
+ 4401 0088 67202D73 		.ascii	"g -std=gnu99 -ffunction-sections -ffat-lto-objects\000"
+ 4401      74643D67 
+ 4401      6E753939 
+ 4401      202D6666 
+ 4401      756E6374 
+ 4402              	.LASF13:
+ 4403 00bb 63795F6D 		.ascii	"cy_meta_loader\000"
+ 4403      6574615F 
+ 4403      6C6F6164 
+ 4403      657200
+ 4404              	.LASF15:
+ 4405 00ca 63795F6D 		.ascii	"cy_metadata\000"
+ 4405      65746164 
+ 4405      61746100 
+ 4406              	.LASF9:
+ 4407 00d6 666C6F61 		.ascii	"float\000"
+ 4407      7400
+ 4408              	.LASF21:
+ 4409 00dc 75696E74 		.ascii	"uint8\000"
+ 4409      3800
+ 4410              	.LASF1:
+ 4411 00e2 756E7369 		.ascii	"unsigned char\000"
+ 4411      676E6564 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 79
+
+
+ 4411      20636861 
+ 4411      7200
+ 4412              	.LASF5:
+ 4413 00f0 6C6F6E67 		.ascii	"long unsigned int\000"
+ 4413      20756E73 
+ 4413      69676E65 
+ 4413      6420696E 
+ 4413      7400
+ 4414              	.LASF3:
+ 4415 0102 73686F72 		.ascii	"short unsigned int\000"
+ 4415      7420756E 
+ 4415      7369676E 
+ 4415      65642069 
+ 4415      6E7400
+ 4416              	.LASF10:
+ 4417 0115 646F7562 		.ascii	"double\000"
+ 4417      6C6500
+ 4418              	.LASF8:
+ 4419 011c 756E7369 		.ascii	"unsigned int\000"
+ 4419      676E6564 
+ 4419      20696E74 
+ 4419      00
+ 4420              	.LASF7:
+ 4421 0129 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 4421      206C6F6E 
+ 4421      6720756E 
+ 4421      7369676E 
+ 4421      65642069 
+ 4422              	.LASF16:
+ 4423 0140 63795F6D 		.ascii	"cy_meta_flashprotect\000"
+ 4423      6574615F 
+ 4423      666C6173 
+ 4423      6870726F 
+ 4423      74656374 
+ 4424              	.LASF20:
+ 4425 0155 443A5C31 		.ascii	"D:\\1_work\\my_project\\ReloadPro\\psoc42boot\\Relo"
+ 4425      5F776F72 
+ 4425      6B5C6D79 
+ 4425      5F70726F 
+ 4425      6A656374 
+ 4426 0183 61642050 		.ascii	"ad Pro.cydsn\000"
+ 4426      726F2E63 
+ 4426      7964736E 
+ 4426      00
+ 4427              	.LASF12:
+ 4428 0190 73697A65 		.ascii	"sizetype\000"
+ 4428      74797065 
+ 4428      00
+ 4429              	.LASF6:
+ 4430 0199 6C6F6E67 		.ascii	"long long int\000"
+ 4430      206C6F6E 
+ 4430      6720696E 
+ 4430      7400
+ 4431              	.LASF11:
+ 4432 01a7 63686172 		.ascii	"char\000"
+ 4432      00
+ 4433              	.LASF2:
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMqd6Q2.s 			page 80
+
+
+ 4434 01ac 73686F72 		.ascii	"short int\000"
+ 4434      7420696E 
+ 4434      7400
+ 4435              	.LASF19:
+ 4436 01b6 47656E65 		.ascii	"Generated_Source\\PSoC4\\cybootloader.c\000"
+ 4436      72617465 
+ 4436      645F536F 
+ 4436      75726365 
+ 4436      5C50536F 
+ 4437              	.LASF4:
+ 4438 01dc 6C6F6E67 		.ascii	"long int\000"
+ 4438      20696E74 
+ 4438      00
+ 4439              	.LASF0:
+ 4440 01e5 7369676E 		.ascii	"signed char\000"
+ 4440      65642063 
+ 4440      68617200 
+ 4441              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

@@ -1,0 +1,3766 @@
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"Display_SPI.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.Display_SPI_Enable,"ax",%progbits
+  20              		.align	1
+  21              		.global	Display_SPI_Enable
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	Display_SPI_Enable, %function
+  25              	Display_SPI_Enable:
+  26              	.LFB1:
+  27              		.file 1 "Generated_Source\\PSoC4\\Display_SPI.c"
+   1:Generated_Source\PSoC4/Display_SPI.c **** /*******************************************************************************
+   2:Generated_Source\PSoC4/Display_SPI.c **** * File Name: Display_SPI.c
+   3:Generated_Source\PSoC4/Display_SPI.c **** * Version 2.50
+   4:Generated_Source\PSoC4/Display_SPI.c **** *
+   5:Generated_Source\PSoC4/Display_SPI.c **** * Description:
+   6:Generated_Source\PSoC4/Display_SPI.c **** *  This file provides all API functionality of the SPI Master component.
+   7:Generated_Source\PSoC4/Display_SPI.c **** *
+   8:Generated_Source\PSoC4/Display_SPI.c **** * Note:
+   9:Generated_Source\PSoC4/Display_SPI.c **** *  None.
+  10:Generated_Source\PSoC4/Display_SPI.c **** *
+  11:Generated_Source\PSoC4/Display_SPI.c **** ********************************************************************************
+  12:Generated_Source\PSoC4/Display_SPI.c **** * Copyright 2008-2015, Cypress Semiconductor Corporation.  All rights reserved.
+  13:Generated_Source\PSoC4/Display_SPI.c **** * You may use this file only in accordance with the license, terms, conditions,
+  14:Generated_Source\PSoC4/Display_SPI.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  15:Generated_Source\PSoC4/Display_SPI.c **** * the software package with which this file was provided.
+  16:Generated_Source\PSoC4/Display_SPI.c **** *******************************************************************************/
+  17:Generated_Source\PSoC4/Display_SPI.c **** 
+  18:Generated_Source\PSoC4/Display_SPI.c **** #include "Display_SPI_PVT.h"
+  19:Generated_Source\PSoC4/Display_SPI.c **** 
+  20:Generated_Source\PSoC4/Display_SPI.c **** #if(Display_SPI_TX_SOFTWARE_BUF_ENABLED)
+  21:Generated_Source\PSoC4/Display_SPI.c ****     volatile uint8 Display_SPI_txBuffer[Display_SPI_TX_BUFFER_SIZE];
+  22:Generated_Source\PSoC4/Display_SPI.c ****     volatile uint8 Display_SPI_txBufferFull;
+  23:Generated_Source\PSoC4/Display_SPI.c ****     volatile uint8 Display_SPI_txBufferRead;
+  24:Generated_Source\PSoC4/Display_SPI.c ****     volatile uint8 Display_SPI_txBufferWrite;
+  25:Generated_Source\PSoC4/Display_SPI.c **** #endif /* (Display_SPI_TX_SOFTWARE_BUF_ENABLED) */
+  26:Generated_Source\PSoC4/Display_SPI.c **** 
+  27:Generated_Source\PSoC4/Display_SPI.c **** #if(Display_SPI_RX_SOFTWARE_BUF_ENABLED)
+  28:Generated_Source\PSoC4/Display_SPI.c ****     volatile uint8 Display_SPI_rxBuffer[Display_SPI_RX_BUFFER_SIZE];
+  29:Generated_Source\PSoC4/Display_SPI.c ****     volatile uint8 Display_SPI_rxBufferFull;
+  30:Generated_Source\PSoC4/Display_SPI.c ****     volatile uint8 Display_SPI_rxBufferRead;
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 2
+
+
+  31:Generated_Source\PSoC4/Display_SPI.c ****     volatile uint8 Display_SPI_rxBufferWrite;
+  32:Generated_Source\PSoC4/Display_SPI.c **** #endif /* (Display_SPI_RX_SOFTWARE_BUF_ENABLED) */
+  33:Generated_Source\PSoC4/Display_SPI.c **** 
+  34:Generated_Source\PSoC4/Display_SPI.c **** uint8 Display_SPI_initVar = 0u;
+  35:Generated_Source\PSoC4/Display_SPI.c **** 
+  36:Generated_Source\PSoC4/Display_SPI.c **** volatile uint8 Display_SPI_swStatusTx;
+  37:Generated_Source\PSoC4/Display_SPI.c **** volatile uint8 Display_SPI_swStatusRx;
+  38:Generated_Source\PSoC4/Display_SPI.c **** 
+  39:Generated_Source\PSoC4/Display_SPI.c **** 
+  40:Generated_Source\PSoC4/Display_SPI.c **** /*******************************************************************************
+  41:Generated_Source\PSoC4/Display_SPI.c **** * Function Name: Display_SPI_Init
+  42:Generated_Source\PSoC4/Display_SPI.c **** ********************************************************************************
+  43:Generated_Source\PSoC4/Display_SPI.c **** *
+  44:Generated_Source\PSoC4/Display_SPI.c **** * Summary:
+  45:Generated_Source\PSoC4/Display_SPI.c **** *  Inits/Restores default SPIM configuration provided with customizer.
+  46:Generated_Source\PSoC4/Display_SPI.c **** *
+  47:Generated_Source\PSoC4/Display_SPI.c **** * Parameters:
+  48:Generated_Source\PSoC4/Display_SPI.c **** *  None.
+  49:Generated_Source\PSoC4/Display_SPI.c **** *
+  50:Generated_Source\PSoC4/Display_SPI.c **** * Return:
+  51:Generated_Source\PSoC4/Display_SPI.c **** *  None.
+  52:Generated_Source\PSoC4/Display_SPI.c **** *
+  53:Generated_Source\PSoC4/Display_SPI.c **** * Side Effects:
+  54:Generated_Source\PSoC4/Display_SPI.c **** *  When this function is called it initializes all of the necessary parameters
+  55:Generated_Source\PSoC4/Display_SPI.c **** *  for execution. i.e. setting the initial interrupt mask, configuring the
+  56:Generated_Source\PSoC4/Display_SPI.c **** *  interrupt service routine, configuring the bit-counter parameters and
+  57:Generated_Source\PSoC4/Display_SPI.c **** *  clearing the FIFO and Status Register.
+  58:Generated_Source\PSoC4/Display_SPI.c **** *
+  59:Generated_Source\PSoC4/Display_SPI.c **** * Reentrant:
+  60:Generated_Source\PSoC4/Display_SPI.c **** *  No.
+  61:Generated_Source\PSoC4/Display_SPI.c **** *
+  62:Generated_Source\PSoC4/Display_SPI.c **** *******************************************************************************/
+  63:Generated_Source\PSoC4/Display_SPI.c **** void Display_SPI_Init(void) 
+  64:Generated_Source\PSoC4/Display_SPI.c **** {
+  65:Generated_Source\PSoC4/Display_SPI.c ****     /* Initialize the Bit counter */
+  66:Generated_Source\PSoC4/Display_SPI.c ****     Display_SPI_COUNTER_PERIOD_REG = Display_SPI_BITCTR_INIT;
+  67:Generated_Source\PSoC4/Display_SPI.c **** 
+  68:Generated_Source\PSoC4/Display_SPI.c ****     /* Init TX ISR  */
+  69:Generated_Source\PSoC4/Display_SPI.c ****     #if(0u != Display_SPI_INTERNAL_TX_INT_ENABLED)
+  70:Generated_Source\PSoC4/Display_SPI.c ****         CyIntDisable         (Display_SPI_TX_ISR_NUMBER);
+  71:Generated_Source\PSoC4/Display_SPI.c ****         CyIntSetPriority     (Display_SPI_TX_ISR_NUMBER,  Display_SPI_TX_ISR_PRIORITY);
+  72:Generated_Source\PSoC4/Display_SPI.c ****         (void) CyIntSetVector(Display_SPI_TX_ISR_NUMBER, &Display_SPI_TX_ISR);
+  73:Generated_Source\PSoC4/Display_SPI.c ****     #endif /* (0u != Display_SPI_INTERNAL_TX_INT_ENABLED) */
+  74:Generated_Source\PSoC4/Display_SPI.c **** 
+  75:Generated_Source\PSoC4/Display_SPI.c ****     /* Init RX ISR  */
+  76:Generated_Source\PSoC4/Display_SPI.c ****     #if(0u != Display_SPI_INTERNAL_RX_INT_ENABLED)
+  77:Generated_Source\PSoC4/Display_SPI.c ****         CyIntDisable         (Display_SPI_RX_ISR_NUMBER);
+  78:Generated_Source\PSoC4/Display_SPI.c ****         CyIntSetPriority     (Display_SPI_RX_ISR_NUMBER,  Display_SPI_RX_ISR_PRIORITY);
+  79:Generated_Source\PSoC4/Display_SPI.c ****         (void) CyIntSetVector(Display_SPI_RX_ISR_NUMBER, &Display_SPI_RX_ISR);
+  80:Generated_Source\PSoC4/Display_SPI.c ****     #endif /* (0u != Display_SPI_INTERNAL_RX_INT_ENABLED) */
+  81:Generated_Source\PSoC4/Display_SPI.c **** 
+  82:Generated_Source\PSoC4/Display_SPI.c ****     /* Clear any stray data from the RX and TX FIFO */
+  83:Generated_Source\PSoC4/Display_SPI.c ****     Display_SPI_ClearFIFO();
+  84:Generated_Source\PSoC4/Display_SPI.c **** 
+  85:Generated_Source\PSoC4/Display_SPI.c ****     #if(Display_SPI_RX_SOFTWARE_BUF_ENABLED)
+  86:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_rxBufferFull  = 0u;
+  87:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_rxBufferRead  = 0u;
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 3
+
+
+  88:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_rxBufferWrite = 0u;
+  89:Generated_Source\PSoC4/Display_SPI.c ****     #endif /* (Display_SPI_RX_SOFTWARE_BUF_ENABLED) */
+  90:Generated_Source\PSoC4/Display_SPI.c **** 
+  91:Generated_Source\PSoC4/Display_SPI.c ****     #if(Display_SPI_TX_SOFTWARE_BUF_ENABLED)
+  92:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_txBufferFull  = 0u;
+  93:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_txBufferRead  = 0u;
+  94:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_txBufferWrite = 0u;
+  95:Generated_Source\PSoC4/Display_SPI.c ****     #endif /* (Display_SPI_TX_SOFTWARE_BUF_ENABLED) */
+  96:Generated_Source\PSoC4/Display_SPI.c **** 
+  97:Generated_Source\PSoC4/Display_SPI.c ****     (void) Display_SPI_ReadTxStatus(); /* Clear Tx status and swStatusTx */
+  98:Generated_Source\PSoC4/Display_SPI.c ****     (void) Display_SPI_ReadRxStatus(); /* Clear Rx status and swStatusRx */
+  99:Generated_Source\PSoC4/Display_SPI.c **** 
+ 100:Generated_Source\PSoC4/Display_SPI.c ****     /* Configure TX and RX interrupt mask */
+ 101:Generated_Source\PSoC4/Display_SPI.c ****     Display_SPI_TX_STATUS_MASK_REG = Display_SPI_TX_INIT_INTERRUPTS_MASK;
+ 102:Generated_Source\PSoC4/Display_SPI.c ****     Display_SPI_RX_STATUS_MASK_REG = Display_SPI_RX_INIT_INTERRUPTS_MASK;
+ 103:Generated_Source\PSoC4/Display_SPI.c **** }
+ 104:Generated_Source\PSoC4/Display_SPI.c **** 
+ 105:Generated_Source\PSoC4/Display_SPI.c **** 
+ 106:Generated_Source\PSoC4/Display_SPI.c **** /*******************************************************************************
+ 107:Generated_Source\PSoC4/Display_SPI.c **** * Function Name: Display_SPI_Enable
+ 108:Generated_Source\PSoC4/Display_SPI.c **** ********************************************************************************
+ 109:Generated_Source\PSoC4/Display_SPI.c **** *
+ 110:Generated_Source\PSoC4/Display_SPI.c **** * Summary:
+ 111:Generated_Source\PSoC4/Display_SPI.c **** *  Enable SPIM component.
+ 112:Generated_Source\PSoC4/Display_SPI.c **** *
+ 113:Generated_Source\PSoC4/Display_SPI.c **** * Parameters:
+ 114:Generated_Source\PSoC4/Display_SPI.c **** *  None.
+ 115:Generated_Source\PSoC4/Display_SPI.c **** *
+ 116:Generated_Source\PSoC4/Display_SPI.c **** * Return:
+ 117:Generated_Source\PSoC4/Display_SPI.c **** *  None.
+ 118:Generated_Source\PSoC4/Display_SPI.c **** *
+ 119:Generated_Source\PSoC4/Display_SPI.c **** *******************************************************************************/
+ 120:Generated_Source\PSoC4/Display_SPI.c **** void Display_SPI_Enable(void) 
+ 121:Generated_Source\PSoC4/Display_SPI.c **** {
+  28              		.loc 1 121 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 10B5     		push	{r4, lr}
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 4, -8
+  35              		.cfi_offset 14, -4
+ 122:Generated_Source\PSoC4/Display_SPI.c ****     uint8 enableInterrupts;
+ 123:Generated_Source\PSoC4/Display_SPI.c **** 
+ 124:Generated_Source\PSoC4/Display_SPI.c ****     enableInterrupts = CyEnterCriticalSection();
+  36              		.loc 1 124 0
+  37 0002 FFF7FEFF 		bl	CyEnterCriticalSection
+  38              	.LVL0:
+ 125:Generated_Source\PSoC4/Display_SPI.c ****     Display_SPI_COUNTER_CONTROL_REG |= Display_SPI_CNTR_ENABLE;
+  39              		.loc 1 125 0
+  40 0006 2021     		movs	r1, #32
+  41 0008 074A     		ldr	r2, .L2
+ 126:Generated_Source\PSoC4/Display_SPI.c ****     Display_SPI_TX_STATUS_ACTL_REG  |= Display_SPI_INT_ENABLE;
+ 127:Generated_Source\PSoC4/Display_SPI.c ****     Display_SPI_RX_STATUS_ACTL_REG  |= Display_SPI_INT_ENABLE;
+ 128:Generated_Source\PSoC4/Display_SPI.c ****     CyExitCriticalSection(enableInterrupts);
+ 129:Generated_Source\PSoC4/Display_SPI.c **** 
+ 130:Generated_Source\PSoC4/Display_SPI.c ****     #if(0u != Display_SPI_INTERNAL_CLOCK)
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 4
+
+
+ 131:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_IntClock_Enable();
+ 132:Generated_Source\PSoC4/Display_SPI.c ****     #endif /* (0u != Display_SPI_INTERNAL_CLOCK) */
+ 133:Generated_Source\PSoC4/Display_SPI.c **** 
+ 134:Generated_Source\PSoC4/Display_SPI.c ****     Display_SPI_EnableTxInt();
+ 135:Generated_Source\PSoC4/Display_SPI.c ****     Display_SPI_EnableRxInt();
+ 136:Generated_Source\PSoC4/Display_SPI.c **** }
+  42              		.loc 1 136 0
+  43              		@ sp needed
+ 125:Generated_Source\PSoC4/Display_SPI.c ****     Display_SPI_COUNTER_CONTROL_REG |= Display_SPI_CNTR_ENABLE;
+  44              		.loc 1 125 0
+  45 000a 1378     		ldrb	r3, [r2]
+  46 000c 0B43     		orrs	r3, r1
+  47 000e 1370     		strb	r3, [r2]
+ 126:Generated_Source\PSoC4/Display_SPI.c ****     Display_SPI_TX_STATUS_ACTL_REG  |= Display_SPI_INT_ENABLE;
+  48              		.loc 1 126 0
+  49 0010 064B     		ldr	r3, .L2+4
+  50 0012 1039     		subs	r1, r1, #16
+  51 0014 1A78     		ldrb	r2, [r3]
+  52 0016 0A43     		orrs	r2, r1
+  53 0018 1A70     		strb	r2, [r3]
+ 127:Generated_Source\PSoC4/Display_SPI.c ****     CyExitCriticalSection(enableInterrupts);
+  54              		.loc 1 127 0
+  55 001a 054A     		ldr	r2, .L2+8
+  56 001c 1378     		ldrb	r3, [r2]
+  57 001e 0B43     		orrs	r3, r1
+  58 0020 1370     		strb	r3, [r2]
+ 128:Generated_Source\PSoC4/Display_SPI.c **** 
+  59              		.loc 1 128 0
+  60 0022 FFF7FEFF 		bl	CyExitCriticalSection
+  61              	.LVL1:
+  62              		.loc 1 136 0
+  63 0026 10BD     		pop	{r4, pc}
+  64              	.L3:
+  65              		.align	2
+  66              	.L2:
+  67 0028 91000F40 		.word	1074725009
+  68 002c 92000F40 		.word	1074725010
+  69 0030 93000F40 		.word	1074725011
+  70              		.cfi_endproc
+  71              	.LFE1:
+  72              		.size	Display_SPI_Enable, .-Display_SPI_Enable
+  73              		.section	.text.Display_SPI_Stop,"ax",%progbits
+  74              		.align	1
+  75              		.global	Display_SPI_Stop
+  76              		.code	16
+  77              		.thumb_func
+  78              		.type	Display_SPI_Stop, %function
+  79              	Display_SPI_Stop:
+  80              	.LFB3:
+ 137:Generated_Source\PSoC4/Display_SPI.c **** 
+ 138:Generated_Source\PSoC4/Display_SPI.c **** 
+ 139:Generated_Source\PSoC4/Display_SPI.c **** /*******************************************************************************
+ 140:Generated_Source\PSoC4/Display_SPI.c **** * Function Name: Display_SPI_Start
+ 141:Generated_Source\PSoC4/Display_SPI.c **** ********************************************************************************
+ 142:Generated_Source\PSoC4/Display_SPI.c **** *
+ 143:Generated_Source\PSoC4/Display_SPI.c **** * Summary:
+ 144:Generated_Source\PSoC4/Display_SPI.c **** *  Initialize and Enable the SPI Master component.
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 5
+
+
+ 145:Generated_Source\PSoC4/Display_SPI.c **** *
+ 146:Generated_Source\PSoC4/Display_SPI.c **** * Parameters:
+ 147:Generated_Source\PSoC4/Display_SPI.c **** *  None.
+ 148:Generated_Source\PSoC4/Display_SPI.c **** *
+ 149:Generated_Source\PSoC4/Display_SPI.c **** * Return:
+ 150:Generated_Source\PSoC4/Display_SPI.c **** *  None.
+ 151:Generated_Source\PSoC4/Display_SPI.c **** *
+ 152:Generated_Source\PSoC4/Display_SPI.c **** * Global variables:
+ 153:Generated_Source\PSoC4/Display_SPI.c **** *  Display_SPI_initVar - used to check initial configuration, modified on
+ 154:Generated_Source\PSoC4/Display_SPI.c **** *  first function call.
+ 155:Generated_Source\PSoC4/Display_SPI.c **** *
+ 156:Generated_Source\PSoC4/Display_SPI.c **** * Theory:
+ 157:Generated_Source\PSoC4/Display_SPI.c **** *  Enable the clock input to enable operation.
+ 158:Generated_Source\PSoC4/Display_SPI.c **** *
+ 159:Generated_Source\PSoC4/Display_SPI.c **** * Reentrant:
+ 160:Generated_Source\PSoC4/Display_SPI.c **** *  No.
+ 161:Generated_Source\PSoC4/Display_SPI.c **** *
+ 162:Generated_Source\PSoC4/Display_SPI.c **** *******************************************************************************/
+ 163:Generated_Source\PSoC4/Display_SPI.c **** void Display_SPI_Start(void) 
+ 164:Generated_Source\PSoC4/Display_SPI.c **** {
+ 165:Generated_Source\PSoC4/Display_SPI.c ****     if(0u == Display_SPI_initVar)
+ 166:Generated_Source\PSoC4/Display_SPI.c ****     {
+ 167:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_Init();
+ 168:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_initVar = 1u;
+ 169:Generated_Source\PSoC4/Display_SPI.c ****     }
+ 170:Generated_Source\PSoC4/Display_SPI.c **** 
+ 171:Generated_Source\PSoC4/Display_SPI.c ****     Display_SPI_Enable();
+ 172:Generated_Source\PSoC4/Display_SPI.c **** }
+ 173:Generated_Source\PSoC4/Display_SPI.c **** 
+ 174:Generated_Source\PSoC4/Display_SPI.c **** 
+ 175:Generated_Source\PSoC4/Display_SPI.c **** /*******************************************************************************
+ 176:Generated_Source\PSoC4/Display_SPI.c **** * Function Name: Display_SPI_Stop
+ 177:Generated_Source\PSoC4/Display_SPI.c **** ********************************************************************************
+ 178:Generated_Source\PSoC4/Display_SPI.c **** *
+ 179:Generated_Source\PSoC4/Display_SPI.c **** * Summary:
+ 180:Generated_Source\PSoC4/Display_SPI.c **** *  Disable the SPI Master component.
+ 181:Generated_Source\PSoC4/Display_SPI.c **** *
+ 182:Generated_Source\PSoC4/Display_SPI.c **** * Parameters:
+ 183:Generated_Source\PSoC4/Display_SPI.c **** *  None.
+ 184:Generated_Source\PSoC4/Display_SPI.c **** *
+ 185:Generated_Source\PSoC4/Display_SPI.c **** * Return:
+ 186:Generated_Source\PSoC4/Display_SPI.c **** *  None.
+ 187:Generated_Source\PSoC4/Display_SPI.c **** *
+ 188:Generated_Source\PSoC4/Display_SPI.c **** * Theory:
+ 189:Generated_Source\PSoC4/Display_SPI.c **** *  Disable the clock input to enable operation.
+ 190:Generated_Source\PSoC4/Display_SPI.c **** *
+ 191:Generated_Source\PSoC4/Display_SPI.c **** *******************************************************************************/
+ 192:Generated_Source\PSoC4/Display_SPI.c **** void Display_SPI_Stop(void) 
+ 193:Generated_Source\PSoC4/Display_SPI.c **** {
+  81              		.loc 1 193 0
+  82              		.cfi_startproc
+  83              		@ args = 0, pretend = 0, frame = 0
+  84              		@ frame_needed = 0, uses_anonymous_args = 0
+  85 0000 10B5     		push	{r4, lr}
+  86              		.cfi_def_cfa_offset 8
+  87              		.cfi_offset 4, -8
+  88              		.cfi_offset 14, -4
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 6
+
+
+ 194:Generated_Source\PSoC4/Display_SPI.c ****     uint8 enableInterrupts;
+ 195:Generated_Source\PSoC4/Display_SPI.c **** 
+ 196:Generated_Source\PSoC4/Display_SPI.c ****     enableInterrupts = CyEnterCriticalSection();
+  89              		.loc 1 196 0
+  90 0002 FFF7FEFF 		bl	CyEnterCriticalSection
+  91              	.LVL2:
+ 197:Generated_Source\PSoC4/Display_SPI.c ****     Display_SPI_TX_STATUS_ACTL_REG &= ((uint8) ~Display_SPI_INT_ENABLE);
+  92              		.loc 1 197 0
+  93 0006 1021     		movs	r1, #16
+  94 0008 054A     		ldr	r2, .L5
+ 198:Generated_Source\PSoC4/Display_SPI.c ****     Display_SPI_RX_STATUS_ACTL_REG &= ((uint8) ~Display_SPI_INT_ENABLE);
+ 199:Generated_Source\PSoC4/Display_SPI.c ****     CyExitCriticalSection(enableInterrupts);
+ 200:Generated_Source\PSoC4/Display_SPI.c **** 
+ 201:Generated_Source\PSoC4/Display_SPI.c ****     #if(0u != Display_SPI_INTERNAL_CLOCK)
+ 202:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_IntClock_Disable();
+ 203:Generated_Source\PSoC4/Display_SPI.c ****     #endif /* (0u != Display_SPI_INTERNAL_CLOCK) */
+ 204:Generated_Source\PSoC4/Display_SPI.c **** 
+ 205:Generated_Source\PSoC4/Display_SPI.c ****     Display_SPI_DisableTxInt();
+ 206:Generated_Source\PSoC4/Display_SPI.c ****     Display_SPI_DisableRxInt();
+ 207:Generated_Source\PSoC4/Display_SPI.c **** }
+  95              		.loc 1 207 0
+  96              		@ sp needed
+ 197:Generated_Source\PSoC4/Display_SPI.c ****     Display_SPI_TX_STATUS_ACTL_REG &= ((uint8) ~Display_SPI_INT_ENABLE);
+  97              		.loc 1 197 0
+  98 000a 1378     		ldrb	r3, [r2]
+  99 000c 8B43     		bics	r3, r1
+ 100 000e 1370     		strb	r3, [r2]
+ 198:Generated_Source\PSoC4/Display_SPI.c ****     Display_SPI_RX_STATUS_ACTL_REG &= ((uint8) ~Display_SPI_INT_ENABLE);
+ 101              		.loc 1 198 0
+ 102 0010 044A     		ldr	r2, .L5+4
+ 103 0012 1378     		ldrb	r3, [r2]
+ 104 0014 8B43     		bics	r3, r1
+ 105 0016 1370     		strb	r3, [r2]
+ 199:Generated_Source\PSoC4/Display_SPI.c **** 
+ 106              		.loc 1 199 0
+ 107 0018 FFF7FEFF 		bl	CyExitCriticalSection
+ 108              	.LVL3:
+ 109              		.loc 1 207 0
+ 110 001c 10BD     		pop	{r4, pc}
+ 111              	.L6:
+ 112 001e C046     		.align	2
+ 113              	.L5:
+ 114 0020 92000F40 		.word	1074725010
+ 115 0024 93000F40 		.word	1074725011
+ 116              		.cfi_endproc
+ 117              	.LFE3:
+ 118              		.size	Display_SPI_Stop, .-Display_SPI_Stop
+ 119              		.section	.text.Display_SPI_EnableTxInt,"ax",%progbits
+ 120              		.align	1
+ 121              		.global	Display_SPI_EnableTxInt
+ 122              		.code	16
+ 123              		.thumb_func
+ 124              		.type	Display_SPI_EnableTxInt, %function
+ 125              	Display_SPI_EnableTxInt:
+ 126              	.LFB33:
+ 127              		.cfi_startproc
+ 128              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 7
+
+
+ 129              		@ frame_needed = 0, uses_anonymous_args = 0
+ 130              		@ link register save eliminated.
+ 131              		@ sp needed
+ 132 0000 7047     		bx	lr
+ 133              		.cfi_endproc
+ 134              	.LFE33:
+ 135              		.size	Display_SPI_EnableTxInt, .-Display_SPI_EnableTxInt
+ 136              		.section	.text.Display_SPI_EnableRxInt,"ax",%progbits
+ 137              		.align	1
+ 138              		.global	Display_SPI_EnableRxInt
+ 139              		.code	16
+ 140              		.thumb_func
+ 141              		.type	Display_SPI_EnableRxInt, %function
+ 142              	Display_SPI_EnableRxInt:
+ 143              	.LFB31:
+ 144              		.cfi_startproc
+ 145              		@ args = 0, pretend = 0, frame = 0
+ 146              		@ frame_needed = 0, uses_anonymous_args = 0
+ 147              		@ link register save eliminated.
+ 148              		@ sp needed
+ 149 0000 7047     		bx	lr
+ 150              		.cfi_endproc
+ 151              	.LFE31:
+ 152              		.size	Display_SPI_EnableRxInt, .-Display_SPI_EnableRxInt
+ 153              		.section	.text.Display_SPI_DisableTxInt,"ax",%progbits
+ 154              		.align	1
+ 155              		.global	Display_SPI_DisableTxInt
+ 156              		.code	16
+ 157              		.thumb_func
+ 158              		.type	Display_SPI_DisableTxInt, %function
+ 159              	Display_SPI_DisableTxInt:
+ 160              	.LFB29:
+ 161              		.cfi_startproc
+ 162              		@ args = 0, pretend = 0, frame = 0
+ 163              		@ frame_needed = 0, uses_anonymous_args = 0
+ 164              		@ link register save eliminated.
+ 165              		@ sp needed
+ 166 0000 7047     		bx	lr
+ 167              		.cfi_endproc
+ 168              	.LFE29:
+ 169              		.size	Display_SPI_DisableTxInt, .-Display_SPI_DisableTxInt
+ 170              		.section	.text.Display_SPI_DisableRxInt,"ax",%progbits
+ 171              		.align	1
+ 172              		.global	Display_SPI_DisableRxInt
+ 173              		.code	16
+ 174              		.thumb_func
+ 175              		.type	Display_SPI_DisableRxInt, %function
+ 176              	Display_SPI_DisableRxInt:
+ 177              	.LFB27:
+ 178              		.cfi_startproc
+ 179              		@ args = 0, pretend = 0, frame = 0
+ 180              		@ frame_needed = 0, uses_anonymous_args = 0
+ 181              		@ link register save eliminated.
+ 182              		@ sp needed
+ 183 0000 7047     		bx	lr
+ 184              		.cfi_endproc
+ 185              	.LFE27:
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 8
+
+
+ 186              		.size	Display_SPI_DisableRxInt, .-Display_SPI_DisableRxInt
+ 187              		.section	.text.Display_SPI_SetTxInterruptMode,"ax",%progbits
+ 188              		.align	1
+ 189              		.global	Display_SPI_SetTxInterruptMode
+ 190              		.code	16
+ 191              		.thumb_func
+ 192              		.type	Display_SPI_SetTxInterruptMode, %function
+ 193              	Display_SPI_SetTxInterruptMode:
+ 194              	.LFB8:
+ 208:Generated_Source\PSoC4/Display_SPI.c **** 
+ 209:Generated_Source\PSoC4/Display_SPI.c **** 
+ 210:Generated_Source\PSoC4/Display_SPI.c **** /*******************************************************************************
+ 211:Generated_Source\PSoC4/Display_SPI.c **** * Function Name: Display_SPI_EnableTxInt
+ 212:Generated_Source\PSoC4/Display_SPI.c **** ********************************************************************************
+ 213:Generated_Source\PSoC4/Display_SPI.c **** *
+ 214:Generated_Source\PSoC4/Display_SPI.c **** * Summary:
+ 215:Generated_Source\PSoC4/Display_SPI.c **** *  Enable internal Tx interrupt generation.
+ 216:Generated_Source\PSoC4/Display_SPI.c **** *
+ 217:Generated_Source\PSoC4/Display_SPI.c **** * Parameters:
+ 218:Generated_Source\PSoC4/Display_SPI.c **** *  None.
+ 219:Generated_Source\PSoC4/Display_SPI.c **** *
+ 220:Generated_Source\PSoC4/Display_SPI.c **** * Return:
+ 221:Generated_Source\PSoC4/Display_SPI.c **** *  None.
+ 222:Generated_Source\PSoC4/Display_SPI.c **** *
+ 223:Generated_Source\PSoC4/Display_SPI.c **** * Theory:
+ 224:Generated_Source\PSoC4/Display_SPI.c **** *  Enable the internal Tx interrupt output -or- the interrupt component itself.
+ 225:Generated_Source\PSoC4/Display_SPI.c **** *
+ 226:Generated_Source\PSoC4/Display_SPI.c **** *******************************************************************************/
+ 227:Generated_Source\PSoC4/Display_SPI.c **** void Display_SPI_EnableTxInt(void) 
+ 228:Generated_Source\PSoC4/Display_SPI.c **** {
+ 229:Generated_Source\PSoC4/Display_SPI.c ****     #if(0u != Display_SPI_INTERNAL_TX_INT_ENABLED)
+ 230:Generated_Source\PSoC4/Display_SPI.c ****         CyIntEnable(Display_SPI_TX_ISR_NUMBER);
+ 231:Generated_Source\PSoC4/Display_SPI.c ****     #endif /* (0u != Display_SPI_INTERNAL_TX_INT_ENABLED) */
+ 232:Generated_Source\PSoC4/Display_SPI.c **** }
+ 233:Generated_Source\PSoC4/Display_SPI.c **** 
+ 234:Generated_Source\PSoC4/Display_SPI.c **** 
+ 235:Generated_Source\PSoC4/Display_SPI.c **** /*******************************************************************************
+ 236:Generated_Source\PSoC4/Display_SPI.c **** * Function Name: Display_SPI_EnableRxInt
+ 237:Generated_Source\PSoC4/Display_SPI.c **** ********************************************************************************
+ 238:Generated_Source\PSoC4/Display_SPI.c **** *
+ 239:Generated_Source\PSoC4/Display_SPI.c **** * Summary:
+ 240:Generated_Source\PSoC4/Display_SPI.c **** *  Enable internal Rx interrupt generation.
+ 241:Generated_Source\PSoC4/Display_SPI.c **** *
+ 242:Generated_Source\PSoC4/Display_SPI.c **** * Parameters:
+ 243:Generated_Source\PSoC4/Display_SPI.c **** *  None.
+ 244:Generated_Source\PSoC4/Display_SPI.c **** *
+ 245:Generated_Source\PSoC4/Display_SPI.c **** * Return:
+ 246:Generated_Source\PSoC4/Display_SPI.c **** *  None.
+ 247:Generated_Source\PSoC4/Display_SPI.c **** *
+ 248:Generated_Source\PSoC4/Display_SPI.c **** * Theory:
+ 249:Generated_Source\PSoC4/Display_SPI.c **** *  Enable the internal Rx interrupt output -or- the interrupt component itself.
+ 250:Generated_Source\PSoC4/Display_SPI.c **** *
+ 251:Generated_Source\PSoC4/Display_SPI.c **** *******************************************************************************/
+ 252:Generated_Source\PSoC4/Display_SPI.c **** void Display_SPI_EnableRxInt(void) 
+ 253:Generated_Source\PSoC4/Display_SPI.c **** {
+ 254:Generated_Source\PSoC4/Display_SPI.c ****     #if(0u != Display_SPI_INTERNAL_RX_INT_ENABLED)
+ 255:Generated_Source\PSoC4/Display_SPI.c ****         CyIntEnable(Display_SPI_RX_ISR_NUMBER);
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 9
+
+
+ 256:Generated_Source\PSoC4/Display_SPI.c ****     #endif /* (0u != Display_SPI_INTERNAL_RX_INT_ENABLED) */
+ 257:Generated_Source\PSoC4/Display_SPI.c **** }
+ 258:Generated_Source\PSoC4/Display_SPI.c **** 
+ 259:Generated_Source\PSoC4/Display_SPI.c **** 
+ 260:Generated_Source\PSoC4/Display_SPI.c **** /*******************************************************************************
+ 261:Generated_Source\PSoC4/Display_SPI.c **** * Function Name: Display_SPI_DisableTxInt
+ 262:Generated_Source\PSoC4/Display_SPI.c **** ********************************************************************************
+ 263:Generated_Source\PSoC4/Display_SPI.c **** *
+ 264:Generated_Source\PSoC4/Display_SPI.c **** * Summary:
+ 265:Generated_Source\PSoC4/Display_SPI.c **** *  Disable internal Tx interrupt generation.
+ 266:Generated_Source\PSoC4/Display_SPI.c **** *
+ 267:Generated_Source\PSoC4/Display_SPI.c **** * Parameters:
+ 268:Generated_Source\PSoC4/Display_SPI.c **** *  None.
+ 269:Generated_Source\PSoC4/Display_SPI.c **** *
+ 270:Generated_Source\PSoC4/Display_SPI.c **** * Return:
+ 271:Generated_Source\PSoC4/Display_SPI.c **** *  None.
+ 272:Generated_Source\PSoC4/Display_SPI.c **** *
+ 273:Generated_Source\PSoC4/Display_SPI.c **** * Theory:
+ 274:Generated_Source\PSoC4/Display_SPI.c **** *  Disable the internal Tx interrupt output -or- the interrupt component itself.
+ 275:Generated_Source\PSoC4/Display_SPI.c **** *
+ 276:Generated_Source\PSoC4/Display_SPI.c **** *******************************************************************************/
+ 277:Generated_Source\PSoC4/Display_SPI.c **** void Display_SPI_DisableTxInt(void) 
+ 278:Generated_Source\PSoC4/Display_SPI.c **** {
+ 279:Generated_Source\PSoC4/Display_SPI.c ****     #if(0u != Display_SPI_INTERNAL_TX_INT_ENABLED)
+ 280:Generated_Source\PSoC4/Display_SPI.c ****         CyIntDisable(Display_SPI_TX_ISR_NUMBER);
+ 281:Generated_Source\PSoC4/Display_SPI.c ****     #endif /* (0u != Display_SPI_INTERNAL_TX_INT_ENABLED) */
+ 282:Generated_Source\PSoC4/Display_SPI.c **** }
+ 283:Generated_Source\PSoC4/Display_SPI.c **** 
+ 284:Generated_Source\PSoC4/Display_SPI.c **** 
+ 285:Generated_Source\PSoC4/Display_SPI.c **** /*******************************************************************************
+ 286:Generated_Source\PSoC4/Display_SPI.c **** * Function Name: Display_SPI_DisableRxInt
+ 287:Generated_Source\PSoC4/Display_SPI.c **** ********************************************************************************
+ 288:Generated_Source\PSoC4/Display_SPI.c **** *
+ 289:Generated_Source\PSoC4/Display_SPI.c **** * Summary:
+ 290:Generated_Source\PSoC4/Display_SPI.c **** *  Disable internal Rx interrupt generation.
+ 291:Generated_Source\PSoC4/Display_SPI.c **** *
+ 292:Generated_Source\PSoC4/Display_SPI.c **** * Parameters:
+ 293:Generated_Source\PSoC4/Display_SPI.c **** *  None.
+ 294:Generated_Source\PSoC4/Display_SPI.c **** *
+ 295:Generated_Source\PSoC4/Display_SPI.c **** * Return:
+ 296:Generated_Source\PSoC4/Display_SPI.c **** *  None.
+ 297:Generated_Source\PSoC4/Display_SPI.c **** *
+ 298:Generated_Source\PSoC4/Display_SPI.c **** * Theory:
+ 299:Generated_Source\PSoC4/Display_SPI.c **** *  Disable the internal Rx interrupt output -or- the interrupt component itself.
+ 300:Generated_Source\PSoC4/Display_SPI.c **** *
+ 301:Generated_Source\PSoC4/Display_SPI.c **** *******************************************************************************/
+ 302:Generated_Source\PSoC4/Display_SPI.c **** void Display_SPI_DisableRxInt(void) 
+ 303:Generated_Source\PSoC4/Display_SPI.c **** {
+ 304:Generated_Source\PSoC4/Display_SPI.c ****     #if(0u != Display_SPI_INTERNAL_RX_INT_ENABLED)
+ 305:Generated_Source\PSoC4/Display_SPI.c ****         CyIntDisable(Display_SPI_RX_ISR_NUMBER);
+ 306:Generated_Source\PSoC4/Display_SPI.c ****     #endif /* (0u != Display_SPI_INTERNAL_RX_INT_ENABLED) */
+ 307:Generated_Source\PSoC4/Display_SPI.c **** }
+ 308:Generated_Source\PSoC4/Display_SPI.c **** 
+ 309:Generated_Source\PSoC4/Display_SPI.c **** 
+ 310:Generated_Source\PSoC4/Display_SPI.c **** /*******************************************************************************
+ 311:Generated_Source\PSoC4/Display_SPI.c **** * Function Name: Display_SPI_SetTxInterruptMode
+ 312:Generated_Source\PSoC4/Display_SPI.c **** ********************************************************************************
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 10
+
+
+ 313:Generated_Source\PSoC4/Display_SPI.c **** *
+ 314:Generated_Source\PSoC4/Display_SPI.c **** * Summary:
+ 315:Generated_Source\PSoC4/Display_SPI.c **** *  Configure which status bits trigger an interrupt event.
+ 316:Generated_Source\PSoC4/Display_SPI.c **** *
+ 317:Generated_Source\PSoC4/Display_SPI.c **** * Parameters:
+ 318:Generated_Source\PSoC4/Display_SPI.c **** *  intSrc: An or'd combination of the desired status bit masks (defined in the
+ 319:Generated_Source\PSoC4/Display_SPI.c **** *  header file).
+ 320:Generated_Source\PSoC4/Display_SPI.c **** *
+ 321:Generated_Source\PSoC4/Display_SPI.c **** * Return:
+ 322:Generated_Source\PSoC4/Display_SPI.c **** *  None.
+ 323:Generated_Source\PSoC4/Display_SPI.c **** *
+ 324:Generated_Source\PSoC4/Display_SPI.c **** * Theory:
+ 325:Generated_Source\PSoC4/Display_SPI.c **** *  Enables the output of specific status bits to the interrupt controller.
+ 326:Generated_Source\PSoC4/Display_SPI.c **** *
+ 327:Generated_Source\PSoC4/Display_SPI.c **** *******************************************************************************/
+ 328:Generated_Source\PSoC4/Display_SPI.c **** void Display_SPI_SetTxInterruptMode(uint8 intSrc) 
+ 329:Generated_Source\PSoC4/Display_SPI.c **** {
+ 195              		.loc 1 329 0
+ 196              		.cfi_startproc
+ 197              		@ args = 0, pretend = 0, frame = 0
+ 198              		@ frame_needed = 0, uses_anonymous_args = 0
+ 199              		@ link register save eliminated.
+ 200              	.LVL4:
+ 330:Generated_Source\PSoC4/Display_SPI.c ****     Display_SPI_TX_STATUS_MASK_REG = intSrc;
+ 201              		.loc 1 330 0
+ 202 0000 014B     		ldr	r3, .L12
+ 331:Generated_Source\PSoC4/Display_SPI.c **** }
+ 203              		.loc 1 331 0
+ 204              		@ sp needed
+ 330:Generated_Source\PSoC4/Display_SPI.c ****     Display_SPI_TX_STATUS_MASK_REG = intSrc;
+ 205              		.loc 1 330 0
+ 206 0002 1870     		strb	r0, [r3]
+ 207              		.loc 1 331 0
+ 208 0004 7047     		bx	lr
+ 209              	.L13:
+ 210 0006 C046     		.align	2
+ 211              	.L12:
+ 212 0008 82000F40 		.word	1074724994
+ 213              		.cfi_endproc
+ 214              	.LFE8:
+ 215              		.size	Display_SPI_SetTxInterruptMode, .-Display_SPI_SetTxInterruptMode
+ 216              		.section	.text.Display_SPI_SetRxInterruptMode,"ax",%progbits
+ 217              		.align	1
+ 218              		.global	Display_SPI_SetRxInterruptMode
+ 219              		.code	16
+ 220              		.thumb_func
+ 221              		.type	Display_SPI_SetRxInterruptMode, %function
+ 222              	Display_SPI_SetRxInterruptMode:
+ 223              	.LFB9:
+ 332:Generated_Source\PSoC4/Display_SPI.c **** 
+ 333:Generated_Source\PSoC4/Display_SPI.c **** 
+ 334:Generated_Source\PSoC4/Display_SPI.c **** /*******************************************************************************
+ 335:Generated_Source\PSoC4/Display_SPI.c **** * Function Name: Display_SPI_SetRxInterruptMode
+ 336:Generated_Source\PSoC4/Display_SPI.c **** ********************************************************************************
+ 337:Generated_Source\PSoC4/Display_SPI.c **** *
+ 338:Generated_Source\PSoC4/Display_SPI.c **** * Summary:
+ 339:Generated_Source\PSoC4/Display_SPI.c **** *  Configure which status bits trigger an interrupt event.
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 11
+
+
+ 340:Generated_Source\PSoC4/Display_SPI.c **** *
+ 341:Generated_Source\PSoC4/Display_SPI.c **** * Parameters:
+ 342:Generated_Source\PSoC4/Display_SPI.c **** *  intSrc: An or'd combination of the desired status bit masks (defined in the
+ 343:Generated_Source\PSoC4/Display_SPI.c **** *  header file).
+ 344:Generated_Source\PSoC4/Display_SPI.c **** *
+ 345:Generated_Source\PSoC4/Display_SPI.c **** * Return:
+ 346:Generated_Source\PSoC4/Display_SPI.c **** *  None.
+ 347:Generated_Source\PSoC4/Display_SPI.c **** *
+ 348:Generated_Source\PSoC4/Display_SPI.c **** * Theory:
+ 349:Generated_Source\PSoC4/Display_SPI.c **** *  Enables the output of specific status bits to the interrupt controller.
+ 350:Generated_Source\PSoC4/Display_SPI.c **** *
+ 351:Generated_Source\PSoC4/Display_SPI.c **** *******************************************************************************/
+ 352:Generated_Source\PSoC4/Display_SPI.c **** void Display_SPI_SetRxInterruptMode(uint8 intSrc) 
+ 353:Generated_Source\PSoC4/Display_SPI.c **** {
+ 224              		.loc 1 353 0
+ 225              		.cfi_startproc
+ 226              		@ args = 0, pretend = 0, frame = 0
+ 227              		@ frame_needed = 0, uses_anonymous_args = 0
+ 228              		@ link register save eliminated.
+ 229              	.LVL5:
+ 354:Generated_Source\PSoC4/Display_SPI.c ****     Display_SPI_RX_STATUS_MASK_REG  = intSrc;
+ 230              		.loc 1 354 0
+ 231 0000 014B     		ldr	r3, .L15
+ 355:Generated_Source\PSoC4/Display_SPI.c **** }
+ 232              		.loc 1 355 0
+ 233              		@ sp needed
+ 354:Generated_Source\PSoC4/Display_SPI.c ****     Display_SPI_RX_STATUS_MASK_REG  = intSrc;
+ 234              		.loc 1 354 0
+ 235 0002 1870     		strb	r0, [r3]
+ 236              		.loc 1 355 0
+ 237 0004 7047     		bx	lr
+ 238              	.L16:
+ 239 0006 C046     		.align	2
+ 240              	.L15:
+ 241 0008 83000F40 		.word	1074724995
+ 242              		.cfi_endproc
+ 243              	.LFE9:
+ 244              		.size	Display_SPI_SetRxInterruptMode, .-Display_SPI_SetRxInterruptMode
+ 245              		.section	.text.Display_SPI_ReadTxStatus,"ax",%progbits
+ 246              		.align	1
+ 247              		.global	Display_SPI_ReadTxStatus
+ 248              		.code	16
+ 249              		.thumb_func
+ 250              		.type	Display_SPI_ReadTxStatus, %function
+ 251              	Display_SPI_ReadTxStatus:
+ 252              	.LFB10:
+ 356:Generated_Source\PSoC4/Display_SPI.c **** 
+ 357:Generated_Source\PSoC4/Display_SPI.c **** 
+ 358:Generated_Source\PSoC4/Display_SPI.c **** /*******************************************************************************
+ 359:Generated_Source\PSoC4/Display_SPI.c **** * Function Name: Display_SPI_ReadTxStatus
+ 360:Generated_Source\PSoC4/Display_SPI.c **** ********************************************************************************
+ 361:Generated_Source\PSoC4/Display_SPI.c **** *
+ 362:Generated_Source\PSoC4/Display_SPI.c **** * Summary:
+ 363:Generated_Source\PSoC4/Display_SPI.c **** *  Read the Tx status register for the component.
+ 364:Generated_Source\PSoC4/Display_SPI.c **** *
+ 365:Generated_Source\PSoC4/Display_SPI.c **** * Parameters:
+ 366:Generated_Source\PSoC4/Display_SPI.c **** *  None.
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 12
+
+
+ 367:Generated_Source\PSoC4/Display_SPI.c **** *
+ 368:Generated_Source\PSoC4/Display_SPI.c **** * Return:
+ 369:Generated_Source\PSoC4/Display_SPI.c **** *  Contents of the Tx status register.
+ 370:Generated_Source\PSoC4/Display_SPI.c **** *
+ 371:Generated_Source\PSoC4/Display_SPI.c **** * Global variables:
+ 372:Generated_Source\PSoC4/Display_SPI.c **** *  Display_SPI_swStatusTx - used to store in software status register,
+ 373:Generated_Source\PSoC4/Display_SPI.c **** *  modified every function call - resets to zero.
+ 374:Generated_Source\PSoC4/Display_SPI.c **** *
+ 375:Generated_Source\PSoC4/Display_SPI.c **** * Theory:
+ 376:Generated_Source\PSoC4/Display_SPI.c **** *  Allows the user and the API to read the Tx status register for error
+ 377:Generated_Source\PSoC4/Display_SPI.c **** *  detection and flow control.
+ 378:Generated_Source\PSoC4/Display_SPI.c **** *
+ 379:Generated_Source\PSoC4/Display_SPI.c **** * Side Effects:
+ 380:Generated_Source\PSoC4/Display_SPI.c **** *  Clear Tx status register of the component.
+ 381:Generated_Source\PSoC4/Display_SPI.c **** *
+ 382:Generated_Source\PSoC4/Display_SPI.c **** * Reentrant:
+ 383:Generated_Source\PSoC4/Display_SPI.c **** *  No.
+ 384:Generated_Source\PSoC4/Display_SPI.c **** *
+ 385:Generated_Source\PSoC4/Display_SPI.c **** *******************************************************************************/
+ 386:Generated_Source\PSoC4/Display_SPI.c **** uint8 Display_SPI_ReadTxStatus(void) 
+ 387:Generated_Source\PSoC4/Display_SPI.c **** {
+ 253              		.loc 1 387 0
+ 254              		.cfi_startproc
+ 255              		@ args = 0, pretend = 0, frame = 0
+ 256              		@ frame_needed = 0, uses_anonymous_args = 0
+ 257              		@ link register save eliminated.
+ 388:Generated_Source\PSoC4/Display_SPI.c ****     uint8 tmpStatus;
+ 389:Generated_Source\PSoC4/Display_SPI.c **** 
+ 390:Generated_Source\PSoC4/Display_SPI.c ****     #if(Display_SPI_TX_SOFTWARE_BUF_ENABLED)
+ 391:Generated_Source\PSoC4/Display_SPI.c ****         /* Disable TX interrupt to protect global veriables */
+ 392:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_DisableTxInt();
+ 393:Generated_Source\PSoC4/Display_SPI.c **** 
+ 394:Generated_Source\PSoC4/Display_SPI.c ****         tmpStatus = Display_SPI_GET_STATUS_TX(Display_SPI_swStatusTx);
+ 395:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_swStatusTx = 0u;
+ 396:Generated_Source\PSoC4/Display_SPI.c **** 
+ 397:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_EnableTxInt();
+ 398:Generated_Source\PSoC4/Display_SPI.c **** 
+ 399:Generated_Source\PSoC4/Display_SPI.c ****     #else
+ 400:Generated_Source\PSoC4/Display_SPI.c **** 
+ 401:Generated_Source\PSoC4/Display_SPI.c ****         tmpStatus = Display_SPI_TX_STATUS_REG;
+ 258              		.loc 1 401 0
+ 259 0000 014B     		ldr	r3, .L18
+ 402:Generated_Source\PSoC4/Display_SPI.c **** 
+ 403:Generated_Source\PSoC4/Display_SPI.c ****     #endif /* (Display_SPI_TX_SOFTWARE_BUF_ENABLED) */
+ 404:Generated_Source\PSoC4/Display_SPI.c **** 
+ 405:Generated_Source\PSoC4/Display_SPI.c ****     return(tmpStatus);
+ 406:Generated_Source\PSoC4/Display_SPI.c **** }
+ 260              		.loc 1 406 0
+ 261              		@ sp needed
+ 401:Generated_Source\PSoC4/Display_SPI.c **** 
+ 262              		.loc 1 401 0
+ 263 0002 1878     		ldrb	r0, [r3]
+ 264 0004 C0B2     		uxtb	r0, r0
+ 265              	.LVL6:
+ 266              		.loc 1 406 0
+ 267 0006 7047     		bx	lr
+ 268              	.L19:
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 13
+
+
+ 269              		.align	2
+ 270              	.L18:
+ 271 0008 62000F40 		.word	1074724962
+ 272              		.cfi_endproc
+ 273              	.LFE10:
+ 274              		.size	Display_SPI_ReadTxStatus, .-Display_SPI_ReadTxStatus
+ 275              		.section	.text.Display_SPI_ReadRxStatus,"ax",%progbits
+ 276              		.align	1
+ 277              		.global	Display_SPI_ReadRxStatus
+ 278              		.code	16
+ 279              		.thumb_func
+ 280              		.type	Display_SPI_ReadRxStatus, %function
+ 281              	Display_SPI_ReadRxStatus:
+ 282              	.LFB11:
+ 407:Generated_Source\PSoC4/Display_SPI.c **** 
+ 408:Generated_Source\PSoC4/Display_SPI.c **** 
+ 409:Generated_Source\PSoC4/Display_SPI.c **** /*******************************************************************************
+ 410:Generated_Source\PSoC4/Display_SPI.c **** * Function Name: Display_SPI_ReadRxStatus
+ 411:Generated_Source\PSoC4/Display_SPI.c **** ********************************************************************************
+ 412:Generated_Source\PSoC4/Display_SPI.c **** *
+ 413:Generated_Source\PSoC4/Display_SPI.c **** * Summary:
+ 414:Generated_Source\PSoC4/Display_SPI.c **** *  Read the Rx status register for the component.
+ 415:Generated_Source\PSoC4/Display_SPI.c **** *
+ 416:Generated_Source\PSoC4/Display_SPI.c **** * Parameters:
+ 417:Generated_Source\PSoC4/Display_SPI.c **** *  None.
+ 418:Generated_Source\PSoC4/Display_SPI.c **** *
+ 419:Generated_Source\PSoC4/Display_SPI.c **** * Return:
+ 420:Generated_Source\PSoC4/Display_SPI.c **** *  Contents of the Rx status register.
+ 421:Generated_Source\PSoC4/Display_SPI.c **** *
+ 422:Generated_Source\PSoC4/Display_SPI.c **** * Global variables:
+ 423:Generated_Source\PSoC4/Display_SPI.c **** *  Display_SPI_swStatusRx - used to store in software Rx status register,
+ 424:Generated_Source\PSoC4/Display_SPI.c **** *  modified every function call - resets to zero.
+ 425:Generated_Source\PSoC4/Display_SPI.c **** *
+ 426:Generated_Source\PSoC4/Display_SPI.c **** * Theory:
+ 427:Generated_Source\PSoC4/Display_SPI.c **** *  Allows the user and the API to read the Rx status register for error
+ 428:Generated_Source\PSoC4/Display_SPI.c **** *  detection and flow control.
+ 429:Generated_Source\PSoC4/Display_SPI.c **** *
+ 430:Generated_Source\PSoC4/Display_SPI.c **** * Side Effects:
+ 431:Generated_Source\PSoC4/Display_SPI.c **** *  Clear Rx status register of the component.
+ 432:Generated_Source\PSoC4/Display_SPI.c **** *
+ 433:Generated_Source\PSoC4/Display_SPI.c **** * Reentrant:
+ 434:Generated_Source\PSoC4/Display_SPI.c **** *  No.
+ 435:Generated_Source\PSoC4/Display_SPI.c **** *
+ 436:Generated_Source\PSoC4/Display_SPI.c **** *******************************************************************************/
+ 437:Generated_Source\PSoC4/Display_SPI.c **** uint8 Display_SPI_ReadRxStatus(void) 
+ 438:Generated_Source\PSoC4/Display_SPI.c **** {
+ 283              		.loc 1 438 0
+ 284              		.cfi_startproc
+ 285              		@ args = 0, pretend = 0, frame = 0
+ 286              		@ frame_needed = 0, uses_anonymous_args = 0
+ 287              		@ link register save eliminated.
+ 439:Generated_Source\PSoC4/Display_SPI.c ****     uint8 tmpStatus;
+ 440:Generated_Source\PSoC4/Display_SPI.c **** 
+ 441:Generated_Source\PSoC4/Display_SPI.c ****     #if(Display_SPI_RX_SOFTWARE_BUF_ENABLED)
+ 442:Generated_Source\PSoC4/Display_SPI.c ****         /* Disable RX interrupt to protect global veriables */
+ 443:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_DisableRxInt();
+ 444:Generated_Source\PSoC4/Display_SPI.c **** 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 14
+
+
+ 445:Generated_Source\PSoC4/Display_SPI.c ****         tmpStatus = Display_SPI_GET_STATUS_RX(Display_SPI_swStatusRx);
+ 446:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_swStatusRx = 0u;
+ 447:Generated_Source\PSoC4/Display_SPI.c **** 
+ 448:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_EnableRxInt();
+ 449:Generated_Source\PSoC4/Display_SPI.c **** 
+ 450:Generated_Source\PSoC4/Display_SPI.c ****     #else
+ 451:Generated_Source\PSoC4/Display_SPI.c **** 
+ 452:Generated_Source\PSoC4/Display_SPI.c ****         tmpStatus = Display_SPI_RX_STATUS_REG;
+ 288              		.loc 1 452 0
+ 289 0000 014B     		ldr	r3, .L21
+ 453:Generated_Source\PSoC4/Display_SPI.c **** 
+ 454:Generated_Source\PSoC4/Display_SPI.c ****     #endif /* (Display_SPI_RX_SOFTWARE_BUF_ENABLED) */
+ 455:Generated_Source\PSoC4/Display_SPI.c **** 
+ 456:Generated_Source\PSoC4/Display_SPI.c ****     return(tmpStatus);
+ 457:Generated_Source\PSoC4/Display_SPI.c **** }
+ 290              		.loc 1 457 0
+ 291              		@ sp needed
+ 452:Generated_Source\PSoC4/Display_SPI.c **** 
+ 292              		.loc 1 452 0
+ 293 0002 1878     		ldrb	r0, [r3]
+ 294 0004 C0B2     		uxtb	r0, r0
+ 295              	.LVL7:
+ 296              		.loc 1 457 0
+ 297 0006 7047     		bx	lr
+ 298              	.L22:
+ 299              		.align	2
+ 300              	.L21:
+ 301 0008 63000F40 		.word	1074724963
+ 302              		.cfi_endproc
+ 303              	.LFE11:
+ 304              		.size	Display_SPI_ReadRxStatus, .-Display_SPI_ReadRxStatus
+ 305              		.section	.text.Display_SPI_WriteTxData,"ax",%progbits
+ 306              		.align	1
+ 307              		.global	Display_SPI_WriteTxData
+ 308              		.code	16
+ 309              		.thumb_func
+ 310              		.type	Display_SPI_WriteTxData, %function
+ 311              	Display_SPI_WriteTxData:
+ 312              	.LFB12:
+ 458:Generated_Source\PSoC4/Display_SPI.c **** 
+ 459:Generated_Source\PSoC4/Display_SPI.c **** 
+ 460:Generated_Source\PSoC4/Display_SPI.c **** /*******************************************************************************
+ 461:Generated_Source\PSoC4/Display_SPI.c **** * Function Name: Display_SPI_WriteTxData
+ 462:Generated_Source\PSoC4/Display_SPI.c **** ********************************************************************************
+ 463:Generated_Source\PSoC4/Display_SPI.c **** *
+ 464:Generated_Source\PSoC4/Display_SPI.c **** * Summary:
+ 465:Generated_Source\PSoC4/Display_SPI.c **** *  Write a byte of data to be sent across the SPI.
+ 466:Generated_Source\PSoC4/Display_SPI.c **** *
+ 467:Generated_Source\PSoC4/Display_SPI.c **** * Parameters:
+ 468:Generated_Source\PSoC4/Display_SPI.c **** *  txDataByte: The data value to send across the SPI.
+ 469:Generated_Source\PSoC4/Display_SPI.c **** *
+ 470:Generated_Source\PSoC4/Display_SPI.c **** * Return:
+ 471:Generated_Source\PSoC4/Display_SPI.c **** *  None.
+ 472:Generated_Source\PSoC4/Display_SPI.c **** *
+ 473:Generated_Source\PSoC4/Display_SPI.c **** * Global variables:
+ 474:Generated_Source\PSoC4/Display_SPI.c **** *  Display_SPI_txBufferWrite - used for the account of the bytes which
+ 475:Generated_Source\PSoC4/Display_SPI.c **** *  have been written down in the TX software buffer, modified every function
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 15
+
+
+ 476:Generated_Source\PSoC4/Display_SPI.c **** *  call if TX Software Buffer is used.
+ 477:Generated_Source\PSoC4/Display_SPI.c **** *  Display_SPI_txBufferRead - used for the account of the bytes which
+ 478:Generated_Source\PSoC4/Display_SPI.c **** *  have been read from the TX software buffer.
+ 479:Generated_Source\PSoC4/Display_SPI.c **** *  Display_SPI_txBuffer[Display_SPI_TX_BUFFER_SIZE] - used to store
+ 480:Generated_Source\PSoC4/Display_SPI.c **** *  data to sending, modified every function call if TX Software Buffer is used.
+ 481:Generated_Source\PSoC4/Display_SPI.c **** *
+ 482:Generated_Source\PSoC4/Display_SPI.c **** * Theory:
+ 483:Generated_Source\PSoC4/Display_SPI.c **** *  Allows the user to transmit any byte of data in a single transfer.
+ 484:Generated_Source\PSoC4/Display_SPI.c **** *
+ 485:Generated_Source\PSoC4/Display_SPI.c **** * Side Effects:
+ 486:Generated_Source\PSoC4/Display_SPI.c **** *  If this function is called again before the previous byte is finished then
+ 487:Generated_Source\PSoC4/Display_SPI.c **** *  the next byte will be appended to the transfer with no time between
+ 488:Generated_Source\PSoC4/Display_SPI.c **** *  the byte transfers. Clear Tx status register of the component.
+ 489:Generated_Source\PSoC4/Display_SPI.c **** *
+ 490:Generated_Source\PSoC4/Display_SPI.c **** * Reentrant:
+ 491:Generated_Source\PSoC4/Display_SPI.c **** *  No.
+ 492:Generated_Source\PSoC4/Display_SPI.c **** *
+ 493:Generated_Source\PSoC4/Display_SPI.c **** *******************************************************************************/
+ 494:Generated_Source\PSoC4/Display_SPI.c **** void Display_SPI_WriteTxData(uint8 txData) 
+ 495:Generated_Source\PSoC4/Display_SPI.c **** {
+ 313              		.loc 1 495 0
+ 314              		.cfi_startproc
+ 315              		@ args = 0, pretend = 0, frame = 0
+ 316              		@ frame_needed = 0, uses_anonymous_args = 0
+ 317              		@ link register save eliminated.
+ 318              	.LVL8:
+ 496:Generated_Source\PSoC4/Display_SPI.c ****     #if(Display_SPI_TX_SOFTWARE_BUF_ENABLED)
+ 497:Generated_Source\PSoC4/Display_SPI.c **** 
+ 498:Generated_Source\PSoC4/Display_SPI.c ****         uint8 tempStatus;
+ 499:Generated_Source\PSoC4/Display_SPI.c ****         uint8 tmpTxBufferRead;
+ 500:Generated_Source\PSoC4/Display_SPI.c **** 
+ 501:Generated_Source\PSoC4/Display_SPI.c ****         /* Block if TX buffer is FULL: don't overwrite */
+ 502:Generated_Source\PSoC4/Display_SPI.c ****         do
+ 503:Generated_Source\PSoC4/Display_SPI.c ****         {
+ 504:Generated_Source\PSoC4/Display_SPI.c ****             tmpTxBufferRead = Display_SPI_txBufferRead;
+ 505:Generated_Source\PSoC4/Display_SPI.c ****             if(0u == tmpTxBufferRead)
+ 506:Generated_Source\PSoC4/Display_SPI.c ****             {
+ 507:Generated_Source\PSoC4/Display_SPI.c ****                 tmpTxBufferRead = (Display_SPI_TX_BUFFER_SIZE - 1u);
+ 508:Generated_Source\PSoC4/Display_SPI.c ****             }
+ 509:Generated_Source\PSoC4/Display_SPI.c ****             else
+ 510:Generated_Source\PSoC4/Display_SPI.c ****             {
+ 511:Generated_Source\PSoC4/Display_SPI.c ****                 tmpTxBufferRead--;
+ 512:Generated_Source\PSoC4/Display_SPI.c ****             }
+ 513:Generated_Source\PSoC4/Display_SPI.c **** 
+ 514:Generated_Source\PSoC4/Display_SPI.c ****         }while(tmpTxBufferRead == Display_SPI_txBufferWrite);
+ 515:Generated_Source\PSoC4/Display_SPI.c **** 
+ 516:Generated_Source\PSoC4/Display_SPI.c ****         /* Disable TX interrupt to protect global veriables */
+ 517:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_DisableTxInt();
+ 518:Generated_Source\PSoC4/Display_SPI.c **** 
+ 519:Generated_Source\PSoC4/Display_SPI.c ****         tempStatus = Display_SPI_GET_STATUS_TX(Display_SPI_swStatusTx);
+ 520:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_swStatusTx = tempStatus;
+ 521:Generated_Source\PSoC4/Display_SPI.c **** 
+ 522:Generated_Source\PSoC4/Display_SPI.c **** 
+ 523:Generated_Source\PSoC4/Display_SPI.c ****         if((Display_SPI_txBufferRead == Display_SPI_txBufferWrite) &&
+ 524:Generated_Source\PSoC4/Display_SPI.c ****            (0u != (Display_SPI_swStatusTx & Display_SPI_STS_TX_FIFO_NOT_FULL)))
+ 525:Generated_Source\PSoC4/Display_SPI.c ****         {
+ 526:Generated_Source\PSoC4/Display_SPI.c ****             /* Put data element into the TX FIFO */
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 16
+
+
+ 527:Generated_Source\PSoC4/Display_SPI.c ****             CY_SET_REG8(Display_SPI_TXDATA_PTR, txData);
+ 528:Generated_Source\PSoC4/Display_SPI.c ****         }
+ 529:Generated_Source\PSoC4/Display_SPI.c ****         else
+ 530:Generated_Source\PSoC4/Display_SPI.c ****         {
+ 531:Generated_Source\PSoC4/Display_SPI.c ****             /* Add to the TX software buffer */
+ 532:Generated_Source\PSoC4/Display_SPI.c ****             Display_SPI_txBufferWrite++;
+ 533:Generated_Source\PSoC4/Display_SPI.c ****             if(Display_SPI_txBufferWrite >= Display_SPI_TX_BUFFER_SIZE)
+ 534:Generated_Source\PSoC4/Display_SPI.c ****             {
+ 535:Generated_Source\PSoC4/Display_SPI.c ****                 Display_SPI_txBufferWrite = 0u;
+ 536:Generated_Source\PSoC4/Display_SPI.c ****             }
+ 537:Generated_Source\PSoC4/Display_SPI.c **** 
+ 538:Generated_Source\PSoC4/Display_SPI.c ****             if(Display_SPI_txBufferWrite == Display_SPI_txBufferRead)
+ 539:Generated_Source\PSoC4/Display_SPI.c ****             {
+ 540:Generated_Source\PSoC4/Display_SPI.c ****                 Display_SPI_txBufferRead++;
+ 541:Generated_Source\PSoC4/Display_SPI.c ****                 if(Display_SPI_txBufferRead >= Display_SPI_TX_BUFFER_SIZE)
+ 542:Generated_Source\PSoC4/Display_SPI.c ****                 {
+ 543:Generated_Source\PSoC4/Display_SPI.c ****                     Display_SPI_txBufferRead = 0u;
+ 544:Generated_Source\PSoC4/Display_SPI.c ****                 }
+ 545:Generated_Source\PSoC4/Display_SPI.c ****                 Display_SPI_txBufferFull = 1u;
+ 546:Generated_Source\PSoC4/Display_SPI.c ****             }
+ 547:Generated_Source\PSoC4/Display_SPI.c **** 
+ 548:Generated_Source\PSoC4/Display_SPI.c ****             Display_SPI_txBuffer[Display_SPI_txBufferWrite] = txData;
+ 549:Generated_Source\PSoC4/Display_SPI.c **** 
+ 550:Generated_Source\PSoC4/Display_SPI.c ****             Display_SPI_TX_STATUS_MASK_REG |= Display_SPI_STS_TX_FIFO_NOT_FULL;
+ 551:Generated_Source\PSoC4/Display_SPI.c ****         }
+ 552:Generated_Source\PSoC4/Display_SPI.c **** 
+ 553:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_EnableTxInt();
+ 554:Generated_Source\PSoC4/Display_SPI.c **** 
+ 555:Generated_Source\PSoC4/Display_SPI.c ****     #else
+ 556:Generated_Source\PSoC4/Display_SPI.c ****         /* Wait until TX FIFO has a place */
+ 557:Generated_Source\PSoC4/Display_SPI.c ****         while(0u == (Display_SPI_TX_STATUS_REG & Display_SPI_STS_TX_FIFO_NOT_FULL))
+ 319              		.loc 1 557 0
+ 320 0000 0423     		movs	r3, #4
+ 321 0002 0349     		ldr	r1, .L28
+ 322              	.L24:
+ 323              		.loc 1 557 0 is_stmt 0 discriminator 1
+ 324 0004 0A78     		ldrb	r2, [r1]
+ 325 0006 1A42     		tst	r2, r3
+ 326 0008 FCD0     		beq	.L24
+ 558:Generated_Source\PSoC4/Display_SPI.c ****         {
+ 559:Generated_Source\PSoC4/Display_SPI.c ****         }
+ 560:Generated_Source\PSoC4/Display_SPI.c **** 
+ 561:Generated_Source\PSoC4/Display_SPI.c ****         /* Put data element into the TX FIFO */
+ 562:Generated_Source\PSoC4/Display_SPI.c ****         CY_SET_REG8(Display_SPI_TXDATA_PTR, txData);
+ 327              		.loc 1 562 0 is_stmt 1
+ 328 000a 024B     		ldr	r3, .L28+4
+ 563:Generated_Source\PSoC4/Display_SPI.c **** 
+ 564:Generated_Source\PSoC4/Display_SPI.c ****     #endif /* (Display_SPI_TX_SOFTWARE_BUF_ENABLED) */
+ 565:Generated_Source\PSoC4/Display_SPI.c **** }
+ 329              		.loc 1 565 0
+ 330              		@ sp needed
+ 562:Generated_Source\PSoC4/Display_SPI.c **** 
+ 331              		.loc 1 562 0
+ 332 000c 1870     		strb	r0, [r3]
+ 333              		.loc 1 565 0
+ 334 000e 7047     		bx	lr
+ 335              	.L29:
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 17
+
+
+ 336              		.align	2
+ 337              	.L28:
+ 338 0010 62000F40 		.word	1074724962
+ 339 0014 41000F40 		.word	1074724929
+ 340              		.cfi_endproc
+ 341              	.LFE12:
+ 342              		.size	Display_SPI_WriteTxData, .-Display_SPI_WriteTxData
+ 343              		.section	.text.Display_SPI_ReadRxData,"ax",%progbits
+ 344              		.align	1
+ 345              		.global	Display_SPI_ReadRxData
+ 346              		.code	16
+ 347              		.thumb_func
+ 348              		.type	Display_SPI_ReadRxData, %function
+ 349              	Display_SPI_ReadRxData:
+ 350              	.LFB13:
+ 566:Generated_Source\PSoC4/Display_SPI.c **** 
+ 567:Generated_Source\PSoC4/Display_SPI.c **** 
+ 568:Generated_Source\PSoC4/Display_SPI.c **** /*******************************************************************************
+ 569:Generated_Source\PSoC4/Display_SPI.c **** * Function Name: Display_SPI_ReadRxData
+ 570:Generated_Source\PSoC4/Display_SPI.c **** ********************************************************************************
+ 571:Generated_Source\PSoC4/Display_SPI.c **** *
+ 572:Generated_Source\PSoC4/Display_SPI.c **** * Summary:
+ 573:Generated_Source\PSoC4/Display_SPI.c **** *  Read the next byte of data received across the SPI.
+ 574:Generated_Source\PSoC4/Display_SPI.c **** *
+ 575:Generated_Source\PSoC4/Display_SPI.c **** * Parameters:
+ 576:Generated_Source\PSoC4/Display_SPI.c **** *  None.
+ 577:Generated_Source\PSoC4/Display_SPI.c **** *
+ 578:Generated_Source\PSoC4/Display_SPI.c **** * Return:
+ 579:Generated_Source\PSoC4/Display_SPI.c **** *  The next byte of data read from the FIFO.
+ 580:Generated_Source\PSoC4/Display_SPI.c **** *
+ 581:Generated_Source\PSoC4/Display_SPI.c **** * Global variables:
+ 582:Generated_Source\PSoC4/Display_SPI.c **** *  Display_SPI_rxBufferWrite - used for the account of the bytes which
+ 583:Generated_Source\PSoC4/Display_SPI.c **** *  have been written down in the RX software buffer.
+ 584:Generated_Source\PSoC4/Display_SPI.c **** *  Display_SPI_rxBufferRead - used for the account of the bytes which
+ 585:Generated_Source\PSoC4/Display_SPI.c **** *  have been read from the RX software buffer, modified every function
+ 586:Generated_Source\PSoC4/Display_SPI.c **** *  call if RX Software Buffer is used.
+ 587:Generated_Source\PSoC4/Display_SPI.c **** *  Display_SPI_rxBuffer[Display_SPI_RX_BUFFER_SIZE] - used to store
+ 588:Generated_Source\PSoC4/Display_SPI.c **** *  received data.
+ 589:Generated_Source\PSoC4/Display_SPI.c **** *
+ 590:Generated_Source\PSoC4/Display_SPI.c **** * Theory:
+ 591:Generated_Source\PSoC4/Display_SPI.c **** *  Allows the user to read a byte of data received.
+ 592:Generated_Source\PSoC4/Display_SPI.c **** *
+ 593:Generated_Source\PSoC4/Display_SPI.c **** * Side Effects:
+ 594:Generated_Source\PSoC4/Display_SPI.c **** *  Will return invalid data if the FIFO is empty. The user should Call
+ 595:Generated_Source\PSoC4/Display_SPI.c **** *  GetRxBufferSize() and if it returns a non-zero value then it is safe to call
+ 596:Generated_Source\PSoC4/Display_SPI.c **** *  ReadByte() function.
+ 597:Generated_Source\PSoC4/Display_SPI.c **** *
+ 598:Generated_Source\PSoC4/Display_SPI.c **** * Reentrant:
+ 599:Generated_Source\PSoC4/Display_SPI.c **** *  No.
+ 600:Generated_Source\PSoC4/Display_SPI.c **** *
+ 601:Generated_Source\PSoC4/Display_SPI.c **** *******************************************************************************/
+ 602:Generated_Source\PSoC4/Display_SPI.c **** uint8 Display_SPI_ReadRxData(void) 
+ 603:Generated_Source\PSoC4/Display_SPI.c **** {
+ 351              		.loc 1 603 0
+ 352              		.cfi_startproc
+ 353              		@ args = 0, pretend = 0, frame = 0
+ 354              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 18
+
+
+ 355              		@ link register save eliminated.
+ 604:Generated_Source\PSoC4/Display_SPI.c ****     uint8 rxData;
+ 605:Generated_Source\PSoC4/Display_SPI.c **** 
+ 606:Generated_Source\PSoC4/Display_SPI.c ****     #if(Display_SPI_RX_SOFTWARE_BUF_ENABLED)
+ 607:Generated_Source\PSoC4/Display_SPI.c **** 
+ 608:Generated_Source\PSoC4/Display_SPI.c ****         /* Disable RX interrupt to protect global veriables */
+ 609:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_DisableRxInt();
+ 610:Generated_Source\PSoC4/Display_SPI.c **** 
+ 611:Generated_Source\PSoC4/Display_SPI.c ****         if(Display_SPI_rxBufferRead != Display_SPI_rxBufferWrite)
+ 612:Generated_Source\PSoC4/Display_SPI.c ****         {
+ 613:Generated_Source\PSoC4/Display_SPI.c ****             if(0u == Display_SPI_rxBufferFull)
+ 614:Generated_Source\PSoC4/Display_SPI.c ****             {
+ 615:Generated_Source\PSoC4/Display_SPI.c ****                 Display_SPI_rxBufferRead++;
+ 616:Generated_Source\PSoC4/Display_SPI.c ****                 if(Display_SPI_rxBufferRead >= Display_SPI_RX_BUFFER_SIZE)
+ 617:Generated_Source\PSoC4/Display_SPI.c ****                 {
+ 618:Generated_Source\PSoC4/Display_SPI.c ****                     Display_SPI_rxBufferRead = 0u;
+ 619:Generated_Source\PSoC4/Display_SPI.c ****                 }
+ 620:Generated_Source\PSoC4/Display_SPI.c ****             }
+ 621:Generated_Source\PSoC4/Display_SPI.c ****             else
+ 622:Generated_Source\PSoC4/Display_SPI.c ****             {
+ 623:Generated_Source\PSoC4/Display_SPI.c ****                 Display_SPI_rxBufferFull = 0u;
+ 624:Generated_Source\PSoC4/Display_SPI.c ****             }
+ 625:Generated_Source\PSoC4/Display_SPI.c ****         }
+ 626:Generated_Source\PSoC4/Display_SPI.c **** 
+ 627:Generated_Source\PSoC4/Display_SPI.c ****         rxData = Display_SPI_rxBuffer[Display_SPI_rxBufferRead];
+ 628:Generated_Source\PSoC4/Display_SPI.c **** 
+ 629:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_EnableRxInt();
+ 630:Generated_Source\PSoC4/Display_SPI.c **** 
+ 631:Generated_Source\PSoC4/Display_SPI.c ****     #else
+ 632:Generated_Source\PSoC4/Display_SPI.c **** 
+ 633:Generated_Source\PSoC4/Display_SPI.c ****         rxData = CY_GET_REG8(Display_SPI_RXDATA_PTR);
+ 356              		.loc 1 633 0
+ 357 0000 014B     		ldr	r3, .L31
+ 634:Generated_Source\PSoC4/Display_SPI.c **** 
+ 635:Generated_Source\PSoC4/Display_SPI.c ****     #endif /* (Display_SPI_RX_SOFTWARE_BUF_ENABLED) */
+ 636:Generated_Source\PSoC4/Display_SPI.c **** 
+ 637:Generated_Source\PSoC4/Display_SPI.c ****     return(rxData);
+ 638:Generated_Source\PSoC4/Display_SPI.c **** }
+ 358              		.loc 1 638 0
+ 359              		@ sp needed
+ 633:Generated_Source\PSoC4/Display_SPI.c **** 
+ 360              		.loc 1 633 0
+ 361 0002 1878     		ldrb	r0, [r3]
+ 362 0004 C0B2     		uxtb	r0, r0
+ 363              	.LVL9:
+ 364              		.loc 1 638 0
+ 365 0006 7047     		bx	lr
+ 366              	.L32:
+ 367              		.align	2
+ 368              	.L31:
+ 369 0008 51000F40 		.word	1074724945
+ 370              		.cfi_endproc
+ 371              	.LFE13:
+ 372              		.size	Display_SPI_ReadRxData, .-Display_SPI_ReadRxData
+ 373              		.section	.text.Display_SPI_GetRxBufferSize,"ax",%progbits
+ 374              		.align	1
+ 375              		.global	Display_SPI_GetRxBufferSize
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 19
+
+
+ 376              		.code	16
+ 377              		.thumb_func
+ 378              		.type	Display_SPI_GetRxBufferSize, %function
+ 379              	Display_SPI_GetRxBufferSize:
+ 380              	.LFB14:
+ 639:Generated_Source\PSoC4/Display_SPI.c **** 
+ 640:Generated_Source\PSoC4/Display_SPI.c **** 
+ 641:Generated_Source\PSoC4/Display_SPI.c **** /*******************************************************************************
+ 642:Generated_Source\PSoC4/Display_SPI.c **** * Function Name: Display_SPI_GetRxBufferSize
+ 643:Generated_Source\PSoC4/Display_SPI.c **** ********************************************************************************
+ 644:Generated_Source\PSoC4/Display_SPI.c **** *
+ 645:Generated_Source\PSoC4/Display_SPI.c **** * Summary:
+ 646:Generated_Source\PSoC4/Display_SPI.c **** *  Returns the number of bytes/words of data currently held in the RX buffer.
+ 647:Generated_Source\PSoC4/Display_SPI.c **** *  If RX Software Buffer not used then function return 0 if FIFO empty or 1 if
+ 648:Generated_Source\PSoC4/Display_SPI.c **** *  FIFO not empty. In another case function return size of RX Software Buffer.
+ 649:Generated_Source\PSoC4/Display_SPI.c **** *
+ 650:Generated_Source\PSoC4/Display_SPI.c **** * Parameters:
+ 651:Generated_Source\PSoC4/Display_SPI.c **** *  None.
+ 652:Generated_Source\PSoC4/Display_SPI.c **** *
+ 653:Generated_Source\PSoC4/Display_SPI.c **** * Return:
+ 654:Generated_Source\PSoC4/Display_SPI.c **** *  Integer count of the number of bytes/words in the RX buffer.
+ 655:Generated_Source\PSoC4/Display_SPI.c **** *
+ 656:Generated_Source\PSoC4/Display_SPI.c **** * Global variables:
+ 657:Generated_Source\PSoC4/Display_SPI.c **** *  Display_SPI_rxBufferWrite - used for the account of the bytes which
+ 658:Generated_Source\PSoC4/Display_SPI.c **** *  have been written down in the RX software buffer.
+ 659:Generated_Source\PSoC4/Display_SPI.c **** *  Display_SPI_rxBufferRead - used for the account of the bytes which
+ 660:Generated_Source\PSoC4/Display_SPI.c **** *  have been read from the RX software buffer.
+ 661:Generated_Source\PSoC4/Display_SPI.c **** *
+ 662:Generated_Source\PSoC4/Display_SPI.c **** * Side Effects:
+ 663:Generated_Source\PSoC4/Display_SPI.c **** *  Clear status register of the component.
+ 664:Generated_Source\PSoC4/Display_SPI.c **** *
+ 665:Generated_Source\PSoC4/Display_SPI.c **** *******************************************************************************/
+ 666:Generated_Source\PSoC4/Display_SPI.c **** uint8 Display_SPI_GetRxBufferSize(void) 
+ 667:Generated_Source\PSoC4/Display_SPI.c **** {
+ 381              		.loc 1 667 0
+ 382              		.cfi_startproc
+ 383              		@ args = 0, pretend = 0, frame = 0
+ 384              		@ frame_needed = 0, uses_anonymous_args = 0
+ 385              		@ link register save eliminated.
+ 668:Generated_Source\PSoC4/Display_SPI.c ****     uint8 size;
+ 669:Generated_Source\PSoC4/Display_SPI.c **** 
+ 670:Generated_Source\PSoC4/Display_SPI.c ****     #if(Display_SPI_RX_SOFTWARE_BUF_ENABLED)
+ 671:Generated_Source\PSoC4/Display_SPI.c **** 
+ 672:Generated_Source\PSoC4/Display_SPI.c ****         /* Disable RX interrupt to protect global veriables */
+ 673:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_DisableRxInt();
+ 674:Generated_Source\PSoC4/Display_SPI.c **** 
+ 675:Generated_Source\PSoC4/Display_SPI.c ****         if(Display_SPI_rxBufferRead == Display_SPI_rxBufferWrite)
+ 676:Generated_Source\PSoC4/Display_SPI.c ****         {
+ 677:Generated_Source\PSoC4/Display_SPI.c ****             size = 0u;
+ 678:Generated_Source\PSoC4/Display_SPI.c ****         }
+ 679:Generated_Source\PSoC4/Display_SPI.c ****         else if(Display_SPI_rxBufferRead < Display_SPI_rxBufferWrite)
+ 680:Generated_Source\PSoC4/Display_SPI.c ****         {
+ 681:Generated_Source\PSoC4/Display_SPI.c ****             size = (Display_SPI_rxBufferWrite - Display_SPI_rxBufferRead);
+ 682:Generated_Source\PSoC4/Display_SPI.c ****         }
+ 683:Generated_Source\PSoC4/Display_SPI.c ****         else
+ 684:Generated_Source\PSoC4/Display_SPI.c ****         {
+ 685:Generated_Source\PSoC4/Display_SPI.c ****             size = (Display_SPI_RX_BUFFER_SIZE - Display_SPI_rxBufferRead) + Display_SPI_rxBufferWr
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 20
+
+
+ 686:Generated_Source\PSoC4/Display_SPI.c ****         }
+ 687:Generated_Source\PSoC4/Display_SPI.c **** 
+ 688:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_EnableRxInt();
+ 689:Generated_Source\PSoC4/Display_SPI.c **** 
+ 690:Generated_Source\PSoC4/Display_SPI.c ****     #else
+ 691:Generated_Source\PSoC4/Display_SPI.c **** 
+ 692:Generated_Source\PSoC4/Display_SPI.c ****         /* We can only know if there is data in the RX FIFO */
+ 693:Generated_Source\PSoC4/Display_SPI.c ****         size = (0u != (Display_SPI_RX_STATUS_REG & Display_SPI_STS_RX_FIFO_NOT_EMPTY)) ? 1u : 0u;
+ 386              		.loc 1 693 0
+ 387 0000 024B     		ldr	r3, .L34
+ 694:Generated_Source\PSoC4/Display_SPI.c **** 
+ 695:Generated_Source\PSoC4/Display_SPI.c ****     #endif /* (Display_SPI_TX_SOFTWARE_BUF_ENABLED) */
+ 696:Generated_Source\PSoC4/Display_SPI.c **** 
+ 697:Generated_Source\PSoC4/Display_SPI.c ****     return(size);
+ 698:Generated_Source\PSoC4/Display_SPI.c **** }
+ 388              		.loc 1 698 0
+ 389              		@ sp needed
+ 693:Generated_Source\PSoC4/Display_SPI.c **** 
+ 390              		.loc 1 693 0
+ 391 0002 1878     		ldrb	r0, [r3]
+ 392              	.LVL10:
+ 697:Generated_Source\PSoC4/Display_SPI.c **** }
+ 393              		.loc 1 697 0
+ 394 0004 8006     		lsls	r0, r0, #26
+ 395              	.LVL11:
+ 396 0006 C00F     		lsrs	r0, r0, #31
+ 397              		.loc 1 698 0
+ 398 0008 7047     		bx	lr
+ 399              	.L35:
+ 400 000a C046     		.align	2
+ 401              	.L34:
+ 402 000c 63000F40 		.word	1074724963
+ 403              		.cfi_endproc
+ 404              	.LFE14:
+ 405              		.size	Display_SPI_GetRxBufferSize, .-Display_SPI_GetRxBufferSize
+ 406              		.section	.text.Display_SPI_GetTxBufferSize,"ax",%progbits
+ 407              		.align	1
+ 408              		.global	Display_SPI_GetTxBufferSize
+ 409              		.code	16
+ 410              		.thumb_func
+ 411              		.type	Display_SPI_GetTxBufferSize, %function
+ 412              	Display_SPI_GetTxBufferSize:
+ 413              	.LFB15:
+ 699:Generated_Source\PSoC4/Display_SPI.c **** 
+ 700:Generated_Source\PSoC4/Display_SPI.c **** 
+ 701:Generated_Source\PSoC4/Display_SPI.c **** /*******************************************************************************
+ 702:Generated_Source\PSoC4/Display_SPI.c **** * Function Name: Display_SPI_GetTxBufferSize
+ 703:Generated_Source\PSoC4/Display_SPI.c **** ********************************************************************************
+ 704:Generated_Source\PSoC4/Display_SPI.c **** *
+ 705:Generated_Source\PSoC4/Display_SPI.c **** * Summary:
+ 706:Generated_Source\PSoC4/Display_SPI.c **** *  Returns the number of bytes/words of data currently held in the TX buffer.
+ 707:Generated_Source\PSoC4/Display_SPI.c **** *  If TX Software Buffer not used then function return 0 - if FIFO empty, 1 - if
+ 708:Generated_Source\PSoC4/Display_SPI.c **** *  FIFO not full, 4 - if FIFO full. In another case function return size of TX
+ 709:Generated_Source\PSoC4/Display_SPI.c **** *  Software Buffer.
+ 710:Generated_Source\PSoC4/Display_SPI.c **** *
+ 711:Generated_Source\PSoC4/Display_SPI.c **** * Parameters:
+ 712:Generated_Source\PSoC4/Display_SPI.c **** *  None.
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 21
+
+
+ 713:Generated_Source\PSoC4/Display_SPI.c **** *
+ 714:Generated_Source\PSoC4/Display_SPI.c **** * Return:
+ 715:Generated_Source\PSoC4/Display_SPI.c **** *  Integer count of the number of bytes/words in the TX buffer.
+ 716:Generated_Source\PSoC4/Display_SPI.c **** *
+ 717:Generated_Source\PSoC4/Display_SPI.c **** * Global variables:
+ 718:Generated_Source\PSoC4/Display_SPI.c **** *  Display_SPI_txBufferWrite - used for the account of the bytes which
+ 719:Generated_Source\PSoC4/Display_SPI.c **** *  have been written down in the TX software buffer.
+ 720:Generated_Source\PSoC4/Display_SPI.c **** *  Display_SPI_txBufferRead - used for the account of the bytes which
+ 721:Generated_Source\PSoC4/Display_SPI.c **** *  have been read from the TX software buffer.
+ 722:Generated_Source\PSoC4/Display_SPI.c **** *
+ 723:Generated_Source\PSoC4/Display_SPI.c **** * Side Effects:
+ 724:Generated_Source\PSoC4/Display_SPI.c **** *  Clear status register of the component.
+ 725:Generated_Source\PSoC4/Display_SPI.c **** *
+ 726:Generated_Source\PSoC4/Display_SPI.c **** *******************************************************************************/
+ 727:Generated_Source\PSoC4/Display_SPI.c **** uint8  Display_SPI_GetTxBufferSize(void) 
+ 728:Generated_Source\PSoC4/Display_SPI.c **** {
+ 414              		.loc 1 728 0
+ 415              		.cfi_startproc
+ 416              		@ args = 0, pretend = 0, frame = 0
+ 417              		@ frame_needed = 0, uses_anonymous_args = 0
+ 418              		@ link register save eliminated.
+ 729:Generated_Source\PSoC4/Display_SPI.c ****     uint8 size;
+ 730:Generated_Source\PSoC4/Display_SPI.c **** 
+ 731:Generated_Source\PSoC4/Display_SPI.c ****     #if(Display_SPI_TX_SOFTWARE_BUF_ENABLED)
+ 732:Generated_Source\PSoC4/Display_SPI.c ****         /* Disable TX interrupt to protect global veriables */
+ 733:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_DisableTxInt();
+ 734:Generated_Source\PSoC4/Display_SPI.c **** 
+ 735:Generated_Source\PSoC4/Display_SPI.c ****         if(Display_SPI_txBufferRead == Display_SPI_txBufferWrite)
+ 736:Generated_Source\PSoC4/Display_SPI.c ****         {
+ 737:Generated_Source\PSoC4/Display_SPI.c ****             size = 0u;
+ 738:Generated_Source\PSoC4/Display_SPI.c ****         }
+ 739:Generated_Source\PSoC4/Display_SPI.c ****         else if(Display_SPI_txBufferRead < Display_SPI_txBufferWrite)
+ 740:Generated_Source\PSoC4/Display_SPI.c ****         {
+ 741:Generated_Source\PSoC4/Display_SPI.c ****             size = (Display_SPI_txBufferWrite - Display_SPI_txBufferRead);
+ 742:Generated_Source\PSoC4/Display_SPI.c ****         }
+ 743:Generated_Source\PSoC4/Display_SPI.c ****         else
+ 744:Generated_Source\PSoC4/Display_SPI.c ****         {
+ 745:Generated_Source\PSoC4/Display_SPI.c ****             size = (Display_SPI_TX_BUFFER_SIZE - Display_SPI_txBufferRead) + Display_SPI_txBufferWr
+ 746:Generated_Source\PSoC4/Display_SPI.c ****         }
+ 747:Generated_Source\PSoC4/Display_SPI.c **** 
+ 748:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_EnableTxInt();
+ 749:Generated_Source\PSoC4/Display_SPI.c **** 
+ 750:Generated_Source\PSoC4/Display_SPI.c ****     #else
+ 751:Generated_Source\PSoC4/Display_SPI.c **** 
+ 752:Generated_Source\PSoC4/Display_SPI.c ****         size = Display_SPI_TX_STATUS_REG;
+ 419              		.loc 1 752 0
+ 420 0000 054B     		ldr	r3, .L40
+ 753:Generated_Source\PSoC4/Display_SPI.c **** 
+ 754:Generated_Source\PSoC4/Display_SPI.c ****         if(0u != (size & Display_SPI_STS_TX_FIFO_EMPTY))
+ 755:Generated_Source\PSoC4/Display_SPI.c ****         {
+ 756:Generated_Source\PSoC4/Display_SPI.c ****             size = 0u;
+ 421              		.loc 1 756 0
+ 422 0002 0020     		movs	r0, #0
+ 752:Generated_Source\PSoC4/Display_SPI.c **** 
+ 423              		.loc 1 752 0
+ 424 0004 1B78     		ldrb	r3, [r3]
+ 425 0006 DBB2     		uxtb	r3, r3
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 22
+
+
+ 426              	.LVL12:
+ 754:Generated_Source\PSoC4/Display_SPI.c ****         {
+ 427              		.loc 1 754 0
+ 428 0008 9A07     		lsls	r2, r3, #30
+ 429 000a 04D4     		bmi	.L37
+ 757:Generated_Source\PSoC4/Display_SPI.c ****         }
+ 758:Generated_Source\PSoC4/Display_SPI.c ****         else if(0u != (size & Display_SPI_STS_TX_FIFO_NOT_FULL))
+ 430              		.loc 1 758 0
+ 431 000c 0422     		movs	r2, #4
+ 759:Generated_Source\PSoC4/Display_SPI.c ****         {
+ 760:Generated_Source\PSoC4/Display_SPI.c ****             size = 1u;
+ 432              		.loc 1 760 0
+ 433 000e 0130     		adds	r0, r0, #1
+ 758:Generated_Source\PSoC4/Display_SPI.c ****         {
+ 434              		.loc 1 758 0
+ 435 0010 1342     		tst	r3, r2
+ 436 0012 00D1     		bne	.L37
+ 761:Generated_Source\PSoC4/Display_SPI.c ****         }
+ 762:Generated_Source\PSoC4/Display_SPI.c ****         else
+ 763:Generated_Source\PSoC4/Display_SPI.c ****         {
+ 764:Generated_Source\PSoC4/Display_SPI.c ****             size = Display_SPI_FIFO_SIZE;
+ 437              		.loc 1 764 0
+ 438 0014 1000     		movs	r0, r2
+ 439              	.L37:
+ 440              	.LVL13:
+ 765:Generated_Source\PSoC4/Display_SPI.c ****         }
+ 766:Generated_Source\PSoC4/Display_SPI.c **** 
+ 767:Generated_Source\PSoC4/Display_SPI.c ****     #endif /* (Display_SPI_TX_SOFTWARE_BUF_ENABLED) */
+ 768:Generated_Source\PSoC4/Display_SPI.c **** 
+ 769:Generated_Source\PSoC4/Display_SPI.c ****     return(size);
+ 770:Generated_Source\PSoC4/Display_SPI.c **** }
+ 441              		.loc 1 770 0
+ 442              		@ sp needed
+ 443 0016 7047     		bx	lr
+ 444              	.L41:
+ 445              		.align	2
+ 446              	.L40:
+ 447 0018 62000F40 		.word	1074724962
+ 448              		.cfi_endproc
+ 449              	.LFE15:
+ 450              		.size	Display_SPI_GetTxBufferSize, .-Display_SPI_GetTxBufferSize
+ 451              		.section	.text.Display_SPI_ClearRxBuffer,"ax",%progbits
+ 452              		.align	1
+ 453              		.global	Display_SPI_ClearRxBuffer
+ 454              		.code	16
+ 455              		.thumb_func
+ 456              		.type	Display_SPI_ClearRxBuffer, %function
+ 457              	Display_SPI_ClearRxBuffer:
+ 458              	.LFB16:
+ 771:Generated_Source\PSoC4/Display_SPI.c **** 
+ 772:Generated_Source\PSoC4/Display_SPI.c **** 
+ 773:Generated_Source\PSoC4/Display_SPI.c **** /*******************************************************************************
+ 774:Generated_Source\PSoC4/Display_SPI.c **** * Function Name: Display_SPI_ClearRxBuffer
+ 775:Generated_Source\PSoC4/Display_SPI.c **** ********************************************************************************
+ 776:Generated_Source\PSoC4/Display_SPI.c **** *
+ 777:Generated_Source\PSoC4/Display_SPI.c **** * Summary:
+ 778:Generated_Source\PSoC4/Display_SPI.c **** *  Clear the RX RAM buffer by setting the read and write pointers both to zero.
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 23
+
+
+ 779:Generated_Source\PSoC4/Display_SPI.c **** *
+ 780:Generated_Source\PSoC4/Display_SPI.c **** * Parameters:
+ 781:Generated_Source\PSoC4/Display_SPI.c **** *  None.
+ 782:Generated_Source\PSoC4/Display_SPI.c **** *
+ 783:Generated_Source\PSoC4/Display_SPI.c **** * Return:
+ 784:Generated_Source\PSoC4/Display_SPI.c **** *  None.
+ 785:Generated_Source\PSoC4/Display_SPI.c **** *
+ 786:Generated_Source\PSoC4/Display_SPI.c **** * Global variables:
+ 787:Generated_Source\PSoC4/Display_SPI.c **** *  Display_SPI_rxBufferWrite - used for the account of the bytes which
+ 788:Generated_Source\PSoC4/Display_SPI.c **** *  have been written down in the RX software buffer, modified every function
+ 789:Generated_Source\PSoC4/Display_SPI.c **** *  call - resets to zero.
+ 790:Generated_Source\PSoC4/Display_SPI.c **** *  Display_SPI_rxBufferRead - used for the account of the bytes which
+ 791:Generated_Source\PSoC4/Display_SPI.c **** *  have been read from the RX software buffer, modified every function call -
+ 792:Generated_Source\PSoC4/Display_SPI.c **** *  resets to zero.
+ 793:Generated_Source\PSoC4/Display_SPI.c **** *
+ 794:Generated_Source\PSoC4/Display_SPI.c **** * Theory:
+ 795:Generated_Source\PSoC4/Display_SPI.c **** *  Setting the pointers to zero makes the system believe there is no data to
+ 796:Generated_Source\PSoC4/Display_SPI.c **** *  read and writing will resume at address 0 overwriting any data that may have
+ 797:Generated_Source\PSoC4/Display_SPI.c **** *  remained in the RAM.
+ 798:Generated_Source\PSoC4/Display_SPI.c **** *
+ 799:Generated_Source\PSoC4/Display_SPI.c **** * Side Effects:
+ 800:Generated_Source\PSoC4/Display_SPI.c **** *  Any received data not read from the RAM buffer will be lost when overwritten.
+ 801:Generated_Source\PSoC4/Display_SPI.c **** *
+ 802:Generated_Source\PSoC4/Display_SPI.c **** * Reentrant:
+ 803:Generated_Source\PSoC4/Display_SPI.c **** *  No.
+ 804:Generated_Source\PSoC4/Display_SPI.c **** *
+ 805:Generated_Source\PSoC4/Display_SPI.c **** *******************************************************************************/
+ 806:Generated_Source\PSoC4/Display_SPI.c **** void Display_SPI_ClearRxBuffer(void) 
+ 807:Generated_Source\PSoC4/Display_SPI.c **** {
+ 459              		.loc 1 807 0
+ 460              		.cfi_startproc
+ 461              		@ args = 0, pretend = 0, frame = 0
+ 462              		@ frame_needed = 0, uses_anonymous_args = 0
+ 463              		@ link register save eliminated.
+ 808:Generated_Source\PSoC4/Display_SPI.c ****     /* Clear Hardware RX FIFO */
+ 809:Generated_Source\PSoC4/Display_SPI.c ****     while(0u !=(Display_SPI_RX_STATUS_REG & Display_SPI_STS_RX_FIFO_NOT_EMPTY))
+ 464              		.loc 1 809 0
+ 465 0000 2023     		movs	r3, #32
+ 466 0002 0449     		ldr	r1, .L46
+ 810:Generated_Source\PSoC4/Display_SPI.c ****     {
+ 811:Generated_Source\PSoC4/Display_SPI.c ****         (void) CY_GET_REG8(Display_SPI_RXDATA_PTR);
+ 467              		.loc 1 811 0
+ 468 0004 0448     		ldr	r0, .L46+4
+ 469              	.L43:
+ 809:Generated_Source\PSoC4/Display_SPI.c ****     {
+ 470              		.loc 1 809 0
+ 471 0006 0A78     		ldrb	r2, [r1]
+ 472 0008 1A42     		tst	r2, r3
+ 473 000a 01D0     		beq	.L45
+ 474              		.loc 1 811 0
+ 475 000c 0278     		ldrb	r2, [r0]
+ 476 000e FAE7     		b	.L43
+ 477              	.L45:
+ 812:Generated_Source\PSoC4/Display_SPI.c ****     }
+ 813:Generated_Source\PSoC4/Display_SPI.c **** 
+ 814:Generated_Source\PSoC4/Display_SPI.c ****     #if(Display_SPI_RX_SOFTWARE_BUF_ENABLED)
+ 815:Generated_Source\PSoC4/Display_SPI.c ****         /* Disable RX interrupt to protect global veriables */
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 24
+
+
+ 816:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_DisableRxInt();
+ 817:Generated_Source\PSoC4/Display_SPI.c **** 
+ 818:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_rxBufferFull  = 0u;
+ 819:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_rxBufferRead  = 0u;
+ 820:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_rxBufferWrite = 0u;
+ 821:Generated_Source\PSoC4/Display_SPI.c **** 
+ 822:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_EnableRxInt();
+ 823:Generated_Source\PSoC4/Display_SPI.c ****     #endif /* (Display_SPI_RX_SOFTWARE_BUF_ENABLED) */
+ 824:Generated_Source\PSoC4/Display_SPI.c **** }
+ 478              		.loc 1 824 0
+ 479              		@ sp needed
+ 480 0010 7047     		bx	lr
+ 481              	.L47:
+ 482 0012 C046     		.align	2
+ 483              	.L46:
+ 484 0014 63000F40 		.word	1074724963
+ 485 0018 51000F40 		.word	1074724945
+ 486              		.cfi_endproc
+ 487              	.LFE16:
+ 488              		.size	Display_SPI_ClearRxBuffer, .-Display_SPI_ClearRxBuffer
+ 489              		.section	.text.Display_SPI_ClearTxBuffer,"ax",%progbits
+ 490              		.align	1
+ 491              		.global	Display_SPI_ClearTxBuffer
+ 492              		.code	16
+ 493              		.thumb_func
+ 494              		.type	Display_SPI_ClearTxBuffer, %function
+ 495              	Display_SPI_ClearTxBuffer:
+ 496              	.LFB17:
+ 825:Generated_Source\PSoC4/Display_SPI.c **** 
+ 826:Generated_Source\PSoC4/Display_SPI.c **** 
+ 827:Generated_Source\PSoC4/Display_SPI.c **** /*******************************************************************************
+ 828:Generated_Source\PSoC4/Display_SPI.c **** * Function Name: Display_SPI_ClearTxBuffer
+ 829:Generated_Source\PSoC4/Display_SPI.c **** ********************************************************************************
+ 830:Generated_Source\PSoC4/Display_SPI.c **** *
+ 831:Generated_Source\PSoC4/Display_SPI.c **** * Summary:
+ 832:Generated_Source\PSoC4/Display_SPI.c **** *  Clear the TX RAM buffer by setting the read and write pointers both to zero.
+ 833:Generated_Source\PSoC4/Display_SPI.c **** *
+ 834:Generated_Source\PSoC4/Display_SPI.c **** * Parameters:
+ 835:Generated_Source\PSoC4/Display_SPI.c **** *  None.
+ 836:Generated_Source\PSoC4/Display_SPI.c **** *
+ 837:Generated_Source\PSoC4/Display_SPI.c **** * Return:
+ 838:Generated_Source\PSoC4/Display_SPI.c **** *  None.
+ 839:Generated_Source\PSoC4/Display_SPI.c **** *
+ 840:Generated_Source\PSoC4/Display_SPI.c **** * Global variables:
+ 841:Generated_Source\PSoC4/Display_SPI.c **** *  Display_SPI_txBufferWrite - used for the account of the bytes which
+ 842:Generated_Source\PSoC4/Display_SPI.c **** *  have been written down in the TX software buffer, modified every function
+ 843:Generated_Source\PSoC4/Display_SPI.c **** *  call - resets to zero.
+ 844:Generated_Source\PSoC4/Display_SPI.c **** *  Display_SPI_txBufferRead - used for the account of the bytes which
+ 845:Generated_Source\PSoC4/Display_SPI.c **** *  have been read from the TX software buffer, modified every function call -
+ 846:Generated_Source\PSoC4/Display_SPI.c **** *  resets to zero.
+ 847:Generated_Source\PSoC4/Display_SPI.c **** *
+ 848:Generated_Source\PSoC4/Display_SPI.c **** * Theory:
+ 849:Generated_Source\PSoC4/Display_SPI.c **** *  Setting the pointers to zero makes the system believe there is no data to
+ 850:Generated_Source\PSoC4/Display_SPI.c **** *  read and writing will resume at address 0 overwriting any data that may have
+ 851:Generated_Source\PSoC4/Display_SPI.c **** *  remained in the RAM.
+ 852:Generated_Source\PSoC4/Display_SPI.c **** *
+ 853:Generated_Source\PSoC4/Display_SPI.c **** * Side Effects:
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 25
+
+
+ 854:Generated_Source\PSoC4/Display_SPI.c **** *  Any data not yet transmitted from the RAM buffer will be lost when
+ 855:Generated_Source\PSoC4/Display_SPI.c **** *  overwritten.
+ 856:Generated_Source\PSoC4/Display_SPI.c **** *
+ 857:Generated_Source\PSoC4/Display_SPI.c **** * Reentrant:
+ 858:Generated_Source\PSoC4/Display_SPI.c **** *  No.
+ 859:Generated_Source\PSoC4/Display_SPI.c **** *
+ 860:Generated_Source\PSoC4/Display_SPI.c **** *******************************************************************************/
+ 861:Generated_Source\PSoC4/Display_SPI.c **** void Display_SPI_ClearTxBuffer(void) 
+ 862:Generated_Source\PSoC4/Display_SPI.c **** {
+ 497              		.loc 1 862 0
+ 498              		.cfi_startproc
+ 499              		@ args = 0, pretend = 0, frame = 0
+ 500              		@ frame_needed = 0, uses_anonymous_args = 0
+ 501 0000 10B5     		push	{r4, lr}
+ 502              		.cfi_def_cfa_offset 8
+ 503              		.cfi_offset 4, -8
+ 504              		.cfi_offset 14, -4
+ 863:Generated_Source\PSoC4/Display_SPI.c ****     uint8 enableInterrupts;
+ 864:Generated_Source\PSoC4/Display_SPI.c **** 
+ 865:Generated_Source\PSoC4/Display_SPI.c ****     enableInterrupts = CyEnterCriticalSection();
+ 505              		.loc 1 865 0
+ 506 0002 FFF7FEFF 		bl	CyEnterCriticalSection
+ 507              	.LVL14:
+ 866:Generated_Source\PSoC4/Display_SPI.c ****     /* Clear TX FIFO */
+ 867:Generated_Source\PSoC4/Display_SPI.c ****     Display_SPI_AUX_CONTROL_DP0_REG |= ((uint8)  Display_SPI_TX_FIFO_CLR);
+ 508              		.loc 1 867 0
+ 509 0006 0121     		movs	r1, #1
+ 510 0008 044B     		ldr	r3, .L49
+ 868:Generated_Source\PSoC4/Display_SPI.c ****     Display_SPI_AUX_CONTROL_DP0_REG &= ((uint8) ~Display_SPI_TX_FIFO_CLR);
+ 869:Generated_Source\PSoC4/Display_SPI.c **** 
+ 870:Generated_Source\PSoC4/Display_SPI.c ****     #if(Display_SPI_USE_SECOND_DATAPATH)
+ 871:Generated_Source\PSoC4/Display_SPI.c ****         /* Clear TX FIFO for 2nd Datapath */
+ 872:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_AUX_CONTROL_DP1_REG |= ((uint8)  Display_SPI_TX_FIFO_CLR);
+ 873:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_AUX_CONTROL_DP1_REG &= ((uint8) ~Display_SPI_TX_FIFO_CLR);
+ 874:Generated_Source\PSoC4/Display_SPI.c ****     #endif /* (Display_SPI_USE_SECOND_DATAPATH) */
+ 875:Generated_Source\PSoC4/Display_SPI.c ****     CyExitCriticalSection(enableInterrupts);
+ 876:Generated_Source\PSoC4/Display_SPI.c **** 
+ 877:Generated_Source\PSoC4/Display_SPI.c ****     #if(Display_SPI_TX_SOFTWARE_BUF_ENABLED)
+ 878:Generated_Source\PSoC4/Display_SPI.c ****         /* Disable TX interrupt to protect global veriables */
+ 879:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_DisableTxInt();
+ 880:Generated_Source\PSoC4/Display_SPI.c **** 
+ 881:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_txBufferFull  = 0u;
+ 882:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_txBufferRead  = 0u;
+ 883:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_txBufferWrite = 0u;
+ 884:Generated_Source\PSoC4/Display_SPI.c **** 
+ 885:Generated_Source\PSoC4/Display_SPI.c ****         /* Buffer is EMPTY: disable TX FIFO NOT FULL interrupt */
+ 886:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_TX_STATUS_MASK_REG &= ((uint8) ~Display_SPI_STS_TX_FIFO_NOT_FULL);
+ 887:Generated_Source\PSoC4/Display_SPI.c **** 
+ 888:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_EnableTxInt();
+ 889:Generated_Source\PSoC4/Display_SPI.c ****     #endif /* (Display_SPI_TX_SOFTWARE_BUF_ENABLED) */
+ 890:Generated_Source\PSoC4/Display_SPI.c **** }
+ 511              		.loc 1 890 0
+ 512              		@ sp needed
+ 867:Generated_Source\PSoC4/Display_SPI.c ****     Display_SPI_AUX_CONTROL_DP0_REG &= ((uint8) ~Display_SPI_TX_FIFO_CLR);
+ 513              		.loc 1 867 0
+ 514 000a 1A78     		ldrb	r2, [r3]
+ 515 000c 0A43     		orrs	r2, r1
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 26
+
+
+ 516 000e 1A70     		strb	r2, [r3]
+ 868:Generated_Source\PSoC4/Display_SPI.c ****     Display_SPI_AUX_CONTROL_DP0_REG &= ((uint8) ~Display_SPI_TX_FIFO_CLR);
+ 517              		.loc 1 868 0
+ 518 0010 1A78     		ldrb	r2, [r3]
+ 519 0012 8A43     		bics	r2, r1
+ 520 0014 1A70     		strb	r2, [r3]
+ 875:Generated_Source\PSoC4/Display_SPI.c **** 
+ 521              		.loc 1 875 0
+ 522 0016 FFF7FEFF 		bl	CyExitCriticalSection
+ 523              	.LVL15:
+ 524              		.loc 1 890 0
+ 525 001a 10BD     		pop	{r4, pc}
+ 526              	.L50:
+ 527              		.align	2
+ 528              	.L49:
+ 529 001c 91000F40 		.word	1074725009
+ 530              		.cfi_endproc
+ 531              	.LFE17:
+ 532              		.size	Display_SPI_ClearTxBuffer, .-Display_SPI_ClearTxBuffer
+ 533              		.section	.text.Display_SPI_PutArray,"ax",%progbits
+ 534              		.align	1
+ 535              		.global	Display_SPI_PutArray
+ 536              		.code	16
+ 537              		.thumb_func
+ 538              		.type	Display_SPI_PutArray, %function
+ 539              	Display_SPI_PutArray:
+ 540              	.LFB18:
+ 891:Generated_Source\PSoC4/Display_SPI.c **** 
+ 892:Generated_Source\PSoC4/Display_SPI.c **** 
+ 893:Generated_Source\PSoC4/Display_SPI.c **** #if(0u != Display_SPI_BIDIRECTIONAL_MODE)
+ 894:Generated_Source\PSoC4/Display_SPI.c ****     /*******************************************************************************
+ 895:Generated_Source\PSoC4/Display_SPI.c ****     * Function Name: Display_SPI_TxEnable
+ 896:Generated_Source\PSoC4/Display_SPI.c ****     ********************************************************************************
+ 897:Generated_Source\PSoC4/Display_SPI.c ****     *
+ 898:Generated_Source\PSoC4/Display_SPI.c ****     * Summary:
+ 899:Generated_Source\PSoC4/Display_SPI.c ****     *  If the SPI master is configured to use a single bi-directional pin then this
+ 900:Generated_Source\PSoC4/Display_SPI.c ****     *  will set the bi-directional pin to transmit.
+ 901:Generated_Source\PSoC4/Display_SPI.c ****     *
+ 902:Generated_Source\PSoC4/Display_SPI.c ****     * Parameters:
+ 903:Generated_Source\PSoC4/Display_SPI.c ****     *  None.
+ 904:Generated_Source\PSoC4/Display_SPI.c ****     *
+ 905:Generated_Source\PSoC4/Display_SPI.c ****     * Return:
+ 906:Generated_Source\PSoC4/Display_SPI.c ****     *  None.
+ 907:Generated_Source\PSoC4/Display_SPI.c ****     *
+ 908:Generated_Source\PSoC4/Display_SPI.c ****     *******************************************************************************/
+ 909:Generated_Source\PSoC4/Display_SPI.c ****     void Display_SPI_TxEnable(void) 
+ 910:Generated_Source\PSoC4/Display_SPI.c ****     {
+ 911:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_CONTROL_REG |= Display_SPI_CTRL_TX_SIGNAL_EN;
+ 912:Generated_Source\PSoC4/Display_SPI.c ****     }
+ 913:Generated_Source\PSoC4/Display_SPI.c **** 
+ 914:Generated_Source\PSoC4/Display_SPI.c **** 
+ 915:Generated_Source\PSoC4/Display_SPI.c ****     /*******************************************************************************
+ 916:Generated_Source\PSoC4/Display_SPI.c ****     * Function Name: Display_SPI_TxDisable
+ 917:Generated_Source\PSoC4/Display_SPI.c ****     ********************************************************************************
+ 918:Generated_Source\PSoC4/Display_SPI.c ****     *
+ 919:Generated_Source\PSoC4/Display_SPI.c ****     * Summary:
+ 920:Generated_Source\PSoC4/Display_SPI.c ****     *  If the SPI master is configured to use a single bi-directional pin then this
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 27
+
+
+ 921:Generated_Source\PSoC4/Display_SPI.c ****     *  will set the bi-directional pin to receive.
+ 922:Generated_Source\PSoC4/Display_SPI.c ****     *
+ 923:Generated_Source\PSoC4/Display_SPI.c ****     * Parameters:
+ 924:Generated_Source\PSoC4/Display_SPI.c ****     *  None.
+ 925:Generated_Source\PSoC4/Display_SPI.c ****     *
+ 926:Generated_Source\PSoC4/Display_SPI.c ****     * Return:
+ 927:Generated_Source\PSoC4/Display_SPI.c ****     *  None.
+ 928:Generated_Source\PSoC4/Display_SPI.c ****     *
+ 929:Generated_Source\PSoC4/Display_SPI.c ****     *******************************************************************************/
+ 930:Generated_Source\PSoC4/Display_SPI.c ****     void Display_SPI_TxDisable(void) 
+ 931:Generated_Source\PSoC4/Display_SPI.c ****     {
+ 932:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_CONTROL_REG &= ((uint8) ~Display_SPI_CTRL_TX_SIGNAL_EN);
+ 933:Generated_Source\PSoC4/Display_SPI.c ****     }
+ 934:Generated_Source\PSoC4/Display_SPI.c **** 
+ 935:Generated_Source\PSoC4/Display_SPI.c **** #endif /* (0u != Display_SPI_BIDIRECTIONAL_MODE) */
+ 936:Generated_Source\PSoC4/Display_SPI.c **** 
+ 937:Generated_Source\PSoC4/Display_SPI.c **** 
+ 938:Generated_Source\PSoC4/Display_SPI.c **** /*******************************************************************************
+ 939:Generated_Source\PSoC4/Display_SPI.c **** * Function Name: Display_SPI_PutArray
+ 940:Generated_Source\PSoC4/Display_SPI.c **** ********************************************************************************
+ 941:Generated_Source\PSoC4/Display_SPI.c **** *
+ 942:Generated_Source\PSoC4/Display_SPI.c **** * Summary:
+ 943:Generated_Source\PSoC4/Display_SPI.c **** *  Write available data from ROM/RAM to the TX buffer while space is available
+ 944:Generated_Source\PSoC4/Display_SPI.c **** *  in the TX buffer. Keep trying until all data is passed to the TX buffer.
+ 945:Generated_Source\PSoC4/Display_SPI.c **** *
+ 946:Generated_Source\PSoC4/Display_SPI.c **** * Parameters:
+ 947:Generated_Source\PSoC4/Display_SPI.c **** *  *buffer: Pointer to the location in RAM containing the data to send
+ 948:Generated_Source\PSoC4/Display_SPI.c **** *  byteCount: The number of bytes to move to the transmit buffer.
+ 949:Generated_Source\PSoC4/Display_SPI.c **** *
+ 950:Generated_Source\PSoC4/Display_SPI.c **** * Return:
+ 951:Generated_Source\PSoC4/Display_SPI.c **** *  None.
+ 952:Generated_Source\PSoC4/Display_SPI.c **** *
+ 953:Generated_Source\PSoC4/Display_SPI.c **** * Side Effects:
+ 954:Generated_Source\PSoC4/Display_SPI.c **** *  Will stay in this routine until all data has been sent.  May get locked in
+ 955:Generated_Source\PSoC4/Display_SPI.c **** *  this loop if data is not being initiated by the master if there is not
+ 956:Generated_Source\PSoC4/Display_SPI.c **** *  enough room in the TX FIFO.
+ 957:Generated_Source\PSoC4/Display_SPI.c **** *
+ 958:Generated_Source\PSoC4/Display_SPI.c **** * Reentrant:
+ 959:Generated_Source\PSoC4/Display_SPI.c **** *  No.
+ 960:Generated_Source\PSoC4/Display_SPI.c **** *
+ 961:Generated_Source\PSoC4/Display_SPI.c **** *******************************************************************************/
+ 962:Generated_Source\PSoC4/Display_SPI.c **** void Display_SPI_PutArray(const uint8 buffer[], uint8 byteCount)
+ 963:Generated_Source\PSoC4/Display_SPI.c ****                                                                           
+ 964:Generated_Source\PSoC4/Display_SPI.c **** {
+ 541              		.loc 1 964 0
+ 542              		.cfi_startproc
+ 543              		@ args = 0, pretend = 0, frame = 0
+ 544              		@ frame_needed = 0, uses_anonymous_args = 0
+ 545              	.LVL16:
+ 546 0000 70B5     		push	{r4, r5, r6, lr}
+ 547              		.cfi_def_cfa_offset 16
+ 548              		.cfi_offset 4, -16
+ 549              		.cfi_offset 5, -12
+ 550              		.cfi_offset 6, -8
+ 551              		.cfi_offset 14, -4
+ 552 0002 0400     		movs	r4, r0
+ 553 0004 4518     		adds	r5, r0, r1
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 28
+
+
+ 554              	.LVL17:
+ 555              	.L52:
+ 965:Generated_Source\PSoC4/Display_SPI.c ****     uint8 bufIndex;
+ 966:Generated_Source\PSoC4/Display_SPI.c **** 
+ 967:Generated_Source\PSoC4/Display_SPI.c ****     bufIndex = 0u;
+ 968:Generated_Source\PSoC4/Display_SPI.c **** 
+ 969:Generated_Source\PSoC4/Display_SPI.c ****     while(byteCount > 0u)
+ 556              		.loc 1 969 0
+ 557 0006 AC42     		cmp	r4, r5
+ 558 0008 04D0     		beq	.L54
+ 970:Generated_Source\PSoC4/Display_SPI.c ****     {
+ 971:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_WriteTxData(buffer[bufIndex]);
+ 559              		.loc 1 971 0
+ 560 000a 2078     		ldrb	r0, [r4]
+ 561 000c FFF7FEFF 		bl	Display_SPI_WriteTxData
+ 562              	.LVL18:
+ 563 0010 0134     		adds	r4, r4, #1
+ 564              	.LVL19:
+ 565 0012 F8E7     		b	.L52
+ 566              	.LVL20:
+ 567              	.L54:
+ 972:Generated_Source\PSoC4/Display_SPI.c ****         bufIndex++;
+ 973:Generated_Source\PSoC4/Display_SPI.c ****         byteCount--;
+ 974:Generated_Source\PSoC4/Display_SPI.c ****     }
+ 975:Generated_Source\PSoC4/Display_SPI.c **** }
+ 568              		.loc 1 975 0
+ 569              		@ sp needed
+ 570              	.LVL21:
+ 571 0014 70BD     		pop	{r4, r5, r6, pc}
+ 572              		.cfi_endproc
+ 573              	.LFE18:
+ 574              		.size	Display_SPI_PutArray, .-Display_SPI_PutArray
+ 575              		.section	.text.Display_SPI_ClearFIFO,"ax",%progbits
+ 576              		.align	1
+ 577              		.global	Display_SPI_ClearFIFO
+ 578              		.code	16
+ 579              		.thumb_func
+ 580              		.type	Display_SPI_ClearFIFO, %function
+ 581              	Display_SPI_ClearFIFO:
+ 582              	.LFB19:
+ 976:Generated_Source\PSoC4/Display_SPI.c **** 
+ 977:Generated_Source\PSoC4/Display_SPI.c **** 
+ 978:Generated_Source\PSoC4/Display_SPI.c **** /*******************************************************************************
+ 979:Generated_Source\PSoC4/Display_SPI.c **** * Function Name: Display_SPI_ClearFIFO
+ 980:Generated_Source\PSoC4/Display_SPI.c **** ********************************************************************************
+ 981:Generated_Source\PSoC4/Display_SPI.c **** *
+ 982:Generated_Source\PSoC4/Display_SPI.c **** * Summary:
+ 983:Generated_Source\PSoC4/Display_SPI.c **** *  Clear the RX and TX FIFO's of all data for a fresh start.
+ 984:Generated_Source\PSoC4/Display_SPI.c **** *
+ 985:Generated_Source\PSoC4/Display_SPI.c **** * Parameters:
+ 986:Generated_Source\PSoC4/Display_SPI.c **** *  None.
+ 987:Generated_Source\PSoC4/Display_SPI.c **** *
+ 988:Generated_Source\PSoC4/Display_SPI.c **** * Return:
+ 989:Generated_Source\PSoC4/Display_SPI.c **** *  None.
+ 990:Generated_Source\PSoC4/Display_SPI.c **** *
+ 991:Generated_Source\PSoC4/Display_SPI.c **** * Side Effects:
+ 992:Generated_Source\PSoC4/Display_SPI.c **** *  Clear status register of the component.
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 29
+
+
+ 993:Generated_Source\PSoC4/Display_SPI.c **** *
+ 994:Generated_Source\PSoC4/Display_SPI.c **** *******************************************************************************/
+ 995:Generated_Source\PSoC4/Display_SPI.c **** void Display_SPI_ClearFIFO(void) 
+ 996:Generated_Source\PSoC4/Display_SPI.c **** {
+ 583              		.loc 1 996 0
+ 584              		.cfi_startproc
+ 585              		@ args = 0, pretend = 0, frame = 0
+ 586              		@ frame_needed = 0, uses_anonymous_args = 0
+ 997:Generated_Source\PSoC4/Display_SPI.c ****     uint8 enableInterrupts;
+ 998:Generated_Source\PSoC4/Display_SPI.c **** 
+ 999:Generated_Source\PSoC4/Display_SPI.c ****     /* Clear Hardware RX FIFO */
+1000:Generated_Source\PSoC4/Display_SPI.c ****     while(0u !=(Display_SPI_RX_STATUS_REG & Display_SPI_STS_RX_FIFO_NOT_EMPTY))
+ 587              		.loc 1 1000 0
+ 588 0000 2023     		movs	r3, #32
+ 996:Generated_Source\PSoC4/Display_SPI.c ****     uint8 enableInterrupts;
+ 589              		.loc 1 996 0
+ 590 0002 10B5     		push	{r4, lr}
+ 591              		.cfi_def_cfa_offset 8
+ 592              		.cfi_offset 4, -8
+ 593              		.cfi_offset 14, -4
+ 594              		.loc 1 1000 0
+ 595 0004 0949     		ldr	r1, .L59
+1001:Generated_Source\PSoC4/Display_SPI.c ****     {
+1002:Generated_Source\PSoC4/Display_SPI.c ****         (void) CY_GET_REG8(Display_SPI_RXDATA_PTR);
+ 596              		.loc 1 1002 0
+ 597 0006 0A48     		ldr	r0, .L59+4
+ 598              	.L56:
+1000:Generated_Source\PSoC4/Display_SPI.c ****     {
+ 599              		.loc 1 1000 0
+ 600 0008 0A78     		ldrb	r2, [r1]
+ 601 000a 1A42     		tst	r2, r3
+ 602 000c 01D0     		beq	.L58
+ 603              		.loc 1 1002 0
+ 604 000e 0278     		ldrb	r2, [r0]
+ 605 0010 FAE7     		b	.L56
+ 606              	.L58:
+1003:Generated_Source\PSoC4/Display_SPI.c ****     }
+1004:Generated_Source\PSoC4/Display_SPI.c **** 
+1005:Generated_Source\PSoC4/Display_SPI.c ****     enableInterrupts = CyEnterCriticalSection();
+ 607              		.loc 1 1005 0
+ 608 0012 FFF7FEFF 		bl	CyEnterCriticalSection
+ 609              	.LVL22:
+1006:Generated_Source\PSoC4/Display_SPI.c ****     /* Clear TX FIFO */
+1007:Generated_Source\PSoC4/Display_SPI.c ****     Display_SPI_AUX_CONTROL_DP0_REG |= ((uint8)  Display_SPI_TX_FIFO_CLR);
+ 610              		.loc 1 1007 0
+ 611 0016 0121     		movs	r1, #1
+ 612 0018 064B     		ldr	r3, .L59+8
+1008:Generated_Source\PSoC4/Display_SPI.c ****     Display_SPI_AUX_CONTROL_DP0_REG &= ((uint8) ~Display_SPI_TX_FIFO_CLR);
+1009:Generated_Source\PSoC4/Display_SPI.c **** 
+1010:Generated_Source\PSoC4/Display_SPI.c ****     #if(Display_SPI_USE_SECOND_DATAPATH)
+1011:Generated_Source\PSoC4/Display_SPI.c ****         /* Clear TX FIFO for 2nd Datapath */
+1012:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_AUX_CONTROL_DP1_REG |= ((uint8)  Display_SPI_TX_FIFO_CLR);
+1013:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_AUX_CONTROL_DP1_REG &= ((uint8) ~Display_SPI_TX_FIFO_CLR);
+1014:Generated_Source\PSoC4/Display_SPI.c ****     #endif /* (Display_SPI_USE_SECOND_DATAPATH) */
+1015:Generated_Source\PSoC4/Display_SPI.c ****     CyExitCriticalSection(enableInterrupts);
+1016:Generated_Source\PSoC4/Display_SPI.c **** }
+ 613              		.loc 1 1016 0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 30
+
+
+ 614              		@ sp needed
+1007:Generated_Source\PSoC4/Display_SPI.c ****     Display_SPI_AUX_CONTROL_DP0_REG &= ((uint8) ~Display_SPI_TX_FIFO_CLR);
+ 615              		.loc 1 1007 0
+ 616 001a 1A78     		ldrb	r2, [r3]
+ 617 001c 0A43     		orrs	r2, r1
+ 618 001e 1A70     		strb	r2, [r3]
+1008:Generated_Source\PSoC4/Display_SPI.c ****     Display_SPI_AUX_CONTROL_DP0_REG &= ((uint8) ~Display_SPI_TX_FIFO_CLR);
+ 619              		.loc 1 1008 0
+ 620 0020 1A78     		ldrb	r2, [r3]
+ 621 0022 8A43     		bics	r2, r1
+ 622 0024 1A70     		strb	r2, [r3]
+1015:Generated_Source\PSoC4/Display_SPI.c **** }
+ 623              		.loc 1 1015 0
+ 624 0026 FFF7FEFF 		bl	CyExitCriticalSection
+ 625              	.LVL23:
+ 626              		.loc 1 1016 0
+ 627 002a 10BD     		pop	{r4, pc}
+ 628              	.L60:
+ 629              		.align	2
+ 630              	.L59:
+ 631 002c 63000F40 		.word	1074724963
+ 632 0030 51000F40 		.word	1074724945
+ 633 0034 91000F40 		.word	1074725009
+ 634              		.cfi_endproc
+ 635              	.LFE19:
+ 636              		.size	Display_SPI_ClearFIFO, .-Display_SPI_ClearFIFO
+ 637              		.section	.text.Display_SPI_Init,"ax",%progbits
+ 638              		.align	1
+ 639              		.global	Display_SPI_Init
+ 640              		.code	16
+ 641              		.thumb_func
+ 642              		.type	Display_SPI_Init, %function
+ 643              	Display_SPI_Init:
+ 644              	.LFB0:
+  64:Generated_Source\PSoC4/Display_SPI.c ****     /* Initialize the Bit counter */
+ 645              		.loc 1 64 0
+ 646              		.cfi_startproc
+ 647              		@ args = 0, pretend = 0, frame = 0
+ 648              		@ frame_needed = 0, uses_anonymous_args = 0
+  66:Generated_Source\PSoC4/Display_SPI.c **** 
+ 649              		.loc 1 66 0
+ 650 0000 0F22     		movs	r2, #15
+ 651 0002 074B     		ldr	r3, .L62
+  64:Generated_Source\PSoC4/Display_SPI.c ****     /* Initialize the Bit counter */
+ 652              		.loc 1 64 0
+ 653 0004 10B5     		push	{r4, lr}
+ 654              		.cfi_def_cfa_offset 8
+ 655              		.cfi_offset 4, -8
+ 656              		.cfi_offset 14, -4
+  66:Generated_Source\PSoC4/Display_SPI.c **** 
+ 657              		.loc 1 66 0
+ 658 0006 1A70     		strb	r2, [r3]
+  83:Generated_Source\PSoC4/Display_SPI.c **** 
+ 659              		.loc 1 83 0
+ 660 0008 FFF7FEFF 		bl	Display_SPI_ClearFIFO
+ 661              	.LVL24:
+ 662              	.LBB22:
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 31
+
+
+ 663              	.LBB23:
+ 401:Generated_Source\PSoC4/Display_SPI.c **** 
+ 664              		.loc 1 401 0
+ 665 000c 054B     		ldr	r3, .L62+4
+ 666              	.LBE23:
+ 667              	.LBE22:
+ 101:Generated_Source\PSoC4/Display_SPI.c ****     Display_SPI_RX_STATUS_MASK_REG = Display_SPI_RX_INIT_INTERRUPTS_MASK;
+ 668              		.loc 1 101 0
+ 669 000e 064A     		ldr	r2, .L62+8
+ 670              	.LBB25:
+ 671              	.LBB24:
+ 401:Generated_Source\PSoC4/Display_SPI.c **** 
+ 672              		.loc 1 401 0
+ 673 0010 1B78     		ldrb	r3, [r3]
+ 674              	.LBE24:
+ 675              	.LBE25:
+ 676              	.LBB26:
+ 677              	.LBB27:
+ 452:Generated_Source\PSoC4/Display_SPI.c **** 
+ 678              		.loc 1 452 0
+ 679 0012 064B     		ldr	r3, .L62+12
+ 680              	.LBE27:
+ 681              	.LBE26:
+ 103:Generated_Source\PSoC4/Display_SPI.c **** 
+ 682              		.loc 1 103 0
+ 683              		@ sp needed
+ 684              	.LBB29:
+ 685              	.LBB28:
+ 452:Generated_Source\PSoC4/Display_SPI.c **** 
+ 686              		.loc 1 452 0
+ 687 0014 1B78     		ldrb	r3, [r3]
+ 688              	.LBE28:
+ 689              	.LBE29:
+ 101:Generated_Source\PSoC4/Display_SPI.c ****     Display_SPI_RX_STATUS_MASK_REG = Display_SPI_RX_INIT_INTERRUPTS_MASK;
+ 690              		.loc 1 101 0
+ 691 0016 0023     		movs	r3, #0
+ 692 0018 1370     		strb	r3, [r2]
+ 102:Generated_Source\PSoC4/Display_SPI.c **** }
+ 693              		.loc 1 102 0
+ 694 001a 054A     		ldr	r2, .L62+16
+ 695 001c 1370     		strb	r3, [r2]
+ 103:Generated_Source\PSoC4/Display_SPI.c **** 
+ 696              		.loc 1 103 0
+ 697 001e 10BD     		pop	{r4, pc}
+ 698              	.L63:
+ 699              		.align	2
+ 700              	.L62:
+ 701 0020 81000F40 		.word	1074724993
+ 702 0024 62000F40 		.word	1074724962
+ 703 0028 82000F40 		.word	1074724994
+ 704 002c 63000F40 		.word	1074724963
+ 705 0030 83000F40 		.word	1074724995
+ 706              		.cfi_endproc
+ 707              	.LFE0:
+ 708              		.size	Display_SPI_Init, .-Display_SPI_Init
+ 709              		.section	.text.Display_SPI_Start,"ax",%progbits
+ 710              		.align	1
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 32
+
+
+ 711              		.global	Display_SPI_Start
+ 712              		.code	16
+ 713              		.thumb_func
+ 714              		.type	Display_SPI_Start, %function
+ 715              	Display_SPI_Start:
+ 716              	.LFB2:
+ 164:Generated_Source\PSoC4/Display_SPI.c ****     if(0u == Display_SPI_initVar)
+ 717              		.loc 1 164 0
+ 718              		.cfi_startproc
+ 719              		@ args = 0, pretend = 0, frame = 0
+ 720              		@ frame_needed = 0, uses_anonymous_args = 0
+ 721 0000 10B5     		push	{r4, lr}
+ 722              		.cfi_def_cfa_offset 8
+ 723              		.cfi_offset 4, -8
+ 724              		.cfi_offset 14, -4
+ 165:Generated_Source\PSoC4/Display_SPI.c ****     {
+ 725              		.loc 1 165 0
+ 726 0002 054C     		ldr	r4, .L66
+ 727 0004 2378     		ldrb	r3, [r4]
+ 728 0006 002B     		cmp	r3, #0
+ 729 0008 03D1     		bne	.L65
+ 167:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_initVar = 1u;
+ 730              		.loc 1 167 0
+ 731 000a FFF7FEFF 		bl	Display_SPI_Init
+ 732              	.LVL25:
+ 168:Generated_Source\PSoC4/Display_SPI.c ****     }
+ 733              		.loc 1 168 0
+ 734 000e 0123     		movs	r3, #1
+ 735 0010 2370     		strb	r3, [r4]
+ 736              	.L65:
+ 171:Generated_Source\PSoC4/Display_SPI.c **** }
+ 737              		.loc 1 171 0
+ 738 0012 FFF7FEFF 		bl	Display_SPI_Enable
+ 739              	.LVL26:
+ 172:Generated_Source\PSoC4/Display_SPI.c **** 
+ 740              		.loc 1 172 0
+ 741              		@ sp needed
+ 742 0016 10BD     		pop	{r4, pc}
+ 743              	.L67:
+ 744              		.align	2
+ 745              	.L66:
+ 746 0018 00000000 		.word	.LANCHOR0
+ 747              		.cfi_endproc
+ 748              	.LFE2:
+ 749              		.size	Display_SPI_Start, .-Display_SPI_Start
+ 750              		.section	.text.Display_SPI_EnableInt,"ax",%progbits
+ 751              		.align	1
+ 752              		.global	Display_SPI_EnableInt
+ 753              		.code	16
+ 754              		.thumb_func
+ 755              		.type	Display_SPI_EnableInt, %function
+ 756              	Display_SPI_EnableInt:
+ 757              	.LFB25:
+ 758              		.cfi_startproc
+ 759              		@ args = 0, pretend = 0, frame = 0
+ 760              		@ frame_needed = 0, uses_anonymous_args = 0
+ 761              		@ link register save eliminated.
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 33
+
+
+ 762              		@ sp needed
+ 763 0000 7047     		bx	lr
+ 764              		.cfi_endproc
+ 765              	.LFE25:
+ 766              		.size	Display_SPI_EnableInt, .-Display_SPI_EnableInt
+ 767              		.section	.text.Display_SPI_DisableInt,"ax",%progbits
+ 768              		.align	1
+ 769              		.global	Display_SPI_DisableInt
+ 770              		.code	16
+ 771              		.thumb_func
+ 772              		.type	Display_SPI_DisableInt, %function
+ 773              	Display_SPI_DisableInt:
+ 774              	.LFB21:
+1017:Generated_Source\PSoC4/Display_SPI.c **** 
+1018:Generated_Source\PSoC4/Display_SPI.c **** 
+1019:Generated_Source\PSoC4/Display_SPI.c **** /* Following functions are for version Compatibility, they are obsolete.
+1020:Generated_Source\PSoC4/Display_SPI.c **** *  Please do not use it in new projects.
+1021:Generated_Source\PSoC4/Display_SPI.c **** */
+1022:Generated_Source\PSoC4/Display_SPI.c **** 
+1023:Generated_Source\PSoC4/Display_SPI.c **** 
+1024:Generated_Source\PSoC4/Display_SPI.c **** /*******************************************************************************
+1025:Generated_Source\PSoC4/Display_SPI.c **** * Function Name: Display_SPI_EnableInt
+1026:Generated_Source\PSoC4/Display_SPI.c **** ********************************************************************************
+1027:Generated_Source\PSoC4/Display_SPI.c **** *
+1028:Generated_Source\PSoC4/Display_SPI.c **** * Summary:
+1029:Generated_Source\PSoC4/Display_SPI.c **** *  Enable internal interrupt generation.
+1030:Generated_Source\PSoC4/Display_SPI.c **** *
+1031:Generated_Source\PSoC4/Display_SPI.c **** * Parameters:
+1032:Generated_Source\PSoC4/Display_SPI.c **** *  None.
+1033:Generated_Source\PSoC4/Display_SPI.c **** *
+1034:Generated_Source\PSoC4/Display_SPI.c **** * Return:
+1035:Generated_Source\PSoC4/Display_SPI.c **** *  None.
+1036:Generated_Source\PSoC4/Display_SPI.c **** *
+1037:Generated_Source\PSoC4/Display_SPI.c **** * Theory:
+1038:Generated_Source\PSoC4/Display_SPI.c **** *  Enable the internal interrupt output -or- the interrupt component itself.
+1039:Generated_Source\PSoC4/Display_SPI.c **** *
+1040:Generated_Source\PSoC4/Display_SPI.c **** *******************************************************************************/
+1041:Generated_Source\PSoC4/Display_SPI.c **** void Display_SPI_EnableInt(void) 
+1042:Generated_Source\PSoC4/Display_SPI.c **** {
+1043:Generated_Source\PSoC4/Display_SPI.c ****     Display_SPI_EnableRxInt();
+1044:Generated_Source\PSoC4/Display_SPI.c ****     Display_SPI_EnableTxInt();
+1045:Generated_Source\PSoC4/Display_SPI.c **** }
+1046:Generated_Source\PSoC4/Display_SPI.c **** 
+1047:Generated_Source\PSoC4/Display_SPI.c **** 
+1048:Generated_Source\PSoC4/Display_SPI.c **** /*******************************************************************************
+1049:Generated_Source\PSoC4/Display_SPI.c **** * Function Name: Display_SPI_DisableInt
+1050:Generated_Source\PSoC4/Display_SPI.c **** ********************************************************************************
+1051:Generated_Source\PSoC4/Display_SPI.c **** *
+1052:Generated_Source\PSoC4/Display_SPI.c **** * Summary:
+1053:Generated_Source\PSoC4/Display_SPI.c **** *  Disable internal interrupt generation.
+1054:Generated_Source\PSoC4/Display_SPI.c **** *
+1055:Generated_Source\PSoC4/Display_SPI.c **** * Parameters:
+1056:Generated_Source\PSoC4/Display_SPI.c **** *  None.
+1057:Generated_Source\PSoC4/Display_SPI.c **** *
+1058:Generated_Source\PSoC4/Display_SPI.c **** * Return:
+1059:Generated_Source\PSoC4/Display_SPI.c **** *  None.
+1060:Generated_Source\PSoC4/Display_SPI.c **** *
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 34
+
+
+1061:Generated_Source\PSoC4/Display_SPI.c **** * Theory:
+1062:Generated_Source\PSoC4/Display_SPI.c **** *  Disable the internal interrupt output -or- the interrupt component itself.
+1063:Generated_Source\PSoC4/Display_SPI.c **** *
+1064:Generated_Source\PSoC4/Display_SPI.c **** *******************************************************************************/
+1065:Generated_Source\PSoC4/Display_SPI.c **** void Display_SPI_DisableInt(void) 
+1066:Generated_Source\PSoC4/Display_SPI.c **** {
+ 775              		.loc 1 1066 0
+ 776              		.cfi_startproc
+ 777              		@ args = 0, pretend = 0, frame = 0
+ 778              		@ frame_needed = 0, uses_anonymous_args = 0
+ 779              		@ link register save eliminated.
+1067:Generated_Source\PSoC4/Display_SPI.c ****     Display_SPI_DisableTxInt();
+1068:Generated_Source\PSoC4/Display_SPI.c ****     Display_SPI_DisableRxInt();
+1069:Generated_Source\PSoC4/Display_SPI.c **** }
+ 780              		.loc 1 1069 0
+ 781              		@ sp needed
+ 782 0000 7047     		bx	lr
+ 783              		.cfi_endproc
+ 784              	.LFE21:
+ 785              		.size	Display_SPI_DisableInt, .-Display_SPI_DisableInt
+ 786              		.section	.text.Display_SPI_SetInterruptMode,"ax",%progbits
+ 787              		.align	1
+ 788              		.global	Display_SPI_SetInterruptMode
+ 789              		.code	16
+ 790              		.thumb_func
+ 791              		.type	Display_SPI_SetInterruptMode, %function
+ 792              	Display_SPI_SetInterruptMode:
+ 793              	.LFB22:
+1070:Generated_Source\PSoC4/Display_SPI.c **** 
+1071:Generated_Source\PSoC4/Display_SPI.c **** 
+1072:Generated_Source\PSoC4/Display_SPI.c **** /*******************************************************************************
+1073:Generated_Source\PSoC4/Display_SPI.c **** * Function Name: Display_SPI_SetInterruptMode
+1074:Generated_Source\PSoC4/Display_SPI.c **** ********************************************************************************
+1075:Generated_Source\PSoC4/Display_SPI.c **** *
+1076:Generated_Source\PSoC4/Display_SPI.c **** * Summary:
+1077:Generated_Source\PSoC4/Display_SPI.c **** *  Configure which status bits trigger an interrupt event.
+1078:Generated_Source\PSoC4/Display_SPI.c **** *
+1079:Generated_Source\PSoC4/Display_SPI.c **** * Parameters:
+1080:Generated_Source\PSoC4/Display_SPI.c **** *  intSrc: An or'd combination of the desired status bit masks (defined in the
+1081:Generated_Source\PSoC4/Display_SPI.c **** *  header file).
+1082:Generated_Source\PSoC4/Display_SPI.c **** *
+1083:Generated_Source\PSoC4/Display_SPI.c **** * Return:
+1084:Generated_Source\PSoC4/Display_SPI.c **** *  None.
+1085:Generated_Source\PSoC4/Display_SPI.c **** *
+1086:Generated_Source\PSoC4/Display_SPI.c **** * Theory:
+1087:Generated_Source\PSoC4/Display_SPI.c **** *  Enables the output of specific status bits to the interrupt controller.
+1088:Generated_Source\PSoC4/Display_SPI.c **** *
+1089:Generated_Source\PSoC4/Display_SPI.c **** *******************************************************************************/
+1090:Generated_Source\PSoC4/Display_SPI.c **** void Display_SPI_SetInterruptMode(uint8 intSrc) 
+1091:Generated_Source\PSoC4/Display_SPI.c **** {
+ 794              		.loc 1 1091 0
+ 795              		.cfi_startproc
+ 796              		@ args = 0, pretend = 0, frame = 0
+ 797              		@ frame_needed = 0, uses_anonymous_args = 0
+ 798              		@ link register save eliminated.
+ 799              	.LVL27:
+1092:Generated_Source\PSoC4/Display_SPI.c ****     Display_SPI_TX_STATUS_MASK_REG  = (intSrc & ((uint8) ~Display_SPI_STS_SPI_IDLE));
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 35
+
+
+ 800              		.loc 1 1092 0
+ 801 0000 1023     		movs	r3, #16
+ 802 0002 0200     		movs	r2, r0
+ 803 0004 9A43     		bics	r2, r3
+ 804 0006 024B     		ldr	r3, .L71
+1093:Generated_Source\PSoC4/Display_SPI.c ****     Display_SPI_RX_STATUS_MASK_REG  =  intSrc;
+1094:Generated_Source\PSoC4/Display_SPI.c **** }
+ 805              		.loc 1 1094 0
+ 806              		@ sp needed
+1092:Generated_Source\PSoC4/Display_SPI.c ****     Display_SPI_TX_STATUS_MASK_REG  = (intSrc & ((uint8) ~Display_SPI_STS_SPI_IDLE));
+ 807              		.loc 1 1092 0
+ 808 0008 1A70     		strb	r2, [r3]
+1093:Generated_Source\PSoC4/Display_SPI.c ****     Display_SPI_RX_STATUS_MASK_REG  =  intSrc;
+ 809              		.loc 1 1093 0
+ 810 000a 024B     		ldr	r3, .L71+4
+ 811 000c 1870     		strb	r0, [r3]
+ 812              		.loc 1 1094 0
+ 813 000e 7047     		bx	lr
+ 814              	.L72:
+ 815              		.align	2
+ 816              	.L71:
+ 817 0010 82000F40 		.word	1074724994
+ 818 0014 83000F40 		.word	1074724995
+ 819              		.cfi_endproc
+ 820              	.LFE22:
+ 821              		.size	Display_SPI_SetInterruptMode, .-Display_SPI_SetInterruptMode
+ 822              		.section	.text.Display_SPI_ReadStatus,"ax",%progbits
+ 823              		.align	1
+ 824              		.global	Display_SPI_ReadStatus
+ 825              		.code	16
+ 826              		.thumb_func
+ 827              		.type	Display_SPI_ReadStatus, %function
+ 828              	Display_SPI_ReadStatus:
+ 829              	.LFB23:
+1095:Generated_Source\PSoC4/Display_SPI.c **** 
+1096:Generated_Source\PSoC4/Display_SPI.c **** 
+1097:Generated_Source\PSoC4/Display_SPI.c **** /*******************************************************************************
+1098:Generated_Source\PSoC4/Display_SPI.c **** * Function Name: Display_SPI_ReadStatus
+1099:Generated_Source\PSoC4/Display_SPI.c **** ********************************************************************************
+1100:Generated_Source\PSoC4/Display_SPI.c **** *
+1101:Generated_Source\PSoC4/Display_SPI.c **** * Summary:
+1102:Generated_Source\PSoC4/Display_SPI.c **** *  Read the status register for the component.
+1103:Generated_Source\PSoC4/Display_SPI.c **** *
+1104:Generated_Source\PSoC4/Display_SPI.c **** * Parameters:
+1105:Generated_Source\PSoC4/Display_SPI.c **** *  None.
+1106:Generated_Source\PSoC4/Display_SPI.c **** *
+1107:Generated_Source\PSoC4/Display_SPI.c **** * Return:
+1108:Generated_Source\PSoC4/Display_SPI.c **** *  Contents of the status register.
+1109:Generated_Source\PSoC4/Display_SPI.c **** *
+1110:Generated_Source\PSoC4/Display_SPI.c **** * Global variables:
+1111:Generated_Source\PSoC4/Display_SPI.c **** *  Display_SPI_swStatus - used to store in software status register,
+1112:Generated_Source\PSoC4/Display_SPI.c **** *  modified every function call - resets to zero.
+1113:Generated_Source\PSoC4/Display_SPI.c **** *
+1114:Generated_Source\PSoC4/Display_SPI.c **** * Theory:
+1115:Generated_Source\PSoC4/Display_SPI.c **** *  Allows the user and the API to read the status register for error detection
+1116:Generated_Source\PSoC4/Display_SPI.c **** *  and flow control.
+1117:Generated_Source\PSoC4/Display_SPI.c **** *
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 36
+
+
+1118:Generated_Source\PSoC4/Display_SPI.c **** * Side Effects:
+1119:Generated_Source\PSoC4/Display_SPI.c **** *  Clear status register of the component.
+1120:Generated_Source\PSoC4/Display_SPI.c **** *
+1121:Generated_Source\PSoC4/Display_SPI.c **** * Reentrant:
+1122:Generated_Source\PSoC4/Display_SPI.c **** *  No.
+1123:Generated_Source\PSoC4/Display_SPI.c **** *
+1124:Generated_Source\PSoC4/Display_SPI.c **** *******************************************************************************/
+1125:Generated_Source\PSoC4/Display_SPI.c **** uint8 Display_SPI_ReadStatus(void) 
+1126:Generated_Source\PSoC4/Display_SPI.c **** {
+ 830              		.loc 1 1126 0
+ 831              		.cfi_startproc
+ 832              		@ args = 0, pretend = 0, frame = 0
+ 833              		@ frame_needed = 0, uses_anonymous_args = 0
+ 834              		@ link register save eliminated.
+1127:Generated_Source\PSoC4/Display_SPI.c ****     uint8 tmpStatus;
+1128:Generated_Source\PSoC4/Display_SPI.c **** 
+1129:Generated_Source\PSoC4/Display_SPI.c ****     #if(Display_SPI_TX_SOFTWARE_BUF_ENABLED || Display_SPI_RX_SOFTWARE_BUF_ENABLED)
+1130:Generated_Source\PSoC4/Display_SPI.c **** 
+1131:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_DisableInt();
+1132:Generated_Source\PSoC4/Display_SPI.c **** 
+1133:Generated_Source\PSoC4/Display_SPI.c ****         tmpStatus  = Display_SPI_GET_STATUS_RX(Display_SPI_swStatusRx);
+1134:Generated_Source\PSoC4/Display_SPI.c ****         tmpStatus |= Display_SPI_GET_STATUS_TX(Display_SPI_swStatusTx);
+1135:Generated_Source\PSoC4/Display_SPI.c ****         tmpStatus &= ((uint8) ~Display_SPI_STS_SPI_IDLE);
+1136:Generated_Source\PSoC4/Display_SPI.c **** 
+1137:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_swStatusTx = 0u;
+1138:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_swStatusRx = 0u;
+1139:Generated_Source\PSoC4/Display_SPI.c **** 
+1140:Generated_Source\PSoC4/Display_SPI.c ****         Display_SPI_EnableInt();
+1141:Generated_Source\PSoC4/Display_SPI.c **** 
+1142:Generated_Source\PSoC4/Display_SPI.c ****     #else
+1143:Generated_Source\PSoC4/Display_SPI.c **** 
+1144:Generated_Source\PSoC4/Display_SPI.c ****         tmpStatus  = Display_SPI_RX_STATUS_REG;
+ 835              		.loc 1 1144 0
+ 836 0000 034B     		ldr	r3, .L74
+1145:Generated_Source\PSoC4/Display_SPI.c ****         tmpStatus |= Display_SPI_TX_STATUS_REG;
+1146:Generated_Source\PSoC4/Display_SPI.c ****         tmpStatus &= ((uint8) ~Display_SPI_STS_SPI_IDLE);
+1147:Generated_Source\PSoC4/Display_SPI.c **** 
+1148:Generated_Source\PSoC4/Display_SPI.c ****     #endif /* (Display_SPI_TX_SOFTWARE_BUF_ENABLED || Display_SPI_RX_SOFTWARE_BUF_ENABLED) */
+1149:Generated_Source\PSoC4/Display_SPI.c **** 
+1150:Generated_Source\PSoC4/Display_SPI.c ****     return(tmpStatus);
+1151:Generated_Source\PSoC4/Display_SPI.c **** }
+ 837              		.loc 1 1151 0
+ 838              		@ sp needed
+1144:Generated_Source\PSoC4/Display_SPI.c ****         tmpStatus |= Display_SPI_TX_STATUS_REG;
+ 839              		.loc 1 1144 0
+ 840 0002 1878     		ldrb	r0, [r3]
+ 841              	.LVL28:
+1145:Generated_Source\PSoC4/Display_SPI.c ****         tmpStatus |= Display_SPI_TX_STATUS_REG;
+ 842              		.loc 1 1145 0
+ 843 0004 034B     		ldr	r3, .L74+4
+ 844 0006 1B78     		ldrb	r3, [r3]
+ 845 0008 1843     		orrs	r0, r3
+ 846              	.LVL29:
+1150:Generated_Source\PSoC4/Display_SPI.c **** }
+ 847              		.loc 1 1150 0
+ 848 000a 1023     		movs	r3, #16
+ 849 000c 9843     		bics	r0, r3
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 37
+
+
+ 850              	.LVL30:
+ 851              		.loc 1 1151 0
+ 852 000e 7047     		bx	lr
+ 853              	.L75:
+ 854              		.align	2
+ 855              	.L74:
+ 856 0010 63000F40 		.word	1074724963
+ 857 0014 62000F40 		.word	1074724962
+ 858              		.cfi_endproc
+ 859              	.LFE23:
+ 860              		.size	Display_SPI_ReadStatus, .-Display_SPI_ReadStatus
+ 861              		.comm	Display_SPI_swStatusRx,1,1
+ 862              		.comm	Display_SPI_swStatusTx,1,1
+ 863              		.global	Display_SPI_initVar
+ 864              		.bss
+ 865              		.set	.LANCHOR0,. + 0
+ 866              		.type	Display_SPI_initVar, %object
+ 867              		.size	Display_SPI_initVar, 1
+ 868              	Display_SPI_initVar:
+ 869 0000 00       		.space	1
+ 870              		.text
+ 871              	.Letext0:
+ 872              		.file 2 "Generated_Source\\PSoC4\\cytypes.h"
+ 873              		.file 3 "Generated_Source\\PSoC4\\CyLib.h"
+ 874              		.section	.debug_info,"",%progbits
+ 875              	.Ldebug_info0:
+ 876 0000 A6040000 		.4byte	0x4a6
+ 877 0004 0400     		.2byte	0x4
+ 878 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 879 000a 04       		.byte	0x4
+ 880 000b 01       		.uleb128 0x1
+ 881 000c B1020000 		.4byte	.LASF51
+ 882 0010 0C       		.byte	0xc
+ 883 0011 1F000000 		.4byte	.LASF52
+ 884 0015 8E030000 		.4byte	.LASF53
+ 885 0019 30000000 		.4byte	.Ldebug_ranges0+0x30
+ 886 001d 00000000 		.4byte	0
+ 887 0021 00000000 		.4byte	.Ldebug_line0
+ 888 0025 02       		.uleb128 0x2
+ 889 0026 01       		.byte	0x1
+ 890 0027 06       		.byte	0x6
+ 891 0028 48040000 		.4byte	.LASF0
+ 892 002c 02       		.uleb128 0x2
+ 893 002d 01       		.byte	0x1
+ 894 002e 08       		.byte	0x8
+ 895 002f D2010000 		.4byte	.LASF1
+ 896 0033 02       		.uleb128 0x2
+ 897 0034 02       		.byte	0x2
+ 898 0035 05       		.byte	0x5
+ 899 0036 DB030000 		.4byte	.LASF2
+ 900 003a 02       		.uleb128 0x2
+ 901 003b 02       		.byte	0x2
+ 902 003c 07       		.byte	0x7
+ 903 003d 54040000 		.4byte	.LASF3
+ 904 0041 02       		.uleb128 0x2
+ 905 0042 04       		.byte	0x4
+ 906 0043 05       		.byte	0x5
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 38
+
+
+ 907 0044 05040000 		.4byte	.LASF4
+ 908 0048 02       		.uleb128 0x2
+ 909 0049 04       		.byte	0x4
+ 910 004a 07       		.byte	0x7
+ 911 004b 6F010000 		.4byte	.LASF5
+ 912 004f 02       		.uleb128 0x2
+ 913 0050 08       		.byte	0x8
+ 914 0051 05       		.byte	0x5
+ 915 0052 6A030000 		.4byte	.LASF6
+ 916 0056 02       		.uleb128 0x2
+ 917 0057 08       		.byte	0x8
+ 918 0058 07       		.byte	0x7
+ 919 0059 F9000000 		.4byte	.LASF7
+ 920 005d 03       		.uleb128 0x3
+ 921 005e 04       		.byte	0x4
+ 922 005f 05       		.byte	0x5
+ 923 0060 696E7400 		.ascii	"int\000"
+ 924 0064 02       		.uleb128 0x2
+ 925 0065 04       		.byte	0x4
+ 926 0066 07       		.byte	0x7
+ 927 0067 3B020000 		.4byte	.LASF8
+ 928 006b 04       		.uleb128 0x4
+ 929 006c 99010000 		.4byte	.LASF12
+ 930 0070 02       		.byte	0x2
+ 931 0071 E401     		.2byte	0x1e4
+ 932 0073 2C000000 		.4byte	0x2c
+ 933 0077 02       		.uleb128 0x2
+ 934 0078 04       		.byte	0x4
+ 935 0079 04       		.byte	0x4
+ 936 007a F3000000 		.4byte	.LASF9
+ 937 007e 02       		.uleb128 0x2
+ 938 007f 08       		.byte	0x8
+ 939 0080 04       		.byte	0x4
+ 940 0081 E0010000 		.4byte	.LASF10
+ 941 0085 02       		.uleb128 0x2
+ 942 0086 01       		.byte	0x1
+ 943 0087 08       		.byte	0x8
+ 944 0088 78030000 		.4byte	.LASF11
+ 945 008c 04       		.uleb128 0x4
+ 946 008d 4B010000 		.4byte	.LASF13
+ 947 0091 02       		.byte	0x2
+ 948 0092 8E02     		.2byte	0x28e
+ 949 0094 98000000 		.4byte	0x98
+ 950 0098 05       		.uleb128 0x5
+ 951 0099 6B000000 		.4byte	0x6b
+ 952 009d 02       		.uleb128 0x2
+ 953 009e 04       		.byte	0x4
+ 954 009f 07       		.byte	0x7
+ 955 00a0 4A030000 		.4byte	.LASF14
+ 956 00a4 06       		.uleb128 0x6
+ 957 00a5 9F010000 		.4byte	.LASF15
+ 958 00a9 01       		.byte	0x1
+ 959 00aa FC       		.byte	0xfc
+ 960 00ab 01       		.byte	0x1
+ 961 00ac 06       		.uleb128 0x6
+ 962 00ad 81010000 		.4byte	.LASF16
+ 963 00b1 01       		.byte	0x1
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 39
+
+
+ 964 00b2 E3       		.byte	0xe3
+ 965 00b3 01       		.byte	0x1
+ 966 00b4 07       		.uleb128 0x7
+ 967 00b5 44000000 		.4byte	.LASF17
+ 968 00b9 01       		.byte	0x1
+ 969 00ba 2E01     		.2byte	0x12e
+ 970 00bc 01       		.byte	0x1
+ 971 00bd 07       		.uleb128 0x7
+ 972 00be D3000000 		.4byte	.LASF18
+ 973 00c2 01       		.byte	0x1
+ 974 00c3 1501     		.2byte	0x115
+ 975 00c5 01       		.byte	0x1
+ 976 00c6 08       		.uleb128 0x8
+ 977 00c7 EC030000 		.4byte	.LASF19
+ 978 00cb 01       		.byte	0x1
+ 979 00cc B501     		.2byte	0x1b5
+ 980 00ce 6B000000 		.4byte	0x6b
+ 981 00d2 01       		.byte	0x1
+ 982 00d3 E4000000 		.4byte	0xe4
+ 983 00d7 09       		.uleb128 0x9
+ 984 00d8 0E040000 		.4byte	.LASF21
+ 985 00dc 01       		.byte	0x1
+ 986 00dd B701     		.2byte	0x1b7
+ 987 00df 6B000000 		.4byte	0x6b
+ 988 00e3 00       		.byte	0
+ 989 00e4 08       		.uleb128 0x8
+ 990 00e5 5D000000 		.4byte	.LASF20
+ 991 00e9 01       		.byte	0x1
+ 992 00ea 8201     		.2byte	0x182
+ 993 00ec 6B000000 		.4byte	0x6b
+ 994 00f0 01       		.byte	0x1
+ 995 00f1 02010000 		.4byte	0x102
+ 996 00f5 09       		.uleb128 0x9
+ 997 00f6 0E040000 		.4byte	.LASF21
+ 998 00fa 01       		.byte	0x1
+ 999 00fb 8401     		.2byte	0x184
+ 1000 00fd 6B000000 		.4byte	0x6b
+ 1001 0101 00       		.byte	0
+ 1002 0102 0A       		.uleb128 0xa
+ 1003 0103 78040000 		.4byte	.LASF22
+ 1004 0107 01       		.byte	0x1
+ 1005 0108 78       		.byte	0x78
+ 1006 0109 00000000 		.4byte	.LFB1
+ 1007 010d 34000000 		.4byte	.LFE1-.LFB1
+ 1008 0111 01       		.uleb128 0x1
+ 1009 0112 9C       		.byte	0x9c
+ 1010 0113 39010000 		.4byte	0x139
+ 1011 0117 0B       		.uleb128 0xb
+ 1012 0118 C1010000 		.4byte	.LASF24
+ 1013 011c 01       		.byte	0x1
+ 1014 011d 7A       		.byte	0x7a
+ 1015 011e 6B000000 		.4byte	0x6b
+ 1016 0122 00000000 		.4byte	.LLST0
+ 1017 0126 0C       		.uleb128 0xc
+ 1018 0127 06000000 		.4byte	.LVL0
+ 1019 012b 93040000 		.4byte	0x493
+ 1020 012f 0C       		.uleb128 0xc
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 40
+
+
+ 1021 0130 26000000 		.4byte	.LVL1
+ 1022 0134 9E040000 		.4byte	0x49e
+ 1023 0138 00       		.byte	0
+ 1024 0139 0A       		.uleb128 0xa
+ 1025 013a 67040000 		.4byte	.LASF23
+ 1026 013e 01       		.byte	0x1
+ 1027 013f C0       		.byte	0xc0
+ 1028 0140 00000000 		.4byte	.LFB3
+ 1029 0144 28000000 		.4byte	.LFE3-.LFB3
+ 1030 0148 01       		.uleb128 0x1
+ 1031 0149 9C       		.byte	0x9c
+ 1032 014a 70010000 		.4byte	0x170
+ 1033 014e 0B       		.uleb128 0xb
+ 1034 014f C1010000 		.4byte	.LASF24
+ 1035 0153 01       		.byte	0x1
+ 1036 0154 C2       		.byte	0xc2
+ 1037 0155 6B000000 		.4byte	0x6b
+ 1038 0159 13000000 		.4byte	.LLST1
+ 1039 015d 0C       		.uleb128 0xc
+ 1040 015e 06000000 		.4byte	.LVL2
+ 1041 0162 93040000 		.4byte	0x493
+ 1042 0166 0C       		.uleb128 0xc
+ 1043 0167 1C000000 		.4byte	.LVL3
+ 1044 016b 9E040000 		.4byte	0x49e
+ 1045 016f 00       		.byte	0
+ 1046 0170 0D       		.uleb128 0xd
+ 1047 0171 2C010000 		.4byte	.LASF25
+ 1048 0175 01       		.byte	0x1
+ 1049 0176 4801     		.2byte	0x148
+ 1050 0178 00000000 		.4byte	.LFB8
+ 1051 017c 0C000000 		.4byte	.LFE8-.LFB8
+ 1052 0180 01       		.uleb128 0x1
+ 1053 0181 9C       		.byte	0x9c
+ 1054 0182 95010000 		.4byte	0x195
+ 1055 0186 0E       		.uleb128 0xe
+ 1056 0187 E7010000 		.4byte	.LASF27
+ 1057 018b 01       		.byte	0x1
+ 1058 018c 4801     		.2byte	0x148
+ 1059 018e 6B000000 		.4byte	0x6b
+ 1060 0192 01       		.uleb128 0x1
+ 1061 0193 50       		.byte	0x50
+ 1062 0194 00       		.byte	0
+ 1063 0195 0D       		.uleb128 0xd
+ 1064 0196 50010000 		.4byte	.LASF26
+ 1065 019a 01       		.byte	0x1
+ 1066 019b 6001     		.2byte	0x160
+ 1067 019d 00000000 		.4byte	.LFB9
+ 1068 01a1 0C000000 		.4byte	.LFE9-.LFB9
+ 1069 01a5 01       		.uleb128 0x1
+ 1070 01a6 9C       		.byte	0x9c
+ 1071 01a7 BA010000 		.4byte	0x1ba
+ 1072 01ab 0E       		.uleb128 0xe
+ 1073 01ac E7010000 		.4byte	.LASF27
+ 1074 01b0 01       		.byte	0x1
+ 1075 01b1 6001     		.2byte	0x160
+ 1076 01b3 6B000000 		.4byte	0x6b
+ 1077 01b7 01       		.uleb128 0x1
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 41
+
+
+ 1078 01b8 50       		.byte	0x50
+ 1079 01b9 00       		.byte	0
+ 1080 01ba 0F       		.uleb128 0xf
+ 1081 01bb E4000000 		.4byte	0xe4
+ 1082 01bf 00000000 		.4byte	.LFB10
+ 1083 01c3 0C000000 		.4byte	.LFE10-.LFB10
+ 1084 01c7 01       		.uleb128 0x1
+ 1085 01c8 9C       		.byte	0x9c
+ 1086 01c9 D5010000 		.4byte	0x1d5
+ 1087 01cd 10       		.uleb128 0x10
+ 1088 01ce F5000000 		.4byte	0xf5
+ 1089 01d2 01       		.uleb128 0x1
+ 1090 01d3 50       		.byte	0x50
+ 1091 01d4 00       		.byte	0
+ 1092 01d5 0F       		.uleb128 0xf
+ 1093 01d6 C6000000 		.4byte	0xc6
+ 1094 01da 00000000 		.4byte	.LFB11
+ 1095 01de 0C000000 		.4byte	.LFE11-.LFB11
+ 1096 01e2 01       		.uleb128 0x1
+ 1097 01e3 9C       		.byte	0x9c
+ 1098 01e4 F0010000 		.4byte	0x1f0
+ 1099 01e8 10       		.uleb128 0x10
+ 1100 01e9 D7000000 		.4byte	0xd7
+ 1101 01ed 01       		.uleb128 0x1
+ 1102 01ee 50       		.byte	0x50
+ 1103 01ef 00       		.byte	0
+ 1104 01f0 0D       		.uleb128 0xd
+ 1105 01f1 00000000 		.4byte	.LASF28
+ 1106 01f5 01       		.byte	0x1
+ 1107 01f6 EE01     		.2byte	0x1ee
+ 1108 01f8 00000000 		.4byte	.LFB12
+ 1109 01fc 18000000 		.4byte	.LFE12-.LFB12
+ 1110 0200 01       		.uleb128 0x1
+ 1111 0201 9C       		.byte	0x9c
+ 1112 0202 15020000 		.4byte	0x215
+ 1113 0206 0E       		.uleb128 0xe
+ 1114 0207 18000000 		.4byte	.LASF29
+ 1115 020b 01       		.byte	0x1
+ 1116 020c EE01     		.2byte	0x1ee
+ 1117 020e 6B000000 		.4byte	0x6b
+ 1118 0212 01       		.uleb128 0x1
+ 1119 0213 50       		.byte	0x50
+ 1120 0214 00       		.byte	0
+ 1121 0215 11       		.uleb128 0x11
+ 1122 0216 75020000 		.4byte	.LASF31
+ 1123 021a 01       		.byte	0x1
+ 1124 021b 5A02     		.2byte	0x25a
+ 1125 021d 6B000000 		.4byte	0x6b
+ 1126 0221 00000000 		.4byte	.LFB13
+ 1127 0225 0C000000 		.4byte	.LFE13-.LFB13
+ 1128 0229 01       		.uleb128 0x1
+ 1129 022a 9C       		.byte	0x9c
+ 1130 022b 3E020000 		.4byte	0x23e
+ 1131 022f 12       		.uleb128 0x12
+ 1132 0230 EC000000 		.4byte	.LASF30
+ 1133 0234 01       		.byte	0x1
+ 1134 0235 5C02     		.2byte	0x25c
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 42
+
+
+ 1135 0237 6B000000 		.4byte	0x6b
+ 1136 023b 01       		.uleb128 0x1
+ 1137 023c 50       		.byte	0x50
+ 1138 023d 00       		.byte	0
+ 1139 023e 11       		.uleb128 0x11
+ 1140 023f 8C020000 		.4byte	.LASF32
+ 1141 0243 01       		.byte	0x1
+ 1142 0244 9A02     		.2byte	0x29a
+ 1143 0246 6B000000 		.4byte	0x6b
+ 1144 024a 00000000 		.4byte	.LFB14
+ 1145 024e 10000000 		.4byte	.LFE14-.LFB14
+ 1146 0252 01       		.uleb128 0x1
+ 1147 0253 9C       		.byte	0x9c
+ 1148 0254 69020000 		.4byte	0x269
+ 1149 0258 13       		.uleb128 0x13
+ 1150 0259 27010000 		.4byte	.LASF33
+ 1151 025d 01       		.byte	0x1
+ 1152 025e 9C02     		.2byte	0x29c
+ 1153 0260 6B000000 		.4byte	0x6b
+ 1154 0264 26000000 		.4byte	.LLST2
+ 1155 0268 00       		.byte	0
+ 1156 0269 11       		.uleb128 0x11
+ 1157 026a EE010000 		.4byte	.LASF34
+ 1158 026e 01       		.byte	0x1
+ 1159 026f D702     		.2byte	0x2d7
+ 1160 0271 6B000000 		.4byte	0x6b
+ 1161 0275 00000000 		.4byte	.LFB15
+ 1162 0279 1C000000 		.4byte	.LFE15-.LFB15
+ 1163 027d 01       		.uleb128 0x1
+ 1164 027e 9C       		.byte	0x9c
+ 1165 027f 94020000 		.4byte	0x294
+ 1166 0283 13       		.uleb128 0x13
+ 1167 0284 27010000 		.4byte	.LASF33
+ 1168 0288 01       		.byte	0x1
+ 1169 0289 D902     		.2byte	0x2d9
+ 1170 028b 6B000000 		.4byte	0x6b
+ 1171 028f 42000000 		.4byte	.LLST3
+ 1172 0293 00       		.byte	0
+ 1173 0294 14       		.uleb128 0x14
+ 1174 0295 2E040000 		.4byte	.LASF54
+ 1175 0299 01       		.byte	0x1
+ 1176 029a 2603     		.2byte	0x326
+ 1177 029c 00000000 		.4byte	.LFB16
+ 1178 02a0 1C000000 		.4byte	.LFE16-.LFB16
+ 1179 02a4 01       		.uleb128 0x1
+ 1180 02a5 9C       		.byte	0x9c
+ 1181 02a6 0D       		.uleb128 0xd
+ 1182 02a7 21020000 		.4byte	.LASF35
+ 1183 02ab 01       		.byte	0x1
+ 1184 02ac 5D03     		.2byte	0x35d
+ 1185 02ae 00000000 		.4byte	.LFB17
+ 1186 02b2 20000000 		.4byte	.LFE17-.LFB17
+ 1187 02b6 01       		.uleb128 0x1
+ 1188 02b7 9C       		.byte	0x9c
+ 1189 02b8 DF020000 		.4byte	0x2df
+ 1190 02bc 13       		.uleb128 0x13
+ 1191 02bd C1010000 		.4byte	.LASF24
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 43
+
+
+ 1192 02c1 01       		.byte	0x1
+ 1193 02c2 5F03     		.2byte	0x35f
+ 1194 02c4 6B000000 		.4byte	0x6b
+ 1195 02c8 60000000 		.4byte	.LLST4
+ 1196 02cc 0C       		.uleb128 0xc
+ 1197 02cd 06000000 		.4byte	.LVL14
+ 1198 02d1 93040000 		.4byte	0x493
+ 1199 02d5 0C       		.uleb128 0xc
+ 1200 02d6 1A000000 		.4byte	.LVL15
+ 1201 02da 9E040000 		.4byte	0x49e
+ 1202 02de 00       		.byte	0
+ 1203 02df 0D       		.uleb128 0xd
+ 1204 02e0 A1000000 		.4byte	.LASF36
+ 1205 02e4 01       		.byte	0x1
+ 1206 02e5 C203     		.2byte	0x3c2
+ 1207 02e7 00000000 		.4byte	.LFB18
+ 1208 02eb 16000000 		.4byte	.LFE18-.LFB18
+ 1209 02ef 01       		.uleb128 0x1
+ 1210 02f0 9C       		.byte	0x9c
+ 1211 02f1 2F030000 		.4byte	0x32f
+ 1212 02f5 15       		.uleb128 0x15
+ 1213 02f6 E5030000 		.4byte	.LASF37
+ 1214 02fa 01       		.byte	0x1
+ 1215 02fb C203     		.2byte	0x3c2
+ 1216 02fd 2F030000 		.4byte	0x32f
+ 1217 0301 73000000 		.4byte	.LLST5
+ 1218 0305 15       		.uleb128 0x15
+ 1219 0306 B7010000 		.4byte	.LASF38
+ 1220 030a 01       		.byte	0x1
+ 1221 030b C203     		.2byte	0x3c2
+ 1222 030d 6B000000 		.4byte	0x6b
+ 1223 0311 94000000 		.4byte	.LLST6
+ 1224 0315 13       		.uleb128 0x13
+ 1225 0316 A8020000 		.4byte	.LASF39
+ 1226 031a 01       		.byte	0x1
+ 1227 031b C503     		.2byte	0x3c5
+ 1228 031d 6B000000 		.4byte	0x6b
+ 1229 0321 A7000000 		.4byte	.LLST7
+ 1230 0325 0C       		.uleb128 0xc
+ 1231 0326 10000000 		.4byte	.LVL18
+ 1232 032a F0010000 		.4byte	0x1f0
+ 1233 032e 00       		.byte	0
+ 1234 032f 16       		.uleb128 0x16
+ 1235 0330 04       		.byte	0x4
+ 1236 0331 35030000 		.4byte	0x335
+ 1237 0335 17       		.uleb128 0x17
+ 1238 0336 6B000000 		.4byte	0x6b
+ 1239 033a 0D       		.uleb128 0xd
+ 1240 033b 18040000 		.4byte	.LASF40
+ 1241 033f 01       		.byte	0x1
+ 1242 0340 E303     		.2byte	0x3e3
+ 1243 0342 00000000 		.4byte	.LFB19
+ 1244 0346 38000000 		.4byte	.LFE19-.LFB19
+ 1245 034a 01       		.uleb128 0x1
+ 1246 034b 9C       		.byte	0x9c
+ 1247 034c 73030000 		.4byte	0x373
+ 1248 0350 13       		.uleb128 0x13
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 44
+
+
+ 1249 0351 C1010000 		.4byte	.LASF24
+ 1250 0355 01       		.byte	0x1
+ 1251 0356 E503     		.2byte	0x3e5
+ 1252 0358 6B000000 		.4byte	0x6b
+ 1253 035c F0000000 		.4byte	.LLST8
+ 1254 0360 0C       		.uleb128 0xc
+ 1255 0361 16000000 		.4byte	.LVL22
+ 1256 0365 93040000 		.4byte	0x493
+ 1257 0369 0C       		.uleb128 0xc
+ 1258 036a 2A000000 		.4byte	.LVL23
+ 1259 036e 9E040000 		.4byte	0x49e
+ 1260 0372 00       		.byte	0
+ 1261 0373 0A       		.uleb128 0xa
+ 1262 0374 7D030000 		.4byte	.LASF41
+ 1263 0378 01       		.byte	0x1
+ 1264 0379 3F       		.byte	0x3f
+ 1265 037a 00000000 		.4byte	.LFB0
+ 1266 037e 34000000 		.4byte	.LFE0-.LFB0
+ 1267 0382 01       		.uleb128 0x1
+ 1268 0383 9C       		.byte	0x9c
+ 1269 0384 D0030000 		.4byte	0x3d0
+ 1270 0388 18       		.uleb128 0x18
+ 1271 0389 E4000000 		.4byte	0xe4
+ 1272 038d 0C000000 		.4byte	.LBB22
+ 1273 0391 00000000 		.4byte	.Ldebug_ranges0+0
+ 1274 0395 01       		.byte	0x1
+ 1275 0396 61       		.byte	0x61
+ 1276 0397 A7030000 		.4byte	0x3a7
+ 1277 039b 19       		.uleb128 0x19
+ 1278 039c 00000000 		.4byte	.Ldebug_ranges0+0
+ 1279 03a0 1A       		.uleb128 0x1a
+ 1280 03a1 F5000000 		.4byte	0xf5
+ 1281 03a5 00       		.byte	0
+ 1282 03a6 00       		.byte	0
+ 1283 03a7 18       		.uleb128 0x18
+ 1284 03a8 C6000000 		.4byte	0xc6
+ 1285 03ac 12000000 		.4byte	.LBB26
+ 1286 03b0 18000000 		.4byte	.Ldebug_ranges0+0x18
+ 1287 03b4 01       		.byte	0x1
+ 1288 03b5 62       		.byte	0x62
+ 1289 03b6 C6030000 		.4byte	0x3c6
+ 1290 03ba 19       		.uleb128 0x19
+ 1291 03bb 18000000 		.4byte	.Ldebug_ranges0+0x18
+ 1292 03bf 1A       		.uleb128 0x1a
+ 1293 03c0 D7000000 		.4byte	0xd7
+ 1294 03c4 00       		.byte	0
+ 1295 03c5 00       		.byte	0
+ 1296 03c6 0C       		.uleb128 0xc
+ 1297 03c7 0C000000 		.4byte	.LVL24
+ 1298 03cb 3A030000 		.4byte	0x33a
+ 1299 03cf 00       		.byte	0
+ 1300 03d0 0A       		.uleb128 0xa
+ 1301 03d1 C9030000 		.4byte	.LASF42
+ 1302 03d5 01       		.byte	0x1
+ 1303 03d6 A3       		.byte	0xa3
+ 1304 03d7 00000000 		.4byte	.LFB2
+ 1305 03db 1C000000 		.4byte	.LFE2-.LFB2
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 45
+
+
+ 1306 03df 01       		.uleb128 0x1
+ 1307 03e0 9C       		.byte	0x9c
+ 1308 03e1 F8030000 		.4byte	0x3f8
+ 1309 03e5 0C       		.uleb128 0xc
+ 1310 03e6 0E000000 		.4byte	.LVL25
+ 1311 03ea 73030000 		.4byte	0x373
+ 1312 03ee 0C       		.uleb128 0xc
+ 1313 03ef 16000000 		.4byte	.LVL26
+ 1314 03f3 02010000 		.4byte	0x102
+ 1315 03f7 00       		.byte	0
+ 1316 03f8 07       		.uleb128 0x7
+ 1317 03f9 76000000 		.4byte	.LASF43
+ 1318 03fd 01       		.byte	0x1
+ 1319 03fe 2904     		.2byte	0x429
+ 1320 0400 01       		.byte	0x1
+ 1321 0401 1B       		.uleb128 0x1b
+ 1322 0402 F8030000 		.4byte	0x3f8
+ 1323 0406 00000000 		.4byte	.LFB21
+ 1324 040a 02000000 		.4byte	.LFE21-.LFB21
+ 1325 040e 01       		.uleb128 0x1
+ 1326 040f 9C       		.byte	0x9c
+ 1327 0410 0D       		.uleb128 0xd
+ 1328 0411 B6000000 		.4byte	.LASF44
+ 1329 0415 01       		.byte	0x1
+ 1330 0416 4204     		.2byte	0x442
+ 1331 0418 00000000 		.4byte	.LFB22
+ 1332 041c 18000000 		.4byte	.LFE22-.LFB22
+ 1333 0420 01       		.uleb128 0x1
+ 1334 0421 9C       		.byte	0x9c
+ 1335 0422 35040000 		.4byte	0x435
+ 1336 0426 0E       		.uleb128 0xe
+ 1337 0427 E7010000 		.4byte	.LASF27
+ 1338 042b 01       		.byte	0x1
+ 1339 042c 4204     		.2byte	0x442
+ 1340 042e 6B000000 		.4byte	0x6b
+ 1341 0432 01       		.uleb128 0x1
+ 1342 0433 50       		.byte	0x50
+ 1343 0434 00       		.byte	0
+ 1344 0435 11       		.uleb128 0x11
+ 1345 0436 10010000 		.4byte	.LASF45
+ 1346 043a 01       		.byte	0x1
+ 1347 043b 6504     		.2byte	0x465
+ 1348 043d 6B000000 		.4byte	0x6b
+ 1349 0441 00000000 		.4byte	.LFB23
+ 1350 0445 18000000 		.4byte	.LFE23-.LFB23
+ 1351 0449 01       		.uleb128 0x1
+ 1352 044a 9C       		.byte	0x9c
+ 1353 044b 60040000 		.4byte	0x460
+ 1354 044f 13       		.uleb128 0x13
+ 1355 0450 0E040000 		.4byte	.LASF21
+ 1356 0454 01       		.byte	0x1
+ 1357 0455 6704     		.2byte	0x467
+ 1358 0457 6B000000 		.4byte	0x6b
+ 1359 045b 03010000 		.4byte	.LLST9
+ 1360 045f 00       		.byte	0
+ 1361 0460 1C       		.uleb128 0x1c
+ 1362 0461 8D000000 		.4byte	.LASF46
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 46
+
+
+ 1363 0465 01       		.byte	0x1
+ 1364 0466 22       		.byte	0x22
+ 1365 0467 6B000000 		.4byte	0x6b
+ 1366 046b 05       		.uleb128 0x5
+ 1367 046c 03       		.byte	0x3
+ 1368 046d 00000000 		.4byte	Display_SPI_initVar
+ 1369 0471 1C       		.uleb128 0x1c
+ 1370 0472 5E020000 		.4byte	.LASF47
+ 1371 0476 01       		.byte	0x1
+ 1372 0477 24       		.byte	0x24
+ 1373 0478 98000000 		.4byte	0x98
+ 1374 047c 05       		.uleb128 0x5
+ 1375 047d 03       		.byte	0x3
+ 1376 047e 00000000 		.4byte	Display_SPI_swStatusTx
+ 1377 0482 1C       		.uleb128 0x1c
+ 1378 0483 53030000 		.4byte	.LASF48
+ 1379 0487 01       		.byte	0x1
+ 1380 0488 25       		.byte	0x25
+ 1381 0489 98000000 		.4byte	0x98
+ 1382 048d 05       		.uleb128 0x5
+ 1383 048e 03       		.byte	0x3
+ 1384 048f 00000000 		.4byte	Display_SPI_swStatusRx
+ 1385 0493 1D       		.uleb128 0x1d
+ 1386 0494 0A020000 		.4byte	.LASF49
+ 1387 0498 0A020000 		.4byte	.LASF49
+ 1388 049c 03       		.byte	0x3
+ 1389 049d E5       		.byte	0xe5
+ 1390 049e 1D       		.uleb128 0x1d
+ 1391 049f 48020000 		.4byte	.LASF50
+ 1392 04a3 48020000 		.4byte	.LASF50
+ 1393 04a7 03       		.byte	0x3
+ 1394 04a8 E6       		.byte	0xe6
+ 1395 04a9 00       		.byte	0
+ 1396              		.section	.debug_abbrev,"",%progbits
+ 1397              	.Ldebug_abbrev0:
+ 1398 0000 01       		.uleb128 0x1
+ 1399 0001 11       		.uleb128 0x11
+ 1400 0002 01       		.byte	0x1
+ 1401 0003 25       		.uleb128 0x25
+ 1402 0004 0E       		.uleb128 0xe
+ 1403 0005 13       		.uleb128 0x13
+ 1404 0006 0B       		.uleb128 0xb
+ 1405 0007 03       		.uleb128 0x3
+ 1406 0008 0E       		.uleb128 0xe
+ 1407 0009 1B       		.uleb128 0x1b
+ 1408 000a 0E       		.uleb128 0xe
+ 1409 000b 55       		.uleb128 0x55
+ 1410 000c 17       		.uleb128 0x17
+ 1411 000d 11       		.uleb128 0x11
+ 1412 000e 01       		.uleb128 0x1
+ 1413 000f 10       		.uleb128 0x10
+ 1414 0010 17       		.uleb128 0x17
+ 1415 0011 00       		.byte	0
+ 1416 0012 00       		.byte	0
+ 1417 0013 02       		.uleb128 0x2
+ 1418 0014 24       		.uleb128 0x24
+ 1419 0015 00       		.byte	0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 47
+
+
+ 1420 0016 0B       		.uleb128 0xb
+ 1421 0017 0B       		.uleb128 0xb
+ 1422 0018 3E       		.uleb128 0x3e
+ 1423 0019 0B       		.uleb128 0xb
+ 1424 001a 03       		.uleb128 0x3
+ 1425 001b 0E       		.uleb128 0xe
+ 1426 001c 00       		.byte	0
+ 1427 001d 00       		.byte	0
+ 1428 001e 03       		.uleb128 0x3
+ 1429 001f 24       		.uleb128 0x24
+ 1430 0020 00       		.byte	0
+ 1431 0021 0B       		.uleb128 0xb
+ 1432 0022 0B       		.uleb128 0xb
+ 1433 0023 3E       		.uleb128 0x3e
+ 1434 0024 0B       		.uleb128 0xb
+ 1435 0025 03       		.uleb128 0x3
+ 1436 0026 08       		.uleb128 0x8
+ 1437 0027 00       		.byte	0
+ 1438 0028 00       		.byte	0
+ 1439 0029 04       		.uleb128 0x4
+ 1440 002a 16       		.uleb128 0x16
+ 1441 002b 00       		.byte	0
+ 1442 002c 03       		.uleb128 0x3
+ 1443 002d 0E       		.uleb128 0xe
+ 1444 002e 3A       		.uleb128 0x3a
+ 1445 002f 0B       		.uleb128 0xb
+ 1446 0030 3B       		.uleb128 0x3b
+ 1447 0031 05       		.uleb128 0x5
+ 1448 0032 49       		.uleb128 0x49
+ 1449 0033 13       		.uleb128 0x13
+ 1450 0034 00       		.byte	0
+ 1451 0035 00       		.byte	0
+ 1452 0036 05       		.uleb128 0x5
+ 1453 0037 35       		.uleb128 0x35
+ 1454 0038 00       		.byte	0
+ 1455 0039 49       		.uleb128 0x49
+ 1456 003a 13       		.uleb128 0x13
+ 1457 003b 00       		.byte	0
+ 1458 003c 00       		.byte	0
+ 1459 003d 06       		.uleb128 0x6
+ 1460 003e 2E       		.uleb128 0x2e
+ 1461 003f 00       		.byte	0
+ 1462 0040 3F       		.uleb128 0x3f
+ 1463 0041 19       		.uleb128 0x19
+ 1464 0042 03       		.uleb128 0x3
+ 1465 0043 0E       		.uleb128 0xe
+ 1466 0044 3A       		.uleb128 0x3a
+ 1467 0045 0B       		.uleb128 0xb
+ 1468 0046 3B       		.uleb128 0x3b
+ 1469 0047 0B       		.uleb128 0xb
+ 1470 0048 27       		.uleb128 0x27
+ 1471 0049 19       		.uleb128 0x19
+ 1472 004a 20       		.uleb128 0x20
+ 1473 004b 0B       		.uleb128 0xb
+ 1474 004c 00       		.byte	0
+ 1475 004d 00       		.byte	0
+ 1476 004e 07       		.uleb128 0x7
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 48
+
+
+ 1477 004f 2E       		.uleb128 0x2e
+ 1478 0050 00       		.byte	0
+ 1479 0051 3F       		.uleb128 0x3f
+ 1480 0052 19       		.uleb128 0x19
+ 1481 0053 03       		.uleb128 0x3
+ 1482 0054 0E       		.uleb128 0xe
+ 1483 0055 3A       		.uleb128 0x3a
+ 1484 0056 0B       		.uleb128 0xb
+ 1485 0057 3B       		.uleb128 0x3b
+ 1486 0058 05       		.uleb128 0x5
+ 1487 0059 27       		.uleb128 0x27
+ 1488 005a 19       		.uleb128 0x19
+ 1489 005b 20       		.uleb128 0x20
+ 1490 005c 0B       		.uleb128 0xb
+ 1491 005d 00       		.byte	0
+ 1492 005e 00       		.byte	0
+ 1493 005f 08       		.uleb128 0x8
+ 1494 0060 2E       		.uleb128 0x2e
+ 1495 0061 01       		.byte	0x1
+ 1496 0062 3F       		.uleb128 0x3f
+ 1497 0063 19       		.uleb128 0x19
+ 1498 0064 03       		.uleb128 0x3
+ 1499 0065 0E       		.uleb128 0xe
+ 1500 0066 3A       		.uleb128 0x3a
+ 1501 0067 0B       		.uleb128 0xb
+ 1502 0068 3B       		.uleb128 0x3b
+ 1503 0069 05       		.uleb128 0x5
+ 1504 006a 27       		.uleb128 0x27
+ 1505 006b 19       		.uleb128 0x19
+ 1506 006c 49       		.uleb128 0x49
+ 1507 006d 13       		.uleb128 0x13
+ 1508 006e 20       		.uleb128 0x20
+ 1509 006f 0B       		.uleb128 0xb
+ 1510 0070 01       		.uleb128 0x1
+ 1511 0071 13       		.uleb128 0x13
+ 1512 0072 00       		.byte	0
+ 1513 0073 00       		.byte	0
+ 1514 0074 09       		.uleb128 0x9
+ 1515 0075 34       		.uleb128 0x34
+ 1516 0076 00       		.byte	0
+ 1517 0077 03       		.uleb128 0x3
+ 1518 0078 0E       		.uleb128 0xe
+ 1519 0079 3A       		.uleb128 0x3a
+ 1520 007a 0B       		.uleb128 0xb
+ 1521 007b 3B       		.uleb128 0x3b
+ 1522 007c 05       		.uleb128 0x5
+ 1523 007d 49       		.uleb128 0x49
+ 1524 007e 13       		.uleb128 0x13
+ 1525 007f 00       		.byte	0
+ 1526 0080 00       		.byte	0
+ 1527 0081 0A       		.uleb128 0xa
+ 1528 0082 2E       		.uleb128 0x2e
+ 1529 0083 01       		.byte	0x1
+ 1530 0084 3F       		.uleb128 0x3f
+ 1531 0085 19       		.uleb128 0x19
+ 1532 0086 03       		.uleb128 0x3
+ 1533 0087 0E       		.uleb128 0xe
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 49
+
+
+ 1534 0088 3A       		.uleb128 0x3a
+ 1535 0089 0B       		.uleb128 0xb
+ 1536 008a 3B       		.uleb128 0x3b
+ 1537 008b 0B       		.uleb128 0xb
+ 1538 008c 27       		.uleb128 0x27
+ 1539 008d 19       		.uleb128 0x19
+ 1540 008e 11       		.uleb128 0x11
+ 1541 008f 01       		.uleb128 0x1
+ 1542 0090 12       		.uleb128 0x12
+ 1543 0091 06       		.uleb128 0x6
+ 1544 0092 40       		.uleb128 0x40
+ 1545 0093 18       		.uleb128 0x18
+ 1546 0094 9742     		.uleb128 0x2117
+ 1547 0096 19       		.uleb128 0x19
+ 1548 0097 01       		.uleb128 0x1
+ 1549 0098 13       		.uleb128 0x13
+ 1550 0099 00       		.byte	0
+ 1551 009a 00       		.byte	0
+ 1552 009b 0B       		.uleb128 0xb
+ 1553 009c 34       		.uleb128 0x34
+ 1554 009d 00       		.byte	0
+ 1555 009e 03       		.uleb128 0x3
+ 1556 009f 0E       		.uleb128 0xe
+ 1557 00a0 3A       		.uleb128 0x3a
+ 1558 00a1 0B       		.uleb128 0xb
+ 1559 00a2 3B       		.uleb128 0x3b
+ 1560 00a3 0B       		.uleb128 0xb
+ 1561 00a4 49       		.uleb128 0x49
+ 1562 00a5 13       		.uleb128 0x13
+ 1563 00a6 02       		.uleb128 0x2
+ 1564 00a7 17       		.uleb128 0x17
+ 1565 00a8 00       		.byte	0
+ 1566 00a9 00       		.byte	0
+ 1567 00aa 0C       		.uleb128 0xc
+ 1568 00ab 898201   		.uleb128 0x4109
+ 1569 00ae 00       		.byte	0
+ 1570 00af 11       		.uleb128 0x11
+ 1571 00b0 01       		.uleb128 0x1
+ 1572 00b1 31       		.uleb128 0x31
+ 1573 00b2 13       		.uleb128 0x13
+ 1574 00b3 00       		.byte	0
+ 1575 00b4 00       		.byte	0
+ 1576 00b5 0D       		.uleb128 0xd
+ 1577 00b6 2E       		.uleb128 0x2e
+ 1578 00b7 01       		.byte	0x1
+ 1579 00b8 3F       		.uleb128 0x3f
+ 1580 00b9 19       		.uleb128 0x19
+ 1581 00ba 03       		.uleb128 0x3
+ 1582 00bb 0E       		.uleb128 0xe
+ 1583 00bc 3A       		.uleb128 0x3a
+ 1584 00bd 0B       		.uleb128 0xb
+ 1585 00be 3B       		.uleb128 0x3b
+ 1586 00bf 05       		.uleb128 0x5
+ 1587 00c0 27       		.uleb128 0x27
+ 1588 00c1 19       		.uleb128 0x19
+ 1589 00c2 11       		.uleb128 0x11
+ 1590 00c3 01       		.uleb128 0x1
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 50
+
+
+ 1591 00c4 12       		.uleb128 0x12
+ 1592 00c5 06       		.uleb128 0x6
+ 1593 00c6 40       		.uleb128 0x40
+ 1594 00c7 18       		.uleb128 0x18
+ 1595 00c8 9742     		.uleb128 0x2117
+ 1596 00ca 19       		.uleb128 0x19
+ 1597 00cb 01       		.uleb128 0x1
+ 1598 00cc 13       		.uleb128 0x13
+ 1599 00cd 00       		.byte	0
+ 1600 00ce 00       		.byte	0
+ 1601 00cf 0E       		.uleb128 0xe
+ 1602 00d0 05       		.uleb128 0x5
+ 1603 00d1 00       		.byte	0
+ 1604 00d2 03       		.uleb128 0x3
+ 1605 00d3 0E       		.uleb128 0xe
+ 1606 00d4 3A       		.uleb128 0x3a
+ 1607 00d5 0B       		.uleb128 0xb
+ 1608 00d6 3B       		.uleb128 0x3b
+ 1609 00d7 05       		.uleb128 0x5
+ 1610 00d8 49       		.uleb128 0x49
+ 1611 00d9 13       		.uleb128 0x13
+ 1612 00da 02       		.uleb128 0x2
+ 1613 00db 18       		.uleb128 0x18
+ 1614 00dc 00       		.byte	0
+ 1615 00dd 00       		.byte	0
+ 1616 00de 0F       		.uleb128 0xf
+ 1617 00df 2E       		.uleb128 0x2e
+ 1618 00e0 01       		.byte	0x1
+ 1619 00e1 31       		.uleb128 0x31
+ 1620 00e2 13       		.uleb128 0x13
+ 1621 00e3 11       		.uleb128 0x11
+ 1622 00e4 01       		.uleb128 0x1
+ 1623 00e5 12       		.uleb128 0x12
+ 1624 00e6 06       		.uleb128 0x6
+ 1625 00e7 40       		.uleb128 0x40
+ 1626 00e8 18       		.uleb128 0x18
+ 1627 00e9 9742     		.uleb128 0x2117
+ 1628 00eb 19       		.uleb128 0x19
+ 1629 00ec 01       		.uleb128 0x1
+ 1630 00ed 13       		.uleb128 0x13
+ 1631 00ee 00       		.byte	0
+ 1632 00ef 00       		.byte	0
+ 1633 00f0 10       		.uleb128 0x10
+ 1634 00f1 34       		.uleb128 0x34
+ 1635 00f2 00       		.byte	0
+ 1636 00f3 31       		.uleb128 0x31
+ 1637 00f4 13       		.uleb128 0x13
+ 1638 00f5 02       		.uleb128 0x2
+ 1639 00f6 18       		.uleb128 0x18
+ 1640 00f7 00       		.byte	0
+ 1641 00f8 00       		.byte	0
+ 1642 00f9 11       		.uleb128 0x11
+ 1643 00fa 2E       		.uleb128 0x2e
+ 1644 00fb 01       		.byte	0x1
+ 1645 00fc 3F       		.uleb128 0x3f
+ 1646 00fd 19       		.uleb128 0x19
+ 1647 00fe 03       		.uleb128 0x3
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 51
+
+
+ 1648 00ff 0E       		.uleb128 0xe
+ 1649 0100 3A       		.uleb128 0x3a
+ 1650 0101 0B       		.uleb128 0xb
+ 1651 0102 3B       		.uleb128 0x3b
+ 1652 0103 05       		.uleb128 0x5
+ 1653 0104 27       		.uleb128 0x27
+ 1654 0105 19       		.uleb128 0x19
+ 1655 0106 49       		.uleb128 0x49
+ 1656 0107 13       		.uleb128 0x13
+ 1657 0108 11       		.uleb128 0x11
+ 1658 0109 01       		.uleb128 0x1
+ 1659 010a 12       		.uleb128 0x12
+ 1660 010b 06       		.uleb128 0x6
+ 1661 010c 40       		.uleb128 0x40
+ 1662 010d 18       		.uleb128 0x18
+ 1663 010e 9742     		.uleb128 0x2117
+ 1664 0110 19       		.uleb128 0x19
+ 1665 0111 01       		.uleb128 0x1
+ 1666 0112 13       		.uleb128 0x13
+ 1667 0113 00       		.byte	0
+ 1668 0114 00       		.byte	0
+ 1669 0115 12       		.uleb128 0x12
+ 1670 0116 34       		.uleb128 0x34
+ 1671 0117 00       		.byte	0
+ 1672 0118 03       		.uleb128 0x3
+ 1673 0119 0E       		.uleb128 0xe
+ 1674 011a 3A       		.uleb128 0x3a
+ 1675 011b 0B       		.uleb128 0xb
+ 1676 011c 3B       		.uleb128 0x3b
+ 1677 011d 05       		.uleb128 0x5
+ 1678 011e 49       		.uleb128 0x49
+ 1679 011f 13       		.uleb128 0x13
+ 1680 0120 02       		.uleb128 0x2
+ 1681 0121 18       		.uleb128 0x18
+ 1682 0122 00       		.byte	0
+ 1683 0123 00       		.byte	0
+ 1684 0124 13       		.uleb128 0x13
+ 1685 0125 34       		.uleb128 0x34
+ 1686 0126 00       		.byte	0
+ 1687 0127 03       		.uleb128 0x3
+ 1688 0128 0E       		.uleb128 0xe
+ 1689 0129 3A       		.uleb128 0x3a
+ 1690 012a 0B       		.uleb128 0xb
+ 1691 012b 3B       		.uleb128 0x3b
+ 1692 012c 05       		.uleb128 0x5
+ 1693 012d 49       		.uleb128 0x49
+ 1694 012e 13       		.uleb128 0x13
+ 1695 012f 02       		.uleb128 0x2
+ 1696 0130 17       		.uleb128 0x17
+ 1697 0131 00       		.byte	0
+ 1698 0132 00       		.byte	0
+ 1699 0133 14       		.uleb128 0x14
+ 1700 0134 2E       		.uleb128 0x2e
+ 1701 0135 00       		.byte	0
+ 1702 0136 3F       		.uleb128 0x3f
+ 1703 0137 19       		.uleb128 0x19
+ 1704 0138 03       		.uleb128 0x3
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 52
+
+
+ 1705 0139 0E       		.uleb128 0xe
+ 1706 013a 3A       		.uleb128 0x3a
+ 1707 013b 0B       		.uleb128 0xb
+ 1708 013c 3B       		.uleb128 0x3b
+ 1709 013d 05       		.uleb128 0x5
+ 1710 013e 27       		.uleb128 0x27
+ 1711 013f 19       		.uleb128 0x19
+ 1712 0140 11       		.uleb128 0x11
+ 1713 0141 01       		.uleb128 0x1
+ 1714 0142 12       		.uleb128 0x12
+ 1715 0143 06       		.uleb128 0x6
+ 1716 0144 40       		.uleb128 0x40
+ 1717 0145 18       		.uleb128 0x18
+ 1718 0146 9742     		.uleb128 0x2117
+ 1719 0148 19       		.uleb128 0x19
+ 1720 0149 00       		.byte	0
+ 1721 014a 00       		.byte	0
+ 1722 014b 15       		.uleb128 0x15
+ 1723 014c 05       		.uleb128 0x5
+ 1724 014d 00       		.byte	0
+ 1725 014e 03       		.uleb128 0x3
+ 1726 014f 0E       		.uleb128 0xe
+ 1727 0150 3A       		.uleb128 0x3a
+ 1728 0151 0B       		.uleb128 0xb
+ 1729 0152 3B       		.uleb128 0x3b
+ 1730 0153 05       		.uleb128 0x5
+ 1731 0154 49       		.uleb128 0x49
+ 1732 0155 13       		.uleb128 0x13
+ 1733 0156 02       		.uleb128 0x2
+ 1734 0157 17       		.uleb128 0x17
+ 1735 0158 00       		.byte	0
+ 1736 0159 00       		.byte	0
+ 1737 015a 16       		.uleb128 0x16
+ 1738 015b 0F       		.uleb128 0xf
+ 1739 015c 00       		.byte	0
+ 1740 015d 0B       		.uleb128 0xb
+ 1741 015e 0B       		.uleb128 0xb
+ 1742 015f 49       		.uleb128 0x49
+ 1743 0160 13       		.uleb128 0x13
+ 1744 0161 00       		.byte	0
+ 1745 0162 00       		.byte	0
+ 1746 0163 17       		.uleb128 0x17
+ 1747 0164 26       		.uleb128 0x26
+ 1748 0165 00       		.byte	0
+ 1749 0166 49       		.uleb128 0x49
+ 1750 0167 13       		.uleb128 0x13
+ 1751 0168 00       		.byte	0
+ 1752 0169 00       		.byte	0
+ 1753 016a 18       		.uleb128 0x18
+ 1754 016b 1D       		.uleb128 0x1d
+ 1755 016c 01       		.byte	0x1
+ 1756 016d 31       		.uleb128 0x31
+ 1757 016e 13       		.uleb128 0x13
+ 1758 016f 52       		.uleb128 0x52
+ 1759 0170 01       		.uleb128 0x1
+ 1760 0171 55       		.uleb128 0x55
+ 1761 0172 17       		.uleb128 0x17
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 53
+
+
+ 1762 0173 58       		.uleb128 0x58
+ 1763 0174 0B       		.uleb128 0xb
+ 1764 0175 59       		.uleb128 0x59
+ 1765 0176 0B       		.uleb128 0xb
+ 1766 0177 01       		.uleb128 0x1
+ 1767 0178 13       		.uleb128 0x13
+ 1768 0179 00       		.byte	0
+ 1769 017a 00       		.byte	0
+ 1770 017b 19       		.uleb128 0x19
+ 1771 017c 0B       		.uleb128 0xb
+ 1772 017d 01       		.byte	0x1
+ 1773 017e 55       		.uleb128 0x55
+ 1774 017f 17       		.uleb128 0x17
+ 1775 0180 00       		.byte	0
+ 1776 0181 00       		.byte	0
+ 1777 0182 1A       		.uleb128 0x1a
+ 1778 0183 34       		.uleb128 0x34
+ 1779 0184 00       		.byte	0
+ 1780 0185 31       		.uleb128 0x31
+ 1781 0186 13       		.uleb128 0x13
+ 1782 0187 00       		.byte	0
+ 1783 0188 00       		.byte	0
+ 1784 0189 1B       		.uleb128 0x1b
+ 1785 018a 2E       		.uleb128 0x2e
+ 1786 018b 00       		.byte	0
+ 1787 018c 31       		.uleb128 0x31
+ 1788 018d 13       		.uleb128 0x13
+ 1789 018e 11       		.uleb128 0x11
+ 1790 018f 01       		.uleb128 0x1
+ 1791 0190 12       		.uleb128 0x12
+ 1792 0191 06       		.uleb128 0x6
+ 1793 0192 40       		.uleb128 0x40
+ 1794 0193 18       		.uleb128 0x18
+ 1795 0194 9742     		.uleb128 0x2117
+ 1796 0196 19       		.uleb128 0x19
+ 1797 0197 00       		.byte	0
+ 1798 0198 00       		.byte	0
+ 1799 0199 1C       		.uleb128 0x1c
+ 1800 019a 34       		.uleb128 0x34
+ 1801 019b 00       		.byte	0
+ 1802 019c 03       		.uleb128 0x3
+ 1803 019d 0E       		.uleb128 0xe
+ 1804 019e 3A       		.uleb128 0x3a
+ 1805 019f 0B       		.uleb128 0xb
+ 1806 01a0 3B       		.uleb128 0x3b
+ 1807 01a1 0B       		.uleb128 0xb
+ 1808 01a2 49       		.uleb128 0x49
+ 1809 01a3 13       		.uleb128 0x13
+ 1810 01a4 3F       		.uleb128 0x3f
+ 1811 01a5 19       		.uleb128 0x19
+ 1812 01a6 02       		.uleb128 0x2
+ 1813 01a7 18       		.uleb128 0x18
+ 1814 01a8 00       		.byte	0
+ 1815 01a9 00       		.byte	0
+ 1816 01aa 1D       		.uleb128 0x1d
+ 1817 01ab 2E       		.uleb128 0x2e
+ 1818 01ac 00       		.byte	0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 54
+
+
+ 1819 01ad 3F       		.uleb128 0x3f
+ 1820 01ae 19       		.uleb128 0x19
+ 1821 01af 3C       		.uleb128 0x3c
+ 1822 01b0 19       		.uleb128 0x19
+ 1823 01b1 6E       		.uleb128 0x6e
+ 1824 01b2 0E       		.uleb128 0xe
+ 1825 01b3 03       		.uleb128 0x3
+ 1826 01b4 0E       		.uleb128 0xe
+ 1827 01b5 3A       		.uleb128 0x3a
+ 1828 01b6 0B       		.uleb128 0xb
+ 1829 01b7 3B       		.uleb128 0x3b
+ 1830 01b8 0B       		.uleb128 0xb
+ 1831 01b9 00       		.byte	0
+ 1832 01ba 00       		.byte	0
+ 1833 01bb 00       		.byte	0
+ 1834              		.section	.debug_loc,"",%progbits
+ 1835              	.Ldebug_loc0:
+ 1836              	.LLST0:
+ 1837 0000 06000000 		.4byte	.LVL0
+ 1838 0004 25000000 		.4byte	.LVL1-1
+ 1839 0008 0100     		.2byte	0x1
+ 1840 000a 50       		.byte	0x50
+ 1841 000b 00000000 		.4byte	0
+ 1842 000f 00000000 		.4byte	0
+ 1843              	.LLST1:
+ 1844 0013 06000000 		.4byte	.LVL2
+ 1845 0017 1B000000 		.4byte	.LVL3-1
+ 1846 001b 0100     		.2byte	0x1
+ 1847 001d 50       		.byte	0x50
+ 1848 001e 00000000 		.4byte	0
+ 1849 0022 00000000 		.4byte	0
+ 1850              	.LLST2:
+ 1851 0026 04000000 		.4byte	.LVL10
+ 1852 002a 06000000 		.4byte	.LVL11
+ 1853 002e 0A00     		.2byte	0xa
+ 1854 0030 70       		.byte	0x70
+ 1855 0031 00       		.sleb128 0
+ 1856 0032 08       		.byte	0x8
+ 1857 0033 20       		.byte	0x20
+ 1858 0034 1A       		.byte	0x1a
+ 1859 0035 48       		.byte	0x48
+ 1860 0036 24       		.byte	0x24
+ 1861 0037 30       		.byte	0x30
+ 1862 0038 2E       		.byte	0x2e
+ 1863 0039 9F       		.byte	0x9f
+ 1864 003a 00000000 		.4byte	0
+ 1865 003e 00000000 		.4byte	0
+ 1866              	.LLST3:
+ 1867 0042 08000000 		.4byte	.LVL12
+ 1868 0046 16000000 		.4byte	.LVL13
+ 1869 004a 0100     		.2byte	0x1
+ 1870 004c 53       		.byte	0x53
+ 1871 004d 16000000 		.4byte	.LVL13
+ 1872 0051 1C000000 		.4byte	.LFE15
+ 1873 0055 0100     		.2byte	0x1
+ 1874 0057 50       		.byte	0x50
+ 1875 0058 00000000 		.4byte	0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 55
+
+
+ 1876 005c 00000000 		.4byte	0
+ 1877              	.LLST4:
+ 1878 0060 06000000 		.4byte	.LVL14
+ 1879 0064 19000000 		.4byte	.LVL15-1
+ 1880 0068 0100     		.2byte	0x1
+ 1881 006a 50       		.byte	0x50
+ 1882 006b 00000000 		.4byte	0
+ 1883 006f 00000000 		.4byte	0
+ 1884              	.LLST5:
+ 1885 0073 00000000 		.4byte	.LVL16
+ 1886 0077 06000000 		.4byte	.LVL17
+ 1887 007b 0100     		.2byte	0x1
+ 1888 007d 50       		.byte	0x50
+ 1889 007e 06000000 		.4byte	.LVL17
+ 1890 0082 16000000 		.4byte	.LFE18
+ 1891 0086 0400     		.2byte	0x4
+ 1892 0088 F3       		.byte	0xf3
+ 1893 0089 01       		.uleb128 0x1
+ 1894 008a 50       		.byte	0x50
+ 1895 008b 9F       		.byte	0x9f
+ 1896 008c 00000000 		.4byte	0
+ 1897 0090 00000000 		.4byte	0
+ 1898              	.LLST6:
+ 1899 0094 00000000 		.4byte	.LVL16
+ 1900 0098 06000000 		.4byte	.LVL17
+ 1901 009c 0100     		.2byte	0x1
+ 1902 009e 51       		.byte	0x51
+ 1903 009f 00000000 		.4byte	0
+ 1904 00a3 00000000 		.4byte	0
+ 1905              	.LLST7:
+ 1906 00a7 00000000 		.4byte	.LVL16
+ 1907 00ab 06000000 		.4byte	.LVL17
+ 1908 00af 0200     		.2byte	0x2
+ 1909 00b1 30       		.byte	0x30
+ 1910 00b2 9F       		.byte	0x9f
+ 1911 00b3 06000000 		.4byte	.LVL17
+ 1912 00b7 10000000 		.4byte	.LVL18
+ 1913 00bb 0700     		.2byte	0x7
+ 1914 00bd 74       		.byte	0x74
+ 1915 00be 00       		.sleb128 0
+ 1916 00bf F3       		.byte	0xf3
+ 1917 00c0 01       		.uleb128 0x1
+ 1918 00c1 50       		.byte	0x50
+ 1919 00c2 1C       		.byte	0x1c
+ 1920 00c3 9F       		.byte	0x9f
+ 1921 00c4 10000000 		.4byte	.LVL18
+ 1922 00c8 12000000 		.4byte	.LVL19
+ 1923 00cc 0900     		.2byte	0x9
+ 1924 00ce 74       		.byte	0x74
+ 1925 00cf 00       		.sleb128 0
+ 1926 00d0 F3       		.byte	0xf3
+ 1927 00d1 01       		.uleb128 0x1
+ 1928 00d2 50       		.byte	0x50
+ 1929 00d3 1C       		.byte	0x1c
+ 1930 00d4 23       		.byte	0x23
+ 1931 00d5 01       		.uleb128 0x1
+ 1932 00d6 9F       		.byte	0x9f
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 56
+
+
+ 1933 00d7 14000000 		.4byte	.LVL20
+ 1934 00db 14000000 		.4byte	.LVL21
+ 1935 00df 0700     		.2byte	0x7
+ 1936 00e1 74       		.byte	0x74
+ 1937 00e2 00       		.sleb128 0
+ 1938 00e3 F3       		.byte	0xf3
+ 1939 00e4 01       		.uleb128 0x1
+ 1940 00e5 50       		.byte	0x50
+ 1941 00e6 1C       		.byte	0x1c
+ 1942 00e7 9F       		.byte	0x9f
+ 1943 00e8 00000000 		.4byte	0
+ 1944 00ec 00000000 		.4byte	0
+ 1945              	.LLST8:
+ 1946 00f0 16000000 		.4byte	.LVL22
+ 1947 00f4 29000000 		.4byte	.LVL23-1
+ 1948 00f8 0100     		.2byte	0x1
+ 1949 00fa 50       		.byte	0x50
+ 1950 00fb 00000000 		.4byte	0
+ 1951 00ff 00000000 		.4byte	0
+ 1952              	.LLST9:
+ 1953 0103 04000000 		.4byte	.LVL28
+ 1954 0107 0A000000 		.4byte	.LVL29
+ 1955 010b 0100     		.2byte	0x1
+ 1956 010d 50       		.byte	0x50
+ 1957 010e 0A000000 		.4byte	.LVL29
+ 1958 0112 0E000000 		.4byte	.LVL30
+ 1959 0116 0600     		.2byte	0x6
+ 1960 0118 70       		.byte	0x70
+ 1961 0119 00       		.sleb128 0
+ 1962 011a 09       		.byte	0x9
+ 1963 011b EF       		.byte	0xef
+ 1964 011c 1A       		.byte	0x1a
+ 1965 011d 9F       		.byte	0x9f
+ 1966 011e 00000000 		.4byte	0
+ 1967 0122 00000000 		.4byte	0
+ 1968              		.section	.debug_aranges,"",%progbits
+ 1969 0000 AC000000 		.4byte	0xac
+ 1970 0004 0200     		.2byte	0x2
+ 1971 0006 00000000 		.4byte	.Ldebug_info0
+ 1972 000a 04       		.byte	0x4
+ 1973 000b 00       		.byte	0
+ 1974 000c 0000     		.2byte	0
+ 1975 000e 0000     		.2byte	0
+ 1976 0010 00000000 		.4byte	.LFB1
+ 1977 0014 34000000 		.4byte	.LFE1-.LFB1
+ 1978 0018 00000000 		.4byte	.LFB3
+ 1979 001c 28000000 		.4byte	.LFE3-.LFB3
+ 1980 0020 00000000 		.4byte	.LFB8
+ 1981 0024 0C000000 		.4byte	.LFE8-.LFB8
+ 1982 0028 00000000 		.4byte	.LFB9
+ 1983 002c 0C000000 		.4byte	.LFE9-.LFB9
+ 1984 0030 00000000 		.4byte	.LFB10
+ 1985 0034 0C000000 		.4byte	.LFE10-.LFB10
+ 1986 0038 00000000 		.4byte	.LFB11
+ 1987 003c 0C000000 		.4byte	.LFE11-.LFB11
+ 1988 0040 00000000 		.4byte	.LFB12
+ 1989 0044 18000000 		.4byte	.LFE12-.LFB12
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 57
+
+
+ 1990 0048 00000000 		.4byte	.LFB13
+ 1991 004c 0C000000 		.4byte	.LFE13-.LFB13
+ 1992 0050 00000000 		.4byte	.LFB14
+ 1993 0054 10000000 		.4byte	.LFE14-.LFB14
+ 1994 0058 00000000 		.4byte	.LFB15
+ 1995 005c 1C000000 		.4byte	.LFE15-.LFB15
+ 1996 0060 00000000 		.4byte	.LFB16
+ 1997 0064 1C000000 		.4byte	.LFE16-.LFB16
+ 1998 0068 00000000 		.4byte	.LFB17
+ 1999 006c 20000000 		.4byte	.LFE17-.LFB17
+ 2000 0070 00000000 		.4byte	.LFB18
+ 2001 0074 16000000 		.4byte	.LFE18-.LFB18
+ 2002 0078 00000000 		.4byte	.LFB19
+ 2003 007c 38000000 		.4byte	.LFE19-.LFB19
+ 2004 0080 00000000 		.4byte	.LFB0
+ 2005 0084 34000000 		.4byte	.LFE0-.LFB0
+ 2006 0088 00000000 		.4byte	.LFB2
+ 2007 008c 1C000000 		.4byte	.LFE2-.LFB2
+ 2008 0090 00000000 		.4byte	.LFB21
+ 2009 0094 02000000 		.4byte	.LFE21-.LFB21
+ 2010 0098 00000000 		.4byte	.LFB22
+ 2011 009c 18000000 		.4byte	.LFE22-.LFB22
+ 2012 00a0 00000000 		.4byte	.LFB23
+ 2013 00a4 18000000 		.4byte	.LFE23-.LFB23
+ 2014 00a8 00000000 		.4byte	0
+ 2015 00ac 00000000 		.4byte	0
+ 2016              		.section	.debug_ranges,"",%progbits
+ 2017              	.Ldebug_ranges0:
+ 2018 0000 0C000000 		.4byte	.LBB22
+ 2019 0004 0E000000 		.4byte	.LBE22
+ 2020 0008 10000000 		.4byte	.LBB25
+ 2021 000c 12000000 		.4byte	.LBE25
+ 2022 0010 00000000 		.4byte	0
+ 2023 0014 00000000 		.4byte	0
+ 2024 0018 12000000 		.4byte	.LBB26
+ 2025 001c 14000000 		.4byte	.LBE26
+ 2026 0020 14000000 		.4byte	.LBB29
+ 2027 0024 16000000 		.4byte	.LBE29
+ 2028 0028 00000000 		.4byte	0
+ 2029 002c 00000000 		.4byte	0
+ 2030 0030 00000000 		.4byte	.LFB1
+ 2031 0034 34000000 		.4byte	.LFE1
+ 2032 0038 00000000 		.4byte	.LFB3
+ 2033 003c 28000000 		.4byte	.LFE3
+ 2034 0040 00000000 		.4byte	.LFB8
+ 2035 0044 0C000000 		.4byte	.LFE8
+ 2036 0048 00000000 		.4byte	.LFB9
+ 2037 004c 0C000000 		.4byte	.LFE9
+ 2038 0050 00000000 		.4byte	.LFB10
+ 2039 0054 0C000000 		.4byte	.LFE10
+ 2040 0058 00000000 		.4byte	.LFB11
+ 2041 005c 0C000000 		.4byte	.LFE11
+ 2042 0060 00000000 		.4byte	.LFB12
+ 2043 0064 18000000 		.4byte	.LFE12
+ 2044 0068 00000000 		.4byte	.LFB13
+ 2045 006c 0C000000 		.4byte	.LFE13
+ 2046 0070 00000000 		.4byte	.LFB14
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 58
+
+
+ 2047 0074 10000000 		.4byte	.LFE14
+ 2048 0078 00000000 		.4byte	.LFB15
+ 2049 007c 1C000000 		.4byte	.LFE15
+ 2050 0080 00000000 		.4byte	.LFB16
+ 2051 0084 1C000000 		.4byte	.LFE16
+ 2052 0088 00000000 		.4byte	.LFB17
+ 2053 008c 20000000 		.4byte	.LFE17
+ 2054 0090 00000000 		.4byte	.LFB18
+ 2055 0094 16000000 		.4byte	.LFE18
+ 2056 0098 00000000 		.4byte	.LFB19
+ 2057 009c 38000000 		.4byte	.LFE19
+ 2058 00a0 00000000 		.4byte	.LFB0
+ 2059 00a4 34000000 		.4byte	.LFE0
+ 2060 00a8 00000000 		.4byte	.LFB2
+ 2061 00ac 1C000000 		.4byte	.LFE2
+ 2062 00b0 00000000 		.4byte	.LFB21
+ 2063 00b4 02000000 		.4byte	.LFE21
+ 2064 00b8 00000000 		.4byte	.LFB22
+ 2065 00bc 18000000 		.4byte	.LFE22
+ 2066 00c0 00000000 		.4byte	.LFB23
+ 2067 00c4 18000000 		.4byte	.LFE23
+ 2068 00c8 00000000 		.4byte	0
+ 2069 00cc 00000000 		.4byte	0
+ 2070              		.section	.debug_line,"",%progbits
+ 2071              	.Ldebug_line0:
+ 2072 0000 39020000 		.section	.debug_str,"MS",%progbits,1
+ 2072      02005300 
+ 2072      00000201 
+ 2072      FB0E0D00 
+ 2072      01010101 
+ 2073              	.LASF28:
+ 2074 0000 44697370 		.ascii	"Display_SPI_WriteTxData\000"
+ 2074      6C61795F 
+ 2074      5350495F 
+ 2074      57726974 
+ 2074      65547844 
+ 2075              	.LASF29:
+ 2076 0018 74784461 		.ascii	"txData\000"
+ 2076      746100
+ 2077              	.LASF52:
+ 2078 001f 47656E65 		.ascii	"Generated_Source\\PSoC4\\Display_SPI.c\000"
+ 2078      72617465 
+ 2078      645F536F 
+ 2078      75726365 
+ 2078      5C50536F 
+ 2079              	.LASF17:
+ 2080 0044 44697370 		.ascii	"Display_SPI_DisableRxInt\000"
+ 2080      6C61795F 
+ 2080      5350495F 
+ 2080      44697361 
+ 2080      626C6552 
+ 2081              	.LASF20:
+ 2082 005d 44697370 		.ascii	"Display_SPI_ReadTxStatus\000"
+ 2082      6C61795F 
+ 2082      5350495F 
+ 2082      52656164 
+ 2082      54785374 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 59
+
+
+ 2083              	.LASF43:
+ 2084 0076 44697370 		.ascii	"Display_SPI_DisableInt\000"
+ 2084      6C61795F 
+ 2084      5350495F 
+ 2084      44697361 
+ 2084      626C6549 
+ 2085              	.LASF46:
+ 2086 008d 44697370 		.ascii	"Display_SPI_initVar\000"
+ 2086      6C61795F 
+ 2086      5350495F 
+ 2086      696E6974 
+ 2086      56617200 
+ 2087              	.LASF36:
+ 2088 00a1 44697370 		.ascii	"Display_SPI_PutArray\000"
+ 2088      6C61795F 
+ 2088      5350495F 
+ 2088      50757441 
+ 2088      72726179 
+ 2089              	.LASF44:
+ 2090 00b6 44697370 		.ascii	"Display_SPI_SetInterruptMode\000"
+ 2090      6C61795F 
+ 2090      5350495F 
+ 2090      53657449 
+ 2090      6E746572 
+ 2091              	.LASF18:
+ 2092 00d3 44697370 		.ascii	"Display_SPI_DisableTxInt\000"
+ 2092      6C61795F 
+ 2092      5350495F 
+ 2092      44697361 
+ 2092      626C6554 
+ 2093              	.LASF30:
+ 2094 00ec 72784461 		.ascii	"rxData\000"
+ 2094      746100
+ 2095              	.LASF9:
+ 2096 00f3 666C6F61 		.ascii	"float\000"
+ 2096      7400
+ 2097              	.LASF7:
+ 2098 00f9 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2098      206C6F6E 
+ 2098      6720756E 
+ 2098      7369676E 
+ 2098      65642069 
+ 2099              	.LASF45:
+ 2100 0110 44697370 		.ascii	"Display_SPI_ReadStatus\000"
+ 2100      6C61795F 
+ 2100      5350495F 
+ 2100      52656164 
+ 2100      53746174 
+ 2101              	.LASF33:
+ 2102 0127 73697A65 		.ascii	"size\000"
+ 2102      00
+ 2103              	.LASF25:
+ 2104 012c 44697370 		.ascii	"Display_SPI_SetTxInterruptMode\000"
+ 2104      6C61795F 
+ 2104      5350495F 
+ 2104      53657454 
+ 2104      78496E74 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 60
+
+
+ 2105              	.LASF13:
+ 2106 014b 72656738 		.ascii	"reg8\000"
+ 2106      00
+ 2107              	.LASF26:
+ 2108 0150 44697370 		.ascii	"Display_SPI_SetRxInterruptMode\000"
+ 2108      6C61795F 
+ 2108      5350495F 
+ 2108      53657452 
+ 2108      78496E74 
+ 2109              	.LASF5:
+ 2110 016f 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2110      20756E73 
+ 2110      69676E65 
+ 2110      6420696E 
+ 2110      7400
+ 2111              	.LASF16:
+ 2112 0181 44697370 		.ascii	"Display_SPI_EnableTxInt\000"
+ 2112      6C61795F 
+ 2112      5350495F 
+ 2112      456E6162 
+ 2112      6C655478 
+ 2113              	.LASF12:
+ 2114 0199 75696E74 		.ascii	"uint8\000"
+ 2114      3800
+ 2115              	.LASF15:
+ 2116 019f 44697370 		.ascii	"Display_SPI_EnableRxInt\000"
+ 2116      6C61795F 
+ 2116      5350495F 
+ 2116      456E6162 
+ 2116      6C655278 
+ 2117              	.LASF38:
+ 2118 01b7 62797465 		.ascii	"byteCount\000"
+ 2118      436F756E 
+ 2118      7400
+ 2119              	.LASF24:
+ 2120 01c1 656E6162 		.ascii	"enableInterrupts\000"
+ 2120      6C65496E 
+ 2120      74657272 
+ 2120      75707473 
+ 2120      00
+ 2121              	.LASF1:
+ 2122 01d2 756E7369 		.ascii	"unsigned char\000"
+ 2122      676E6564 
+ 2122      20636861 
+ 2122      7200
+ 2123              	.LASF10:
+ 2124 01e0 646F7562 		.ascii	"double\000"
+ 2124      6C6500
+ 2125              	.LASF27:
+ 2126 01e7 696E7453 		.ascii	"intSrc\000"
+ 2126      726300
+ 2127              	.LASF34:
+ 2128 01ee 44697370 		.ascii	"Display_SPI_GetTxBufferSize\000"
+ 2128      6C61795F 
+ 2128      5350495F 
+ 2128      47657454 
+ 2128      78427566 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 61
+
+
+ 2129              	.LASF49:
+ 2130 020a 4379456E 		.ascii	"CyEnterCriticalSection\000"
+ 2130      74657243 
+ 2130      72697469 
+ 2130      63616C53 
+ 2130      65637469 
+ 2131              	.LASF35:
+ 2132 0221 44697370 		.ascii	"Display_SPI_ClearTxBuffer\000"
+ 2132      6C61795F 
+ 2132      5350495F 
+ 2132      436C6561 
+ 2132      72547842 
+ 2133              	.LASF8:
+ 2134 023b 756E7369 		.ascii	"unsigned int\000"
+ 2134      676E6564 
+ 2134      20696E74 
+ 2134      00
+ 2135              	.LASF50:
+ 2136 0248 43794578 		.ascii	"CyExitCriticalSection\000"
+ 2136      69744372 
+ 2136      69746963 
+ 2136      616C5365 
+ 2136      6374696F 
+ 2137              	.LASF47:
+ 2138 025e 44697370 		.ascii	"Display_SPI_swStatusTx\000"
+ 2138      6C61795F 
+ 2138      5350495F 
+ 2138      73775374 
+ 2138      61747573 
+ 2139              	.LASF31:
+ 2140 0275 44697370 		.ascii	"Display_SPI_ReadRxData\000"
+ 2140      6C61795F 
+ 2140      5350495F 
+ 2140      52656164 
+ 2140      52784461 
+ 2141              	.LASF32:
+ 2142 028c 44697370 		.ascii	"Display_SPI_GetRxBufferSize\000"
+ 2142      6C61795F 
+ 2142      5350495F 
+ 2142      47657452 
+ 2142      78427566 
+ 2143              	.LASF39:
+ 2144 02a8 62756649 		.ascii	"bufIndex\000"
+ 2144      6E646578 
+ 2144      00
+ 2145              	.LASF51:
+ 2146 02b1 474E5520 		.ascii	"GNU C99 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 2146      43393920 
+ 2146      352E342E 
+ 2146      31203230 
+ 2146      31363036 
+ 2147 02e4 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 2147      20726576 
+ 2147      6973696F 
+ 2147      6E203233 
+ 2147      37373135 
+ 2148 0317 73202D73 		.ascii	"s -std=gnu99 -ffunction-sections -ffat-lto-objects\000"
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 62
+
+
+ 2148      74643D67 
+ 2148      6E753939 
+ 2148      202D6666 
+ 2148      756E6374 
+ 2149              	.LASF14:
+ 2150 034a 73697A65 		.ascii	"sizetype\000"
+ 2150      74797065 
+ 2150      00
+ 2151              	.LASF48:
+ 2152 0353 44697370 		.ascii	"Display_SPI_swStatusRx\000"
+ 2152      6C61795F 
+ 2152      5350495F 
+ 2152      73775374 
+ 2152      61747573 
+ 2153              	.LASF6:
+ 2154 036a 6C6F6E67 		.ascii	"long long int\000"
+ 2154      206C6F6E 
+ 2154      6720696E 
+ 2154      7400
+ 2155              	.LASF11:
+ 2156 0378 63686172 		.ascii	"char\000"
+ 2156      00
+ 2157              	.LASF41:
+ 2158 037d 44697370 		.ascii	"Display_SPI_Init\000"
+ 2158      6C61795F 
+ 2158      5350495F 
+ 2158      496E6974 
+ 2158      00
+ 2159              	.LASF53:
+ 2160 038e 443A5C31 		.ascii	"D:\\1_work\\my_project\\ReloadPro\\psoc42boot\\Relo"
+ 2160      5F776F72 
+ 2160      6B5C6D79 
+ 2160      5F70726F 
+ 2160      6A656374 
+ 2161 03bc 61642050 		.ascii	"ad Pro.cydsn\000"
+ 2161      726F2E63 
+ 2161      7964736E 
+ 2161      00
+ 2162              	.LASF42:
+ 2163 03c9 44697370 		.ascii	"Display_SPI_Start\000"
+ 2163      6C61795F 
+ 2163      5350495F 
+ 2163      53746172 
+ 2163      7400
+ 2164              	.LASF2:
+ 2165 03db 73686F72 		.ascii	"short int\000"
+ 2165      7420696E 
+ 2165      7400
+ 2166              	.LASF37:
+ 2167 03e5 62756666 		.ascii	"buffer\000"
+ 2167      657200
+ 2168              	.LASF19:
+ 2169 03ec 44697370 		.ascii	"Display_SPI_ReadRxStatus\000"
+ 2169      6C61795F 
+ 2169      5350495F 
+ 2169      52656164 
+ 2169      52785374 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccqaCiob.s 			page 63
+
+
+ 2170              	.LASF4:
+ 2171 0405 6C6F6E67 		.ascii	"long int\000"
+ 2171      20696E74 
+ 2171      00
+ 2172              	.LASF21:
+ 2173 040e 746D7053 		.ascii	"tmpStatus\000"
+ 2173      74617475 
+ 2173      7300
+ 2174              	.LASF40:
+ 2175 0418 44697370 		.ascii	"Display_SPI_ClearFIFO\000"
+ 2175      6C61795F 
+ 2175      5350495F 
+ 2175      436C6561 
+ 2175      72464946 
+ 2176              	.LASF54:
+ 2177 042e 44697370 		.ascii	"Display_SPI_ClearRxBuffer\000"
+ 2177      6C61795F 
+ 2177      5350495F 
+ 2177      436C6561 
+ 2177      72527842 
+ 2178              	.LASF0:
+ 2179 0448 7369676E 		.ascii	"signed char\000"
+ 2179      65642063 
+ 2179      68617200 
+ 2180              	.LASF3:
+ 2181 0454 73686F72 		.ascii	"short unsigned int\000"
+ 2181      7420756E 
+ 2181      7369676E 
+ 2181      65642069 
+ 2181      6E7400
+ 2182              	.LASF23:
+ 2183 0467 44697370 		.ascii	"Display_SPI_Stop\000"
+ 2183      6C61795F 
+ 2183      5350495F 
+ 2183      53746F70 
+ 2183      00
+ 2184              	.LASF22:
+ 2185 0478 44697370 		.ascii	"Display_SPI_Enable\000"
+ 2185      6C61795F 
+ 2185      5350495F 
+ 2185      456E6162 
+ 2185      6C6500
+ 2186              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

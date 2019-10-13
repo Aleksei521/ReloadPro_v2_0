@@ -1,0 +1,1749 @@
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccC6BSoX.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"UART_UART_BOOT.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.UART_UartCyBtldrCommStart,"ax",%progbits
+  20              		.align	2
+  21              		.global	UART_UartCyBtldrCommStart
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	UART_UartCyBtldrCommStart, %function
+  25              	UART_UartCyBtldrCommStart:
+  26              	.LFB0:
+  27              		.file 1 "Generated_Source\\PSoC4\\UART_UART_BOOT.c"
+   1:Generated_Source\PSoC4/UART_UART_BOOT.c **** /***************************************************************************//**
+   2:Generated_Source\PSoC4/UART_UART_BOOT.c **** * \file UART_UART_BOOT.c
+   3:Generated_Source\PSoC4/UART_UART_BOOT.c **** * \version 4.0
+   4:Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+   5:Generated_Source\PSoC4/UART_UART_BOOT.c **** * \brief
+   6:Generated_Source\PSoC4/UART_UART_BOOT.c **** *  This file provides the source code of the bootloader communication APIs
+   7:Generated_Source\PSoC4/UART_UART_BOOT.c **** *  for the SCB Component UART mode.
+   8:Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+   9:Generated_Source\PSoC4/UART_UART_BOOT.c **** * Note:
+  10:Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+  11:Generated_Source\PSoC4/UART_UART_BOOT.c **** ********************************************************************************
+  12:Generated_Source\PSoC4/UART_UART_BOOT.c **** * \copyright
+  13:Generated_Source\PSoC4/UART_UART_BOOT.c **** * Copyright 2013-2017, Cypress Semiconductor Corporation.  All rights reserved.
+  14:Generated_Source\PSoC4/UART_UART_BOOT.c **** * You may use this file only in accordance with the license, terms, conditions,
+  15:Generated_Source\PSoC4/UART_UART_BOOT.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  16:Generated_Source\PSoC4/UART_UART_BOOT.c **** * the software package with which this file was provided.
+  17:Generated_Source\PSoC4/UART_UART_BOOT.c **** *******************************************************************************/
+  18:Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+  19:Generated_Source\PSoC4/UART_UART_BOOT.c **** #include "UART_BOOT.h"
+  20:Generated_Source\PSoC4/UART_UART_BOOT.c **** #include "UART_SPI_UART.h"
+  21:Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+  22:Generated_Source\PSoC4/UART_UART_BOOT.c **** #if defined(CYDEV_BOOTLOADER_IO_COMP) && (UART_UART_BTLDR_COMM_ENABLED)
+  23:Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+  24:Generated_Source\PSoC4/UART_UART_BOOT.c **** /*******************************************************************************
+  25:Generated_Source\PSoC4/UART_UART_BOOT.c **** * Function Name: UART_UartCyBtldrCommStart
+  26:Generated_Source\PSoC4/UART_UART_BOOT.c **** ****************************************************************************//**
+  27:Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+  28:Generated_Source\PSoC4/UART_UART_BOOT.c **** *  Starts the UART component.
+  29:Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+  30:Generated_Source\PSoC4/UART_UART_BOOT.c **** *******************************************************************************/
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccC6BSoX.s 			page 2
+
+
+  31:Generated_Source\PSoC4/UART_UART_BOOT.c **** void UART_UartCyBtldrCommStart(void)
+  32:Generated_Source\PSoC4/UART_UART_BOOT.c **** {
+  28              		.loc 1 32 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 10B5     		push	{r4, lr}
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 4, -8
+  35              		.cfi_offset 14, -4
+  33:Generated_Source\PSoC4/UART_UART_BOOT.c ****     UART_Start();
+  36              		.loc 1 33 0
+  37 0002 FFF7FEFF 		bl	UART_Start
+  38              	.LVL0:
+  34:Generated_Source\PSoC4/UART_UART_BOOT.c **** }
+  39              		.loc 1 34 0
+  40              		@ sp needed
+  41 0006 10BD     		pop	{r4, pc}
+  42              		.cfi_endproc
+  43              	.LFE0:
+  44              		.size	UART_UartCyBtldrCommStart, .-UART_UartCyBtldrCommStart
+  45              		.section	.text.UART_UartCyBtldrCommStop,"ax",%progbits
+  46              		.align	2
+  47              		.global	UART_UartCyBtldrCommStop
+  48              		.code	16
+  49              		.thumb_func
+  50              		.type	UART_UartCyBtldrCommStop, %function
+  51              	UART_UartCyBtldrCommStop:
+  52              	.LFB1:
+  35:Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+  36:Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+  37:Generated_Source\PSoC4/UART_UART_BOOT.c **** /*******************************************************************************
+  38:Generated_Source\PSoC4/UART_UART_BOOT.c **** * Function Name: UART_UartCyBtldrCommStop
+  39:Generated_Source\PSoC4/UART_UART_BOOT.c **** ****************************************************************************//**
+  40:Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+  41:Generated_Source\PSoC4/UART_UART_BOOT.c **** *  Disables the UART component.
+  42:Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+  43:Generated_Source\PSoC4/UART_UART_BOOT.c **** *******************************************************************************/
+  44:Generated_Source\PSoC4/UART_UART_BOOT.c **** void UART_UartCyBtldrCommStop(void)
+  45:Generated_Source\PSoC4/UART_UART_BOOT.c **** {
+  53              		.loc 1 45 0
+  54              		.cfi_startproc
+  55              		@ args = 0, pretend = 0, frame = 0
+  56              		@ frame_needed = 0, uses_anonymous_args = 0
+  57 0000 10B5     		push	{r4, lr}
+  58              		.cfi_def_cfa_offset 8
+  59              		.cfi_offset 4, -8
+  60              		.cfi_offset 14, -4
+  46:Generated_Source\PSoC4/UART_UART_BOOT.c ****     UART_Stop();
+  61              		.loc 1 46 0
+  62 0002 FFF7FEFF 		bl	UART_Stop
+  63              	.LVL1:
+  47:Generated_Source\PSoC4/UART_UART_BOOT.c **** }
+  64              		.loc 1 47 0
+  65              		@ sp needed
+  66 0006 10BD     		pop	{r4, pc}
+  67              		.cfi_endproc
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccC6BSoX.s 			page 3
+
+
+  68              	.LFE1:
+  69              		.size	UART_UartCyBtldrCommStop, .-UART_UartCyBtldrCommStop
+  70              		.section	.text.UART_UartCyBtldrCommReset,"ax",%progbits
+  71              		.align	2
+  72              		.global	UART_UartCyBtldrCommReset
+  73              		.code	16
+  74              		.thumb_func
+  75              		.type	UART_UartCyBtldrCommReset, %function
+  76              	UART_UartCyBtldrCommReset:
+  77              	.LFB2:
+  48:Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+  49:Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+  50:Generated_Source\PSoC4/UART_UART_BOOT.c **** /*******************************************************************************
+  51:Generated_Source\PSoC4/UART_UART_BOOT.c **** * Function Name: UART_UartCyBtldrCommReset
+  52:Generated_Source\PSoC4/UART_UART_BOOT.c **** ****************************************************************************//**
+  53:Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+  54:Generated_Source\PSoC4/UART_UART_BOOT.c **** *  Resets the receive and transmit communication buffers.
+  55:Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+  56:Generated_Source\PSoC4/UART_UART_BOOT.c **** *******************************************************************************/
+  57:Generated_Source\PSoC4/UART_UART_BOOT.c **** void UART_UartCyBtldrCommReset(void)
+  58:Generated_Source\PSoC4/UART_UART_BOOT.c **** {
+  78              		.loc 1 58 0
+  79              		.cfi_startproc
+  80              		@ args = 0, pretend = 0, frame = 0
+  81              		@ frame_needed = 0, uses_anonymous_args = 0
+  82 0000 10B5     		push	{r4, lr}
+  83              		.cfi_def_cfa_offset 8
+  84              		.cfi_offset 4, -8
+  85              		.cfi_offset 14, -4
+  59:Generated_Source\PSoC4/UART_UART_BOOT.c ****     /* Clear RX and TX buffers */
+  60:Generated_Source\PSoC4/UART_UART_BOOT.c ****     UART_SpiUartClearRxBuffer();
+  86              		.loc 1 60 0
+  87 0002 FFF7FEFF 		bl	UART_SpiUartClearRxBuffer
+  88              	.LVL2:
+  61:Generated_Source\PSoC4/UART_UART_BOOT.c ****     UART_SpiUartClearTxBuffer();
+  89              		.loc 1 61 0
+  90 0006 FFF7FEFF 		bl	UART_SpiUartClearTxBuffer
+  91              	.LVL3:
+  62:Generated_Source\PSoC4/UART_UART_BOOT.c **** }
+  92              		.loc 1 62 0
+  93              		@ sp needed
+  94 000a 10BD     		pop	{r4, pc}
+  95              		.cfi_endproc
+  96              	.LFE2:
+  97              		.size	UART_UartCyBtldrCommReset, .-UART_UartCyBtldrCommReset
+  98              		.section	.text.UART_UartCyBtldrCommRead,"ax",%progbits
+  99              		.align	2
+ 100              		.global	UART_UartCyBtldrCommRead
+ 101              		.code	16
+ 102              		.thumb_func
+ 103              		.type	UART_UartCyBtldrCommRead, %function
+ 104              	UART_UartCyBtldrCommRead:
+ 105              	.LFB3:
+  63:Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+  64:Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+  65:Generated_Source\PSoC4/UART_UART_BOOT.c **** /*******************************************************************************
+  66:Generated_Source\PSoC4/UART_UART_BOOT.c **** * Function Name: UART_UartCyBtldrCommRead
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccC6BSoX.s 			page 4
+
+
+  67:Generated_Source\PSoC4/UART_UART_BOOT.c **** ****************************************************************************//**
+  68:Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+  69:Generated_Source\PSoC4/UART_UART_BOOT.c **** *  Allows the caller to read data from the bootloader host (the host writes the
+  70:Generated_Source\PSoC4/UART_UART_BOOT.c **** *  data). The function handles polling to allow a block of data to be completely
+  71:Generated_Source\PSoC4/UART_UART_BOOT.c **** *  received from the host device.
+  72:Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+  73:Generated_Source\PSoC4/UART_UART_BOOT.c **** *  \param pData: Pointer to storage for the block of data to be read from the
+  74:Generated_Source\PSoC4/UART_UART_BOOT.c **** *   bootloader host
+  75:Generated_Source\PSoC4/UART_UART_BOOT.c **** *  \param size: Number of bytes to be read.
+  76:Generated_Source\PSoC4/UART_UART_BOOT.c **** *  \param count: Pointer to the variable to write the number of bytes actually
+  77:Generated_Source\PSoC4/UART_UART_BOOT.c **** *   read.
+  78:Generated_Source\PSoC4/UART_UART_BOOT.c **** *  \param timeOut Number of units in 10 ms to wait before returning
+  79:Generated_Source\PSoC4/UART_UART_BOOT.c **** *   because of a timeout.
+  80:Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+  81:Generated_Source\PSoC4/UART_UART_BOOT.c **** *  \return
+  82:Generated_Source\PSoC4/UART_UART_BOOT.c **** *   Returns CYRET_SUCCESS if no problem was encountered or returns the value
+  83:Generated_Source\PSoC4/UART_UART_BOOT.c **** *   that best describes the problem. For more information refer to the
+  84:Generated_Source\PSoC4/UART_UART_BOOT.c **** *   "Return Codes" section of the System Reference Guide.
+  85:Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+  86:Generated_Source\PSoC4/UART_UART_BOOT.c **** *******************************************************************************/
+  87:Generated_Source\PSoC4/UART_UART_BOOT.c **** cystatus UART_UartCyBtldrCommRead(uint8 pData[], uint16 size, uint16 * count, uint8 timeOut)
+  88:Generated_Source\PSoC4/UART_UART_BOOT.c **** {
+ 106              		.loc 1 88 0
+ 107              		.cfi_startproc
+ 108              		@ args = 0, pretend = 0, frame = 8
+ 109              		@ frame_needed = 0, uses_anonymous_args = 0
+ 110              	.LVL4:
+ 111 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 112              		.cfi_def_cfa_offset 20
+ 113              		.cfi_offset 4, -20
+ 114              		.cfi_offset 5, -16
+ 115              		.cfi_offset 6, -12
+ 116              		.cfi_offset 7, -8
+ 117              		.cfi_offset 14, -4
+ 118 0002 83B0     		sub	sp, sp, #12
+ 119              		.cfi_def_cfa_offset 32
+ 120 0004 0700     		movs	r7, r0
+ 121 0006 0E00     		movs	r6, r1
+ 122 0008 0192     		str	r2, [sp, #4]
+ 123              	.LVL5:
+  89:Generated_Source\PSoC4/UART_UART_BOOT.c ****     cystatus status;
+  90:Generated_Source\PSoC4/UART_UART_BOOT.c ****     uint32 byteCount;
+  91:Generated_Source\PSoC4/UART_UART_BOOT.c ****     uint32 timeoutMs;
+  92:Generated_Source\PSoC4/UART_UART_BOOT.c ****     uint32 i;
+  93:Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+  94:Generated_Source\PSoC4/UART_UART_BOOT.c ****     status = CYRET_BAD_PARAM;
+  95:Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+  96:Generated_Source\PSoC4/UART_UART_BOOT.c ****     if ((NULL != pData) && (size > 0u))
+ 124              		.loc 1 96 0
+ 125 000a 0028     		cmp	r0, #0
+ 126 000c 2DD0     		beq	.L13
+ 127              		.loc 1 96 0 is_stmt 0 discriminator 1
+ 128 000e 0029     		cmp	r1, #0
+ 129 0010 2ED0     		beq	.L14
+ 130              	.LVL6:
+  97:Generated_Source\PSoC4/UART_UART_BOOT.c ****     {
+  98:Generated_Source\PSoC4/UART_UART_BOOT.c ****         status = CYRET_TIMEOUT;
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccC6BSoX.s 			page 5
+
+
+  99:Generated_Source\PSoC4/UART_UART_BOOT.c ****         timeoutMs = ((uint32) 10u * timeOut); /* Convert from 10mS check to 1mS checks */
+ 131              		.loc 1 99 0 is_stmt 1
+ 132 0012 9A00     		lsls	r2, r3, #2
+ 133              	.LVL7:
+ 134 0014 D318     		adds	r3, r2, r3
+ 135              	.LVL8:
+ 136 0016 5C00     		lsls	r4, r3, #1
+ 137              	.LVL9:
+ 138              	.L10:
+ 100:Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 101:Generated_Source\PSoC4/UART_UART_BOOT.c ****         /* Wait with timeout 1mS for packet end */
+ 102:Generated_Source\PSoC4/UART_UART_BOOT.c ****         byteCount = 0u;
+ 103:Generated_Source\PSoC4/UART_UART_BOOT.c ****         do
+ 104:Generated_Source\PSoC4/UART_UART_BOOT.c ****         {
+ 105:Generated_Source\PSoC4/UART_UART_BOOT.c ****             /* Check packet start */
+ 106:Generated_Source\PSoC4/UART_UART_BOOT.c ****             if (0u != UART_SpiUartGetRxBufferSize())
+ 139              		.loc 1 106 0
+ 140 0018 FFF7FEFF 		bl	UART_SpiUartGetRxBufferSize
+ 141              	.LVL10:
+ 142 001c 0028     		cmp	r0, #0
+ 143 001e 11D0     		beq	.L6
+ 144              	.LVL11:
+ 145              	.L7:
+ 107:Generated_Source\PSoC4/UART_UART_BOOT.c ****             {
+ 108:Generated_Source\PSoC4/UART_UART_BOOT.c ****                 /* Wait for end of packet */
+ 109:Generated_Source\PSoC4/UART_UART_BOOT.c ****                 do
+ 110:Generated_Source\PSoC4/UART_UART_BOOT.c ****                 {
+ 111:Generated_Source\PSoC4/UART_UART_BOOT.c ****                     byteCount = UART_SpiUartGetRxBufferSize();
+ 146              		.loc 1 111 0 discriminator 1
+ 147 0020 FFF7FEFF 		bl	UART_SpiUartGetRxBufferSize
+ 148              	.LVL12:
+ 149 0024 0500     		movs	r5, r0
+ 150              	.LVL13:
+ 112:Generated_Source\PSoC4/UART_UART_BOOT.c ****                     CyDelayUs(UART_UART_BYTE_TO_BYTE);
+ 151              		.loc 1 112 0 discriminator 1
+ 152 0026 AE20     		movs	r0, #174
+ 153              	.LVL14:
+ 154 0028 FFF7FEFF 		bl	CyDelayUs
+ 155              	.LVL15:
+ 113:Generated_Source\PSoC4/UART_UART_BOOT.c ****                 }
+ 114:Generated_Source\PSoC4/UART_UART_BOOT.c ****                 while (byteCount != UART_SpiUartGetRxBufferSize());
+ 156              		.loc 1 114 0 discriminator 1
+ 157 002c FFF7FEFF 		bl	UART_SpiUartGetRxBufferSize
+ 158              	.LVL16:
+ 159 0030 8542     		cmp	r5, r0
+ 160 0032 F5D1     		bne	.L7
+ 115:Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 116:Generated_Source\PSoC4/UART_UART_BOOT.c ****                 byteCount = UART_BYTES_TO_COPY(byteCount, size);
+ 161              		.loc 1 116 0
+ 162 0034 B542     		cmp	r5, r6
+ 163 0036 00D9     		bls	.L8
+ 164 0038 3500     		movs	r5, r6
+ 165              	.LVL17:
+ 166              	.L8:
+ 117:Generated_Source\PSoC4/UART_UART_BOOT.c ****                 *count = (uint16) byteCount;
+ 167              		.loc 1 117 0
+ 168 003a 019B     		ldr	r3, [sp, #4]
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccC6BSoX.s 			page 6
+
+
+ 169 003c 1D80     		strh	r5, [r3]
+ 170              	.LVL18:
+ 118:Generated_Source\PSoC4/UART_UART_BOOT.c ****                 status = CYRET_SUCCESS;
+ 171              		.loc 1 118 0
+ 172 003e 0023     		movs	r3, #0
+ 173 0040 0193     		str	r3, [sp, #4]
+ 174              	.LVL19:
+ 119:Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 120:Generated_Source\PSoC4/UART_UART_BOOT.c ****                 break;
+ 175              		.loc 1 120 0
+ 176 0042 08E0     		b	.L9
+ 177              	.LVL20:
+ 178              	.L6:
+ 121:Generated_Source\PSoC4/UART_UART_BOOT.c ****             }
+ 122:Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 123:Generated_Source\PSoC4/UART_UART_BOOT.c ****             CyDelay(UART_WAIT_1_MS);
+ 179              		.loc 1 123 0
+ 180 0044 0120     		movs	r0, #1
+ 181 0046 FFF7FEFF 		bl	CyDelay
+ 182              	.LVL21:
+ 124:Generated_Source\PSoC4/UART_UART_BOOT.c ****             --timeoutMs;
+ 183              		.loc 1 124 0
+ 184 004a 013C     		subs	r4, r4, #1
+ 185              	.LVL22:
+ 125:Generated_Source\PSoC4/UART_UART_BOOT.c ****         }
+ 126:Generated_Source\PSoC4/UART_UART_BOOT.c ****         while (0u != timeoutMs);
+ 186              		.loc 1 126 0
+ 187 004c 002C     		cmp	r4, #0
+ 188 004e E3D1     		bne	.L10
+ 102:Generated_Source\PSoC4/UART_UART_BOOT.c ****         do
+ 189              		.loc 1 102 0
+ 190 0050 0025     		movs	r5, #0
+  98:Generated_Source\PSoC4/UART_UART_BOOT.c ****         timeoutMs = ((uint32) 10u * timeOut); /* Convert from 10mS check to 1mS checks */
+ 191              		.loc 1 98 0
+ 192 0052 1023     		movs	r3, #16
+ 193 0054 0193     		str	r3, [sp, #4]
+ 194              	.LVL23:
+ 195              	.L9:
+ 127:Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 128:Generated_Source\PSoC4/UART_UART_BOOT.c ****         /* Get data from RX buffer into bootloader buffer */
+ 129:Generated_Source\PSoC4/UART_UART_BOOT.c ****         for (i = 0u; i < byteCount; ++i)
+ 196              		.loc 1 129 0
+ 197 0056 0024     		movs	r4, #0
+ 198              	.LVL24:
+ 199 0058 04E0     		b	.L11
+ 200              	.LVL25:
+ 201              	.L12:
+ 130:Generated_Source\PSoC4/UART_UART_BOOT.c ****         {
+ 131:Generated_Source\PSoC4/UART_UART_BOOT.c ****             pData[i] = (uint8) UART_SpiUartReadRxData();
+ 202              		.loc 1 131 0 discriminator 3
+ 203 005a 3E19     		adds	r6, r7, r4
+ 204 005c FFF7FEFF 		bl	UART_SpiUartReadRxData
+ 205              	.LVL26:
+ 206 0060 3070     		strb	r0, [r6]
+ 129:Generated_Source\PSoC4/UART_UART_BOOT.c ****         {
+ 207              		.loc 1 129 0 discriminator 3
+ 208 0062 0134     		adds	r4, r4, #1
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccC6BSoX.s 			page 7
+
+
+ 209              	.LVL27:
+ 210              	.L11:
+ 129:Generated_Source\PSoC4/UART_UART_BOOT.c ****         {
+ 211              		.loc 1 129 0 is_stmt 0 discriminator 1
+ 212 0064 A542     		cmp	r5, r4
+ 213 0066 F8D8     		bhi	.L12
+ 214 0068 04E0     		b	.L5
+ 215              	.LVL28:
+ 216              	.L13:
+  94:Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 217              		.loc 1 94 0 is_stmt 1
+ 218 006a 0123     		movs	r3, #1
+ 219              	.LVL29:
+ 220 006c 0193     		str	r3, [sp, #4]
+ 221 006e 01E0     		b	.L5
+ 222              	.LVL30:
+ 223              	.L14:
+ 224 0070 0123     		movs	r3, #1
+ 225              	.LVL31:
+ 226 0072 0193     		str	r3, [sp, #4]
+ 227              	.LVL32:
+ 228              	.L5:
+ 132:Generated_Source\PSoC4/UART_UART_BOOT.c ****         }
+ 133:Generated_Source\PSoC4/UART_UART_BOOT.c ****     }
+ 134:Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 135:Generated_Source\PSoC4/UART_UART_BOOT.c ****     return (status);
+ 136:Generated_Source\PSoC4/UART_UART_BOOT.c **** }
+ 229              		.loc 1 136 0
+ 230 0074 0198     		ldr	r0, [sp, #4]
+ 231 0076 03B0     		add	sp, sp, #12
+ 232              		@ sp needed
+ 233              	.LVL33:
+ 234 0078 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 235              		.cfi_endproc
+ 236              	.LFE3:
+ 237              		.size	UART_UartCyBtldrCommRead, .-UART_UartCyBtldrCommRead
+ 238 007a C046     		.section	.text.UART_UartCyBtldrCommWrite,"ax",%progbits
+ 239              		.align	2
+ 240              		.global	UART_UartCyBtldrCommWrite
+ 241              		.code	16
+ 242              		.thumb_func
+ 243              		.type	UART_UartCyBtldrCommWrite, %function
+ 244              	UART_UartCyBtldrCommWrite:
+ 245              	.LFB4:
+ 137:Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 138:Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 139:Generated_Source\PSoC4/UART_UART_BOOT.c **** /*******************************************************************************
+ 140:Generated_Source\PSoC4/UART_UART_BOOT.c **** * Function Name: UART_UartCyBtldrCommWrite
+ 141:Generated_Source\PSoC4/UART_UART_BOOT.c **** ****************************************************************************//**
+ 142:Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+ 143:Generated_Source\PSoC4/UART_UART_BOOT.c **** *  Allows the caller to write data to the bootloader host (the host reads the
+ 144:Generated_Source\PSoC4/UART_UART_BOOT.c **** *  data). The function does not use timeout and returns after data has been
+ 145:Generated_Source\PSoC4/UART_UART_BOOT.c **** *  copied into the transmit buffer. The data transmission starts immediately
+ 146:Generated_Source\PSoC4/UART_UART_BOOT.c **** *  after the first data element is written into the buffer and lasts until all
+ 147:Generated_Source\PSoC4/UART_UART_BOOT.c **** *  data elements from the buffer are sent.
+ 148:Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+ 149:Generated_Source\PSoC4/UART_UART_BOOT.c **** *  \param pData: Pointer to the block of data to be written to the bootloader
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccC6BSoX.s 			page 8
+
+
+ 150:Generated_Source\PSoC4/UART_UART_BOOT.c **** *   host.
+ 151:Generated_Source\PSoC4/UART_UART_BOOT.c **** *  \param size: Number of bytes to be written.
+ 152:Generated_Source\PSoC4/UART_UART_BOOT.c **** *  \param count: Pointer to the variable to write the number of bytes actually
+ 153:Generated_Source\PSoC4/UART_UART_BOOT.c **** *   written.
+ 154:Generated_Source\PSoC4/UART_UART_BOOT.c **** *  \param timeOut: The timeout is not used by this function.
+ 155:Generated_Source\PSoC4/UART_UART_BOOT.c **** *   The function returns as soon as data is copied into the transmit buffer.
+ 156:Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+ 157:Generated_Source\PSoC4/UART_UART_BOOT.c **** *  \return
+ 158:Generated_Source\PSoC4/UART_UART_BOOT.c **** *   Returns CYRET_SUCCESS if no problem was encountered or returns the value
+ 159:Generated_Source\PSoC4/UART_UART_BOOT.c **** *   that best describes the problem. For more information refer to the
+ 160:Generated_Source\PSoC4/UART_UART_BOOT.c **** *   "Return Codes" section of the System Reference Guide.
+ 161:Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+ 162:Generated_Source\PSoC4/UART_UART_BOOT.c **** *******************************************************************************/
+ 163:Generated_Source\PSoC4/UART_UART_BOOT.c **** cystatus UART_UartCyBtldrCommWrite(const uint8 pData[], uint16 size, uint16 * count, uint8 timeOut)
+ 164:Generated_Source\PSoC4/UART_UART_BOOT.c **** {
+ 246              		.loc 1 164 0
+ 247              		.cfi_startproc
+ 248              		@ args = 0, pretend = 0, frame = 0
+ 249              		@ frame_needed = 0, uses_anonymous_args = 0
+ 250              	.LVL34:
+ 251 0000 70B5     		push	{r4, r5, r6, lr}
+ 252              		.cfi_def_cfa_offset 16
+ 253              		.cfi_offset 4, -16
+ 254              		.cfi_offset 5, -12
+ 255              		.cfi_offset 6, -8
+ 256              		.cfi_offset 14, -4
+ 257 0002 0C00     		movs	r4, r1
+ 258 0004 1500     		movs	r5, r2
+ 259              	.LVL35:
+ 165:Generated_Source\PSoC4/UART_UART_BOOT.c ****     cystatus status;
+ 166:Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 167:Generated_Source\PSoC4/UART_UART_BOOT.c ****     status = CYRET_BAD_PARAM;
+ 168:Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 169:Generated_Source\PSoC4/UART_UART_BOOT.c ****     if ((NULL != pData) && (size > 0u))
+ 260              		.loc 1 169 0
+ 261 0006 0028     		cmp	r0, #0
+ 262 0008 06D0     		beq	.L17
+ 263              		.loc 1 169 0 is_stmt 0 discriminator 1
+ 264 000a 0029     		cmp	r1, #0
+ 265 000c 06D0     		beq	.L18
+ 170:Generated_Source\PSoC4/UART_UART_BOOT.c ****     {
+ 171:Generated_Source\PSoC4/UART_UART_BOOT.c ****         /* Transmit data. This function does not wait until data is sent. */
+ 172:Generated_Source\PSoC4/UART_UART_BOOT.c ****         UART_SpiUartPutArray(pData, (uint32) size);
+ 266              		.loc 1 172 0 is_stmt 1
+ 267 000e FFF7FEFF 		bl	UART_SpiUartPutArray
+ 268              	.LVL36:
+ 173:Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 174:Generated_Source\PSoC4/UART_UART_BOOT.c ****         *count = size;
+ 269              		.loc 1 174 0
+ 270 0012 2C80     		strh	r4, [r5]
+ 271              	.LVL37:
+ 175:Generated_Source\PSoC4/UART_UART_BOOT.c ****         status = CYRET_SUCCESS;
+ 272              		.loc 1 175 0
+ 273 0014 0020     		movs	r0, #0
+ 274 0016 02E0     		b	.L16
+ 275              	.LVL38:
+ 276              	.L17:
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccC6BSoX.s 			page 9
+
+
+ 167:Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 277              		.loc 1 167 0
+ 278 0018 0120     		movs	r0, #1
+ 279              	.LVL39:
+ 280 001a 00E0     		b	.L16
+ 281              	.LVL40:
+ 282              	.L18:
+ 283 001c 0120     		movs	r0, #1
+ 284              	.LVL41:
+ 285              	.L16:
+ 176:Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 177:Generated_Source\PSoC4/UART_UART_BOOT.c ****         if (0u != timeOut)
+ 178:Generated_Source\PSoC4/UART_UART_BOOT.c ****         {
+ 179:Generated_Source\PSoC4/UART_UART_BOOT.c ****             /* Suppress compiler warning */
+ 180:Generated_Source\PSoC4/UART_UART_BOOT.c ****         }
+ 181:Generated_Source\PSoC4/UART_UART_BOOT.c ****     }
+ 182:Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 183:Generated_Source\PSoC4/UART_UART_BOOT.c ****     return (status);
+ 184:Generated_Source\PSoC4/UART_UART_BOOT.c **** }
+ 286              		.loc 1 184 0
+ 287              		@ sp needed
+ 288              	.LVL42:
+ 289 001e 70BD     		pop	{r4, r5, r6, pc}
+ 290              		.cfi_endproc
+ 291              	.LFE4:
+ 292              		.size	UART_UartCyBtldrCommWrite, .-UART_UartCyBtldrCommWrite
+ 293              		.text
+ 294              	.Letext0:
+ 295              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+ 296              		.file 3 "Generated_Source\\PSoC4\\UART.h"
+ 297              		.file 4 "Generated_Source\\PSoC4\\UART_SPI_UART.h"
+ 298              		.file 5 "Generated_Source\\PSoC4/CyLib.h"
+ 299              		.section	.debug_info,"",%progbits
+ 300              	.Ldebug_info0:
+ 301 0000 F0020000 		.4byte	0x2f0
+ 302 0004 0400     		.2byte	0x4
+ 303 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 304 000a 04       		.byte	0x4
+ 305 000b 01       		.uleb128 0x1
+ 306 000c 33000000 		.4byte	.LASF38
+ 307 0010 0C       		.byte	0xc
+ 308 0011 DF010000 		.4byte	.LASF39
+ 309 0015 A4020000 		.4byte	.LASF40
+ 310 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 311 001d 00000000 		.4byte	0
+ 312 0021 00000000 		.4byte	.Ldebug_line0
+ 313 0025 02       		.uleb128 0x2
+ 314 0026 01       		.byte	0x1
+ 315 0027 06       		.byte	0x6
+ 316 0028 DF020000 		.4byte	.LASF0
+ 317 002c 02       		.uleb128 0x2
+ 318 002d 01       		.byte	0x1
+ 319 002e 08       		.byte	0x8
+ 320 002f 24010000 		.4byte	.LASF1
+ 321 0033 02       		.uleb128 0x2
+ 322 0034 02       		.byte	0x2
+ 323 0035 05       		.byte	0x5
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccC6BSoX.s 			page 10
+
+
+ 324 0036 24020000 		.4byte	.LASF2
+ 325 003a 02       		.uleb128 0x2
+ 326 003b 02       		.byte	0x2
+ 327 003c 07       		.byte	0x7
+ 328 003d 20000000 		.4byte	.LASF3
+ 329 0041 02       		.uleb128 0x2
+ 330 0042 04       		.byte	0x4
+ 331 0043 05       		.byte	0x5
+ 332 0044 81020000 		.4byte	.LASF4
+ 333 0048 02       		.uleb128 0x2
+ 334 0049 04       		.byte	0x4
+ 335 004a 07       		.byte	0x7
+ 336 004b F7000000 		.4byte	.LASF5
+ 337 004f 02       		.uleb128 0x2
+ 338 0050 08       		.byte	0x8
+ 339 0051 05       		.byte	0x5
+ 340 0052 07020000 		.4byte	.LASF6
+ 341 0056 02       		.uleb128 0x2
+ 342 0057 08       		.byte	0x8
+ 343 0058 07       		.byte	0x7
+ 344 0059 9D010000 		.4byte	.LASF7
+ 345 005d 03       		.uleb128 0x3
+ 346 005e 04       		.byte	0x4
+ 347 005f 05       		.byte	0x5
+ 348 0060 696E7400 		.ascii	"int\000"
+ 349 0064 02       		.uleb128 0x2
+ 350 0065 04       		.byte	0x4
+ 351 0066 07       		.byte	0x7
+ 352 0067 90010000 		.4byte	.LASF8
+ 353 006b 04       		.uleb128 0x4
+ 354 006c 09010000 		.4byte	.LASF9
+ 355 0070 02       		.byte	0x2
+ 356 0071 E401     		.2byte	0x1e4
+ 357 0073 2C000000 		.4byte	0x2c
+ 358 0077 04       		.uleb128 0x4
+ 359 0078 53010000 		.4byte	.LASF10
+ 360 007c 02       		.byte	0x2
+ 361 007d E501     		.2byte	0x1e5
+ 362 007f 3A000000 		.4byte	0x3a
+ 363 0083 04       		.uleb128 0x4
+ 364 0084 5A010000 		.4byte	.LASF11
+ 365 0088 02       		.byte	0x2
+ 366 0089 E601     		.2byte	0x1e6
+ 367 008b 48000000 		.4byte	0x48
+ 368 008f 02       		.uleb128 0x2
+ 369 0090 04       		.byte	0x4
+ 370 0091 04       		.byte	0x4
+ 371 0092 D2000000 		.4byte	.LASF12
+ 372 0096 02       		.uleb128 0x2
+ 373 0097 08       		.byte	0x8
+ 374 0098 04       		.byte	0x4
+ 375 0099 4C010000 		.4byte	.LASF13
+ 376 009d 02       		.uleb128 0x2
+ 377 009e 01       		.byte	0x1
+ 378 009f 08       		.byte	0x8
+ 379 00a0 1F020000 		.4byte	.LASF14
+ 380 00a4 04       		.uleb128 0x4
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccC6BSoX.s 			page 11
+
+
+ 381 00a5 0A000000 		.4byte	.LASF15
+ 382 00a9 02       		.byte	0x2
+ 383 00aa 8602     		.2byte	0x286
+ 384 00ac 48000000 		.4byte	0x48
+ 385 00b0 02       		.uleb128 0x2
+ 386 00b1 04       		.byte	0x4
+ 387 00b2 07       		.byte	0x7
+ 388 00b3 D6010000 		.4byte	.LASF16
+ 389 00b7 05       		.uleb128 0x5
+ 390 00b8 04       		.byte	0x4
+ 391 00b9 6B000000 		.4byte	0x6b
+ 392 00bd 06       		.uleb128 0x6
+ 393 00be 32010000 		.4byte	.LASF17
+ 394 00c2 01       		.byte	0x1
+ 395 00c3 1F       		.byte	0x1f
+ 396 00c4 00000000 		.4byte	.LFB0
+ 397 00c8 08000000 		.4byte	.LFE0-.LFB0
+ 398 00cc 01       		.uleb128 0x1
+ 399 00cd 9C       		.byte	0x9c
+ 400 00ce DC000000 		.4byte	0xdc
+ 401 00d2 07       		.uleb128 0x7
+ 402 00d3 06000000 		.4byte	.LVL0
+ 403 00d7 8B020000 		.4byte	0x28b
+ 404 00db 00       		.byte	0
+ 405 00dc 06       		.uleb128 0x6
+ 406 00dd 51020000 		.4byte	.LASF18
+ 407 00e1 01       		.byte	0x1
+ 408 00e2 2C       		.byte	0x2c
+ 409 00e3 00000000 		.4byte	.LFB1
+ 410 00e7 08000000 		.4byte	.LFE1-.LFB1
+ 411 00eb 01       		.uleb128 0x1
+ 412 00ec 9C       		.byte	0x9c
+ 413 00ed FB000000 		.4byte	0xfb
+ 414 00f1 07       		.uleb128 0x7
+ 415 00f2 06000000 		.4byte	.LVL1
+ 416 00f6 96020000 		.4byte	0x296
+ 417 00fa 00       		.byte	0
+ 418 00fb 06       		.uleb128 0x6
+ 419 00fc DD000000 		.4byte	.LASF19
+ 420 0100 01       		.byte	0x1
+ 421 0101 39       		.byte	0x39
+ 422 0102 00000000 		.4byte	.LFB2
+ 423 0106 0C000000 		.4byte	.LFE2-.LFB2
+ 424 010a 01       		.uleb128 0x1
+ 425 010b 9C       		.byte	0x9c
+ 426 010c 23010000 		.4byte	0x123
+ 427 0110 07       		.uleb128 0x7
+ 428 0111 06000000 		.4byte	.LVL2
+ 429 0115 A1020000 		.4byte	0x2a1
+ 430 0119 07       		.uleb128 0x7
+ 431 011a 0A000000 		.4byte	.LVL3
+ 432 011e AD020000 		.4byte	0x2ad
+ 433 0122 00       		.byte	0
+ 434 0123 08       		.uleb128 0x8
+ 435 0124 38020000 		.4byte	.LASF27
+ 436 0128 01       		.byte	0x1
+ 437 0129 57       		.byte	0x57
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccC6BSoX.s 			page 12
+
+
+ 438 012a A4000000 		.4byte	0xa4
+ 439 012e 00000000 		.4byte	.LFB3
+ 440 0132 7A000000 		.4byte	.LFE3-.LFB3
+ 441 0136 01       		.uleb128 0x1
+ 442 0137 9C       		.byte	0x9c
+ 443 0138 FE010000 		.4byte	0x1fe
+ 444 013c 09       		.uleb128 0x9
+ 445 013d CC000000 		.4byte	.LASF20
+ 446 0141 01       		.byte	0x1
+ 447 0142 57       		.byte	0x57
+ 448 0143 B7000000 		.4byte	0xb7
+ 449 0147 00000000 		.4byte	.LLST0
+ 450 014b 09       		.uleb128 0x9
+ 451 014c D8000000 		.4byte	.LASF21
+ 452 0150 01       		.byte	0x1
+ 453 0151 57       		.byte	0x57
+ 454 0152 77000000 		.4byte	0x77
+ 455 0156 42000000 		.4byte	.LLST1
+ 456 015a 09       		.uleb128 0x9
+ 457 015b 1A000000 		.4byte	.LASF22
+ 458 015f 01       		.byte	0x1
+ 459 0160 57       		.byte	0x57
+ 460 0161 FE010000 		.4byte	0x1fe
+ 461 0165 7C000000 		.4byte	.LLST2
+ 462 0169 09       		.uleb128 0x9
+ 463 016a CE010000 		.4byte	.LASF23
+ 464 016e 01       		.byte	0x1
+ 465 016f 57       		.byte	0x57
+ 466 0170 6B000000 		.4byte	0x6b
+ 467 0174 DC000000 		.4byte	.LLST3
+ 468 0178 0A       		.uleb128 0xa
+ 469 0179 13000000 		.4byte	.LASF24
+ 470 017d 01       		.byte	0x1
+ 471 017e 59       		.byte	0x59
+ 472 017f A4000000 		.4byte	0xa4
+ 473 0183 2F010000 		.4byte	.LLST4
+ 474 0187 0A       		.uleb128 0xa
+ 475 0188 1A010000 		.4byte	.LASF25
+ 476 018c 01       		.byte	0x1
+ 477 018d 5A       		.byte	0x5a
+ 478 018e 83000000 		.4byte	0x83
+ 479 0192 8B010000 		.4byte	.LLST5
+ 480 0196 0A       		.uleb128 0xa
+ 481 0197 00000000 		.4byte	.LASF26
+ 482 019b 01       		.byte	0x1
+ 483 019c 5B       		.byte	0x5b
+ 484 019d 83000000 		.4byte	0x83
+ 485 01a1 CC010000 		.4byte	.LLST6
+ 486 01a5 0B       		.uleb128 0xb
+ 487 01a6 6900     		.ascii	"i\000"
+ 488 01a8 01       		.byte	0x1
+ 489 01a9 5C       		.byte	0x5c
+ 490 01aa 83000000 		.4byte	0x83
+ 491 01ae DF010000 		.4byte	.LLST7
+ 492 01b2 07       		.uleb128 0x7
+ 493 01b3 1C000000 		.4byte	.LVL10
+ 494 01b7 B9020000 		.4byte	0x2b9
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccC6BSoX.s 			page 13
+
+
+ 495 01bb 07       		.uleb128 0x7
+ 496 01bc 24000000 		.4byte	.LVL12
+ 497 01c0 B9020000 		.4byte	0x2b9
+ 498 01c4 0C       		.uleb128 0xc
+ 499 01c5 2C000000 		.4byte	.LVL15
+ 500 01c9 C5020000 		.4byte	0x2c5
+ 501 01cd D8010000 		.4byte	0x1d8
+ 502 01d1 0D       		.uleb128 0xd
+ 503 01d2 01       		.uleb128 0x1
+ 504 01d3 50       		.byte	0x50
+ 505 01d4 02       		.uleb128 0x2
+ 506 01d5 08       		.byte	0x8
+ 507 01d6 AE       		.byte	0xae
+ 508 01d7 00       		.byte	0
+ 509 01d8 07       		.uleb128 0x7
+ 510 01d9 30000000 		.4byte	.LVL16
+ 511 01dd B9020000 		.4byte	0x2b9
+ 512 01e1 0C       		.uleb128 0xc
+ 513 01e2 4A000000 		.4byte	.LVL21
+ 514 01e6 D0020000 		.4byte	0x2d0
+ 515 01ea F4010000 		.4byte	0x1f4
+ 516 01ee 0D       		.uleb128 0xd
+ 517 01ef 01       		.uleb128 0x1
+ 518 01f0 50       		.byte	0x50
+ 519 01f1 01       		.uleb128 0x1
+ 520 01f2 31       		.byte	0x31
+ 521 01f3 00       		.byte	0
+ 522 01f4 07       		.uleb128 0x7
+ 523 01f5 60000000 		.4byte	.LVL26
+ 524 01f9 DB020000 		.4byte	0x2db
+ 525 01fd 00       		.byte	0
+ 526 01fe 05       		.uleb128 0x5
+ 527 01ff 04       		.byte	0x4
+ 528 0200 77000000 		.4byte	0x77
+ 529 0204 08       		.uleb128 0x8
+ 530 0205 B4010000 		.4byte	.LASF28
+ 531 0209 01       		.byte	0x1
+ 532 020a A3       		.byte	0xa3
+ 533 020b A4000000 		.4byte	0xa4
+ 534 020f 00000000 		.4byte	.LFB4
+ 535 0213 20000000 		.4byte	.LFE4-.LFB4
+ 536 0217 01       		.uleb128 0x1
+ 537 0218 9C       		.byte	0x9c
+ 538 0219 80020000 		.4byte	0x280
+ 539 021d 09       		.uleb128 0x9
+ 540 021e CC000000 		.4byte	.LASF20
+ 541 0222 01       		.byte	0x1
+ 542 0223 A3       		.byte	0xa3
+ 543 0224 80020000 		.4byte	0x280
+ 544 0228 FE010000 		.4byte	.LLST8
+ 545 022c 09       		.uleb128 0x9
+ 546 022d D8000000 		.4byte	.LASF21
+ 547 0231 01       		.byte	0x1
+ 548 0232 A3       		.byte	0xa3
+ 549 0233 77000000 		.4byte	0x77
+ 550 0237 51020000 		.4byte	.LLST9
+ 551 023b 09       		.uleb128 0x9
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccC6BSoX.s 			page 14
+
+
+ 552 023c 1A000000 		.4byte	.LASF22
+ 553 0240 01       		.byte	0x1
+ 554 0241 A3       		.byte	0xa3
+ 555 0242 FE010000 		.4byte	0x1fe
+ 556 0246 8B020000 		.4byte	.LLST10
+ 557 024a 09       		.uleb128 0x9
+ 558 024b CE010000 		.4byte	.LASF23
+ 559 024f 01       		.byte	0x1
+ 560 0250 A3       		.byte	0xa3
+ 561 0251 6B000000 		.4byte	0x6b
+ 562 0255 CD020000 		.4byte	.LLST11
+ 563 0259 0A       		.uleb128 0xa
+ 564 025a 13000000 		.4byte	.LASF24
+ 565 025e 01       		.byte	0x1
+ 566 025f A5       		.byte	0xa5
+ 567 0260 A4000000 		.4byte	0xa4
+ 568 0264 07030000 		.4byte	.LLST12
+ 569 0268 0E       		.uleb128 0xe
+ 570 0269 12000000 		.4byte	.LVL36
+ 571 026d E7020000 		.4byte	0x2e7
+ 572 0271 0D       		.uleb128 0xd
+ 573 0272 01       		.uleb128 0x1
+ 574 0273 50       		.byte	0x50
+ 575 0274 03       		.uleb128 0x3
+ 576 0275 F3       		.byte	0xf3
+ 577 0276 01       		.uleb128 0x1
+ 578 0277 50       		.byte	0x50
+ 579 0278 0D       		.uleb128 0xd
+ 580 0279 01       		.uleb128 0x1
+ 581 027a 51       		.byte	0x51
+ 582 027b 02       		.uleb128 0x2
+ 583 027c 74       		.byte	0x74
+ 584 027d 00       		.sleb128 0
+ 585 027e 00       		.byte	0
+ 586 027f 00       		.byte	0
+ 587 0280 05       		.uleb128 0x5
+ 588 0281 04       		.byte	0x4
+ 589 0282 86020000 		.4byte	0x286
+ 590 0286 0F       		.uleb128 0xf
+ 591 0287 6B000000 		.4byte	0x6b
+ 592 028b 10       		.uleb128 0x10
+ 593 028c 0F010000 		.4byte	.LASF29
+ 594 0290 0F010000 		.4byte	.LASF29
+ 595 0294 03       		.byte	0x3
+ 596 0295 72       		.byte	0x72
+ 597 0296 10       		.uleb128 0x10
+ 598 0297 2E020000 		.4byte	.LASF30
+ 599 029b 2E020000 		.4byte	.LASF30
+ 600 029f 03       		.byte	0x3
+ 601 02a0 73       		.byte	0x73
+ 602 02a1 11       		.uleb128 0x11
+ 603 02a2 8A020000 		.4byte	.LASF31
+ 604 02a6 8A020000 		.4byte	.LASF31
+ 605 02aa 04       		.byte	0x4
+ 606 02ab 3F03     		.2byte	0x33f
+ 607 02ad 11       		.uleb128 0x11
+ 608 02ae 61010000 		.4byte	.LASF32
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccC6BSoX.s 			page 15
+
+
+ 609 02b2 61010000 		.4byte	.LASF32
+ 610 02b6 04       		.byte	0x4
+ 611 02b7 4703     		.2byte	0x347
+ 612 02b9 11       		.uleb128 0x11
+ 613 02ba EB020000 		.4byte	.LASF33
+ 614 02be EB020000 		.4byte	.LASF33
+ 615 02c2 04       		.byte	0x4
+ 616 02c3 3E03     		.2byte	0x33e
+ 617 02c5 10       		.uleb128 0x10
+ 618 02c6 15020000 		.4byte	.LASF34
+ 619 02ca 15020000 		.4byte	.LASF34
+ 620 02ce 05       		.byte	0x5
+ 621 02cf DA       		.byte	0xda
+ 622 02d0 10       		.uleb128 0x10
+ 623 02d1 07030000 		.4byte	.LASF35
+ 624 02d5 07030000 		.4byte	.LASF35
+ 625 02d9 05       		.byte	0x5
+ 626 02da D9       		.byte	0xd9
+ 627 02db 11       		.uleb128 0x11
+ 628 02dc 6A020000 		.4byte	.LASF36
+ 629 02e0 6A020000 		.4byte	.LASF36
+ 630 02e4 04       		.byte	0x4
+ 631 02e5 3D03     		.2byte	0x33d
+ 632 02e7 11       		.uleb128 0x11
+ 633 02e8 7B010000 		.4byte	.LASF37
+ 634 02ec 7B010000 		.4byte	.LASF37
+ 635 02f0 04       		.byte	0x4
+ 636 02f1 4503     		.2byte	0x345
+ 637 02f3 00       		.byte	0
+ 638              		.section	.debug_abbrev,"",%progbits
+ 639              	.Ldebug_abbrev0:
+ 640 0000 01       		.uleb128 0x1
+ 641 0001 11       		.uleb128 0x11
+ 642 0002 01       		.byte	0x1
+ 643 0003 25       		.uleb128 0x25
+ 644 0004 0E       		.uleb128 0xe
+ 645 0005 13       		.uleb128 0x13
+ 646 0006 0B       		.uleb128 0xb
+ 647 0007 03       		.uleb128 0x3
+ 648 0008 0E       		.uleb128 0xe
+ 649 0009 1B       		.uleb128 0x1b
+ 650 000a 0E       		.uleb128 0xe
+ 651 000b 55       		.uleb128 0x55
+ 652 000c 17       		.uleb128 0x17
+ 653 000d 11       		.uleb128 0x11
+ 654 000e 01       		.uleb128 0x1
+ 655 000f 10       		.uleb128 0x10
+ 656 0010 17       		.uleb128 0x17
+ 657 0011 00       		.byte	0
+ 658 0012 00       		.byte	0
+ 659 0013 02       		.uleb128 0x2
+ 660 0014 24       		.uleb128 0x24
+ 661 0015 00       		.byte	0
+ 662 0016 0B       		.uleb128 0xb
+ 663 0017 0B       		.uleb128 0xb
+ 664 0018 3E       		.uleb128 0x3e
+ 665 0019 0B       		.uleb128 0xb
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccC6BSoX.s 			page 16
+
+
+ 666 001a 03       		.uleb128 0x3
+ 667 001b 0E       		.uleb128 0xe
+ 668 001c 00       		.byte	0
+ 669 001d 00       		.byte	0
+ 670 001e 03       		.uleb128 0x3
+ 671 001f 24       		.uleb128 0x24
+ 672 0020 00       		.byte	0
+ 673 0021 0B       		.uleb128 0xb
+ 674 0022 0B       		.uleb128 0xb
+ 675 0023 3E       		.uleb128 0x3e
+ 676 0024 0B       		.uleb128 0xb
+ 677 0025 03       		.uleb128 0x3
+ 678 0026 08       		.uleb128 0x8
+ 679 0027 00       		.byte	0
+ 680 0028 00       		.byte	0
+ 681 0029 04       		.uleb128 0x4
+ 682 002a 16       		.uleb128 0x16
+ 683 002b 00       		.byte	0
+ 684 002c 03       		.uleb128 0x3
+ 685 002d 0E       		.uleb128 0xe
+ 686 002e 3A       		.uleb128 0x3a
+ 687 002f 0B       		.uleb128 0xb
+ 688 0030 3B       		.uleb128 0x3b
+ 689 0031 05       		.uleb128 0x5
+ 690 0032 49       		.uleb128 0x49
+ 691 0033 13       		.uleb128 0x13
+ 692 0034 00       		.byte	0
+ 693 0035 00       		.byte	0
+ 694 0036 05       		.uleb128 0x5
+ 695 0037 0F       		.uleb128 0xf
+ 696 0038 00       		.byte	0
+ 697 0039 0B       		.uleb128 0xb
+ 698 003a 0B       		.uleb128 0xb
+ 699 003b 49       		.uleb128 0x49
+ 700 003c 13       		.uleb128 0x13
+ 701 003d 00       		.byte	0
+ 702 003e 00       		.byte	0
+ 703 003f 06       		.uleb128 0x6
+ 704 0040 2E       		.uleb128 0x2e
+ 705 0041 01       		.byte	0x1
+ 706 0042 3F       		.uleb128 0x3f
+ 707 0043 19       		.uleb128 0x19
+ 708 0044 03       		.uleb128 0x3
+ 709 0045 0E       		.uleb128 0xe
+ 710 0046 3A       		.uleb128 0x3a
+ 711 0047 0B       		.uleb128 0xb
+ 712 0048 3B       		.uleb128 0x3b
+ 713 0049 0B       		.uleb128 0xb
+ 714 004a 27       		.uleb128 0x27
+ 715 004b 19       		.uleb128 0x19
+ 716 004c 11       		.uleb128 0x11
+ 717 004d 01       		.uleb128 0x1
+ 718 004e 12       		.uleb128 0x12
+ 719 004f 06       		.uleb128 0x6
+ 720 0050 40       		.uleb128 0x40
+ 721 0051 18       		.uleb128 0x18
+ 722 0052 9742     		.uleb128 0x2117
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccC6BSoX.s 			page 17
+
+
+ 723 0054 19       		.uleb128 0x19
+ 724 0055 01       		.uleb128 0x1
+ 725 0056 13       		.uleb128 0x13
+ 726 0057 00       		.byte	0
+ 727 0058 00       		.byte	0
+ 728 0059 07       		.uleb128 0x7
+ 729 005a 898201   		.uleb128 0x4109
+ 730 005d 00       		.byte	0
+ 731 005e 11       		.uleb128 0x11
+ 732 005f 01       		.uleb128 0x1
+ 733 0060 31       		.uleb128 0x31
+ 734 0061 13       		.uleb128 0x13
+ 735 0062 00       		.byte	0
+ 736 0063 00       		.byte	0
+ 737 0064 08       		.uleb128 0x8
+ 738 0065 2E       		.uleb128 0x2e
+ 739 0066 01       		.byte	0x1
+ 740 0067 3F       		.uleb128 0x3f
+ 741 0068 19       		.uleb128 0x19
+ 742 0069 03       		.uleb128 0x3
+ 743 006a 0E       		.uleb128 0xe
+ 744 006b 3A       		.uleb128 0x3a
+ 745 006c 0B       		.uleb128 0xb
+ 746 006d 3B       		.uleb128 0x3b
+ 747 006e 0B       		.uleb128 0xb
+ 748 006f 27       		.uleb128 0x27
+ 749 0070 19       		.uleb128 0x19
+ 750 0071 49       		.uleb128 0x49
+ 751 0072 13       		.uleb128 0x13
+ 752 0073 11       		.uleb128 0x11
+ 753 0074 01       		.uleb128 0x1
+ 754 0075 12       		.uleb128 0x12
+ 755 0076 06       		.uleb128 0x6
+ 756 0077 40       		.uleb128 0x40
+ 757 0078 18       		.uleb128 0x18
+ 758 0079 9742     		.uleb128 0x2117
+ 759 007b 19       		.uleb128 0x19
+ 760 007c 01       		.uleb128 0x1
+ 761 007d 13       		.uleb128 0x13
+ 762 007e 00       		.byte	0
+ 763 007f 00       		.byte	0
+ 764 0080 09       		.uleb128 0x9
+ 765 0081 05       		.uleb128 0x5
+ 766 0082 00       		.byte	0
+ 767 0083 03       		.uleb128 0x3
+ 768 0084 0E       		.uleb128 0xe
+ 769 0085 3A       		.uleb128 0x3a
+ 770 0086 0B       		.uleb128 0xb
+ 771 0087 3B       		.uleb128 0x3b
+ 772 0088 0B       		.uleb128 0xb
+ 773 0089 49       		.uleb128 0x49
+ 774 008a 13       		.uleb128 0x13
+ 775 008b 02       		.uleb128 0x2
+ 776 008c 17       		.uleb128 0x17
+ 777 008d 00       		.byte	0
+ 778 008e 00       		.byte	0
+ 779 008f 0A       		.uleb128 0xa
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccC6BSoX.s 			page 18
+
+
+ 780 0090 34       		.uleb128 0x34
+ 781 0091 00       		.byte	0
+ 782 0092 03       		.uleb128 0x3
+ 783 0093 0E       		.uleb128 0xe
+ 784 0094 3A       		.uleb128 0x3a
+ 785 0095 0B       		.uleb128 0xb
+ 786 0096 3B       		.uleb128 0x3b
+ 787 0097 0B       		.uleb128 0xb
+ 788 0098 49       		.uleb128 0x49
+ 789 0099 13       		.uleb128 0x13
+ 790 009a 02       		.uleb128 0x2
+ 791 009b 17       		.uleb128 0x17
+ 792 009c 00       		.byte	0
+ 793 009d 00       		.byte	0
+ 794 009e 0B       		.uleb128 0xb
+ 795 009f 34       		.uleb128 0x34
+ 796 00a0 00       		.byte	0
+ 797 00a1 03       		.uleb128 0x3
+ 798 00a2 08       		.uleb128 0x8
+ 799 00a3 3A       		.uleb128 0x3a
+ 800 00a4 0B       		.uleb128 0xb
+ 801 00a5 3B       		.uleb128 0x3b
+ 802 00a6 0B       		.uleb128 0xb
+ 803 00a7 49       		.uleb128 0x49
+ 804 00a8 13       		.uleb128 0x13
+ 805 00a9 02       		.uleb128 0x2
+ 806 00aa 17       		.uleb128 0x17
+ 807 00ab 00       		.byte	0
+ 808 00ac 00       		.byte	0
+ 809 00ad 0C       		.uleb128 0xc
+ 810 00ae 898201   		.uleb128 0x4109
+ 811 00b1 01       		.byte	0x1
+ 812 00b2 11       		.uleb128 0x11
+ 813 00b3 01       		.uleb128 0x1
+ 814 00b4 31       		.uleb128 0x31
+ 815 00b5 13       		.uleb128 0x13
+ 816 00b6 01       		.uleb128 0x1
+ 817 00b7 13       		.uleb128 0x13
+ 818 00b8 00       		.byte	0
+ 819 00b9 00       		.byte	0
+ 820 00ba 0D       		.uleb128 0xd
+ 821 00bb 8A8201   		.uleb128 0x410a
+ 822 00be 00       		.byte	0
+ 823 00bf 02       		.uleb128 0x2
+ 824 00c0 18       		.uleb128 0x18
+ 825 00c1 9142     		.uleb128 0x2111
+ 826 00c3 18       		.uleb128 0x18
+ 827 00c4 00       		.byte	0
+ 828 00c5 00       		.byte	0
+ 829 00c6 0E       		.uleb128 0xe
+ 830 00c7 898201   		.uleb128 0x4109
+ 831 00ca 01       		.byte	0x1
+ 832 00cb 11       		.uleb128 0x11
+ 833 00cc 01       		.uleb128 0x1
+ 834 00cd 31       		.uleb128 0x31
+ 835 00ce 13       		.uleb128 0x13
+ 836 00cf 00       		.byte	0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccC6BSoX.s 			page 19
+
+
+ 837 00d0 00       		.byte	0
+ 838 00d1 0F       		.uleb128 0xf
+ 839 00d2 26       		.uleb128 0x26
+ 840 00d3 00       		.byte	0
+ 841 00d4 49       		.uleb128 0x49
+ 842 00d5 13       		.uleb128 0x13
+ 843 00d6 00       		.byte	0
+ 844 00d7 00       		.byte	0
+ 845 00d8 10       		.uleb128 0x10
+ 846 00d9 2E       		.uleb128 0x2e
+ 847 00da 00       		.byte	0
+ 848 00db 3F       		.uleb128 0x3f
+ 849 00dc 19       		.uleb128 0x19
+ 850 00dd 3C       		.uleb128 0x3c
+ 851 00de 19       		.uleb128 0x19
+ 852 00df 6E       		.uleb128 0x6e
+ 853 00e0 0E       		.uleb128 0xe
+ 854 00e1 03       		.uleb128 0x3
+ 855 00e2 0E       		.uleb128 0xe
+ 856 00e3 3A       		.uleb128 0x3a
+ 857 00e4 0B       		.uleb128 0xb
+ 858 00e5 3B       		.uleb128 0x3b
+ 859 00e6 0B       		.uleb128 0xb
+ 860 00e7 00       		.byte	0
+ 861 00e8 00       		.byte	0
+ 862 00e9 11       		.uleb128 0x11
+ 863 00ea 2E       		.uleb128 0x2e
+ 864 00eb 00       		.byte	0
+ 865 00ec 3F       		.uleb128 0x3f
+ 866 00ed 19       		.uleb128 0x19
+ 867 00ee 3C       		.uleb128 0x3c
+ 868 00ef 19       		.uleb128 0x19
+ 869 00f0 6E       		.uleb128 0x6e
+ 870 00f1 0E       		.uleb128 0xe
+ 871 00f2 03       		.uleb128 0x3
+ 872 00f3 0E       		.uleb128 0xe
+ 873 00f4 3A       		.uleb128 0x3a
+ 874 00f5 0B       		.uleb128 0xb
+ 875 00f6 3B       		.uleb128 0x3b
+ 876 00f7 05       		.uleb128 0x5
+ 877 00f8 00       		.byte	0
+ 878 00f9 00       		.byte	0
+ 879 00fa 00       		.byte	0
+ 880              		.section	.debug_loc,"",%progbits
+ 881              	.Ldebug_loc0:
+ 882              	.LLST0:
+ 883 0000 00000000 		.4byte	.LVL4
+ 884 0004 18000000 		.4byte	.LVL9
+ 885 0008 0100     		.2byte	0x1
+ 886 000a 50       		.byte	0x50
+ 887 000b 18000000 		.4byte	.LVL9
+ 888 000f 6A000000 		.4byte	.LVL28
+ 889 0013 0100     		.2byte	0x1
+ 890 0015 57       		.byte	0x57
+ 891 0016 6A000000 		.4byte	.LVL28
+ 892 001a 74000000 		.4byte	.LVL32
+ 893 001e 0100     		.2byte	0x1
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccC6BSoX.s 			page 20
+
+
+ 894 0020 50       		.byte	0x50
+ 895 0021 74000000 		.4byte	.LVL32
+ 896 0025 78000000 		.4byte	.LVL33
+ 897 0029 0100     		.2byte	0x1
+ 898 002b 57       		.byte	0x57
+ 899 002c 78000000 		.4byte	.LVL33
+ 900 0030 7A000000 		.4byte	.LFE3
+ 901 0034 0400     		.2byte	0x4
+ 902 0036 F3       		.byte	0xf3
+ 903 0037 01       		.uleb128 0x1
+ 904 0038 50       		.byte	0x50
+ 905 0039 9F       		.byte	0x9f
+ 906 003a 00000000 		.4byte	0
+ 907 003e 00000000 		.4byte	0
+ 908              	.LLST1:
+ 909 0042 00000000 		.4byte	.LVL4
+ 910 0046 18000000 		.4byte	.LVL9
+ 911 004a 0100     		.2byte	0x1
+ 912 004c 51       		.byte	0x51
+ 913 004d 18000000 		.4byte	.LVL9
+ 914 0051 6A000000 		.4byte	.LVL28
+ 915 0055 0400     		.2byte	0x4
+ 916 0057 F3       		.byte	0xf3
+ 917 0058 01       		.uleb128 0x1
+ 918 0059 51       		.byte	0x51
+ 919 005a 9F       		.byte	0x9f
+ 920 005b 6A000000 		.4byte	.LVL28
+ 921 005f 74000000 		.4byte	.LVL32
+ 922 0063 0100     		.2byte	0x1
+ 923 0065 51       		.byte	0x51
+ 924 0066 74000000 		.4byte	.LVL32
+ 925 006a 7A000000 		.4byte	.LFE3
+ 926 006e 0400     		.2byte	0x4
+ 927 0070 F3       		.byte	0xf3
+ 928 0071 01       		.uleb128 0x1
+ 929 0072 51       		.byte	0x51
+ 930 0073 9F       		.byte	0x9f
+ 931 0074 00000000 		.4byte	0
+ 932 0078 00000000 		.4byte	0
+ 933              	.LLST2:
+ 934 007c 00000000 		.4byte	.LVL4
+ 935 0080 14000000 		.4byte	.LVL7
+ 936 0084 0100     		.2byte	0x1
+ 937 0086 52       		.byte	0x52
+ 938 0087 14000000 		.4byte	.LVL7
+ 939 008b 42000000 		.4byte	.LVL19
+ 940 008f 0200     		.2byte	0x2
+ 941 0091 91       		.byte	0x91
+ 942 0092 64       		.sleb128 -28
+ 943 0093 42000000 		.4byte	.LVL19
+ 944 0097 44000000 		.4byte	.LVL20
+ 945 009b 0400     		.2byte	0x4
+ 946 009d F3       		.byte	0xf3
+ 947 009e 01       		.uleb128 0x1
+ 948 009f 52       		.byte	0x52
+ 949 00a0 9F       		.byte	0x9f
+ 950 00a1 44000000 		.4byte	.LVL20
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccC6BSoX.s 			page 21
+
+
+ 951 00a5 56000000 		.4byte	.LVL23
+ 952 00a9 0200     		.2byte	0x2
+ 953 00ab 91       		.byte	0x91
+ 954 00ac 64       		.sleb128 -28
+ 955 00ad 56000000 		.4byte	.LVL23
+ 956 00b1 6A000000 		.4byte	.LVL28
+ 957 00b5 0400     		.2byte	0x4
+ 958 00b7 F3       		.byte	0xf3
+ 959 00b8 01       		.uleb128 0x1
+ 960 00b9 52       		.byte	0x52
+ 961 00ba 9F       		.byte	0x9f
+ 962 00bb 6A000000 		.4byte	.LVL28
+ 963 00bf 74000000 		.4byte	.LVL32
+ 964 00c3 0100     		.2byte	0x1
+ 965 00c5 52       		.byte	0x52
+ 966 00c6 74000000 		.4byte	.LVL32
+ 967 00ca 7A000000 		.4byte	.LFE3
+ 968 00ce 0400     		.2byte	0x4
+ 969 00d0 F3       		.byte	0xf3
+ 970 00d1 01       		.uleb128 0x1
+ 971 00d2 52       		.byte	0x52
+ 972 00d3 9F       		.byte	0x9f
+ 973 00d4 00000000 		.4byte	0
+ 974 00d8 00000000 		.4byte	0
+ 975              	.LLST3:
+ 976 00dc 00000000 		.4byte	.LVL4
+ 977 00e0 16000000 		.4byte	.LVL8
+ 978 00e4 0100     		.2byte	0x1
+ 979 00e6 53       		.byte	0x53
+ 980 00e7 16000000 		.4byte	.LVL8
+ 981 00eb 6A000000 		.4byte	.LVL28
+ 982 00ef 0400     		.2byte	0x4
+ 983 00f1 F3       		.byte	0xf3
+ 984 00f2 01       		.uleb128 0x1
+ 985 00f3 53       		.byte	0x53
+ 986 00f4 9F       		.byte	0x9f
+ 987 00f5 6A000000 		.4byte	.LVL28
+ 988 00f9 6C000000 		.4byte	.LVL29
+ 989 00fd 0100     		.2byte	0x1
+ 990 00ff 53       		.byte	0x53
+ 991 0100 6C000000 		.4byte	.LVL29
+ 992 0104 70000000 		.4byte	.LVL30
+ 993 0108 0400     		.2byte	0x4
+ 994 010a F3       		.byte	0xf3
+ 995 010b 01       		.uleb128 0x1
+ 996 010c 53       		.byte	0x53
+ 997 010d 9F       		.byte	0x9f
+ 998 010e 70000000 		.4byte	.LVL30
+ 999 0112 72000000 		.4byte	.LVL31
+ 1000 0116 0100     		.2byte	0x1
+ 1001 0118 53       		.byte	0x53
+ 1002 0119 72000000 		.4byte	.LVL31
+ 1003 011d 7A000000 		.4byte	.LFE3
+ 1004 0121 0400     		.2byte	0x4
+ 1005 0123 F3       		.byte	0xf3
+ 1006 0124 01       		.uleb128 0x1
+ 1007 0125 53       		.byte	0x53
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccC6BSoX.s 			page 22
+
+
+ 1008 0126 9F       		.byte	0x9f
+ 1009 0127 00000000 		.4byte	0
+ 1010 012b 00000000 		.4byte	0
+ 1011              	.LLST4:
+ 1012 012f 0A000000 		.4byte	.LVL5
+ 1013 0133 12000000 		.4byte	.LVL6
+ 1014 0137 0200     		.2byte	0x2
+ 1015 0139 31       		.byte	0x31
+ 1016 013a 9F       		.byte	0x9f
+ 1017 013b 12000000 		.4byte	.LVL6
+ 1018 013f 3E000000 		.4byte	.LVL18
+ 1019 0143 0200     		.2byte	0x2
+ 1020 0145 40       		.byte	0x40
+ 1021 0146 9F       		.byte	0x9f
+ 1022 0147 3E000000 		.4byte	.LVL18
+ 1023 014b 44000000 		.4byte	.LVL20
+ 1024 014f 0200     		.2byte	0x2
+ 1025 0151 30       		.byte	0x30
+ 1026 0152 9F       		.byte	0x9f
+ 1027 0153 44000000 		.4byte	.LVL20
+ 1028 0157 56000000 		.4byte	.LVL23
+ 1029 015b 0200     		.2byte	0x2
+ 1030 015d 40       		.byte	0x40
+ 1031 015e 9F       		.byte	0x9f
+ 1032 015f 56000000 		.4byte	.LVL23
+ 1033 0163 6A000000 		.4byte	.LVL28
+ 1034 0167 0200     		.2byte	0x2
+ 1035 0169 91       		.byte	0x91
+ 1036 016a 64       		.sleb128 -28
+ 1037 016b 6A000000 		.4byte	.LVL28
+ 1038 016f 74000000 		.4byte	.LVL32
+ 1039 0173 0200     		.2byte	0x2
+ 1040 0175 31       		.byte	0x31
+ 1041 0176 9F       		.byte	0x9f
+ 1042 0177 74000000 		.4byte	.LVL32
+ 1043 017b 7A000000 		.4byte	.LFE3
+ 1044 017f 0200     		.2byte	0x2
+ 1045 0181 91       		.byte	0x91
+ 1046 0182 64       		.sleb128 -28
+ 1047 0183 00000000 		.4byte	0
+ 1048 0187 00000000 		.4byte	0
+ 1049              	.LLST5:
+ 1050 018b 18000000 		.4byte	.LVL9
+ 1051 018f 20000000 		.4byte	.LVL11
+ 1052 0193 0200     		.2byte	0x2
+ 1053 0195 30       		.byte	0x30
+ 1054 0196 9F       		.byte	0x9f
+ 1055 0197 26000000 		.4byte	.LVL13
+ 1056 019b 28000000 		.4byte	.LVL14
+ 1057 019f 0100     		.2byte	0x1
+ 1058 01a1 50       		.byte	0x50
+ 1059 01a2 28000000 		.4byte	.LVL14
+ 1060 01a6 44000000 		.4byte	.LVL20
+ 1061 01aa 0100     		.2byte	0x1
+ 1062 01ac 55       		.byte	0x55
+ 1063 01ad 44000000 		.4byte	.LVL20
+ 1064 01b1 56000000 		.4byte	.LVL23
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccC6BSoX.s 			page 23
+
+
+ 1065 01b5 0200     		.2byte	0x2
+ 1066 01b7 30       		.byte	0x30
+ 1067 01b8 9F       		.byte	0x9f
+ 1068 01b9 56000000 		.4byte	.LVL23
+ 1069 01bd 6A000000 		.4byte	.LVL28
+ 1070 01c1 0100     		.2byte	0x1
+ 1071 01c3 55       		.byte	0x55
+ 1072 01c4 00000000 		.4byte	0
+ 1073 01c8 00000000 		.4byte	0
+ 1074              	.LLST6:
+ 1075 01cc 18000000 		.4byte	.LVL9
+ 1076 01d0 58000000 		.4byte	.LVL24
+ 1077 01d4 0100     		.2byte	0x1
+ 1078 01d6 54       		.byte	0x54
+ 1079 01d7 00000000 		.4byte	0
+ 1080 01db 00000000 		.4byte	0
+ 1081              	.LLST7:
+ 1082 01df 56000000 		.4byte	.LVL23
+ 1083 01e3 5A000000 		.4byte	.LVL25
+ 1084 01e7 0200     		.2byte	0x2
+ 1085 01e9 30       		.byte	0x30
+ 1086 01ea 9F       		.byte	0x9f
+ 1087 01eb 5A000000 		.4byte	.LVL25
+ 1088 01ef 6A000000 		.4byte	.LVL28
+ 1089 01f3 0100     		.2byte	0x1
+ 1090 01f5 54       		.byte	0x54
+ 1091 01f6 00000000 		.4byte	0
+ 1092 01fa 00000000 		.4byte	0
+ 1093              	.LLST8:
+ 1094 01fe 00000000 		.4byte	.LVL34
+ 1095 0202 11000000 		.4byte	.LVL36-1
+ 1096 0206 0100     		.2byte	0x1
+ 1097 0208 50       		.byte	0x50
+ 1098 0209 11000000 		.4byte	.LVL36-1
+ 1099 020d 18000000 		.4byte	.LVL38
+ 1100 0211 0400     		.2byte	0x4
+ 1101 0213 F3       		.byte	0xf3
+ 1102 0214 01       		.uleb128 0x1
+ 1103 0215 50       		.byte	0x50
+ 1104 0216 9F       		.byte	0x9f
+ 1105 0217 18000000 		.4byte	.LVL38
+ 1106 021b 1A000000 		.4byte	.LVL39
+ 1107 021f 0100     		.2byte	0x1
+ 1108 0221 50       		.byte	0x50
+ 1109 0222 1A000000 		.4byte	.LVL39
+ 1110 0226 1C000000 		.4byte	.LVL40
+ 1111 022a 0400     		.2byte	0x4
+ 1112 022c F3       		.byte	0xf3
+ 1113 022d 01       		.uleb128 0x1
+ 1114 022e 50       		.byte	0x50
+ 1115 022f 9F       		.byte	0x9f
+ 1116 0230 1C000000 		.4byte	.LVL40
+ 1117 0234 1E000000 		.4byte	.LVL41
+ 1118 0238 0100     		.2byte	0x1
+ 1119 023a 50       		.byte	0x50
+ 1120 023b 1E000000 		.4byte	.LVL41
+ 1121 023f 20000000 		.4byte	.LFE4
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccC6BSoX.s 			page 24
+
+
+ 1122 0243 0400     		.2byte	0x4
+ 1123 0245 F3       		.byte	0xf3
+ 1124 0246 01       		.uleb128 0x1
+ 1125 0247 50       		.byte	0x50
+ 1126 0248 9F       		.byte	0x9f
+ 1127 0249 00000000 		.4byte	0
+ 1128 024d 00000000 		.4byte	0
+ 1129              	.LLST9:
+ 1130 0251 00000000 		.4byte	.LVL34
+ 1131 0255 11000000 		.4byte	.LVL36-1
+ 1132 0259 0100     		.2byte	0x1
+ 1133 025b 51       		.byte	0x51
+ 1134 025c 11000000 		.4byte	.LVL36-1
+ 1135 0260 18000000 		.4byte	.LVL38
+ 1136 0264 0400     		.2byte	0x4
+ 1137 0266 F3       		.byte	0xf3
+ 1138 0267 01       		.uleb128 0x1
+ 1139 0268 51       		.byte	0x51
+ 1140 0269 9F       		.byte	0x9f
+ 1141 026a 18000000 		.4byte	.LVL38
+ 1142 026e 1E000000 		.4byte	.LVL41
+ 1143 0272 0100     		.2byte	0x1
+ 1144 0274 51       		.byte	0x51
+ 1145 0275 1E000000 		.4byte	.LVL41
+ 1146 0279 20000000 		.4byte	.LFE4
+ 1147 027d 0400     		.2byte	0x4
+ 1148 027f F3       		.byte	0xf3
+ 1149 0280 01       		.uleb128 0x1
+ 1150 0281 51       		.byte	0x51
+ 1151 0282 9F       		.byte	0x9f
+ 1152 0283 00000000 		.4byte	0
+ 1153 0287 00000000 		.4byte	0
+ 1154              	.LLST10:
+ 1155 028b 00000000 		.4byte	.LVL34
+ 1156 028f 11000000 		.4byte	.LVL36-1
+ 1157 0293 0100     		.2byte	0x1
+ 1158 0295 52       		.byte	0x52
+ 1159 0296 11000000 		.4byte	.LVL36-1
+ 1160 029a 18000000 		.4byte	.LVL38
+ 1161 029e 0100     		.2byte	0x1
+ 1162 02a0 55       		.byte	0x55
+ 1163 02a1 18000000 		.4byte	.LVL38
+ 1164 02a5 1E000000 		.4byte	.LVL41
+ 1165 02a9 0100     		.2byte	0x1
+ 1166 02ab 52       		.byte	0x52
+ 1167 02ac 1E000000 		.4byte	.LVL41
+ 1168 02b0 1E000000 		.4byte	.LVL42
+ 1169 02b4 0100     		.2byte	0x1
+ 1170 02b6 55       		.byte	0x55
+ 1171 02b7 1E000000 		.4byte	.LVL42
+ 1172 02bb 20000000 		.4byte	.LFE4
+ 1173 02bf 0400     		.2byte	0x4
+ 1174 02c1 F3       		.byte	0xf3
+ 1175 02c2 01       		.uleb128 0x1
+ 1176 02c3 52       		.byte	0x52
+ 1177 02c4 9F       		.byte	0x9f
+ 1178 02c5 00000000 		.4byte	0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccC6BSoX.s 			page 25
+
+
+ 1179 02c9 00000000 		.4byte	0
+ 1180              	.LLST11:
+ 1181 02cd 00000000 		.4byte	.LVL34
+ 1182 02d1 11000000 		.4byte	.LVL36-1
+ 1183 02d5 0100     		.2byte	0x1
+ 1184 02d7 53       		.byte	0x53
+ 1185 02d8 11000000 		.4byte	.LVL36-1
+ 1186 02dc 18000000 		.4byte	.LVL38
+ 1187 02e0 0400     		.2byte	0x4
+ 1188 02e2 F3       		.byte	0xf3
+ 1189 02e3 01       		.uleb128 0x1
+ 1190 02e4 53       		.byte	0x53
+ 1191 02e5 9F       		.byte	0x9f
+ 1192 02e6 18000000 		.4byte	.LVL38
+ 1193 02ea 1E000000 		.4byte	.LVL41
+ 1194 02ee 0100     		.2byte	0x1
+ 1195 02f0 53       		.byte	0x53
+ 1196 02f1 1E000000 		.4byte	.LVL41
+ 1197 02f5 20000000 		.4byte	.LFE4
+ 1198 02f9 0400     		.2byte	0x4
+ 1199 02fb F3       		.byte	0xf3
+ 1200 02fc 01       		.uleb128 0x1
+ 1201 02fd 53       		.byte	0x53
+ 1202 02fe 9F       		.byte	0x9f
+ 1203 02ff 00000000 		.4byte	0
+ 1204 0303 00000000 		.4byte	0
+ 1205              	.LLST12:
+ 1206 0307 06000000 		.4byte	.LVL35
+ 1207 030b 14000000 		.4byte	.LVL37
+ 1208 030f 0200     		.2byte	0x2
+ 1209 0311 31       		.byte	0x31
+ 1210 0312 9F       		.byte	0x9f
+ 1211 0313 14000000 		.4byte	.LVL37
+ 1212 0317 18000000 		.4byte	.LVL38
+ 1213 031b 0200     		.2byte	0x2
+ 1214 031d 30       		.byte	0x30
+ 1215 031e 9F       		.byte	0x9f
+ 1216 031f 18000000 		.4byte	.LVL38
+ 1217 0323 1E000000 		.4byte	.LVL41
+ 1218 0327 0200     		.2byte	0x2
+ 1219 0329 31       		.byte	0x31
+ 1220 032a 9F       		.byte	0x9f
+ 1221 032b 1E000000 		.4byte	.LVL41
+ 1222 032f 20000000 		.4byte	.LFE4
+ 1223 0333 0100     		.2byte	0x1
+ 1224 0335 50       		.byte	0x50
+ 1225 0336 00000000 		.4byte	0
+ 1226 033a 00000000 		.4byte	0
+ 1227              		.section	.debug_aranges,"",%progbits
+ 1228 0000 3C000000 		.4byte	0x3c
+ 1229 0004 0200     		.2byte	0x2
+ 1230 0006 00000000 		.4byte	.Ldebug_info0
+ 1231 000a 04       		.byte	0x4
+ 1232 000b 00       		.byte	0
+ 1233 000c 0000     		.2byte	0
+ 1234 000e 0000     		.2byte	0
+ 1235 0010 00000000 		.4byte	.LFB0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccC6BSoX.s 			page 26
+
+
+ 1236 0014 08000000 		.4byte	.LFE0-.LFB0
+ 1237 0018 00000000 		.4byte	.LFB1
+ 1238 001c 08000000 		.4byte	.LFE1-.LFB1
+ 1239 0020 00000000 		.4byte	.LFB2
+ 1240 0024 0C000000 		.4byte	.LFE2-.LFB2
+ 1241 0028 00000000 		.4byte	.LFB3
+ 1242 002c 7A000000 		.4byte	.LFE3-.LFB3
+ 1243 0030 00000000 		.4byte	.LFB4
+ 1244 0034 20000000 		.4byte	.LFE4-.LFB4
+ 1245 0038 00000000 		.4byte	0
+ 1246 003c 00000000 		.4byte	0
+ 1247              		.section	.debug_ranges,"",%progbits
+ 1248              	.Ldebug_ranges0:
+ 1249 0000 00000000 		.4byte	.LFB0
+ 1250 0004 08000000 		.4byte	.LFE0
+ 1251 0008 00000000 		.4byte	.LFB1
+ 1252 000c 08000000 		.4byte	.LFE1
+ 1253 0010 00000000 		.4byte	.LFB2
+ 1254 0014 0C000000 		.4byte	.LFE2
+ 1255 0018 00000000 		.4byte	.LFB3
+ 1256 001c 7A000000 		.4byte	.LFE3
+ 1257 0020 00000000 		.4byte	.LFB4
+ 1258 0024 20000000 		.4byte	.LFE4
+ 1259 0028 00000000 		.4byte	0
+ 1260 002c 00000000 		.4byte	0
+ 1261              		.section	.debug_line,"",%progbits
+ 1262              	.Ldebug_line0:
+ 1263 0000 1C010000 		.section	.debug_str,"MS",%progbits,1
+ 1263      02007300 
+ 1263      00000201 
+ 1263      FB0E0D00 
+ 1263      01010101 
+ 1264              	.LASF26:
+ 1265 0000 74696D65 		.ascii	"timeoutMs\000"
+ 1265      6F75744D 
+ 1265      7300
+ 1266              	.LASF15:
+ 1267 000a 63797374 		.ascii	"cystatus\000"
+ 1267      61747573 
+ 1267      00
+ 1268              	.LASF24:
+ 1269 0013 73746174 		.ascii	"status\000"
+ 1269      757300
+ 1270              	.LASF22:
+ 1271 001a 636F756E 		.ascii	"count\000"
+ 1271      7400
+ 1272              	.LASF3:
+ 1273 0020 73686F72 		.ascii	"short unsigned int\000"
+ 1273      7420756E 
+ 1273      7369676E 
+ 1273      65642069 
+ 1273      6E7400
+ 1274              	.LASF38:
+ 1275 0033 474E5520 		.ascii	"GNU C99 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1275      43393920 
+ 1275      352E342E 
+ 1275      31203230 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccC6BSoX.s 			page 27
+
+
+ 1275      31363036 
+ 1276 0066 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 1276      20726576 
+ 1276      6973696F 
+ 1276      6E203233 
+ 1276      37373135 
+ 1277 0099 67202D73 		.ascii	"g -std=gnu99 -ffunction-sections -ffat-lto-objects\000"
+ 1277      74643D67 
+ 1277      6E753939 
+ 1277      202D6666 
+ 1277      756E6374 
+ 1278              	.LASF20:
+ 1279 00cc 70446174 		.ascii	"pData\000"
+ 1279      6100
+ 1280              	.LASF12:
+ 1281 00d2 666C6F61 		.ascii	"float\000"
+ 1281      7400
+ 1282              	.LASF21:
+ 1283 00d8 73697A65 		.ascii	"size\000"
+ 1283      00
+ 1284              	.LASF19:
+ 1285 00dd 55415254 		.ascii	"UART_UartCyBtldrCommReset\000"
+ 1285      5F556172 
+ 1285      74437942 
+ 1285      746C6472 
+ 1285      436F6D6D 
+ 1286              	.LASF5:
+ 1287 00f7 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1287      20756E73 
+ 1287      69676E65 
+ 1287      6420696E 
+ 1287      7400
+ 1288              	.LASF9:
+ 1289 0109 75696E74 		.ascii	"uint8\000"
+ 1289      3800
+ 1290              	.LASF29:
+ 1291 010f 55415254 		.ascii	"UART_Start\000"
+ 1291      5F537461 
+ 1291      727400
+ 1292              	.LASF25:
+ 1293 011a 62797465 		.ascii	"byteCount\000"
+ 1293      436F756E 
+ 1293      7400
+ 1294              	.LASF1:
+ 1295 0124 756E7369 		.ascii	"unsigned char\000"
+ 1295      676E6564 
+ 1295      20636861 
+ 1295      7200
+ 1296              	.LASF17:
+ 1297 0132 55415254 		.ascii	"UART_UartCyBtldrCommStart\000"
+ 1297      5F556172 
+ 1297      74437942 
+ 1297      746C6472 
+ 1297      436F6D6D 
+ 1298              	.LASF13:
+ 1299 014c 646F7562 		.ascii	"double\000"
+ 1299      6C6500
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccC6BSoX.s 			page 28
+
+
+ 1300              	.LASF10:
+ 1301 0153 75696E74 		.ascii	"uint16\000"
+ 1301      313600
+ 1302              	.LASF11:
+ 1303 015a 75696E74 		.ascii	"uint32\000"
+ 1303      333200
+ 1304              	.LASF32:
+ 1305 0161 55415254 		.ascii	"UART_SpiUartClearTxBuffer\000"
+ 1305      5F537069 
+ 1305      55617274 
+ 1305      436C6561 
+ 1305      72547842 
+ 1306              	.LASF37:
+ 1307 017b 55415254 		.ascii	"UART_SpiUartPutArray\000"
+ 1307      5F537069 
+ 1307      55617274 
+ 1307      50757441 
+ 1307      72726179 
+ 1308              	.LASF8:
+ 1309 0190 756E7369 		.ascii	"unsigned int\000"
+ 1309      676E6564 
+ 1309      20696E74 
+ 1309      00
+ 1310              	.LASF7:
+ 1311 019d 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1311      206C6F6E 
+ 1311      6720756E 
+ 1311      7369676E 
+ 1311      65642069 
+ 1312              	.LASF28:
+ 1313 01b4 55415254 		.ascii	"UART_UartCyBtldrCommWrite\000"
+ 1313      5F556172 
+ 1313      74437942 
+ 1313      746C6472 
+ 1313      436F6D6D 
+ 1314              	.LASF23:
+ 1315 01ce 74696D65 		.ascii	"timeOut\000"
+ 1315      4F757400 
+ 1316              	.LASF16:
+ 1317 01d6 73697A65 		.ascii	"sizetype\000"
+ 1317      74797065 
+ 1317      00
+ 1318              	.LASF39:
+ 1319 01df 47656E65 		.ascii	"Generated_Source\\PSoC4\\UART_UART_BOOT.c\000"
+ 1319      72617465 
+ 1319      645F536F 
+ 1319      75726365 
+ 1319      5C50536F 
+ 1320              	.LASF6:
+ 1321 0207 6C6F6E67 		.ascii	"long long int\000"
+ 1321      206C6F6E 
+ 1321      6720696E 
+ 1321      7400
+ 1322              	.LASF34:
+ 1323 0215 43794465 		.ascii	"CyDelayUs\000"
+ 1323      6C617955 
+ 1323      7300
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccC6BSoX.s 			page 29
+
+
+ 1324              	.LASF14:
+ 1325 021f 63686172 		.ascii	"char\000"
+ 1325      00
+ 1326              	.LASF2:
+ 1327 0224 73686F72 		.ascii	"short int\000"
+ 1327      7420696E 
+ 1327      7400
+ 1328              	.LASF30:
+ 1329 022e 55415254 		.ascii	"UART_Stop\000"
+ 1329      5F53746F 
+ 1329      7000
+ 1330              	.LASF27:
+ 1331 0238 55415254 		.ascii	"UART_UartCyBtldrCommRead\000"
+ 1331      5F556172 
+ 1331      74437942 
+ 1331      746C6472 
+ 1331      436F6D6D 
+ 1332              	.LASF18:
+ 1333 0251 55415254 		.ascii	"UART_UartCyBtldrCommStop\000"
+ 1333      5F556172 
+ 1333      74437942 
+ 1333      746C6472 
+ 1333      436F6D6D 
+ 1334              	.LASF36:
+ 1335 026a 55415254 		.ascii	"UART_SpiUartReadRxData\000"
+ 1335      5F537069 
+ 1335      55617274 
+ 1335      52656164 
+ 1335      52784461 
+ 1336              	.LASF4:
+ 1337 0281 6C6F6E67 		.ascii	"long int\000"
+ 1337      20696E74 
+ 1337      00
+ 1338              	.LASF31:
+ 1339 028a 55415254 		.ascii	"UART_SpiUartClearRxBuffer\000"
+ 1339      5F537069 
+ 1339      55617274 
+ 1339      436C6561 
+ 1339      72527842 
+ 1340              	.LASF40:
+ 1341 02a4 443A5C31 		.ascii	"D:\\1_work\\my_project\\ReloadPro\\psoc42boot\\Boot"
+ 1341      5F776F72 
+ 1341      6B5C6D79 
+ 1341      5F70726F 
+ 1341      6A656374 
+ 1342 02d2 6C6F6164 		.ascii	"loader.cydsn\000"
+ 1342      65722E63 
+ 1342      7964736E 
+ 1342      00
+ 1343              	.LASF0:
+ 1344 02df 7369676E 		.ascii	"signed char\000"
+ 1344      65642063 
+ 1344      68617200 
+ 1345              	.LASF33:
+ 1346 02eb 55415254 		.ascii	"UART_SpiUartGetRxBufferSize\000"
+ 1346      5F537069 
+ 1346      55617274 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccC6BSoX.s 			page 30
+
+
+ 1346      47657452 
+ 1346      78427566 
+ 1347              	.LASF35:
+ 1348 0307 43794465 		.ascii	"CyDelay\000"
+ 1348      6C617900 
+ 1349              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

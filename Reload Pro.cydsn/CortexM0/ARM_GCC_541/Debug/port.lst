@@ -1,0 +1,2159 @@
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccmqp9Ih.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"port.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.prvTaskExitError,"ax",%progbits
+  20              		.align	1
+  21              		.code	16
+  22              		.thumb_func
+  23              		.type	prvTaskExitError, %function
+  24              	prvTaskExitError:
+  25              	.LFB33:
+  26              		.file 1 "freertos\\src\\port.c"
+   1:freertos\src/port.c **** /*
+   2:freertos\src/port.c ****     FreeRTOS V7.6.0 - Copyright (C) 2013 Real Time Engineers Ltd.
+   3:freertos\src/port.c ****     All rights reserved
+   4:freertos\src/port.c **** 
+   5:freertos\src/port.c ****     VISIT http://www.FreeRTOS.org TO ENSURE YOU ARE USING THE LATEST VERSION.
+   6:freertos\src/port.c **** 
+   7:freertos\src/port.c ****     ***************************************************************************
+   8:freertos\src/port.c ****      *                                                                       *
+   9:freertos\src/port.c ****      *    FreeRTOS provides completely free yet professionally developed,    *
+  10:freertos\src/port.c ****      *    robust, strictly quality controlled, supported, and cross          *
+  11:freertos\src/port.c ****      *    platform software that has become a de facto standard.             *
+  12:freertos\src/port.c ****      *                                                                       *
+  13:freertos\src/port.c ****      *    Help yourself get started quickly and support the FreeRTOS         *
+  14:freertos\src/port.c ****      *    project by purchasing a FreeRTOS tutorial book, reference          *
+  15:freertos\src/port.c ****      *    manual, or both from: http://www.FreeRTOS.org/Documentation        *
+  16:freertos\src/port.c ****      *                                                                       *
+  17:freertos\src/port.c ****      *    Thank you!                                                         *
+  18:freertos\src/port.c ****      *                                                                       *
+  19:freertos\src/port.c ****     ***************************************************************************
+  20:freertos\src/port.c **** 
+  21:freertos\src/port.c ****     This file is part of the FreeRTOS distribution.
+  22:freertos\src/port.c **** 
+  23:freertos\src/port.c ****     FreeRTOS is free software; you can redistribute it and/or modify it under
+  24:freertos\src/port.c ****     the terms of the GNU General Public License (version 2) as published by the
+  25:freertos\src/port.c ****     Free Software Foundation >>!AND MODIFIED BY!<< the FreeRTOS exception.
+  26:freertos\src/port.c **** 
+  27:freertos\src/port.c ****     >>! NOTE: The modification to the GPL is included to allow you to distribute
+  28:freertos\src/port.c ****     >>! a combined work that includes FreeRTOS without being obliged to provide
+  29:freertos\src/port.c ****     >>! the source code for proprietary components outside of the FreeRTOS
+  30:freertos\src/port.c ****     >>! kernel.
+  31:freertos\src/port.c **** 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccmqp9Ih.s 			page 2
+
+
+  32:freertos\src/port.c ****     FreeRTOS is distributed in the hope that it will be useful, but WITHOUT ANY
+  33:freertos\src/port.c ****     WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+  34:freertos\src/port.c ****     FOR A PARTICULAR PURPOSE.  Full license text is available from the following
+  35:freertos\src/port.c ****     link: http://www.freertos.org/a00114.html
+  36:freertos\src/port.c **** 
+  37:freertos\src/port.c ****     1 tab == 4 spaces!
+  38:freertos\src/port.c **** 
+  39:freertos\src/port.c ****     ***************************************************************************
+  40:freertos\src/port.c ****      *                                                                       *
+  41:freertos\src/port.c ****      *    Having a problem?  Start by reading the FAQ "My application does   *
+  42:freertos\src/port.c ****      *    not run, what could be wrong?"                                     *
+  43:freertos\src/port.c ****      *                                                                       *
+  44:freertos\src/port.c ****      *    http://www.FreeRTOS.org/FAQHelp.html                               *
+  45:freertos\src/port.c ****      *                                                                       *
+  46:freertos\src/port.c ****     ***************************************************************************
+  47:freertos\src/port.c **** 
+  48:freertos\src/port.c ****     http://www.FreeRTOS.org - Documentation, books, training, latest versions,
+  49:freertos\src/port.c ****     license and Real Time Engineers Ltd. contact details.
+  50:freertos\src/port.c **** 
+  51:freertos\src/port.c ****     http://www.FreeRTOS.org/plus - A selection of FreeRTOS ecosystem products,
+  52:freertos\src/port.c ****     including FreeRTOS+Trace - an indispensable productivity tool, a DOS
+  53:freertos\src/port.c ****     compatible FAT file system, and our tiny thread aware UDP/IP stack.
+  54:freertos\src/port.c **** 
+  55:freertos\src/port.c ****     http://www.OpenRTOS.com - Real Time Engineers ltd license FreeRTOS to High
+  56:freertos\src/port.c ****     Integrity Systems to sell under the OpenRTOS brand.  Low cost OpenRTOS
+  57:freertos\src/port.c ****     licenses offer ticketed support, indemnification and middleware.
+  58:freertos\src/port.c **** 
+  59:freertos\src/port.c ****     http://www.SafeRTOS.com - High Integrity Systems also provide a safety
+  60:freertos\src/port.c ****     engineered and independently SIL3 certified version for use in safety and
+  61:freertos\src/port.c ****     mission critical applications that require provable dependability.
+  62:freertos\src/port.c **** 
+  63:freertos\src/port.c ****     1 tab == 4 spaces!
+  64:freertos\src/port.c **** */
+  65:freertos\src/port.c **** 
+  66:freertos\src/port.c **** /*-----------------------------------------------------------
+  67:freertos\src/port.c ****  * Implementation of functions defined in portable.h for the ARM CM0 port.
+  68:freertos\src/port.c ****  *----------------------------------------------------------*/
+  69:freertos\src/port.c **** 
+  70:freertos\src/port.c **** /* Scheduler includes. */
+  71:freertos\src/port.c **** #include "FreeRTOS.h"
+  72:freertos\src/port.c **** #include "task.h"
+  73:freertos\src/port.c **** 
+  74:freertos\src/port.c **** /* Constants required to manipulate the NVIC. */
+  75:freertos\src/port.c **** #define portNVIC_SYSTICK_CTRL		( ( volatile unsigned long *) 0xe000e010 )
+  76:freertos\src/port.c **** #define portNVIC_SYSTICK_LOAD		( ( volatile unsigned long *) 0xe000e014 )
+  77:freertos\src/port.c **** #define portNVIC_INT_CTRL			( ( volatile unsigned long *) 0xe000ed04 )
+  78:freertos\src/port.c **** #define portNVIC_SYSPRI2			( ( volatile unsigned long *) 0xe000ed20 )
+  79:freertos\src/port.c **** #define portNVIC_SYSTICK_CLK		0x00000004
+  80:freertos\src/port.c **** #define portNVIC_SYSTICK_INT		0x00000002
+  81:freertos\src/port.c **** #define portNVIC_SYSTICK_ENABLE		0x00000001
+  82:freertos\src/port.c **** #define portNVIC_PENDSVSET			0x10000000
+  83:freertos\src/port.c **** #define portMIN_INTERRUPT_PRIORITY	( 255UL )
+  84:freertos\src/port.c **** #define portNVIC_PENDSV_PRI			( portMIN_INTERRUPT_PRIORITY << 16UL )
+  85:freertos\src/port.c **** #define portNVIC_SYSTICK_PRI		( portMIN_INTERRUPT_PRIORITY << 24UL )
+  86:freertos\src/port.c **** 
+  87:freertos\src/port.c **** /* Constants required to set up the initial stack. */
+  88:freertos\src/port.c **** #define portINITIAL_XPSR			( 0x01000000 )
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccmqp9Ih.s 			page 3
+
+
+  89:freertos\src/port.c **** 
+  90:freertos\src/port.c **** /* Let the user override the pre-loading of the initial LR with the address of
+  91:freertos\src/port.c **** prvTaskExitError() in case is messes up unwinding of the stack in the
+  92:freertos\src/port.c **** debugger. */
+  93:freertos\src/port.c **** #ifdef configTASK_RETURN_ADDRESS
+  94:freertos\src/port.c **** 	#define portTASK_RETURN_ADDRESS	configTASK_RETURN_ADDRESS
+  95:freertos\src/port.c **** #else
+  96:freertos\src/port.c **** 	#define portTASK_RETURN_ADDRESS	prvTaskExitError
+  97:freertos\src/port.c **** #endif
+  98:freertos\src/port.c **** 
+  99:freertos\src/port.c **** /* Each task maintains its own interrupt status in the critical nesting
+ 100:freertos\src/port.c **** variable. */
+ 101:freertos\src/port.c **** static unsigned portBASE_TYPE uxCriticalNesting = 0xaaaaaaaa;
+ 102:freertos\src/port.c **** 
+ 103:freertos\src/port.c **** /*
+ 104:freertos\src/port.c ****  * Setup the timer to generate the tick interrupts.
+ 105:freertos\src/port.c ****  */
+ 106:freertos\src/port.c **** static void prvSetupTimerInterrupt( void );
+ 107:freertos\src/port.c **** 
+ 108:freertos\src/port.c **** /*
+ 109:freertos\src/port.c ****  * Exception handlers.
+ 110:freertos\src/port.c ****  */
+ 111:freertos\src/port.c **** void xPortPendSVHandler( void ) __attribute__ (( naked ));
+ 112:freertos\src/port.c **** void xPortSysTickHandler( void );
+ 113:freertos\src/port.c **** void vPortSVCHandler( void );
+ 114:freertos\src/port.c **** 
+ 115:freertos\src/port.c **** /*
+ 116:freertos\src/port.c ****  * Start first task is a separate function so it can be tested in isolation.
+ 117:freertos\src/port.c ****  */
+ 118:freertos\src/port.c **** static void vPortStartFirstTask( void ) __attribute__ (( naked ));
+ 119:freertos\src/port.c **** 
+ 120:freertos\src/port.c **** /*
+ 121:freertos\src/port.c ****  * Used to catch tasks that attempt to return from their implementing function.
+ 122:freertos\src/port.c ****  */
+ 123:freertos\src/port.c **** static void prvTaskExitError( void );
+ 124:freertos\src/port.c **** 
+ 125:freertos\src/port.c **** /*-----------------------------------------------------------*/
+ 126:freertos\src/port.c **** 
+ 127:freertos\src/port.c **** /*
+ 128:freertos\src/port.c ****  * See header file for description.
+ 129:freertos\src/port.c ****  */
+ 130:freertos\src/port.c **** portSTACK_TYPE *pxPortInitialiseStack( portSTACK_TYPE *pxTopOfStack, pdTASK_CODE pxCode, void *pvPa
+ 131:freertos\src/port.c **** {
+ 132:freertos\src/port.c **** 	/* Simulate the stack frame as it would be created by a context switch
+ 133:freertos\src/port.c **** 	interrupt. */
+ 134:freertos\src/port.c **** 	pxTopOfStack--; /* Offset added to account for the way the MCU uses the stack on entry/exit of int
+ 135:freertos\src/port.c **** 	*pxTopOfStack = portINITIAL_XPSR;	/* xPSR */
+ 136:freertos\src/port.c **** 	pxTopOfStack--;
+ 137:freertos\src/port.c **** 	*pxTopOfStack = ( portSTACK_TYPE ) pxCode;	/* PC */
+ 138:freertos\src/port.c **** 	pxTopOfStack--;
+ 139:freertos\src/port.c **** 	*pxTopOfStack = ( portSTACK_TYPE ) portTASK_RETURN_ADDRESS;	/* LR */
+ 140:freertos\src/port.c **** 	pxTopOfStack -= 5;	/* R12, R3, R2 and R1. */
+ 141:freertos\src/port.c **** 	*pxTopOfStack = ( portSTACK_TYPE ) pvParameters;	/* R0 */
+ 142:freertos\src/port.c **** 	pxTopOfStack -= 8; /* R11..R4. */
+ 143:freertos\src/port.c **** 
+ 144:freertos\src/port.c **** 	return pxTopOfStack;
+ 145:freertos\src/port.c **** }
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccmqp9Ih.s 			page 4
+
+
+ 146:freertos\src/port.c **** /*-----------------------------------------------------------*/
+ 147:freertos\src/port.c **** 
+ 148:freertos\src/port.c **** static void prvTaskExitError( void )
+ 149:freertos\src/port.c **** {
+  27              		.loc 1 149 0
+  28              		.cfi_startproc
+  29              		@ Volatile: function does not return.
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+ 150:freertos\src/port.c **** 	/* A function that implements a task must not exit or attempt to return to
+ 151:freertos\src/port.c **** 	its caller as there is nothing to return to.  If a task wants to exit it
+ 152:freertos\src/port.c **** 	should instead call vTaskDelete( NULL ).
+ 153:freertos\src/port.c **** 
+ 154:freertos\src/port.c **** 	Artificially force an assert() to be triggered if configASSERT() is
+ 155:freertos\src/port.c **** 	defined, then stop here so application writers can catch the error. */
+ 156:freertos\src/port.c **** 	configASSERT( uxCriticalNesting == ~0UL );
+ 157:freertos\src/port.c **** 	portDISABLE_INTERRUPTS();
+  33              		.loc 1 157 0
+  34              		.syntax divided
+  35              	@ 157 "freertos\src\port.c" 1
+  36 0000 72B6     		 cpsid i 
+  37              	@ 0 "" 2
+  38              		.thumb
+  39              		.syntax unified
+  40              	.L2:
+  41 0002 FEE7     		b	.L2
+  42              		.cfi_endproc
+  43              	.LFE33:
+  44              		.size	prvTaskExitError, .-prvTaskExitError
+  45              		.section	.text.vPortStartFirstTask,"ax",%progbits
+  46              		.align	1
+  47              		.code	16
+  48              		.thumb_func
+  49              		.type	vPortStartFirstTask, %function
+  50              	vPortStartFirstTask:
+  51              	.LFB35:
+ 158:freertos\src/port.c **** 	for( ;; );
+ 159:freertos\src/port.c **** }
+ 160:freertos\src/port.c **** /*-----------------------------------------------------------*/
+ 161:freertos\src/port.c **** 
+ 162:freertos\src/port.c **** void vPortSVCHandler( void )
+ 163:freertos\src/port.c **** {
+ 164:freertos\src/port.c **** 	/* This function is no longer used, but retained for backward
+ 165:freertos\src/port.c **** 	compatibility. */
+ 166:freertos\src/port.c **** }
+ 167:freertos\src/port.c **** /*-----------------------------------------------------------*/
+ 168:freertos\src/port.c **** 
+ 169:freertos\src/port.c **** void vPortStartFirstTask( void )
+ 170:freertos\src/port.c **** {
+  52              		.loc 1 170 0
+  53              		.cfi_startproc
+  54              		@ Naked Function: prologue and epilogue provided by programmer.
+  55              		@ args = 0, pretend = 0, frame = 0
+  56              		@ frame_needed = 0, uses_anonymous_args = 0
+ 171:freertos\src/port.c **** 	/* The MSP stack is not reset as, unlike on M3/4 parts, there is no vector
+ 172:freertos\src/port.c **** 	table offset register that can be used to locate the initial stack value.
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccmqp9Ih.s 			page 5
+
+
+ 173:freertos\src/port.c **** 	Not all M0 parts have the application vector table at address 0. */
+ 174:freertos\src/port.c **** 	__asm volatile(
+  57              		.loc 1 174 0
+  58              		.syntax divided
+  59              	@ 174 "freertos\src\port.c" 1
+  60 0000 064A     			ldr	r2, pxCurrentTCBConst2	
+  61 0002 1368     		ldr r3, [r2]				
+  62 0004 1868     		ldr r0, [r3]				
+  63 0006 2030     		add r0, #32					
+  64 0008 80F30988 		msr psp, r0					
+  65 000c 0220     		movs r0, #2					
+  66 000e 80F31488 		msr CONTROL, r0				
+  67 0012 3FBC     		pop {r0-r5}					
+  68 0014 AE46     		mov lr, r5					
+  69 0016 62B6     		cpsie i						
+  70 0018 00BD     		pop {pc}					
+  71              									
+  72 001a C046     		.align 2					
+  73 001c 00000000 	pxCurrentTCBConst2: .word pxCurrentTCB	  
+  74              	@ 0 "" 2
+ 175:freertos\src/port.c **** 	"	ldr	r2, pxCurrentTCBConst2	\n" /* Obtain location of pxCurrentTCB. */
+ 176:freertos\src/port.c **** 	"	ldr r3, [r2]				\n"
+ 177:freertos\src/port.c **** 	"	ldr r0, [r3]				\n" /* The first item in pxCurrentTCB is the task top of stack. */
+ 178:freertos\src/port.c **** 	"	add r0, #32					\n" /* Discard everything up to r0. */
+ 179:freertos\src/port.c **** 	"	msr psp, r0					\n" /* This is now the new top of stack to use in the task. */
+ 180:freertos\src/port.c **** 	"	movs r0, #2					\n" /* Switch to the psp stack. */
+ 181:freertos\src/port.c **** 	"	msr CONTROL, r0				\n"
+ 182:freertos\src/port.c **** 	"	pop {r0-r5}					\n" /* Pop the registers that are saved automatically. */
+ 183:freertos\src/port.c **** 	"	mov lr, r5					\n" /* lr is now in r5. */
+ 184:freertos\src/port.c **** 	"	cpsie i						\n" /* The first task has its context and interrupts can be enabled. */
+ 185:freertos\src/port.c **** 	"	pop {pc}					\n" /* Finally, pop the PC to jump to the user defined task code. */
+ 186:freertos\src/port.c **** 	"								\n"
+ 187:freertos\src/port.c **** 	"	.align 2					\n"
+ 188:freertos\src/port.c **** 	"pxCurrentTCBConst2: .word pxCurrentTCB	  "					
+ 189:freertos\src/port.c **** 				  );
+ 190:freertos\src/port.c **** }
+  75              		.loc 1 190 0
+  76              		.thumb
+  77              		.syntax unified
+  78              		.cfi_endproc
+  79              	.LFE35:
+  80              		.size	vPortStartFirstTask, .-vPortStartFirstTask
+  81              		.section	.text.pxPortInitialiseStack,"ax",%progbits
+  82              		.align	1
+  83              		.global	pxPortInitialiseStack
+  84              		.code	16
+  85              		.thumb_func
+  86              		.type	pxPortInitialiseStack, %function
+  87              	pxPortInitialiseStack:
+  88              	.LFB32:
+ 131:freertos\src/port.c **** 	/* Simulate the stack frame as it would be created by a context switch
+  89              		.loc 1 131 0
+  90              		.cfi_startproc
+  91              		@ args = 0, pretend = 0, frame = 0
+  92              		@ frame_needed = 0, uses_anonymous_args = 0
+  93              	.LVL0:
+  94 0000 10B5     		push	{r4, lr}
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccmqp9Ih.s 			page 6
+
+
+  95              		.cfi_def_cfa_offset 8
+  96              		.cfi_offset 4, -8
+  97              		.cfi_offset 14, -4
+ 135:freertos\src/port.c **** 	pxTopOfStack--;
+  98              		.loc 1 135 0
+  99 0002 8024     		movs	r4, #128
+ 100 0004 031F     		subs	r3, r0, #4
+ 101              	.LVL1:
+ 102 0006 6404     		lsls	r4, r4, #17
+ 103 0008 1C60     		str	r4, [r3]
+ 104              	.LVL2:
+ 137:freertos\src/port.c **** 	pxTopOfStack--;
+ 105              		.loc 1 137 0
+ 106 000a 043B     		subs	r3, r3, #4
+ 107 000c 1960     		str	r1, [r3]
+ 108              	.LVL3:
+ 139:freertos\src/port.c **** 	pxTopOfStack -= 5;	/* R12, R3, R2 and R1. */
+ 109              		.loc 1 139 0
+ 110 000e 0349     		ldr	r1, .L6
+ 111              	.LVL4:
+ 112 0010 043B     		subs	r3, r3, #4
+ 113              	.LVL5:
+ 114 0012 1960     		str	r1, [r3]
+ 115              	.LVL6:
+ 141:freertos\src/port.c **** 	pxTopOfStack -= 8; /* R11..R4. */
+ 116              		.loc 1 141 0
+ 117 0014 143B     		subs	r3, r3, #20
+ 118              	.LVL7:
+ 142:freertos\src/port.c **** 
+ 119              		.loc 1 142 0
+ 120 0016 4038     		subs	r0, r0, #64
+ 121              	.LVL8:
+ 141:freertos\src/port.c **** 	pxTopOfStack -= 8; /* R11..R4. */
+ 122              		.loc 1 141 0
+ 123 0018 1A60     		str	r2, [r3]
+ 124              	.LVL9:
+ 145:freertos\src/port.c **** /*-----------------------------------------------------------*/
+ 125              		.loc 1 145 0
+ 126              		@ sp needed
+ 127 001a 10BD     		pop	{r4, pc}
+ 128              	.L7:
+ 129              		.align	2
+ 130              	.L6:
+ 131 001c 00000000 		.word	prvTaskExitError
+ 132              		.cfi_endproc
+ 133              	.LFE32:
+ 134              		.size	pxPortInitialiseStack, .-pxPortInitialiseStack
+ 135              		.section	.text.vPortSVCHandler,"ax",%progbits
+ 136              		.align	1
+ 137              		.global	vPortSVCHandler
+ 138              		.code	16
+ 139              		.thumb_func
+ 140              		.type	vPortSVCHandler, %function
+ 141              	vPortSVCHandler:
+ 142              	.LFB47:
+ 143              		.cfi_startproc
+ 144              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccmqp9Ih.s 			page 7
+
+
+ 145              		@ frame_needed = 0, uses_anonymous_args = 0
+ 146              		@ link register save eliminated.
+ 147              		@ sp needed
+ 148 0000 7047     		bx	lr
+ 149              		.cfi_endproc
+ 150              	.LFE47:
+ 151              		.size	vPortSVCHandler, .-vPortSVCHandler
+ 152              		.section	.text.xPortStartScheduler,"ax",%progbits
+ 153              		.align	1
+ 154              		.global	xPortStartScheduler
+ 155              		.code	16
+ 156              		.thumb_func
+ 157              		.type	xPortStartScheduler, %function
+ 158              	xPortStartScheduler:
+ 159              	.LFB36:
+ 191:freertos\src/port.c **** /*-----------------------------------------------------------*/
+ 192:freertos\src/port.c **** 
+ 193:freertos\src/port.c **** /*
+ 194:freertos\src/port.c ****  * See header file for description.
+ 195:freertos\src/port.c ****  */
+ 196:freertos\src/port.c **** portBASE_TYPE xPortStartScheduler( void )
+ 197:freertos\src/port.c **** {
+ 160              		.loc 1 197 0
+ 161              		.cfi_startproc
+ 162              		@ Volatile: function does not return.
+ 163              		@ args = 0, pretend = 0, frame = 0
+ 164              		@ frame_needed = 0, uses_anonymous_args = 0
+ 198:freertos\src/port.c **** 	/* Make PendSV, CallSV and SysTick the same priroity as the kernel. */
+ 199:freertos\src/port.c **** 	*(portNVIC_SYSPRI2) |= portNVIC_PENDSV_PRI;
+ 165              		.loc 1 199 0
+ 166 0000 FF21     		movs	r1, #255
+ 167 0002 0C4B     		ldr	r3, .L11
+ 168 0004 0904     		lsls	r1, r1, #16
+ 169 0006 1A68     		ldr	r2, [r3]
+ 197:freertos\src/port.c **** 	/* Make PendSV, CallSV and SysTick the same priroity as the kernel. */
+ 170              		.loc 1 197 0
+ 171 0008 10B5     		push	{r4, lr}
+ 172              		.cfi_def_cfa_offset 8
+ 173              		.cfi_offset 4, -8
+ 174              		.cfi_offset 14, -4
+ 175              		.loc 1 199 0
+ 176 000a 0A43     		orrs	r2, r1
+ 200:freertos\src/port.c **** 	*(portNVIC_SYSPRI2) |= portNVIC_SYSTICK_PRI;
+ 177              		.loc 1 200 0
+ 178 000c FF21     		movs	r1, #255
+ 199:freertos\src/port.c **** 	*(portNVIC_SYSPRI2) |= portNVIC_SYSTICK_PRI;
+ 179              		.loc 1 199 0
+ 180 000e 1A60     		str	r2, [r3]
+ 181              		.loc 1 200 0
+ 182 0010 1A68     		ldr	r2, [r3]
+ 183 0012 0906     		lsls	r1, r1, #24
+ 184 0014 0A43     		orrs	r2, r1
+ 185 0016 1A60     		str	r2, [r3]
+ 186              	.LBB8:
+ 187              	.LBB9:
+ 201:freertos\src/port.c **** 
+ 202:freertos\src/port.c **** 	/* Start the timer that generates the tick ISR.  Interrupts are disabled
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccmqp9Ih.s 			page 8
+
+
+ 203:freertos\src/port.c **** 	here already. */
+ 204:freertos\src/port.c **** 	prvSetupTimerInterrupt();
+ 205:freertos\src/port.c **** 
+ 206:freertos\src/port.c **** 	/* Initialise the critical nesting count ready for the first task. */
+ 207:freertos\src/port.c **** 	uxCriticalNesting = 0;
+ 208:freertos\src/port.c **** 
+ 209:freertos\src/port.c **** 	/* Start the first task. */
+ 210:freertos\src/port.c **** 	vPortStartFirstTask();
+ 211:freertos\src/port.c **** 	
+ 212:freertos\src/port.c **** 	/* Should never get here as the tasks will now be executing!  Call the task
+ 213:freertos\src/port.c **** 	exit error function to prevent compiler warnings about a static function
+ 214:freertos\src/port.c **** 	not being called in the case that the application writer overrides this
+ 215:freertos\src/port.c **** 	functionality by defining configTASK_RETURN_ADDRESS. */
+ 216:freertos\src/port.c **** 	prvTaskExitError();
+ 217:freertos\src/port.c **** 
+ 218:freertos\src/port.c **** 	/* Should not get here! */
+ 219:freertos\src/port.c **** 	return 0;
+ 220:freertos\src/port.c **** }
+ 221:freertos\src/port.c **** /*-----------------------------------------------------------*/
+ 222:freertos\src/port.c **** 
+ 223:freertos\src/port.c **** void vPortEndScheduler( void )
+ 224:freertos\src/port.c **** {
+ 225:freertos\src/port.c ****   /* It is unlikely that the CM0 port will require this function as there
+ 226:freertos\src/port.c ****     is nothing to return to.  */
+ 227:freertos\src/port.c **** }
+ 228:freertos\src/port.c **** /*-----------------------------------------------------------*/
+ 229:freertos\src/port.c **** 
+ 230:freertos\src/port.c **** void vPortYield( void )
+ 231:freertos\src/port.c **** {
+ 232:freertos\src/port.c **** 	/* Set a PendSV to request a context switch. */
+ 233:freertos\src/port.c **** 	*( portNVIC_INT_CTRL ) = portNVIC_PENDSVSET;
+ 234:freertos\src/port.c **** 
+ 235:freertos\src/port.c **** 	/* Barriers are normally not required but do ensure the code is completely
+ 236:freertos\src/port.c **** 	within the specified behaviour for the architecture. */
+ 237:freertos\src/port.c **** 	__asm volatile( "dsb" );
+ 238:freertos\src/port.c **** 	__asm volatile( "isb" );
+ 239:freertos\src/port.c **** }
+ 240:freertos\src/port.c **** /*-----------------------------------------------------------*/
+ 241:freertos\src/port.c **** 
+ 242:freertos\src/port.c **** void vPortEnterCritical( void )
+ 243:freertos\src/port.c **** {
+ 244:freertos\src/port.c ****     portDISABLE_INTERRUPTS();
+ 245:freertos\src/port.c ****     uxCriticalNesting++;
+ 246:freertos\src/port.c **** 	__asm volatile( "dsb" );
+ 247:freertos\src/port.c **** 	__asm volatile( "isb" );
+ 248:freertos\src/port.c **** }
+ 249:freertos\src/port.c **** /*-----------------------------------------------------------*/
+ 250:freertos\src/port.c **** 
+ 251:freertos\src/port.c **** void vPortExitCritical( void )
+ 252:freertos\src/port.c **** {
+ 253:freertos\src/port.c ****     uxCriticalNesting--;
+ 254:freertos\src/port.c ****     if( uxCriticalNesting == 0 )
+ 255:freertos\src/port.c ****     {
+ 256:freertos\src/port.c ****         portENABLE_INTERRUPTS();
+ 257:freertos\src/port.c ****     }
+ 258:freertos\src/port.c **** }
+ 259:freertos\src/port.c **** /*-----------------------------------------------------------*/
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccmqp9Ih.s 			page 9
+
+
+ 260:freertos\src/port.c **** 
+ 261:freertos\src/port.c **** unsigned long ulSetInterruptMaskFromISR( void )
+ 262:freertos\src/port.c **** {
+ 263:freertos\src/port.c **** 	__asm volatile(
+ 264:freertos\src/port.c **** 					" mrs r0, PRIMASK	\n"
+ 265:freertos\src/port.c **** 					" cpsid i			\n"
+ 266:freertos\src/port.c **** 					" bx lr				  "
+ 267:freertos\src/port.c **** 				  );
+ 268:freertos\src/port.c **** 
+ 269:freertos\src/port.c **** 	/* To avoid compiler warnings.  This line will never be reached. */
+ 270:freertos\src/port.c **** 	return 0;
+ 271:freertos\src/port.c **** }
+ 272:freertos\src/port.c **** /*-----------------------------------------------------------*/
+ 273:freertos\src/port.c **** 
+ 274:freertos\src/port.c **** void vClearInterruptMaskFromISR( unsigned long ulMask )
+ 275:freertos\src/port.c **** {
+ 276:freertos\src/port.c **** 	__asm volatile(
+ 277:freertos\src/port.c **** 					" msr PRIMASK, r0	\n"
+ 278:freertos\src/port.c **** 					" bx lr				  "
+ 279:freertos\src/port.c **** 				  );
+ 280:freertos\src/port.c **** 
+ 281:freertos\src/port.c **** 	/* Just to avoid compiler warning. */
+ 282:freertos\src/port.c **** 	( void ) ulMask;
+ 283:freertos\src/port.c **** }
+ 284:freertos\src/port.c **** /*-----------------------------------------------------------*/
+ 285:freertos\src/port.c **** 
+ 286:freertos\src/port.c **** void xPortPendSVHandler( void )
+ 287:freertos\src/port.c **** {
+ 288:freertos\src/port.c **** 	/* This is a naked function. */
+ 289:freertos\src/port.c **** 
+ 290:freertos\src/port.c **** 	__asm volatile
+ 291:freertos\src/port.c **** 	(
+ 292:freertos\src/port.c **** 	"	mrs r0, psp							\n"
+ 293:freertos\src/port.c **** 	"										\n"
+ 294:freertos\src/port.c **** 	"	ldr	r3, pxCurrentTCBConst			\n" /* Get the location of the current TCB. */
+ 295:freertos\src/port.c **** 	"	ldr	r2, [r3]						\n"
+ 296:freertos\src/port.c **** 	"										\n"
+ 297:freertos\src/port.c **** 	"	sub r0, r0, #32						\n" /* Make space for the remaining low registers. */
+ 298:freertos\src/port.c **** 	"	str r0, [r2]						\n" /* Save the new top of stack. */
+ 299:freertos\src/port.c **** 	"	stmia r0!, {r4-r7}					\n" /* Store the low registers that are not saved automatically. */
+ 300:freertos\src/port.c **** 	" 	mov r4, r8							\n" /* Store the high registers. */
+ 301:freertos\src/port.c **** 	" 	mov r5, r9							\n"
+ 302:freertos\src/port.c **** 	" 	mov r6, r10							\n"
+ 303:freertos\src/port.c **** 	" 	mov r7, r11							\n"
+ 304:freertos\src/port.c **** 	" 	stmia r0!, {r4-r7}              	\n"
+ 305:freertos\src/port.c **** 	"										\n"
+ 306:freertos\src/port.c **** 	"	push {r3, r14}						\n"
+ 307:freertos\src/port.c **** 	"	cpsid i								\n"
+ 308:freertos\src/port.c **** 	"	bl vTaskSwitchContext				\n"
+ 309:freertos\src/port.c **** 	"	cpsie i								\n"
+ 310:freertos\src/port.c **** 	"	pop {r2, r3}						\n" /* lr goes in r3. r2 now holds tcb pointer. */
+ 311:freertos\src/port.c **** 	"										\n"
+ 312:freertos\src/port.c **** 	"	ldr r1, [r2]						\n"
+ 313:freertos\src/port.c **** 	"	ldr r0, [r1]						\n" /* The first item in pxCurrentTCB is the task top of stack. */
+ 314:freertos\src/port.c **** 	"	add r0, r0, #16						\n" /* Move to the high registers. */
+ 315:freertos\src/port.c **** 	"	ldmia r0!, {r4-r7}					\n" /* Pop the high registers. */
+ 316:freertos\src/port.c **** 	" 	mov r8, r4							\n"
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccmqp9Ih.s 			page 10
+
+
+ 317:freertos\src/port.c **** 	" 	mov r9, r5							\n"
+ 318:freertos\src/port.c **** 	" 	mov r10, r6							\n"
+ 319:freertos\src/port.c **** 	" 	mov r11, r7							\n"
+ 320:freertos\src/port.c **** 	"										\n"
+ 321:freertos\src/port.c **** 	"	msr psp, r0							\n" /* Remember the new top of stack for the task. */
+ 322:freertos\src/port.c **** 	"										\n"
+ 323:freertos\src/port.c **** 	"	sub r0, r0, #32						\n" /* Go back for the low registers that are not automatically restored. *
+ 324:freertos\src/port.c **** 	" 	ldmia r0!, {r4-r7}              	\n" /* Pop low registers.  */
+ 325:freertos\src/port.c **** 	"										\n"
+ 326:freertos\src/port.c **** 	"	bx r3								\n"
+ 327:freertos\src/port.c **** 	"										\n"
+ 328:freertos\src/port.c **** 	"	.align 2							\n"
+ 329:freertos\src/port.c **** 	"pxCurrentTCBConst: .word pxCurrentTCB	  "
+ 330:freertos\src/port.c **** 	);
+ 331:freertos\src/port.c **** }
+ 332:freertos\src/port.c **** /*-----------------------------------------------------------*/
+ 333:freertos\src/port.c **** 
+ 334:freertos\src/port.c **** void xPortSysTickHandler( void )
+ 335:freertos\src/port.c **** {
+ 336:freertos\src/port.c **** unsigned long ulPreviousMask;
+ 337:freertos\src/port.c **** 
+ 338:freertos\src/port.c **** 	ulPreviousMask = portSET_INTERRUPT_MASK_FROM_ISR();
+ 339:freertos\src/port.c **** 	{
+ 340:freertos\src/port.c **** 		/* Increment the RTOS tick. */
+ 341:freertos\src/port.c **** 		if( xTaskIncrementTick() != pdFALSE )
+ 342:freertos\src/port.c **** 		{
+ 343:freertos\src/port.c **** 			/* Pend a context switch. */
+ 344:freertos\src/port.c **** 			*(portNVIC_INT_CTRL) = portNVIC_PENDSVSET;
+ 345:freertos\src/port.c **** 		}
+ 346:freertos\src/port.c **** 	}
+ 347:freertos\src/port.c **** 	portCLEAR_INTERRUPT_MASK_FROM_ISR( ulPreviousMask );
+ 348:freertos\src/port.c **** }
+ 349:freertos\src/port.c **** /*-----------------------------------------------------------*/
+ 350:freertos\src/port.c **** 
+ 351:freertos\src/port.c **** /*
+ 352:freertos\src/port.c ****  * Setup the systick timer to generate the tick interrupts at the required
+ 353:freertos\src/port.c ****  * frequency.
+ 354:freertos\src/port.c ****  */
+ 355:freertos\src/port.c **** void prvSetupTimerInterrupt( void )
+ 356:freertos\src/port.c **** {
+ 357:freertos\src/port.c **** 	/* Configure SysTick to interrupt at the requested rate. */
+ 358:freertos\src/port.c **** 	*(portNVIC_SYSTICK_LOAD) = ( configCPU_CLOCK_HZ / configTICK_RATE_HZ ) - 1UL;
+ 188              		.loc 1 358 0
+ 189 0018 074A     		ldr	r2, .L11+4
+ 190 001a 084B     		ldr	r3, .L11+8
+ 191 001c 1A60     		str	r2, [r3]
+ 359:freertos\src/port.c **** 	*(portNVIC_SYSTICK_CTRL) = portNVIC_SYSTICK_CLK | portNVIC_SYSTICK_INT | portNVIC_SYSTICK_ENABLE;
+ 192              		.loc 1 359 0
+ 193 001e 0722     		movs	r2, #7
+ 194 0020 074B     		ldr	r3, .L11+12
+ 195 0022 1A60     		str	r2, [r3]
+ 196              	.LBE9:
+ 197              	.LBE8:
+ 207:freertos\src/port.c **** 
+ 198              		.loc 1 207 0
+ 199 0024 0022     		movs	r2, #0
+ 200 0026 074B     		ldr	r3, .L11+16
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccmqp9Ih.s 			page 11
+
+
+ 201 0028 1A60     		str	r2, [r3]
+ 210:freertos\src/port.c **** 	
+ 202              		.loc 1 210 0
+ 203 002a FFF7FEFF 		bl	vPortStartFirstTask
+ 204              	.LVL10:
+ 205              	.LBB10:
+ 206              	.LBB11:
+ 157:freertos\src/port.c **** 	for( ;; );
+ 207              		.loc 1 157 0
+ 208              		.syntax divided
+ 209              	@ 157 "freertos\src\port.c" 1
+ 210 002e 72B6     		 cpsid i 
+ 211              	@ 0 "" 2
+ 212              		.thumb
+ 213              		.syntax unified
+ 214              	.L10:
+ 215 0030 FEE7     		b	.L10
+ 216              	.L12:
+ 217 0032 C046     		.align	2
+ 218              	.L11:
+ 219 0034 20ED00E0 		.word	-536810208
+ 220 0038 7FA90300 		.word	239999
+ 221 003c 14E000E0 		.word	-536813548
+ 222 0040 10E000E0 		.word	-536813552
+ 223 0044 00000000 		.word	.LANCHOR0
+ 224              	.LBE11:
+ 225              	.LBE10:
+ 226              		.cfi_endproc
+ 227              	.LFE36:
+ 228              		.size	xPortStartScheduler, .-xPortStartScheduler
+ 229              		.section	.text.vPortEndScheduler,"ax",%progbits
+ 230              		.align	1
+ 231              		.global	vPortEndScheduler
+ 232              		.code	16
+ 233              		.thumb_func
+ 234              		.type	vPortEndScheduler, %function
+ 235              	vPortEndScheduler:
+ 236              	.LFB37:
+ 224:freertos\src/port.c ****   /* It is unlikely that the CM0 port will require this function as there
+ 237              		.loc 1 224 0
+ 238              		.cfi_startproc
+ 239              		@ args = 0, pretend = 0, frame = 0
+ 240              		@ frame_needed = 0, uses_anonymous_args = 0
+ 241              		@ link register save eliminated.
+ 227:freertos\src/port.c **** /*-----------------------------------------------------------*/
+ 242              		.loc 1 227 0
+ 243              		@ sp needed
+ 244 0000 7047     		bx	lr
+ 245              		.cfi_endproc
+ 246              	.LFE37:
+ 247              		.size	vPortEndScheduler, .-vPortEndScheduler
+ 248              		.section	.text.vPortYield,"ax",%progbits
+ 249              		.align	1
+ 250              		.global	vPortYield
+ 251              		.code	16
+ 252              		.thumb_func
+ 253              		.type	vPortYield, %function
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccmqp9Ih.s 			page 12
+
+
+ 254              	vPortYield:
+ 255              	.LFB38:
+ 231:freertos\src/port.c **** 	/* Set a PendSV to request a context switch. */
+ 256              		.loc 1 231 0
+ 257              		.cfi_startproc
+ 258              		@ args = 0, pretend = 0, frame = 0
+ 259              		@ frame_needed = 0, uses_anonymous_args = 0
+ 260              		@ link register save eliminated.
+ 233:freertos\src/port.c **** 
+ 261              		.loc 1 233 0
+ 262 0000 8022     		movs	r2, #128
+ 263 0002 044B     		ldr	r3, .L15
+ 264 0004 5205     		lsls	r2, r2, #21
+ 265 0006 1A60     		str	r2, [r3]
+ 237:freertos\src/port.c **** 	__asm volatile( "isb" );
+ 266              		.loc 1 237 0
+ 267              		.syntax divided
+ 268              	@ 237 "freertos\src\port.c" 1
+ 269 0008 BFF34F8F 		dsb
+ 270              	@ 0 "" 2
+ 238:freertos\src/port.c **** }
+ 271              		.loc 1 238 0
+ 272              	@ 238 "freertos\src\port.c" 1
+ 273 000c BFF36F8F 		isb
+ 274              	@ 0 "" 2
+ 239:freertos\src/port.c **** /*-----------------------------------------------------------*/
+ 275              		.loc 1 239 0
+ 276              		.thumb
+ 277              		.syntax unified
+ 278              		@ sp needed
+ 279 0010 7047     		bx	lr
+ 280              	.L16:
+ 281 0012 C046     		.align	2
+ 282              	.L15:
+ 283 0014 04ED00E0 		.word	-536810236
+ 284              		.cfi_endproc
+ 285              	.LFE38:
+ 286              		.size	vPortYield, .-vPortYield
+ 287              		.section	.text.vPortEnterCritical,"ax",%progbits
+ 288              		.align	1
+ 289              		.global	vPortEnterCritical
+ 290              		.code	16
+ 291              		.thumb_func
+ 292              		.type	vPortEnterCritical, %function
+ 293              	vPortEnterCritical:
+ 294              	.LFB39:
+ 243:freertos\src/port.c ****     portDISABLE_INTERRUPTS();
+ 295              		.loc 1 243 0
+ 296              		.cfi_startproc
+ 297              		@ args = 0, pretend = 0, frame = 0
+ 298              		@ frame_needed = 0, uses_anonymous_args = 0
+ 299              		@ link register save eliminated.
+ 244:freertos\src/port.c ****     uxCriticalNesting++;
+ 300              		.loc 1 244 0
+ 301              		.syntax divided
+ 302              	@ 244 "freertos\src\port.c" 1
+ 303 0000 72B6     		 cpsid i 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccmqp9Ih.s 			page 13
+
+
+ 304              	@ 0 "" 2
+ 245:freertos\src/port.c **** 	__asm volatile( "dsb" );
+ 305              		.loc 1 245 0
+ 306              		.thumb
+ 307              		.syntax unified
+ 308 0002 044A     		ldr	r2, .L18
+ 309 0004 1368     		ldr	r3, [r2]
+ 310 0006 0133     		adds	r3, r3, #1
+ 311 0008 1360     		str	r3, [r2]
+ 246:freertos\src/port.c **** 	__asm volatile( "isb" );
+ 312              		.loc 1 246 0
+ 313              		.syntax divided
+ 314              	@ 246 "freertos\src\port.c" 1
+ 315 000a BFF34F8F 		dsb
+ 316              	@ 0 "" 2
+ 247:freertos\src/port.c **** }
+ 317              		.loc 1 247 0
+ 318              	@ 247 "freertos\src\port.c" 1
+ 319 000e BFF36F8F 		isb
+ 320              	@ 0 "" 2
+ 248:freertos\src/port.c **** /*-----------------------------------------------------------*/
+ 321              		.loc 1 248 0
+ 322              		.thumb
+ 323              		.syntax unified
+ 324              		@ sp needed
+ 325 0012 7047     		bx	lr
+ 326              	.L19:
+ 327              		.align	2
+ 328              	.L18:
+ 329 0014 00000000 		.word	.LANCHOR0
+ 330              		.cfi_endproc
+ 331              	.LFE39:
+ 332              		.size	vPortEnterCritical, .-vPortEnterCritical
+ 333              		.section	.text.vPortExitCritical,"ax",%progbits
+ 334              		.align	1
+ 335              		.global	vPortExitCritical
+ 336              		.code	16
+ 337              		.thumb_func
+ 338              		.type	vPortExitCritical, %function
+ 339              	vPortExitCritical:
+ 340              	.LFB40:
+ 252:freertos\src/port.c ****     uxCriticalNesting--;
+ 341              		.loc 1 252 0
+ 342              		.cfi_startproc
+ 343              		@ args = 0, pretend = 0, frame = 0
+ 344              		@ frame_needed = 0, uses_anonymous_args = 0
+ 345              		@ link register save eliminated.
+ 253:freertos\src/port.c ****     if( uxCriticalNesting == 0 )
+ 346              		.loc 1 253 0
+ 347 0000 034A     		ldr	r2, .L22
+ 348 0002 1368     		ldr	r3, [r2]
+ 349 0004 013B     		subs	r3, r3, #1
+ 350 0006 1360     		str	r3, [r2]
+ 254:freertos\src/port.c ****     {
+ 351              		.loc 1 254 0
+ 352 0008 002B     		cmp	r3, #0
+ 353 000a 00D1     		bne	.L20
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccmqp9Ih.s 			page 14
+
+
+ 256:freertos\src/port.c ****     }
+ 354              		.loc 1 256 0
+ 355              		.syntax divided
+ 356              	@ 256 "freertos\src\port.c" 1
+ 357 000c 62B6     		 cpsie i 
+ 358              	@ 0 "" 2
+ 359              		.thumb
+ 360              		.syntax unified
+ 361              	.L20:
+ 258:freertos\src/port.c **** /*-----------------------------------------------------------*/
+ 362              		.loc 1 258 0
+ 363              		@ sp needed
+ 364 000e 7047     		bx	lr
+ 365              	.L23:
+ 366              		.align	2
+ 367              	.L22:
+ 368 0010 00000000 		.word	.LANCHOR0
+ 369              		.cfi_endproc
+ 370              	.LFE40:
+ 371              		.size	vPortExitCritical, .-vPortExitCritical
+ 372              		.section	.text.ulSetInterruptMaskFromISR,"ax",%progbits
+ 373              		.align	1
+ 374              		.global	ulSetInterruptMaskFromISR
+ 375              		.code	16
+ 376              		.thumb_func
+ 377              		.type	ulSetInterruptMaskFromISR, %function
+ 378              	ulSetInterruptMaskFromISR:
+ 379              	.LFB41:
+ 262:freertos\src/port.c **** 	__asm volatile(
+ 380              		.loc 1 262 0
+ 381              		.cfi_startproc
+ 382              		@ Naked Function: prologue and epilogue provided by programmer.
+ 383              		@ args = 0, pretend = 0, frame = 0
+ 384              		@ frame_needed = 0, uses_anonymous_args = 0
+ 263:freertos\src/port.c **** 					" mrs r0, PRIMASK	\n"
+ 385              		.loc 1 263 0
+ 386              		.syntax divided
+ 387              	@ 263 "freertos\src\port.c" 1
+ 388 0000 EFF31080 		 mrs r0, PRIMASK	
+ 389 0004 72B6     	 cpsid i			
+ 390 0006 7047     	 bx lr				  
+ 391              	@ 0 "" 2
+ 271:freertos\src/port.c **** /*-----------------------------------------------------------*/
+ 392              		.loc 1 271 0
+ 393              		.thumb
+ 394              		.syntax unified
+ 395 0008 0020     		movs	r0, #0
+ 396              		.cfi_endproc
+ 397              	.LFE41:
+ 398              		.size	ulSetInterruptMaskFromISR, .-ulSetInterruptMaskFromISR
+ 399              		.section	.text.vClearInterruptMaskFromISR,"ax",%progbits
+ 400              		.align	1
+ 401              		.global	vClearInterruptMaskFromISR
+ 402              		.code	16
+ 403              		.thumb_func
+ 404              		.type	vClearInterruptMaskFromISR, %function
+ 405              	vClearInterruptMaskFromISR:
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccmqp9Ih.s 			page 15
+
+
+ 406              	.LFB42:
+ 275:freertos\src/port.c **** 	__asm volatile(
+ 407              		.loc 1 275 0
+ 408              		.cfi_startproc
+ 409              		@ Naked Function: prologue and epilogue provided by programmer.
+ 410              		@ args = 0, pretend = 0, frame = 0
+ 411              		@ frame_needed = 0, uses_anonymous_args = 0
+ 412              	.LVL11:
+ 276:freertos\src/port.c **** 					" msr PRIMASK, r0	\n"
+ 413              		.loc 1 276 0
+ 414              		.syntax divided
+ 415              	@ 276 "freertos\src\port.c" 1
+ 416 0000 80F31088 		 msr PRIMASK, r0	
+ 417 0004 7047     	 bx lr				  
+ 418              	@ 0 "" 2
+ 283:freertos\src/port.c **** /*-----------------------------------------------------------*/
+ 419              		.loc 1 283 0
+ 420              		.thumb
+ 421              		.syntax unified
+ 422              		.cfi_endproc
+ 423              	.LFE42:
+ 424              		.size	vClearInterruptMaskFromISR, .-vClearInterruptMaskFromISR
+ 425              		.section	.text.xPortPendSVHandler,"ax",%progbits
+ 426              		.align	1
+ 427              		.global	xPortPendSVHandler
+ 428              		.code	16
+ 429              		.thumb_func
+ 430              		.type	xPortPendSVHandler, %function
+ 431              	xPortPendSVHandler:
+ 432              	.LFB43:
+ 287:freertos\src/port.c **** 	/* This is a naked function. */
+ 433              		.loc 1 287 0
+ 434              		.cfi_startproc
+ 435              		@ Naked Function: prologue and epilogue provided by programmer.
+ 436              		@ args = 0, pretend = 0, frame = 0
+ 437              		@ frame_needed = 0, uses_anonymous_args = 0
+ 290:freertos\src/port.c **** 	(
+ 438              		.loc 1 290 0
+ 439              		.syntax divided
+ 440              	@ 290 "freertos\src\port.c" 1
+ 441 0000 EFF30980 			mrs r0, psp							
+ 442              											
+ 443 0004 0E4B     		ldr	r3, pxCurrentTCBConst			
+ 444 0006 1A68     		ldr	r2, [r3]						
+ 445              											
+ 446 0008 2038     		sub r0, r0, #32						
+ 447 000a 1060     		str r0, [r2]						
+ 448 000c F0C0     		stmia r0!, {r4-r7}					
+ 449 000e 4446     	 	mov r4, r8							
+ 450 0010 4D46     	 	mov r5, r9							
+ 451 0012 5646     	 	mov r6, r10							
+ 452 0014 5F46     	 	mov r7, r11							
+ 453 0016 F0C0     	 	stmia r0!, {r4-r7}              	
+ 454              											
+ 455 0018 08B5     		push {r3, r14}						
+ 456 001a 72B6     		cpsid i								
+ 457 001c FFF7FEFF 		bl vTaskSwitchContext				
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccmqp9Ih.s 			page 16
+
+
+ 458 0020 62B6     		cpsie i								
+ 459 0022 0CBC     		pop {r2, r3}						
+ 460              											
+ 461 0024 1168     		ldr r1, [r2]						
+ 462 0026 0868     		ldr r0, [r1]						
+ 463 0028 1030     		add r0, r0, #16						
+ 464 002a F0C8     		ldmia r0!, {r4-r7}					
+ 465 002c A046     	 	mov r8, r4							
+ 466 002e A946     	 	mov r9, r5							
+ 467 0030 B246     	 	mov r10, r6							
+ 468 0032 BB46     	 	mov r11, r7							
+ 469              											
+ 470 0034 80F30988 		msr psp, r0							
+ 471              											
+ 472 0038 2038     		sub r0, r0, #32						
+ 473 003a F0C8     	 	ldmia r0!, {r4-r7}              	
+ 474              											
+ 475 003c 1847     		bx r3								
+ 476              											
+ 477 003e C046     		.align 2							
+ 478 0040 00000000 	pxCurrentTCBConst: .word pxCurrentTCB	  
+ 479              	@ 0 "" 2
+ 331:freertos\src/port.c **** /*-----------------------------------------------------------*/
+ 480              		.loc 1 331 0
+ 481              		.thumb
+ 482              		.syntax unified
+ 483              		.cfi_endproc
+ 484              	.LFE43:
+ 485              		.size	xPortPendSVHandler, .-xPortPendSVHandler
+ 486              		.section	.text.xPortSysTickHandler,"ax",%progbits
+ 487              		.align	1
+ 488              		.global	xPortSysTickHandler
+ 489              		.code	16
+ 490              		.thumb_func
+ 491              		.type	xPortSysTickHandler, %function
+ 492              	xPortSysTickHandler:
+ 493              	.LFB44:
+ 335:freertos\src/port.c **** unsigned long ulPreviousMask;
+ 494              		.loc 1 335 0
+ 495              		.cfi_startproc
+ 496              		@ args = 0, pretend = 0, frame = 0
+ 497              		@ frame_needed = 0, uses_anonymous_args = 0
+ 498 0000 10B5     		push	{r4, lr}
+ 499              		.cfi_def_cfa_offset 8
+ 500              		.cfi_offset 4, -8
+ 501              		.cfi_offset 14, -4
+ 338:freertos\src/port.c **** 	{
+ 502              		.loc 1 338 0
+ 503 0002 FFF7FEFF 		bl	ulSetInterruptMaskFromISR
+ 504              	.LVL12:
+ 505 0006 0400     		movs	r4, r0
+ 506              	.LVL13:
+ 341:freertos\src/port.c **** 		{
+ 507              		.loc 1 341 0
+ 508 0008 FFF7FEFF 		bl	xTaskIncrementTick
+ 509              	.LVL14:
+ 510 000c 0028     		cmp	r0, #0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccmqp9Ih.s 			page 17
+
+
+ 511 000e 03D0     		beq	.L28
+ 344:freertos\src/port.c **** 		}
+ 512              		.loc 1 344 0
+ 513 0010 8022     		movs	r2, #128
+ 514 0012 034B     		ldr	r3, .L32
+ 515 0014 5205     		lsls	r2, r2, #21
+ 516 0016 1A60     		str	r2, [r3]
+ 517              	.L28:
+ 347:freertos\src/port.c **** }
+ 518              		.loc 1 347 0
+ 519 0018 2000     		movs	r0, r4
+ 520 001a FFF7FEFF 		bl	vClearInterruptMaskFromISR
+ 521              	.LVL15:
+ 348:freertos\src/port.c **** /*-----------------------------------------------------------*/
+ 522              		.loc 1 348 0
+ 523              		@ sp needed
+ 524              	.LVL16:
+ 525 001e 10BD     		pop	{r4, pc}
+ 526              	.L33:
+ 527              		.align	2
+ 528              	.L32:
+ 529 0020 04ED00E0 		.word	-536810236
+ 530              		.cfi_endproc
+ 531              	.LFE44:
+ 532              		.size	xPortSysTickHandler, .-xPortSysTickHandler
+ 533              		.data
+ 534              		.align	2
+ 535              		.set	.LANCHOR0,. + 0
+ 536              		.type	uxCriticalNesting, %object
+ 537              		.size	uxCriticalNesting, 4
+ 538              	uxCriticalNesting:
+ 539 0000 AAAAAAAA 		.word	-1431655766
+ 540              		.text
+ 541              	.Letext0:
+ 542              		.file 2 ".\\freertos\\include/projdefs.h"
+ 543              		.file 3 ".\\freertos\\include/portmacro.h"
+ 544              		.file 4 ".\\freertos\\include/task.h"
+ 545              		.section	.debug_info,"",%progbits
+ 546              	.Ldebug_info0:
+ 547 0000 67020000 		.4byte	0x267
+ 548 0004 0400     		.2byte	0x4
+ 549 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 550 000a 04       		.byte	0x4
+ 551 000b 01       		.uleb128 0x1
+ 552 000c 06010000 		.4byte	.LASF27
+ 553 0010 0C       		.byte	0xc
+ 554 0011 6F000000 		.4byte	.LASF28
+ 555 0015 06020000 		.4byte	.LASF29
+ 556 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 557 001d 00000000 		.4byte	0
+ 558 0021 00000000 		.4byte	.Ldebug_line0
+ 559 0025 02       		.uleb128 0x2
+ 560 0026 04       		.byte	0x4
+ 561 0027 05       		.byte	0x5
+ 562 0028 696E7400 		.ascii	"int\000"
+ 563 002c 03       		.uleb128 0x3
+ 564 002d 04       		.byte	0x4
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccmqp9Ih.s 			page 18
+
+
+ 565 002e 07       		.byte	0x7
+ 566 002f 83000000 		.4byte	.LASF0
+ 567 0033 04       		.uleb128 0x4
+ 568 0034 CA020000 		.4byte	.LASF13
+ 569 0038 02       		.byte	0x2
+ 570 0039 46       		.byte	0x46
+ 571 003a 3E000000 		.4byte	0x3e
+ 572 003e 05       		.uleb128 0x5
+ 573 003f 04       		.byte	0x4
+ 574 0040 44000000 		.4byte	0x44
+ 575 0044 06       		.uleb128 0x6
+ 576 0045 4F000000 		.4byte	0x4f
+ 577 0049 07       		.uleb128 0x7
+ 578 004a 4F000000 		.4byte	0x4f
+ 579 004e 00       		.byte	0
+ 580 004f 08       		.uleb128 0x8
+ 581 0050 04       		.byte	0x4
+ 582 0051 03       		.uleb128 0x3
+ 583 0052 01       		.byte	0x1
+ 584 0053 06       		.byte	0x6
+ 585 0054 BE020000 		.4byte	.LASF1
+ 586 0058 03       		.uleb128 0x3
+ 587 0059 01       		.byte	0x1
+ 588 005a 08       		.byte	0x8
+ 589 005b BD000000 		.4byte	.LASF2
+ 590 005f 03       		.uleb128 0x3
+ 591 0060 02       		.byte	0x2
+ 592 0061 05       		.byte	0x5
+ 593 0062 84020000 		.4byte	.LASF3
+ 594 0066 03       		.uleb128 0x3
+ 595 0067 02       		.byte	0x2
+ 596 0068 07       		.byte	0x7
+ 597 0069 DD000000 		.4byte	.LASF4
+ 598 006d 03       		.uleb128 0x3
+ 599 006e 04       		.byte	0x4
+ 600 006f 05       		.byte	0x5
+ 601 0070 66000000 		.4byte	.LASF5
+ 602 0074 03       		.uleb128 0x3
+ 603 0075 04       		.byte	0x4
+ 604 0076 07       		.byte	0x7
+ 605 0077 CB000000 		.4byte	.LASF6
+ 606 007b 03       		.uleb128 0x3
+ 607 007c 08       		.byte	0x8
+ 608 007d 05       		.byte	0x5
+ 609 007e 64020000 		.4byte	.LASF7
+ 610 0082 03       		.uleb128 0x3
+ 611 0083 08       		.byte	0x8
+ 612 0084 07       		.byte	0x7
+ 613 0085 DE010000 		.4byte	.LASF8
+ 614 0089 03       		.uleb128 0x3
+ 615 008a 04       		.byte	0x4
+ 616 008b 04       		.byte	0x4
+ 617 008c A3000000 		.4byte	.LASF9
+ 618 0090 03       		.uleb128 0x3
+ 619 0091 08       		.byte	0x8
+ 620 0092 04       		.byte	0x4
+ 621 0093 FF000000 		.4byte	.LASF10
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccmqp9Ih.s 			page 19
+
+
+ 622 0097 03       		.uleb128 0x3
+ 623 0098 01       		.byte	0x1
+ 624 0099 08       		.byte	0x8
+ 625 009a 72020000 		.4byte	.LASF11
+ 626 009e 03       		.uleb128 0x3
+ 627 009f 04       		.byte	0x4
+ 628 00a0 07       		.byte	0x7
+ 629 00a1 41020000 		.4byte	.LASF12
+ 630 00a5 04       		.uleb128 0x4
+ 631 00a6 59000000 		.4byte	.LASF14
+ 632 00aa 03       		.byte	0x3
+ 633 00ab 61       		.byte	0x61
+ 634 00ac 74000000 		.4byte	0x74
+ 635 00b0 05       		.uleb128 0x5
+ 636 00b1 04       		.byte	0x4
+ 637 00b2 74000000 		.4byte	0x74
+ 638 00b6 09       		.uleb128 0x9
+ 639 00b7 F5010000 		.4byte	.LASF30
+ 640 00bb 01       		.byte	0x1
+ 641 00bc 94       		.byte	0x94
+ 642 00bd 01       		.byte	0x1
+ 643 00be 0A       		.uleb128 0xa
+ 644 00bf B6000000 		.4byte	0xb6
+ 645 00c3 00000000 		.4byte	.LFB33
+ 646 00c7 04000000 		.4byte	.LFE33-.LFB33
+ 647 00cb 01       		.uleb128 0x1
+ 648 00cc 9C       		.byte	0x9c
+ 649 00cd 0B       		.uleb128 0xb
+ 650 00ce A9000000 		.4byte	.LASF31
+ 651 00d2 01       		.byte	0x1
+ 652 00d3 A9       		.byte	0xa9
+ 653 00d4 00000000 		.4byte	.LFB35
+ 654 00d8 20000000 		.4byte	.LFE35-.LFB35
+ 655 00dc 01       		.uleb128 0x1
+ 656 00dd 9C       		.byte	0x9c
+ 657 00de 0C       		.uleb128 0xc
+ 658 00df EA020000 		.4byte	.LASF32
+ 659 00e3 01       		.byte	0x1
+ 660 00e4 82       		.byte	0x82
+ 661 00e5 B0000000 		.4byte	0xb0
+ 662 00e9 00000000 		.4byte	.LFB32
+ 663 00ed 20000000 		.4byte	.LFE32-.LFB32
+ 664 00f1 01       		.uleb128 0x1
+ 665 00f2 9C       		.byte	0x9c
+ 666 00f3 23010000 		.4byte	0x123
+ 667 00f7 0D       		.uleb128 0xd
+ 668 00f8 D1010000 		.4byte	.LASF15
+ 669 00fc 01       		.byte	0x1
+ 670 00fd 82       		.byte	0x82
+ 671 00fe B0000000 		.4byte	0xb0
+ 672 0102 00000000 		.4byte	.LLST0
+ 673 0106 0D       		.uleb128 0xd
+ 674 0107 40000000 		.4byte	.LASF16
+ 675 010b 01       		.byte	0x1
+ 676 010c 82       		.byte	0x82
+ 677 010d 33000000 		.4byte	0x33
+ 678 0111 5F000000 		.4byte	.LLST1
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccmqp9Ih.s 			page 20
+
+
+ 679 0115 0E       		.uleb128 0xe
+ 680 0116 77020000 		.4byte	.LASF17
+ 681 011a 01       		.byte	0x1
+ 682 011b 82       		.byte	0x82
+ 683 011c 4F000000 		.4byte	0x4f
+ 684 0120 01       		.uleb128 0x1
+ 685 0121 52       		.byte	0x52
+ 686 0122 00       		.byte	0
+ 687 0123 0F       		.uleb128 0xf
+ 688 0124 A0020000 		.4byte	.LASF33
+ 689 0128 01       		.byte	0x1
+ 690 0129 6301     		.2byte	0x163
+ 691 012b 01       		.byte	0x1
+ 692 012c 10       		.uleb128 0x10
+ 693 012d D6020000 		.4byte	.LASF34
+ 694 0131 01       		.byte	0x1
+ 695 0132 C4       		.byte	0xc4
+ 696 0133 6D000000 		.4byte	0x6d
+ 697 0137 00000000 		.4byte	.LFB36
+ 698 013b 48000000 		.4byte	.LFE36-.LFB36
+ 699 013f 01       		.uleb128 0x1
+ 700 0140 9C       		.byte	0x9c
+ 701 0141 6D010000 		.4byte	0x16d
+ 702 0145 11       		.uleb128 0x11
+ 703 0146 23010000 		.4byte	0x123
+ 704 014a 18000000 		.4byte	.LBB8
+ 705 014e 0C000000 		.4byte	.LBE8-.LBB8
+ 706 0152 01       		.byte	0x1
+ 707 0153 CC       		.byte	0xcc
+ 708 0154 11       		.uleb128 0x11
+ 709 0155 B6000000 		.4byte	0xb6
+ 710 0159 2E000000 		.4byte	.LBB10
+ 711 015d 1A000000 		.4byte	.LBE10-.LBB10
+ 712 0161 01       		.byte	0x1
+ 713 0162 D8       		.byte	0xd8
+ 714 0163 12       		.uleb128 0x12
+ 715 0164 2E000000 		.4byte	.LVL10
+ 716 0168 CD000000 		.4byte	0xcd
+ 717 016c 00       		.byte	0
+ 718 016d 13       		.uleb128 0x13
+ 719 016e 47000000 		.4byte	.LASF35
+ 720 0172 01       		.byte	0x1
+ 721 0173 DF       		.byte	0xdf
+ 722 0174 01       		.byte	0x1
+ 723 0175 0A       		.uleb128 0xa
+ 724 0176 6D010000 		.4byte	0x16d
+ 725 017a 00000000 		.4byte	.LFB37
+ 726 017e 02000000 		.4byte	.LFE37-.LFB37
+ 727 0182 01       		.uleb128 0x1
+ 728 0183 9C       		.byte	0x9c
+ 729 0184 14       		.uleb128 0x14
+ 730 0185 C6010000 		.4byte	.LASF18
+ 731 0189 01       		.byte	0x1
+ 732 018a E6       		.byte	0xe6
+ 733 018b 00000000 		.4byte	.LFB38
+ 734 018f 18000000 		.4byte	.LFE38-.LFB38
+ 735 0193 01       		.uleb128 0x1
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccmqp9Ih.s 			page 21
+
+
+ 736 0194 9C       		.byte	0x9c
+ 737 0195 14       		.uleb128 0x14
+ 738 0196 2D000000 		.4byte	.LASF19
+ 739 019a 01       		.byte	0x1
+ 740 019b F2       		.byte	0xf2
+ 741 019c 00000000 		.4byte	.LFB39
+ 742 01a0 18000000 		.4byte	.LFE39-.LFB39
+ 743 01a4 01       		.uleb128 0x1
+ 744 01a5 9C       		.byte	0x9c
+ 745 01a6 14       		.uleb128 0x14
+ 746 01a7 8E020000 		.4byte	.LASF20
+ 747 01ab 01       		.byte	0x1
+ 748 01ac FB       		.byte	0xfb
+ 749 01ad 00000000 		.4byte	.LFB40
+ 750 01b1 14000000 		.4byte	.LFE40-.LFB40
+ 751 01b5 01       		.uleb128 0x1
+ 752 01b6 9C       		.byte	0x9c
+ 753 01b7 15       		.uleb128 0x15
+ 754 01b8 4A020000 		.4byte	.LASF36
+ 755 01bc 01       		.byte	0x1
+ 756 01bd 0501     		.2byte	0x105
+ 757 01bf 74000000 		.4byte	0x74
+ 758 01c3 00000000 		.4byte	.LFB41
+ 759 01c7 0A000000 		.4byte	.LFE41-.LFB41
+ 760 01cb 01       		.uleb128 0x1
+ 761 01cc 9C       		.byte	0x9c
+ 762 01cd 16       		.uleb128 0x16
+ 763 01ce 12000000 		.4byte	.LASF23
+ 764 01d2 01       		.byte	0x1
+ 765 01d3 1201     		.2byte	0x112
+ 766 01d5 00000000 		.4byte	.LFB42
+ 767 01d9 06000000 		.4byte	.LFE42-.LFB42
+ 768 01dd 01       		.uleb128 0x1
+ 769 01de 9C       		.byte	0x9c
+ 770 01df F2010000 		.4byte	0x1f2
+ 771 01e3 17       		.uleb128 0x17
+ 772 01e4 B7020000 		.4byte	.LASF21
+ 773 01e8 01       		.byte	0x1
+ 774 01e9 1201     		.2byte	0x112
+ 775 01eb 74000000 		.4byte	0x74
+ 776 01ef 01       		.uleb128 0x1
+ 777 01f0 50       		.byte	0x50
+ 778 01f1 00       		.byte	0
+ 779 01f2 18       		.uleb128 0x18
+ 780 01f3 90000000 		.4byte	.LASF22
+ 781 01f7 01       		.byte	0x1
+ 782 01f8 1E01     		.2byte	0x11e
+ 783 01fa 00000000 		.4byte	.LFB43
+ 784 01fe 44000000 		.4byte	.LFE43-.LFB43
+ 785 0202 01       		.uleb128 0x1
+ 786 0203 9C       		.byte	0x9c
+ 787 0204 16       		.uleb128 0x16
+ 788 0205 B2010000 		.4byte	.LASF24
+ 789 0209 01       		.byte	0x1
+ 790 020a 4E01     		.2byte	0x14e
+ 791 020c 00000000 		.4byte	.LFB44
+ 792 0210 24000000 		.4byte	.LFE44-.LFB44
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccmqp9Ih.s 			page 22
+
+
+ 793 0214 01       		.uleb128 0x1
+ 794 0215 9C       		.byte	0x9c
+ 795 0216 4D020000 		.4byte	0x24d
+ 796 021a 19       		.uleb128 0x19
+ 797 021b F0000000 		.4byte	.LASF25
+ 798 021f 01       		.byte	0x1
+ 799 0220 5001     		.2byte	0x150
+ 800 0222 74000000 		.4byte	0x74
+ 801 0226 96000000 		.4byte	.LLST2
+ 802 022a 12       		.uleb128 0x12
+ 803 022b 06000000 		.4byte	.LVL12
+ 804 022f B7010000 		.4byte	0x1b7
+ 805 0233 12       		.uleb128 0x12
+ 806 0234 0C000000 		.4byte	.LVL14
+ 807 0238 5E020000 		.4byte	0x25e
+ 808 023c 1A       		.uleb128 0x1a
+ 809 023d 1E000000 		.4byte	.LVL15
+ 810 0241 CD010000 		.4byte	0x1cd
+ 811 0245 1B       		.uleb128 0x1b
+ 812 0246 01       		.uleb128 0x1
+ 813 0247 50       		.byte	0x50
+ 814 0248 02       		.uleb128 0x2
+ 815 0249 74       		.byte	0x74
+ 816 024a 00       		.sleb128 0
+ 817 024b 00       		.byte	0
+ 818 024c 00       		.byte	0
+ 819 024d 1C       		.uleb128 0x1c
+ 820 024e 00000000 		.4byte	.LASF26
+ 821 0252 01       		.byte	0x1
+ 822 0253 65       		.byte	0x65
+ 823 0254 74000000 		.4byte	0x74
+ 824 0258 05       		.uleb128 0x5
+ 825 0259 03       		.byte	0x3
+ 826 025a 00000000 		.4byte	uxCriticalNesting
+ 827 025e 1D       		.uleb128 0x1d
+ 828 025f 9F010000 		.4byte	.LASF37
+ 829 0263 9F010000 		.4byte	.LASF37
+ 830 0267 04       		.byte	0x4
+ 831 0268 5605     		.2byte	0x556
+ 832 026a 00       		.byte	0
+ 833              		.section	.debug_abbrev,"",%progbits
+ 834              	.Ldebug_abbrev0:
+ 835 0000 01       		.uleb128 0x1
+ 836 0001 11       		.uleb128 0x11
+ 837 0002 01       		.byte	0x1
+ 838 0003 25       		.uleb128 0x25
+ 839 0004 0E       		.uleb128 0xe
+ 840 0005 13       		.uleb128 0x13
+ 841 0006 0B       		.uleb128 0xb
+ 842 0007 03       		.uleb128 0x3
+ 843 0008 0E       		.uleb128 0xe
+ 844 0009 1B       		.uleb128 0x1b
+ 845 000a 0E       		.uleb128 0xe
+ 846 000b 55       		.uleb128 0x55
+ 847 000c 17       		.uleb128 0x17
+ 848 000d 11       		.uleb128 0x11
+ 849 000e 01       		.uleb128 0x1
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccmqp9Ih.s 			page 23
+
+
+ 850 000f 10       		.uleb128 0x10
+ 851 0010 17       		.uleb128 0x17
+ 852 0011 00       		.byte	0
+ 853 0012 00       		.byte	0
+ 854 0013 02       		.uleb128 0x2
+ 855 0014 24       		.uleb128 0x24
+ 856 0015 00       		.byte	0
+ 857 0016 0B       		.uleb128 0xb
+ 858 0017 0B       		.uleb128 0xb
+ 859 0018 3E       		.uleb128 0x3e
+ 860 0019 0B       		.uleb128 0xb
+ 861 001a 03       		.uleb128 0x3
+ 862 001b 08       		.uleb128 0x8
+ 863 001c 00       		.byte	0
+ 864 001d 00       		.byte	0
+ 865 001e 03       		.uleb128 0x3
+ 866 001f 24       		.uleb128 0x24
+ 867 0020 00       		.byte	0
+ 868 0021 0B       		.uleb128 0xb
+ 869 0022 0B       		.uleb128 0xb
+ 870 0023 3E       		.uleb128 0x3e
+ 871 0024 0B       		.uleb128 0xb
+ 872 0025 03       		.uleb128 0x3
+ 873 0026 0E       		.uleb128 0xe
+ 874 0027 00       		.byte	0
+ 875 0028 00       		.byte	0
+ 876 0029 04       		.uleb128 0x4
+ 877 002a 16       		.uleb128 0x16
+ 878 002b 00       		.byte	0
+ 879 002c 03       		.uleb128 0x3
+ 880 002d 0E       		.uleb128 0xe
+ 881 002e 3A       		.uleb128 0x3a
+ 882 002f 0B       		.uleb128 0xb
+ 883 0030 3B       		.uleb128 0x3b
+ 884 0031 0B       		.uleb128 0xb
+ 885 0032 49       		.uleb128 0x49
+ 886 0033 13       		.uleb128 0x13
+ 887 0034 00       		.byte	0
+ 888 0035 00       		.byte	0
+ 889 0036 05       		.uleb128 0x5
+ 890 0037 0F       		.uleb128 0xf
+ 891 0038 00       		.byte	0
+ 892 0039 0B       		.uleb128 0xb
+ 893 003a 0B       		.uleb128 0xb
+ 894 003b 49       		.uleb128 0x49
+ 895 003c 13       		.uleb128 0x13
+ 896 003d 00       		.byte	0
+ 897 003e 00       		.byte	0
+ 898 003f 06       		.uleb128 0x6
+ 899 0040 15       		.uleb128 0x15
+ 900 0041 01       		.byte	0x1
+ 901 0042 27       		.uleb128 0x27
+ 902 0043 19       		.uleb128 0x19
+ 903 0044 01       		.uleb128 0x1
+ 904 0045 13       		.uleb128 0x13
+ 905 0046 00       		.byte	0
+ 906 0047 00       		.byte	0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccmqp9Ih.s 			page 24
+
+
+ 907 0048 07       		.uleb128 0x7
+ 908 0049 05       		.uleb128 0x5
+ 909 004a 00       		.byte	0
+ 910 004b 49       		.uleb128 0x49
+ 911 004c 13       		.uleb128 0x13
+ 912 004d 00       		.byte	0
+ 913 004e 00       		.byte	0
+ 914 004f 08       		.uleb128 0x8
+ 915 0050 0F       		.uleb128 0xf
+ 916 0051 00       		.byte	0
+ 917 0052 0B       		.uleb128 0xb
+ 918 0053 0B       		.uleb128 0xb
+ 919 0054 00       		.byte	0
+ 920 0055 00       		.byte	0
+ 921 0056 09       		.uleb128 0x9
+ 922 0057 2E       		.uleb128 0x2e
+ 923 0058 00       		.byte	0
+ 924 0059 03       		.uleb128 0x3
+ 925 005a 0E       		.uleb128 0xe
+ 926 005b 3A       		.uleb128 0x3a
+ 927 005c 0B       		.uleb128 0xb
+ 928 005d 3B       		.uleb128 0x3b
+ 929 005e 0B       		.uleb128 0xb
+ 930 005f 27       		.uleb128 0x27
+ 931 0060 19       		.uleb128 0x19
+ 932 0061 8701     		.uleb128 0x87
+ 933 0063 19       		.uleb128 0x19
+ 934 0064 20       		.uleb128 0x20
+ 935 0065 0B       		.uleb128 0xb
+ 936 0066 00       		.byte	0
+ 937 0067 00       		.byte	0
+ 938 0068 0A       		.uleb128 0xa
+ 939 0069 2E       		.uleb128 0x2e
+ 940 006a 00       		.byte	0
+ 941 006b 31       		.uleb128 0x31
+ 942 006c 13       		.uleb128 0x13
+ 943 006d 11       		.uleb128 0x11
+ 944 006e 01       		.uleb128 0x1
+ 945 006f 12       		.uleb128 0x12
+ 946 0070 06       		.uleb128 0x6
+ 947 0071 40       		.uleb128 0x40
+ 948 0072 18       		.uleb128 0x18
+ 949 0073 9742     		.uleb128 0x2117
+ 950 0075 19       		.uleb128 0x19
+ 951 0076 00       		.byte	0
+ 952 0077 00       		.byte	0
+ 953 0078 0B       		.uleb128 0xb
+ 954 0079 2E       		.uleb128 0x2e
+ 955 007a 00       		.byte	0
+ 956 007b 03       		.uleb128 0x3
+ 957 007c 0E       		.uleb128 0xe
+ 958 007d 3A       		.uleb128 0x3a
+ 959 007e 0B       		.uleb128 0xb
+ 960 007f 3B       		.uleb128 0x3b
+ 961 0080 0B       		.uleb128 0xb
+ 962 0081 27       		.uleb128 0x27
+ 963 0082 19       		.uleb128 0x19
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccmqp9Ih.s 			page 25
+
+
+ 964 0083 11       		.uleb128 0x11
+ 965 0084 01       		.uleb128 0x1
+ 966 0085 12       		.uleb128 0x12
+ 967 0086 06       		.uleb128 0x6
+ 968 0087 40       		.uleb128 0x40
+ 969 0088 18       		.uleb128 0x18
+ 970 0089 9742     		.uleb128 0x2117
+ 971 008b 19       		.uleb128 0x19
+ 972 008c 00       		.byte	0
+ 973 008d 00       		.byte	0
+ 974 008e 0C       		.uleb128 0xc
+ 975 008f 2E       		.uleb128 0x2e
+ 976 0090 01       		.byte	0x1
+ 977 0091 3F       		.uleb128 0x3f
+ 978 0092 19       		.uleb128 0x19
+ 979 0093 03       		.uleb128 0x3
+ 980 0094 0E       		.uleb128 0xe
+ 981 0095 3A       		.uleb128 0x3a
+ 982 0096 0B       		.uleb128 0xb
+ 983 0097 3B       		.uleb128 0x3b
+ 984 0098 0B       		.uleb128 0xb
+ 985 0099 27       		.uleb128 0x27
+ 986 009a 19       		.uleb128 0x19
+ 987 009b 49       		.uleb128 0x49
+ 988 009c 13       		.uleb128 0x13
+ 989 009d 11       		.uleb128 0x11
+ 990 009e 01       		.uleb128 0x1
+ 991 009f 12       		.uleb128 0x12
+ 992 00a0 06       		.uleb128 0x6
+ 993 00a1 40       		.uleb128 0x40
+ 994 00a2 18       		.uleb128 0x18
+ 995 00a3 9742     		.uleb128 0x2117
+ 996 00a5 19       		.uleb128 0x19
+ 997 00a6 01       		.uleb128 0x1
+ 998 00a7 13       		.uleb128 0x13
+ 999 00a8 00       		.byte	0
+ 1000 00a9 00       		.byte	0
+ 1001 00aa 0D       		.uleb128 0xd
+ 1002 00ab 05       		.uleb128 0x5
+ 1003 00ac 00       		.byte	0
+ 1004 00ad 03       		.uleb128 0x3
+ 1005 00ae 0E       		.uleb128 0xe
+ 1006 00af 3A       		.uleb128 0x3a
+ 1007 00b0 0B       		.uleb128 0xb
+ 1008 00b1 3B       		.uleb128 0x3b
+ 1009 00b2 0B       		.uleb128 0xb
+ 1010 00b3 49       		.uleb128 0x49
+ 1011 00b4 13       		.uleb128 0x13
+ 1012 00b5 02       		.uleb128 0x2
+ 1013 00b6 17       		.uleb128 0x17
+ 1014 00b7 00       		.byte	0
+ 1015 00b8 00       		.byte	0
+ 1016 00b9 0E       		.uleb128 0xe
+ 1017 00ba 05       		.uleb128 0x5
+ 1018 00bb 00       		.byte	0
+ 1019 00bc 03       		.uleb128 0x3
+ 1020 00bd 0E       		.uleb128 0xe
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccmqp9Ih.s 			page 26
+
+
+ 1021 00be 3A       		.uleb128 0x3a
+ 1022 00bf 0B       		.uleb128 0xb
+ 1023 00c0 3B       		.uleb128 0x3b
+ 1024 00c1 0B       		.uleb128 0xb
+ 1025 00c2 49       		.uleb128 0x49
+ 1026 00c3 13       		.uleb128 0x13
+ 1027 00c4 02       		.uleb128 0x2
+ 1028 00c5 18       		.uleb128 0x18
+ 1029 00c6 00       		.byte	0
+ 1030 00c7 00       		.byte	0
+ 1031 00c8 0F       		.uleb128 0xf
+ 1032 00c9 2E       		.uleb128 0x2e
+ 1033 00ca 00       		.byte	0
+ 1034 00cb 03       		.uleb128 0x3
+ 1035 00cc 0E       		.uleb128 0xe
+ 1036 00cd 3A       		.uleb128 0x3a
+ 1037 00ce 0B       		.uleb128 0xb
+ 1038 00cf 3B       		.uleb128 0x3b
+ 1039 00d0 05       		.uleb128 0x5
+ 1040 00d1 27       		.uleb128 0x27
+ 1041 00d2 19       		.uleb128 0x19
+ 1042 00d3 20       		.uleb128 0x20
+ 1043 00d4 0B       		.uleb128 0xb
+ 1044 00d5 00       		.byte	0
+ 1045 00d6 00       		.byte	0
+ 1046 00d7 10       		.uleb128 0x10
+ 1047 00d8 2E       		.uleb128 0x2e
+ 1048 00d9 01       		.byte	0x1
+ 1049 00da 3F       		.uleb128 0x3f
+ 1050 00db 19       		.uleb128 0x19
+ 1051 00dc 03       		.uleb128 0x3
+ 1052 00dd 0E       		.uleb128 0xe
+ 1053 00de 3A       		.uleb128 0x3a
+ 1054 00df 0B       		.uleb128 0xb
+ 1055 00e0 3B       		.uleb128 0x3b
+ 1056 00e1 0B       		.uleb128 0xb
+ 1057 00e2 27       		.uleb128 0x27
+ 1058 00e3 19       		.uleb128 0x19
+ 1059 00e4 49       		.uleb128 0x49
+ 1060 00e5 13       		.uleb128 0x13
+ 1061 00e6 8701     		.uleb128 0x87
+ 1062 00e8 19       		.uleb128 0x19
+ 1063 00e9 11       		.uleb128 0x11
+ 1064 00ea 01       		.uleb128 0x1
+ 1065 00eb 12       		.uleb128 0x12
+ 1066 00ec 06       		.uleb128 0x6
+ 1067 00ed 40       		.uleb128 0x40
+ 1068 00ee 18       		.uleb128 0x18
+ 1069 00ef 9742     		.uleb128 0x2117
+ 1070 00f1 19       		.uleb128 0x19
+ 1071 00f2 01       		.uleb128 0x1
+ 1072 00f3 13       		.uleb128 0x13
+ 1073 00f4 00       		.byte	0
+ 1074 00f5 00       		.byte	0
+ 1075 00f6 11       		.uleb128 0x11
+ 1076 00f7 1D       		.uleb128 0x1d
+ 1077 00f8 00       		.byte	0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccmqp9Ih.s 			page 27
+
+
+ 1078 00f9 31       		.uleb128 0x31
+ 1079 00fa 13       		.uleb128 0x13
+ 1080 00fb 11       		.uleb128 0x11
+ 1081 00fc 01       		.uleb128 0x1
+ 1082 00fd 12       		.uleb128 0x12
+ 1083 00fe 06       		.uleb128 0x6
+ 1084 00ff 58       		.uleb128 0x58
+ 1085 0100 0B       		.uleb128 0xb
+ 1086 0101 59       		.uleb128 0x59
+ 1087 0102 0B       		.uleb128 0xb
+ 1088 0103 00       		.byte	0
+ 1089 0104 00       		.byte	0
+ 1090 0105 12       		.uleb128 0x12
+ 1091 0106 898201   		.uleb128 0x4109
+ 1092 0109 00       		.byte	0
+ 1093 010a 11       		.uleb128 0x11
+ 1094 010b 01       		.uleb128 0x1
+ 1095 010c 31       		.uleb128 0x31
+ 1096 010d 13       		.uleb128 0x13
+ 1097 010e 00       		.byte	0
+ 1098 010f 00       		.byte	0
+ 1099 0110 13       		.uleb128 0x13
+ 1100 0111 2E       		.uleb128 0x2e
+ 1101 0112 00       		.byte	0
+ 1102 0113 3F       		.uleb128 0x3f
+ 1103 0114 19       		.uleb128 0x19
+ 1104 0115 03       		.uleb128 0x3
+ 1105 0116 0E       		.uleb128 0xe
+ 1106 0117 3A       		.uleb128 0x3a
+ 1107 0118 0B       		.uleb128 0xb
+ 1108 0119 3B       		.uleb128 0x3b
+ 1109 011a 0B       		.uleb128 0xb
+ 1110 011b 27       		.uleb128 0x27
+ 1111 011c 19       		.uleb128 0x19
+ 1112 011d 20       		.uleb128 0x20
+ 1113 011e 0B       		.uleb128 0xb
+ 1114 011f 00       		.byte	0
+ 1115 0120 00       		.byte	0
+ 1116 0121 14       		.uleb128 0x14
+ 1117 0122 2E       		.uleb128 0x2e
+ 1118 0123 00       		.byte	0
+ 1119 0124 3F       		.uleb128 0x3f
+ 1120 0125 19       		.uleb128 0x19
+ 1121 0126 03       		.uleb128 0x3
+ 1122 0127 0E       		.uleb128 0xe
+ 1123 0128 3A       		.uleb128 0x3a
+ 1124 0129 0B       		.uleb128 0xb
+ 1125 012a 3B       		.uleb128 0x3b
+ 1126 012b 0B       		.uleb128 0xb
+ 1127 012c 27       		.uleb128 0x27
+ 1128 012d 19       		.uleb128 0x19
+ 1129 012e 11       		.uleb128 0x11
+ 1130 012f 01       		.uleb128 0x1
+ 1131 0130 12       		.uleb128 0x12
+ 1132 0131 06       		.uleb128 0x6
+ 1133 0132 40       		.uleb128 0x40
+ 1134 0133 18       		.uleb128 0x18
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccmqp9Ih.s 			page 28
+
+
+ 1135 0134 9742     		.uleb128 0x2117
+ 1136 0136 19       		.uleb128 0x19
+ 1137 0137 00       		.byte	0
+ 1138 0138 00       		.byte	0
+ 1139 0139 15       		.uleb128 0x15
+ 1140 013a 2E       		.uleb128 0x2e
+ 1141 013b 00       		.byte	0
+ 1142 013c 3F       		.uleb128 0x3f
+ 1143 013d 19       		.uleb128 0x19
+ 1144 013e 03       		.uleb128 0x3
+ 1145 013f 0E       		.uleb128 0xe
+ 1146 0140 3A       		.uleb128 0x3a
+ 1147 0141 0B       		.uleb128 0xb
+ 1148 0142 3B       		.uleb128 0x3b
+ 1149 0143 05       		.uleb128 0x5
+ 1150 0144 27       		.uleb128 0x27
+ 1151 0145 19       		.uleb128 0x19
+ 1152 0146 49       		.uleb128 0x49
+ 1153 0147 13       		.uleb128 0x13
+ 1154 0148 11       		.uleb128 0x11
+ 1155 0149 01       		.uleb128 0x1
+ 1156 014a 12       		.uleb128 0x12
+ 1157 014b 06       		.uleb128 0x6
+ 1158 014c 40       		.uleb128 0x40
+ 1159 014d 18       		.uleb128 0x18
+ 1160 014e 9742     		.uleb128 0x2117
+ 1161 0150 19       		.uleb128 0x19
+ 1162 0151 00       		.byte	0
+ 1163 0152 00       		.byte	0
+ 1164 0153 16       		.uleb128 0x16
+ 1165 0154 2E       		.uleb128 0x2e
+ 1166 0155 01       		.byte	0x1
+ 1167 0156 3F       		.uleb128 0x3f
+ 1168 0157 19       		.uleb128 0x19
+ 1169 0158 03       		.uleb128 0x3
+ 1170 0159 0E       		.uleb128 0xe
+ 1171 015a 3A       		.uleb128 0x3a
+ 1172 015b 0B       		.uleb128 0xb
+ 1173 015c 3B       		.uleb128 0x3b
+ 1174 015d 05       		.uleb128 0x5
+ 1175 015e 27       		.uleb128 0x27
+ 1176 015f 19       		.uleb128 0x19
+ 1177 0160 11       		.uleb128 0x11
+ 1178 0161 01       		.uleb128 0x1
+ 1179 0162 12       		.uleb128 0x12
+ 1180 0163 06       		.uleb128 0x6
+ 1181 0164 40       		.uleb128 0x40
+ 1182 0165 18       		.uleb128 0x18
+ 1183 0166 9742     		.uleb128 0x2117
+ 1184 0168 19       		.uleb128 0x19
+ 1185 0169 01       		.uleb128 0x1
+ 1186 016a 13       		.uleb128 0x13
+ 1187 016b 00       		.byte	0
+ 1188 016c 00       		.byte	0
+ 1189 016d 17       		.uleb128 0x17
+ 1190 016e 05       		.uleb128 0x5
+ 1191 016f 00       		.byte	0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccmqp9Ih.s 			page 29
+
+
+ 1192 0170 03       		.uleb128 0x3
+ 1193 0171 0E       		.uleb128 0xe
+ 1194 0172 3A       		.uleb128 0x3a
+ 1195 0173 0B       		.uleb128 0xb
+ 1196 0174 3B       		.uleb128 0x3b
+ 1197 0175 05       		.uleb128 0x5
+ 1198 0176 49       		.uleb128 0x49
+ 1199 0177 13       		.uleb128 0x13
+ 1200 0178 02       		.uleb128 0x2
+ 1201 0179 18       		.uleb128 0x18
+ 1202 017a 00       		.byte	0
+ 1203 017b 00       		.byte	0
+ 1204 017c 18       		.uleb128 0x18
+ 1205 017d 2E       		.uleb128 0x2e
+ 1206 017e 00       		.byte	0
+ 1207 017f 3F       		.uleb128 0x3f
+ 1208 0180 19       		.uleb128 0x19
+ 1209 0181 03       		.uleb128 0x3
+ 1210 0182 0E       		.uleb128 0xe
+ 1211 0183 3A       		.uleb128 0x3a
+ 1212 0184 0B       		.uleb128 0xb
+ 1213 0185 3B       		.uleb128 0x3b
+ 1214 0186 05       		.uleb128 0x5
+ 1215 0187 27       		.uleb128 0x27
+ 1216 0188 19       		.uleb128 0x19
+ 1217 0189 11       		.uleb128 0x11
+ 1218 018a 01       		.uleb128 0x1
+ 1219 018b 12       		.uleb128 0x12
+ 1220 018c 06       		.uleb128 0x6
+ 1221 018d 40       		.uleb128 0x40
+ 1222 018e 18       		.uleb128 0x18
+ 1223 018f 9742     		.uleb128 0x2117
+ 1224 0191 19       		.uleb128 0x19
+ 1225 0192 00       		.byte	0
+ 1226 0193 00       		.byte	0
+ 1227 0194 19       		.uleb128 0x19
+ 1228 0195 34       		.uleb128 0x34
+ 1229 0196 00       		.byte	0
+ 1230 0197 03       		.uleb128 0x3
+ 1231 0198 0E       		.uleb128 0xe
+ 1232 0199 3A       		.uleb128 0x3a
+ 1233 019a 0B       		.uleb128 0xb
+ 1234 019b 3B       		.uleb128 0x3b
+ 1235 019c 05       		.uleb128 0x5
+ 1236 019d 49       		.uleb128 0x49
+ 1237 019e 13       		.uleb128 0x13
+ 1238 019f 02       		.uleb128 0x2
+ 1239 01a0 17       		.uleb128 0x17
+ 1240 01a1 00       		.byte	0
+ 1241 01a2 00       		.byte	0
+ 1242 01a3 1A       		.uleb128 0x1a
+ 1243 01a4 898201   		.uleb128 0x4109
+ 1244 01a7 01       		.byte	0x1
+ 1245 01a8 11       		.uleb128 0x11
+ 1246 01a9 01       		.uleb128 0x1
+ 1247 01aa 31       		.uleb128 0x31
+ 1248 01ab 13       		.uleb128 0x13
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccmqp9Ih.s 			page 30
+
+
+ 1249 01ac 00       		.byte	0
+ 1250 01ad 00       		.byte	0
+ 1251 01ae 1B       		.uleb128 0x1b
+ 1252 01af 8A8201   		.uleb128 0x410a
+ 1253 01b2 00       		.byte	0
+ 1254 01b3 02       		.uleb128 0x2
+ 1255 01b4 18       		.uleb128 0x18
+ 1256 01b5 9142     		.uleb128 0x2111
+ 1257 01b7 18       		.uleb128 0x18
+ 1258 01b8 00       		.byte	0
+ 1259 01b9 00       		.byte	0
+ 1260 01ba 1C       		.uleb128 0x1c
+ 1261 01bb 34       		.uleb128 0x34
+ 1262 01bc 00       		.byte	0
+ 1263 01bd 03       		.uleb128 0x3
+ 1264 01be 0E       		.uleb128 0xe
+ 1265 01bf 3A       		.uleb128 0x3a
+ 1266 01c0 0B       		.uleb128 0xb
+ 1267 01c1 3B       		.uleb128 0x3b
+ 1268 01c2 0B       		.uleb128 0xb
+ 1269 01c3 49       		.uleb128 0x49
+ 1270 01c4 13       		.uleb128 0x13
+ 1271 01c5 02       		.uleb128 0x2
+ 1272 01c6 18       		.uleb128 0x18
+ 1273 01c7 00       		.byte	0
+ 1274 01c8 00       		.byte	0
+ 1275 01c9 1D       		.uleb128 0x1d
+ 1276 01ca 2E       		.uleb128 0x2e
+ 1277 01cb 00       		.byte	0
+ 1278 01cc 3F       		.uleb128 0x3f
+ 1279 01cd 19       		.uleb128 0x19
+ 1280 01ce 3C       		.uleb128 0x3c
+ 1281 01cf 19       		.uleb128 0x19
+ 1282 01d0 6E       		.uleb128 0x6e
+ 1283 01d1 0E       		.uleb128 0xe
+ 1284 01d2 03       		.uleb128 0x3
+ 1285 01d3 0E       		.uleb128 0xe
+ 1286 01d4 3A       		.uleb128 0x3a
+ 1287 01d5 0B       		.uleb128 0xb
+ 1288 01d6 3B       		.uleb128 0x3b
+ 1289 01d7 05       		.uleb128 0x5
+ 1290 01d8 00       		.byte	0
+ 1291 01d9 00       		.byte	0
+ 1292 01da 00       		.byte	0
+ 1293              		.section	.debug_loc,"",%progbits
+ 1294              	.Ldebug_loc0:
+ 1295              	.LLST0:
+ 1296 0000 00000000 		.4byte	.LVL0
+ 1297 0004 00000000 		.4byte	.LVL0
+ 1298 0008 0100     		.2byte	0x1
+ 1299 000a 50       		.byte	0x50
+ 1300 000b 00000000 		.4byte	.LVL0
+ 1301 000f 06000000 		.4byte	.LVL1
+ 1302 0013 0300     		.2byte	0x3
+ 1303 0015 70       		.byte	0x70
+ 1304 0016 7C       		.sleb128 -4
+ 1305 0017 9F       		.byte	0x9f
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccmqp9Ih.s 			page 31
+
+
+ 1306 0018 06000000 		.4byte	.LVL1
+ 1307 001c 0A000000 		.4byte	.LVL2
+ 1308 0020 0100     		.2byte	0x1
+ 1309 0022 53       		.byte	0x53
+ 1310 0023 0A000000 		.4byte	.LVL2
+ 1311 0027 0E000000 		.4byte	.LVL3
+ 1312 002b 0300     		.2byte	0x3
+ 1313 002d 70       		.byte	0x70
+ 1314 002e 78       		.sleb128 -8
+ 1315 002f 9F       		.byte	0x9f
+ 1316 0030 0E000000 		.4byte	.LVL3
+ 1317 0034 14000000 		.4byte	.LVL6
+ 1318 0038 0300     		.2byte	0x3
+ 1319 003a 70       		.byte	0x70
+ 1320 003b 74       		.sleb128 -12
+ 1321 003c 9F       		.byte	0x9f
+ 1322 003d 14000000 		.4byte	.LVL6
+ 1323 0041 18000000 		.4byte	.LVL8
+ 1324 0045 0300     		.2byte	0x3
+ 1325 0047 70       		.byte	0x70
+ 1326 0048 60       		.sleb128 -32
+ 1327 0049 9F       		.byte	0x9f
+ 1328 004a 18000000 		.4byte	.LVL8
+ 1329 004e 1A000000 		.4byte	.LVL9
+ 1330 0052 0300     		.2byte	0x3
+ 1331 0054 70       		.byte	0x70
+ 1332 0055 20       		.sleb128 32
+ 1333 0056 9F       		.byte	0x9f
+ 1334 0057 00000000 		.4byte	0
+ 1335 005b 00000000 		.4byte	0
+ 1336              	.LLST1:
+ 1337 005f 00000000 		.4byte	.LVL0
+ 1338 0063 10000000 		.4byte	.LVL4
+ 1339 0067 0100     		.2byte	0x1
+ 1340 0069 51       		.byte	0x51
+ 1341 006a 10000000 		.4byte	.LVL4
+ 1342 006e 12000000 		.4byte	.LVL5
+ 1343 0072 0200     		.2byte	0x2
+ 1344 0074 73       		.byte	0x73
+ 1345 0075 00       		.sleb128 0
+ 1346 0076 12000000 		.4byte	.LVL5
+ 1347 007a 16000000 		.4byte	.LVL7
+ 1348 007e 0200     		.2byte	0x2
+ 1349 0080 73       		.byte	0x73
+ 1350 0081 04       		.sleb128 4
+ 1351 0082 16000000 		.4byte	.LVL7
+ 1352 0086 20000000 		.4byte	.LFE32
+ 1353 008a 0200     		.2byte	0x2
+ 1354 008c 73       		.byte	0x73
+ 1355 008d 18       		.sleb128 24
+ 1356 008e 00000000 		.4byte	0
+ 1357 0092 00000000 		.4byte	0
+ 1358              	.LLST2:
+ 1359 0096 08000000 		.4byte	.LVL13
+ 1360 009a 0B000000 		.4byte	.LVL14-1
+ 1361 009e 0100     		.2byte	0x1
+ 1362 00a0 50       		.byte	0x50
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccmqp9Ih.s 			page 32
+
+
+ 1363 00a1 0B000000 		.4byte	.LVL14-1
+ 1364 00a5 1E000000 		.4byte	.LVL16
+ 1365 00a9 0100     		.2byte	0x1
+ 1366 00ab 54       		.byte	0x54
+ 1367 00ac 00000000 		.4byte	0
+ 1368 00b0 00000000 		.4byte	0
+ 1369              		.section	.debug_aranges,"",%progbits
+ 1370 0000 74000000 		.4byte	0x74
+ 1371 0004 0200     		.2byte	0x2
+ 1372 0006 00000000 		.4byte	.Ldebug_info0
+ 1373 000a 04       		.byte	0x4
+ 1374 000b 00       		.byte	0
+ 1375 000c 0000     		.2byte	0
+ 1376 000e 0000     		.2byte	0
+ 1377 0010 00000000 		.4byte	.LFB33
+ 1378 0014 04000000 		.4byte	.LFE33-.LFB33
+ 1379 0018 00000000 		.4byte	.LFB35
+ 1380 001c 20000000 		.4byte	.LFE35-.LFB35
+ 1381 0020 00000000 		.4byte	.LFB32
+ 1382 0024 20000000 		.4byte	.LFE32-.LFB32
+ 1383 0028 00000000 		.4byte	.LFB36
+ 1384 002c 48000000 		.4byte	.LFE36-.LFB36
+ 1385 0030 00000000 		.4byte	.LFB37
+ 1386 0034 02000000 		.4byte	.LFE37-.LFB37
+ 1387 0038 00000000 		.4byte	.LFB38
+ 1388 003c 18000000 		.4byte	.LFE38-.LFB38
+ 1389 0040 00000000 		.4byte	.LFB39
+ 1390 0044 18000000 		.4byte	.LFE39-.LFB39
+ 1391 0048 00000000 		.4byte	.LFB40
+ 1392 004c 14000000 		.4byte	.LFE40-.LFB40
+ 1393 0050 00000000 		.4byte	.LFB41
+ 1394 0054 0A000000 		.4byte	.LFE41-.LFB41
+ 1395 0058 00000000 		.4byte	.LFB42
+ 1396 005c 06000000 		.4byte	.LFE42-.LFB42
+ 1397 0060 00000000 		.4byte	.LFB43
+ 1398 0064 44000000 		.4byte	.LFE43-.LFB43
+ 1399 0068 00000000 		.4byte	.LFB44
+ 1400 006c 24000000 		.4byte	.LFE44-.LFB44
+ 1401 0070 00000000 		.4byte	0
+ 1402 0074 00000000 		.4byte	0
+ 1403              		.section	.debug_ranges,"",%progbits
+ 1404              	.Ldebug_ranges0:
+ 1405 0000 00000000 		.4byte	.LFB33
+ 1406 0004 04000000 		.4byte	.LFE33
+ 1407 0008 00000000 		.4byte	.LFB35
+ 1408 000c 20000000 		.4byte	.LFE35
+ 1409 0010 00000000 		.4byte	.LFB32
+ 1410 0014 20000000 		.4byte	.LFE32
+ 1411 0018 00000000 		.4byte	.LFB36
+ 1412 001c 48000000 		.4byte	.LFE36
+ 1413 0020 00000000 		.4byte	.LFB37
+ 1414 0024 02000000 		.4byte	.LFE37
+ 1415 0028 00000000 		.4byte	.LFB38
+ 1416 002c 18000000 		.4byte	.LFE38
+ 1417 0030 00000000 		.4byte	.LFB39
+ 1418 0034 18000000 		.4byte	.LFE39
+ 1419 0038 00000000 		.4byte	.LFB40
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccmqp9Ih.s 			page 33
+
+
+ 1420 003c 14000000 		.4byte	.LFE40
+ 1421 0040 00000000 		.4byte	.LFB41
+ 1422 0044 0A000000 		.4byte	.LFE41
+ 1423 0048 00000000 		.4byte	.LFB42
+ 1424 004c 06000000 		.4byte	.LFE42
+ 1425 0050 00000000 		.4byte	.LFB43
+ 1426 0054 44000000 		.4byte	.LFE43
+ 1427 0058 00000000 		.4byte	.LFB44
+ 1428 005c 24000000 		.4byte	.LFE44
+ 1429 0060 00000000 		.4byte	0
+ 1430 0064 00000000 		.4byte	0
+ 1431              		.section	.debug_line,"",%progbits
+ 1432              	.Ldebug_line0:
+ 1433 0000 62010000 		.section	.debug_str,"MS",%progbits,1
+ 1433      02006400 
+ 1433      00000201 
+ 1433      FB0E0D00 
+ 1433      01010101 
+ 1434              	.LASF26:
+ 1435 0000 75784372 		.ascii	"uxCriticalNesting\000"
+ 1435      69746963 
+ 1435      616C4E65 
+ 1435      7374696E 
+ 1435      6700
+ 1436              	.LASF23:
+ 1437 0012 76436C65 		.ascii	"vClearInterruptMaskFromISR\000"
+ 1437      6172496E 
+ 1437      74657272 
+ 1437      7570744D 
+ 1437      61736B46 
+ 1438              	.LASF19:
+ 1439 002d 76506F72 		.ascii	"vPortEnterCritical\000"
+ 1439      74456E74 
+ 1439      65724372 
+ 1439      69746963 
+ 1439      616C00
+ 1440              	.LASF16:
+ 1441 0040 7078436F 		.ascii	"pxCode\000"
+ 1441      646500
+ 1442              	.LASF35:
+ 1443 0047 76506F72 		.ascii	"vPortEndScheduler\000"
+ 1443      74456E64 
+ 1443      53636865 
+ 1443      64756C65 
+ 1443      7200
+ 1444              	.LASF14:
+ 1445 0059 706F7274 		.ascii	"portTickType\000"
+ 1445      5469636B 
+ 1445      54797065 
+ 1445      00
+ 1446              	.LASF5:
+ 1447 0066 6C6F6E67 		.ascii	"long int\000"
+ 1447      20696E74 
+ 1447      00
+ 1448              	.LASF28:
+ 1449 006f 66726565 		.ascii	"freertos\\src\\port.c\000"
+ 1449      72746F73 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccmqp9Ih.s 			page 34
+
+
+ 1449      5C737263 
+ 1449      5C706F72 
+ 1449      742E6300 
+ 1450              	.LASF0:
+ 1451 0083 756E7369 		.ascii	"unsigned int\000"
+ 1451      676E6564 
+ 1451      20696E74 
+ 1451      00
+ 1452              	.LASF22:
+ 1453 0090 78506F72 		.ascii	"xPortPendSVHandler\000"
+ 1453      7450656E 
+ 1453      64535648 
+ 1453      616E646C 
+ 1453      657200
+ 1454              	.LASF9:
+ 1455 00a3 666C6F61 		.ascii	"float\000"
+ 1455      7400
+ 1456              	.LASF31:
+ 1457 00a9 76506F72 		.ascii	"vPortStartFirstTask\000"
+ 1457      74537461 
+ 1457      72744669 
+ 1457      72737454 
+ 1457      61736B00 
+ 1458              	.LASF2:
+ 1459 00bd 756E7369 		.ascii	"unsigned char\000"
+ 1459      676E6564 
+ 1459      20636861 
+ 1459      7200
+ 1460              	.LASF6:
+ 1461 00cb 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1461      20756E73 
+ 1461      69676E65 
+ 1461      6420696E 
+ 1461      7400
+ 1462              	.LASF4:
+ 1463 00dd 73686F72 		.ascii	"short unsigned int\000"
+ 1463      7420756E 
+ 1463      7369676E 
+ 1463      65642069 
+ 1463      6E7400
+ 1464              	.LASF25:
+ 1465 00f0 756C5072 		.ascii	"ulPreviousMask\000"
+ 1465      6576696F 
+ 1465      75734D61 
+ 1465      736B00
+ 1466              	.LASF10:
+ 1467 00ff 646F7562 		.ascii	"double\000"
+ 1467      6C6500
+ 1468              	.LASF27:
+ 1469 0106 474E5520 		.ascii	"GNU C99 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1469      43393920 
+ 1469      352E342E 
+ 1469      31203230 
+ 1469      31363036 
+ 1470 0139 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 1470      20726576 
+ 1470      6973696F 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccmqp9Ih.s 			page 35
+
+
+ 1470      6E203233 
+ 1470      37373135 
+ 1471 016c 73202D73 		.ascii	"s -std=gnu99 -ffunction-sections -ffat-lto-objects\000"
+ 1471      74643D67 
+ 1471      6E753939 
+ 1471      202D6666 
+ 1471      756E6374 
+ 1472              	.LASF37:
+ 1473 019f 78546173 		.ascii	"xTaskIncrementTick\000"
+ 1473      6B496E63 
+ 1473      72656D65 
+ 1473      6E745469 
+ 1473      636B00
+ 1474              	.LASF24:
+ 1475 01b2 78506F72 		.ascii	"xPortSysTickHandler\000"
+ 1475      74537973 
+ 1475      5469636B 
+ 1475      48616E64 
+ 1475      6C657200 
+ 1476              	.LASF18:
+ 1477 01c6 76506F72 		.ascii	"vPortYield\000"
+ 1477      74596965 
+ 1477      6C6400
+ 1478              	.LASF15:
+ 1479 01d1 7078546F 		.ascii	"pxTopOfStack\000"
+ 1479      704F6653 
+ 1479      7461636B 
+ 1479      00
+ 1480              	.LASF8:
+ 1481 01de 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1481      206C6F6E 
+ 1481      6720756E 
+ 1481      7369676E 
+ 1481      65642069 
+ 1482              	.LASF30:
+ 1483 01f5 70727654 		.ascii	"prvTaskExitError\000"
+ 1483      61736B45 
+ 1483      78697445 
+ 1483      72726F72 
+ 1483      00
+ 1484              	.LASF29:
+ 1485 0206 443A5C31 		.ascii	"D:\\1_work\\my_project\\ReloadPro\\psoc42boot\\Relo"
+ 1485      5F776F72 
+ 1485      6B5C6D79 
+ 1485      5F70726F 
+ 1485      6A656374 
+ 1486 0234 61642050 		.ascii	"ad Pro.cydsn\000"
+ 1486      726F2E63 
+ 1486      7964736E 
+ 1486      00
+ 1487              	.LASF12:
+ 1488 0241 73697A65 		.ascii	"sizetype\000"
+ 1488      74797065 
+ 1488      00
+ 1489              	.LASF36:
+ 1490 024a 756C5365 		.ascii	"ulSetInterruptMaskFromISR\000"
+ 1490      74496E74 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccmqp9Ih.s 			page 36
+
+
+ 1490      65727275 
+ 1490      70744D61 
+ 1490      736B4672 
+ 1491              	.LASF7:
+ 1492 0264 6C6F6E67 		.ascii	"long long int\000"
+ 1492      206C6F6E 
+ 1492      6720696E 
+ 1492      7400
+ 1493              	.LASF11:
+ 1494 0272 63686172 		.ascii	"char\000"
+ 1494      00
+ 1495              	.LASF17:
+ 1496 0277 70765061 		.ascii	"pvParameters\000"
+ 1496      72616D65 
+ 1496      74657273 
+ 1496      00
+ 1497              	.LASF3:
+ 1498 0284 73686F72 		.ascii	"short int\000"
+ 1498      7420696E 
+ 1498      7400
+ 1499              	.LASF20:
+ 1500 028e 76506F72 		.ascii	"vPortExitCritical\000"
+ 1500      74457869 
+ 1500      74437269 
+ 1500      74696361 
+ 1500      6C00
+ 1501              	.LASF33:
+ 1502 02a0 70727653 		.ascii	"prvSetupTimerInterrupt\000"
+ 1502      65747570 
+ 1502      54696D65 
+ 1502      72496E74 
+ 1502      65727275 
+ 1503              	.LASF21:
+ 1504 02b7 756C4D61 		.ascii	"ulMask\000"
+ 1504      736B00
+ 1505              	.LASF1:
+ 1506 02be 7369676E 		.ascii	"signed char\000"
+ 1506      65642063 
+ 1506      68617200 
+ 1507              	.LASF13:
+ 1508 02ca 70645441 		.ascii	"pdTASK_CODE\000"
+ 1508      534B5F43 
+ 1508      4F444500 
+ 1509              	.LASF34:
+ 1510 02d6 78506F72 		.ascii	"xPortStartScheduler\000"
+ 1510      74537461 
+ 1510      72745363 
+ 1510      68656475 
+ 1510      6C657200 
+ 1511              	.LASF32:
+ 1512 02ea 7078506F 		.ascii	"pxPortInitialiseStack\000"
+ 1512      7274496E 
+ 1512      69746961 
+ 1512      6C697365 
+ 1512      53746163 
+ 1513              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

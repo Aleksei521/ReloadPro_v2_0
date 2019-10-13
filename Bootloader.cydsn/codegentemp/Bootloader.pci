@@ -1,0 +1,12 @@
+# Bootloader
+# 2019-06-27 17:21:35Z
+
+# IO_2@[IOP=(3)][IoId=(2)] is reserved: SWDDebugEnabled
+dont_use_io iocell 3 2
+# IO_3@[IOP=(3)][IoId=(3)] is reserved: SWDDebugEnabled
+dont_use_io iocell 3 3
+set_location "ClockGenBlock" m0s8clockgenblockcell -1 -1 0
+set_io "\UART:tx(0)\" iocell 4 1
+set_io "\UART:rx(0)\" iocell 4 0
+set_io "Button(0)" iocell 4 3
+set_io "Backlight(0)" iocell 0 7

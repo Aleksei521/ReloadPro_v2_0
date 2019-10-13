@@ -1,0 +1,93 @@
+--------------- Rebuild Started: 06/27/2019 13:56:17 Project: Bootloader, Configuration: ARM GCC 5.4-2016-q2-update Release ---------------
+Deleting file ".\CortexM0\ARM_GCC_541\Release\main.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\cyfitter_cfg.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\cymetadata.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Bootloader.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\UART.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\UART_SPI_UART.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\UART_SPI_UART_INT.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\UART_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\UART_UART.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\UART_BOOT.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\UART_UART_BOOT.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\UART_Clock.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Button.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Button_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Backlight.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Backlight_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\UART_tx.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\UART_tx_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\UART_rx.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\UART_rx_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\cy_em_eeprom.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Cm0Start.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\CyFlash.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\CyLib.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\cyPm.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\cyutils.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\CyBootAsmGnu.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\CyLFClk.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Bootloader.hex"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Bootloader.elf"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Bootloader.map"
+Deleting file ".\Bootloader.cycdx"
+Deleting file ".\Bootloader.svd"
+Deleting file ".\Bootloader.rpt"
+Deleting file ".\Bootloader_timing.html"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\.deps\SOURCE_C__ARM_GCC_GENERIC.P"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\.deps\SOURCE_ASM__ARM_GCC_GENERIC.P"
+cydsfit.exe -.appdatapath "C:\Users\VideoHOME\AppData\Local\Cypress Semiconductor\PSoC Creator\4.2" -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -.fdsreffile=referenced_files.txt -p D:\1_work\my_project\ReloadPro\psoc42boot\Bootloader.cydsn\Bootloader.cyprj -d CY8C4245AXI-483 -s D:\1_work\my_project\ReloadPro\psoc42boot\Bootloader.cydsn\Generated_Source\PSoC4 -- -yv2 -q10 -yga -o2 -v3 -.fftcfgtype=LE
+Elaborating Design...
+HDL Generation...
+Synthesis...
+Tech Mapping...
+Analog Placement...
+Analog Routing...
+Analog Code Generation...
+Digital Placement...
+Digital Routing...
+Bitstream Generation...
+Bitstream Verification...
+Static timing analysis...
+API Generation...
+Dependency Generation...
+Cleanup...
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/main.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c main.c -o .\CortexM0\ARM_GCC_541\Release\main.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/cyfitter_cfg.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\cyfitter_cfg.c -o .\CortexM0\ARM_GCC_541\Release\cyfitter_cfg.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/cymetadata.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\cymetadata.c -o .\CortexM0\ARM_GCC_541\Release\cymetadata.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Bootloader.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Bootloader.c -o .\CortexM0\ARM_GCC_541\Release\Bootloader.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/UART.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\UART.c -o .\CortexM0\ARM_GCC_541\Release\UART.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/UART_SPI_UART.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\UART_SPI_UART.c -o .\CortexM0\ARM_GCC_541\Release\UART_SPI_UART.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/UART_SPI_UART_INT.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\UART_SPI_UART_INT.c -o .\CortexM0\ARM_GCC_541\Release\UART_SPI_UART_INT.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/UART_PM.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\UART_PM.c -o .\CortexM0\ARM_GCC_541\Release\UART_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/UART_UART.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\UART_UART.c -o .\CortexM0\ARM_GCC_541\Release\UART_UART.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/UART_BOOT.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\UART_BOOT.c -o .\CortexM0\ARM_GCC_541\Release\UART_BOOT.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/UART_UART_BOOT.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\UART_UART_BOOT.c -o .\CortexM0\ARM_GCC_541\Release\UART_UART_BOOT.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/UART_Clock.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\UART_Clock.c -o .\CortexM0\ARM_GCC_541\Release\UART_Clock.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Button.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Button.c -o .\CortexM0\ARM_GCC_541\Release\Button.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Button_PM.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Button_PM.c -o .\CortexM0\ARM_GCC_541\Release\Button_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Backlight.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Backlight.c -o .\CortexM0\ARM_GCC_541\Release\Backlight.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Backlight_PM.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Backlight_PM.c -o .\CortexM0\ARM_GCC_541\Release\Backlight_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/UART_tx.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\UART_tx.c -o .\CortexM0\ARM_GCC_541\Release\UART_tx.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/UART_tx_PM.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\UART_tx_PM.c -o .\CortexM0\ARM_GCC_541\Release\UART_tx_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/UART_rx.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\UART_rx.c -o .\CortexM0\ARM_GCC_541\Release\UART_rx.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/UART_rx_PM.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\UART_rx_PM.c -o .\CortexM0\ARM_GCC_541\Release\UART_rx_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/cy_em_eeprom.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\cy_em_eeprom.c -o .\CortexM0\ARM_GCC_541\Release\cy_em_eeprom.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Cm0Start.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Cm0Start.c -o .\CortexM0\ARM_GCC_541\Release\Cm0Start.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/CyFlash.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\CyFlash.c -o .\CortexM0\ARM_GCC_541\Release\CyFlash.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/CyLib.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\CyLib.c -o .\CortexM0\ARM_GCC_541\Release\CyLib.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/cyPm.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\cyPm.c -o .\CortexM0\ARM_GCC_541\Release\cyPm.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/cyutils.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\cyutils.c -o .\CortexM0\ARM_GCC_541\Release\cyutils.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/CyLFClk.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\CyLFClk.c -o .\CortexM0\ARM_GCC_541\Release\CyLFClk.o
+arm-none-eabi-as.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -alh=.\CortexM0\ARM_GCC_541\Release/CyBootAsmGnu.lst -g -o .\CortexM0\ARM_GCC_541\Release\CyBootAsmGnu.o Generated_Source\PSoC4\CyBootAsmGnu.s
+arm-none-eabi-ar.exe -rs .\CortexM0\ARM_GCC_541\Release\Bootloader.a .\CortexM0\ARM_GCC_541\Release\Bootloader.o .\CortexM0\ARM_GCC_541\Release\UART.o .\CortexM0\ARM_GCC_541\Release\UART_SPI_UART.o .\CortexM0\ARM_GCC_541\Release\UART_SPI_UART_INT.o .\CortexM0\ARM_GCC_541\Release\UART_PM.o .\CortexM0\ARM_GCC_541\Release\UART_UART.o .\CortexM0\ARM_GCC_541\Release\UART_BOOT.o .\CortexM0\ARM_GCC_541\Release\UART_UART_BOOT.o .\CortexM0\ARM_GCC_541\Release\UART_Clock.o .\CortexM0\ARM_GCC_541\Release\Button.o .\CortexM0\ARM_GCC_541\Release\Button_PM.o .\CortexM0\ARM_GCC_541\Release\Backlight.o .\CortexM0\ARM_GCC_541\Release\Backlight_PM.o .\CortexM0\ARM_GCC_541\Release\UART_tx.o .\CortexM0\ARM_GCC_541\Release\UART_tx_PM.o .\CortexM0\ARM_GCC_541\Release\UART_rx.o .\CortexM0\ARM_GCC_541\Release\UART_rx_PM.o .\CortexM0\ARM_GCC_541\Release\cy_em_eeprom.o .\CortexM0\ARM_GCC_541\Release\CyFlash.o .\CortexM0\ARM_GCC_541\Release\CyLib.o .\CortexM0\ARM_GCC_541\Release\cyPm.o .\CortexM0\ARM_GCC_541\Release\cyutils.o .\CortexM0\ARM_GCC_541\Release\CyLFClk.o .\CortexM0\ARM_GCC_541\Release\CyBootAsmGnu.o
+arm-none-eabi-ar.exe: creating .\CortexM0\ARM_GCC_541\Release\Bootloader.a
+arm-none-eabi-gcc.exe -Wl,--start-group -o D:\1_work\my_project\ReloadPro\psoc42boot\Bootloader.cydsn\CortexM0\ARM_GCC_541\Release\Bootloader.elf .\CortexM0\ARM_GCC_541\Release\main.o .\CortexM0\ARM_GCC_541\Release\cyfitter_cfg.o .\CortexM0\ARM_GCC_541\Release\cymetadata.o .\CortexM0\ARM_GCC_541\Release\Cm0Start.o .\CortexM0\ARM_GCC_541\Release\Bootloader.a -mcpu=cortex-m0 -mthumb -L Generated_Source\PSoC4 -Wl,-Map,.\CortexM0\ARM_GCC_541\Release/Bootloader.map -T Generated_Source\PSoC4\cm0gcc.ld -specs=nano.specs -Wl,--gc-sections -g -ffunction-sections -Os -ffat-lto-objects -Wl,--end-group
+cyelftool.exe -P D:\1_work\my_project\ReloadPro\psoc42boot\Bootloader.cydsn\CortexM0\ARM_GCC_541\Release\Bootloader.elf --flash_row_size 128 --flash_size 32768 --flash_offset 0x00000000 --size_var_name Bootloader_SizeBytes --checksum_var_name Bootloader_Checksum --ignore 0xC0
+No ELF section .cychecksum found, creating one
+Application checksum calculated and stored in ELF section .cychecksum
+Checksum calculated and stored in ELF section .cymeta
+cyelftool.exe -S D:\1_work\my_project\ReloadPro\psoc42boot\Bootloader.cydsn\CortexM0\ARM_GCC_541\Release\Bootloader.elf
+Flash used: 4077 of 32768 bytes (12,4%). Application: 3949 bytes. Metadata: 128 bytes.
+SRAM used: 1652 of 4096 bytes (40,3%). Stack: 1024 bytes. Heap: 256 bytes.
+--------------- Rebuild Succeeded: 06/27/2019 13:56:37 ---------------

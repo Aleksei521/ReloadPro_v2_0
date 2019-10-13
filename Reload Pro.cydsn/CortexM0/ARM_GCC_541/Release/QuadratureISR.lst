@@ -1,0 +1,2438 @@
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc6V5Gdt.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"QuadratureISR.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.QuadratureISR_Interrupt,"ax",%progbits
+  20              		.align	1
+  21              		.global	QuadratureISR_Interrupt
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	QuadratureISR_Interrupt, %function
+  25              	QuadratureISR_Interrupt:
+  26              	.LFB3:
+  27              		.file 1 "Generated_Source\\PSoC4\\QuadratureISR.c"
+   1:Generated_Source\PSoC4/QuadratureISR.c **** /*******************************************************************************
+   2:Generated_Source\PSoC4/QuadratureISR.c **** * File Name: QuadratureISR.c  
+   3:Generated_Source\PSoC4/QuadratureISR.c **** * Version 1.70
+   4:Generated_Source\PSoC4/QuadratureISR.c **** *
+   5:Generated_Source\PSoC4/QuadratureISR.c **** *  Description:
+   6:Generated_Source\PSoC4/QuadratureISR.c **** *   API for controlling the state of an interrupt.
+   7:Generated_Source\PSoC4/QuadratureISR.c **** *
+   8:Generated_Source\PSoC4/QuadratureISR.c **** *
+   9:Generated_Source\PSoC4/QuadratureISR.c **** *  Note:
+  10:Generated_Source\PSoC4/QuadratureISR.c **** *
+  11:Generated_Source\PSoC4/QuadratureISR.c **** ********************************************************************************
+  12:Generated_Source\PSoC4/QuadratureISR.c **** * Copyright 2008-2015, Cypress Semiconductor Corporation.  All rights reserved.
+  13:Generated_Source\PSoC4/QuadratureISR.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  14:Generated_Source\PSoC4/QuadratureISR.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  15:Generated_Source\PSoC4/QuadratureISR.c **** * the software package with which this file was provided.
+  16:Generated_Source\PSoC4/QuadratureISR.c **** *******************************************************************************/
+  17:Generated_Source\PSoC4/QuadratureISR.c **** 
+  18:Generated_Source\PSoC4/QuadratureISR.c **** 
+  19:Generated_Source\PSoC4/QuadratureISR.c **** #include <cydevice_trm.h>
+  20:Generated_Source\PSoC4/QuadratureISR.c **** #include <CyLib.h>
+  21:Generated_Source\PSoC4/QuadratureISR.c **** #include <QuadratureISR.h>
+  22:Generated_Source\PSoC4/QuadratureISR.c **** 
+  23:Generated_Source\PSoC4/QuadratureISR.c **** 
+  24:Generated_Source\PSoC4/QuadratureISR.c **** #if !defined(QuadratureISR__REMOVED) /* Check for removal by optimization */
+  25:Generated_Source\PSoC4/QuadratureISR.c **** 
+  26:Generated_Source\PSoC4/QuadratureISR.c **** /*******************************************************************************
+  27:Generated_Source\PSoC4/QuadratureISR.c **** *  Place your includes, defines and code here 
+  28:Generated_Source\PSoC4/QuadratureISR.c **** ********************************************************************************/
+  29:Generated_Source\PSoC4/QuadratureISR.c **** /* `#START QuadratureISR_intc` */
+  30:Generated_Source\PSoC4/QuadratureISR.c **** 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc6V5Gdt.s 			page 2
+
+
+  31:Generated_Source\PSoC4/QuadratureISR.c **** /* `#END` */
+  32:Generated_Source\PSoC4/QuadratureISR.c **** 
+  33:Generated_Source\PSoC4/QuadratureISR.c **** extern cyisraddress CyRamVectors[CYINT_IRQ_BASE + CY_NUM_INTERRUPTS];
+  34:Generated_Source\PSoC4/QuadratureISR.c **** 
+  35:Generated_Source\PSoC4/QuadratureISR.c **** /* Declared in startup, used to set unused interrupts to. */
+  36:Generated_Source\PSoC4/QuadratureISR.c **** CY_ISR_PROTO(IntDefaultHandler);
+  37:Generated_Source\PSoC4/QuadratureISR.c **** 
+  38:Generated_Source\PSoC4/QuadratureISR.c **** 
+  39:Generated_Source\PSoC4/QuadratureISR.c **** /*******************************************************************************
+  40:Generated_Source\PSoC4/QuadratureISR.c **** * Function Name: QuadratureISR_Start
+  41:Generated_Source\PSoC4/QuadratureISR.c **** ********************************************************************************
+  42:Generated_Source\PSoC4/QuadratureISR.c **** *
+  43:Generated_Source\PSoC4/QuadratureISR.c **** * Summary:
+  44:Generated_Source\PSoC4/QuadratureISR.c **** *  Set up the interrupt and enable it. This function disables the interrupt, 
+  45:Generated_Source\PSoC4/QuadratureISR.c **** *  sets the default interrupt vector, sets the priority from the value in the
+  46:Generated_Source\PSoC4/QuadratureISR.c **** *  Design Wide Resources Interrupt Editor, then enables the interrupt to the 
+  47:Generated_Source\PSoC4/QuadratureISR.c **** *  interrupt controller.
+  48:Generated_Source\PSoC4/QuadratureISR.c **** *
+  49:Generated_Source\PSoC4/QuadratureISR.c **** * Parameters:  
+  50:Generated_Source\PSoC4/QuadratureISR.c **** *   None
+  51:Generated_Source\PSoC4/QuadratureISR.c **** *
+  52:Generated_Source\PSoC4/QuadratureISR.c **** * Return:
+  53:Generated_Source\PSoC4/QuadratureISR.c **** *   None
+  54:Generated_Source\PSoC4/QuadratureISR.c **** *
+  55:Generated_Source\PSoC4/QuadratureISR.c **** *******************************************************************************/
+  56:Generated_Source\PSoC4/QuadratureISR.c **** void QuadratureISR_Start(void)
+  57:Generated_Source\PSoC4/QuadratureISR.c **** {
+  58:Generated_Source\PSoC4/QuadratureISR.c ****     /* For all we know the interrupt is active. */
+  59:Generated_Source\PSoC4/QuadratureISR.c ****     QuadratureISR_Disable();
+  60:Generated_Source\PSoC4/QuadratureISR.c **** 
+  61:Generated_Source\PSoC4/QuadratureISR.c ****     /* Set the ISR to point to the QuadratureISR Interrupt. */
+  62:Generated_Source\PSoC4/QuadratureISR.c ****     QuadratureISR_SetVector(&QuadratureISR_Interrupt);
+  63:Generated_Source\PSoC4/QuadratureISR.c **** 
+  64:Generated_Source\PSoC4/QuadratureISR.c ****     /* Set the priority. */
+  65:Generated_Source\PSoC4/QuadratureISR.c ****     QuadratureISR_SetPriority((uint8)QuadratureISR_INTC_PRIOR_NUMBER);
+  66:Generated_Source\PSoC4/QuadratureISR.c **** 
+  67:Generated_Source\PSoC4/QuadratureISR.c ****     /* Enable it. */
+  68:Generated_Source\PSoC4/QuadratureISR.c ****     QuadratureISR_Enable();
+  69:Generated_Source\PSoC4/QuadratureISR.c **** }
+  70:Generated_Source\PSoC4/QuadratureISR.c **** 
+  71:Generated_Source\PSoC4/QuadratureISR.c **** 
+  72:Generated_Source\PSoC4/QuadratureISR.c **** /*******************************************************************************
+  73:Generated_Source\PSoC4/QuadratureISR.c **** * Function Name: QuadratureISR_StartEx
+  74:Generated_Source\PSoC4/QuadratureISR.c **** ********************************************************************************
+  75:Generated_Source\PSoC4/QuadratureISR.c **** *
+  76:Generated_Source\PSoC4/QuadratureISR.c **** * Summary:
+  77:Generated_Source\PSoC4/QuadratureISR.c **** *  Sets up the interrupt and enables it. This function disables the interrupt,
+  78:Generated_Source\PSoC4/QuadratureISR.c **** *  sets the interrupt vector based on the address passed in, sets the priority 
+  79:Generated_Source\PSoC4/QuadratureISR.c **** *  from the value in the Design Wide Resources Interrupt Editor, then enables 
+  80:Generated_Source\PSoC4/QuadratureISR.c **** *  the interrupt to the interrupt controller.
+  81:Generated_Source\PSoC4/QuadratureISR.c **** *  
+  82:Generated_Source\PSoC4/QuadratureISR.c **** *  When defining ISR functions, the CY_ISR and CY_ISR_PROTO macros should be 
+  83:Generated_Source\PSoC4/QuadratureISR.c **** *  used to provide consistent definition across compilers:
+  84:Generated_Source\PSoC4/QuadratureISR.c **** *  
+  85:Generated_Source\PSoC4/QuadratureISR.c **** *  Function definition example:
+  86:Generated_Source\PSoC4/QuadratureISR.c **** *   CY_ISR(MyISR)
+  87:Generated_Source\PSoC4/QuadratureISR.c **** *   {
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc6V5Gdt.s 			page 3
+
+
+  88:Generated_Source\PSoC4/QuadratureISR.c **** *   }
+  89:Generated_Source\PSoC4/QuadratureISR.c **** *   Function prototype example:
+  90:Generated_Source\PSoC4/QuadratureISR.c **** *   CY_ISR_PROTO(MyISR);
+  91:Generated_Source\PSoC4/QuadratureISR.c **** *
+  92:Generated_Source\PSoC4/QuadratureISR.c **** * Parameters:  
+  93:Generated_Source\PSoC4/QuadratureISR.c **** *   address: Address of the ISR to set in the interrupt vector table.
+  94:Generated_Source\PSoC4/QuadratureISR.c **** *
+  95:Generated_Source\PSoC4/QuadratureISR.c **** * Return:
+  96:Generated_Source\PSoC4/QuadratureISR.c **** *   None
+  97:Generated_Source\PSoC4/QuadratureISR.c **** *
+  98:Generated_Source\PSoC4/QuadratureISR.c **** *******************************************************************************/
+  99:Generated_Source\PSoC4/QuadratureISR.c **** void QuadratureISR_StartEx(cyisraddress address)
+ 100:Generated_Source\PSoC4/QuadratureISR.c **** {
+ 101:Generated_Source\PSoC4/QuadratureISR.c ****     /* For all we know the interrupt is active. */
+ 102:Generated_Source\PSoC4/QuadratureISR.c ****     QuadratureISR_Disable();
+ 103:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 104:Generated_Source\PSoC4/QuadratureISR.c ****     /* Set the ISR to point to the QuadratureISR Interrupt. */
+ 105:Generated_Source\PSoC4/QuadratureISR.c ****     QuadratureISR_SetVector(address);
+ 106:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 107:Generated_Source\PSoC4/QuadratureISR.c ****     /* Set the priority. */
+ 108:Generated_Source\PSoC4/QuadratureISR.c ****     QuadratureISR_SetPriority((uint8)QuadratureISR_INTC_PRIOR_NUMBER);
+ 109:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 110:Generated_Source\PSoC4/QuadratureISR.c ****     /* Enable it. */
+ 111:Generated_Source\PSoC4/QuadratureISR.c ****     QuadratureISR_Enable();
+ 112:Generated_Source\PSoC4/QuadratureISR.c **** }
+ 113:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 114:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 115:Generated_Source\PSoC4/QuadratureISR.c **** /*******************************************************************************
+ 116:Generated_Source\PSoC4/QuadratureISR.c **** * Function Name: QuadratureISR_Stop
+ 117:Generated_Source\PSoC4/QuadratureISR.c **** ********************************************************************************
+ 118:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 119:Generated_Source\PSoC4/QuadratureISR.c **** * Summary:
+ 120:Generated_Source\PSoC4/QuadratureISR.c **** *   Disables and removes the interrupt.
+ 121:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 122:Generated_Source\PSoC4/QuadratureISR.c **** * Parameters:  
+ 123:Generated_Source\PSoC4/QuadratureISR.c **** *   None
+ 124:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 125:Generated_Source\PSoC4/QuadratureISR.c **** * Return:
+ 126:Generated_Source\PSoC4/QuadratureISR.c **** *   None
+ 127:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 128:Generated_Source\PSoC4/QuadratureISR.c **** *******************************************************************************/
+ 129:Generated_Source\PSoC4/QuadratureISR.c **** void QuadratureISR_Stop(void)
+ 130:Generated_Source\PSoC4/QuadratureISR.c **** {
+ 131:Generated_Source\PSoC4/QuadratureISR.c ****     /* Disable this interrupt. */
+ 132:Generated_Source\PSoC4/QuadratureISR.c ****     QuadratureISR_Disable();
+ 133:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 134:Generated_Source\PSoC4/QuadratureISR.c ****     /* Set the ISR to point to the passive one. */
+ 135:Generated_Source\PSoC4/QuadratureISR.c ****     QuadratureISR_SetVector(&IntDefaultHandler);
+ 136:Generated_Source\PSoC4/QuadratureISR.c **** }
+ 137:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 138:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 139:Generated_Source\PSoC4/QuadratureISR.c **** /*******************************************************************************
+ 140:Generated_Source\PSoC4/QuadratureISR.c **** * Function Name: QuadratureISR_Interrupt
+ 141:Generated_Source\PSoC4/QuadratureISR.c **** ********************************************************************************
+ 142:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 143:Generated_Source\PSoC4/QuadratureISR.c **** * Summary:
+ 144:Generated_Source\PSoC4/QuadratureISR.c **** *   The default Interrupt Service Routine for QuadratureISR.
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc6V5Gdt.s 			page 4
+
+
+ 145:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 146:Generated_Source\PSoC4/QuadratureISR.c **** *   Add custom code between the START and END comments to keep the next version
+ 147:Generated_Source\PSoC4/QuadratureISR.c **** *   of this file from over-writing your code.
+ 148:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 149:Generated_Source\PSoC4/QuadratureISR.c **** *   Note You may use either the default ISR by using this API, or you may define
+ 150:Generated_Source\PSoC4/QuadratureISR.c **** *   your own separate ISR through ISR_StartEx().
+ 151:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 152:Generated_Source\PSoC4/QuadratureISR.c **** * Parameters:  
+ 153:Generated_Source\PSoC4/QuadratureISR.c **** *   None
+ 154:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 155:Generated_Source\PSoC4/QuadratureISR.c **** * Return:
+ 156:Generated_Source\PSoC4/QuadratureISR.c **** *   None
+ 157:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 158:Generated_Source\PSoC4/QuadratureISR.c **** *******************************************************************************/
+ 159:Generated_Source\PSoC4/QuadratureISR.c **** CY_ISR(QuadratureISR_Interrupt)
+ 160:Generated_Source\PSoC4/QuadratureISR.c **** {
+  28              		.loc 1 160 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+ 161:Generated_Source\PSoC4/QuadratureISR.c ****     #ifdef QuadratureISR_INTERRUPT_INTERRUPT_CALLBACK
+ 162:Generated_Source\PSoC4/QuadratureISR.c ****         QuadratureISR_Interrupt_InterruptCallback();
+ 163:Generated_Source\PSoC4/QuadratureISR.c ****     #endif /* QuadratureISR_INTERRUPT_INTERRUPT_CALLBACK */ 
+ 164:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 165:Generated_Source\PSoC4/QuadratureISR.c ****     /*  Place your Interrupt code here. */
+ 166:Generated_Source\PSoC4/QuadratureISR.c ****     /* `#START QuadratureISR_Interrupt` */
+ 167:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 168:Generated_Source\PSoC4/QuadratureISR.c ****     /* `#END` */
+ 169:Generated_Source\PSoC4/QuadratureISR.c **** }
+  33              		.loc 1 169 0
+  34              		@ sp needed
+  35 0000 7047     		bx	lr
+  36              		.cfi_endproc
+  37              	.LFE3:
+  38              		.size	QuadratureISR_Interrupt, .-QuadratureISR_Interrupt
+  39              		.section	.text.QuadratureISR_Stop,"ax",%progbits
+  40              		.align	1
+  41              		.global	QuadratureISR_Stop
+  42              		.code	16
+  43              		.thumb_func
+  44              		.type	QuadratureISR_Stop, %function
+  45              	QuadratureISR_Stop:
+  46              	.LFB2:
+ 130:Generated_Source\PSoC4/QuadratureISR.c ****     /* Disable this interrupt. */
+  47              		.loc 1 130 0
+  48              		.cfi_startproc
+  49              		@ args = 0, pretend = 0, frame = 0
+  50              		@ frame_needed = 0, uses_anonymous_args = 0
+  51              		@ link register save eliminated.
+  52              	.LBB18:
+  53              	.LBB19:
+ 170:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 171:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 172:Generated_Source\PSoC4/QuadratureISR.c **** /*******************************************************************************
+ 173:Generated_Source\PSoC4/QuadratureISR.c **** * Function Name: QuadratureISR_SetVector
+ 174:Generated_Source\PSoC4/QuadratureISR.c **** ********************************************************************************
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc6V5Gdt.s 			page 5
+
+
+ 175:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 176:Generated_Source\PSoC4/QuadratureISR.c **** * Summary:
+ 177:Generated_Source\PSoC4/QuadratureISR.c **** *   Change the ISR vector for the Interrupt. Note calling QuadratureISR_Start
+ 178:Generated_Source\PSoC4/QuadratureISR.c **** *   will override any effect this method would have had. To set the vector 
+ 179:Generated_Source\PSoC4/QuadratureISR.c **** *   before the component has been started use QuadratureISR_StartEx instead.
+ 180:Generated_Source\PSoC4/QuadratureISR.c **** * 
+ 181:Generated_Source\PSoC4/QuadratureISR.c **** *   When defining ISR functions, the CY_ISR and CY_ISR_PROTO macros should be 
+ 182:Generated_Source\PSoC4/QuadratureISR.c **** *   used to provide consistent definition across compilers:
+ 183:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 184:Generated_Source\PSoC4/QuadratureISR.c **** *   Function definition example:
+ 185:Generated_Source\PSoC4/QuadratureISR.c **** *   CY_ISR(MyISR)
+ 186:Generated_Source\PSoC4/QuadratureISR.c **** *   {
+ 187:Generated_Source\PSoC4/QuadratureISR.c **** *   }
+ 188:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 189:Generated_Source\PSoC4/QuadratureISR.c **** *   Function prototype example:
+ 190:Generated_Source\PSoC4/QuadratureISR.c **** *     CY_ISR_PROTO(MyISR);
+ 191:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 192:Generated_Source\PSoC4/QuadratureISR.c **** * Parameters:
+ 193:Generated_Source\PSoC4/QuadratureISR.c **** *   address: Address of the ISR to set in the interrupt vector table.
+ 194:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 195:Generated_Source\PSoC4/QuadratureISR.c **** * Return:
+ 196:Generated_Source\PSoC4/QuadratureISR.c **** *   None
+ 197:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 198:Generated_Source\PSoC4/QuadratureISR.c **** *******************************************************************************/
+ 199:Generated_Source\PSoC4/QuadratureISR.c **** void QuadratureISR_SetVector(cyisraddress address)
+ 200:Generated_Source\PSoC4/QuadratureISR.c **** {
+ 201:Generated_Source\PSoC4/QuadratureISR.c ****     CyRamVectors[CYINT_IRQ_BASE + QuadratureISR__INTC_NUMBER] = address;
+ 202:Generated_Source\PSoC4/QuadratureISR.c **** }
+ 203:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 204:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 205:Generated_Source\PSoC4/QuadratureISR.c **** /*******************************************************************************
+ 206:Generated_Source\PSoC4/QuadratureISR.c **** * Function Name: QuadratureISR_GetVector
+ 207:Generated_Source\PSoC4/QuadratureISR.c **** ********************************************************************************
+ 208:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 209:Generated_Source\PSoC4/QuadratureISR.c **** * Summary:
+ 210:Generated_Source\PSoC4/QuadratureISR.c **** *   Gets the "address" of the current ISR vector for the Interrupt.
+ 211:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 212:Generated_Source\PSoC4/QuadratureISR.c **** * Parameters:
+ 213:Generated_Source\PSoC4/QuadratureISR.c **** *   None
+ 214:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 215:Generated_Source\PSoC4/QuadratureISR.c **** * Return:
+ 216:Generated_Source\PSoC4/QuadratureISR.c **** *   Address of the ISR in the interrupt vector table.
+ 217:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 218:Generated_Source\PSoC4/QuadratureISR.c **** *******************************************************************************/
+ 219:Generated_Source\PSoC4/QuadratureISR.c **** cyisraddress QuadratureISR_GetVector(void)
+ 220:Generated_Source\PSoC4/QuadratureISR.c **** {
+ 221:Generated_Source\PSoC4/QuadratureISR.c ****     return CyRamVectors[CYINT_IRQ_BASE + QuadratureISR__INTC_NUMBER];
+ 222:Generated_Source\PSoC4/QuadratureISR.c **** }
+ 223:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 224:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 225:Generated_Source\PSoC4/QuadratureISR.c **** /*******************************************************************************
+ 226:Generated_Source\PSoC4/QuadratureISR.c **** * Function Name: QuadratureISR_SetPriority
+ 227:Generated_Source\PSoC4/QuadratureISR.c **** ********************************************************************************
+ 228:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 229:Generated_Source\PSoC4/QuadratureISR.c **** * Summary:
+ 230:Generated_Source\PSoC4/QuadratureISR.c **** *   Sets the Priority of the Interrupt. 
+ 231:Generated_Source\PSoC4/QuadratureISR.c **** *
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc6V5Gdt.s 			page 6
+
+
+ 232:Generated_Source\PSoC4/QuadratureISR.c **** *   Note calling QuadratureISR_Start or QuadratureISR_StartEx will 
+ 233:Generated_Source\PSoC4/QuadratureISR.c **** *   override any effect this API would have had. This API should only be called
+ 234:Generated_Source\PSoC4/QuadratureISR.c **** *   after QuadratureISR_Start or QuadratureISR_StartEx has been called. 
+ 235:Generated_Source\PSoC4/QuadratureISR.c **** *   To set the initial priority for the component, use the Design-Wide Resources
+ 236:Generated_Source\PSoC4/QuadratureISR.c **** *   Interrupt Editor.
+ 237:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 238:Generated_Source\PSoC4/QuadratureISR.c **** *   Note This API has no effect on Non-maskable interrupt NMI).
+ 239:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 240:Generated_Source\PSoC4/QuadratureISR.c **** * Parameters:
+ 241:Generated_Source\PSoC4/QuadratureISR.c **** *   priority: Priority of the interrupt, 0 being the highest priority
+ 242:Generated_Source\PSoC4/QuadratureISR.c **** *             PSoC 3 and PSoC 5LP: Priority is from 0 to 7.
+ 243:Generated_Source\PSoC4/QuadratureISR.c **** *             PSoC 4: Priority is from 0 to 3.
+ 244:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 245:Generated_Source\PSoC4/QuadratureISR.c **** * Return:
+ 246:Generated_Source\PSoC4/QuadratureISR.c **** *   None
+ 247:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 248:Generated_Source\PSoC4/QuadratureISR.c **** *******************************************************************************/
+ 249:Generated_Source\PSoC4/QuadratureISR.c **** void QuadratureISR_SetPriority(uint8 priority)
+ 250:Generated_Source\PSoC4/QuadratureISR.c **** {
+ 251:Generated_Source\PSoC4/QuadratureISR.c **** 	uint8 interruptState;
+ 252:Generated_Source\PSoC4/QuadratureISR.c ****     uint32 priorityOffset = ((QuadratureISR__INTC_NUMBER % 4u) * 8u) + 6u;
+ 253:Generated_Source\PSoC4/QuadratureISR.c ****     
+ 254:Generated_Source\PSoC4/QuadratureISR.c **** 	interruptState = CyEnterCriticalSection();
+ 255:Generated_Source\PSoC4/QuadratureISR.c ****     *QuadratureISR_INTC_PRIOR = (*QuadratureISR_INTC_PRIOR & (uint32)(~QuadratureISR__INTC_PRIOR_MA
+ 256:Generated_Source\PSoC4/QuadratureISR.c ****                                     ((uint32)priority << priorityOffset);
+ 257:Generated_Source\PSoC4/QuadratureISR.c **** 	CyExitCriticalSection(interruptState);
+ 258:Generated_Source\PSoC4/QuadratureISR.c **** }
+ 259:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 260:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 261:Generated_Source\PSoC4/QuadratureISR.c **** /*******************************************************************************
+ 262:Generated_Source\PSoC4/QuadratureISR.c **** * Function Name: QuadratureISR_GetPriority
+ 263:Generated_Source\PSoC4/QuadratureISR.c **** ********************************************************************************
+ 264:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 265:Generated_Source\PSoC4/QuadratureISR.c **** * Summary:
+ 266:Generated_Source\PSoC4/QuadratureISR.c **** *   Gets the Priority of the Interrupt.
+ 267:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 268:Generated_Source\PSoC4/QuadratureISR.c **** * Parameters:
+ 269:Generated_Source\PSoC4/QuadratureISR.c **** *   None
+ 270:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 271:Generated_Source\PSoC4/QuadratureISR.c **** * Return:
+ 272:Generated_Source\PSoC4/QuadratureISR.c **** *   Priority of the interrupt, 0 being the highest priority
+ 273:Generated_Source\PSoC4/QuadratureISR.c **** *    PSoC 3 and PSoC 5LP: Priority is from 0 to 7.
+ 274:Generated_Source\PSoC4/QuadratureISR.c **** *    PSoC 4: Priority is from 0 to 3.
+ 275:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 276:Generated_Source\PSoC4/QuadratureISR.c **** *******************************************************************************/
+ 277:Generated_Source\PSoC4/QuadratureISR.c **** uint8 QuadratureISR_GetPriority(void)
+ 278:Generated_Source\PSoC4/QuadratureISR.c **** {
+ 279:Generated_Source\PSoC4/QuadratureISR.c ****     uint32 priority;
+ 280:Generated_Source\PSoC4/QuadratureISR.c **** 	uint32 priorityOffset = ((QuadratureISR__INTC_NUMBER % 4u) * 8u) + 6u;
+ 281:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 282:Generated_Source\PSoC4/QuadratureISR.c ****     priority = (*QuadratureISR_INTC_PRIOR & QuadratureISR__INTC_PRIOR_MASK) >> priorityOffset;
+ 283:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 284:Generated_Source\PSoC4/QuadratureISR.c ****     return (uint8)priority;
+ 285:Generated_Source\PSoC4/QuadratureISR.c **** }
+ 286:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 287:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 288:Generated_Source\PSoC4/QuadratureISR.c **** /*******************************************************************************
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc6V5Gdt.s 			page 7
+
+
+ 289:Generated_Source\PSoC4/QuadratureISR.c **** * Function Name: QuadratureISR_Enable
+ 290:Generated_Source\PSoC4/QuadratureISR.c **** ********************************************************************************
+ 291:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 292:Generated_Source\PSoC4/QuadratureISR.c **** * Summary:
+ 293:Generated_Source\PSoC4/QuadratureISR.c **** *   Enables the interrupt to the interrupt controller. Do not call this function
+ 294:Generated_Source\PSoC4/QuadratureISR.c **** *   unless ISR_Start() has been called or the functionality of the ISR_Start() 
+ 295:Generated_Source\PSoC4/QuadratureISR.c **** *   function, which sets the vector and the priority, has been called.
+ 296:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 297:Generated_Source\PSoC4/QuadratureISR.c **** * Parameters:
+ 298:Generated_Source\PSoC4/QuadratureISR.c **** *   None
+ 299:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 300:Generated_Source\PSoC4/QuadratureISR.c **** * Return:
+ 301:Generated_Source\PSoC4/QuadratureISR.c **** *   None
+ 302:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 303:Generated_Source\PSoC4/QuadratureISR.c **** *******************************************************************************/
+ 304:Generated_Source\PSoC4/QuadratureISR.c **** void QuadratureISR_Enable(void)
+ 305:Generated_Source\PSoC4/QuadratureISR.c **** {
+ 306:Generated_Source\PSoC4/QuadratureISR.c ****     /* Enable the general interrupt. */
+ 307:Generated_Source\PSoC4/QuadratureISR.c ****     *QuadratureISR_INTC_SET_EN = QuadratureISR__INTC_MASK;
+ 308:Generated_Source\PSoC4/QuadratureISR.c **** }
+ 309:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 310:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 311:Generated_Source\PSoC4/QuadratureISR.c **** /*******************************************************************************
+ 312:Generated_Source\PSoC4/QuadratureISR.c **** * Function Name: QuadratureISR_GetState
+ 313:Generated_Source\PSoC4/QuadratureISR.c **** ********************************************************************************
+ 314:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 315:Generated_Source\PSoC4/QuadratureISR.c **** * Summary:
+ 316:Generated_Source\PSoC4/QuadratureISR.c **** *   Gets the state (enabled, disabled) of the Interrupt.
+ 317:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 318:Generated_Source\PSoC4/QuadratureISR.c **** * Parameters:
+ 319:Generated_Source\PSoC4/QuadratureISR.c **** *   None
+ 320:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 321:Generated_Source\PSoC4/QuadratureISR.c **** * Return:
+ 322:Generated_Source\PSoC4/QuadratureISR.c **** *   1 if enabled, 0 if disabled.
+ 323:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 324:Generated_Source\PSoC4/QuadratureISR.c **** *******************************************************************************/
+ 325:Generated_Source\PSoC4/QuadratureISR.c **** uint8 QuadratureISR_GetState(void)
+ 326:Generated_Source\PSoC4/QuadratureISR.c **** {
+ 327:Generated_Source\PSoC4/QuadratureISR.c ****     /* Get the state of the general interrupt. */
+ 328:Generated_Source\PSoC4/QuadratureISR.c ****     return ((*QuadratureISR_INTC_SET_EN & (uint32)QuadratureISR__INTC_MASK) != 0u) ? 1u:0u;
+ 329:Generated_Source\PSoC4/QuadratureISR.c **** }
+ 330:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 331:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 332:Generated_Source\PSoC4/QuadratureISR.c **** /*******************************************************************************
+ 333:Generated_Source\PSoC4/QuadratureISR.c **** * Function Name: QuadratureISR_Disable
+ 334:Generated_Source\PSoC4/QuadratureISR.c **** ********************************************************************************
+ 335:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 336:Generated_Source\PSoC4/QuadratureISR.c **** * Summary:
+ 337:Generated_Source\PSoC4/QuadratureISR.c **** *   Disables the Interrupt in the interrupt controller.
+ 338:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 339:Generated_Source\PSoC4/QuadratureISR.c **** * Parameters:
+ 340:Generated_Source\PSoC4/QuadratureISR.c **** *   None
+ 341:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 342:Generated_Source\PSoC4/QuadratureISR.c **** * Return:
+ 343:Generated_Source\PSoC4/QuadratureISR.c **** *   None
+ 344:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 345:Generated_Source\PSoC4/QuadratureISR.c **** *******************************************************************************/
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc6V5Gdt.s 			page 8
+
+
+ 346:Generated_Source\PSoC4/QuadratureISR.c **** void QuadratureISR_Disable(void)
+ 347:Generated_Source\PSoC4/QuadratureISR.c **** {
+ 348:Generated_Source\PSoC4/QuadratureISR.c ****     /* Disable the general interrupt. */
+ 349:Generated_Source\PSoC4/QuadratureISR.c ****     *QuadratureISR_INTC_CLR_EN = QuadratureISR__INTC_MASK;
+  54              		.loc 1 349 0
+  55 0000 0122     		movs	r2, #1
+  56 0002 034B     		ldr	r3, .L3
+  57              	.LBE19:
+  58              	.LBE18:
+ 136:Generated_Source\PSoC4/QuadratureISR.c **** 
+  59              		.loc 1 136 0
+  60              		@ sp needed
+  61              	.LBB21:
+  62              	.LBB20:
+  63              		.loc 1 349 0
+  64 0004 1A60     		str	r2, [r3]
+  65              	.LVL0:
+  66              	.LBE20:
+  67              	.LBE21:
+  68              	.LBB22:
+  69              	.LBB23:
+ 201:Generated_Source\PSoC4/QuadratureISR.c **** }
+  70              		.loc 1 201 0
+  71 0006 034A     		ldr	r2, .L3+4
+  72 0008 034B     		ldr	r3, .L3+8
+  73 000a 1A64     		str	r2, [r3, #64]
+  74              	.LVL1:
+  75              	.LBE23:
+  76              	.LBE22:
+ 136:Generated_Source\PSoC4/QuadratureISR.c **** 
+  77              		.loc 1 136 0
+  78 000c 7047     		bx	lr
+  79              	.L4:
+  80 000e C046     		.align	2
+  81              	.L3:
+  82 0010 80E100E0 		.word	-536813184
+  83 0014 00000000 		.word	IntDefaultHandler
+  84 0018 00000000 		.word	CyRamVectors
+  85              		.cfi_endproc
+  86              	.LFE2:
+  87              		.size	QuadratureISR_Stop, .-QuadratureISR_Stop
+  88              		.section	.text.QuadratureISR_SetVector,"ax",%progbits
+  89              		.align	1
+  90              		.global	QuadratureISR_SetVector
+  91              		.code	16
+  92              		.thumb_func
+  93              		.type	QuadratureISR_SetVector, %function
+  94              	QuadratureISR_SetVector:
+  95              	.LFB4:
+ 200:Generated_Source\PSoC4/QuadratureISR.c ****     CyRamVectors[CYINT_IRQ_BASE + QuadratureISR__INTC_NUMBER] = address;
+  96              		.loc 1 200 0
+  97              		.cfi_startproc
+  98              		@ args = 0, pretend = 0, frame = 0
+  99              		@ frame_needed = 0, uses_anonymous_args = 0
+ 100              		@ link register save eliminated.
+ 101              	.LVL2:
+ 201:Generated_Source\PSoC4/QuadratureISR.c **** }
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc6V5Gdt.s 			page 9
+
+
+ 102              		.loc 1 201 0
+ 103 0000 014B     		ldr	r3, .L6
+ 202:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 104              		.loc 1 202 0
+ 105              		@ sp needed
+ 201:Generated_Source\PSoC4/QuadratureISR.c **** }
+ 106              		.loc 1 201 0
+ 107 0002 1864     		str	r0, [r3, #64]
+ 202:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 108              		.loc 1 202 0
+ 109 0004 7047     		bx	lr
+ 110              	.L7:
+ 111 0006 C046     		.align	2
+ 112              	.L6:
+ 113 0008 00000000 		.word	CyRamVectors
+ 114              		.cfi_endproc
+ 115              	.LFE4:
+ 116              		.size	QuadratureISR_SetVector, .-QuadratureISR_SetVector
+ 117              		.section	.text.QuadratureISR_GetVector,"ax",%progbits
+ 118              		.align	1
+ 119              		.global	QuadratureISR_GetVector
+ 120              		.code	16
+ 121              		.thumb_func
+ 122              		.type	QuadratureISR_GetVector, %function
+ 123              	QuadratureISR_GetVector:
+ 124              	.LFB5:
+ 220:Generated_Source\PSoC4/QuadratureISR.c ****     return CyRamVectors[CYINT_IRQ_BASE + QuadratureISR__INTC_NUMBER];
+ 125              		.loc 1 220 0
+ 126              		.cfi_startproc
+ 127              		@ args = 0, pretend = 0, frame = 0
+ 128              		@ frame_needed = 0, uses_anonymous_args = 0
+ 129              		@ link register save eliminated.
+ 221:Generated_Source\PSoC4/QuadratureISR.c **** }
+ 130              		.loc 1 221 0
+ 131 0000 014B     		ldr	r3, .L9
+ 222:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 132              		.loc 1 222 0
+ 133              		@ sp needed
+ 221:Generated_Source\PSoC4/QuadratureISR.c **** }
+ 134              		.loc 1 221 0
+ 135 0002 186C     		ldr	r0, [r3, #64]
+ 222:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 136              		.loc 1 222 0
+ 137 0004 7047     		bx	lr
+ 138              	.L10:
+ 139 0006 C046     		.align	2
+ 140              	.L9:
+ 141 0008 00000000 		.word	CyRamVectors
+ 142              		.cfi_endproc
+ 143              	.LFE5:
+ 144              		.size	QuadratureISR_GetVector, .-QuadratureISR_GetVector
+ 145              		.section	.text.QuadratureISR_SetPriority,"ax",%progbits
+ 146              		.align	1
+ 147              		.global	QuadratureISR_SetPriority
+ 148              		.code	16
+ 149              		.thumb_func
+ 150              		.type	QuadratureISR_SetPriority, %function
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc6V5Gdt.s 			page 10
+
+
+ 151              	QuadratureISR_SetPriority:
+ 152              	.LFB6:
+ 250:Generated_Source\PSoC4/QuadratureISR.c **** 	uint8 interruptState;
+ 153              		.loc 1 250 0
+ 154              		.cfi_startproc
+ 155              		@ args = 0, pretend = 0, frame = 0
+ 156              		@ frame_needed = 0, uses_anonymous_args = 0
+ 157              	.LVL3:
+ 158 0000 10B5     		push	{r4, lr}
+ 159              		.cfi_def_cfa_offset 8
+ 160              		.cfi_offset 4, -8
+ 161              		.cfi_offset 14, -4
+ 250:Generated_Source\PSoC4/QuadratureISR.c **** 	uint8 interruptState;
+ 162              		.loc 1 250 0
+ 163 0002 0400     		movs	r4, r0
+ 254:Generated_Source\PSoC4/QuadratureISR.c ****     *QuadratureISR_INTC_PRIOR = (*QuadratureISR_INTC_PRIOR & (uint32)(~QuadratureISR__INTC_PRIOR_MA
+ 164              		.loc 1 254 0
+ 165 0004 FFF7FEFF 		bl	CyEnterCriticalSection
+ 166              	.LVL4:
+ 255:Generated_Source\PSoC4/QuadratureISR.c ****                                     ((uint32)priority << priorityOffset);
+ 167              		.loc 1 255 0
+ 168 0008 C021     		movs	r1, #192
+ 169 000a 044A     		ldr	r2, .L12
+ 170 000c A401     		lsls	r4, r4, #6
+ 171 000e 1368     		ldr	r3, [r2]
+ 258:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 172              		.loc 1 258 0
+ 173              		@ sp needed
+ 255:Generated_Source\PSoC4/QuadratureISR.c ****                                     ((uint32)priority << priorityOffset);
+ 174              		.loc 1 255 0
+ 175 0010 8B43     		bics	r3, r1
+ 176 0012 1C43     		orrs	r4, r3
+ 177 0014 1460     		str	r4, [r2]
+ 257:Generated_Source\PSoC4/QuadratureISR.c **** }
+ 178              		.loc 1 257 0
+ 179 0016 FFF7FEFF 		bl	CyExitCriticalSection
+ 180              	.LVL5:
+ 258:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 181              		.loc 1 258 0
+ 182 001a 10BD     		pop	{r4, pc}
+ 183              	.L13:
+ 184              		.align	2
+ 185              	.L12:
+ 186 001c 00E400E0 		.word	-536812544
+ 187              		.cfi_endproc
+ 188              	.LFE6:
+ 189              		.size	QuadratureISR_SetPriority, .-QuadratureISR_SetPriority
+ 190              		.section	.text.QuadratureISR_Start,"ax",%progbits
+ 191              		.align	1
+ 192              		.global	QuadratureISR_Start
+ 193              		.code	16
+ 194              		.thumb_func
+ 195              		.type	QuadratureISR_Start, %function
+ 196              	QuadratureISR_Start:
+ 197              	.LFB0:
+  57:Generated_Source\PSoC4/QuadratureISR.c ****     /* For all we know the interrupt is active. */
+ 198              		.loc 1 57 0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc6V5Gdt.s 			page 11
+
+
+ 199              		.cfi_startproc
+ 200              		@ args = 0, pretend = 0, frame = 0
+ 201              		@ frame_needed = 0, uses_anonymous_args = 0
+ 202 0000 10B5     		push	{r4, lr}
+ 203              		.cfi_def_cfa_offset 8
+ 204              		.cfi_offset 4, -8
+ 205              		.cfi_offset 14, -4
+ 206              	.LBB24:
+ 207              	.LBB25:
+ 208              		.loc 1 349 0
+ 209 0002 0124     		movs	r4, #1
+ 210 0004 054B     		ldr	r3, .L15
+ 211              	.LBE25:
+ 212              	.LBE24:
+ 213              	.LBB27:
+ 214              	.LBB28:
+ 201:Generated_Source\PSoC4/QuadratureISR.c **** }
+ 215              		.loc 1 201 0
+ 216 0006 064A     		ldr	r2, .L15+4
+ 217              	.LBE28:
+ 218              	.LBE27:
+ 219              	.LBB31:
+ 220              	.LBB26:
+ 221              		.loc 1 349 0
+ 222 0008 1C60     		str	r4, [r3]
+ 223              	.LVL6:
+ 224              	.LBE26:
+ 225              	.LBE31:
+ 226              	.LBB32:
+ 227              	.LBB29:
+ 201:Generated_Source\PSoC4/QuadratureISR.c **** }
+ 228              		.loc 1 201 0
+ 229 000a 064B     		ldr	r3, .L15+8
+ 230              	.LBE29:
+ 231              	.LBE32:
+  65:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 232              		.loc 1 65 0
+ 233 000c 0320     		movs	r0, #3
+ 234              	.LBB33:
+ 235              	.LBB30:
+ 201:Generated_Source\PSoC4/QuadratureISR.c **** }
+ 236              		.loc 1 201 0
+ 237 000e 1A64     		str	r2, [r3, #64]
+ 238              	.LVL7:
+ 239              	.LBE30:
+ 240              	.LBE33:
+  65:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 241              		.loc 1 65 0
+ 242 0010 FFF7FEFF 		bl	QuadratureISR_SetPriority
+ 243              	.LVL8:
+ 244              	.LBB34:
+ 245              	.LBB35:
+ 307:Generated_Source\PSoC4/QuadratureISR.c **** }
+ 246              		.loc 1 307 0
+ 247 0014 044B     		ldr	r3, .L15+12
+ 248              	.LBE35:
+ 249              	.LBE34:
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc6V5Gdt.s 			page 12
+
+
+  69:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 250              		.loc 1 69 0
+ 251              		@ sp needed
+ 252              	.LBB37:
+ 253              	.LBB36:
+ 307:Generated_Source\PSoC4/QuadratureISR.c **** }
+ 254              		.loc 1 307 0
+ 255 0016 1C60     		str	r4, [r3]
+ 256              	.LBE36:
+ 257              	.LBE37:
+  69:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 258              		.loc 1 69 0
+ 259 0018 10BD     		pop	{r4, pc}
+ 260              	.L16:
+ 261 001a C046     		.align	2
+ 262              	.L15:
+ 263 001c 80E100E0 		.word	-536813184
+ 264 0020 00000000 		.word	QuadratureISR_Interrupt
+ 265 0024 00000000 		.word	CyRamVectors
+ 266 0028 00E100E0 		.word	-536813312
+ 267              		.cfi_endproc
+ 268              	.LFE0:
+ 269              		.size	QuadratureISR_Start, .-QuadratureISR_Start
+ 270              		.section	.text.QuadratureISR_StartEx,"ax",%progbits
+ 271              		.align	1
+ 272              		.global	QuadratureISR_StartEx
+ 273              		.code	16
+ 274              		.thumb_func
+ 275              		.type	QuadratureISR_StartEx, %function
+ 276              	QuadratureISR_StartEx:
+ 277              	.LFB1:
+ 100:Generated_Source\PSoC4/QuadratureISR.c ****     /* For all we know the interrupt is active. */
+ 278              		.loc 1 100 0
+ 279              		.cfi_startproc
+ 280              		@ args = 0, pretend = 0, frame = 0
+ 281              		@ frame_needed = 0, uses_anonymous_args = 0
+ 282              	.LVL9:
+ 283 0000 10B5     		push	{r4, lr}
+ 284              		.cfi_def_cfa_offset 8
+ 285              		.cfi_offset 4, -8
+ 286              		.cfi_offset 14, -4
+ 287              	.LBB38:
+ 288              	.LBB39:
+ 289              		.loc 1 349 0
+ 290 0002 0124     		movs	r4, #1
+ 291 0004 044B     		ldr	r3, .L18
+ 292              	.LBE39:
+ 293              	.LBE38:
+ 112:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 294              		.loc 1 112 0
+ 295              		@ sp needed
+ 296              	.LBB41:
+ 297              	.LBB40:
+ 298              		.loc 1 349 0
+ 299 0006 1C60     		str	r4, [r3]
+ 300              	.LVL10:
+ 301              	.LBE40:
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc6V5Gdt.s 			page 13
+
+
+ 302              	.LBE41:
+ 303              	.LBB42:
+ 304              	.LBB43:
+ 201:Generated_Source\PSoC4/QuadratureISR.c **** }
+ 305              		.loc 1 201 0
+ 306 0008 044B     		ldr	r3, .L18+4
+ 307 000a 1864     		str	r0, [r3, #64]
+ 308              	.LVL11:
+ 309              	.LBE43:
+ 310              	.LBE42:
+ 108:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 311              		.loc 1 108 0
+ 312 000c 0320     		movs	r0, #3
+ 313              	.LVL12:
+ 314 000e FFF7FEFF 		bl	QuadratureISR_SetPriority
+ 315              	.LVL13:
+ 316              	.LBB44:
+ 317              	.LBB45:
+ 307:Generated_Source\PSoC4/QuadratureISR.c **** }
+ 318              		.loc 1 307 0
+ 319 0012 034B     		ldr	r3, .L18+8
+ 320 0014 1C60     		str	r4, [r3]
+ 321              	.LBE45:
+ 322              	.LBE44:
+ 112:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 323              		.loc 1 112 0
+ 324 0016 10BD     		pop	{r4, pc}
+ 325              	.L19:
+ 326              		.align	2
+ 327              	.L18:
+ 328 0018 80E100E0 		.word	-536813184
+ 329 001c 00000000 		.word	CyRamVectors
+ 330 0020 00E100E0 		.word	-536813312
+ 331              		.cfi_endproc
+ 332              	.LFE1:
+ 333              		.size	QuadratureISR_StartEx, .-QuadratureISR_StartEx
+ 334              		.section	.text.QuadratureISR_GetPriority,"ax",%progbits
+ 335              		.align	1
+ 336              		.global	QuadratureISR_GetPriority
+ 337              		.code	16
+ 338              		.thumb_func
+ 339              		.type	QuadratureISR_GetPriority, %function
+ 340              	QuadratureISR_GetPriority:
+ 341              	.LFB7:
+ 278:Generated_Source\PSoC4/QuadratureISR.c ****     uint32 priority;
+ 342              		.loc 1 278 0
+ 343              		.cfi_startproc
+ 344              		@ args = 0, pretend = 0, frame = 0
+ 345              		@ frame_needed = 0, uses_anonymous_args = 0
+ 346              		@ link register save eliminated.
+ 347              	.LVL14:
+ 282:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 348              		.loc 1 282 0
+ 349 0000 024B     		ldr	r3, .L21
+ 285:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 350              		.loc 1 285 0
+ 351              		@ sp needed
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc6V5Gdt.s 			page 14
+
+
+ 282:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 352              		.loc 1 282 0
+ 353 0002 1868     		ldr	r0, [r3]
+ 354              	.LVL15:
+ 284:Generated_Source\PSoC4/QuadratureISR.c **** }
+ 355              		.loc 1 284 0
+ 356 0004 0006     		lsls	r0, r0, #24
+ 357              	.LVL16:
+ 358 0006 800F     		lsrs	r0, r0, #30
+ 285:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 359              		.loc 1 285 0
+ 360 0008 7047     		bx	lr
+ 361              	.L22:
+ 362 000a C046     		.align	2
+ 363              	.L21:
+ 364 000c 00E400E0 		.word	-536812544
+ 365              		.cfi_endproc
+ 366              	.LFE7:
+ 367              		.size	QuadratureISR_GetPriority, .-QuadratureISR_GetPriority
+ 368              		.section	.text.QuadratureISR_Enable,"ax",%progbits
+ 369              		.align	1
+ 370              		.global	QuadratureISR_Enable
+ 371              		.code	16
+ 372              		.thumb_func
+ 373              		.type	QuadratureISR_Enable, %function
+ 374              	QuadratureISR_Enable:
+ 375              	.LFB8:
+ 305:Generated_Source\PSoC4/QuadratureISR.c ****     /* Enable the general interrupt. */
+ 376              		.loc 1 305 0
+ 377              		.cfi_startproc
+ 378              		@ args = 0, pretend = 0, frame = 0
+ 379              		@ frame_needed = 0, uses_anonymous_args = 0
+ 380              		@ link register save eliminated.
+ 307:Generated_Source\PSoC4/QuadratureISR.c **** }
+ 381              		.loc 1 307 0
+ 382 0000 0122     		movs	r2, #1
+ 383 0002 014B     		ldr	r3, .L24
+ 308:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 384              		.loc 1 308 0
+ 385              		@ sp needed
+ 307:Generated_Source\PSoC4/QuadratureISR.c **** }
+ 386              		.loc 1 307 0
+ 387 0004 1A60     		str	r2, [r3]
+ 308:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 388              		.loc 1 308 0
+ 389 0006 7047     		bx	lr
+ 390              	.L25:
+ 391              		.align	2
+ 392              	.L24:
+ 393 0008 00E100E0 		.word	-536813312
+ 394              		.cfi_endproc
+ 395              	.LFE8:
+ 396              		.size	QuadratureISR_Enable, .-QuadratureISR_Enable
+ 397              		.section	.text.QuadratureISR_GetState,"ax",%progbits
+ 398              		.align	1
+ 399              		.global	QuadratureISR_GetState
+ 400              		.code	16
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc6V5Gdt.s 			page 15
+
+
+ 401              		.thumb_func
+ 402              		.type	QuadratureISR_GetState, %function
+ 403              	QuadratureISR_GetState:
+ 404              	.LFB9:
+ 326:Generated_Source\PSoC4/QuadratureISR.c ****     /* Get the state of the general interrupt. */
+ 405              		.loc 1 326 0
+ 406              		.cfi_startproc
+ 407              		@ args = 0, pretend = 0, frame = 0
+ 408              		@ frame_needed = 0, uses_anonymous_args = 0
+ 409              		@ link register save eliminated.
+ 328:Generated_Source\PSoC4/QuadratureISR.c **** }
+ 410              		.loc 1 328 0
+ 411 0000 024B     		ldr	r3, .L27
+ 329:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 412              		.loc 1 329 0
+ 413              		@ sp needed
+ 328:Generated_Source\PSoC4/QuadratureISR.c **** }
+ 414              		.loc 1 328 0
+ 415 0002 1868     		ldr	r0, [r3]
+ 416 0004 0123     		movs	r3, #1
+ 417 0006 1840     		ands	r0, r3
+ 329:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 418              		.loc 1 329 0
+ 419 0008 7047     		bx	lr
+ 420              	.L28:
+ 421 000a C046     		.align	2
+ 422              	.L27:
+ 423 000c 00E100E0 		.word	-536813312
+ 424              		.cfi_endproc
+ 425              	.LFE9:
+ 426              		.size	QuadratureISR_GetState, .-QuadratureISR_GetState
+ 427              		.section	.text.QuadratureISR_Disable,"ax",%progbits
+ 428              		.align	1
+ 429              		.global	QuadratureISR_Disable
+ 430              		.code	16
+ 431              		.thumb_func
+ 432              		.type	QuadratureISR_Disable, %function
+ 433              	QuadratureISR_Disable:
+ 434              	.LFB10:
+ 347:Generated_Source\PSoC4/QuadratureISR.c ****     /* Disable the general interrupt. */
+ 435              		.loc 1 347 0
+ 436              		.cfi_startproc
+ 437              		@ args = 0, pretend = 0, frame = 0
+ 438              		@ frame_needed = 0, uses_anonymous_args = 0
+ 439              		@ link register save eliminated.
+ 440              		.loc 1 349 0
+ 441 0000 0122     		movs	r2, #1
+ 442 0002 014B     		ldr	r3, .L30
+ 350:Generated_Source\PSoC4/QuadratureISR.c **** }
+ 443              		.loc 1 350 0
+ 444              		@ sp needed
+ 349:Generated_Source\PSoC4/QuadratureISR.c **** }
+ 445              		.loc 1 349 0
+ 446 0004 1A60     		str	r2, [r3]
+ 447              		.loc 1 350 0
+ 448 0006 7047     		bx	lr
+ 449              	.L31:
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc6V5Gdt.s 			page 16
+
+
+ 450              		.align	2
+ 451              	.L30:
+ 452 0008 80E100E0 		.word	-536813184
+ 453              		.cfi_endproc
+ 454              	.LFE10:
+ 455              		.size	QuadratureISR_Disable, .-QuadratureISR_Disable
+ 456              		.section	.text.QuadratureISR_SetPending,"ax",%progbits
+ 457              		.align	1
+ 458              		.global	QuadratureISR_SetPending
+ 459              		.code	16
+ 460              		.thumb_func
+ 461              		.type	QuadratureISR_SetPending, %function
+ 462              	QuadratureISR_SetPending:
+ 463              	.LFB11:
+ 351:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 352:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 353:Generated_Source\PSoC4/QuadratureISR.c **** /*******************************************************************************
+ 354:Generated_Source\PSoC4/QuadratureISR.c **** * Function Name: QuadratureISR_SetPending
+ 355:Generated_Source\PSoC4/QuadratureISR.c **** ********************************************************************************
+ 356:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 357:Generated_Source\PSoC4/QuadratureISR.c **** * Summary:
+ 358:Generated_Source\PSoC4/QuadratureISR.c **** *   Causes the Interrupt to enter the pending state, a software method of
+ 359:Generated_Source\PSoC4/QuadratureISR.c **** *   generating the interrupt.
+ 360:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 361:Generated_Source\PSoC4/QuadratureISR.c **** * Parameters:
+ 362:Generated_Source\PSoC4/QuadratureISR.c **** *   None
+ 363:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 364:Generated_Source\PSoC4/QuadratureISR.c **** * Return:
+ 365:Generated_Source\PSoC4/QuadratureISR.c **** *   None
+ 366:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 367:Generated_Source\PSoC4/QuadratureISR.c **** * Side Effects:
+ 368:Generated_Source\PSoC4/QuadratureISR.c **** *   If interrupts are enabled and the interrupt is set up properly, the ISR is
+ 369:Generated_Source\PSoC4/QuadratureISR.c **** *   entered (depending on the priority of this interrupt and other pending 
+ 370:Generated_Source\PSoC4/QuadratureISR.c **** *   interrupts).
+ 371:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 372:Generated_Source\PSoC4/QuadratureISR.c **** *******************************************************************************/
+ 373:Generated_Source\PSoC4/QuadratureISR.c **** void QuadratureISR_SetPending(void)
+ 374:Generated_Source\PSoC4/QuadratureISR.c **** {
+ 464              		.loc 1 374 0
+ 465              		.cfi_startproc
+ 466              		@ args = 0, pretend = 0, frame = 0
+ 467              		@ frame_needed = 0, uses_anonymous_args = 0
+ 468              		@ link register save eliminated.
+ 375:Generated_Source\PSoC4/QuadratureISR.c ****     *QuadratureISR_INTC_SET_PD = QuadratureISR__INTC_MASK;
+ 469              		.loc 1 375 0
+ 470 0000 0122     		movs	r2, #1
+ 471 0002 014B     		ldr	r3, .L33
+ 376:Generated_Source\PSoC4/QuadratureISR.c **** }
+ 472              		.loc 1 376 0
+ 473              		@ sp needed
+ 375:Generated_Source\PSoC4/QuadratureISR.c ****     *QuadratureISR_INTC_SET_PD = QuadratureISR__INTC_MASK;
+ 474              		.loc 1 375 0
+ 475 0004 1A60     		str	r2, [r3]
+ 476              		.loc 1 376 0
+ 477 0006 7047     		bx	lr
+ 478              	.L34:
+ 479              		.align	2
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc6V5Gdt.s 			page 17
+
+
+ 480              	.L33:
+ 481 0008 00E200E0 		.word	-536813056
+ 482              		.cfi_endproc
+ 483              	.LFE11:
+ 484              		.size	QuadratureISR_SetPending, .-QuadratureISR_SetPending
+ 485              		.section	.text.QuadratureISR_ClearPending,"ax",%progbits
+ 486              		.align	1
+ 487              		.global	QuadratureISR_ClearPending
+ 488              		.code	16
+ 489              		.thumb_func
+ 490              		.type	QuadratureISR_ClearPending, %function
+ 491              	QuadratureISR_ClearPending:
+ 492              	.LFB12:
+ 377:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 378:Generated_Source\PSoC4/QuadratureISR.c **** 
+ 379:Generated_Source\PSoC4/QuadratureISR.c **** /*******************************************************************************
+ 380:Generated_Source\PSoC4/QuadratureISR.c **** * Function Name: QuadratureISR_ClearPending
+ 381:Generated_Source\PSoC4/QuadratureISR.c **** ********************************************************************************
+ 382:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 383:Generated_Source\PSoC4/QuadratureISR.c **** * Summary:
+ 384:Generated_Source\PSoC4/QuadratureISR.c **** *   Clears a pending interrupt in the interrupt controller.
+ 385:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 386:Generated_Source\PSoC4/QuadratureISR.c **** *   Note Some interrupt sources are clear-on-read and require the block 
+ 387:Generated_Source\PSoC4/QuadratureISR.c **** *   interrupt/status register to be read/cleared with the appropriate block API 
+ 388:Generated_Source\PSoC4/QuadratureISR.c **** *   (GPIO, UART, and so on). Otherwise the ISR will continue to remain in 
+ 389:Generated_Source\PSoC4/QuadratureISR.c **** *   pending state even though the interrupt itself is cleared using this API.
+ 390:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 391:Generated_Source\PSoC4/QuadratureISR.c **** * Parameters:
+ 392:Generated_Source\PSoC4/QuadratureISR.c **** *   None
+ 393:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 394:Generated_Source\PSoC4/QuadratureISR.c **** * Return:
+ 395:Generated_Source\PSoC4/QuadratureISR.c **** *   None
+ 396:Generated_Source\PSoC4/QuadratureISR.c **** *
+ 397:Generated_Source\PSoC4/QuadratureISR.c **** *******************************************************************************/
+ 398:Generated_Source\PSoC4/QuadratureISR.c **** void QuadratureISR_ClearPending(void)
+ 399:Generated_Source\PSoC4/QuadratureISR.c **** {
+ 493              		.loc 1 399 0
+ 494              		.cfi_startproc
+ 495              		@ args = 0, pretend = 0, frame = 0
+ 496              		@ frame_needed = 0, uses_anonymous_args = 0
+ 497              		@ link register save eliminated.
+ 400:Generated_Source\PSoC4/QuadratureISR.c ****     *QuadratureISR_INTC_CLR_PD = QuadratureISR__INTC_MASK;
+ 498              		.loc 1 400 0
+ 499 0000 0122     		movs	r2, #1
+ 500 0002 014B     		ldr	r3, .L36
+ 401:Generated_Source\PSoC4/QuadratureISR.c **** }
+ 501              		.loc 1 401 0
+ 502              		@ sp needed
+ 400:Generated_Source\PSoC4/QuadratureISR.c ****     *QuadratureISR_INTC_CLR_PD = QuadratureISR__INTC_MASK;
+ 503              		.loc 1 400 0
+ 504 0004 1A60     		str	r2, [r3]
+ 505              		.loc 1 401 0
+ 506 0006 7047     		bx	lr
+ 507              	.L37:
+ 508              		.align	2
+ 509              	.L36:
+ 510 0008 80E200E0 		.word	-536812928
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc6V5Gdt.s 			page 18
+
+
+ 511              		.cfi_endproc
+ 512              	.LFE12:
+ 513              		.size	QuadratureISR_ClearPending, .-QuadratureISR_ClearPending
+ 514              		.text
+ 515              	.Letext0:
+ 516              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+ 517              		.file 3 "Generated_Source\\PSoC4/CyLib.h"
+ 518              		.section	.debug_info,"",%progbits
+ 519              	.Ldebug_info0:
+ 520 0000 47030000 		.4byte	0x347
+ 521 0004 0400     		.2byte	0x4
+ 522 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 523 000a 04       		.byte	0x4
+ 524 000b 01       		.uleb128 0x1
+ 525 000c E7010000 		.4byte	.LASF34
+ 526 0010 0C       		.byte	0xc
+ 527 0011 20000000 		.4byte	.LASF35
+ 528 0015 01010000 		.4byte	.LASF36
+ 529 0019 80000000 		.4byte	.Ldebug_ranges0+0x80
+ 530 001d 00000000 		.4byte	0
+ 531 0021 00000000 		.4byte	.Ldebug_line0
+ 532 0025 02       		.uleb128 0x2
+ 533 0026 01       		.byte	0x1
+ 534 0027 06       		.byte	0x6
+ 535 0028 17030000 		.4byte	.LASF0
+ 536 002c 02       		.uleb128 0x2
+ 537 002d 01       		.byte	0x1
+ 538 002e 08       		.byte	0x8
+ 539 002f B4000000 		.4byte	.LASF1
+ 540 0033 02       		.uleb128 0x2
+ 541 0034 02       		.byte	0x2
+ 542 0035 05       		.byte	0x5
+ 543 0036 C9020000 		.4byte	.LASF2
+ 544 003a 02       		.uleb128 0x2
+ 545 003b 02       		.byte	0x2
+ 546 003c 07       		.byte	0x7
+ 547 003d 6F000000 		.4byte	.LASF3
+ 548 0041 02       		.uleb128 0x2
+ 549 0042 04       		.byte	0x4
+ 550 0043 05       		.byte	0x5
+ 551 0044 0E030000 		.4byte	.LASF4
+ 552 0048 02       		.uleb128 0x2
+ 553 0049 04       		.byte	0x4
+ 554 004a 07       		.byte	0x7
+ 555 004b E9000000 		.4byte	.LASF5
+ 556 004f 02       		.uleb128 0x2
+ 557 0050 08       		.byte	0x8
+ 558 0051 05       		.byte	0x5
+ 559 0052 89020000 		.4byte	.LASF6
+ 560 0056 02       		.uleb128 0x2
+ 561 0057 08       		.byte	0x8
+ 562 0058 07       		.byte	0x7
+ 563 0059 9D000000 		.4byte	.LASF7
+ 564 005d 03       		.uleb128 0x3
+ 565 005e 04       		.byte	0x4
+ 566 005f 05       		.byte	0x5
+ 567 0060 696E7400 		.ascii	"int\000"
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc6V5Gdt.s 			page 19
+
+
+ 568 0064 02       		.uleb128 0x2
+ 569 0065 04       		.byte	0x4
+ 570 0066 07       		.byte	0x7
+ 571 0067 AF010000 		.4byte	.LASF8
+ 572 006b 04       		.uleb128 0x4
+ 573 006c FB000000 		.4byte	.LASF9
+ 574 0070 02       		.byte	0x2
+ 575 0071 E401     		.2byte	0x1e4
+ 576 0073 2C000000 		.4byte	0x2c
+ 577 0077 04       		.uleb128 0x4
+ 578 0078 7B010000 		.4byte	.LASF10
+ 579 007c 02       		.byte	0x2
+ 580 007d E601     		.2byte	0x1e6
+ 581 007f 48000000 		.4byte	0x48
+ 582 0083 02       		.uleb128 0x2
+ 583 0084 04       		.byte	0x4
+ 584 0085 04       		.byte	0x4
+ 585 0086 97000000 		.4byte	.LASF11
+ 586 008a 02       		.uleb128 0x2
+ 587 008b 08       		.byte	0x8
+ 588 008c 04       		.byte	0x4
+ 589 008d 74010000 		.4byte	.LASF12
+ 590 0091 02       		.uleb128 0x2
+ 591 0092 01       		.byte	0x1
+ 592 0093 08       		.byte	0x8
+ 593 0094 97020000 		.4byte	.LASF13
+ 594 0098 04       		.uleb128 0x4
+ 595 0099 00000000 		.4byte	.LASF14
+ 596 009d 02       		.byte	0x2
+ 597 009e 9002     		.2byte	0x290
+ 598 00a0 A4000000 		.4byte	0xa4
+ 599 00a4 05       		.uleb128 0x5
+ 600 00a5 77000000 		.4byte	0x77
+ 601 00a9 04       		.uleb128 0x4
+ 602 00aa DA010000 		.4byte	.LASF15
+ 603 00ae 02       		.byte	0x2
+ 604 00af A002     		.2byte	0x2a0
+ 605 00b1 B5000000 		.4byte	0xb5
+ 606 00b5 06       		.uleb128 0x6
+ 607 00b6 04       		.byte	0x4
+ 608 00b7 BB000000 		.4byte	0xbb
+ 609 00bb 07       		.uleb128 0x7
+ 610 00bc 02       		.uleb128 0x2
+ 611 00bd 04       		.byte	0x4
+ 612 00be 07       		.byte	0x7
+ 613 00bf 80020000 		.4byte	.LASF16
+ 614 00c3 08       		.uleb128 0x8
+ 615 00c4 82000000 		.4byte	.LASF17
+ 616 00c8 01       		.byte	0x1
+ 617 00c9 3001     		.2byte	0x130
+ 618 00cb 01       		.byte	0x1
+ 619 00cc 09       		.uleb128 0x9
+ 620 00cd C2000000 		.4byte	.LASF37
+ 621 00d1 01       		.byte	0x1
+ 622 00d2 C7       		.byte	0xc7
+ 623 00d3 01       		.byte	0x1
+ 624 00d4 E4000000 		.4byte	0xe4
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc6V5Gdt.s 			page 20
+
+
+ 625 00d8 0A       		.uleb128 0xa
+ 626 00d9 BC010000 		.4byte	.LASF26
+ 627 00dd 01       		.byte	0x1
+ 628 00de C7       		.byte	0xc7
+ 629 00df A9000000 		.4byte	0xa9
+ 630 00e3 00       		.byte	0
+ 631 00e4 08       		.uleb128 0x8
+ 632 00e5 45010000 		.4byte	.LASF18
+ 633 00e9 01       		.byte	0x1
+ 634 00ea 5A01     		.2byte	0x15a
+ 635 00ec 01       		.byte	0x1
+ 636 00ed 0B       		.uleb128 0xb
+ 637 00ee E7020000 		.4byte	.LASF29
+ 638 00f2 01       		.byte	0x1
+ 639 00f3 9F       		.byte	0x9f
+ 640 00f4 00000000 		.4byte	.LFB3
+ 641 00f8 02000000 		.4byte	.LFE3-.LFB3
+ 642 00fc 01       		.uleb128 0x1
+ 643 00fd 9C       		.byte	0x9c
+ 644 00fe 0C       		.uleb128 0xc
+ 645 00ff B6020000 		.4byte	.LASF19
+ 646 0103 01       		.byte	0x1
+ 647 0104 81       		.byte	0x81
+ 648 0105 00000000 		.4byte	.LFB2
+ 649 0109 1C000000 		.4byte	.LFE2-.LFB2
+ 650 010d 01       		.uleb128 0x1
+ 651 010e 9C       		.byte	0x9c
+ 652 010f 38010000 		.4byte	0x138
+ 653 0113 0D       		.uleb128 0xd
+ 654 0114 E4000000 		.4byte	0xe4
+ 655 0118 00000000 		.4byte	.LBB18
+ 656 011c 00000000 		.4byte	.Ldebug_ranges0+0
+ 657 0120 01       		.byte	0x1
+ 658 0121 84       		.byte	0x84
+ 659 0122 0E       		.uleb128 0xe
+ 660 0123 CC000000 		.4byte	0xcc
+ 661 0127 06000000 		.4byte	.LBB22
+ 662 012b 06000000 		.4byte	.LBE22-.LBB22
+ 663 012f 01       		.byte	0x1
+ 664 0130 87       		.byte	0x87
+ 665 0131 0F       		.uleb128 0xf
+ 666 0132 D8000000 		.4byte	0xd8
+ 667 0136 00       		.byte	0
+ 668 0137 00       		.byte	0
+ 669 0138 10       		.uleb128 0x10
+ 670 0139 CC000000 		.4byte	0xcc
+ 671 013d 00000000 		.4byte	.LFB4
+ 672 0141 0C000000 		.4byte	.LFE4-.LFB4
+ 673 0145 01       		.uleb128 0x1
+ 674 0146 9C       		.byte	0x9c
+ 675 0147 53010000 		.4byte	0x153
+ 676 014b 11       		.uleb128 0x11
+ 677 014c D8000000 		.4byte	0xd8
+ 678 0150 01       		.uleb128 0x1
+ 679 0151 50       		.byte	0x50
+ 680 0152 00       		.byte	0
+ 681 0153 12       		.uleb128 0x12
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc6V5Gdt.s 			page 21
+
+
+ 682 0154 23030000 		.4byte	.LASF27
+ 683 0158 01       		.byte	0x1
+ 684 0159 DB       		.byte	0xdb
+ 685 015a A9000000 		.4byte	0xa9
+ 686 015e 00000000 		.4byte	.LFB5
+ 687 0162 0C000000 		.4byte	.LFE5-.LFB5
+ 688 0166 01       		.uleb128 0x1
+ 689 0167 9C       		.byte	0x9c
+ 690 0168 0C       		.uleb128 0xc
+ 691 0169 06000000 		.4byte	.LASF20
+ 692 016d 01       		.byte	0x1
+ 693 016e F9       		.byte	0xf9
+ 694 016f 00000000 		.4byte	.LFB6
+ 695 0173 20000000 		.4byte	.LFE6-.LFB6
+ 696 0177 01       		.uleb128 0x1
+ 697 0178 9C       		.byte	0x9c
+ 698 0179 BA010000 		.4byte	0x1ba
+ 699 017d 13       		.uleb128 0x13
+ 700 017e 3C010000 		.4byte	.LASF25
+ 701 0182 01       		.byte	0x1
+ 702 0183 F9       		.byte	0xf9
+ 703 0184 6B000000 		.4byte	0x6b
+ 704 0188 00000000 		.4byte	.LLST0
+ 705 018c 14       		.uleb128 0x14
+ 706 018d DA000000 		.4byte	.LASF21
+ 707 0191 01       		.byte	0x1
+ 708 0192 FB       		.byte	0xfb
+ 709 0193 6B000000 		.4byte	0x6b
+ 710 0197 21000000 		.4byte	.LLST1
+ 711 019b 15       		.uleb128 0x15
+ 712 019c FF020000 		.4byte	.LASF22
+ 713 01a0 01       		.byte	0x1
+ 714 01a1 FC       		.byte	0xfc
+ 715 01a2 77000000 		.4byte	0x77
+ 716 01a6 06       		.byte	0x6
+ 717 01a7 16       		.uleb128 0x16
+ 718 01a8 08000000 		.4byte	.LVL4
+ 719 01ac 34030000 		.4byte	0x334
+ 720 01b0 16       		.uleb128 0x16
+ 721 01b1 1A000000 		.4byte	.LVL5
+ 722 01b5 3F030000 		.4byte	0x33f
+ 723 01b9 00       		.byte	0
+ 724 01ba 0C       		.uleb128 0xc
+ 725 01bb D3020000 		.4byte	.LASF23
+ 726 01bf 01       		.byte	0x1
+ 727 01c0 38       		.byte	0x38
+ 728 01c1 00000000 		.4byte	.LFB0
+ 729 01c5 2C000000 		.4byte	.LFE0-.LFB0
+ 730 01c9 01       		.uleb128 0x1
+ 731 01ca 9C       		.byte	0x9c
+ 732 01cb 1A020000 		.4byte	0x21a
+ 733 01cf 0D       		.uleb128 0xd
+ 734 01d0 E4000000 		.4byte	0xe4
+ 735 01d4 02000000 		.4byte	.LBB24
+ 736 01d8 18000000 		.4byte	.Ldebug_ranges0+0x18
+ 737 01dc 01       		.byte	0x1
+ 738 01dd 3B       		.byte	0x3b
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc6V5Gdt.s 			page 22
+
+
+ 739 01de 17       		.uleb128 0x17
+ 740 01df CC000000 		.4byte	0xcc
+ 741 01e3 06000000 		.4byte	.LBB27
+ 742 01e7 30000000 		.4byte	.Ldebug_ranges0+0x30
+ 743 01eb 01       		.byte	0x1
+ 744 01ec 3E       		.byte	0x3e
+ 745 01ed FB010000 		.4byte	0x1fb
+ 746 01f1 18       		.uleb128 0x18
+ 747 01f2 D8000000 		.4byte	0xd8
+ 748 01f6 34000000 		.4byte	.LLST2
+ 749 01fa 00       		.byte	0
+ 750 01fb 0D       		.uleb128 0xd
+ 751 01fc C3000000 		.4byte	0xc3
+ 752 0200 14000000 		.4byte	.LBB34
+ 753 0204 50000000 		.4byte	.Ldebug_ranges0+0x50
+ 754 0208 01       		.byte	0x1
+ 755 0209 44       		.byte	0x44
+ 756 020a 19       		.uleb128 0x19
+ 757 020b 14000000 		.4byte	.LVL8
+ 758 020f 68010000 		.4byte	0x168
+ 759 0213 1A       		.uleb128 0x1a
+ 760 0214 01       		.uleb128 0x1
+ 761 0215 50       		.byte	0x50
+ 762 0216 01       		.uleb128 0x1
+ 763 0217 33       		.byte	0x33
+ 764 0218 00       		.byte	0
+ 765 0219 00       		.byte	0
+ 766 021a 0C       		.uleb128 0xc
+ 767 021b 99010000 		.4byte	.LASF24
+ 768 021f 01       		.byte	0x1
+ 769 0220 63       		.byte	0x63
+ 770 0221 00000000 		.4byte	.LFB1
+ 771 0225 24000000 		.4byte	.LFE1-.LFB1
+ 772 0229 01       		.uleb128 0x1
+ 773 022a 9C       		.byte	0x9c
+ 774 022b 89020000 		.4byte	0x289
+ 775 022f 13       		.uleb128 0x13
+ 776 0230 BC010000 		.4byte	.LASF26
+ 777 0234 01       		.byte	0x1
+ 778 0235 63       		.byte	0x63
+ 779 0236 A9000000 		.4byte	0xa9
+ 780 023a 4C000000 		.4byte	.LLST3
+ 781 023e 0D       		.uleb128 0xd
+ 782 023f E4000000 		.4byte	0xe4
+ 783 0243 02000000 		.4byte	.LBB38
+ 784 0247 68000000 		.4byte	.Ldebug_ranges0+0x68
+ 785 024b 01       		.byte	0x1
+ 786 024c 66       		.byte	0x66
+ 787 024d 1B       		.uleb128 0x1b
+ 788 024e CC000000 		.4byte	0xcc
+ 789 0252 08000000 		.4byte	.LBB42
+ 790 0256 04000000 		.4byte	.LBE42-.LBB42
+ 791 025a 01       		.byte	0x1
+ 792 025b 69       		.byte	0x69
+ 793 025c 6A020000 		.4byte	0x26a
+ 794 0260 18       		.uleb128 0x18
+ 795 0261 D8000000 		.4byte	0xd8
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc6V5Gdt.s 			page 23
+
+
+ 796 0265 7A000000 		.4byte	.LLST4
+ 797 0269 00       		.byte	0
+ 798 026a 1C       		.uleb128 0x1c
+ 799 026b C3000000 		.4byte	0xc3
+ 800 026f 12000000 		.4byte	.LBB44
+ 801 0273 04000000 		.4byte	.LBE44-.LBB44
+ 802 0277 01       		.byte	0x1
+ 803 0278 6F       		.byte	0x6f
+ 804 0279 19       		.uleb128 0x19
+ 805 027a 12000000 		.4byte	.LVL13
+ 806 027e 68010000 		.4byte	0x168
+ 807 0282 1A       		.uleb128 0x1a
+ 808 0283 01       		.uleb128 0x1
+ 809 0284 50       		.byte	0x50
+ 810 0285 01       		.uleb128 0x1
+ 811 0286 33       		.byte	0x33
+ 812 0287 00       		.byte	0
+ 813 0288 00       		.byte	0
+ 814 0289 1D       		.uleb128 0x1d
+ 815 028a 9C020000 		.4byte	.LASF38
+ 816 028e 01       		.byte	0x1
+ 817 028f 1501     		.2byte	0x115
+ 818 0291 6B000000 		.4byte	0x6b
+ 819 0295 00000000 		.4byte	.LFB7
+ 820 0299 10000000 		.4byte	.LFE7-.LFB7
+ 821 029d 01       		.uleb128 0x1
+ 822 029e 9C       		.byte	0x9c
+ 823 029f C1020000 		.4byte	0x2c1
+ 824 02a3 1E       		.uleb128 0x1e
+ 825 02a4 3C010000 		.4byte	.LASF25
+ 826 02a8 01       		.byte	0x1
+ 827 02a9 1701     		.2byte	0x117
+ 828 02ab 77000000 		.4byte	0x77
+ 829 02af 8D000000 		.4byte	.LLST5
+ 830 02b3 1F       		.uleb128 0x1f
+ 831 02b4 FF020000 		.4byte	.LASF22
+ 832 02b8 01       		.byte	0x1
+ 833 02b9 1801     		.2byte	0x118
+ 834 02bb 77000000 		.4byte	0x77
+ 835 02bf 06       		.byte	0x6
+ 836 02c0 00       		.byte	0
+ 837 02c1 20       		.uleb128 0x20
+ 838 02c2 C3000000 		.4byte	0xc3
+ 839 02c6 00000000 		.4byte	.LFB8
+ 840 02ca 0C000000 		.4byte	.LFE8-.LFB8
+ 841 02ce 01       		.uleb128 0x1
+ 842 02cf 9C       		.byte	0x9c
+ 843 02d0 21       		.uleb128 0x21
+ 844 02d1 3B030000 		.4byte	.LASF28
+ 845 02d5 01       		.byte	0x1
+ 846 02d6 4501     		.2byte	0x145
+ 847 02d8 6B000000 		.4byte	0x6b
+ 848 02dc 00000000 		.4byte	.LFB9
+ 849 02e0 10000000 		.4byte	.LFE9-.LFB9
+ 850 02e4 01       		.uleb128 0x1
+ 851 02e5 9C       		.byte	0x9c
+ 852 02e6 20       		.uleb128 0x20
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc6V5Gdt.s 			page 24
+
+
+ 853 02e7 E4000000 		.4byte	0xe4
+ 854 02eb 00000000 		.4byte	.LFB10
+ 855 02ef 0C000000 		.4byte	.LFE10-.LFB10
+ 856 02f3 01       		.uleb128 0x1
+ 857 02f4 9C       		.byte	0x9c
+ 858 02f5 22       		.uleb128 0x22
+ 859 02f6 5B010000 		.4byte	.LASF30
+ 860 02fa 01       		.byte	0x1
+ 861 02fb 7501     		.2byte	0x175
+ 862 02fd 00000000 		.4byte	.LFB11
+ 863 0301 0C000000 		.4byte	.LFE11-.LFB11
+ 864 0305 01       		.uleb128 0x1
+ 865 0306 9C       		.byte	0x9c
+ 866 0307 22       		.uleb128 0x22
+ 867 0308 47000000 		.4byte	.LASF31
+ 868 030c 01       		.byte	0x1
+ 869 030d 8E01     		.2byte	0x18e
+ 870 030f 00000000 		.4byte	.LFB12
+ 871 0313 0C000000 		.4byte	.LFE12-.LFB12
+ 872 0317 01       		.uleb128 0x1
+ 873 0318 9C       		.byte	0x9c
+ 874 0319 23       		.uleb128 0x23
+ 875 031a A9000000 		.4byte	0xa9
+ 876 031e 29030000 		.4byte	0x329
+ 877 0322 24       		.uleb128 0x24
+ 878 0323 BC000000 		.4byte	0xbc
+ 879 0327 2F       		.byte	0x2f
+ 880 0328 00       		.byte	0
+ 881 0329 25       		.uleb128 0x25
+ 882 032a 62000000 		.4byte	.LASF39
+ 883 032e 01       		.byte	0x1
+ 884 032f 21       		.byte	0x21
+ 885 0330 19030000 		.4byte	0x319
+ 886 0334 26       		.uleb128 0x26
+ 887 0335 82010000 		.4byte	.LASF32
+ 888 0339 82010000 		.4byte	.LASF32
+ 889 033d 03       		.byte	0x3
+ 890 033e E5       		.byte	0xe5
+ 891 033f 26       		.uleb128 0x26
+ 892 0340 C4010000 		.4byte	.LASF33
+ 893 0344 C4010000 		.4byte	.LASF33
+ 894 0348 03       		.byte	0x3
+ 895 0349 E6       		.byte	0xe6
+ 896 034a 00       		.byte	0
+ 897              		.section	.debug_abbrev,"",%progbits
+ 898              	.Ldebug_abbrev0:
+ 899 0000 01       		.uleb128 0x1
+ 900 0001 11       		.uleb128 0x11
+ 901 0002 01       		.byte	0x1
+ 902 0003 25       		.uleb128 0x25
+ 903 0004 0E       		.uleb128 0xe
+ 904 0005 13       		.uleb128 0x13
+ 905 0006 0B       		.uleb128 0xb
+ 906 0007 03       		.uleb128 0x3
+ 907 0008 0E       		.uleb128 0xe
+ 908 0009 1B       		.uleb128 0x1b
+ 909 000a 0E       		.uleb128 0xe
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc6V5Gdt.s 			page 25
+
+
+ 910 000b 55       		.uleb128 0x55
+ 911 000c 17       		.uleb128 0x17
+ 912 000d 11       		.uleb128 0x11
+ 913 000e 01       		.uleb128 0x1
+ 914 000f 10       		.uleb128 0x10
+ 915 0010 17       		.uleb128 0x17
+ 916 0011 00       		.byte	0
+ 917 0012 00       		.byte	0
+ 918 0013 02       		.uleb128 0x2
+ 919 0014 24       		.uleb128 0x24
+ 920 0015 00       		.byte	0
+ 921 0016 0B       		.uleb128 0xb
+ 922 0017 0B       		.uleb128 0xb
+ 923 0018 3E       		.uleb128 0x3e
+ 924 0019 0B       		.uleb128 0xb
+ 925 001a 03       		.uleb128 0x3
+ 926 001b 0E       		.uleb128 0xe
+ 927 001c 00       		.byte	0
+ 928 001d 00       		.byte	0
+ 929 001e 03       		.uleb128 0x3
+ 930 001f 24       		.uleb128 0x24
+ 931 0020 00       		.byte	0
+ 932 0021 0B       		.uleb128 0xb
+ 933 0022 0B       		.uleb128 0xb
+ 934 0023 3E       		.uleb128 0x3e
+ 935 0024 0B       		.uleb128 0xb
+ 936 0025 03       		.uleb128 0x3
+ 937 0026 08       		.uleb128 0x8
+ 938 0027 00       		.byte	0
+ 939 0028 00       		.byte	0
+ 940 0029 04       		.uleb128 0x4
+ 941 002a 16       		.uleb128 0x16
+ 942 002b 00       		.byte	0
+ 943 002c 03       		.uleb128 0x3
+ 944 002d 0E       		.uleb128 0xe
+ 945 002e 3A       		.uleb128 0x3a
+ 946 002f 0B       		.uleb128 0xb
+ 947 0030 3B       		.uleb128 0x3b
+ 948 0031 05       		.uleb128 0x5
+ 949 0032 49       		.uleb128 0x49
+ 950 0033 13       		.uleb128 0x13
+ 951 0034 00       		.byte	0
+ 952 0035 00       		.byte	0
+ 953 0036 05       		.uleb128 0x5
+ 954 0037 35       		.uleb128 0x35
+ 955 0038 00       		.byte	0
+ 956 0039 49       		.uleb128 0x49
+ 957 003a 13       		.uleb128 0x13
+ 958 003b 00       		.byte	0
+ 959 003c 00       		.byte	0
+ 960 003d 06       		.uleb128 0x6
+ 961 003e 0F       		.uleb128 0xf
+ 962 003f 00       		.byte	0
+ 963 0040 0B       		.uleb128 0xb
+ 964 0041 0B       		.uleb128 0xb
+ 965 0042 49       		.uleb128 0x49
+ 966 0043 13       		.uleb128 0x13
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc6V5Gdt.s 			page 26
+
+
+ 967 0044 00       		.byte	0
+ 968 0045 00       		.byte	0
+ 969 0046 07       		.uleb128 0x7
+ 970 0047 15       		.uleb128 0x15
+ 971 0048 00       		.byte	0
+ 972 0049 27       		.uleb128 0x27
+ 973 004a 19       		.uleb128 0x19
+ 974 004b 00       		.byte	0
+ 975 004c 00       		.byte	0
+ 976 004d 08       		.uleb128 0x8
+ 977 004e 2E       		.uleb128 0x2e
+ 978 004f 00       		.byte	0
+ 979 0050 3F       		.uleb128 0x3f
+ 980 0051 19       		.uleb128 0x19
+ 981 0052 03       		.uleb128 0x3
+ 982 0053 0E       		.uleb128 0xe
+ 983 0054 3A       		.uleb128 0x3a
+ 984 0055 0B       		.uleb128 0xb
+ 985 0056 3B       		.uleb128 0x3b
+ 986 0057 05       		.uleb128 0x5
+ 987 0058 27       		.uleb128 0x27
+ 988 0059 19       		.uleb128 0x19
+ 989 005a 20       		.uleb128 0x20
+ 990 005b 0B       		.uleb128 0xb
+ 991 005c 00       		.byte	0
+ 992 005d 00       		.byte	0
+ 993 005e 09       		.uleb128 0x9
+ 994 005f 2E       		.uleb128 0x2e
+ 995 0060 01       		.byte	0x1
+ 996 0061 3F       		.uleb128 0x3f
+ 997 0062 19       		.uleb128 0x19
+ 998 0063 03       		.uleb128 0x3
+ 999 0064 0E       		.uleb128 0xe
+ 1000 0065 3A       		.uleb128 0x3a
+ 1001 0066 0B       		.uleb128 0xb
+ 1002 0067 3B       		.uleb128 0x3b
+ 1003 0068 0B       		.uleb128 0xb
+ 1004 0069 27       		.uleb128 0x27
+ 1005 006a 19       		.uleb128 0x19
+ 1006 006b 20       		.uleb128 0x20
+ 1007 006c 0B       		.uleb128 0xb
+ 1008 006d 01       		.uleb128 0x1
+ 1009 006e 13       		.uleb128 0x13
+ 1010 006f 00       		.byte	0
+ 1011 0070 00       		.byte	0
+ 1012 0071 0A       		.uleb128 0xa
+ 1013 0072 05       		.uleb128 0x5
+ 1014 0073 00       		.byte	0
+ 1015 0074 03       		.uleb128 0x3
+ 1016 0075 0E       		.uleb128 0xe
+ 1017 0076 3A       		.uleb128 0x3a
+ 1018 0077 0B       		.uleb128 0xb
+ 1019 0078 3B       		.uleb128 0x3b
+ 1020 0079 0B       		.uleb128 0xb
+ 1021 007a 49       		.uleb128 0x49
+ 1022 007b 13       		.uleb128 0x13
+ 1023 007c 00       		.byte	0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc6V5Gdt.s 			page 27
+
+
+ 1024 007d 00       		.byte	0
+ 1025 007e 0B       		.uleb128 0xb
+ 1026 007f 2E       		.uleb128 0x2e
+ 1027 0080 00       		.byte	0
+ 1028 0081 3F       		.uleb128 0x3f
+ 1029 0082 19       		.uleb128 0x19
+ 1030 0083 03       		.uleb128 0x3
+ 1031 0084 0E       		.uleb128 0xe
+ 1032 0085 3A       		.uleb128 0x3a
+ 1033 0086 0B       		.uleb128 0xb
+ 1034 0087 3B       		.uleb128 0x3b
+ 1035 0088 0B       		.uleb128 0xb
+ 1036 0089 27       		.uleb128 0x27
+ 1037 008a 19       		.uleb128 0x19
+ 1038 008b 11       		.uleb128 0x11
+ 1039 008c 01       		.uleb128 0x1
+ 1040 008d 12       		.uleb128 0x12
+ 1041 008e 06       		.uleb128 0x6
+ 1042 008f 40       		.uleb128 0x40
+ 1043 0090 18       		.uleb128 0x18
+ 1044 0091 9742     		.uleb128 0x2117
+ 1045 0093 19       		.uleb128 0x19
+ 1046 0094 00       		.byte	0
+ 1047 0095 00       		.byte	0
+ 1048 0096 0C       		.uleb128 0xc
+ 1049 0097 2E       		.uleb128 0x2e
+ 1050 0098 01       		.byte	0x1
+ 1051 0099 3F       		.uleb128 0x3f
+ 1052 009a 19       		.uleb128 0x19
+ 1053 009b 03       		.uleb128 0x3
+ 1054 009c 0E       		.uleb128 0xe
+ 1055 009d 3A       		.uleb128 0x3a
+ 1056 009e 0B       		.uleb128 0xb
+ 1057 009f 3B       		.uleb128 0x3b
+ 1058 00a0 0B       		.uleb128 0xb
+ 1059 00a1 27       		.uleb128 0x27
+ 1060 00a2 19       		.uleb128 0x19
+ 1061 00a3 11       		.uleb128 0x11
+ 1062 00a4 01       		.uleb128 0x1
+ 1063 00a5 12       		.uleb128 0x12
+ 1064 00a6 06       		.uleb128 0x6
+ 1065 00a7 40       		.uleb128 0x40
+ 1066 00a8 18       		.uleb128 0x18
+ 1067 00a9 9742     		.uleb128 0x2117
+ 1068 00ab 19       		.uleb128 0x19
+ 1069 00ac 01       		.uleb128 0x1
+ 1070 00ad 13       		.uleb128 0x13
+ 1071 00ae 00       		.byte	0
+ 1072 00af 00       		.byte	0
+ 1073 00b0 0D       		.uleb128 0xd
+ 1074 00b1 1D       		.uleb128 0x1d
+ 1075 00b2 00       		.byte	0
+ 1076 00b3 31       		.uleb128 0x31
+ 1077 00b4 13       		.uleb128 0x13
+ 1078 00b5 52       		.uleb128 0x52
+ 1079 00b6 01       		.uleb128 0x1
+ 1080 00b7 55       		.uleb128 0x55
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc6V5Gdt.s 			page 28
+
+
+ 1081 00b8 17       		.uleb128 0x17
+ 1082 00b9 58       		.uleb128 0x58
+ 1083 00ba 0B       		.uleb128 0xb
+ 1084 00bb 59       		.uleb128 0x59
+ 1085 00bc 0B       		.uleb128 0xb
+ 1086 00bd 00       		.byte	0
+ 1087 00be 00       		.byte	0
+ 1088 00bf 0E       		.uleb128 0xe
+ 1089 00c0 1D       		.uleb128 0x1d
+ 1090 00c1 01       		.byte	0x1
+ 1091 00c2 31       		.uleb128 0x31
+ 1092 00c3 13       		.uleb128 0x13
+ 1093 00c4 11       		.uleb128 0x11
+ 1094 00c5 01       		.uleb128 0x1
+ 1095 00c6 12       		.uleb128 0x12
+ 1096 00c7 06       		.uleb128 0x6
+ 1097 00c8 58       		.uleb128 0x58
+ 1098 00c9 0B       		.uleb128 0xb
+ 1099 00ca 59       		.uleb128 0x59
+ 1100 00cb 0B       		.uleb128 0xb
+ 1101 00cc 00       		.byte	0
+ 1102 00cd 00       		.byte	0
+ 1103 00ce 0F       		.uleb128 0xf
+ 1104 00cf 05       		.uleb128 0x5
+ 1105 00d0 00       		.byte	0
+ 1106 00d1 31       		.uleb128 0x31
+ 1107 00d2 13       		.uleb128 0x13
+ 1108 00d3 00       		.byte	0
+ 1109 00d4 00       		.byte	0
+ 1110 00d5 10       		.uleb128 0x10
+ 1111 00d6 2E       		.uleb128 0x2e
+ 1112 00d7 01       		.byte	0x1
+ 1113 00d8 31       		.uleb128 0x31
+ 1114 00d9 13       		.uleb128 0x13
+ 1115 00da 11       		.uleb128 0x11
+ 1116 00db 01       		.uleb128 0x1
+ 1117 00dc 12       		.uleb128 0x12
+ 1118 00dd 06       		.uleb128 0x6
+ 1119 00de 40       		.uleb128 0x40
+ 1120 00df 18       		.uleb128 0x18
+ 1121 00e0 9742     		.uleb128 0x2117
+ 1122 00e2 19       		.uleb128 0x19
+ 1123 00e3 01       		.uleb128 0x1
+ 1124 00e4 13       		.uleb128 0x13
+ 1125 00e5 00       		.byte	0
+ 1126 00e6 00       		.byte	0
+ 1127 00e7 11       		.uleb128 0x11
+ 1128 00e8 05       		.uleb128 0x5
+ 1129 00e9 00       		.byte	0
+ 1130 00ea 31       		.uleb128 0x31
+ 1131 00eb 13       		.uleb128 0x13
+ 1132 00ec 02       		.uleb128 0x2
+ 1133 00ed 18       		.uleb128 0x18
+ 1134 00ee 00       		.byte	0
+ 1135 00ef 00       		.byte	0
+ 1136 00f0 12       		.uleb128 0x12
+ 1137 00f1 2E       		.uleb128 0x2e
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc6V5Gdt.s 			page 29
+
+
+ 1138 00f2 00       		.byte	0
+ 1139 00f3 3F       		.uleb128 0x3f
+ 1140 00f4 19       		.uleb128 0x19
+ 1141 00f5 03       		.uleb128 0x3
+ 1142 00f6 0E       		.uleb128 0xe
+ 1143 00f7 3A       		.uleb128 0x3a
+ 1144 00f8 0B       		.uleb128 0xb
+ 1145 00f9 3B       		.uleb128 0x3b
+ 1146 00fa 0B       		.uleb128 0xb
+ 1147 00fb 27       		.uleb128 0x27
+ 1148 00fc 19       		.uleb128 0x19
+ 1149 00fd 49       		.uleb128 0x49
+ 1150 00fe 13       		.uleb128 0x13
+ 1151 00ff 11       		.uleb128 0x11
+ 1152 0100 01       		.uleb128 0x1
+ 1153 0101 12       		.uleb128 0x12
+ 1154 0102 06       		.uleb128 0x6
+ 1155 0103 40       		.uleb128 0x40
+ 1156 0104 18       		.uleb128 0x18
+ 1157 0105 9742     		.uleb128 0x2117
+ 1158 0107 19       		.uleb128 0x19
+ 1159 0108 00       		.byte	0
+ 1160 0109 00       		.byte	0
+ 1161 010a 13       		.uleb128 0x13
+ 1162 010b 05       		.uleb128 0x5
+ 1163 010c 00       		.byte	0
+ 1164 010d 03       		.uleb128 0x3
+ 1165 010e 0E       		.uleb128 0xe
+ 1166 010f 3A       		.uleb128 0x3a
+ 1167 0110 0B       		.uleb128 0xb
+ 1168 0111 3B       		.uleb128 0x3b
+ 1169 0112 0B       		.uleb128 0xb
+ 1170 0113 49       		.uleb128 0x49
+ 1171 0114 13       		.uleb128 0x13
+ 1172 0115 02       		.uleb128 0x2
+ 1173 0116 17       		.uleb128 0x17
+ 1174 0117 00       		.byte	0
+ 1175 0118 00       		.byte	0
+ 1176 0119 14       		.uleb128 0x14
+ 1177 011a 34       		.uleb128 0x34
+ 1178 011b 00       		.byte	0
+ 1179 011c 03       		.uleb128 0x3
+ 1180 011d 0E       		.uleb128 0xe
+ 1181 011e 3A       		.uleb128 0x3a
+ 1182 011f 0B       		.uleb128 0xb
+ 1183 0120 3B       		.uleb128 0x3b
+ 1184 0121 0B       		.uleb128 0xb
+ 1185 0122 49       		.uleb128 0x49
+ 1186 0123 13       		.uleb128 0x13
+ 1187 0124 02       		.uleb128 0x2
+ 1188 0125 17       		.uleb128 0x17
+ 1189 0126 00       		.byte	0
+ 1190 0127 00       		.byte	0
+ 1191 0128 15       		.uleb128 0x15
+ 1192 0129 34       		.uleb128 0x34
+ 1193 012a 00       		.byte	0
+ 1194 012b 03       		.uleb128 0x3
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc6V5Gdt.s 			page 30
+
+
+ 1195 012c 0E       		.uleb128 0xe
+ 1196 012d 3A       		.uleb128 0x3a
+ 1197 012e 0B       		.uleb128 0xb
+ 1198 012f 3B       		.uleb128 0x3b
+ 1199 0130 0B       		.uleb128 0xb
+ 1200 0131 49       		.uleb128 0x49
+ 1201 0132 13       		.uleb128 0x13
+ 1202 0133 1C       		.uleb128 0x1c
+ 1203 0134 0B       		.uleb128 0xb
+ 1204 0135 00       		.byte	0
+ 1205 0136 00       		.byte	0
+ 1206 0137 16       		.uleb128 0x16
+ 1207 0138 898201   		.uleb128 0x4109
+ 1208 013b 00       		.byte	0
+ 1209 013c 11       		.uleb128 0x11
+ 1210 013d 01       		.uleb128 0x1
+ 1211 013e 31       		.uleb128 0x31
+ 1212 013f 13       		.uleb128 0x13
+ 1213 0140 00       		.byte	0
+ 1214 0141 00       		.byte	0
+ 1215 0142 17       		.uleb128 0x17
+ 1216 0143 1D       		.uleb128 0x1d
+ 1217 0144 01       		.byte	0x1
+ 1218 0145 31       		.uleb128 0x31
+ 1219 0146 13       		.uleb128 0x13
+ 1220 0147 52       		.uleb128 0x52
+ 1221 0148 01       		.uleb128 0x1
+ 1222 0149 55       		.uleb128 0x55
+ 1223 014a 17       		.uleb128 0x17
+ 1224 014b 58       		.uleb128 0x58
+ 1225 014c 0B       		.uleb128 0xb
+ 1226 014d 59       		.uleb128 0x59
+ 1227 014e 0B       		.uleb128 0xb
+ 1228 014f 01       		.uleb128 0x1
+ 1229 0150 13       		.uleb128 0x13
+ 1230 0151 00       		.byte	0
+ 1231 0152 00       		.byte	0
+ 1232 0153 18       		.uleb128 0x18
+ 1233 0154 05       		.uleb128 0x5
+ 1234 0155 00       		.byte	0
+ 1235 0156 31       		.uleb128 0x31
+ 1236 0157 13       		.uleb128 0x13
+ 1237 0158 02       		.uleb128 0x2
+ 1238 0159 17       		.uleb128 0x17
+ 1239 015a 00       		.byte	0
+ 1240 015b 00       		.byte	0
+ 1241 015c 19       		.uleb128 0x19
+ 1242 015d 898201   		.uleb128 0x4109
+ 1243 0160 01       		.byte	0x1
+ 1244 0161 11       		.uleb128 0x11
+ 1245 0162 01       		.uleb128 0x1
+ 1246 0163 31       		.uleb128 0x31
+ 1247 0164 13       		.uleb128 0x13
+ 1248 0165 00       		.byte	0
+ 1249 0166 00       		.byte	0
+ 1250 0167 1A       		.uleb128 0x1a
+ 1251 0168 8A8201   		.uleb128 0x410a
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc6V5Gdt.s 			page 31
+
+
+ 1252 016b 00       		.byte	0
+ 1253 016c 02       		.uleb128 0x2
+ 1254 016d 18       		.uleb128 0x18
+ 1255 016e 9142     		.uleb128 0x2111
+ 1256 0170 18       		.uleb128 0x18
+ 1257 0171 00       		.byte	0
+ 1258 0172 00       		.byte	0
+ 1259 0173 1B       		.uleb128 0x1b
+ 1260 0174 1D       		.uleb128 0x1d
+ 1261 0175 01       		.byte	0x1
+ 1262 0176 31       		.uleb128 0x31
+ 1263 0177 13       		.uleb128 0x13
+ 1264 0178 11       		.uleb128 0x11
+ 1265 0179 01       		.uleb128 0x1
+ 1266 017a 12       		.uleb128 0x12
+ 1267 017b 06       		.uleb128 0x6
+ 1268 017c 58       		.uleb128 0x58
+ 1269 017d 0B       		.uleb128 0xb
+ 1270 017e 59       		.uleb128 0x59
+ 1271 017f 0B       		.uleb128 0xb
+ 1272 0180 01       		.uleb128 0x1
+ 1273 0181 13       		.uleb128 0x13
+ 1274 0182 00       		.byte	0
+ 1275 0183 00       		.byte	0
+ 1276 0184 1C       		.uleb128 0x1c
+ 1277 0185 1D       		.uleb128 0x1d
+ 1278 0186 00       		.byte	0
+ 1279 0187 31       		.uleb128 0x31
+ 1280 0188 13       		.uleb128 0x13
+ 1281 0189 11       		.uleb128 0x11
+ 1282 018a 01       		.uleb128 0x1
+ 1283 018b 12       		.uleb128 0x12
+ 1284 018c 06       		.uleb128 0x6
+ 1285 018d 58       		.uleb128 0x58
+ 1286 018e 0B       		.uleb128 0xb
+ 1287 018f 59       		.uleb128 0x59
+ 1288 0190 0B       		.uleb128 0xb
+ 1289 0191 00       		.byte	0
+ 1290 0192 00       		.byte	0
+ 1291 0193 1D       		.uleb128 0x1d
+ 1292 0194 2E       		.uleb128 0x2e
+ 1293 0195 01       		.byte	0x1
+ 1294 0196 3F       		.uleb128 0x3f
+ 1295 0197 19       		.uleb128 0x19
+ 1296 0198 03       		.uleb128 0x3
+ 1297 0199 0E       		.uleb128 0xe
+ 1298 019a 3A       		.uleb128 0x3a
+ 1299 019b 0B       		.uleb128 0xb
+ 1300 019c 3B       		.uleb128 0x3b
+ 1301 019d 05       		.uleb128 0x5
+ 1302 019e 27       		.uleb128 0x27
+ 1303 019f 19       		.uleb128 0x19
+ 1304 01a0 49       		.uleb128 0x49
+ 1305 01a1 13       		.uleb128 0x13
+ 1306 01a2 11       		.uleb128 0x11
+ 1307 01a3 01       		.uleb128 0x1
+ 1308 01a4 12       		.uleb128 0x12
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc6V5Gdt.s 			page 32
+
+
+ 1309 01a5 06       		.uleb128 0x6
+ 1310 01a6 40       		.uleb128 0x40
+ 1311 01a7 18       		.uleb128 0x18
+ 1312 01a8 9742     		.uleb128 0x2117
+ 1313 01aa 19       		.uleb128 0x19
+ 1314 01ab 01       		.uleb128 0x1
+ 1315 01ac 13       		.uleb128 0x13
+ 1316 01ad 00       		.byte	0
+ 1317 01ae 00       		.byte	0
+ 1318 01af 1E       		.uleb128 0x1e
+ 1319 01b0 34       		.uleb128 0x34
+ 1320 01b1 00       		.byte	0
+ 1321 01b2 03       		.uleb128 0x3
+ 1322 01b3 0E       		.uleb128 0xe
+ 1323 01b4 3A       		.uleb128 0x3a
+ 1324 01b5 0B       		.uleb128 0xb
+ 1325 01b6 3B       		.uleb128 0x3b
+ 1326 01b7 05       		.uleb128 0x5
+ 1327 01b8 49       		.uleb128 0x49
+ 1328 01b9 13       		.uleb128 0x13
+ 1329 01ba 02       		.uleb128 0x2
+ 1330 01bb 17       		.uleb128 0x17
+ 1331 01bc 00       		.byte	0
+ 1332 01bd 00       		.byte	0
+ 1333 01be 1F       		.uleb128 0x1f
+ 1334 01bf 34       		.uleb128 0x34
+ 1335 01c0 00       		.byte	0
+ 1336 01c1 03       		.uleb128 0x3
+ 1337 01c2 0E       		.uleb128 0xe
+ 1338 01c3 3A       		.uleb128 0x3a
+ 1339 01c4 0B       		.uleb128 0xb
+ 1340 01c5 3B       		.uleb128 0x3b
+ 1341 01c6 05       		.uleb128 0x5
+ 1342 01c7 49       		.uleb128 0x49
+ 1343 01c8 13       		.uleb128 0x13
+ 1344 01c9 1C       		.uleb128 0x1c
+ 1345 01ca 0B       		.uleb128 0xb
+ 1346 01cb 00       		.byte	0
+ 1347 01cc 00       		.byte	0
+ 1348 01cd 20       		.uleb128 0x20
+ 1349 01ce 2E       		.uleb128 0x2e
+ 1350 01cf 00       		.byte	0
+ 1351 01d0 31       		.uleb128 0x31
+ 1352 01d1 13       		.uleb128 0x13
+ 1353 01d2 11       		.uleb128 0x11
+ 1354 01d3 01       		.uleb128 0x1
+ 1355 01d4 12       		.uleb128 0x12
+ 1356 01d5 06       		.uleb128 0x6
+ 1357 01d6 40       		.uleb128 0x40
+ 1358 01d7 18       		.uleb128 0x18
+ 1359 01d8 9742     		.uleb128 0x2117
+ 1360 01da 19       		.uleb128 0x19
+ 1361 01db 00       		.byte	0
+ 1362 01dc 00       		.byte	0
+ 1363 01dd 21       		.uleb128 0x21
+ 1364 01de 2E       		.uleb128 0x2e
+ 1365 01df 00       		.byte	0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc6V5Gdt.s 			page 33
+
+
+ 1366 01e0 3F       		.uleb128 0x3f
+ 1367 01e1 19       		.uleb128 0x19
+ 1368 01e2 03       		.uleb128 0x3
+ 1369 01e3 0E       		.uleb128 0xe
+ 1370 01e4 3A       		.uleb128 0x3a
+ 1371 01e5 0B       		.uleb128 0xb
+ 1372 01e6 3B       		.uleb128 0x3b
+ 1373 01e7 05       		.uleb128 0x5
+ 1374 01e8 27       		.uleb128 0x27
+ 1375 01e9 19       		.uleb128 0x19
+ 1376 01ea 49       		.uleb128 0x49
+ 1377 01eb 13       		.uleb128 0x13
+ 1378 01ec 11       		.uleb128 0x11
+ 1379 01ed 01       		.uleb128 0x1
+ 1380 01ee 12       		.uleb128 0x12
+ 1381 01ef 06       		.uleb128 0x6
+ 1382 01f0 40       		.uleb128 0x40
+ 1383 01f1 18       		.uleb128 0x18
+ 1384 01f2 9742     		.uleb128 0x2117
+ 1385 01f4 19       		.uleb128 0x19
+ 1386 01f5 00       		.byte	0
+ 1387 01f6 00       		.byte	0
+ 1388 01f7 22       		.uleb128 0x22
+ 1389 01f8 2E       		.uleb128 0x2e
+ 1390 01f9 00       		.byte	0
+ 1391 01fa 3F       		.uleb128 0x3f
+ 1392 01fb 19       		.uleb128 0x19
+ 1393 01fc 03       		.uleb128 0x3
+ 1394 01fd 0E       		.uleb128 0xe
+ 1395 01fe 3A       		.uleb128 0x3a
+ 1396 01ff 0B       		.uleb128 0xb
+ 1397 0200 3B       		.uleb128 0x3b
+ 1398 0201 05       		.uleb128 0x5
+ 1399 0202 27       		.uleb128 0x27
+ 1400 0203 19       		.uleb128 0x19
+ 1401 0204 11       		.uleb128 0x11
+ 1402 0205 01       		.uleb128 0x1
+ 1403 0206 12       		.uleb128 0x12
+ 1404 0207 06       		.uleb128 0x6
+ 1405 0208 40       		.uleb128 0x40
+ 1406 0209 18       		.uleb128 0x18
+ 1407 020a 9742     		.uleb128 0x2117
+ 1408 020c 19       		.uleb128 0x19
+ 1409 020d 00       		.byte	0
+ 1410 020e 00       		.byte	0
+ 1411 020f 23       		.uleb128 0x23
+ 1412 0210 01       		.uleb128 0x1
+ 1413 0211 01       		.byte	0x1
+ 1414 0212 49       		.uleb128 0x49
+ 1415 0213 13       		.uleb128 0x13
+ 1416 0214 01       		.uleb128 0x1
+ 1417 0215 13       		.uleb128 0x13
+ 1418 0216 00       		.byte	0
+ 1419 0217 00       		.byte	0
+ 1420 0218 24       		.uleb128 0x24
+ 1421 0219 21       		.uleb128 0x21
+ 1422 021a 00       		.byte	0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc6V5Gdt.s 			page 34
+
+
+ 1423 021b 49       		.uleb128 0x49
+ 1424 021c 13       		.uleb128 0x13
+ 1425 021d 2F       		.uleb128 0x2f
+ 1426 021e 0B       		.uleb128 0xb
+ 1427 021f 00       		.byte	0
+ 1428 0220 00       		.byte	0
+ 1429 0221 25       		.uleb128 0x25
+ 1430 0222 34       		.uleb128 0x34
+ 1431 0223 00       		.byte	0
+ 1432 0224 03       		.uleb128 0x3
+ 1433 0225 0E       		.uleb128 0xe
+ 1434 0226 3A       		.uleb128 0x3a
+ 1435 0227 0B       		.uleb128 0xb
+ 1436 0228 3B       		.uleb128 0x3b
+ 1437 0229 0B       		.uleb128 0xb
+ 1438 022a 49       		.uleb128 0x49
+ 1439 022b 13       		.uleb128 0x13
+ 1440 022c 3F       		.uleb128 0x3f
+ 1441 022d 19       		.uleb128 0x19
+ 1442 022e 3C       		.uleb128 0x3c
+ 1443 022f 19       		.uleb128 0x19
+ 1444 0230 00       		.byte	0
+ 1445 0231 00       		.byte	0
+ 1446 0232 26       		.uleb128 0x26
+ 1447 0233 2E       		.uleb128 0x2e
+ 1448 0234 00       		.byte	0
+ 1449 0235 3F       		.uleb128 0x3f
+ 1450 0236 19       		.uleb128 0x19
+ 1451 0237 3C       		.uleb128 0x3c
+ 1452 0238 19       		.uleb128 0x19
+ 1453 0239 6E       		.uleb128 0x6e
+ 1454 023a 0E       		.uleb128 0xe
+ 1455 023b 03       		.uleb128 0x3
+ 1456 023c 0E       		.uleb128 0xe
+ 1457 023d 3A       		.uleb128 0x3a
+ 1458 023e 0B       		.uleb128 0xb
+ 1459 023f 3B       		.uleb128 0x3b
+ 1460 0240 0B       		.uleb128 0xb
+ 1461 0241 00       		.byte	0
+ 1462 0242 00       		.byte	0
+ 1463 0243 00       		.byte	0
+ 1464              		.section	.debug_loc,"",%progbits
+ 1465              	.Ldebug_loc0:
+ 1466              	.LLST0:
+ 1467 0000 00000000 		.4byte	.LVL3
+ 1468 0004 07000000 		.4byte	.LVL4-1
+ 1469 0008 0100     		.2byte	0x1
+ 1470 000a 50       		.byte	0x50
+ 1471 000b 07000000 		.4byte	.LVL4-1
+ 1472 000f 20000000 		.4byte	.LFE6
+ 1473 0013 0400     		.2byte	0x4
+ 1474 0015 F3       		.byte	0xf3
+ 1475 0016 01       		.uleb128 0x1
+ 1476 0017 50       		.byte	0x50
+ 1477 0018 9F       		.byte	0x9f
+ 1478 0019 00000000 		.4byte	0
+ 1479 001d 00000000 		.4byte	0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc6V5Gdt.s 			page 35
+
+
+ 1480              	.LLST1:
+ 1481 0021 08000000 		.4byte	.LVL4
+ 1482 0025 19000000 		.4byte	.LVL5-1
+ 1483 0029 0100     		.2byte	0x1
+ 1484 002b 50       		.byte	0x50
+ 1485 002c 00000000 		.4byte	0
+ 1486 0030 00000000 		.4byte	0
+ 1487              	.LLST2:
+ 1488 0034 0A000000 		.4byte	.LVL6
+ 1489 0038 10000000 		.4byte	.LVL7
+ 1490 003c 0600     		.2byte	0x6
+ 1491 003e 03       		.byte	0x3
+ 1492 003f 00000000 		.4byte	QuadratureISR_Interrupt
+ 1493 0043 9F       		.byte	0x9f
+ 1494 0044 00000000 		.4byte	0
+ 1495 0048 00000000 		.4byte	0
+ 1496              	.LLST3:
+ 1497 004c 00000000 		.4byte	.LVL9
+ 1498 0050 0E000000 		.4byte	.LVL12
+ 1499 0054 0100     		.2byte	0x1
+ 1500 0056 50       		.byte	0x50
+ 1501 0057 0E000000 		.4byte	.LVL12
+ 1502 005b 11000000 		.4byte	.LVL13-1
+ 1503 005f 0300     		.2byte	0x3
+ 1504 0061 73       		.byte	0x73
+ 1505 0062 C000     		.sleb128 64
+ 1506 0064 11000000 		.4byte	.LVL13-1
+ 1507 0068 24000000 		.4byte	.LFE1
+ 1508 006c 0400     		.2byte	0x4
+ 1509 006e F3       		.byte	0xf3
+ 1510 006f 01       		.uleb128 0x1
+ 1511 0070 50       		.byte	0x50
+ 1512 0071 9F       		.byte	0x9f
+ 1513 0072 00000000 		.4byte	0
+ 1514 0076 00000000 		.4byte	0
+ 1515              	.LLST4:
+ 1516 007a 08000000 		.4byte	.LVL10
+ 1517 007e 0C000000 		.4byte	.LVL11
+ 1518 0082 0100     		.2byte	0x1
+ 1519 0084 50       		.byte	0x50
+ 1520 0085 00000000 		.4byte	0
+ 1521 0089 00000000 		.4byte	0
+ 1522              	.LLST5:
+ 1523 008d 04000000 		.4byte	.LVL15
+ 1524 0091 06000000 		.4byte	.LVL16
+ 1525 0095 0700     		.2byte	0x7
+ 1526 0097 70       		.byte	0x70
+ 1527 0098 00       		.sleb128 0
+ 1528 0099 36       		.byte	0x36
+ 1529 009a 25       		.byte	0x25
+ 1530 009b 33       		.byte	0x33
+ 1531 009c 1A       		.byte	0x1a
+ 1532 009d 9F       		.byte	0x9f
+ 1533 009e 00000000 		.4byte	0
+ 1534 00a2 00000000 		.4byte	0
+ 1535              		.section	.debug_aranges,"",%progbits
+ 1536 0000 7C000000 		.4byte	0x7c
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc6V5Gdt.s 			page 36
+
+
+ 1537 0004 0200     		.2byte	0x2
+ 1538 0006 00000000 		.4byte	.Ldebug_info0
+ 1539 000a 04       		.byte	0x4
+ 1540 000b 00       		.byte	0
+ 1541 000c 0000     		.2byte	0
+ 1542 000e 0000     		.2byte	0
+ 1543 0010 00000000 		.4byte	.LFB3
+ 1544 0014 02000000 		.4byte	.LFE3-.LFB3
+ 1545 0018 00000000 		.4byte	.LFB2
+ 1546 001c 1C000000 		.4byte	.LFE2-.LFB2
+ 1547 0020 00000000 		.4byte	.LFB4
+ 1548 0024 0C000000 		.4byte	.LFE4-.LFB4
+ 1549 0028 00000000 		.4byte	.LFB5
+ 1550 002c 0C000000 		.4byte	.LFE5-.LFB5
+ 1551 0030 00000000 		.4byte	.LFB6
+ 1552 0034 20000000 		.4byte	.LFE6-.LFB6
+ 1553 0038 00000000 		.4byte	.LFB0
+ 1554 003c 2C000000 		.4byte	.LFE0-.LFB0
+ 1555 0040 00000000 		.4byte	.LFB1
+ 1556 0044 24000000 		.4byte	.LFE1-.LFB1
+ 1557 0048 00000000 		.4byte	.LFB7
+ 1558 004c 10000000 		.4byte	.LFE7-.LFB7
+ 1559 0050 00000000 		.4byte	.LFB8
+ 1560 0054 0C000000 		.4byte	.LFE8-.LFB8
+ 1561 0058 00000000 		.4byte	.LFB9
+ 1562 005c 10000000 		.4byte	.LFE9-.LFB9
+ 1563 0060 00000000 		.4byte	.LFB10
+ 1564 0064 0C000000 		.4byte	.LFE10-.LFB10
+ 1565 0068 00000000 		.4byte	.LFB11
+ 1566 006c 0C000000 		.4byte	.LFE11-.LFB11
+ 1567 0070 00000000 		.4byte	.LFB12
+ 1568 0074 0C000000 		.4byte	.LFE12-.LFB12
+ 1569 0078 00000000 		.4byte	0
+ 1570 007c 00000000 		.4byte	0
+ 1571              		.section	.debug_ranges,"",%progbits
+ 1572              	.Ldebug_ranges0:
+ 1573 0000 00000000 		.4byte	.LBB18
+ 1574 0004 04000000 		.4byte	.LBE18
+ 1575 0008 04000000 		.4byte	.LBB21
+ 1576 000c 06000000 		.4byte	.LBE21
+ 1577 0010 00000000 		.4byte	0
+ 1578 0014 00000000 		.4byte	0
+ 1579 0018 02000000 		.4byte	.LBB24
+ 1580 001c 06000000 		.4byte	.LBE24
+ 1581 0020 08000000 		.4byte	.LBB31
+ 1582 0024 0A000000 		.4byte	.LBE31
+ 1583 0028 00000000 		.4byte	0
+ 1584 002c 00000000 		.4byte	0
+ 1585 0030 06000000 		.4byte	.LBB27
+ 1586 0034 08000000 		.4byte	.LBE27
+ 1587 0038 0A000000 		.4byte	.LBB32
+ 1588 003c 0C000000 		.4byte	.LBE32
+ 1589 0040 0E000000 		.4byte	.LBB33
+ 1590 0044 10000000 		.4byte	.LBE33
+ 1591 0048 00000000 		.4byte	0
+ 1592 004c 00000000 		.4byte	0
+ 1593 0050 14000000 		.4byte	.LBB34
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc6V5Gdt.s 			page 37
+
+
+ 1594 0054 16000000 		.4byte	.LBE34
+ 1595 0058 16000000 		.4byte	.LBB37
+ 1596 005c 18000000 		.4byte	.LBE37
+ 1597 0060 00000000 		.4byte	0
+ 1598 0064 00000000 		.4byte	0
+ 1599 0068 02000000 		.4byte	.LBB38
+ 1600 006c 06000000 		.4byte	.LBE38
+ 1601 0070 06000000 		.4byte	.LBB41
+ 1602 0074 08000000 		.4byte	.LBE41
+ 1603 0078 00000000 		.4byte	0
+ 1604 007c 00000000 		.4byte	0
+ 1605 0080 00000000 		.4byte	.LFB3
+ 1606 0084 02000000 		.4byte	.LFE3
+ 1607 0088 00000000 		.4byte	.LFB2
+ 1608 008c 1C000000 		.4byte	.LFE2
+ 1609 0090 00000000 		.4byte	.LFB4
+ 1610 0094 0C000000 		.4byte	.LFE4
+ 1611 0098 00000000 		.4byte	.LFB5
+ 1612 009c 0C000000 		.4byte	.LFE5
+ 1613 00a0 00000000 		.4byte	.LFB6
+ 1614 00a4 20000000 		.4byte	.LFE6
+ 1615 00a8 00000000 		.4byte	.LFB0
+ 1616 00ac 2C000000 		.4byte	.LFE0
+ 1617 00b0 00000000 		.4byte	.LFB1
+ 1618 00b4 24000000 		.4byte	.LFE1
+ 1619 00b8 00000000 		.4byte	.LFB7
+ 1620 00bc 10000000 		.4byte	.LFE7
+ 1621 00c0 00000000 		.4byte	.LFB8
+ 1622 00c4 0C000000 		.4byte	.LFE8
+ 1623 00c8 00000000 		.4byte	.LFB9
+ 1624 00cc 10000000 		.4byte	.LFE9
+ 1625 00d0 00000000 		.4byte	.LFB10
+ 1626 00d4 0C000000 		.4byte	.LFE10
+ 1627 00d8 00000000 		.4byte	.LFB11
+ 1628 00dc 0C000000 		.4byte	.LFE11
+ 1629 00e0 00000000 		.4byte	.LFB12
+ 1630 00e4 0C000000 		.4byte	.LFE12
+ 1631 00e8 00000000 		.4byte	0
+ 1632 00ec 00000000 		.4byte	0
+ 1633              		.section	.debug_line,"",%progbits
+ 1634              	.Ldebug_line0:
+ 1635 0000 B1010000 		.section	.debug_str,"MS",%progbits,1
+ 1635      02005500 
+ 1635      00000201 
+ 1635      FB0E0D00 
+ 1635      01010101 
+ 1636              	.LASF14:
+ 1637 0000 72656733 		.ascii	"reg32\000"
+ 1637      3200
+ 1638              	.LASF20:
+ 1639 0006 51756164 		.ascii	"QuadratureISR_SetPriority\000"
+ 1639      72617475 
+ 1639      72654953 
+ 1639      525F5365 
+ 1639      74507269 
+ 1640              	.LASF35:
+ 1641 0020 47656E65 		.ascii	"Generated_Source\\PSoC4\\QuadratureISR.c\000"
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc6V5Gdt.s 			page 38
+
+
+ 1641      72617465 
+ 1641      645F536F 
+ 1641      75726365 
+ 1641      5C50536F 
+ 1642              	.LASF31:
+ 1643 0047 51756164 		.ascii	"QuadratureISR_ClearPending\000"
+ 1643      72617475 
+ 1643      72654953 
+ 1643      525F436C 
+ 1643      65617250 
+ 1644              	.LASF39:
+ 1645 0062 43795261 		.ascii	"CyRamVectors\000"
+ 1645      6D566563 
+ 1645      746F7273 
+ 1645      00
+ 1646              	.LASF3:
+ 1647 006f 73686F72 		.ascii	"short unsigned int\000"
+ 1647      7420756E 
+ 1647      7369676E 
+ 1647      65642069 
+ 1647      6E7400
+ 1648              	.LASF17:
+ 1649 0082 51756164 		.ascii	"QuadratureISR_Enable\000"
+ 1649      72617475 
+ 1649      72654953 
+ 1649      525F456E 
+ 1649      61626C65 
+ 1650              	.LASF11:
+ 1651 0097 666C6F61 		.ascii	"float\000"
+ 1651      7400
+ 1652              	.LASF7:
+ 1653 009d 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1653      206C6F6E 
+ 1653      6720756E 
+ 1653      7369676E 
+ 1653      65642069 
+ 1654              	.LASF1:
+ 1655 00b4 756E7369 		.ascii	"unsigned char\000"
+ 1655      676E6564 
+ 1655      20636861 
+ 1655      7200
+ 1656              	.LASF37:
+ 1657 00c2 51756164 		.ascii	"QuadratureISR_SetVector\000"
+ 1657      72617475 
+ 1657      72654953 
+ 1657      525F5365 
+ 1657      74566563 
+ 1658              	.LASF21:
+ 1659 00da 696E7465 		.ascii	"interruptState\000"
+ 1659      72727570 
+ 1659      74537461 
+ 1659      746500
+ 1660              	.LASF5:
+ 1661 00e9 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1661      20756E73 
+ 1661      69676E65 
+ 1661      6420696E 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc6V5Gdt.s 			page 39
+
+
+ 1661      7400
+ 1662              	.LASF9:
+ 1663 00fb 75696E74 		.ascii	"uint8\000"
+ 1663      3800
+ 1664              	.LASF36:
+ 1665 0101 443A5C31 		.ascii	"D:\\1_work\\my_project\\ReloadPro\\psoc42boot\\Relo"
+ 1665      5F776F72 
+ 1665      6B5C6D79 
+ 1665      5F70726F 
+ 1665      6A656374 
+ 1666 012f 61642050 		.ascii	"ad Pro.cydsn\000"
+ 1666      726F2E63 
+ 1666      7964736E 
+ 1666      00
+ 1667              	.LASF25:
+ 1668 013c 7072696F 		.ascii	"priority\000"
+ 1668      72697479 
+ 1668      00
+ 1669              	.LASF18:
+ 1670 0145 51756164 		.ascii	"QuadratureISR_Disable\000"
+ 1670      72617475 
+ 1670      72654953 
+ 1670      525F4469 
+ 1670      7361626C 
+ 1671              	.LASF30:
+ 1672 015b 51756164 		.ascii	"QuadratureISR_SetPending\000"
+ 1672      72617475 
+ 1672      72654953 
+ 1672      525F5365 
+ 1672      7450656E 
+ 1673              	.LASF12:
+ 1674 0174 646F7562 		.ascii	"double\000"
+ 1674      6C6500
+ 1675              	.LASF10:
+ 1676 017b 75696E74 		.ascii	"uint32\000"
+ 1676      333200
+ 1677              	.LASF32:
+ 1678 0182 4379456E 		.ascii	"CyEnterCriticalSection\000"
+ 1678      74657243 
+ 1678      72697469 
+ 1678      63616C53 
+ 1678      65637469 
+ 1679              	.LASF24:
+ 1680 0199 51756164 		.ascii	"QuadratureISR_StartEx\000"
+ 1680      72617475 
+ 1680      72654953 
+ 1680      525F5374 
+ 1680      61727445 
+ 1681              	.LASF8:
+ 1682 01af 756E7369 		.ascii	"unsigned int\000"
+ 1682      676E6564 
+ 1682      20696E74 
+ 1682      00
+ 1683              	.LASF26:
+ 1684 01bc 61646472 		.ascii	"address\000"
+ 1684      65737300 
+ 1685              	.LASF33:
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc6V5Gdt.s 			page 40
+
+
+ 1686 01c4 43794578 		.ascii	"CyExitCriticalSection\000"
+ 1686      69744372 
+ 1686      69746963 
+ 1686      616C5365 
+ 1686      6374696F 
+ 1687              	.LASF15:
+ 1688 01da 63796973 		.ascii	"cyisraddress\000"
+ 1688      72616464 
+ 1688      72657373 
+ 1688      00
+ 1689              	.LASF34:
+ 1690 01e7 474E5520 		.ascii	"GNU C99 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1690      43393920 
+ 1690      352E342E 
+ 1690      31203230 
+ 1690      31363036 
+ 1691 021a 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 1691      20726576 
+ 1691      6973696F 
+ 1691      6E203233 
+ 1691      37373135 
+ 1692 024d 73202D73 		.ascii	"s -std=gnu99 -ffunction-sections -ffat-lto-objects\000"
+ 1692      74643D67 
+ 1692      6E753939 
+ 1692      202D6666 
+ 1692      756E6374 
+ 1693              	.LASF16:
+ 1694 0280 73697A65 		.ascii	"sizetype\000"
+ 1694      74797065 
+ 1694      00
+ 1695              	.LASF6:
+ 1696 0289 6C6F6E67 		.ascii	"long long int\000"
+ 1696      206C6F6E 
+ 1696      6720696E 
+ 1696      7400
+ 1697              	.LASF13:
+ 1698 0297 63686172 		.ascii	"char\000"
+ 1698      00
+ 1699              	.LASF38:
+ 1700 029c 51756164 		.ascii	"QuadratureISR_GetPriority\000"
+ 1700      72617475 
+ 1700      72654953 
+ 1700      525F4765 
+ 1700      74507269 
+ 1701              	.LASF19:
+ 1702 02b6 51756164 		.ascii	"QuadratureISR_Stop\000"
+ 1702      72617475 
+ 1702      72654953 
+ 1702      525F5374 
+ 1702      6F7000
+ 1703              	.LASF2:
+ 1704 02c9 73686F72 		.ascii	"short int\000"
+ 1704      7420696E 
+ 1704      7400
+ 1705              	.LASF23:
+ 1706 02d3 51756164 		.ascii	"QuadratureISR_Start\000"
+ 1706      72617475 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc6V5Gdt.s 			page 41
+
+
+ 1706      72654953 
+ 1706      525F5374 
+ 1706      61727400 
+ 1707              	.LASF29:
+ 1708 02e7 51756164 		.ascii	"QuadratureISR_Interrupt\000"
+ 1708      72617475 
+ 1708      72654953 
+ 1708      525F496E 
+ 1708      74657272 
+ 1709              	.LASF22:
+ 1710 02ff 7072696F 		.ascii	"priorityOffset\000"
+ 1710      72697479 
+ 1710      4F666673 
+ 1710      657400
+ 1711              	.LASF4:
+ 1712 030e 6C6F6E67 		.ascii	"long int\000"
+ 1712      20696E74 
+ 1712      00
+ 1713              	.LASF0:
+ 1714 0317 7369676E 		.ascii	"signed char\000"
+ 1714      65642063 
+ 1714      68617200 
+ 1715              	.LASF27:
+ 1716 0323 51756164 		.ascii	"QuadratureISR_GetVector\000"
+ 1716      72617475 
+ 1716      72654953 
+ 1716      525F4765 
+ 1716      74566563 
+ 1717              	.LASF28:
+ 1718 033b 51756164 		.ascii	"QuadratureISR_GetState\000"
+ 1718      72617475 
+ 1718      72654953 
+ 1718      525F4765 
+ 1718      74537461 
+ 1719              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

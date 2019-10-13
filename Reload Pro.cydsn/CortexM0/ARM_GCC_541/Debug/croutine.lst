@@ -1,0 +1,3346 @@
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"croutine.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.xCoRoutineCreate,"ax",%progbits
+  20              		.align	1
+  21              		.global	xCoRoutineCreate
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	xCoRoutineCreate, %function
+  25              	xCoRoutineCreate:
+  26              	.LFB32:
+  27              		.file 1 "freertos\\src\\croutine.c"
+   1:freertos\src/croutine.c **** /*
+   2:freertos\src/croutine.c ****     FreeRTOS V7.6.0 - Copyright (C) 2013 Real Time Engineers Ltd.
+   3:freertos\src/croutine.c ****     All rights reserved
+   4:freertos\src/croutine.c **** 
+   5:freertos\src/croutine.c ****     VISIT http://www.FreeRTOS.org TO ENSURE YOU ARE USING THE LATEST VERSION.
+   6:freertos\src/croutine.c **** 
+   7:freertos\src/croutine.c ****     ***************************************************************************
+   8:freertos\src/croutine.c ****      *                                                                       *
+   9:freertos\src/croutine.c ****      *    FreeRTOS provides completely free yet professionally developed,    *
+  10:freertos\src/croutine.c ****      *    robust, strictly quality controlled, supported, and cross          *
+  11:freertos\src/croutine.c ****      *    platform software that has become a de facto standard.             *
+  12:freertos\src/croutine.c ****      *                                                                       *
+  13:freertos\src/croutine.c ****      *    Help yourself get started quickly and support the FreeRTOS         *
+  14:freertos\src/croutine.c ****      *    project by purchasing a FreeRTOS tutorial book, reference          *
+  15:freertos\src/croutine.c ****      *    manual, or both from: http://www.FreeRTOS.org/Documentation        *
+  16:freertos\src/croutine.c ****      *                                                                       *
+  17:freertos\src/croutine.c ****      *    Thank you!                                                         *
+  18:freertos\src/croutine.c ****      *                                                                       *
+  19:freertos\src/croutine.c ****     ***************************************************************************
+  20:freertos\src/croutine.c **** 
+  21:freertos\src/croutine.c ****     This file is part of the FreeRTOS distribution.
+  22:freertos\src/croutine.c **** 
+  23:freertos\src/croutine.c ****     FreeRTOS is free software; you can redistribute it and/or modify it under
+  24:freertos\src/croutine.c ****     the terms of the GNU General Public License (version 2) as published by the
+  25:freertos\src/croutine.c ****     Free Software Foundation >>!AND MODIFIED BY!<< the FreeRTOS exception.
+  26:freertos\src/croutine.c **** 
+  27:freertos\src/croutine.c ****     >>! NOTE: The modification to the GPL is included to allow you to distribute
+  28:freertos\src/croutine.c ****     >>! a combined work that includes FreeRTOS without being obliged to provide
+  29:freertos\src/croutine.c ****     >>! the source code for proprietary components outside of the FreeRTOS
+  30:freertos\src/croutine.c ****     >>! kernel.
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 2
+
+
+  31:freertos\src/croutine.c **** 
+  32:freertos\src/croutine.c ****     FreeRTOS is distributed in the hope that it will be useful, but WITHOUT ANY
+  33:freertos\src/croutine.c ****     WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+  34:freertos\src/croutine.c ****     FOR A PARTICULAR PURPOSE.  Full license text is available from the following
+  35:freertos\src/croutine.c ****     link: http://www.freertos.org/a00114.html
+  36:freertos\src/croutine.c **** 
+  37:freertos\src/croutine.c ****     1 tab == 4 spaces!
+  38:freertos\src/croutine.c **** 
+  39:freertos\src/croutine.c ****     ***************************************************************************
+  40:freertos\src/croutine.c ****      *                                                                       *
+  41:freertos\src/croutine.c ****      *    Having a problem?  Start by reading the FAQ "My application does   *
+  42:freertos\src/croutine.c ****      *    not run, what could be wrong?"                                     *
+  43:freertos\src/croutine.c ****      *                                                                       *
+  44:freertos\src/croutine.c ****      *    http://www.FreeRTOS.org/FAQHelp.html                               *
+  45:freertos\src/croutine.c ****      *                                                                       *
+  46:freertos\src/croutine.c ****     ***************************************************************************
+  47:freertos\src/croutine.c **** 
+  48:freertos\src/croutine.c ****     http://www.FreeRTOS.org - Documentation, books, training, latest versions,
+  49:freertos\src/croutine.c ****     license and Real Time Engineers Ltd. contact details.
+  50:freertos\src/croutine.c **** 
+  51:freertos\src/croutine.c ****     http://www.FreeRTOS.org/plus - A selection of FreeRTOS ecosystem products,
+  52:freertos\src/croutine.c ****     including FreeRTOS+Trace - an indispensable productivity tool, a DOS
+  53:freertos\src/croutine.c ****     compatible FAT file system, and our tiny thread aware UDP/IP stack.
+  54:freertos\src/croutine.c **** 
+  55:freertos\src/croutine.c ****     http://www.OpenRTOS.com - Real Time Engineers ltd license FreeRTOS to High
+  56:freertos\src/croutine.c ****     Integrity Systems to sell under the OpenRTOS brand.  Low cost OpenRTOS
+  57:freertos\src/croutine.c ****     licenses offer ticketed support, indemnification and middleware.
+  58:freertos\src/croutine.c **** 
+  59:freertos\src/croutine.c ****     http://www.SafeRTOS.com - High Integrity Systems also provide a safety
+  60:freertos\src/croutine.c ****     engineered and independently SIL3 certified version for use in safety and
+  61:freertos\src/croutine.c ****     mission critical applications that require provable dependability.
+  62:freertos\src/croutine.c **** 
+  63:freertos\src/croutine.c ****     1 tab == 4 spaces!
+  64:freertos\src/croutine.c **** */
+  65:freertos\src/croutine.c **** 
+  66:freertos\src/croutine.c **** #include "FreeRTOS.h"
+  67:freertos\src/croutine.c **** #include "task.h"
+  68:freertos\src/croutine.c **** #include "croutine.h"
+  69:freertos\src/croutine.c **** 
+  70:freertos\src/croutine.c **** /*
+  71:freertos\src/croutine.c ****  * Some kernel aware debuggers require data to be viewed to be global, rather
+  72:freertos\src/croutine.c ****  * than file scope.
+  73:freertos\src/croutine.c ****  */
+  74:freertos\src/croutine.c **** #ifdef portREMOVE_STATIC_QUALIFIER
+  75:freertos\src/croutine.c **** 	#define static
+  76:freertos\src/croutine.c **** #endif
+  77:freertos\src/croutine.c **** 
+  78:freertos\src/croutine.c **** 
+  79:freertos\src/croutine.c **** /* Lists for ready and blocked co-routines. --------------------*/
+  80:freertos\src/croutine.c **** static xList pxReadyCoRoutineLists[ configMAX_CO_ROUTINE_PRIORITIES ];	/*< Prioritised ready co-rou
+  81:freertos\src/croutine.c **** static xList xDelayedCoRoutineList1;									/*< Delayed co-routines. */
+  82:freertos\src/croutine.c **** static xList xDelayedCoRoutineList2;									/*< Delayed co-routines (two lists are used - one for 
+  83:freertos\src/croutine.c **** static xList * pxDelayedCoRoutineList;									/*< Points to the delayed co-routine list currently 
+  84:freertos\src/croutine.c **** static xList * pxOverflowDelayedCoRoutineList;							/*< Points to the delayed co-routine list curr
+  85:freertos\src/croutine.c **** static xList xPendingReadyCoRoutineList;								/*< Holds co-routines that have been readied by an 
+  86:freertos\src/croutine.c **** 
+  87:freertos\src/croutine.c **** /* Other file private variables. --------------------------------*/
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 3
+
+
+  88:freertos\src/croutine.c **** corCRCB * pxCurrentCoRoutine = NULL;
+  89:freertos\src/croutine.c **** static unsigned portBASE_TYPE uxTopCoRoutineReadyPriority = 0;
+  90:freertos\src/croutine.c **** static portTickType xCoRoutineTickCount = 0, xLastTickCount = 0, xPassedTicks = 0;
+  91:freertos\src/croutine.c **** 
+  92:freertos\src/croutine.c **** /* The initial state of the co-routine when it is created. */
+  93:freertos\src/croutine.c **** #define corINITIAL_STATE	( 0 )
+  94:freertos\src/croutine.c **** 
+  95:freertos\src/croutine.c **** /*
+  96:freertos\src/croutine.c ****  * Place the co-routine represented by pxCRCB into the appropriate ready queue
+  97:freertos\src/croutine.c ****  * for the priority.  It is inserted at the end of the list.
+  98:freertos\src/croutine.c ****  *
+  99:freertos\src/croutine.c ****  * This macro accesses the co-routine ready lists and therefore must not be
+ 100:freertos\src/croutine.c ****  * used from within an ISR.
+ 101:freertos\src/croutine.c ****  */
+ 102:freertos\src/croutine.c **** #define prvAddCoRoutineToReadyQueue( pxCRCB )																		\
+ 103:freertos\src/croutine.c **** {																													\
+ 104:freertos\src/croutine.c **** 	if( pxCRCB->uxPriority > uxTopCoRoutineReadyPriority )															\
+ 105:freertos\src/croutine.c **** 	{																												\
+ 106:freertos\src/croutine.c **** 		uxTopCoRoutineReadyPriority = pxCRCB->uxPriority;															\
+ 107:freertos\src/croutine.c **** 	}																												\
+ 108:freertos\src/croutine.c **** 	vListInsertEnd( ( xList * ) &( pxReadyCoRoutineLists[ pxCRCB->uxPriority ] ), &( pxCRCB->xGenericL
+ 109:freertos\src/croutine.c **** }
+ 110:freertos\src/croutine.c **** 
+ 111:freertos\src/croutine.c **** /*
+ 112:freertos\src/croutine.c ****  * Utility to ready all the lists used by the scheduler.  This is called
+ 113:freertos\src/croutine.c ****  * automatically upon the creation of the first co-routine.
+ 114:freertos\src/croutine.c ****  */
+ 115:freertos\src/croutine.c **** static void prvInitialiseCoRoutineLists( void );
+ 116:freertos\src/croutine.c **** 
+ 117:freertos\src/croutine.c **** /*
+ 118:freertos\src/croutine.c ****  * Co-routines that are readied by an interrupt cannot be placed directly into
+ 119:freertos\src/croutine.c ****  * the ready lists (there is no mutual exclusion).  Instead they are placed in
+ 120:freertos\src/croutine.c ****  * in the pending ready list in order that they can later be moved to the ready
+ 121:freertos\src/croutine.c ****  * list by the co-routine scheduler.
+ 122:freertos\src/croutine.c ****  */
+ 123:freertos\src/croutine.c **** static void prvCheckPendingReadyList( void );
+ 124:freertos\src/croutine.c **** 
+ 125:freertos\src/croutine.c **** /*
+ 126:freertos\src/croutine.c ****  * Macro that looks at the list of co-routines that are currently delayed to
+ 127:freertos\src/croutine.c ****  * see if any require waking.
+ 128:freertos\src/croutine.c ****  *
+ 129:freertos\src/croutine.c ****  * Co-routines are stored in the queue in the order of their wake time -
+ 130:freertos\src/croutine.c ****  * meaning once one co-routine has been found whose timer has not expired
+ 131:freertos\src/croutine.c ****  * we need not look any further down the list.
+ 132:freertos\src/croutine.c ****  */
+ 133:freertos\src/croutine.c **** static void prvCheckDelayedList( void );
+ 134:freertos\src/croutine.c **** 
+ 135:freertos\src/croutine.c **** /*-----------------------------------------------------------*/
+ 136:freertos\src/croutine.c **** 
+ 137:freertos\src/croutine.c **** signed portBASE_TYPE xCoRoutineCreate( crCOROUTINE_CODE pxCoRoutineCode, unsigned portBASE_TYPE uxP
+ 138:freertos\src/croutine.c **** {
+  28              		.loc 1 138 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 16
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              	.LVL0:
+  33 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 4
+
+
+  34              		.cfi_def_cfa_offset 20
+  35              		.cfi_offset 4, -20
+  36              		.cfi_offset 5, -16
+  37              		.cfi_offset 6, -12
+  38              		.cfi_offset 7, -8
+  39              		.cfi_offset 14, -4
+  40 0002 85B0     		sub	sp, sp, #20
+  41              		.cfi_def_cfa_offset 40
+  42              		.loc 1 138 0
+  43 0004 0190     		str	r0, [sp, #4]
+ 139:freertos\src/croutine.c **** signed portBASE_TYPE xReturn;
+ 140:freertos\src/croutine.c **** corCRCB *pxCoRoutine;
+ 141:freertos\src/croutine.c **** 
+ 142:freertos\src/croutine.c **** 	/* Allocate the memory that will store the co-routine control block. */
+ 143:freertos\src/croutine.c **** 	pxCoRoutine = ( corCRCB * ) pvPortMalloc( sizeof( corCRCB ) );
+  44              		.loc 1 143 0
+  45 0006 3820     		movs	r0, #56
+  46              	.LVL1:
+ 138:freertos\src/croutine.c **** signed portBASE_TYPE xReturn;
+  47              		.loc 1 138 0
+  48 0008 0291     		str	r1, [sp, #8]
+  49 000a 0392     		str	r2, [sp, #12]
+  50              		.loc 1 143 0
+  51 000c FFF7FEFF 		bl	pvPortMalloc
+  52              	.LVL2:
+  53 0010 051E     		subs	r5, r0, #0
+  54              	.LVL3:
+ 144:freertos\src/croutine.c **** 	if( pxCoRoutine )
+  55              		.loc 1 144 0
+  56 0012 41D0     		beq	.L6
+ 145:freertos\src/croutine.c **** 	{
+ 146:freertos\src/croutine.c **** 		/* If pxCurrentCoRoutine is NULL then this is the first co-routine to
+ 147:freertos\src/croutine.c **** 		be created and the co-routine data structures need initialising. */
+ 148:freertos\src/croutine.c **** 		if( pxCurrentCoRoutine == NULL )
+  57              		.loc 1 148 0
+  58 0014 224C     		ldr	r4, .L11
+  59 0016 2368     		ldr	r3, [r4]
+  60 0018 002B     		cmp	r3, #0
+  61 001a 17D1     		bne	.L3
+ 149:freertos\src/croutine.c **** 		{
+ 150:freertos\src/croutine.c **** 			pxCurrentCoRoutine = pxCoRoutine;
+  62              		.loc 1 150 0
+  63 001c 2000     		movs	r0, r4
+  64              	.LVL4:
+  65 001e 20C0     		stmia	r0!, {r5}
+  66              	.LVL5:
+  67              	.LBB4:
+  68              	.LBB5:
+ 151:freertos\src/croutine.c **** 			prvInitialiseCoRoutineLists();
+ 152:freertos\src/croutine.c **** 		}
+ 153:freertos\src/croutine.c **** 
+ 154:freertos\src/croutine.c **** 		/* Check the priority is within limits. */
+ 155:freertos\src/croutine.c **** 		if( uxPriority >= configMAX_CO_ROUTINE_PRIORITIES )
+ 156:freertos\src/croutine.c **** 		{
+ 157:freertos\src/croutine.c **** 			uxPriority = configMAX_CO_ROUTINE_PRIORITIES - 1;
+ 158:freertos\src/croutine.c **** 		}
+ 159:freertos\src/croutine.c **** 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 5
+
+
+ 160:freertos\src/croutine.c **** 		/* Fill out the co-routine control block from the function parameters. */
+ 161:freertos\src/croutine.c **** 		pxCoRoutine->uxState = corINITIAL_STATE;
+ 162:freertos\src/croutine.c **** 		pxCoRoutine->uxPriority = uxPriority;
+ 163:freertos\src/croutine.c **** 		pxCoRoutine->uxIndex = uxIndex;
+ 164:freertos\src/croutine.c **** 		pxCoRoutine->pxCoRoutineFunction = pxCoRoutineCode;
+ 165:freertos\src/croutine.c **** 
+ 166:freertos\src/croutine.c **** 		/* Initialise all the other co-routine control block parameters. */
+ 167:freertos\src/croutine.c **** 		vListInitialiseItem( &( pxCoRoutine->xGenericListItem ) );
+ 168:freertos\src/croutine.c **** 		vListInitialiseItem( &( pxCoRoutine->xEventListItem ) );
+ 169:freertos\src/croutine.c **** 
+ 170:freertos\src/croutine.c **** 		/* Set the co-routine control block as a link back from the xListItem.
+ 171:freertos\src/croutine.c **** 		This is so we can get back to the containing CRCB from a generic item
+ 172:freertos\src/croutine.c **** 		in a list. */
+ 173:freertos\src/croutine.c **** 		listSET_LIST_ITEM_OWNER( &( pxCoRoutine->xGenericListItem ), pxCoRoutine );
+ 174:freertos\src/croutine.c **** 		listSET_LIST_ITEM_OWNER( &( pxCoRoutine->xEventListItem ), pxCoRoutine );
+ 175:freertos\src/croutine.c **** 
+ 176:freertos\src/croutine.c **** 		/* Event lists are always in priority order. */
+ 177:freertos\src/croutine.c **** 		listSET_LIST_ITEM_VALUE( &( pxCoRoutine->xEventListItem ), configMAX_PRIORITIES - ( portTickType 
+ 178:freertos\src/croutine.c **** 
+ 179:freertos\src/croutine.c **** 		/* Now the co-routine has been initialised it can be added to the ready
+ 180:freertos\src/croutine.c **** 		list at the correct priority. */
+ 181:freertos\src/croutine.c **** 		prvAddCoRoutineToReadyQueue( pxCoRoutine );
+ 182:freertos\src/croutine.c **** 
+ 183:freertos\src/croutine.c **** 		xReturn = pdPASS;
+ 184:freertos\src/croutine.c **** 	}
+ 185:freertos\src/croutine.c **** 	else
+ 186:freertos\src/croutine.c **** 	{
+ 187:freertos\src/croutine.c **** 		xReturn = errCOULD_NOT_ALLOCATE_REQUIRED_MEMORY;
+ 188:freertos\src/croutine.c **** 	}
+ 189:freertos\src/croutine.c **** 
+ 190:freertos\src/croutine.c **** 	return xReturn;
+ 191:freertos\src/croutine.c **** }
+ 192:freertos\src/croutine.c **** /*-----------------------------------------------------------*/
+ 193:freertos\src/croutine.c **** 
+ 194:freertos\src/croutine.c **** void vCoRoutineAddToDelayedList( portTickType xTicksToDelay, xList *pxEventList )
+ 195:freertos\src/croutine.c **** {
+ 196:freertos\src/croutine.c **** portTickType xTimeToWake;
+ 197:freertos\src/croutine.c **** 
+ 198:freertos\src/croutine.c **** 	/* Calculate the time to wake - this may overflow but this is
+ 199:freertos\src/croutine.c **** 	not a problem. */
+ 200:freertos\src/croutine.c **** 	xTimeToWake = xCoRoutineTickCount + xTicksToDelay;
+ 201:freertos\src/croutine.c **** 
+ 202:freertos\src/croutine.c **** 	/* We must remove ourselves from the ready list before adding
+ 203:freertos\src/croutine.c **** 	ourselves to the blocked list as the same list item is used for
+ 204:freertos\src/croutine.c **** 	both lists. */
+ 205:freertos\src/croutine.c **** 	( void ) uxListRemove( ( xListItem * ) &( pxCurrentCoRoutine->xGenericListItem ) );
+ 206:freertos\src/croutine.c **** 
+ 207:freertos\src/croutine.c **** 	/* The list item will be inserted in wake time order. */
+ 208:freertos\src/croutine.c **** 	listSET_LIST_ITEM_VALUE( &( pxCurrentCoRoutine->xGenericListItem ), xTimeToWake );
+ 209:freertos\src/croutine.c **** 
+ 210:freertos\src/croutine.c **** 	if( xTimeToWake < xCoRoutineTickCount )
+ 211:freertos\src/croutine.c **** 	{
+ 212:freertos\src/croutine.c **** 		/* Wake time has overflowed.  Place this item in the
+ 213:freertos\src/croutine.c **** 		overflow list. */
+ 214:freertos\src/croutine.c **** 		vListInsert( ( xList * ) pxOverflowDelayedCoRoutineList, ( xListItem * ) &( pxCurrentCoRoutine->x
+ 215:freertos\src/croutine.c **** 	}
+ 216:freertos\src/croutine.c **** 	else
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 6
+
+
+ 217:freertos\src/croutine.c **** 	{
+ 218:freertos\src/croutine.c **** 		/* The wake time has not overflowed, so we can use the
+ 219:freertos\src/croutine.c **** 		current block list. */
+ 220:freertos\src/croutine.c **** 		vListInsert( ( xList * ) pxDelayedCoRoutineList, ( xListItem * ) &( pxCurrentCoRoutine->xGenericL
+ 221:freertos\src/croutine.c **** 	}
+ 222:freertos\src/croutine.c **** 
+ 223:freertos\src/croutine.c **** 	if( pxEventList )
+ 224:freertos\src/croutine.c **** 	{
+ 225:freertos\src/croutine.c **** 		/* Also add the co-routine to an event list.  If this is done then the
+ 226:freertos\src/croutine.c **** 		function must be called with interrupts disabled. */
+ 227:freertos\src/croutine.c **** 		vListInsert( pxEventList, &( pxCurrentCoRoutine->xEventListItem ) );
+ 228:freertos\src/croutine.c **** 	}
+ 229:freertos\src/croutine.c **** }
+ 230:freertos\src/croutine.c **** /*-----------------------------------------------------------*/
+ 231:freertos\src/croutine.c **** 
+ 232:freertos\src/croutine.c **** static void prvCheckPendingReadyList( void )
+ 233:freertos\src/croutine.c **** {
+ 234:freertos\src/croutine.c **** 	/* Are there any co-routines waiting to get moved to the ready list?  These
+ 235:freertos\src/croutine.c **** 	are co-routines that have been readied by an ISR.  The ISR cannot access
+ 236:freertos\src/croutine.c **** 	the	ready lists itself. */
+ 237:freertos\src/croutine.c **** 	while( listLIST_IS_EMPTY( &xPendingReadyCoRoutineList ) == pdFALSE )
+ 238:freertos\src/croutine.c **** 	{
+ 239:freertos\src/croutine.c **** 		corCRCB *pxUnblockedCRCB;
+ 240:freertos\src/croutine.c **** 
+ 241:freertos\src/croutine.c **** 		/* The pending ready list can be accessed by an ISR. */
+ 242:freertos\src/croutine.c **** 		portDISABLE_INTERRUPTS();
+ 243:freertos\src/croutine.c **** 		{
+ 244:freertos\src/croutine.c **** 			pxUnblockedCRCB = ( corCRCB * ) listGET_OWNER_OF_HEAD_ENTRY( (&xPendingReadyCoRoutineList) );
+ 245:freertos\src/croutine.c **** 			( void ) uxListRemove( &( pxUnblockedCRCB->xEventListItem ) );
+ 246:freertos\src/croutine.c **** 		}
+ 247:freertos\src/croutine.c **** 		portENABLE_INTERRUPTS();
+ 248:freertos\src/croutine.c **** 
+ 249:freertos\src/croutine.c **** 		( void ) uxListRemove( &( pxUnblockedCRCB->xGenericListItem ) );
+ 250:freertos\src/croutine.c **** 		prvAddCoRoutineToReadyQueue( pxUnblockedCRCB );
+ 251:freertos\src/croutine.c **** 	}
+ 252:freertos\src/croutine.c **** }
+ 253:freertos\src/croutine.c **** /*-----------------------------------------------------------*/
+ 254:freertos\src/croutine.c **** 
+ 255:freertos\src/croutine.c **** static void prvCheckDelayedList( void )
+ 256:freertos\src/croutine.c **** {
+ 257:freertos\src/croutine.c **** corCRCB *pxCRCB;
+ 258:freertos\src/croutine.c **** 
+ 259:freertos\src/croutine.c **** 	xPassedTicks = xTaskGetTickCount() - xLastTickCount;
+ 260:freertos\src/croutine.c **** 	while( xPassedTicks )
+ 261:freertos\src/croutine.c **** 	{
+ 262:freertos\src/croutine.c **** 		xCoRoutineTickCount++;
+ 263:freertos\src/croutine.c **** 		xPassedTicks--;
+ 264:freertos\src/croutine.c **** 
+ 265:freertos\src/croutine.c **** 		/* If the tick count has overflowed we need to swap the ready lists. */
+ 266:freertos\src/croutine.c **** 		if( xCoRoutineTickCount == 0 )
+ 267:freertos\src/croutine.c **** 		{
+ 268:freertos\src/croutine.c **** 			xList * pxTemp;
+ 269:freertos\src/croutine.c **** 
+ 270:freertos\src/croutine.c **** 			/* Tick count has overflowed so we need to swap the delay lists.  If there are
+ 271:freertos\src/croutine.c **** 			any items in pxDelayedCoRoutineList here then there is an error! */
+ 272:freertos\src/croutine.c **** 			pxTemp = pxDelayedCoRoutineList;
+ 273:freertos\src/croutine.c **** 			pxDelayedCoRoutineList = pxOverflowDelayedCoRoutineList;
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 7
+
+
+ 274:freertos\src/croutine.c **** 			pxOverflowDelayedCoRoutineList = pxTemp;
+ 275:freertos\src/croutine.c **** 		}
+ 276:freertos\src/croutine.c **** 
+ 277:freertos\src/croutine.c **** 		/* See if this tick has made a timeout expire. */
+ 278:freertos\src/croutine.c **** 		while( listLIST_IS_EMPTY( pxDelayedCoRoutineList ) == pdFALSE )
+ 279:freertos\src/croutine.c **** 		{
+ 280:freertos\src/croutine.c **** 			pxCRCB = ( corCRCB * ) listGET_OWNER_OF_HEAD_ENTRY( pxDelayedCoRoutineList );
+ 281:freertos\src/croutine.c **** 
+ 282:freertos\src/croutine.c **** 			if( xCoRoutineTickCount < listGET_LIST_ITEM_VALUE( &( pxCRCB->xGenericListItem ) ) )
+ 283:freertos\src/croutine.c **** 			{
+ 284:freertos\src/croutine.c **** 				/* Timeout not yet expired. */
+ 285:freertos\src/croutine.c **** 				break;
+ 286:freertos\src/croutine.c **** 			}
+ 287:freertos\src/croutine.c **** 
+ 288:freertos\src/croutine.c **** 			portDISABLE_INTERRUPTS();
+ 289:freertos\src/croutine.c **** 			{
+ 290:freertos\src/croutine.c **** 				/* The event could have occurred just before this critical
+ 291:freertos\src/croutine.c **** 				section.  If this is the case then the generic list item will
+ 292:freertos\src/croutine.c **** 				have been moved to the pending ready list and the following
+ 293:freertos\src/croutine.c **** 				line is still valid.  Also the pvContainer parameter will have
+ 294:freertos\src/croutine.c **** 				been set to NULL so the following lines are also valid. */
+ 295:freertos\src/croutine.c **** 				uxListRemove( &( pxCRCB->xGenericListItem ) );
+ 296:freertos\src/croutine.c **** 
+ 297:freertos\src/croutine.c **** 				/* Is the co-routine waiting on an event also? */
+ 298:freertos\src/croutine.c **** 				if( pxCRCB->xEventListItem.pvContainer )
+ 299:freertos\src/croutine.c **** 				{
+ 300:freertos\src/croutine.c **** 					( void ) uxListRemove( &( pxCRCB->xEventListItem ) );
+ 301:freertos\src/croutine.c **** 				}
+ 302:freertos\src/croutine.c **** 			}
+ 303:freertos\src/croutine.c **** 			portENABLE_INTERRUPTS();
+ 304:freertos\src/croutine.c **** 
+ 305:freertos\src/croutine.c **** 			prvAddCoRoutineToReadyQueue( pxCRCB );
+ 306:freertos\src/croutine.c **** 		}
+ 307:freertos\src/croutine.c **** 	}
+ 308:freertos\src/croutine.c **** 
+ 309:freertos\src/croutine.c **** 	xLastTickCount = xCoRoutineTickCount;
+ 310:freertos\src/croutine.c **** }
+ 311:freertos\src/croutine.c **** /*-----------------------------------------------------------*/
+ 312:freertos\src/croutine.c **** 
+ 313:freertos\src/croutine.c **** void vCoRoutineSchedule( void )
+ 314:freertos\src/croutine.c **** {
+ 315:freertos\src/croutine.c **** 	/* See if any co-routines readied by events need moving to the ready lists. */
+ 316:freertos\src/croutine.c **** 	prvCheckPendingReadyList();
+ 317:freertos\src/croutine.c **** 
+ 318:freertos\src/croutine.c **** 	/* See if any delayed co-routines have timed out. */
+ 319:freertos\src/croutine.c **** 	prvCheckDelayedList();
+ 320:freertos\src/croutine.c **** 
+ 321:freertos\src/croutine.c **** 	/* Find the highest priority queue that contains ready co-routines. */
+ 322:freertos\src/croutine.c **** 	while( listLIST_IS_EMPTY( &( pxReadyCoRoutineLists[ uxTopCoRoutineReadyPriority ] ) ) )
+ 323:freertos\src/croutine.c **** 	{
+ 324:freertos\src/croutine.c **** 		if( uxTopCoRoutineReadyPriority == 0 )
+ 325:freertos\src/croutine.c **** 		{
+ 326:freertos\src/croutine.c **** 			/* No more co-routines to check. */
+ 327:freertos\src/croutine.c **** 			return;
+ 328:freertos\src/croutine.c **** 		}
+ 329:freertos\src/croutine.c **** 		--uxTopCoRoutineReadyPriority;
+ 330:freertos\src/croutine.c **** 	}
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 8
+
+
+ 331:freertos\src/croutine.c **** 
+ 332:freertos\src/croutine.c **** 	/* listGET_OWNER_OF_NEXT_ENTRY walks through the list, so the co-routines
+ 333:freertos\src/croutine.c **** 	 of the	same priority get an equal share of the processor time. */
+ 334:freertos\src/croutine.c **** 	listGET_OWNER_OF_NEXT_ENTRY( pxCurrentCoRoutine, &( pxReadyCoRoutineLists[ uxTopCoRoutineReadyPrio
+ 335:freertos\src/croutine.c **** 
+ 336:freertos\src/croutine.c **** 	/* Call the co-routine. */
+ 337:freertos\src/croutine.c **** 	( pxCurrentCoRoutine->pxCoRoutineFunction )( pxCurrentCoRoutine, pxCurrentCoRoutine->uxIndex );
+ 338:freertos\src/croutine.c **** 
+ 339:freertos\src/croutine.c **** 	return;
+ 340:freertos\src/croutine.c **** }
+ 341:freertos\src/croutine.c **** /*-----------------------------------------------------------*/
+ 342:freertos\src/croutine.c **** 
+ 343:freertos\src/croutine.c **** static void prvInitialiseCoRoutineLists( void )
+ 344:freertos\src/croutine.c **** {
+ 345:freertos\src/croutine.c **** unsigned portBASE_TYPE uxPriority;
+ 346:freertos\src/croutine.c **** 
+ 347:freertos\src/croutine.c **** 	for( uxPriority = 0; uxPriority < configMAX_CO_ROUTINE_PRIORITIES; uxPriority++ )
+ 348:freertos\src/croutine.c **** 	{
+ 349:freertos\src/croutine.c **** 		vListInitialise( ( xList * ) &( pxReadyCoRoutineLists[ uxPriority ] ) );
+  69              		.loc 1 349 0
+  70 0020 FFF7FEFF 		bl	vListInitialise
+  71              	.LVL6:
+ 350:freertos\src/croutine.c **** 	}
+ 351:freertos\src/croutine.c **** 
+ 352:freertos\src/croutine.c **** 	vListInitialise( ( xList * ) &xDelayedCoRoutineList1 );
+  72              		.loc 1 352 0
+  73 0024 2700     		movs	r7, r4
+ 349:freertos\src/croutine.c **** 	}
+  74              		.loc 1 349 0
+  75 0026 2000     		movs	r0, r4
+ 353:freertos\src/croutine.c **** 	vListInitialise( ( xList * ) &xDelayedCoRoutineList2 );
+  76              		.loc 1 353 0
+  77 0028 2600     		movs	r6, r4
+ 349:freertos\src/croutine.c **** 	}
+  78              		.loc 1 349 0
+  79 002a 1830     		adds	r0, r0, #24
+ 352:freertos\src/croutine.c **** 	vListInitialise( ( xList * ) &xDelayedCoRoutineList2 );
+  80              		.loc 1 352 0
+  81 002c 2C37     		adds	r7, r7, #44
+ 349:freertos\src/croutine.c **** 	}
+  82              		.loc 1 349 0
+  83 002e FFF7FEFF 		bl	vListInitialise
+  84              	.LVL7:
+  85              		.loc 1 353 0
+  86 0032 4036     		adds	r6, r6, #64
+ 352:freertos\src/croutine.c **** 	vListInitialise( ( xList * ) &xDelayedCoRoutineList2 );
+  87              		.loc 1 352 0
+  88 0034 3800     		movs	r0, r7
+  89 0036 FFF7FEFF 		bl	vListInitialise
+  90              	.LVL8:
+  91              		.loc 1 353 0
+  92 003a 3000     		movs	r0, r6
+  93 003c FFF7FEFF 		bl	vListInitialise
+  94              	.LVL9:
+ 354:freertos\src/croutine.c **** 	vListInitialise( ( xList * ) &xPendingReadyCoRoutineList );
+  95              		.loc 1 354 0
+  96 0040 2000     		movs	r0, r4
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 9
+
+
+  97 0042 5430     		adds	r0, r0, #84
+  98 0044 FFF7FEFF 		bl	vListInitialise
+  99              	.LVL10:
+ 355:freertos\src/croutine.c **** 
+ 356:freertos\src/croutine.c **** 	/* Start with pxDelayedCoRoutineList using list1 and the
+ 357:freertos\src/croutine.c **** 	pxOverflowDelayedCoRoutineList using list2. */
+ 358:freertos\src/croutine.c **** 	pxDelayedCoRoutineList = &xDelayedCoRoutineList1;
+ 100              		.loc 1 358 0
+ 101 0048 A766     		str	r7, [r4, #104]
+ 359:freertos\src/croutine.c **** 	pxOverflowDelayedCoRoutineList = &xDelayedCoRoutineList2;
+ 102              		.loc 1 359 0
+ 103 004a E666     		str	r6, [r4, #108]
+ 104              	.LVL11:
+ 105              	.L3:
+ 106 004c 029E     		ldr	r6, [sp, #8]
+ 107 004e 002E     		cmp	r6, #0
+ 108 0050 00D0     		beq	.L4
+ 109 0052 0126     		movs	r6, #1
+ 110              	.L4:
+ 111              	.LVL12:
+ 112              	.LBE5:
+ 113              	.LBE4:
+ 161:freertos\src/croutine.c **** 		pxCoRoutine->uxPriority = uxPriority;
+ 114              		.loc 1 161 0
+ 115 0054 0023     		movs	r3, #0
+ 164:freertos\src/croutine.c **** 
+ 116              		.loc 1 164 0
+ 117 0056 2F00     		movs	r7, r5
+ 161:freertos\src/croutine.c **** 		pxCoRoutine->uxPriority = uxPriority;
+ 118              		.loc 1 161 0
+ 119 0058 AB86     		strh	r3, [r5, #52]
+ 163:freertos\src/croutine.c **** 		pxCoRoutine->pxCoRoutineFunction = pxCoRoutineCode;
+ 120              		.loc 1 163 0
+ 121 005a 039B     		ldr	r3, [sp, #12]
+ 162:freertos\src/croutine.c **** 		pxCoRoutine->uxIndex = uxIndex;
+ 122              		.loc 1 162 0
+ 123 005c EE62     		str	r6, [r5, #44]
+ 163:freertos\src/croutine.c **** 		pxCoRoutine->pxCoRoutineFunction = pxCoRoutineCode;
+ 124              		.loc 1 163 0
+ 125 005e 2B63     		str	r3, [r5, #48]
+ 164:freertos\src/croutine.c **** 
+ 126              		.loc 1 164 0
+ 127 0060 019B     		ldr	r3, [sp, #4]
+ 128 0062 08C7     		stmia	r7!, {r3}
+ 167:freertos\src/croutine.c **** 		vListInitialiseItem( &( pxCoRoutine->xEventListItem ) );
+ 129              		.loc 1 167 0
+ 130 0064 3800     		movs	r0, r7
+ 131 0066 FFF7FEFF 		bl	vListInitialiseItem
+ 132              	.LVL13:
+ 168:freertos\src/croutine.c **** 
+ 133              		.loc 1 168 0
+ 134 006a 2800     		movs	r0, r5
+ 135 006c 1830     		adds	r0, r0, #24
+ 136 006e FFF7FEFF 		bl	vListInitialiseItem
+ 137              	.LVL14:
+ 177:freertos\src/croutine.c **** 
+ 138              		.loc 1 177 0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 10
+
+
+ 139 0072 0423     		movs	r3, #4
+ 181:freertos\src/croutine.c **** 
+ 140              		.loc 1 181 0
+ 141 0074 E86A     		ldr	r0, [r5, #44]
+ 177:freertos\src/croutine.c **** 
+ 142              		.loc 1 177 0
+ 143 0076 9E1B     		subs	r6, r3, r6
+ 144              	.LVL15:
+ 181:freertos\src/croutine.c **** 
+ 145              		.loc 1 181 0
+ 146 0078 236F     		ldr	r3, [r4, #112]
+ 173:freertos\src/croutine.c **** 		listSET_LIST_ITEM_OWNER( &( pxCoRoutine->xEventListItem ), pxCoRoutine );
+ 147              		.loc 1 173 0
+ 148 007a 2D61     		str	r5, [r5, #16]
+ 174:freertos\src/croutine.c **** 
+ 149              		.loc 1 174 0
+ 150 007c 6D62     		str	r5, [r5, #36]
+ 177:freertos\src/croutine.c **** 
+ 151              		.loc 1 177 0
+ 152 007e AE61     		str	r6, [r5, #24]
+ 181:freertos\src/croutine.c **** 
+ 153              		.loc 1 181 0
+ 154 0080 9842     		cmp	r0, r3
+ 155 0082 00D9     		bls	.L5
+ 181:freertos\src/croutine.c **** 
+ 156              		.loc 1 181 0 is_stmt 0 discriminator 1
+ 157 0084 2067     		str	r0, [r4, #112]
+ 158              	.L5:
+ 181:freertos\src/croutine.c **** 
+ 159              		.loc 1 181 0 discriminator 3
+ 160 0086 1423     		movs	r3, #20
+ 161 0088 5843     		muls	r0, r3
+ 162 008a 0434     		adds	r4, r4, #4
+ 163 008c 2018     		adds	r0, r4, r0
+ 164 008e 3900     		movs	r1, r7
+ 165 0090 FFF7FEFF 		bl	vListInsertEnd
+ 166              	.LVL16:
+ 183:freertos\src/croutine.c **** 	}
+ 167              		.loc 1 183 0 is_stmt 1 discriminator 3
+ 168 0094 0120     		movs	r0, #1
+ 169 0096 01E0     		b	.L2
+ 170              	.LVL17:
+ 171              	.L6:
+ 187:freertos\src/croutine.c **** 	}
+ 172              		.loc 1 187 0
+ 173 0098 0120     		movs	r0, #1
+ 174              	.LVL18:
+ 175 009a 4042     		rsbs	r0, r0, #0
+ 176              	.LVL19:
+ 177              	.L2:
+ 191:freertos\src/croutine.c **** /*-----------------------------------------------------------*/
+ 178              		.loc 1 191 0
+ 179 009c 05B0     		add	sp, sp, #20
+ 180              		@ sp needed
+ 181              	.LVL20:
+ 182 009e F0BD     		pop	{r4, r5, r6, r7, pc}
+ 183              	.L12:
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 11
+
+
+ 184              		.align	2
+ 185              	.L11:
+ 186 00a0 00000000 		.word	.LANCHOR0
+ 187              		.cfi_endproc
+ 188              	.LFE32:
+ 189              		.size	xCoRoutineCreate, .-xCoRoutineCreate
+ 190              		.section	.text.vCoRoutineAddToDelayedList,"ax",%progbits
+ 191              		.align	1
+ 192              		.global	vCoRoutineAddToDelayedList
+ 193              		.code	16
+ 194              		.thumb_func
+ 195              		.type	vCoRoutineAddToDelayedList, %function
+ 196              	vCoRoutineAddToDelayedList:
+ 197              	.LFB33:
+ 195:freertos\src/croutine.c **** portTickType xTimeToWake;
+ 198              		.loc 1 195 0
+ 199              		.cfi_startproc
+ 200              		@ args = 0, pretend = 0, frame = 0
+ 201              		@ frame_needed = 0, uses_anonymous_args = 0
+ 202              	.LVL21:
+ 203 0000 70B5     		push	{r4, r5, r6, lr}
+ 204              		.cfi_def_cfa_offset 16
+ 205              		.cfi_offset 4, -16
+ 206              		.cfi_offset 5, -12
+ 207              		.cfi_offset 6, -8
+ 208              		.cfi_offset 14, -4
+ 200:freertos\src/croutine.c **** 
+ 209              		.loc 1 200 0
+ 210 0002 0D4C     		ldr	r4, .L21
+ 195:freertos\src/croutine.c **** portTickType xTimeToWake;
+ 211              		.loc 1 195 0
+ 212 0004 0E00     		movs	r6, r1
+ 200:freertos\src/croutine.c **** 
+ 213              		.loc 1 200 0
+ 214 0006 636F     		ldr	r3, [r4, #116]
+ 215 0008 C518     		adds	r5, r0, r3
+ 216              	.LVL22:
+ 205:freertos\src/croutine.c **** 
+ 217              		.loc 1 205 0
+ 218 000a 2368     		ldr	r3, [r4]
+ 219 000c 181D     		adds	r0, r3, #4
+ 220              	.LVL23:
+ 221 000e FFF7FEFF 		bl	uxListRemove
+ 222              	.LVL24:
+ 208:freertos\src/croutine.c **** 
+ 223              		.loc 1 208 0
+ 224 0012 2168     		ldr	r1, [r4]
+ 210:freertos\src/croutine.c **** 	{
+ 225              		.loc 1 210 0
+ 226 0014 636F     		ldr	r3, [r4, #116]
+ 208:freertos\src/croutine.c **** 
+ 227              		.loc 1 208 0
+ 228 0016 4D60     		str	r5, [r1, #4]
+ 229 0018 0431     		adds	r1, r1, #4
+ 210:freertos\src/croutine.c **** 	{
+ 230              		.loc 1 210 0
+ 231 001a 9D42     		cmp	r5, r3
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 12
+
+
+ 232 001c 01D2     		bcs	.L14
+ 214:freertos\src/croutine.c **** 	}
+ 233              		.loc 1 214 0
+ 234 001e E06E     		ldr	r0, [r4, #108]
+ 235 0020 00E0     		b	.L20
+ 236              	.L14:
+ 220:freertos\src/croutine.c **** 	}
+ 237              		.loc 1 220 0
+ 238 0022 A06E     		ldr	r0, [r4, #104]
+ 239              	.L20:
+ 240 0024 FFF7FEFF 		bl	vListInsert
+ 241              	.LVL25:
+ 223:freertos\src/croutine.c **** 	{
+ 242              		.loc 1 223 0
+ 243 0028 002E     		cmp	r6, #0
+ 244 002a 04D0     		beq	.L13
+ 227:freertos\src/croutine.c **** 	}
+ 245              		.loc 1 227 0
+ 246 002c 2168     		ldr	r1, [r4]
+ 247 002e 3000     		movs	r0, r6
+ 248 0030 1831     		adds	r1, r1, #24
+ 249 0032 FFF7FEFF 		bl	vListInsert
+ 250              	.LVL26:
+ 251              	.L13:
+ 229:freertos\src/croutine.c **** /*-----------------------------------------------------------*/
+ 252              		.loc 1 229 0
+ 253              		@ sp needed
+ 254              	.LVL27:
+ 255              	.LVL28:
+ 256 0036 70BD     		pop	{r4, r5, r6, pc}
+ 257              	.L22:
+ 258              		.align	2
+ 259              	.L21:
+ 260 0038 00000000 		.word	.LANCHOR0
+ 261              		.cfi_endproc
+ 262              	.LFE33:
+ 263              		.size	vCoRoutineAddToDelayedList, .-vCoRoutineAddToDelayedList
+ 264              		.section	.text.vCoRoutineSchedule,"ax",%progbits
+ 265              		.align	1
+ 266              		.global	vCoRoutineSchedule
+ 267              		.code	16
+ 268              		.thumb_func
+ 269              		.type	vCoRoutineSchedule, %function
+ 270              	vCoRoutineSchedule:
+ 271              	.LFB36:
+ 314:freertos\src/croutine.c **** 	/* See if any co-routines readied by events need moving to the ready lists. */
+ 272              		.loc 1 314 0
+ 273              		.cfi_startproc
+ 274              		@ args = 0, pretend = 0, frame = 0
+ 275              		@ frame_needed = 0, uses_anonymous_args = 0
+ 276 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 277              		.cfi_def_cfa_offset 24
+ 278              		.cfi_offset 3, -24
+ 279              		.cfi_offset 4, -20
+ 280              		.cfi_offset 5, -16
+ 281              		.cfi_offset 6, -12
+ 282              		.cfi_offset 7, -8
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 13
+
+
+ 283              		.cfi_offset 14, -4
+ 284              	.LBB13:
+ 285              	.LBB14:
+ 237:freertos\src/croutine.c **** 	{
+ 286              		.loc 1 237 0
+ 287 0002 404C     		ldr	r4, .L51
+ 288              	.LBB15:
+ 250:freertos\src/croutine.c **** 	}
+ 289              		.loc 1 250 0
+ 290 0004 271D     		adds	r7, r4, #4
+ 291              	.L24:
+ 292              	.LBE15:
+ 237:freertos\src/croutine.c **** 	{
+ 293              		.loc 1 237 0
+ 294 0006 636D     		ldr	r3, [r4, #84]
+ 295 0008 3E4D     		ldr	r5, .L51
+ 296 000a 002B     		cmp	r3, #0
+ 297 000c 17D0     		beq	.L48
+ 298              	.LBB16:
+ 242:freertos\src/croutine.c **** 		{
+ 299              		.loc 1 242 0
+ 300              		.syntax divided
+ 301              	@ 242 "freertos\src\croutine.c" 1
+ 302 000e 72B6     		 cpsid i 
+ 303              	@ 0 "" 2
+ 244:freertos\src/croutine.c **** 			( void ) uxListRemove( &( pxUnblockedCRCB->xEventListItem ) );
+ 304              		.loc 1 244 0
+ 305              		.thumb
+ 306              		.syntax unified
+ 307 0010 236E     		ldr	r3, [r4, #96]
+ 308 0012 DD68     		ldr	r5, [r3, #12]
+ 309              	.LVL29:
+ 245:freertos\src/croutine.c **** 		}
+ 310              		.loc 1 245 0
+ 311 0014 2800     		movs	r0, r5
+ 312 0016 1830     		adds	r0, r0, #24
+ 313 0018 FFF7FEFF 		bl	uxListRemove
+ 314              	.LVL30:
+ 247:freertos\src/croutine.c **** 
+ 315              		.loc 1 247 0
+ 316              		.syntax divided
+ 317              	@ 247 "freertos\src\croutine.c" 1
+ 318 001c 62B6     		 cpsie i 
+ 319              	@ 0 "" 2
+ 249:freertos\src/croutine.c **** 		prvAddCoRoutineToReadyQueue( pxUnblockedCRCB );
+ 320              		.loc 1 249 0
+ 321              		.thumb
+ 322              		.syntax unified
+ 323 001e 2E1D     		adds	r6, r5, #4
+ 324 0020 3000     		movs	r0, r6
+ 325 0022 FFF7FEFF 		bl	uxListRemove
+ 326              	.LVL31:
+ 250:freertos\src/croutine.c **** 	}
+ 327              		.loc 1 250 0
+ 328 0026 E86A     		ldr	r0, [r5, #44]
+ 329 0028 236F     		ldr	r3, [r4, #112]
+ 330 002a 9842     		cmp	r0, r3
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 14
+
+
+ 331 002c 00D9     		bls	.L25
+ 332 002e 2067     		str	r0, [r4, #112]
+ 333              	.L25:
+ 334 0030 1423     		movs	r3, #20
+ 335 0032 5843     		muls	r0, r3
+ 336 0034 3100     		movs	r1, r6
+ 337 0036 3818     		adds	r0, r7, r0
+ 338 0038 FFF7FEFF 		bl	vListInsertEnd
+ 339              	.LVL32:
+ 340 003c E3E7     		b	.L24
+ 341              	.LVL33:
+ 342              	.L48:
+ 343              	.LBE16:
+ 344              	.LBE14:
+ 345              	.LBE13:
+ 346              	.LBB17:
+ 347              	.LBB18:
+ 259:freertos\src/croutine.c **** 	while( xPassedTicks )
+ 348              		.loc 1 259 0
+ 349 003e FFF7FEFF 		bl	xTaskGetTickCount
+ 350              	.LVL34:
+ 305:freertos\src/croutine.c **** 		}
+ 351              		.loc 1 305 0
+ 352 0042 1426     		movs	r6, #20
+ 259:freertos\src/croutine.c **** 	while( xPassedTicks )
+ 353              		.loc 1 259 0
+ 354 0044 EB6F     		ldr	r3, [r5, #124]
+ 355 0046 C01A     		subs	r0, r0, r3
+ 356 0048 A867     		str	r0, [r5, #120]
+ 357              	.L44:
+ 260:freertos\src/croutine.c **** 	{
+ 358              		.loc 1 260 0
+ 359 004a AB6F     		ldr	r3, [r5, #120]
+ 360 004c 002B     		cmp	r3, #0
+ 361 004e 2ED0     		beq	.L49
+ 262:freertos\src/croutine.c **** 		xPassedTicks--;
+ 362              		.loc 1 262 0
+ 363 0050 6A6F     		ldr	r2, [r5, #116]
+ 263:freertos\src/croutine.c **** 
+ 364              		.loc 1 263 0
+ 365 0052 013B     		subs	r3, r3, #1
+ 262:freertos\src/croutine.c **** 		xPassedTicks--;
+ 366              		.loc 1 262 0
+ 367 0054 0132     		adds	r2, r2, #1
+ 368 0056 6A67     		str	r2, [r5, #116]
+ 263:freertos\src/croutine.c **** 
+ 369              		.loc 1 263 0
+ 370 0058 AB67     		str	r3, [r5, #120]
+ 266:freertos\src/croutine.c **** 		{
+ 371              		.loc 1 266 0
+ 372 005a 002A     		cmp	r2, #0
+ 373 005c 22D1     		bne	.L29
+ 374              	.LBB19:
+ 272:freertos\src/croutine.c **** 			pxDelayedCoRoutineList = pxOverflowDelayedCoRoutineList;
+ 375              		.loc 1 272 0
+ 376 005e AB6E     		ldr	r3, [r5, #104]
+ 377              	.LVL35:
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 15
+
+
+ 273:freertos\src/croutine.c **** 			pxOverflowDelayedCoRoutineList = pxTemp;
+ 378              		.loc 1 273 0
+ 379 0060 EA6E     		ldr	r2, [r5, #108]
+ 274:freertos\src/croutine.c **** 		}
+ 380              		.loc 1 274 0
+ 381 0062 EB66     		str	r3, [r5, #108]
+ 273:freertos\src/croutine.c **** 			pxOverflowDelayedCoRoutineList = pxTemp;
+ 382              		.loc 1 273 0
+ 383 0064 AA66     		str	r2, [r5, #104]
+ 384 0066 1DE0     		b	.L29
+ 385              	.LVL36:
+ 386              	.L32:
+ 387              	.LBE19:
+ 280:freertos\src/croutine.c **** 
+ 388              		.loc 1 280 0
+ 389 0068 DB68     		ldr	r3, [r3, #12]
+ 282:freertos\src/croutine.c **** 			{
+ 390              		.loc 1 282 0
+ 391 006a 6A6F     		ldr	r2, [r5, #116]
+ 280:freertos\src/croutine.c **** 
+ 392              		.loc 1 280 0
+ 393 006c DF68     		ldr	r7, [r3, #12]
+ 394              	.LVL37:
+ 282:freertos\src/croutine.c **** 			{
+ 395              		.loc 1 282 0
+ 396 006e 7B68     		ldr	r3, [r7, #4]
+ 397 0070 9342     		cmp	r3, r2
+ 398 0072 EAD8     		bhi	.L44
+ 288:freertos\src/croutine.c **** 			{
+ 399              		.loc 1 288 0
+ 400              		.syntax divided
+ 401              	@ 288 "freertos\src\croutine.c" 1
+ 402 0074 72B6     		 cpsid i 
+ 403              	@ 0 "" 2
+ 295:freertos\src/croutine.c **** 
+ 404              		.loc 1 295 0
+ 405              		.thumb
+ 406              		.syntax unified
+ 407 0076 3C1D     		adds	r4, r7, #4
+ 408 0078 2000     		movs	r0, r4
+ 409 007a FFF7FEFF 		bl	uxListRemove
+ 410              	.LVL38:
+ 298:freertos\src/croutine.c **** 				{
+ 411              		.loc 1 298 0
+ 412 007e BB6A     		ldr	r3, [r7, #40]
+ 413 0080 002B     		cmp	r3, #0
+ 414 0082 03D0     		beq	.L30
+ 300:freertos\src/croutine.c **** 				}
+ 415              		.loc 1 300 0
+ 416 0084 3800     		movs	r0, r7
+ 417 0086 1830     		adds	r0, r0, #24
+ 418 0088 FFF7FEFF 		bl	uxListRemove
+ 419              	.LVL39:
+ 420              	.L30:
+ 303:freertos\src/croutine.c **** 
+ 421              		.loc 1 303 0
+ 422              		.syntax divided
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 16
+
+
+ 423              	@ 303 "freertos\src\croutine.c" 1
+ 424 008c 62B6     		 cpsie i 
+ 425              	@ 0 "" 2
+ 305:freertos\src/croutine.c **** 		}
+ 426              		.loc 1 305 0
+ 427              		.thumb
+ 428              		.syntax unified
+ 429 008e FB6A     		ldr	r3, [r7, #44]
+ 430 0090 2A6F     		ldr	r2, [r5, #112]
+ 431 0092 9342     		cmp	r3, r2
+ 432 0094 00D9     		bls	.L31
+ 433 0096 2B67     		str	r3, [r5, #112]
+ 434              	.L31:
+ 435 0098 7343     		muls	r3, r6
+ 436 009a 281D     		adds	r0, r5, #4
+ 437 009c C018     		adds	r0, r0, r3
+ 438 009e 2100     		movs	r1, r4
+ 439 00a0 FFF7FEFF 		bl	vListInsertEnd
+ 440              	.LVL40:
+ 441              	.L29:
+ 278:freertos\src/croutine.c **** 		{
+ 442              		.loc 1 278 0
+ 443 00a4 AB6E     		ldr	r3, [r5, #104]
+ 444 00a6 1A68     		ldr	r2, [r3]
+ 445 00a8 002A     		cmp	r2, #0
+ 446 00aa DDD1     		bne	.L32
+ 447 00ac CDE7     		b	.L44
+ 448              	.L49:
+ 449              	.LBE18:
+ 450              	.LBE17:
+ 322:freertos\src/croutine.c **** 	{
+ 451              		.loc 1 322 0
+ 452 00ae 1422     		movs	r2, #20
+ 453 00b0 1100     		movs	r1, r2
+ 454              	.LBB21:
+ 455              	.LBB20:
+ 309:freertos\src/croutine.c **** }
+ 456              		.loc 1 309 0
+ 457 00b2 6B6F     		ldr	r3, [r5, #116]
+ 458 00b4 EB67     		str	r3, [r5, #124]
+ 459 00b6 2B6F     		ldr	r3, [r5, #112]
+ 460              	.LBE20:
+ 461              	.LBE21:
+ 322:freertos\src/croutine.c **** 	{
+ 462              		.loc 1 322 0
+ 463 00b8 5943     		muls	r1, r3
+ 464 00ba 6918     		adds	r1, r5, r1
+ 465 00bc 4968     		ldr	r1, [r1, #4]
+ 466 00be 0029     		cmp	r1, #0
+ 467 00c0 0AD1     		bne	.L34
+ 324:freertos\src/croutine.c **** 		{
+ 468              		.loc 1 324 0
+ 469 00c2 002B     		cmp	r3, #0
+ 470 00c4 1DD0     		beq	.L23
+ 329:freertos\src/croutine.c **** 	}
+ 471              		.loc 1 329 0
+ 472 00c6 013B     		subs	r3, r3, #1
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 17
+
+
+ 322:freertos\src/croutine.c **** 	{
+ 473              		.loc 1 322 0
+ 474 00c8 5A43     		muls	r2, r3
+ 475 00ca AA18     		adds	r2, r5, r2
+ 476 00cc 5268     		ldr	r2, [r2, #4]
+ 477 00ce 002A     		cmp	r2, #0
+ 478 00d0 01D1     		bne	.L50
+ 479 00d2 2B67     		str	r3, [r5, #112]
+ 480 00d4 15E0     		b	.L23
+ 481              	.L50:
+ 482 00d6 2B67     		str	r3, [r5, #112]
+ 483              	.L34:
+ 484              	.LVL41:
+ 485              	.LBB22:
+ 334:freertos\src/croutine.c **** 
+ 486              		.loc 1 334 0
+ 487 00d8 1422     		movs	r2, #20
+ 488 00da 1100     		movs	r1, r2
+ 489 00dc 5943     		muls	r1, r3
+ 490 00de 6818     		adds	r0, r5, r1
+ 491 00e0 0100     		movs	r1, r0
+ 492 00e2 8468     		ldr	r4, [r0, #8]
+ 493 00e4 0C31     		adds	r1, r1, #12
+ 494 00e6 6468     		ldr	r4, [r4, #4]
+ 495 00e8 8460     		str	r4, [r0, #8]
+ 496 00ea 8C42     		cmp	r4, r1
+ 497 00ec 01D1     		bne	.L39
+ 334:freertos\src/croutine.c **** 
+ 498              		.loc 1 334 0 is_stmt 0 discriminator 1
+ 499 00ee 6168     		ldr	r1, [r4, #4]
+ 500 00f0 8160     		str	r1, [r0, #8]
+ 501              	.L39:
+ 334:freertos\src/croutine.c **** 
+ 502              		.loc 1 334 0 discriminator 3
+ 503 00f2 5343     		muls	r3, r2
+ 504              	.LVL42:
+ 505 00f4 EB18     		adds	r3, r5, r3
+ 506 00f6 9B68     		ldr	r3, [r3, #8]
+ 507 00f8 D868     		ldr	r0, [r3, #12]
+ 508 00fa 2860     		str	r0, [r5]
+ 509              	.LBE22:
+ 337:freertos\src/croutine.c **** 
+ 510              		.loc 1 337 0 is_stmt 1 discriminator 3
+ 511 00fc 0368     		ldr	r3, [r0]
+ 512 00fe 016B     		ldr	r1, [r0, #48]
+ 513 0100 9847     		blx	r3
+ 514              	.LVL43:
+ 515              	.L23:
+ 340:freertos\src/croutine.c **** /*-----------------------------------------------------------*/
+ 516              		.loc 1 340 0
+ 517              		@ sp needed
+ 518 0102 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 519              	.L52:
+ 520              		.align	2
+ 521              	.L51:
+ 522 0104 00000000 		.word	.LANCHOR0
+ 523              		.cfi_endproc
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 18
+
+
+ 524              	.LFE36:
+ 525              		.size	vCoRoutineSchedule, .-vCoRoutineSchedule
+ 526              		.section	.text.xCoRoutineRemoveFromEventList,"ax",%progbits
+ 527              		.align	1
+ 528              		.global	xCoRoutineRemoveFromEventList
+ 529              		.code	16
+ 530              		.thumb_func
+ 531              		.type	xCoRoutineRemoveFromEventList, %function
+ 532              	xCoRoutineRemoveFromEventList:
+ 533              	.LFB38:
+ 360:freertos\src/croutine.c **** }
+ 361:freertos\src/croutine.c **** /*-----------------------------------------------------------*/
+ 362:freertos\src/croutine.c **** 
+ 363:freertos\src/croutine.c **** signed portBASE_TYPE xCoRoutineRemoveFromEventList( const xList *pxEventList )
+ 364:freertos\src/croutine.c **** {
+ 534              		.loc 1 364 0
+ 535              		.cfi_startproc
+ 536              		@ args = 0, pretend = 0, frame = 0
+ 537              		@ frame_needed = 0, uses_anonymous_args = 0
+ 538              	.LVL44:
+ 365:freertos\src/croutine.c **** corCRCB *pxUnblockedCRCB;
+ 366:freertos\src/croutine.c **** signed portBASE_TYPE xReturn;
+ 367:freertos\src/croutine.c **** 
+ 368:freertos\src/croutine.c **** 	/* This function is called from within an interrupt.  It can only access
+ 369:freertos\src/croutine.c **** 	event lists and the pending ready list.  This function assumes that a
+ 370:freertos\src/croutine.c **** 	check has already been made to ensure pxEventList is not empty. */
+ 371:freertos\src/croutine.c **** 	pxUnblockedCRCB = ( corCRCB * ) listGET_OWNER_OF_HEAD_ENTRY( pxEventList );
+ 539              		.loc 1 371 0
+ 540 0000 C368     		ldr	r3, [r0, #12]
+ 364:freertos\src/croutine.c **** corCRCB *pxUnblockedCRCB;
+ 541              		.loc 1 364 0
+ 542 0002 70B5     		push	{r4, r5, r6, lr}
+ 543              		.cfi_def_cfa_offset 16
+ 544              		.cfi_offset 4, -16
+ 545              		.cfi_offset 5, -12
+ 546              		.cfi_offset 6, -8
+ 547              		.cfi_offset 14, -4
+ 548              		.loc 1 371 0
+ 549 0004 DC68     		ldr	r4, [r3, #12]
+ 550              	.LVL45:
+ 372:freertos\src/croutine.c **** 	( void ) uxListRemove( &( pxUnblockedCRCB->xEventListItem ) );
+ 373:freertos\src/croutine.c **** 	vListInsertEnd( ( xList * ) &( xPendingReadyCoRoutineList ), &( pxUnblockedCRCB->xEventListItem ) 
+ 374:freertos\src/croutine.c **** 
+ 375:freertos\src/croutine.c **** 	if( pxUnblockedCRCB->uxPriority >= pxCurrentCoRoutine->uxPriority )
+ 376:freertos\src/croutine.c **** 	{
+ 377:freertos\src/croutine.c **** 		xReturn = pdTRUE;
+ 378:freertos\src/croutine.c **** 	}
+ 379:freertos\src/croutine.c **** 	else
+ 380:freertos\src/croutine.c **** 	{
+ 381:freertos\src/croutine.c **** 		xReturn = pdFALSE;
+ 382:freertos\src/croutine.c **** 	}
+ 383:freertos\src/croutine.c **** 
+ 384:freertos\src/croutine.c **** 	return xReturn;
+ 385:freertos\src/croutine.c **** }
+ 551              		.loc 1 385 0
+ 552              		@ sp needed
+ 372:freertos\src/croutine.c **** 	( void ) uxListRemove( &( pxUnblockedCRCB->xEventListItem ) );
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 19
+
+
+ 553              		.loc 1 372 0
+ 554 0006 2600     		movs	r6, r4
+ 555 0008 1836     		adds	r6, r6, #24
+ 556 000a 3000     		movs	r0, r6
+ 557              	.LVL46:
+ 558 000c FFF7FEFF 		bl	uxListRemove
+ 559              	.LVL47:
+ 373:freertos\src/croutine.c **** 
+ 560              		.loc 1 373 0
+ 561 0010 064D     		ldr	r5, .L54
+ 562 0012 3100     		movs	r1, r6
+ 563 0014 2800     		movs	r0, r5
+ 564 0016 5430     		adds	r0, r0, #84
+ 565 0018 FFF7FEFF 		bl	vListInsertEnd
+ 566              	.LVL48:
+ 384:freertos\src/croutine.c **** }
+ 567              		.loc 1 384 0
+ 568 001c 0020     		movs	r0, #0
+ 375:freertos\src/croutine.c **** 	{
+ 569              		.loc 1 375 0
+ 570 001e 2B68     		ldr	r3, [r5]
+ 384:freertos\src/croutine.c **** }
+ 571              		.loc 1 384 0
+ 572 0020 E26A     		ldr	r2, [r4, #44]
+ 573 0022 DB6A     		ldr	r3, [r3, #44]
+ 574 0024 9A42     		cmp	r2, r3
+ 575 0026 4041     		adcs	r0, r0, r0
+ 576              	.LVL49:
+ 577              	.LVL50:
+ 578              		.loc 1 385 0
+ 579 0028 70BD     		pop	{r4, r5, r6, pc}
+ 580              	.L55:
+ 581 002a C046     		.align	2
+ 582              	.L54:
+ 583 002c 00000000 		.word	.LANCHOR0
+ 584              		.cfi_endproc
+ 585              	.LFE38:
+ 586              		.size	xCoRoutineRemoveFromEventList, .-xCoRoutineRemoveFromEventList
+ 587              		.global	pxCurrentCoRoutine
+ 588              		.bss
+ 589              		.align	2
+ 590              		.set	.LANCHOR0,. + 0
+ 591              		.type	pxCurrentCoRoutine, %object
+ 592              		.size	pxCurrentCoRoutine, 4
+ 593              	pxCurrentCoRoutine:
+ 594 0000 00000000 		.space	4
+ 595              		.type	pxReadyCoRoutineLists, %object
+ 596              		.size	pxReadyCoRoutineLists, 40
+ 597              	pxReadyCoRoutineLists:
+ 598 0004 00000000 		.space	40
+ 598      00000000 
+ 598      00000000 
+ 598      00000000 
+ 598      00000000 
+ 599              		.type	xDelayedCoRoutineList1, %object
+ 600              		.size	xDelayedCoRoutineList1, 20
+ 601              	xDelayedCoRoutineList1:
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 20
+
+
+ 602 002c 00000000 		.space	20
+ 602      00000000 
+ 602      00000000 
+ 602      00000000 
+ 602      00000000 
+ 603              		.type	xDelayedCoRoutineList2, %object
+ 604              		.size	xDelayedCoRoutineList2, 20
+ 605              	xDelayedCoRoutineList2:
+ 606 0040 00000000 		.space	20
+ 606      00000000 
+ 606      00000000 
+ 606      00000000 
+ 606      00000000 
+ 607              		.type	xPendingReadyCoRoutineList, %object
+ 608              		.size	xPendingReadyCoRoutineList, 20
+ 609              	xPendingReadyCoRoutineList:
+ 610 0054 00000000 		.space	20
+ 610      00000000 
+ 610      00000000 
+ 610      00000000 
+ 610      00000000 
+ 611              		.type	pxDelayedCoRoutineList, %object
+ 612              		.size	pxDelayedCoRoutineList, 4
+ 613              	pxDelayedCoRoutineList:
+ 614 0068 00000000 		.space	4
+ 615              		.type	pxOverflowDelayedCoRoutineList, %object
+ 616              		.size	pxOverflowDelayedCoRoutineList, 4
+ 617              	pxOverflowDelayedCoRoutineList:
+ 618 006c 00000000 		.space	4
+ 619              		.type	uxTopCoRoutineReadyPriority, %object
+ 620              		.size	uxTopCoRoutineReadyPriority, 4
+ 621              	uxTopCoRoutineReadyPriority:
+ 622 0070 00000000 		.space	4
+ 623              		.type	xCoRoutineTickCount, %object
+ 624              		.size	xCoRoutineTickCount, 4
+ 625              	xCoRoutineTickCount:
+ 626 0074 00000000 		.space	4
+ 627              		.type	xPassedTicks, %object
+ 628              		.size	xPassedTicks, 4
+ 629              	xPassedTicks:
+ 630 0078 00000000 		.space	4
+ 631              		.type	xLastTickCount, %object
+ 632              		.size	xLastTickCount, 4
+ 633              	xLastTickCount:
+ 634 007c 00000000 		.space	4
+ 635              		.text
+ 636              	.Letext0:
+ 637              		.file 2 ".\\freertos\\include/list.h"
+ 638              		.file 3 ".\\freertos\\include/portmacro.h"
+ 639              		.file 4 ".\\freertos\\include/croutine.h"
+ 640              		.file 5 ".\\freertos\\include/portable.h"
+ 641              		.file 6 ".\\freertos\\include/task.h"
+ 642              		.section	.debug_info,"",%progbits
+ 643              	.Ldebug_info0:
+ 644 0000 A8060000 		.4byte	0x6a8
+ 645 0004 0400     		.2byte	0x4
+ 646 0006 00000000 		.4byte	.Ldebug_abbrev0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 21
+
+
+ 647 000a 04       		.byte	0x4
+ 648 000b 01       		.uleb128 0x1
+ 649 000c 59020000 		.4byte	.LASF72
+ 650 0010 0C       		.byte	0xc
+ 651 0011 41040000 		.4byte	.LASF73
+ 652 0015 1D000000 		.4byte	.LASF74
+ 653 0019 30000000 		.4byte	.Ldebug_ranges0+0x30
+ 654 001d 00000000 		.4byte	0
+ 655 0021 00000000 		.4byte	.Ldebug_line0
+ 656 0025 02       		.uleb128 0x2
+ 657 0026 04       		.byte	0x4
+ 658 0027 05       		.byte	0x5
+ 659 0028 696E7400 		.ascii	"int\000"
+ 660 002c 03       		.uleb128 0x3
+ 661 002d 04       		.byte	0x4
+ 662 002e 07       		.byte	0x7
+ 663 002f F2020000 		.4byte	.LASF0
+ 664 0033 04       		.uleb128 0x4
+ 665 0034 04       		.byte	0x4
+ 666 0035 03       		.uleb128 0x3
+ 667 0036 01       		.byte	0x1
+ 668 0037 06       		.byte	0x6
+ 669 0038 7E040000 		.4byte	.LASF1
+ 670 003c 03       		.uleb128 0x3
+ 671 003d 01       		.byte	0x1
+ 672 003e 08       		.byte	0x8
+ 673 003f 0C020000 		.4byte	.LASF2
+ 674 0043 03       		.uleb128 0x3
+ 675 0044 02       		.byte	0x2
+ 676 0045 05       		.byte	0x5
+ 677 0046 82010000 		.4byte	.LASF3
+ 678 004a 03       		.uleb128 0x3
+ 679 004b 02       		.byte	0x2
+ 680 004c 07       		.byte	0x7
+ 681 004d 86030000 		.4byte	.LASF4
+ 682 0051 03       		.uleb128 0x3
+ 683 0052 04       		.byte	0x4
+ 684 0053 05       		.byte	0x5
+ 685 0054 46010000 		.4byte	.LASF5
+ 686 0058 03       		.uleb128 0x3
+ 687 0059 04       		.byte	0x4
+ 688 005a 07       		.byte	0x7
+ 689 005b E0030000 		.4byte	.LASF6
+ 690 005f 03       		.uleb128 0x3
+ 691 0060 08       		.byte	0x8
+ 692 0061 05       		.byte	0x5
+ 693 0062 92010000 		.4byte	.LASF7
+ 694 0066 03       		.uleb128 0x3
+ 695 0067 08       		.byte	0x8
+ 696 0068 07       		.byte	0x7
+ 697 0069 33020000 		.4byte	.LASF8
+ 698 006d 03       		.uleb128 0x3
+ 699 006e 04       		.byte	0x4
+ 700 006f 04       		.byte	0x4
+ 701 0070 8C010000 		.4byte	.LASF9
+ 702 0074 03       		.uleb128 0x3
+ 703 0075 08       		.byte	0x8
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 22
+
+
+ 704 0076 04       		.byte	0x4
+ 705 0077 F2030000 		.4byte	.LASF10
+ 706 007b 03       		.uleb128 0x3
+ 707 007c 01       		.byte	0x1
+ 708 007d 08       		.byte	0x8
+ 709 007e 69030000 		.4byte	.LASF11
+ 710 0082 03       		.uleb128 0x3
+ 711 0083 04       		.byte	0x4
+ 712 0084 07       		.byte	0x7
+ 713 0085 A1040000 		.4byte	.LASF12
+ 714 0089 05       		.uleb128 0x5
+ 715 008a B2000000 		.4byte	.LASF18
+ 716 008e 03       		.byte	0x3
+ 717 008f 61       		.byte	0x61
+ 718 0090 58000000 		.4byte	0x58
+ 719 0094 06       		.uleb128 0x6
+ 720 0095 E6010000 		.4byte	.LASF20
+ 721 0099 14       		.byte	0x14
+ 722 009a 02       		.byte	0x2
+ 723 009b 88       		.byte	0x88
+ 724 009c DD000000 		.4byte	0xdd
+ 725 00a0 07       		.uleb128 0x7
+ 726 00a1 C9010000 		.4byte	.LASF13
+ 727 00a5 02       		.byte	0x2
+ 728 00a6 8A       		.byte	0x8a
+ 729 00a7 89000000 		.4byte	0x89
+ 730 00ab 00       		.byte	0
+ 731 00ac 07       		.uleb128 0x7
+ 732 00ad EB000000 		.4byte	.LASF14
+ 733 00b1 02       		.byte	0x2
+ 734 00b2 8B       		.byte	0x8b
+ 735 00b3 DD000000 		.4byte	0xdd
+ 736 00b7 04       		.byte	0x4
+ 737 00b8 07       		.uleb128 0x7
+ 738 00b9 BF000000 		.4byte	.LASF15
+ 739 00bd 02       		.byte	0x2
+ 740 00be 8C       		.byte	0x8c
+ 741 00bf DD000000 		.4byte	0xdd
+ 742 00c3 08       		.byte	0x8
+ 743 00c4 07       		.uleb128 0x7
+ 744 00c5 3E010000 		.4byte	.LASF16
+ 745 00c9 02       		.byte	0x2
+ 746 00ca 8D       		.byte	0x8d
+ 747 00cb 33000000 		.4byte	0x33
+ 748 00cf 0C       		.byte	0xc
+ 749 00d0 07       		.uleb128 0x7
+ 750 00d1 12030000 		.4byte	.LASF17
+ 751 00d5 02       		.byte	0x2
+ 752 00d6 8E       		.byte	0x8e
+ 753 00d7 33000000 		.4byte	0x33
+ 754 00db 10       		.byte	0x10
+ 755 00dc 00       		.byte	0
+ 756 00dd 08       		.uleb128 0x8
+ 757 00de 04       		.byte	0x4
+ 758 00df 94000000 		.4byte	0x94
+ 759 00e3 05       		.uleb128 0x5
+ 760 00e4 37040000 		.4byte	.LASF19
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 23
+
+
+ 761 00e8 02       		.byte	0x2
+ 762 00e9 90       		.byte	0x90
+ 763 00ea 94000000 		.4byte	0x94
+ 764 00ee 06       		.uleb128 0x6
+ 765 00ef FB040000 		.4byte	.LASF21
+ 766 00f3 0C       		.byte	0xc
+ 767 00f4 02       		.byte	0x2
+ 768 00f5 92       		.byte	0x92
+ 769 00f6 1F010000 		.4byte	0x11f
+ 770 00fa 07       		.uleb128 0x7
+ 771 00fb C9010000 		.4byte	.LASF13
+ 772 00ff 02       		.byte	0x2
+ 773 0100 94       		.byte	0x94
+ 774 0101 89000000 		.4byte	0x89
+ 775 0105 00       		.byte	0
+ 776 0106 07       		.uleb128 0x7
+ 777 0107 EB000000 		.4byte	.LASF14
+ 778 010b 02       		.byte	0x2
+ 779 010c 95       		.byte	0x95
+ 780 010d DD000000 		.4byte	0xdd
+ 781 0111 04       		.byte	0x4
+ 782 0112 07       		.uleb128 0x7
+ 783 0113 BF000000 		.4byte	.LASF15
+ 784 0117 02       		.byte	0x2
+ 785 0118 96       		.byte	0x96
+ 786 0119 DD000000 		.4byte	0xdd
+ 787 011d 08       		.byte	0x8
+ 788 011e 00       		.byte	0
+ 789 011f 05       		.uleb128 0x5
+ 790 0120 BE040000 		.4byte	.LASF22
+ 791 0124 02       		.byte	0x2
+ 792 0125 98       		.byte	0x98
+ 793 0126 EE000000 		.4byte	0xee
+ 794 012a 06       		.uleb128 0x6
+ 795 012b C3010000 		.4byte	.LASF23
+ 796 012f 14       		.byte	0x14
+ 797 0130 02       		.byte	0x2
+ 798 0131 9D       		.byte	0x9d
+ 799 0132 5B010000 		.4byte	0x15b
+ 800 0136 07       		.uleb128 0x7
+ 801 0137 27040000 		.4byte	.LASF24
+ 802 013b 02       		.byte	0x2
+ 803 013c 9F       		.byte	0x9f
+ 804 013d 58000000 		.4byte	0x58
+ 805 0141 00       		.byte	0
+ 806 0142 07       		.uleb128 0x7
+ 807 0143 F3040000 		.4byte	.LASF25
+ 808 0147 02       		.byte	0x2
+ 809 0148 A0       		.byte	0xa0
+ 810 0149 5B010000 		.4byte	0x15b
+ 811 014d 04       		.byte	0x4
+ 812 014e 07       		.uleb128 0x7
+ 813 014f 75040000 		.4byte	.LASF26
+ 814 0153 02       		.byte	0x2
+ 815 0154 A1       		.byte	0xa1
+ 816 0155 1F010000 		.4byte	0x11f
+ 817 0159 08       		.byte	0x8
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 24
+
+
+ 818 015a 00       		.byte	0
+ 819 015b 08       		.uleb128 0x8
+ 820 015c 04       		.byte	0x4
+ 821 015d E3000000 		.4byte	0xe3
+ 822 0161 05       		.uleb128 0x5
+ 823 0162 A0010000 		.4byte	.LASF27
+ 824 0166 02       		.byte	0x2
+ 825 0167 A2       		.byte	0xa2
+ 826 0168 2A010000 		.4byte	0x12a
+ 827 016c 05       		.uleb128 0x5
+ 828 016d A6010000 		.4byte	.LASF28
+ 829 0171 04       		.byte	0x4
+ 830 0172 52       		.byte	0x52
+ 831 0173 33000000 		.4byte	0x33
+ 832 0177 05       		.uleb128 0x5
+ 833 0178 6E030000 		.4byte	.LASF29
+ 834 017c 04       		.byte	0x4
+ 835 017d 55       		.byte	0x55
+ 836 017e 82010000 		.4byte	0x182
+ 837 0182 08       		.uleb128 0x8
+ 838 0183 04       		.byte	0x4
+ 839 0184 88010000 		.4byte	0x188
+ 840 0188 09       		.uleb128 0x9
+ 841 0189 98010000 		.4byte	0x198
+ 842 018d 0A       		.uleb128 0xa
+ 843 018e 6C010000 		.4byte	0x16c
+ 844 0192 0A       		.uleb128 0xa
+ 845 0193 58000000 		.4byte	0x58
+ 846 0197 00       		.byte	0
+ 847 0198 06       		.uleb128 0x6
+ 848 0199 C7030000 		.4byte	.LASF30
+ 849 019d 38       		.byte	0x38
+ 850 019e 04       		.byte	0x4
+ 851 019f 57       		.byte	0x57
+ 852 01a0 ED010000 		.4byte	0x1ed
+ 853 01a4 07       		.uleb128 0x7
+ 854 01a5 09010000 		.4byte	.LASF31
+ 855 01a9 04       		.byte	0x4
+ 856 01aa 59       		.byte	0x59
+ 857 01ab 77010000 		.4byte	0x177
+ 858 01af 00       		.byte	0
+ 859 01b0 07       		.uleb128 0x7
+ 860 01b1 2D010000 		.4byte	.LASF32
+ 861 01b5 04       		.byte	0x4
+ 862 01b6 5A       		.byte	0x5a
+ 863 01b7 E3000000 		.4byte	0xe3
+ 864 01bb 04       		.byte	0x4
+ 865 01bc 07       		.uleb128 0x7
+ 866 01bd 4A020000 		.4byte	.LASF33
+ 867 01c1 04       		.byte	0x4
+ 868 01c2 5B       		.byte	0x5b
+ 869 01c3 E3000000 		.4byte	0xe3
+ 870 01c7 18       		.byte	0x18
+ 871 01c8 07       		.uleb128 0x7
+ 872 01c9 E8040000 		.4byte	.LASF34
+ 873 01cd 04       		.byte	0x4
+ 874 01ce 5C       		.byte	0x5c
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 25
+
+
+ 875 01cf 58000000 		.4byte	0x58
+ 876 01d3 2C       		.byte	0x2c
+ 877 01d4 07       		.uleb128 0x7
+ 878 01d5 39030000 		.4byte	.LASF35
+ 879 01d9 04       		.byte	0x4
+ 880 01da 5D       		.byte	0x5d
+ 881 01db 58000000 		.4byte	0x58
+ 882 01df 30       		.byte	0x30
+ 883 01e0 07       		.uleb128 0x7
+ 884 01e1 04020000 		.4byte	.LASF36
+ 885 01e5 04       		.byte	0x4
+ 886 01e6 5E       		.byte	0x5e
+ 887 01e7 4A000000 		.4byte	0x4a
+ 888 01eb 34       		.byte	0x34
+ 889 01ec 00       		.byte	0
+ 890 01ed 05       		.uleb128 0x5
+ 891 01ee 18050000 		.4byte	.LASF37
+ 892 01f2 04       		.byte	0x4
+ 893 01f3 5F       		.byte	0x5f
+ 894 01f4 98010000 		.4byte	0x198
+ 895 01f8 0B       		.uleb128 0xb
+ 896 01f9 59040000 		.4byte	.LASF44
+ 897 01fd 01       		.byte	0x1
+ 898 01fe 5701     		.2byte	0x157
+ 899 0200 01       		.byte	0x1
+ 900 0201 12020000 		.4byte	0x212
+ 901 0205 0C       		.uleb128 0xc
+ 902 0206 E8040000 		.4byte	.LASF34
+ 903 020a 01       		.byte	0x1
+ 904 020b 5901     		.2byte	0x159
+ 905 020d 58000000 		.4byte	0x58
+ 906 0211 00       		.byte	0
+ 907 0212 0D       		.uleb128 0xd
+ 908 0213 0C000000 		.4byte	.LASF53
+ 909 0217 01       		.byte	0x1
+ 910 0218 89       		.byte	0x89
+ 911 0219 51000000 		.4byte	0x51
+ 912 021d 00000000 		.4byte	.LFB32
+ 913 0221 A4000000 		.4byte	.LFE32-.LFB32
+ 914 0225 01       		.uleb128 0x1
+ 915 0226 9C       		.byte	0x9c
+ 916 0227 4B030000 		.4byte	0x34b
+ 917 022b 0E       		.uleb128 0xe
+ 918 022c 64000000 		.4byte	.LASF38
+ 919 0230 01       		.byte	0x1
+ 920 0231 89       		.byte	0x89
+ 921 0232 77010000 		.4byte	0x177
+ 922 0236 00000000 		.4byte	.LLST0
+ 923 023a 0E       		.uleb128 0xe
+ 924 023b E8040000 		.4byte	.LASF34
+ 925 023f 01       		.byte	0x1
+ 926 0240 89       		.byte	0x89
+ 927 0241 58000000 		.4byte	0x58
+ 928 0245 1F000000 		.4byte	.LLST1
+ 929 0249 0E       		.uleb128 0xe
+ 930 024a 39030000 		.4byte	.LASF35
+ 931 024e 01       		.byte	0x1
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 26
+
+
+ 932 024f 89       		.byte	0x89
+ 933 0250 58000000 		.4byte	0x58
+ 934 0254 55000000 		.4byte	.LLST2
+ 935 0258 0F       		.uleb128 0xf
+ 936 0259 99040000 		.4byte	.LASF39
+ 937 025d 01       		.byte	0x1
+ 938 025e 8B       		.byte	0x8b
+ 939 025f 51000000 		.4byte	0x51
+ 940 0263 74000000 		.4byte	.LLST3
+ 941 0267 0F       		.uleb128 0xf
+ 942 0268 58000000 		.4byte	.LASF40
+ 943 026c 01       		.byte	0x1
+ 944 026d 8C       		.byte	0x8c
+ 945 026e 4B030000 		.4byte	0x34b
+ 946 0272 93000000 		.4byte	.LLST4
+ 947 0276 10       		.uleb128 0x10
+ 948 0277 F8010000 		.4byte	0x1f8
+ 949 027b 20000000 		.4byte	.LBB4
+ 950 027f 34000000 		.4byte	.LBE4-.LBB4
+ 951 0283 01       		.byte	0x1
+ 952 0284 97       		.byte	0x97
+ 953 0285 FE020000 		.4byte	0x2fe
+ 954 0289 11       		.uleb128 0x11
+ 955 028a 20000000 		.4byte	.LBB5
+ 956 028e 34000000 		.4byte	.LBE5-.LBB5
+ 957 0292 12       		.uleb128 0x12
+ 958 0293 05020000 		.4byte	0x205
+ 959 0297 C7000000 		.4byte	.LLST5
+ 960 029b 13       		.uleb128 0x13
+ 961 029c 24000000 		.4byte	.LVL6
+ 962 02a0 57060000 		.4byte	0x657
+ 963 02a4 AF020000 		.4byte	0x2af
+ 964 02a8 14       		.uleb128 0x14
+ 965 02a9 01       		.uleb128 0x1
+ 966 02aa 50       		.byte	0x50
+ 967 02ab 02       		.uleb128 0x2
+ 968 02ac 74       		.byte	0x74
+ 969 02ad 04       		.sleb128 4
+ 970 02ae 00       		.byte	0
+ 971 02af 13       		.uleb128 0x13
+ 972 02b0 32000000 		.4byte	.LVL7
+ 973 02b4 57060000 		.4byte	0x657
+ 974 02b8 C3020000 		.4byte	0x2c3
+ 975 02bc 14       		.uleb128 0x14
+ 976 02bd 01       		.uleb128 0x1
+ 977 02be 50       		.byte	0x50
+ 978 02bf 02       		.uleb128 0x2
+ 979 02c0 74       		.byte	0x74
+ 980 02c1 18       		.sleb128 24
+ 981 02c2 00       		.byte	0
+ 982 02c3 13       		.uleb128 0x13
+ 983 02c4 3A000000 		.4byte	.LVL8
+ 984 02c8 57060000 		.4byte	0x657
+ 985 02cc D7020000 		.4byte	0x2d7
+ 986 02d0 14       		.uleb128 0x14
+ 987 02d1 01       		.uleb128 0x1
+ 988 02d2 50       		.byte	0x50
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 27
+
+
+ 989 02d3 02       		.uleb128 0x2
+ 990 02d4 77       		.byte	0x77
+ 991 02d5 00       		.sleb128 0
+ 992 02d6 00       		.byte	0
+ 993 02d7 13       		.uleb128 0x13
+ 994 02d8 40000000 		.4byte	.LVL9
+ 995 02dc 57060000 		.4byte	0x657
+ 996 02e0 EB020000 		.4byte	0x2eb
+ 997 02e4 14       		.uleb128 0x14
+ 998 02e5 01       		.uleb128 0x1
+ 999 02e6 50       		.byte	0x50
+ 1000 02e7 02       		.uleb128 0x2
+ 1001 02e8 76       		.byte	0x76
+ 1002 02e9 00       		.sleb128 0
+ 1003 02ea 00       		.byte	0
+ 1004 02eb 15       		.uleb128 0x15
+ 1005 02ec 48000000 		.4byte	.LVL10
+ 1006 02f0 57060000 		.4byte	0x657
+ 1007 02f4 14       		.uleb128 0x14
+ 1008 02f5 01       		.uleb128 0x1
+ 1009 02f6 50       		.byte	0x50
+ 1010 02f7 03       		.uleb128 0x3
+ 1011 02f8 74       		.byte	0x74
+ 1012 02f9 D400     		.sleb128 84
+ 1013 02fb 00       		.byte	0
+ 1014 02fc 00       		.byte	0
+ 1015 02fd 00       		.byte	0
+ 1016 02fe 13       		.uleb128 0x13
+ 1017 02ff 10000000 		.4byte	.LVL2
+ 1018 0303 63060000 		.4byte	0x663
+ 1019 0307 12030000 		.4byte	0x312
+ 1020 030b 14       		.uleb128 0x14
+ 1021 030c 01       		.uleb128 0x1
+ 1022 030d 50       		.byte	0x50
+ 1023 030e 02       		.uleb128 0x2
+ 1024 030f 08       		.byte	0x8
+ 1025 0310 38       		.byte	0x38
+ 1026 0311 00       		.byte	0
+ 1027 0312 13       		.uleb128 0x13
+ 1028 0313 6A000000 		.4byte	.LVL13
+ 1029 0317 6F060000 		.4byte	0x66f
+ 1030 031b 26030000 		.4byte	0x326
+ 1031 031f 14       		.uleb128 0x14
+ 1032 0320 01       		.uleb128 0x1
+ 1033 0321 50       		.byte	0x50
+ 1034 0322 02       		.uleb128 0x2
+ 1035 0323 77       		.byte	0x77
+ 1036 0324 00       		.sleb128 0
+ 1037 0325 00       		.byte	0
+ 1038 0326 13       		.uleb128 0x13
+ 1039 0327 72000000 		.4byte	.LVL14
+ 1040 032b 6F060000 		.4byte	0x66f
+ 1041 032f 3A030000 		.4byte	0x33a
+ 1042 0333 14       		.uleb128 0x14
+ 1043 0334 01       		.uleb128 0x1
+ 1044 0335 50       		.byte	0x50
+ 1045 0336 02       		.uleb128 0x2
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 28
+
+
+ 1046 0337 75       		.byte	0x75
+ 1047 0338 18       		.sleb128 24
+ 1048 0339 00       		.byte	0
+ 1049 033a 15       		.uleb128 0x15
+ 1050 033b 94000000 		.4byte	.LVL16
+ 1051 033f 7B060000 		.4byte	0x67b
+ 1052 0343 14       		.uleb128 0x14
+ 1053 0344 01       		.uleb128 0x1
+ 1054 0345 51       		.byte	0x51
+ 1055 0346 02       		.uleb128 0x2
+ 1056 0347 77       		.byte	0x77
+ 1057 0348 00       		.sleb128 0
+ 1058 0349 00       		.byte	0
+ 1059 034a 00       		.byte	0
+ 1060 034b 08       		.uleb128 0x8
+ 1061 034c 04       		.byte	0x4
+ 1062 034d ED010000 		.4byte	0x1ed
+ 1063 0351 16       		.uleb128 0x16
+ 1064 0352 4E030000 		.4byte	.LASF50
+ 1065 0356 01       		.byte	0x1
+ 1066 0357 C2       		.byte	0xc2
+ 1067 0358 00000000 		.4byte	.LFB33
+ 1068 035c 3C000000 		.4byte	.LFE33-.LFB33
+ 1069 0360 01       		.uleb128 0x1
+ 1070 0361 9C       		.byte	0x9c
+ 1071 0362 B6030000 		.4byte	0x3b6
+ 1072 0366 0E       		.uleb128 0xe
+ 1073 0367 4F010000 		.4byte	.LASF41
+ 1074 036b 01       		.byte	0x1
+ 1075 036c C2       		.byte	0xc2
+ 1076 036d 89000000 		.4byte	0x89
+ 1077 0371 F3000000 		.4byte	.LLST6
+ 1078 0375 0E       		.uleb128 0xe
+ 1079 0376 00000000 		.4byte	.LASF42
+ 1080 037a 01       		.byte	0x1
+ 1081 037b C2       		.byte	0xc2
+ 1082 037c B6030000 		.4byte	0x3b6
+ 1083 0380 14010000 		.4byte	.LLST7
+ 1084 0384 0F       		.uleb128 0xf
+ 1085 0385 74000000 		.4byte	.LASF43
+ 1086 0389 01       		.byte	0x1
+ 1087 038a C4       		.byte	0xc4
+ 1088 038b 89000000 		.4byte	0x89
+ 1089 038f 40010000 		.4byte	.LLST8
+ 1090 0393 17       		.uleb128 0x17
+ 1091 0394 12000000 		.4byte	.LVL24
+ 1092 0398 87060000 		.4byte	0x687
+ 1093 039c 17       		.uleb128 0x17
+ 1094 039d 28000000 		.4byte	.LVL25
+ 1095 03a1 93060000 		.4byte	0x693
+ 1096 03a5 15       		.uleb128 0x15
+ 1097 03a6 36000000 		.4byte	.LVL26
+ 1098 03aa 93060000 		.4byte	0x693
+ 1099 03ae 14       		.uleb128 0x14
+ 1100 03af 01       		.uleb128 0x1
+ 1101 03b0 50       		.byte	0x50
+ 1102 03b1 02       		.uleb128 0x2
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 29
+
+
+ 1103 03b2 76       		.byte	0x76
+ 1104 03b3 00       		.sleb128 0
+ 1105 03b4 00       		.byte	0
+ 1106 03b5 00       		.byte	0
+ 1107 03b6 08       		.uleb128 0x8
+ 1108 03b7 04       		.byte	0x4
+ 1109 03b8 61010000 		.4byte	0x161
+ 1110 03bc 18       		.uleb128 0x18
+ 1111 03bd D7000000 		.4byte	.LASF45
+ 1112 03c1 01       		.byte	0x1
+ 1113 03c2 FF       		.byte	0xff
+ 1114 03c3 01       		.byte	0x1
+ 1115 03c4 E3030000 		.4byte	0x3e3
+ 1116 03c8 0C       		.uleb128 0xc
+ 1117 03c9 7F030000 		.4byte	.LASF46
+ 1118 03cd 01       		.byte	0x1
+ 1119 03ce 0101     		.2byte	0x101
+ 1120 03d0 4B030000 		.4byte	0x34b
+ 1121 03d4 19       		.uleb128 0x19
+ 1122 03d5 0C       		.uleb128 0xc
+ 1123 03d6 5D010000 		.4byte	.LASF47
+ 1124 03da 01       		.byte	0x1
+ 1125 03db 0C01     		.2byte	0x10c
+ 1126 03dd B6030000 		.4byte	0x3b6
+ 1127 03e1 00       		.byte	0
+ 1128 03e2 00       		.byte	0
+ 1129 03e3 18       		.uleb128 0x18
+ 1130 03e4 1A020000 		.4byte	.LASF48
+ 1131 03e8 01       		.byte	0x1
+ 1132 03e9 E8       		.byte	0xe8
+ 1133 03ea 01       		.byte	0x1
+ 1134 03eb FD030000 		.4byte	0x3fd
+ 1135 03ef 19       		.uleb128 0x19
+ 1136 03f0 1A       		.uleb128 0x1a
+ 1137 03f1 1D010000 		.4byte	.LASF49
+ 1138 03f5 01       		.byte	0x1
+ 1139 03f6 EF       		.byte	0xef
+ 1140 03f7 4B030000 		.4byte	0x34b
+ 1141 03fb 00       		.byte	0
+ 1142 03fc 00       		.byte	0
+ 1143 03fd 1B       		.uleb128 0x1b
+ 1144 03fe F1010000 		.4byte	.LASF51
+ 1145 0402 01       		.byte	0x1
+ 1146 0403 3901     		.2byte	0x139
+ 1147 0405 00000000 		.4byte	.LFB36
+ 1148 0409 08010000 		.4byte	.LFE36-.LFB36
+ 1149 040d 01       		.uleb128 0x1
+ 1150 040e 9C       		.byte	0x9c
+ 1151 040f 06050000 		.4byte	0x506
+ 1152 0413 1C       		.uleb128 0x1c
+ 1153 0414 E3030000 		.4byte	0x3e3
+ 1154 0418 02000000 		.4byte	.LBB13
+ 1155 041c 3C000000 		.4byte	.LBE13-.LBB13
+ 1156 0420 01       		.byte	0x1
+ 1157 0421 3C01     		.2byte	0x13c
+ 1158 0423 6F040000 		.4byte	0x46f
+ 1159 0427 1D       		.uleb128 0x1d
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 30
+
+
+ 1160 0428 00000000 		.4byte	.Ldebug_ranges0+0
+ 1161 042c 12       		.uleb128 0x12
+ 1162 042d F0030000 		.4byte	0x3f0
+ 1163 0431 53010000 		.4byte	.LLST9
+ 1164 0435 13       		.uleb128 0x13
+ 1165 0436 1C000000 		.4byte	.LVL30
+ 1166 043a 87060000 		.4byte	0x687
+ 1167 043e 49040000 		.4byte	0x449
+ 1168 0442 14       		.uleb128 0x14
+ 1169 0443 01       		.uleb128 0x1
+ 1170 0444 50       		.byte	0x50
+ 1171 0445 02       		.uleb128 0x2
+ 1172 0446 75       		.byte	0x75
+ 1173 0447 18       		.sleb128 24
+ 1174 0448 00       		.byte	0
+ 1175 0449 13       		.uleb128 0x13
+ 1176 044a 26000000 		.4byte	.LVL31
+ 1177 044e 87060000 		.4byte	0x687
+ 1178 0452 5D040000 		.4byte	0x45d
+ 1179 0456 14       		.uleb128 0x14
+ 1180 0457 01       		.uleb128 0x1
+ 1181 0458 50       		.byte	0x50
+ 1182 0459 02       		.uleb128 0x2
+ 1183 045a 76       		.byte	0x76
+ 1184 045b 00       		.sleb128 0
+ 1185 045c 00       		.byte	0
+ 1186 045d 15       		.uleb128 0x15
+ 1187 045e 3C000000 		.4byte	.LVL32
+ 1188 0462 7B060000 		.4byte	0x67b
+ 1189 0466 14       		.uleb128 0x14
+ 1190 0467 01       		.uleb128 0x1
+ 1191 0468 51       		.byte	0x51
+ 1192 0469 02       		.uleb128 0x2
+ 1193 046a 76       		.byte	0x76
+ 1194 046b 00       		.sleb128 0
+ 1195 046c 00       		.byte	0
+ 1196 046d 00       		.byte	0
+ 1197 046e 00       		.byte	0
+ 1198 046f 1E       		.uleb128 0x1e
+ 1199 0470 BC030000 		.4byte	0x3bc
+ 1200 0474 3E000000 		.4byte	.LBB17
+ 1201 0478 18000000 		.4byte	.Ldebug_ranges0+0x18
+ 1202 047c 01       		.byte	0x1
+ 1203 047d 3F01     		.2byte	0x13f
+ 1204 047f EB040000 		.4byte	0x4eb
+ 1205 0483 1D       		.uleb128 0x1d
+ 1206 0484 18000000 		.4byte	.Ldebug_ranges0+0x18
+ 1207 0488 12       		.uleb128 0x12
+ 1208 0489 C8030000 		.4byte	0x3c8
+ 1209 048d 66010000 		.4byte	.LLST10
+ 1210 0491 1F       		.uleb128 0x1f
+ 1211 0492 5E000000 		.4byte	.LBB19
+ 1212 0496 0A000000 		.4byte	.LBE19-.LBB19
+ 1213 049a A8040000 		.4byte	0x4a8
+ 1214 049e 12       		.uleb128 0x12
+ 1215 049f D5030000 		.4byte	0x3d5
+ 1216 04a3 79010000 		.4byte	.LLST11
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 31
+
+
+ 1217 04a7 00       		.byte	0
+ 1218 04a8 17       		.uleb128 0x17
+ 1219 04a9 42000000 		.4byte	.LVL34
+ 1220 04ad 9F060000 		.4byte	0x69f
+ 1221 04b1 13       		.uleb128 0x13
+ 1222 04b2 7E000000 		.4byte	.LVL38
+ 1223 04b6 87060000 		.4byte	0x687
+ 1224 04ba C5040000 		.4byte	0x4c5
+ 1225 04be 14       		.uleb128 0x14
+ 1226 04bf 01       		.uleb128 0x1
+ 1227 04c0 50       		.byte	0x50
+ 1228 04c1 02       		.uleb128 0x2
+ 1229 04c2 74       		.byte	0x74
+ 1230 04c3 00       		.sleb128 0
+ 1231 04c4 00       		.byte	0
+ 1232 04c5 13       		.uleb128 0x13
+ 1233 04c6 8C000000 		.4byte	.LVL39
+ 1234 04ca 87060000 		.4byte	0x687
+ 1235 04ce D9040000 		.4byte	0x4d9
+ 1236 04d2 14       		.uleb128 0x14
+ 1237 04d3 01       		.uleb128 0x1
+ 1238 04d4 50       		.byte	0x50
+ 1239 04d5 02       		.uleb128 0x2
+ 1240 04d6 77       		.byte	0x77
+ 1241 04d7 18       		.sleb128 24
+ 1242 04d8 00       		.byte	0
+ 1243 04d9 15       		.uleb128 0x15
+ 1244 04da A4000000 		.4byte	.LVL40
+ 1245 04de 7B060000 		.4byte	0x67b
+ 1246 04e2 14       		.uleb128 0x14
+ 1247 04e3 01       		.uleb128 0x1
+ 1248 04e4 51       		.byte	0x51
+ 1249 04e5 02       		.uleb128 0x2
+ 1250 04e6 74       		.byte	0x74
+ 1251 04e7 00       		.sleb128 0
+ 1252 04e8 00       		.byte	0
+ 1253 04e9 00       		.byte	0
+ 1254 04ea 00       		.byte	0
+ 1255 04eb 11       		.uleb128 0x11
+ 1256 04ec D8000000 		.4byte	.LBB22
+ 1257 04f0 24000000 		.4byte	.LBE22-.LBB22
+ 1258 04f4 20       		.uleb128 0x20
+ 1259 04f5 B7010000 		.4byte	.LASF52
+ 1260 04f9 01       		.byte	0x1
+ 1261 04fa 4E01     		.2byte	0x14e
+ 1262 04fc 06050000 		.4byte	0x506
+ 1263 0500 8C010000 		.4byte	.LLST12
+ 1264 0504 00       		.byte	0
+ 1265 0505 00       		.byte	0
+ 1266 0506 21       		.uleb128 0x21
+ 1267 0507 B6030000 		.4byte	0x3b6
+ 1268 050b 22       		.uleb128 0x22
+ 1269 050c 64010000 		.4byte	.LASF54
+ 1270 0510 01       		.byte	0x1
+ 1271 0511 6B01     		.2byte	0x16b
+ 1272 0513 51000000 		.4byte	0x51
+ 1273 0517 00000000 		.4byte	.LFB38
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 32
+
+
+ 1274 051b 30000000 		.4byte	.LFE38-.LFB38
+ 1275 051f 01       		.uleb128 0x1
+ 1276 0520 9C       		.byte	0x9c
+ 1277 0521 81050000 		.4byte	0x581
+ 1278 0525 23       		.uleb128 0x23
+ 1279 0526 00000000 		.4byte	.LASF42
+ 1280 052a 01       		.byte	0x1
+ 1281 052b 6B01     		.2byte	0x16b
+ 1282 052d 81050000 		.4byte	0x581
+ 1283 0531 A9010000 		.4byte	.LLST13
+ 1284 0535 20       		.uleb128 0x20
+ 1285 0536 1D010000 		.4byte	.LASF49
+ 1286 053a 01       		.byte	0x1
+ 1287 053b 6D01     		.2byte	0x16d
+ 1288 053d 4B030000 		.4byte	0x34b
+ 1289 0541 CA010000 		.4byte	.LLST14
+ 1290 0545 20       		.uleb128 0x20
+ 1291 0546 99040000 		.4byte	.LASF39
+ 1292 054a 01       		.byte	0x1
+ 1293 054b 6E01     		.2byte	0x16e
+ 1294 054d 51000000 		.4byte	0x51
+ 1295 0551 EA010000 		.4byte	.LLST15
+ 1296 0555 13       		.uleb128 0x13
+ 1297 0556 10000000 		.4byte	.LVL47
+ 1298 055a 87060000 		.4byte	0x687
+ 1299 055e 69050000 		.4byte	0x569
+ 1300 0562 14       		.uleb128 0x14
+ 1301 0563 01       		.uleb128 0x1
+ 1302 0564 50       		.byte	0x50
+ 1303 0565 02       		.uleb128 0x2
+ 1304 0566 76       		.byte	0x76
+ 1305 0567 00       		.sleb128 0
+ 1306 0568 00       		.byte	0
+ 1307 0569 15       		.uleb128 0x15
+ 1308 056a 1C000000 		.4byte	.LVL48
+ 1309 056e 7B060000 		.4byte	0x67b
+ 1310 0572 14       		.uleb128 0x14
+ 1311 0573 01       		.uleb128 0x1
+ 1312 0574 50       		.byte	0x50
+ 1313 0575 03       		.uleb128 0x3
+ 1314 0576 75       		.byte	0x75
+ 1315 0577 D400     		.sleb128 84
+ 1316 0579 14       		.uleb128 0x14
+ 1317 057a 01       		.uleb128 0x1
+ 1318 057b 51       		.byte	0x51
+ 1319 057c 02       		.uleb128 0x2
+ 1320 057d 76       		.byte	0x76
+ 1321 057e 00       		.sleb128 0
+ 1322 057f 00       		.byte	0
+ 1323 0580 00       		.byte	0
+ 1324 0581 08       		.uleb128 0x8
+ 1325 0582 04       		.byte	0x4
+ 1326 0583 87050000 		.4byte	0x587
+ 1327 0587 21       		.uleb128 0x21
+ 1328 0588 61010000 		.4byte	0x161
+ 1329 058c 24       		.uleb128 0x24
+ 1330 058d 61010000 		.4byte	0x161
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 33
+
+
+ 1331 0591 9C050000 		.4byte	0x59c
+ 1332 0595 25       		.uleb128 0x25
+ 1333 0596 82000000 		.4byte	0x82
+ 1334 059a 01       		.byte	0x1
+ 1335 059b 00       		.byte	0
+ 1336 059c 26       		.uleb128 0x26
+ 1337 059d 9C000000 		.4byte	.LASF55
+ 1338 05a1 01       		.byte	0x1
+ 1339 05a2 50       		.byte	0x50
+ 1340 05a3 8C050000 		.4byte	0x58c
+ 1341 05a7 05       		.uleb128 0x5
+ 1342 05a8 03       		.byte	0x3
+ 1343 05a9 04000000 		.4byte	pxReadyCoRoutineLists
+ 1344 05ad 26       		.uleb128 0x26
+ 1345 05ae F9030000 		.4byte	.LASF56
+ 1346 05b2 01       		.byte	0x1
+ 1347 05b3 51       		.byte	0x51
+ 1348 05b4 61010000 		.4byte	0x161
+ 1349 05b8 05       		.uleb128 0x5
+ 1350 05b9 03       		.byte	0x3
+ 1351 05ba 2C000000 		.4byte	xDelayedCoRoutineList1
+ 1352 05be 26       		.uleb128 0x26
+ 1353 05bf 10040000 		.4byte	.LASF57
+ 1354 05c3 01       		.byte	0x1
+ 1355 05c4 52       		.byte	0x52
+ 1356 05c5 61010000 		.4byte	0x161
+ 1357 05c9 05       		.uleb128 0x5
+ 1358 05ca 03       		.byte	0x3
+ 1359 05cb 40000000 		.4byte	xDelayedCoRoutineList2
+ 1360 05cf 26       		.uleb128 0x26
+ 1361 05d0 F2000000 		.4byte	.LASF58
+ 1362 05d4 01       		.byte	0x1
+ 1363 05d5 53       		.byte	0x53
+ 1364 05d6 B6030000 		.4byte	0x3b6
+ 1365 05da 05       		.uleb128 0x5
+ 1366 05db 03       		.byte	0x3
+ 1367 05dc 68000000 		.4byte	pxDelayedCoRoutineList
+ 1368 05e0 26       		.uleb128 0x26
+ 1369 05e1 99030000 		.4byte	.LASF59
+ 1370 05e5 01       		.byte	0x1
+ 1371 05e6 54       		.byte	0x54
+ 1372 05e7 B6030000 		.4byte	0x3b6
+ 1373 05eb 05       		.uleb128 0x5
+ 1374 05ec 03       		.byte	0x3
+ 1375 05ed 6C000000 		.4byte	pxOverflowDelayedCoRoutineList
+ 1376 05f1 26       		.uleb128 0x26
+ 1377 05f2 1E030000 		.4byte	.LASF60
+ 1378 05f6 01       		.byte	0x1
+ 1379 05f7 55       		.byte	0x55
+ 1380 05f8 61010000 		.4byte	0x161
+ 1381 05fc 05       		.uleb128 0x5
+ 1382 05fd 03       		.byte	0x3
+ 1383 05fe 54000000 		.4byte	xPendingReadyCoRoutineList
+ 1384 0602 26       		.uleb128 0x26
+ 1385 0603 CC040000 		.4byte	.LASF61
+ 1386 0607 01       		.byte	0x1
+ 1387 0608 59       		.byte	0x59
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 34
+
+
+ 1388 0609 58000000 		.4byte	0x58
+ 1389 060d 05       		.uleb128 0x5
+ 1390 060e 03       		.byte	0x3
+ 1391 060f 70000000 		.4byte	uxTopCoRoutineReadyPriority
+ 1392 0613 26       		.uleb128 0x26
+ 1393 0614 AA040000 		.4byte	.LASF62
+ 1394 0618 01       		.byte	0x1
+ 1395 0619 5A       		.byte	0x5a
+ 1396 061a 89000000 		.4byte	0x89
+ 1397 061e 05       		.uleb128 0x5
+ 1398 061f 03       		.byte	0x3
+ 1399 0620 74000000 		.4byte	xCoRoutineTickCount
+ 1400 0624 26       		.uleb128 0x26
+ 1401 0625 8A040000 		.4byte	.LASF63
+ 1402 0629 01       		.byte	0x1
+ 1403 062a 5A       		.byte	0x5a
+ 1404 062b 89000000 		.4byte	0x89
+ 1405 062f 05       		.uleb128 0x5
+ 1406 0630 03       		.byte	0x3
+ 1407 0631 7C000000 		.4byte	xLastTickCount
+ 1408 0635 26       		.uleb128 0x26
+ 1409 0636 41030000 		.4byte	.LASF64
+ 1410 063a 01       		.byte	0x1
+ 1411 063b 5A       		.byte	0x5a
+ 1412 063c 89000000 		.4byte	0x89
+ 1413 0640 05       		.uleb128 0x5
+ 1414 0641 03       		.byte	0x3
+ 1415 0642 78000000 		.4byte	xPassedTicks
+ 1416 0646 27       		.uleb128 0x27
+ 1417 0647 FF020000 		.4byte	.LASF75
+ 1418 064b 01       		.byte	0x1
+ 1419 064c 58       		.byte	0x58
+ 1420 064d 4B030000 		.4byte	0x34b
+ 1421 0651 05       		.uleb128 0x5
+ 1422 0652 03       		.byte	0x3
+ 1423 0653 00000000 		.4byte	pxCurrentCoRoutine
+ 1424 0657 28       		.uleb128 0x28
+ 1425 0658 80000000 		.4byte	.LASF65
+ 1426 065c 80000000 		.4byte	.LASF65
+ 1427 0660 02       		.byte	0x2
+ 1428 0661 3801     		.2byte	0x138
+ 1429 0663 28       		.uleb128 0x28
+ 1430 0664 0B050000 		.4byte	.LASF66
+ 1431 0668 0B050000 		.4byte	.LASF66
+ 1432 066c 05       		.byte	0x5
+ 1433 066d 6F01     		.2byte	0x16f
+ 1434 066f 28       		.uleb128 0x28
+ 1435 0670 20050000 		.4byte	.LASF67
+ 1436 0674 20050000 		.4byte	.LASF67
+ 1437 0678 02       		.byte	0x2
+ 1438 0679 4301     		.2byte	0x143
+ 1439 067b 28       		.uleb128 0x28
+ 1440 067c B8030000 		.4byte	.LASF68
+ 1441 0680 B8030000 		.4byte	.LASF68
+ 1442 0684 02       		.byte	0x2
+ 1443 0685 6501     		.2byte	0x165
+ 1444 0687 28       		.uleb128 0x28
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 35
+
+
+ 1445 0688 CA000000 		.4byte	.LASF69
+ 1446 068c CA000000 		.4byte	.LASF69
+ 1447 0690 02       		.byte	0x2
+ 1448 0691 7401     		.2byte	0x174
+ 1449 0693 28       		.uleb128 0x28
+ 1450 0694 90000000 		.4byte	.LASF70
+ 1451 0698 90000000 		.4byte	.LASF70
+ 1452 069c 02       		.byte	0x2
+ 1453 069d 5001     		.2byte	0x150
+ 1454 069f 28       		.uleb128 0x28
+ 1455 06a0 D4010000 		.4byte	.LASF71
+ 1456 06a4 D4010000 		.4byte	.LASF71
+ 1457 06a8 06       		.byte	0x6
+ 1458 06a9 0804     		.2byte	0x408
+ 1459 06ab 00       		.byte	0
+ 1460              		.section	.debug_abbrev,"",%progbits
+ 1461              	.Ldebug_abbrev0:
+ 1462 0000 01       		.uleb128 0x1
+ 1463 0001 11       		.uleb128 0x11
+ 1464 0002 01       		.byte	0x1
+ 1465 0003 25       		.uleb128 0x25
+ 1466 0004 0E       		.uleb128 0xe
+ 1467 0005 13       		.uleb128 0x13
+ 1468 0006 0B       		.uleb128 0xb
+ 1469 0007 03       		.uleb128 0x3
+ 1470 0008 0E       		.uleb128 0xe
+ 1471 0009 1B       		.uleb128 0x1b
+ 1472 000a 0E       		.uleb128 0xe
+ 1473 000b 55       		.uleb128 0x55
+ 1474 000c 17       		.uleb128 0x17
+ 1475 000d 11       		.uleb128 0x11
+ 1476 000e 01       		.uleb128 0x1
+ 1477 000f 10       		.uleb128 0x10
+ 1478 0010 17       		.uleb128 0x17
+ 1479 0011 00       		.byte	0
+ 1480 0012 00       		.byte	0
+ 1481 0013 02       		.uleb128 0x2
+ 1482 0014 24       		.uleb128 0x24
+ 1483 0015 00       		.byte	0
+ 1484 0016 0B       		.uleb128 0xb
+ 1485 0017 0B       		.uleb128 0xb
+ 1486 0018 3E       		.uleb128 0x3e
+ 1487 0019 0B       		.uleb128 0xb
+ 1488 001a 03       		.uleb128 0x3
+ 1489 001b 08       		.uleb128 0x8
+ 1490 001c 00       		.byte	0
+ 1491 001d 00       		.byte	0
+ 1492 001e 03       		.uleb128 0x3
+ 1493 001f 24       		.uleb128 0x24
+ 1494 0020 00       		.byte	0
+ 1495 0021 0B       		.uleb128 0xb
+ 1496 0022 0B       		.uleb128 0xb
+ 1497 0023 3E       		.uleb128 0x3e
+ 1498 0024 0B       		.uleb128 0xb
+ 1499 0025 03       		.uleb128 0x3
+ 1500 0026 0E       		.uleb128 0xe
+ 1501 0027 00       		.byte	0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 36
+
+
+ 1502 0028 00       		.byte	0
+ 1503 0029 04       		.uleb128 0x4
+ 1504 002a 0F       		.uleb128 0xf
+ 1505 002b 00       		.byte	0
+ 1506 002c 0B       		.uleb128 0xb
+ 1507 002d 0B       		.uleb128 0xb
+ 1508 002e 00       		.byte	0
+ 1509 002f 00       		.byte	0
+ 1510 0030 05       		.uleb128 0x5
+ 1511 0031 16       		.uleb128 0x16
+ 1512 0032 00       		.byte	0
+ 1513 0033 03       		.uleb128 0x3
+ 1514 0034 0E       		.uleb128 0xe
+ 1515 0035 3A       		.uleb128 0x3a
+ 1516 0036 0B       		.uleb128 0xb
+ 1517 0037 3B       		.uleb128 0x3b
+ 1518 0038 0B       		.uleb128 0xb
+ 1519 0039 49       		.uleb128 0x49
+ 1520 003a 13       		.uleb128 0x13
+ 1521 003b 00       		.byte	0
+ 1522 003c 00       		.byte	0
+ 1523 003d 06       		.uleb128 0x6
+ 1524 003e 13       		.uleb128 0x13
+ 1525 003f 01       		.byte	0x1
+ 1526 0040 03       		.uleb128 0x3
+ 1527 0041 0E       		.uleb128 0xe
+ 1528 0042 0B       		.uleb128 0xb
+ 1529 0043 0B       		.uleb128 0xb
+ 1530 0044 3A       		.uleb128 0x3a
+ 1531 0045 0B       		.uleb128 0xb
+ 1532 0046 3B       		.uleb128 0x3b
+ 1533 0047 0B       		.uleb128 0xb
+ 1534 0048 01       		.uleb128 0x1
+ 1535 0049 13       		.uleb128 0x13
+ 1536 004a 00       		.byte	0
+ 1537 004b 00       		.byte	0
+ 1538 004c 07       		.uleb128 0x7
+ 1539 004d 0D       		.uleb128 0xd
+ 1540 004e 00       		.byte	0
+ 1541 004f 03       		.uleb128 0x3
+ 1542 0050 0E       		.uleb128 0xe
+ 1543 0051 3A       		.uleb128 0x3a
+ 1544 0052 0B       		.uleb128 0xb
+ 1545 0053 3B       		.uleb128 0x3b
+ 1546 0054 0B       		.uleb128 0xb
+ 1547 0055 49       		.uleb128 0x49
+ 1548 0056 13       		.uleb128 0x13
+ 1549 0057 38       		.uleb128 0x38
+ 1550 0058 0B       		.uleb128 0xb
+ 1551 0059 00       		.byte	0
+ 1552 005a 00       		.byte	0
+ 1553 005b 08       		.uleb128 0x8
+ 1554 005c 0F       		.uleb128 0xf
+ 1555 005d 00       		.byte	0
+ 1556 005e 0B       		.uleb128 0xb
+ 1557 005f 0B       		.uleb128 0xb
+ 1558 0060 49       		.uleb128 0x49
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 37
+
+
+ 1559 0061 13       		.uleb128 0x13
+ 1560 0062 00       		.byte	0
+ 1561 0063 00       		.byte	0
+ 1562 0064 09       		.uleb128 0x9
+ 1563 0065 15       		.uleb128 0x15
+ 1564 0066 01       		.byte	0x1
+ 1565 0067 27       		.uleb128 0x27
+ 1566 0068 19       		.uleb128 0x19
+ 1567 0069 01       		.uleb128 0x1
+ 1568 006a 13       		.uleb128 0x13
+ 1569 006b 00       		.byte	0
+ 1570 006c 00       		.byte	0
+ 1571 006d 0A       		.uleb128 0xa
+ 1572 006e 05       		.uleb128 0x5
+ 1573 006f 00       		.byte	0
+ 1574 0070 49       		.uleb128 0x49
+ 1575 0071 13       		.uleb128 0x13
+ 1576 0072 00       		.byte	0
+ 1577 0073 00       		.byte	0
+ 1578 0074 0B       		.uleb128 0xb
+ 1579 0075 2E       		.uleb128 0x2e
+ 1580 0076 01       		.byte	0x1
+ 1581 0077 03       		.uleb128 0x3
+ 1582 0078 0E       		.uleb128 0xe
+ 1583 0079 3A       		.uleb128 0x3a
+ 1584 007a 0B       		.uleb128 0xb
+ 1585 007b 3B       		.uleb128 0x3b
+ 1586 007c 05       		.uleb128 0x5
+ 1587 007d 27       		.uleb128 0x27
+ 1588 007e 19       		.uleb128 0x19
+ 1589 007f 20       		.uleb128 0x20
+ 1590 0080 0B       		.uleb128 0xb
+ 1591 0081 01       		.uleb128 0x1
+ 1592 0082 13       		.uleb128 0x13
+ 1593 0083 00       		.byte	0
+ 1594 0084 00       		.byte	0
+ 1595 0085 0C       		.uleb128 0xc
+ 1596 0086 34       		.uleb128 0x34
+ 1597 0087 00       		.byte	0
+ 1598 0088 03       		.uleb128 0x3
+ 1599 0089 0E       		.uleb128 0xe
+ 1600 008a 3A       		.uleb128 0x3a
+ 1601 008b 0B       		.uleb128 0xb
+ 1602 008c 3B       		.uleb128 0x3b
+ 1603 008d 05       		.uleb128 0x5
+ 1604 008e 49       		.uleb128 0x49
+ 1605 008f 13       		.uleb128 0x13
+ 1606 0090 00       		.byte	0
+ 1607 0091 00       		.byte	0
+ 1608 0092 0D       		.uleb128 0xd
+ 1609 0093 2E       		.uleb128 0x2e
+ 1610 0094 01       		.byte	0x1
+ 1611 0095 3F       		.uleb128 0x3f
+ 1612 0096 19       		.uleb128 0x19
+ 1613 0097 03       		.uleb128 0x3
+ 1614 0098 0E       		.uleb128 0xe
+ 1615 0099 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 38
+
+
+ 1616 009a 0B       		.uleb128 0xb
+ 1617 009b 3B       		.uleb128 0x3b
+ 1618 009c 0B       		.uleb128 0xb
+ 1619 009d 27       		.uleb128 0x27
+ 1620 009e 19       		.uleb128 0x19
+ 1621 009f 49       		.uleb128 0x49
+ 1622 00a0 13       		.uleb128 0x13
+ 1623 00a1 11       		.uleb128 0x11
+ 1624 00a2 01       		.uleb128 0x1
+ 1625 00a3 12       		.uleb128 0x12
+ 1626 00a4 06       		.uleb128 0x6
+ 1627 00a5 40       		.uleb128 0x40
+ 1628 00a6 18       		.uleb128 0x18
+ 1629 00a7 9742     		.uleb128 0x2117
+ 1630 00a9 19       		.uleb128 0x19
+ 1631 00aa 01       		.uleb128 0x1
+ 1632 00ab 13       		.uleb128 0x13
+ 1633 00ac 00       		.byte	0
+ 1634 00ad 00       		.byte	0
+ 1635 00ae 0E       		.uleb128 0xe
+ 1636 00af 05       		.uleb128 0x5
+ 1637 00b0 00       		.byte	0
+ 1638 00b1 03       		.uleb128 0x3
+ 1639 00b2 0E       		.uleb128 0xe
+ 1640 00b3 3A       		.uleb128 0x3a
+ 1641 00b4 0B       		.uleb128 0xb
+ 1642 00b5 3B       		.uleb128 0x3b
+ 1643 00b6 0B       		.uleb128 0xb
+ 1644 00b7 49       		.uleb128 0x49
+ 1645 00b8 13       		.uleb128 0x13
+ 1646 00b9 02       		.uleb128 0x2
+ 1647 00ba 17       		.uleb128 0x17
+ 1648 00bb 00       		.byte	0
+ 1649 00bc 00       		.byte	0
+ 1650 00bd 0F       		.uleb128 0xf
+ 1651 00be 34       		.uleb128 0x34
+ 1652 00bf 00       		.byte	0
+ 1653 00c0 03       		.uleb128 0x3
+ 1654 00c1 0E       		.uleb128 0xe
+ 1655 00c2 3A       		.uleb128 0x3a
+ 1656 00c3 0B       		.uleb128 0xb
+ 1657 00c4 3B       		.uleb128 0x3b
+ 1658 00c5 0B       		.uleb128 0xb
+ 1659 00c6 49       		.uleb128 0x49
+ 1660 00c7 13       		.uleb128 0x13
+ 1661 00c8 02       		.uleb128 0x2
+ 1662 00c9 17       		.uleb128 0x17
+ 1663 00ca 00       		.byte	0
+ 1664 00cb 00       		.byte	0
+ 1665 00cc 10       		.uleb128 0x10
+ 1666 00cd 1D       		.uleb128 0x1d
+ 1667 00ce 01       		.byte	0x1
+ 1668 00cf 31       		.uleb128 0x31
+ 1669 00d0 13       		.uleb128 0x13
+ 1670 00d1 11       		.uleb128 0x11
+ 1671 00d2 01       		.uleb128 0x1
+ 1672 00d3 12       		.uleb128 0x12
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 39
+
+
+ 1673 00d4 06       		.uleb128 0x6
+ 1674 00d5 58       		.uleb128 0x58
+ 1675 00d6 0B       		.uleb128 0xb
+ 1676 00d7 59       		.uleb128 0x59
+ 1677 00d8 0B       		.uleb128 0xb
+ 1678 00d9 01       		.uleb128 0x1
+ 1679 00da 13       		.uleb128 0x13
+ 1680 00db 00       		.byte	0
+ 1681 00dc 00       		.byte	0
+ 1682 00dd 11       		.uleb128 0x11
+ 1683 00de 0B       		.uleb128 0xb
+ 1684 00df 01       		.byte	0x1
+ 1685 00e0 11       		.uleb128 0x11
+ 1686 00e1 01       		.uleb128 0x1
+ 1687 00e2 12       		.uleb128 0x12
+ 1688 00e3 06       		.uleb128 0x6
+ 1689 00e4 00       		.byte	0
+ 1690 00e5 00       		.byte	0
+ 1691 00e6 12       		.uleb128 0x12
+ 1692 00e7 34       		.uleb128 0x34
+ 1693 00e8 00       		.byte	0
+ 1694 00e9 31       		.uleb128 0x31
+ 1695 00ea 13       		.uleb128 0x13
+ 1696 00eb 02       		.uleb128 0x2
+ 1697 00ec 17       		.uleb128 0x17
+ 1698 00ed 00       		.byte	0
+ 1699 00ee 00       		.byte	0
+ 1700 00ef 13       		.uleb128 0x13
+ 1701 00f0 898201   		.uleb128 0x4109
+ 1702 00f3 01       		.byte	0x1
+ 1703 00f4 11       		.uleb128 0x11
+ 1704 00f5 01       		.uleb128 0x1
+ 1705 00f6 31       		.uleb128 0x31
+ 1706 00f7 13       		.uleb128 0x13
+ 1707 00f8 01       		.uleb128 0x1
+ 1708 00f9 13       		.uleb128 0x13
+ 1709 00fa 00       		.byte	0
+ 1710 00fb 00       		.byte	0
+ 1711 00fc 14       		.uleb128 0x14
+ 1712 00fd 8A8201   		.uleb128 0x410a
+ 1713 0100 00       		.byte	0
+ 1714 0101 02       		.uleb128 0x2
+ 1715 0102 18       		.uleb128 0x18
+ 1716 0103 9142     		.uleb128 0x2111
+ 1717 0105 18       		.uleb128 0x18
+ 1718 0106 00       		.byte	0
+ 1719 0107 00       		.byte	0
+ 1720 0108 15       		.uleb128 0x15
+ 1721 0109 898201   		.uleb128 0x4109
+ 1722 010c 01       		.byte	0x1
+ 1723 010d 11       		.uleb128 0x11
+ 1724 010e 01       		.uleb128 0x1
+ 1725 010f 31       		.uleb128 0x31
+ 1726 0110 13       		.uleb128 0x13
+ 1727 0111 00       		.byte	0
+ 1728 0112 00       		.byte	0
+ 1729 0113 16       		.uleb128 0x16
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 40
+
+
+ 1730 0114 2E       		.uleb128 0x2e
+ 1731 0115 01       		.byte	0x1
+ 1732 0116 3F       		.uleb128 0x3f
+ 1733 0117 19       		.uleb128 0x19
+ 1734 0118 03       		.uleb128 0x3
+ 1735 0119 0E       		.uleb128 0xe
+ 1736 011a 3A       		.uleb128 0x3a
+ 1737 011b 0B       		.uleb128 0xb
+ 1738 011c 3B       		.uleb128 0x3b
+ 1739 011d 0B       		.uleb128 0xb
+ 1740 011e 27       		.uleb128 0x27
+ 1741 011f 19       		.uleb128 0x19
+ 1742 0120 11       		.uleb128 0x11
+ 1743 0121 01       		.uleb128 0x1
+ 1744 0122 12       		.uleb128 0x12
+ 1745 0123 06       		.uleb128 0x6
+ 1746 0124 40       		.uleb128 0x40
+ 1747 0125 18       		.uleb128 0x18
+ 1748 0126 9742     		.uleb128 0x2117
+ 1749 0128 19       		.uleb128 0x19
+ 1750 0129 01       		.uleb128 0x1
+ 1751 012a 13       		.uleb128 0x13
+ 1752 012b 00       		.byte	0
+ 1753 012c 00       		.byte	0
+ 1754 012d 17       		.uleb128 0x17
+ 1755 012e 898201   		.uleb128 0x4109
+ 1756 0131 00       		.byte	0
+ 1757 0132 11       		.uleb128 0x11
+ 1758 0133 01       		.uleb128 0x1
+ 1759 0134 31       		.uleb128 0x31
+ 1760 0135 13       		.uleb128 0x13
+ 1761 0136 00       		.byte	0
+ 1762 0137 00       		.byte	0
+ 1763 0138 18       		.uleb128 0x18
+ 1764 0139 2E       		.uleb128 0x2e
+ 1765 013a 01       		.byte	0x1
+ 1766 013b 03       		.uleb128 0x3
+ 1767 013c 0E       		.uleb128 0xe
+ 1768 013d 3A       		.uleb128 0x3a
+ 1769 013e 0B       		.uleb128 0xb
+ 1770 013f 3B       		.uleb128 0x3b
+ 1771 0140 0B       		.uleb128 0xb
+ 1772 0141 27       		.uleb128 0x27
+ 1773 0142 19       		.uleb128 0x19
+ 1774 0143 20       		.uleb128 0x20
+ 1775 0144 0B       		.uleb128 0xb
+ 1776 0145 01       		.uleb128 0x1
+ 1777 0146 13       		.uleb128 0x13
+ 1778 0147 00       		.byte	0
+ 1779 0148 00       		.byte	0
+ 1780 0149 19       		.uleb128 0x19
+ 1781 014a 0B       		.uleb128 0xb
+ 1782 014b 01       		.byte	0x1
+ 1783 014c 00       		.byte	0
+ 1784 014d 00       		.byte	0
+ 1785 014e 1A       		.uleb128 0x1a
+ 1786 014f 34       		.uleb128 0x34
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 41
+
+
+ 1787 0150 00       		.byte	0
+ 1788 0151 03       		.uleb128 0x3
+ 1789 0152 0E       		.uleb128 0xe
+ 1790 0153 3A       		.uleb128 0x3a
+ 1791 0154 0B       		.uleb128 0xb
+ 1792 0155 3B       		.uleb128 0x3b
+ 1793 0156 0B       		.uleb128 0xb
+ 1794 0157 49       		.uleb128 0x49
+ 1795 0158 13       		.uleb128 0x13
+ 1796 0159 00       		.byte	0
+ 1797 015a 00       		.byte	0
+ 1798 015b 1B       		.uleb128 0x1b
+ 1799 015c 2E       		.uleb128 0x2e
+ 1800 015d 01       		.byte	0x1
+ 1801 015e 3F       		.uleb128 0x3f
+ 1802 015f 19       		.uleb128 0x19
+ 1803 0160 03       		.uleb128 0x3
+ 1804 0161 0E       		.uleb128 0xe
+ 1805 0162 3A       		.uleb128 0x3a
+ 1806 0163 0B       		.uleb128 0xb
+ 1807 0164 3B       		.uleb128 0x3b
+ 1808 0165 05       		.uleb128 0x5
+ 1809 0166 27       		.uleb128 0x27
+ 1810 0167 19       		.uleb128 0x19
+ 1811 0168 11       		.uleb128 0x11
+ 1812 0169 01       		.uleb128 0x1
+ 1813 016a 12       		.uleb128 0x12
+ 1814 016b 06       		.uleb128 0x6
+ 1815 016c 40       		.uleb128 0x40
+ 1816 016d 18       		.uleb128 0x18
+ 1817 016e 9642     		.uleb128 0x2116
+ 1818 0170 19       		.uleb128 0x19
+ 1819 0171 01       		.uleb128 0x1
+ 1820 0172 13       		.uleb128 0x13
+ 1821 0173 00       		.byte	0
+ 1822 0174 00       		.byte	0
+ 1823 0175 1C       		.uleb128 0x1c
+ 1824 0176 1D       		.uleb128 0x1d
+ 1825 0177 01       		.byte	0x1
+ 1826 0178 31       		.uleb128 0x31
+ 1827 0179 13       		.uleb128 0x13
+ 1828 017a 11       		.uleb128 0x11
+ 1829 017b 01       		.uleb128 0x1
+ 1830 017c 12       		.uleb128 0x12
+ 1831 017d 06       		.uleb128 0x6
+ 1832 017e 58       		.uleb128 0x58
+ 1833 017f 0B       		.uleb128 0xb
+ 1834 0180 59       		.uleb128 0x59
+ 1835 0181 05       		.uleb128 0x5
+ 1836 0182 01       		.uleb128 0x1
+ 1837 0183 13       		.uleb128 0x13
+ 1838 0184 00       		.byte	0
+ 1839 0185 00       		.byte	0
+ 1840 0186 1D       		.uleb128 0x1d
+ 1841 0187 0B       		.uleb128 0xb
+ 1842 0188 01       		.byte	0x1
+ 1843 0189 55       		.uleb128 0x55
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 42
+
+
+ 1844 018a 17       		.uleb128 0x17
+ 1845 018b 00       		.byte	0
+ 1846 018c 00       		.byte	0
+ 1847 018d 1E       		.uleb128 0x1e
+ 1848 018e 1D       		.uleb128 0x1d
+ 1849 018f 01       		.byte	0x1
+ 1850 0190 31       		.uleb128 0x31
+ 1851 0191 13       		.uleb128 0x13
+ 1852 0192 52       		.uleb128 0x52
+ 1853 0193 01       		.uleb128 0x1
+ 1854 0194 55       		.uleb128 0x55
+ 1855 0195 17       		.uleb128 0x17
+ 1856 0196 58       		.uleb128 0x58
+ 1857 0197 0B       		.uleb128 0xb
+ 1858 0198 59       		.uleb128 0x59
+ 1859 0199 05       		.uleb128 0x5
+ 1860 019a 01       		.uleb128 0x1
+ 1861 019b 13       		.uleb128 0x13
+ 1862 019c 00       		.byte	0
+ 1863 019d 00       		.byte	0
+ 1864 019e 1F       		.uleb128 0x1f
+ 1865 019f 0B       		.uleb128 0xb
+ 1866 01a0 01       		.byte	0x1
+ 1867 01a1 11       		.uleb128 0x11
+ 1868 01a2 01       		.uleb128 0x1
+ 1869 01a3 12       		.uleb128 0x12
+ 1870 01a4 06       		.uleb128 0x6
+ 1871 01a5 01       		.uleb128 0x1
+ 1872 01a6 13       		.uleb128 0x13
+ 1873 01a7 00       		.byte	0
+ 1874 01a8 00       		.byte	0
+ 1875 01a9 20       		.uleb128 0x20
+ 1876 01aa 34       		.uleb128 0x34
+ 1877 01ab 00       		.byte	0
+ 1878 01ac 03       		.uleb128 0x3
+ 1879 01ad 0E       		.uleb128 0xe
+ 1880 01ae 3A       		.uleb128 0x3a
+ 1881 01af 0B       		.uleb128 0xb
+ 1882 01b0 3B       		.uleb128 0x3b
+ 1883 01b1 05       		.uleb128 0x5
+ 1884 01b2 49       		.uleb128 0x49
+ 1885 01b3 13       		.uleb128 0x13
+ 1886 01b4 02       		.uleb128 0x2
+ 1887 01b5 17       		.uleb128 0x17
+ 1888 01b6 00       		.byte	0
+ 1889 01b7 00       		.byte	0
+ 1890 01b8 21       		.uleb128 0x21
+ 1891 01b9 26       		.uleb128 0x26
+ 1892 01ba 00       		.byte	0
+ 1893 01bb 49       		.uleb128 0x49
+ 1894 01bc 13       		.uleb128 0x13
+ 1895 01bd 00       		.byte	0
+ 1896 01be 00       		.byte	0
+ 1897 01bf 22       		.uleb128 0x22
+ 1898 01c0 2E       		.uleb128 0x2e
+ 1899 01c1 01       		.byte	0x1
+ 1900 01c2 3F       		.uleb128 0x3f
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 43
+
+
+ 1901 01c3 19       		.uleb128 0x19
+ 1902 01c4 03       		.uleb128 0x3
+ 1903 01c5 0E       		.uleb128 0xe
+ 1904 01c6 3A       		.uleb128 0x3a
+ 1905 01c7 0B       		.uleb128 0xb
+ 1906 01c8 3B       		.uleb128 0x3b
+ 1907 01c9 05       		.uleb128 0x5
+ 1908 01ca 27       		.uleb128 0x27
+ 1909 01cb 19       		.uleb128 0x19
+ 1910 01cc 49       		.uleb128 0x49
+ 1911 01cd 13       		.uleb128 0x13
+ 1912 01ce 11       		.uleb128 0x11
+ 1913 01cf 01       		.uleb128 0x1
+ 1914 01d0 12       		.uleb128 0x12
+ 1915 01d1 06       		.uleb128 0x6
+ 1916 01d2 40       		.uleb128 0x40
+ 1917 01d3 18       		.uleb128 0x18
+ 1918 01d4 9742     		.uleb128 0x2117
+ 1919 01d6 19       		.uleb128 0x19
+ 1920 01d7 01       		.uleb128 0x1
+ 1921 01d8 13       		.uleb128 0x13
+ 1922 01d9 00       		.byte	0
+ 1923 01da 00       		.byte	0
+ 1924 01db 23       		.uleb128 0x23
+ 1925 01dc 05       		.uleb128 0x5
+ 1926 01dd 00       		.byte	0
+ 1927 01de 03       		.uleb128 0x3
+ 1928 01df 0E       		.uleb128 0xe
+ 1929 01e0 3A       		.uleb128 0x3a
+ 1930 01e1 0B       		.uleb128 0xb
+ 1931 01e2 3B       		.uleb128 0x3b
+ 1932 01e3 05       		.uleb128 0x5
+ 1933 01e4 49       		.uleb128 0x49
+ 1934 01e5 13       		.uleb128 0x13
+ 1935 01e6 02       		.uleb128 0x2
+ 1936 01e7 17       		.uleb128 0x17
+ 1937 01e8 00       		.byte	0
+ 1938 01e9 00       		.byte	0
+ 1939 01ea 24       		.uleb128 0x24
+ 1940 01eb 01       		.uleb128 0x1
+ 1941 01ec 01       		.byte	0x1
+ 1942 01ed 49       		.uleb128 0x49
+ 1943 01ee 13       		.uleb128 0x13
+ 1944 01ef 01       		.uleb128 0x1
+ 1945 01f0 13       		.uleb128 0x13
+ 1946 01f1 00       		.byte	0
+ 1947 01f2 00       		.byte	0
+ 1948 01f3 25       		.uleb128 0x25
+ 1949 01f4 21       		.uleb128 0x21
+ 1950 01f5 00       		.byte	0
+ 1951 01f6 49       		.uleb128 0x49
+ 1952 01f7 13       		.uleb128 0x13
+ 1953 01f8 2F       		.uleb128 0x2f
+ 1954 01f9 0B       		.uleb128 0xb
+ 1955 01fa 00       		.byte	0
+ 1956 01fb 00       		.byte	0
+ 1957 01fc 26       		.uleb128 0x26
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 44
+
+
+ 1958 01fd 34       		.uleb128 0x34
+ 1959 01fe 00       		.byte	0
+ 1960 01ff 03       		.uleb128 0x3
+ 1961 0200 0E       		.uleb128 0xe
+ 1962 0201 3A       		.uleb128 0x3a
+ 1963 0202 0B       		.uleb128 0xb
+ 1964 0203 3B       		.uleb128 0x3b
+ 1965 0204 0B       		.uleb128 0xb
+ 1966 0205 49       		.uleb128 0x49
+ 1967 0206 13       		.uleb128 0x13
+ 1968 0207 02       		.uleb128 0x2
+ 1969 0208 18       		.uleb128 0x18
+ 1970 0209 00       		.byte	0
+ 1971 020a 00       		.byte	0
+ 1972 020b 27       		.uleb128 0x27
+ 1973 020c 34       		.uleb128 0x34
+ 1974 020d 00       		.byte	0
+ 1975 020e 03       		.uleb128 0x3
+ 1976 020f 0E       		.uleb128 0xe
+ 1977 0210 3A       		.uleb128 0x3a
+ 1978 0211 0B       		.uleb128 0xb
+ 1979 0212 3B       		.uleb128 0x3b
+ 1980 0213 0B       		.uleb128 0xb
+ 1981 0214 49       		.uleb128 0x49
+ 1982 0215 13       		.uleb128 0x13
+ 1983 0216 3F       		.uleb128 0x3f
+ 1984 0217 19       		.uleb128 0x19
+ 1985 0218 02       		.uleb128 0x2
+ 1986 0219 18       		.uleb128 0x18
+ 1987 021a 00       		.byte	0
+ 1988 021b 00       		.byte	0
+ 1989 021c 28       		.uleb128 0x28
+ 1990 021d 2E       		.uleb128 0x2e
+ 1991 021e 00       		.byte	0
+ 1992 021f 3F       		.uleb128 0x3f
+ 1993 0220 19       		.uleb128 0x19
+ 1994 0221 3C       		.uleb128 0x3c
+ 1995 0222 19       		.uleb128 0x19
+ 1996 0223 6E       		.uleb128 0x6e
+ 1997 0224 0E       		.uleb128 0xe
+ 1998 0225 03       		.uleb128 0x3
+ 1999 0226 0E       		.uleb128 0xe
+ 2000 0227 3A       		.uleb128 0x3a
+ 2001 0228 0B       		.uleb128 0xb
+ 2002 0229 3B       		.uleb128 0x3b
+ 2003 022a 05       		.uleb128 0x5
+ 2004 022b 00       		.byte	0
+ 2005 022c 00       		.byte	0
+ 2006 022d 00       		.byte	0
+ 2007              		.section	.debug_loc,"",%progbits
+ 2008              	.Ldebug_loc0:
+ 2009              	.LLST0:
+ 2010 0000 00000000 		.4byte	.LVL0
+ 2011 0004 08000000 		.4byte	.LVL1
+ 2012 0008 0100     		.2byte	0x1
+ 2013 000a 50       		.byte	0x50
+ 2014 000b 08000000 		.4byte	.LVL1
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 45
+
+
+ 2015 000f A4000000 		.4byte	.LFE32
+ 2016 0013 0200     		.2byte	0x2
+ 2017 0015 91       		.byte	0x91
+ 2018 0016 5C       		.sleb128 -36
+ 2019 0017 00000000 		.4byte	0
+ 2020 001b 00000000 		.4byte	0
+ 2021              	.LLST1:
+ 2022 001f 00000000 		.4byte	.LVL0
+ 2023 0023 0F000000 		.4byte	.LVL2-1
+ 2024 0027 0100     		.2byte	0x1
+ 2025 0029 51       		.byte	0x51
+ 2026 002a 0F000000 		.4byte	.LVL2-1
+ 2027 002e 54000000 		.4byte	.LVL12
+ 2028 0032 0200     		.2byte	0x2
+ 2029 0034 91       		.byte	0x91
+ 2030 0035 60       		.sleb128 -32
+ 2031 0036 54000000 		.4byte	.LVL12
+ 2032 003a 78000000 		.4byte	.LVL15
+ 2033 003e 0100     		.2byte	0x1
+ 2034 0040 56       		.byte	0x56
+ 2035 0041 98000000 		.4byte	.LVL17
+ 2036 0045 9C000000 		.4byte	.LVL19
+ 2037 0049 0200     		.2byte	0x2
+ 2038 004b 91       		.byte	0x91
+ 2039 004c 60       		.sleb128 -32
+ 2040 004d 00000000 		.4byte	0
+ 2041 0051 00000000 		.4byte	0
+ 2042              	.LLST2:
+ 2043 0055 00000000 		.4byte	.LVL0
+ 2044 0059 0F000000 		.4byte	.LVL2-1
+ 2045 005d 0100     		.2byte	0x1
+ 2046 005f 52       		.byte	0x52
+ 2047 0060 0F000000 		.4byte	.LVL2-1
+ 2048 0064 A4000000 		.4byte	.LFE32
+ 2049 0068 0200     		.2byte	0x2
+ 2050 006a 91       		.byte	0x91
+ 2051 006b 64       		.sleb128 -28
+ 2052 006c 00000000 		.4byte	0
+ 2053 0070 00000000 		.4byte	0
+ 2054              	.LLST3:
+ 2055 0074 94000000 		.4byte	.LVL16
+ 2056 0078 98000000 		.4byte	.LVL17
+ 2057 007c 0200     		.2byte	0x2
+ 2058 007e 31       		.byte	0x31
+ 2059 007f 9F       		.byte	0x9f
+ 2060 0080 9C000000 		.4byte	.LVL19
+ 2061 0084 A4000000 		.4byte	.LFE32
+ 2062 0088 0100     		.2byte	0x1
+ 2063 008a 50       		.byte	0x50
+ 2064 008b 00000000 		.4byte	0
+ 2065 008f 00000000 		.4byte	0
+ 2066              	.LLST4:
+ 2067 0093 12000000 		.4byte	.LVL3
+ 2068 0097 1E000000 		.4byte	.LVL4
+ 2069 009b 0100     		.2byte	0x1
+ 2070 009d 50       		.byte	0x50
+ 2071 009e 1E000000 		.4byte	.LVL4
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 46
+
+
+ 2072 00a2 98000000 		.4byte	.LVL17
+ 2073 00a6 0100     		.2byte	0x1
+ 2074 00a8 55       		.byte	0x55
+ 2075 00a9 98000000 		.4byte	.LVL17
+ 2076 00ad 9A000000 		.4byte	.LVL18
+ 2077 00b1 0100     		.2byte	0x1
+ 2078 00b3 50       		.byte	0x50
+ 2079 00b4 9A000000 		.4byte	.LVL18
+ 2080 00b8 9E000000 		.4byte	.LVL20
+ 2081 00bc 0100     		.2byte	0x1
+ 2082 00be 55       		.byte	0x55
+ 2083 00bf 00000000 		.4byte	0
+ 2084 00c3 00000000 		.4byte	0
+ 2085              	.LLST5:
+ 2086 00c7 20000000 		.4byte	.LVL5
+ 2087 00cb 24000000 		.4byte	.LVL6
+ 2088 00cf 0200     		.2byte	0x2
+ 2089 00d1 30       		.byte	0x30
+ 2090 00d2 9F       		.byte	0x9f
+ 2091 00d3 24000000 		.4byte	.LVL6
+ 2092 00d7 32000000 		.4byte	.LVL7
+ 2093 00db 0200     		.2byte	0x2
+ 2094 00dd 31       		.byte	0x31
+ 2095 00de 9F       		.byte	0x9f
+ 2096 00df 32000000 		.4byte	.LVL7
+ 2097 00e3 4C000000 		.4byte	.LVL11
+ 2098 00e7 0200     		.2byte	0x2
+ 2099 00e9 32       		.byte	0x32
+ 2100 00ea 9F       		.byte	0x9f
+ 2101 00eb 00000000 		.4byte	0
+ 2102 00ef 00000000 		.4byte	0
+ 2103              	.LLST6:
+ 2104 00f3 00000000 		.4byte	.LVL21
+ 2105 00f7 0E000000 		.4byte	.LVL23
+ 2106 00fb 0100     		.2byte	0x1
+ 2107 00fd 50       		.byte	0x50
+ 2108 00fe 0E000000 		.4byte	.LVL23
+ 2109 0102 3C000000 		.4byte	.LFE33
+ 2110 0106 0400     		.2byte	0x4
+ 2111 0108 F3       		.byte	0xf3
+ 2112 0109 01       		.uleb128 0x1
+ 2113 010a 50       		.byte	0x50
+ 2114 010b 9F       		.byte	0x9f
+ 2115 010c 00000000 		.4byte	0
+ 2116 0110 00000000 		.4byte	0
+ 2117              	.LLST7:
+ 2118 0114 00000000 		.4byte	.LVL21
+ 2119 0118 11000000 		.4byte	.LVL24-1
+ 2120 011c 0100     		.2byte	0x1
+ 2121 011e 51       		.byte	0x51
+ 2122 011f 11000000 		.4byte	.LVL24-1
+ 2123 0123 36000000 		.4byte	.LVL28
+ 2124 0127 0100     		.2byte	0x1
+ 2125 0129 56       		.byte	0x56
+ 2126 012a 36000000 		.4byte	.LVL28
+ 2127 012e 3C000000 		.4byte	.LFE33
+ 2128 0132 0400     		.2byte	0x4
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 47
+
+
+ 2129 0134 F3       		.byte	0xf3
+ 2130 0135 01       		.uleb128 0x1
+ 2131 0136 51       		.byte	0x51
+ 2132 0137 9F       		.byte	0x9f
+ 2133 0138 00000000 		.4byte	0
+ 2134 013c 00000000 		.4byte	0
+ 2135              	.LLST8:
+ 2136 0140 0A000000 		.4byte	.LVL22
+ 2137 0144 36000000 		.4byte	.LVL27
+ 2138 0148 0100     		.2byte	0x1
+ 2139 014a 55       		.byte	0x55
+ 2140 014b 00000000 		.4byte	0
+ 2141 014f 00000000 		.4byte	0
+ 2142              	.LLST9:
+ 2143 0153 14000000 		.4byte	.LVL29
+ 2144 0157 3E000000 		.4byte	.LVL33
+ 2145 015b 0100     		.2byte	0x1
+ 2146 015d 55       		.byte	0x55
+ 2147 015e 00000000 		.4byte	0
+ 2148 0162 00000000 		.4byte	0
+ 2149              	.LLST10:
+ 2150 0166 6E000000 		.4byte	.LVL37
+ 2151 016a A4000000 		.4byte	.LVL40
+ 2152 016e 0100     		.2byte	0x1
+ 2153 0170 57       		.byte	0x57
+ 2154 0171 00000000 		.4byte	0
+ 2155 0175 00000000 		.4byte	0
+ 2156              	.LLST11:
+ 2157 0179 60000000 		.4byte	.LVL35
+ 2158 017d 68000000 		.4byte	.LVL36
+ 2159 0181 0100     		.2byte	0x1
+ 2160 0183 53       		.byte	0x53
+ 2161 0184 00000000 		.4byte	0
+ 2162 0188 00000000 		.4byte	0
+ 2163              	.LLST12:
+ 2164 018c D8000000 		.4byte	.LVL41
+ 2165 0190 F4000000 		.4byte	.LVL42
+ 2166 0194 0B00     		.2byte	0xb
+ 2167 0196 73       		.byte	0x73
+ 2168 0197 00       		.sleb128 0
+ 2169 0198 44       		.byte	0x44
+ 2170 0199 1E       		.byte	0x1e
+ 2171 019a 03       		.byte	0x3
+ 2172 019b 04000000 		.4byte	pxReadyCoRoutineLists
+ 2173 019f 22       		.byte	0x22
+ 2174 01a0 9F       		.byte	0x9f
+ 2175 01a1 00000000 		.4byte	0
+ 2176 01a5 00000000 		.4byte	0
+ 2177              	.LLST13:
+ 2178 01a9 00000000 		.4byte	.LVL44
+ 2179 01ad 0C000000 		.4byte	.LVL46
+ 2180 01b1 0100     		.2byte	0x1
+ 2181 01b3 50       		.byte	0x50
+ 2182 01b4 0C000000 		.4byte	.LVL46
+ 2183 01b8 30000000 		.4byte	.LFE38
+ 2184 01bc 0400     		.2byte	0x4
+ 2185 01be F3       		.byte	0xf3
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 48
+
+
+ 2186 01bf 01       		.uleb128 0x1
+ 2187 01c0 50       		.byte	0x50
+ 2188 01c1 9F       		.byte	0x9f
+ 2189 01c2 00000000 		.4byte	0
+ 2190 01c6 00000000 		.4byte	0
+ 2191              	.LLST14:
+ 2192 01ca 06000000 		.4byte	.LVL45
+ 2193 01ce 28000000 		.4byte	.LVL49
+ 2194 01d2 0100     		.2byte	0x1
+ 2195 01d4 54       		.byte	0x54
+ 2196 01d5 28000000 		.4byte	.LVL49
+ 2197 01d9 28000000 		.4byte	.LVL50
+ 2198 01dd 0300     		.2byte	0x3
+ 2199 01df 76       		.byte	0x76
+ 2200 01e0 68       		.sleb128 -24
+ 2201 01e1 9F       		.byte	0x9f
+ 2202 01e2 00000000 		.4byte	0
+ 2203 01e6 00000000 		.4byte	0
+ 2204              	.LLST15:
+ 2205 01ea 1C000000 		.4byte	.LVL48
+ 2206 01ee 28000000 		.4byte	.LVL49
+ 2207 01f2 1900     		.2byte	0x19
+ 2208 01f4 74       		.byte	0x74
+ 2209 01f5 2C       		.sleb128 44
+ 2210 01f6 06       		.byte	0x6
+ 2211 01f7 40       		.byte	0x40
+ 2212 01f8 4B       		.byte	0x4b
+ 2213 01f9 24       		.byte	0x24
+ 2214 01fa 22       		.byte	0x22
+ 2215 01fb 03       		.byte	0x3
+ 2216 01fc 00000000 		.4byte	pxCurrentCoRoutine
+ 2217 0200 06       		.byte	0x6
+ 2218 0201 23       		.byte	0x23
+ 2219 0202 2C       		.uleb128 0x2c
+ 2220 0203 06       		.byte	0x6
+ 2221 0204 40       		.byte	0x40
+ 2222 0205 4B       		.byte	0x4b
+ 2223 0206 24       		.byte	0x24
+ 2224 0207 22       		.byte	0x22
+ 2225 0208 2A       		.byte	0x2a
+ 2226 0209 08       		.byte	0x8
+ 2227 020a FF       		.byte	0xff
+ 2228 020b 1A       		.byte	0x1a
+ 2229 020c 9F       		.byte	0x9f
+ 2230 020d 28000000 		.4byte	.LVL49
+ 2231 0211 30000000 		.4byte	.LFE38
+ 2232 0215 1800     		.2byte	0x18
+ 2233 0217 72       		.byte	0x72
+ 2234 0218 00       		.sleb128 0
+ 2235 0219 40       		.byte	0x40
+ 2236 021a 4B       		.byte	0x4b
+ 2237 021b 24       		.byte	0x24
+ 2238 021c 22       		.byte	0x22
+ 2239 021d 03       		.byte	0x3
+ 2240 021e 00000000 		.4byte	pxCurrentCoRoutine
+ 2241 0222 06       		.byte	0x6
+ 2242 0223 23       		.byte	0x23
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 49
+
+
+ 2243 0224 2C       		.uleb128 0x2c
+ 2244 0225 06       		.byte	0x6
+ 2245 0226 40       		.byte	0x40
+ 2246 0227 4B       		.byte	0x4b
+ 2247 0228 24       		.byte	0x24
+ 2248 0229 22       		.byte	0x22
+ 2249 022a 2A       		.byte	0x2a
+ 2250 022b 08       		.byte	0x8
+ 2251 022c FF       		.byte	0xff
+ 2252 022d 1A       		.byte	0x1a
+ 2253 022e 9F       		.byte	0x9f
+ 2254 022f 00000000 		.4byte	0
+ 2255 0233 00000000 		.4byte	0
+ 2256              		.section	.debug_aranges,"",%progbits
+ 2257 0000 34000000 		.4byte	0x34
+ 2258 0004 0200     		.2byte	0x2
+ 2259 0006 00000000 		.4byte	.Ldebug_info0
+ 2260 000a 04       		.byte	0x4
+ 2261 000b 00       		.byte	0
+ 2262 000c 0000     		.2byte	0
+ 2263 000e 0000     		.2byte	0
+ 2264 0010 00000000 		.4byte	.LFB32
+ 2265 0014 A4000000 		.4byte	.LFE32-.LFB32
+ 2266 0018 00000000 		.4byte	.LFB33
+ 2267 001c 3C000000 		.4byte	.LFE33-.LFB33
+ 2268 0020 00000000 		.4byte	.LFB36
+ 2269 0024 08010000 		.4byte	.LFE36-.LFB36
+ 2270 0028 00000000 		.4byte	.LFB38
+ 2271 002c 30000000 		.4byte	.LFE38-.LFB38
+ 2272 0030 00000000 		.4byte	0
+ 2273 0034 00000000 		.4byte	0
+ 2274              		.section	.debug_ranges,"",%progbits
+ 2275              	.Ldebug_ranges0:
+ 2276 0000 04000000 		.4byte	.LBB15
+ 2277 0004 06000000 		.4byte	.LBE15
+ 2278 0008 0E000000 		.4byte	.LBB16
+ 2279 000c 3E000000 		.4byte	.LBE16
+ 2280 0010 00000000 		.4byte	0
+ 2281 0014 00000000 		.4byte	0
+ 2282 0018 3E000000 		.4byte	.LBB17
+ 2283 001c AE000000 		.4byte	.LBE17
+ 2284 0020 B2000000 		.4byte	.LBB21
+ 2285 0024 B8000000 		.4byte	.LBE21
+ 2286 0028 00000000 		.4byte	0
+ 2287 002c 00000000 		.4byte	0
+ 2288 0030 00000000 		.4byte	.LFB32
+ 2289 0034 A4000000 		.4byte	.LFE32
+ 2290 0038 00000000 		.4byte	.LFB33
+ 2291 003c 3C000000 		.4byte	.LFE33
+ 2292 0040 00000000 		.4byte	.LFB36
+ 2293 0044 08010000 		.4byte	.LFE36
+ 2294 0048 00000000 		.4byte	.LFB38
+ 2295 004c 30000000 		.4byte	.LFE38
+ 2296 0050 00000000 		.4byte	0
+ 2297 0054 00000000 		.4byte	0
+ 2298              		.section	.debug_line,"",%progbits
+ 2299              	.Ldebug_line0:
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 50
+
+
+ 2300 0000 7E010000 		.section	.debug_str,"MS",%progbits,1
+ 2300      02008000 
+ 2300      00000201 
+ 2300      FB0E0D00 
+ 2300      01010101 
+ 2301              	.LASF42:
+ 2302 0000 70784576 		.ascii	"pxEventList\000"
+ 2302      656E744C 
+ 2302      69737400 
+ 2303              	.LASF53:
+ 2304 000c 78436F52 		.ascii	"xCoRoutineCreate\000"
+ 2304      6F757469 
+ 2304      6E654372 
+ 2304      65617465 
+ 2304      00
+ 2305              	.LASF74:
+ 2306 001d 443A5C31 		.ascii	"D:\\1_work\\my_project\\ReloadPro\\psoc42boot\\Relo"
+ 2306      5F776F72 
+ 2306      6B5C6D79 
+ 2306      5F70726F 
+ 2306      6A656374 
+ 2307 004b 61642050 		.ascii	"ad Pro.cydsn\000"
+ 2307      726F2E63 
+ 2307      7964736E 
+ 2307      00
+ 2308              	.LASF40:
+ 2309 0058 7078436F 		.ascii	"pxCoRoutine\000"
+ 2309      526F7574 
+ 2309      696E6500 
+ 2310              	.LASF38:
+ 2311 0064 7078436F 		.ascii	"pxCoRoutineCode\000"
+ 2311      526F7574 
+ 2311      696E6543 
+ 2311      6F646500 
+ 2312              	.LASF43:
+ 2313 0074 7854696D 		.ascii	"xTimeToWake\000"
+ 2313      65546F57 
+ 2313      616B6500 
+ 2314              	.LASF65:
+ 2315 0080 764C6973 		.ascii	"vListInitialise\000"
+ 2315      74496E69 
+ 2315      7469616C 
+ 2315      69736500 
+ 2316              	.LASF70:
+ 2317 0090 764C6973 		.ascii	"vListInsert\000"
+ 2317      74496E73 
+ 2317      65727400 
+ 2318              	.LASF55:
+ 2319 009c 70785265 		.ascii	"pxReadyCoRoutineLists\000"
+ 2319      61647943 
+ 2319      6F526F75 
+ 2319      74696E65 
+ 2319      4C697374 
+ 2320              	.LASF18:
+ 2321 00b2 706F7274 		.ascii	"portTickType\000"
+ 2321      5469636B 
+ 2321      54797065 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 51
+
+
+ 2321      00
+ 2322              	.LASF15:
+ 2323 00bf 70785072 		.ascii	"pxPrevious\000"
+ 2323      6576696F 
+ 2323      757300
+ 2324              	.LASF69:
+ 2325 00ca 75784C69 		.ascii	"uxListRemove\000"
+ 2325      73745265 
+ 2325      6D6F7665 
+ 2325      00
+ 2326              	.LASF45:
+ 2327 00d7 70727643 		.ascii	"prvCheckDelayedList\000"
+ 2327      6865636B 
+ 2327      44656C61 
+ 2327      7965644C 
+ 2327      69737400 
+ 2328              	.LASF14:
+ 2329 00eb 70784E65 		.ascii	"pxNext\000"
+ 2329      787400
+ 2330              	.LASF58:
+ 2331 00f2 70784465 		.ascii	"pxDelayedCoRoutineList\000"
+ 2331      6C617965 
+ 2331      64436F52 
+ 2331      6F757469 
+ 2331      6E654C69 
+ 2332              	.LASF31:
+ 2333 0109 7078436F 		.ascii	"pxCoRoutineFunction\000"
+ 2333      526F7574 
+ 2333      696E6546 
+ 2333      756E6374 
+ 2333      696F6E00 
+ 2334              	.LASF49:
+ 2335 011d 7078556E 		.ascii	"pxUnblockedCRCB\000"
+ 2335      626C6F63 
+ 2335      6B656443 
+ 2335      52434200 
+ 2336              	.LASF32:
+ 2337 012d 7847656E 		.ascii	"xGenericListItem\000"
+ 2337      65726963 
+ 2337      4C697374 
+ 2337      4974656D 
+ 2337      00
+ 2338              	.LASF16:
+ 2339 013e 70764F77 		.ascii	"pvOwner\000"
+ 2339      6E657200 
+ 2340              	.LASF5:
+ 2341 0146 6C6F6E67 		.ascii	"long int\000"
+ 2341      20696E74 
+ 2341      00
+ 2342              	.LASF41:
+ 2343 014f 78546963 		.ascii	"xTicksToDelay\000"
+ 2343      6B73546F 
+ 2343      44656C61 
+ 2343      7900
+ 2344              	.LASF47:
+ 2345 015d 70785465 		.ascii	"pxTemp\000"
+ 2345      6D7000
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 52
+
+
+ 2346              	.LASF54:
+ 2347 0164 78436F52 		.ascii	"xCoRoutineRemoveFromEventList\000"
+ 2347      6F757469 
+ 2347      6E655265 
+ 2347      6D6F7665 
+ 2347      46726F6D 
+ 2348              	.LASF3:
+ 2349 0182 73686F72 		.ascii	"short int\000"
+ 2349      7420696E 
+ 2349      7400
+ 2350              	.LASF9:
+ 2351 018c 666C6F61 		.ascii	"float\000"
+ 2351      7400
+ 2352              	.LASF7:
+ 2353 0192 6C6F6E67 		.ascii	"long long int\000"
+ 2353      206C6F6E 
+ 2353      6720696E 
+ 2353      7400
+ 2354              	.LASF27:
+ 2355 01a0 784C6973 		.ascii	"xList\000"
+ 2355      7400
+ 2356              	.LASF28:
+ 2357 01a6 78436F52 		.ascii	"xCoRoutineHandle\000"
+ 2357      6F757469 
+ 2357      6E654861 
+ 2357      6E646C65 
+ 2357      00
+ 2358              	.LASF52:
+ 2359 01b7 7078436F 		.ascii	"pxConstList\000"
+ 2359      6E73744C 
+ 2359      69737400 
+ 2360              	.LASF23:
+ 2361 01c3 784C4953 		.ascii	"xLIST\000"
+ 2361      5400
+ 2362              	.LASF13:
+ 2363 01c9 78497465 		.ascii	"xItemValue\000"
+ 2363      6D56616C 
+ 2363      756500
+ 2364              	.LASF71:
+ 2365 01d4 78546173 		.ascii	"xTaskGetTickCount\000"
+ 2365      6B476574 
+ 2365      5469636B 
+ 2365      436F756E 
+ 2365      7400
+ 2366              	.LASF20:
+ 2367 01e6 784C4953 		.ascii	"xLIST_ITEM\000"
+ 2367      545F4954 
+ 2367      454D00
+ 2368              	.LASF51:
+ 2369 01f1 76436F52 		.ascii	"vCoRoutineSchedule\000"
+ 2369      6F757469 
+ 2369      6E655363 
+ 2369      68656475 
+ 2369      6C6500
+ 2370              	.LASF36:
+ 2371 0204 75785374 		.ascii	"uxState\000"
+ 2371      61746500 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 53
+
+
+ 2372              	.LASF2:
+ 2373 020c 756E7369 		.ascii	"unsigned char\000"
+ 2373      676E6564 
+ 2373      20636861 
+ 2373      7200
+ 2374              	.LASF48:
+ 2375 021a 70727643 		.ascii	"prvCheckPendingReadyList\000"
+ 2375      6865636B 
+ 2375      50656E64 
+ 2375      696E6752 
+ 2375      65616479 
+ 2376              	.LASF8:
+ 2377 0233 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2377      206C6F6E 
+ 2377      6720756E 
+ 2377      7369676E 
+ 2377      65642069 
+ 2378              	.LASF33:
+ 2379 024a 78457665 		.ascii	"xEventListItem\000"
+ 2379      6E744C69 
+ 2379      73744974 
+ 2379      656D00
+ 2380              	.LASF72:
+ 2381 0259 474E5520 		.ascii	"GNU C99 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 2381      43393920 
+ 2381      352E342E 
+ 2381      31203230 
+ 2381      31363036 
+ 2382 028c 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 2382      20726576 
+ 2382      6973696F 
+ 2382      6E203233 
+ 2382      37373135 
+ 2383 02bf 73202D73 		.ascii	"s -std=gnu99 -ffunction-sections -ffat-lto-objects\000"
+ 2383      74643D67 
+ 2383      6E753939 
+ 2383      202D6666 
+ 2383      756E6374 
+ 2384              	.LASF0:
+ 2385 02f2 756E7369 		.ascii	"unsigned int\000"
+ 2385      676E6564 
+ 2385      20696E74 
+ 2385      00
+ 2386              	.LASF75:
+ 2387 02ff 70784375 		.ascii	"pxCurrentCoRoutine\000"
+ 2387      7272656E 
+ 2387      74436F52 
+ 2387      6F757469 
+ 2387      6E6500
+ 2388              	.LASF17:
+ 2389 0312 7076436F 		.ascii	"pvContainer\000"
+ 2389      6E746169 
+ 2389      6E657200 
+ 2390              	.LASF60:
+ 2391 031e 7850656E 		.ascii	"xPendingReadyCoRoutineList\000"
+ 2391      64696E67 
+ 2391      52656164 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 54
+
+
+ 2391      79436F52 
+ 2391      6F757469 
+ 2392              	.LASF35:
+ 2393 0339 7578496E 		.ascii	"uxIndex\000"
+ 2393      64657800 
+ 2394              	.LASF64:
+ 2395 0341 78506173 		.ascii	"xPassedTicks\000"
+ 2395      73656454 
+ 2395      69636B73 
+ 2395      00
+ 2396              	.LASF50:
+ 2397 034e 76436F52 		.ascii	"vCoRoutineAddToDelayedList\000"
+ 2397      6F757469 
+ 2397      6E654164 
+ 2397      64546F44 
+ 2397      656C6179 
+ 2398              	.LASF11:
+ 2399 0369 63686172 		.ascii	"char\000"
+ 2399      00
+ 2400              	.LASF29:
+ 2401 036e 6372434F 		.ascii	"crCOROUTINE_CODE\000"
+ 2401      524F5554 
+ 2401      494E455F 
+ 2401      434F4445 
+ 2401      00
+ 2402              	.LASF46:
+ 2403 037f 70784352 		.ascii	"pxCRCB\000"
+ 2403      434200
+ 2404              	.LASF4:
+ 2405 0386 73686F72 		.ascii	"short unsigned int\000"
+ 2405      7420756E 
+ 2405      7369676E 
+ 2405      65642069 
+ 2405      6E7400
+ 2406              	.LASF59:
+ 2407 0399 70784F76 		.ascii	"pxOverflowDelayedCoRoutineList\000"
+ 2407      6572666C 
+ 2407      6F774465 
+ 2407      6C617965 
+ 2407      64436F52 
+ 2408              	.LASF68:
+ 2409 03b8 764C6973 		.ascii	"vListInsertEnd\000"
+ 2409      74496E73 
+ 2409      65727445 
+ 2409      6E6400
+ 2410              	.LASF30:
+ 2411 03c7 636F7243 		.ascii	"corCoRoutineControlBlock\000"
+ 2411      6F526F75 
+ 2411      74696E65 
+ 2411      436F6E74 
+ 2411      726F6C42 
+ 2412              	.LASF6:
+ 2413 03e0 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2413      20756E73 
+ 2413      69676E65 
+ 2413      6420696E 
+ 2413      7400
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 55
+
+
+ 2414              	.LASF10:
+ 2415 03f2 646F7562 		.ascii	"double\000"
+ 2415      6C6500
+ 2416              	.LASF56:
+ 2417 03f9 7844656C 		.ascii	"xDelayedCoRoutineList1\000"
+ 2417      61796564 
+ 2417      436F526F 
+ 2417      7574696E 
+ 2417      654C6973 
+ 2418              	.LASF57:
+ 2419 0410 7844656C 		.ascii	"xDelayedCoRoutineList2\000"
+ 2419      61796564 
+ 2419      436F526F 
+ 2419      7574696E 
+ 2419      654C6973 
+ 2420              	.LASF24:
+ 2421 0427 75784E75 		.ascii	"uxNumberOfItems\000"
+ 2421      6D626572 
+ 2421      4F664974 
+ 2421      656D7300 
+ 2422              	.LASF19:
+ 2423 0437 784C6973 		.ascii	"xListItem\000"
+ 2423      74497465 
+ 2423      6D00
+ 2424              	.LASF73:
+ 2425 0441 66726565 		.ascii	"freertos\\src\\croutine.c\000"
+ 2425      72746F73 
+ 2425      5C737263 
+ 2425      5C63726F 
+ 2425      7574696E 
+ 2426              	.LASF44:
+ 2427 0459 70727649 		.ascii	"prvInitialiseCoRoutineLists\000"
+ 2427      6E697469 
+ 2427      616C6973 
+ 2427      65436F52 
+ 2427      6F757469 
+ 2428              	.LASF26:
+ 2429 0475 784C6973 		.ascii	"xListEnd\000"
+ 2429      74456E64 
+ 2429      00
+ 2430              	.LASF1:
+ 2431 047e 7369676E 		.ascii	"signed char\000"
+ 2431      65642063 
+ 2431      68617200 
+ 2432              	.LASF63:
+ 2433 048a 784C6173 		.ascii	"xLastTickCount\000"
+ 2433      74546963 
+ 2433      6B436F75 
+ 2433      6E7400
+ 2434              	.LASF39:
+ 2435 0499 78526574 		.ascii	"xReturn\000"
+ 2435      75726E00 
+ 2436              	.LASF12:
+ 2437 04a1 73697A65 		.ascii	"sizetype\000"
+ 2437      74797065 
+ 2437      00
+ 2438              	.LASF62:
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccMjVBro.s 			page 56
+
+
+ 2439 04aa 78436F52 		.ascii	"xCoRoutineTickCount\000"
+ 2439      6F757469 
+ 2439      6E655469 
+ 2439      636B436F 
+ 2439      756E7400 
+ 2440              	.LASF22:
+ 2441 04be 784D696E 		.ascii	"xMiniListItem\000"
+ 2441      694C6973 
+ 2441      74497465 
+ 2441      6D00
+ 2442              	.LASF61:
+ 2443 04cc 7578546F 		.ascii	"uxTopCoRoutineReadyPriority\000"
+ 2443      70436F52 
+ 2443      6F757469 
+ 2443      6E655265 
+ 2443      61647950 
+ 2444              	.LASF34:
+ 2445 04e8 75785072 		.ascii	"uxPriority\000"
+ 2445      696F7269 
+ 2445      747900
+ 2446              	.LASF25:
+ 2447 04f3 7078496E 		.ascii	"pxIndex\000"
+ 2447      64657800 
+ 2448              	.LASF21:
+ 2449 04fb 784D494E 		.ascii	"xMINI_LIST_ITEM\000"
+ 2449      495F4C49 
+ 2449      53545F49 
+ 2449      54454D00 
+ 2450              	.LASF66:
+ 2451 050b 7076506F 		.ascii	"pvPortMalloc\000"
+ 2451      72744D61 
+ 2451      6C6C6F63 
+ 2451      00
+ 2452              	.LASF37:
+ 2453 0518 636F7243 		.ascii	"corCRCB\000"
+ 2453      52434200 
+ 2454              	.LASF67:
+ 2455 0520 764C6973 		.ascii	"vListInitialiseItem\000"
+ 2455      74496E69 
+ 2455      7469616C 
+ 2455      69736549 
+ 2455      74656D00 
+ 2456              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

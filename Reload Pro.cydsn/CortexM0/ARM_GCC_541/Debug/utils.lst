@@ -1,0 +1,2011 @@
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczfLGDl.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"utils.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.global	__aeabi_idiv
+  20              		.global	__aeabi_idivmod
+  21              		.section	.text.set_current,"ax",%progbits
+  22              		.align	2
+  23              		.global	set_current
+  24              		.code	16
+  25              		.thumb_func
+  26              		.type	set_current, %function
+  27              	set_current:
+  28              	.LFB34:
+  29              		.file 1 "utils.c"
+   1:utils.c       **** /* ========================================
+   2:utils.c       ****  *
+   3:utils.c       ****  * Copyright YOUR COMPANY, THE YEAR
+   4:utils.c       ****  * All Rights Reserved
+   5:utils.c       ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:utils.c       ****  *
+   7:utils.c       ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:utils.c       ****  * WHICH IS THE PROPERTY OF your company.
+   9:utils.c       ****  *
+  10:utils.c       ****  * ========================================
+  11:utils.c       **** */
+  12:utils.c       **** 
+  13:utils.c       **** #include <FreeRTOS.h>
+  14:utils.c       **** #include <stdio.h>
+  15:utils.c       **** #include "config.h"
+  16:utils.c       **** 
+  17:utils.c       **** 
+  18:utils.c       **** void setup() {
+  19:utils.c       **** 	state.current_setpoint = -1;
+  20:utils.c       ****     state.lower_voltage_limit = -1;
+  21:utils.c       **** 
+  22:utils.c       **** 	set_current(0);
+  23:utils.c       **** 	
+  24:utils.c       **** 	CY_SET_REG32(Opamp_cy_psoc4_abuf__OA_OFFSET_TRIM, settings->calibration_settings.opamp_offset_trim
+  25:utils.c       **** }
+  26:utils.c       **** 
+  27:utils.c       **** void set_current(int setpoint) {
+  30              		.loc 1 27 0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczfLGDl.s 			page 2
+
+
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              	.LVL0:
+  35 0000 70B5     		push	{r4, r5, r6, lr}
+  36              		.cfi_def_cfa_offset 16
+  37              		.cfi_offset 4, -16
+  38              		.cfi_offset 5, -12
+  39              		.cfi_offset 6, -8
+  40              		.cfi_offset 14, -4
+  28:utils.c       **** 	if(setpoint < 0)
+  41              		.loc 1 28 0
+  42 0002 0028     		cmp	r0, #0
+  43 0004 00DA     		bge	.L2
+  29:utils.c       **** 		setpoint = 0;
+  44              		.loc 1 29 0
+  45 0006 0020     		movs	r0, #0
+  46              	.LVL1:
+  47              	.L2:
+  30:utils.c       ****     if (setpoint > CURRENT_MAX)
+  48              		.loc 1 30 0
+  49 0008 114B     		ldr	r3, .L8
+  50 000a 9842     		cmp	r0, r3
+  51 000c 00DD     		ble	.L3
+  31:utils.c       ****         setpoint = CURRENT_MAX;
+  52              		.loc 1 31 0
+  53 000e 1800     		movs	r0, r3
+  54              	.LVL2:
+  55              	.L3:
+  32:utils.c       **** 	state.current_setpoint = setpoint;
+  56              		.loc 1 32 0
+  57 0010 104B     		ldr	r3, .L8+4
+  58 0012 1860     		str	r0, [r3]
+  33:utils.c       **** 
+  34:utils.c       ****     setpoint -= settings->calibration_settings.dac_offset;
+  59              		.loc 1 34 0
+  60 0014 104B     		ldr	r3, .L8+8
+  61 0016 1B68     		ldr	r3, [r3]
+  62 0018 5C69     		ldr	r4, [r3, #20]
+  63 001a 041B     		subs	r4, r0, r4
+  64              	.LVL3:
+  35:utils.c       ****     setpoint -= get_dac_offset_correction();
+  65              		.loc 1 35 0
+  66 001c FFF7FEFF 		bl	get_dac_offset_correction
+  67              	.LVL4:
+  68 0020 241A     		subs	r4, r4, r0
+  69              	.LVL5:
+  36:utils.c       ****     if(setpoint < 0)
+  70              		.loc 1 36 0
+  71 0022 00D5     		bpl	.L4
+  37:utils.c       ****         setpoint = 0;
+  72              		.loc 1 37 0
+  73 0024 0024     		movs	r4, #0
+  74              	.LVL6:
+  75              	.L4:
+  38:utils.c       **** 
+  39:utils.c       ****     IDAC_High_SetValue(setpoint / settings->calibration_settings.dac_high_gain);
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczfLGDl.s 			page 3
+
+
+  76              		.loc 1 39 0
+  77 0026 0C4D     		ldr	r5, .L8+8
+  78 0028 2B68     		ldr	r3, [r5]
+  79 002a 1969     		ldr	r1, [r3, #16]
+  80 002c 2000     		movs	r0, r4
+  81 002e FFF7FEFF 		bl	__aeabi_idiv
+  82              	.LVL7:
+  83 0032 FFF7FEFF 		bl	IDAC_High_SetValue
+  84              	.LVL8:
+  40:utils.c       **** 	IDAC_Low_SetValue((setpoint % settings->calibration_settings.dac_high_gain) / settings->calibratio
+  85              		.loc 1 40 0
+  86 0036 2D68     		ldr	r5, [r5]
+  87 0038 2969     		ldr	r1, [r5, #16]
+  88 003a 2000     		movs	r0, r4
+  89 003c FFF7FEFF 		bl	__aeabi_idivmod
+  90              	.LVL9:
+  91 0040 0800     		movs	r0, r1
+  92 0042 E968     		ldr	r1, [r5, #12]
+  93 0044 FFF7FEFF 		bl	__aeabi_idiv
+  94              	.LVL10:
+  95 0048 FFF7FEFF 		bl	IDAC_Low_SetValue
+  96              	.LVL11:
+  41:utils.c       **** }
+  97              		.loc 1 41 0
+  98              		@ sp needed
+  99              	.LVL12:
+ 100 004c 70BD     		pop	{r4, r5, r6, pc}
+ 101              	.L9:
+ 102 004e C046     		.align	2
+ 103              	.L8:
+ 104 0050 808D5B00 		.word	6000000
+ 105 0054 00000000 		.word	state
+ 106 0058 00000000 		.word	settings
+ 107              		.cfi_endproc
+ 108              	.LFE34:
+ 109              		.size	set_current, .-set_current
+ 110              		.section	.text.setup,"ax",%progbits
+ 111              		.align	2
+ 112              		.global	setup
+ 113              		.code	16
+ 114              		.thumb_func
+ 115              		.type	setup, %function
+ 116              	setup:
+ 117              	.LFB33:
+  18:utils.c       **** 	state.current_setpoint = -1;
+ 118              		.loc 1 18 0
+ 119              		.cfi_startproc
+ 120              		@ args = 0, pretend = 0, frame = 0
+ 121              		@ frame_needed = 0, uses_anonymous_args = 0
+ 122 0000 10B5     		push	{r4, lr}
+ 123              		.cfi_def_cfa_offset 8
+ 124              		.cfi_offset 4, -8
+ 125              		.cfi_offset 14, -4
+  19:utils.c       ****     state.lower_voltage_limit = -1;
+ 126              		.loc 1 19 0
+ 127 0002 074B     		ldr	r3, .L11
+ 128 0004 0122     		movs	r2, #1
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczfLGDl.s 			page 4
+
+
+ 129 0006 5242     		rsbs	r2, r2, #0
+ 130 0008 1A60     		str	r2, [r3]
+  20:utils.c       **** 
+ 131              		.loc 1 20 0
+ 132 000a 5A60     		str	r2, [r3, #4]
+  22:utils.c       **** 	
+ 133              		.loc 1 22 0
+ 134 000c 0020     		movs	r0, #0
+ 135 000e FFF7FEFF 		bl	set_current
+ 136              	.LVL13:
+  24:utils.c       **** }
+ 137              		.loc 1 24 0
+ 138 0012 044B     		ldr	r3, .L11+4
+ 139 0014 1B68     		ldr	r3, [r3]
+ 140 0016 9A69     		ldr	r2, [r3, #24]
+ 141 0018 034B     		ldr	r3, .L11+8
+ 142 001a 1A60     		str	r2, [r3]
+  25:utils.c       **** 
+ 143              		.loc 1 25 0
+ 144              		@ sp needed
+ 145 001c 10BD     		pop	{r4, pc}
+ 146              	.L12:
+ 147 001e C046     		.align	2
+ 148              	.L11:
+ 149 0020 00000000 		.word	state
+ 150 0024 00000000 		.word	settings
+ 151 0028 000F1040 		.word	1074794240
+ 152              		.cfi_endproc
+ 153              	.LFE33:
+ 154              		.size	setup, .-setup
+ 155              		.section	.text.get_current_setpoint,"ax",%progbits
+ 156              		.align	2
+ 157              		.global	get_current_setpoint
+ 158              		.code	16
+ 159              		.thumb_func
+ 160              		.type	get_current_setpoint, %function
+ 161              	get_current_setpoint:
+ 162              	.LFB35:
+  42:utils.c       **** 
+  43:utils.c       **** int get_current_setpoint() {
+ 163              		.loc 1 43 0
+ 164              		.cfi_startproc
+ 165              		@ args = 0, pretend = 0, frame = 0
+ 166              		@ frame_needed = 0, uses_anonymous_args = 0
+ 167              		@ link register save eliminated.
+  44:utils.c       **** 	return state.current_setpoint;
+ 168              		.loc 1 44 0
+ 169 0000 014B     		ldr	r3, .L14
+ 170 0002 1868     		ldr	r0, [r3]
+  45:utils.c       **** }
+ 171              		.loc 1 45 0
+ 172              		@ sp needed
+ 173 0004 7047     		bx	lr
+ 174              	.L15:
+ 175 0006 C046     		.align	2
+ 176              	.L14:
+ 177 0008 00000000 		.word	state
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczfLGDl.s 			page 5
+
+
+ 178              		.cfi_endproc
+ 179              	.LFE35:
+ 180              		.size	get_current_setpoint, .-get_current_setpoint
+ 181              		.section	.text.get_major_version,"ax",%progbits
+ 182              		.align	2
+ 183              		.global	get_major_version
+ 184              		.code	16
+ 185              		.thumb_func
+ 186              		.type	get_major_version, %function
+ 187              	get_major_version:
+ 188              	.LFB36:
+  46:utils.c       **** 
+  47:utils.c       **** #define Bootloader_MD_SIZEOF (64u)
+  48:utils.c       **** #define APP_VER_OFFSET (CYDEV_FLASH_SIZE - Bootloader_MD_SIZEOF + Bootloadable_META_APP_VER_OFFSET)
+  49:utils.c       **** 
+  50:utils.c       **** uint8 get_major_version() {
+ 189              		.loc 1 50 0
+ 190              		.cfi_startproc
+ 191              		@ args = 0, pretend = 0, frame = 0
+ 192              		@ frame_needed = 0, uses_anonymous_args = 0
+ 193              		@ link register save eliminated.
+  51:utils.c       ****    return Bootloadable_GET_CODE_DATA(APP_VER_OFFSET + 1);
+ 194              		.loc 1 51 0
+ 195 0000 014B     		ldr	r3, .L17
+ 196 0002 1878     		ldrb	r0, [r3]
+  52:utils.c       **** }
+ 197              		.loc 1 52 0
+ 198              		@ sp needed
+ 199 0004 7047     		bx	lr
+ 200              	.L18:
+ 201 0006 C046     		.align	2
+ 202              	.L17:
+ 203 0008 D77F0000 		.word	32727
+ 204              		.cfi_endproc
+ 205              	.LFE36:
+ 206              		.size	get_major_version, .-get_major_version
+ 207              		.section	.text.get_minor_version,"ax",%progbits
+ 208              		.align	2
+ 209              		.global	get_minor_version
+ 210              		.code	16
+ 211              		.thumb_func
+ 212              		.type	get_minor_version, %function
+ 213              	get_minor_version:
+ 214              	.LFB37:
+  53:utils.c       **** 
+  54:utils.c       **** uint8 get_minor_version() {
+ 215              		.loc 1 54 0
+ 216              		.cfi_startproc
+ 217              		@ args = 0, pretend = 0, frame = 0
+ 218              		@ frame_needed = 0, uses_anonymous_args = 0
+ 219              		@ link register save eliminated.
+  55:utils.c       ****    return Bootloadable_GET_CODE_DATA(APP_VER_OFFSET);
+ 220              		.loc 1 55 0
+ 221 0000 014B     		ldr	r3, .L20
+ 222 0002 1878     		ldrb	r0, [r3]
+  56:utils.c       **** }
+ 223              		.loc 1 56 0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczfLGDl.s 			page 6
+
+
+ 224              		@ sp needed
+ 225 0004 7047     		bx	lr
+ 226              	.L21:
+ 227 0006 C046     		.align	2
+ 228              	.L20:
+ 229 0008 D67F0000 		.word	32726
+ 230              		.cfi_endproc
+ 231              	.LFE37:
+ 232              		.size	get_minor_version, .-get_minor_version
+ 233              		.section	.text.set_output_mode,"ax",%progbits
+ 234              		.align	2
+ 235              		.global	set_output_mode
+ 236              		.code	16
+ 237              		.thumb_func
+ 238              		.type	set_output_mode, %function
+ 239              	set_output_mode:
+ 240              	.LFB38:
+  57:utils.c       **** 
+  58:utils.c       **** static output_mode current_output_mode = OUTPUT_MODE_FEEDBACK;
+  59:utils.c       **** 
+  60:utils.c       **** void set_output_mode(output_mode mode) {
+ 241              		.loc 1 60 0
+ 242              		.cfi_startproc
+ 243              		@ args = 0, pretend = 0, frame = 0
+ 244              		@ frame_needed = 0, uses_anonymous_args = 0
+ 245              	.LVL14:
+ 246 0000 10B5     		push	{r4, lr}
+ 247              		.cfi_def_cfa_offset 8
+ 248              		.cfi_offset 4, -8
+ 249              		.cfi_offset 14, -4
+  61:utils.c       **** 	current_output_mode = mode;
+ 250              		.loc 1 61 0
+ 251 0002 104B     		ldr	r3, .L27
+ 252 0004 1870     		strb	r0, [r3]
+  62:utils.c       **** 	switch(mode) {
+ 253              		.loc 1 62 0
+ 254 0006 0128     		cmp	r0, #1
+ 255 0008 0DD0     		beq	.L24
+ 256 000a 0028     		cmp	r0, #0
+ 257 000c 02D0     		beq	.L25
+ 258 000e 0228     		cmp	r0, #2
+ 259 0010 12D0     		beq	.L26
+ 260 0012 16E0     		b	.L22
+ 261              	.L25:
+  63:utils.c       **** 	case OUTPUT_MODE_OFF:
+  64:utils.c       ****         // Pull the gate low
+  65:utils.c       **** 		Opamp_Stop();
+ 262              		.loc 1 65 0
+ 263 0014 FFF7FEFF 		bl	Opamp_Stop
+ 264              	.LVL15:
+  66:utils.c       **** 		Opamp_Out_Write(0);
+ 265              		.loc 1 66 0
+ 266 0018 0020     		movs	r0, #0
+ 267 001a FFF7FEFF 		bl	Opamp_Out_Write
+ 268              	.LVL16:
+  67:utils.c       **** 		Opamp_Out_SetDriveMode(Opamp_Out_DM_STRONG);
+ 269              		.loc 1 67 0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczfLGDl.s 			page 7
+
+
+ 270 001e 0620     		movs	r0, #6
+ 271 0020 FFF7FEFF 		bl	Opamp_Out_SetDriveMode
+ 272              	.LVL17:
+  68:utils.c       **** 		break;
+ 273              		.loc 1 68 0
+ 274 0024 0DE0     		b	.L22
+ 275              	.LVL18:
+ 276              	.L24:
+  69:utils.c       **** 	case OUTPUT_MODE_ON:
+  70:utils.c       **** 		// Stop the opamp and set the gate high
+  71:utils.c       **** 		Opamp_Stop();
+ 277              		.loc 1 71 0
+ 278 0026 FFF7FEFF 		bl	Opamp_Stop
+ 279              	.LVL19:
+  72:utils.c       **** 		Opamp_Out_Write(1);
+ 280              		.loc 1 72 0
+ 281 002a 0120     		movs	r0, #1
+ 282 002c FFF7FEFF 		bl	Opamp_Out_Write
+ 283              	.LVL20:
+  73:utils.c       **** 		Opamp_Out_SetDriveMode(Opamp_Out_DM_STRONG);
+ 284              		.loc 1 73 0
+ 285 0030 0620     		movs	r0, #6
+ 286 0032 FFF7FEFF 		bl	Opamp_Out_SetDriveMode
+ 287              	.LVL21:
+  74:utils.c       **** 		break;
+ 288              		.loc 1 74 0
+ 289 0036 04E0     		b	.L22
+ 290              	.LVL22:
+ 291              	.L26:
+  75:utils.c       **** 	case OUTPUT_MODE_FEEDBACK:
+  76:utils.c       **** 		// Start the opamp and set the pin to hi-z
+  77:utils.c       **** 		Opamp_Out_SetDriveMode(Opamp_Out_DM_ALG_HIZ);
+ 292              		.loc 1 77 0
+ 293 0038 0020     		movs	r0, #0
+ 294              	.LVL23:
+ 295 003a FFF7FEFF 		bl	Opamp_Out_SetDriveMode
+ 296              	.LVL24:
+  78:utils.c       **** 		Opamp_Start();
+ 297              		.loc 1 78 0
+ 298 003e FFF7FEFF 		bl	Opamp_Start
+ 299              	.LVL25:
+ 300              	.L22:
+  79:utils.c       **** 		break;
+  80:utils.c       **** 	}
+  81:utils.c       **** }
+ 301              		.loc 1 81 0
+ 302              		@ sp needed
+ 303 0042 10BD     		pop	{r4, pc}
+ 304              	.L28:
+ 305              		.align	2
+ 306              	.L27:
+ 307 0044 00000000 		.word	.LANCHOR0
+ 308              		.cfi_endproc
+ 309              	.LFE38:
+ 310              		.size	set_output_mode, .-set_output_mode
+ 311              		.section	.text.get_output_mode,"ax",%progbits
+ 312              		.align	2
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczfLGDl.s 			page 8
+
+
+ 313              		.global	get_output_mode
+ 314              		.code	16
+ 315              		.thumb_func
+ 316              		.type	get_output_mode, %function
+ 317              	get_output_mode:
+ 318              	.LFB39:
+  82:utils.c       **** 
+  83:utils.c       **** output_mode get_output_mode() {
+ 319              		.loc 1 83 0
+ 320              		.cfi_startproc
+ 321              		@ args = 0, pretend = 0, frame = 0
+ 322              		@ frame_needed = 0, uses_anonymous_args = 0
+ 323              		@ link register save eliminated.
+  84:utils.c       **** 	return current_output_mode;
+ 324              		.loc 1 84 0
+ 325 0000 014B     		ldr	r3, .L30
+ 326 0002 1878     		ldrb	r0, [r3]
+  85:utils.c       **** }
+ 327              		.loc 1 85 0
+ 328              		@ sp needed
+ 329 0004 7047     		bx	lr
+ 330              	.L31:
+ 331 0006 C046     		.align	2
+ 332              	.L30:
+ 333 0008 00000000 		.word	.LANCHOR0
+ 334              		.cfi_endproc
+ 335              	.LFE39:
+ 336              		.size	get_output_mode, .-get_output_mode
+ 337              		.data
+ 338              		.set	.LANCHOR0,. + 0
+ 339              		.type	current_output_mode, %object
+ 340              		.size	current_output_mode, 1
+ 341              	current_output_mode:
+ 342 0000 02       		.byte	2
+ 343              		.text
+ 344              	.Letext0:
+ 345              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 346              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 347              		.file 4 "Generated_Source\\PSoC4/cytypes.h"
+ 348              		.file 5 "config.h"
+ 349              		.file 6 "Generated_Source\\PSoC4/IDAC_High.h"
+ 350              		.file 7 "Generated_Source\\PSoC4/IDAC_Low.h"
+ 351              		.file 8 "Generated_Source\\PSoC4/Opamp.h"
+ 352              		.file 9 "Generated_Source\\PSoC4/Opamp_Out.h"
+ 353              		.section	.debug_info,"",%progbits
+ 354              	.Ldebug_info0:
+ 355 0000 90040000 		.4byte	0x490
+ 356 0004 0400     		.2byte	0x4
+ 357 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 358 000a 04       		.byte	0x4
+ 359 000b 01       		.uleb128 0x1
+ 360 000c 56000000 		.4byte	.LASF72
+ 361 0010 0C       		.byte	0xc
+ 362 0011 FB010000 		.4byte	.LASF73
+ 363 0015 0B000000 		.4byte	.LASF74
+ 364 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 365 001d 00000000 		.4byte	0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczfLGDl.s 			page 9
+
+
+ 366 0021 00000000 		.4byte	.Ldebug_line0
+ 367 0025 02       		.uleb128 0x2
+ 368 0026 04       		.byte	0x4
+ 369 0027 05       		.byte	0x5
+ 370 0028 696E7400 		.ascii	"int\000"
+ 371 002c 03       		.uleb128 0x3
+ 372 002d 04       		.byte	0x4
+ 373 002e 07       		.byte	0x7
+ 374 002f 4D030000 		.4byte	.LASF0
+ 375 0033 03       		.uleb128 0x3
+ 376 0034 01       		.byte	0x1
+ 377 0035 06       		.byte	0x6
+ 378 0036 2A030000 		.4byte	.LASF1
+ 379 003a 04       		.uleb128 0x4
+ 380 003b 71030000 		.4byte	.LASF9
+ 381 003f 02       		.byte	0x2
+ 382 0040 1D       		.byte	0x1d
+ 383 0041 45000000 		.4byte	0x45
+ 384 0045 03       		.uleb128 0x3
+ 385 0046 01       		.byte	0x1
+ 386 0047 08       		.byte	0x8
+ 387 0048 C3020000 		.4byte	.LASF2
+ 388 004c 03       		.uleb128 0x3
+ 389 004d 02       		.byte	0x2
+ 390 004e 05       		.byte	0x5
+ 391 004f 19010000 		.4byte	.LASF3
+ 392 0053 03       		.uleb128 0x3
+ 393 0054 02       		.byte	0x2
+ 394 0055 07       		.byte	0x7
+ 395 0056 30040000 		.4byte	.LASF4
+ 396 005a 03       		.uleb128 0x3
+ 397 005b 04       		.byte	0x4
+ 398 005c 05       		.byte	0x5
+ 399 005d 3B020000 		.4byte	.LASF5
+ 400 0061 03       		.uleb128 0x3
+ 401 0062 04       		.byte	0x4
+ 402 0063 07       		.byte	0x7
+ 403 0064 5A040000 		.4byte	.LASF6
+ 404 0068 03       		.uleb128 0x3
+ 405 0069 08       		.byte	0x8
+ 406 006a 05       		.byte	0x5
+ 407 006b 92010000 		.4byte	.LASF7
+ 408 006f 03       		.uleb128 0x3
+ 409 0070 08       		.byte	0x8
+ 410 0071 07       		.byte	0x7
+ 411 0072 36030000 		.4byte	.LASF8
+ 412 0076 04       		.uleb128 0x4
+ 413 0077 DA010000 		.4byte	.LASF10
+ 414 007b 03       		.byte	0x3
+ 415 007c 18       		.byte	0x18
+ 416 007d 3A000000 		.4byte	0x3a
+ 417 0081 05       		.uleb128 0x5
+ 418 0082 E2010000 		.4byte	.LASF11
+ 419 0086 04       		.byte	0x4
+ 420 0087 E401     		.2byte	0x1e4
+ 421 0089 45000000 		.4byte	0x45
+ 422 008d 05       		.uleb128 0x5
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczfLGDl.s 			page 10
+
+
+ 423 008e 43040000 		.4byte	.LASF12
+ 424 0092 04       		.byte	0x4
+ 425 0093 E601     		.2byte	0x1e6
+ 426 0095 61000000 		.4byte	0x61
+ 427 0099 03       		.uleb128 0x3
+ 428 009a 04       		.byte	0x4
+ 429 009b 04       		.byte	0x4
+ 430 009c 03020000 		.4byte	.LASF13
+ 431 00a0 03       		.uleb128 0x3
+ 432 00a1 08       		.byte	0x8
+ 433 00a2 04       		.byte	0x4
+ 434 00a3 DE040000 		.4byte	.LASF14
+ 435 00a7 03       		.uleb128 0x3
+ 436 00a8 01       		.byte	0x1
+ 437 00a9 08       		.byte	0x8
+ 438 00aa C2030000 		.4byte	.LASF15
+ 439 00ae 05       		.uleb128 0x5
+ 440 00af 9B030000 		.4byte	.LASF16
+ 441 00b3 04       		.byte	0x4
+ 442 00b4 9002     		.2byte	0x290
+ 443 00b6 BA000000 		.4byte	0xba
+ 444 00ba 06       		.uleb128 0x6
+ 445 00bb 8D000000 		.4byte	0x8d
+ 446 00bf 03       		.uleb128 0x3
+ 447 00c0 04       		.byte	0x4
+ 448 00c1 07       		.byte	0x7
+ 449 00c2 47010000 		.4byte	.LASF17
+ 450 00c6 07       		.uleb128 0x7
+ 451 00c7 0C       		.byte	0xc
+ 452 00c8 05       		.byte	0x5
+ 453 00c9 3E       		.byte	0x3e
+ 454 00ca F3000000 		.4byte	0xf3
+ 455 00ce 08       		.uleb128 0x8
+ 456 00cf 1A020000 		.4byte	.LASF18
+ 457 00d3 05       		.byte	0x5
+ 458 00d4 3F       		.byte	0x3f
+ 459 00d5 25000000 		.4byte	0x25
+ 460 00d9 00       		.byte	0
+ 461 00da 08       		.uleb128 0x8
+ 462 00db F9030000 		.4byte	.LASF19
+ 463 00df 05       		.byte	0x5
+ 464 00e0 40       		.byte	0x40
+ 465 00e1 25000000 		.4byte	0x25
+ 466 00e5 04       		.byte	0x4
+ 467 00e6 08       		.uleb128 0x8
+ 468 00e7 A0010000 		.4byte	.LASF20
+ 469 00eb 05       		.byte	0x5
+ 470 00ec 41       		.byte	0x41
+ 471 00ed 76000000 		.4byte	0x76
+ 472 00f1 08       		.byte	0x8
+ 473 00f2 00       		.byte	0
+ 474 00f3 04       		.uleb128 0x4
+ 475 00f4 09020000 		.4byte	.LASF21
+ 476 00f8 05       		.byte	0x5
+ 477 00f9 42       		.byte	0x42
+ 478 00fa C6000000 		.4byte	0xc6
+ 479 00fe 09       		.uleb128 0x9
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczfLGDl.s 			page 11
+
+
+ 480 00ff 01       		.byte	0x1
+ 481 0100 45000000 		.4byte	0x45
+ 482 0104 05       		.byte	0x5
+ 483 0105 46       		.byte	0x46
+ 484 0106 3B010000 		.4byte	0x13b
+ 485 010a 0A       		.uleb128 0xa
+ 486 010b EC030000 		.4byte	.LASF22
+ 487 010f 00       		.byte	0
+ 488 0110 0A       		.uleb128 0xa
+ 489 0111 81040000 		.4byte	.LASF23
+ 490 0115 01       		.byte	0x1
+ 491 0116 0A       		.uleb128 0xa
+ 492 0117 D1020000 		.4byte	.LASF24
+ 493 011b 02       		.byte	0x2
+ 494 011c 0A       		.uleb128 0xa
+ 495 011d 4A040000 		.4byte	.LASF25
+ 496 0121 03       		.byte	0x3
+ 497 0122 0A       		.uleb128 0xa
+ 498 0123 A1030000 		.4byte	.LASF26
+ 499 0127 04       		.byte	0x4
+ 500 0128 0A       		.uleb128 0xa
+ 501 0129 AF030000 		.4byte	.LASF27
+ 502 012d 05       		.byte	0x5
+ 503 012e 0A       		.uleb128 0xa
+ 504 012f 75020000 		.4byte	.LASF28
+ 505 0133 06       		.byte	0x6
+ 506 0134 0A       		.uleb128 0xa
+ 507 0135 87030000 		.4byte	.LASF29
+ 508 0139 07       		.byte	0x7
+ 509 013a 00       		.byte	0
+ 510 013b 04       		.uleb128 0x4
+ 511 013c 70010000 		.4byte	.LASF30
+ 512 0140 05       		.byte	0x5
+ 513 0141 4F       		.byte	0x4f
+ 514 0142 FE000000 		.4byte	0xfe
+ 515 0146 07       		.uleb128 0x7
+ 516 0147 03       		.byte	0x3
+ 517 0148 05       		.byte	0x5
+ 518 0149 52       		.byte	0x52
+ 519 014a 5B010000 		.4byte	0x15b
+ 520 014e 08       		.uleb128 0x8
+ 521 014f BC010000 		.4byte	.LASF31
+ 522 0153 05       		.byte	0x5
+ 523 0154 53       		.byte	0x53
+ 524 0155 70010000 		.4byte	0x170
+ 525 0159 00       		.byte	0
+ 526 015a 00       		.byte	0
+ 527 015b 0B       		.uleb128 0xb
+ 528 015c 6B010000 		.4byte	0x16b
+ 529 0160 6B010000 		.4byte	0x16b
+ 530 0164 0C       		.uleb128 0xc
+ 531 0165 BF000000 		.4byte	0xbf
+ 532 0169 02       		.byte	0x2
+ 533 016a 00       		.byte	0
+ 534 016b 0D       		.uleb128 0xd
+ 535 016c 3B010000 		.4byte	0x13b
+ 536 0170 0D       		.uleb128 0xd
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczfLGDl.s 			page 12
+
+
+ 537 0171 5B010000 		.4byte	0x15b
+ 538 0175 04       		.uleb128 0x4
+ 539 0176 1F040000 		.4byte	.LASF32
+ 540 017a 05       		.byte	0x5
+ 541 017b 54       		.byte	0x54
+ 542 017c 46010000 		.4byte	0x146
+ 543 0180 07       		.uleb128 0x7
+ 544 0181 03       		.byte	0x3
+ 545 0182 05       		.byte	0x5
+ 546 0183 58       		.byte	0x58
+ 547 0184 94010000 		.4byte	0x194
+ 548 0188 0E       		.uleb128 0xe
+ 549 0189 636300   		.ascii	"cc\000"
+ 550 018c 05       		.byte	0x5
+ 551 018d 59       		.byte	0x59
+ 552 018e 75010000 		.4byte	0x175
+ 553 0192 00       		.byte	0
+ 554 0193 00       		.byte	0
+ 555 0194 0F       		.uleb128 0xf
+ 556 0195 03       		.byte	0x3
+ 557 0196 05       		.byte	0x5
+ 558 0197 57       		.byte	0x57
+ 559 0198 B3010000 		.4byte	0x1b3
+ 560 019c 10       		.uleb128 0x10
+ 561 019d E7020000 		.4byte	.LASF33
+ 562 01a1 05       		.byte	0x5
+ 563 01a2 5A       		.byte	0x5a
+ 564 01a3 80010000 		.4byte	0x180
+ 565 01a7 10       		.uleb128 0x10
+ 566 01a8 9C020000 		.4byte	.LASF34
+ 567 01ac 05       		.byte	0x5
+ 568 01ad 5B       		.byte	0x5b
+ 569 01ae B3010000 		.4byte	0x1b3
+ 570 01b2 00       		.byte	0
+ 571 01b3 0B       		.uleb128 0xb
+ 572 01b4 75010000 		.4byte	0x175
+ 573 01b8 C3010000 		.4byte	0x1c3
+ 574 01bc 0C       		.uleb128 0xc
+ 575 01bd BF000000 		.4byte	0xbf
+ 576 01c1 00       		.byte	0
+ 577 01c2 00       		.byte	0
+ 578 01c3 04       		.uleb128 0x4
+ 579 01c4 50010000 		.4byte	.LASF35
+ 580 01c8 05       		.byte	0x5
+ 581 01c9 5C       		.byte	0x5c
+ 582 01ca 94010000 		.4byte	0x194
+ 583 01ce 07       		.uleb128 0x7
+ 584 01cf 24       		.byte	0x24
+ 585 01d0 05       		.byte	0x5
+ 586 01d1 5E       		.byte	0x5e
+ 587 01d2 43020000 		.4byte	0x243
+ 588 01d6 08       		.uleb128 0x8
+ 589 01d7 EE010000 		.4byte	.LASF36
+ 590 01db 05       		.byte	0x5
+ 591 01dc 5F       		.byte	0x5f
+ 592 01dd 25000000 		.4byte	0x25
+ 593 01e1 00       		.byte	0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczfLGDl.s 			page 13
+
+
+ 594 01e2 08       		.uleb128 0x8
+ 595 01e3 B5020000 		.4byte	.LASF37
+ 596 01e7 05       		.byte	0x5
+ 597 01e8 60       		.byte	0x60
+ 598 01e9 25000000 		.4byte	0x25
+ 599 01ed 04       		.byte	0x4
+ 600 01ee 08       		.uleb128 0x8
+ 601 01ef 00000000 		.4byte	.LASF38
+ 602 01f3 05       		.byte	0x5
+ 603 01f4 61       		.byte	0x61
+ 604 01f5 25000000 		.4byte	0x25
+ 605 01f9 08       		.byte	0x8
+ 606 01fa 08       		.uleb128 0x8
+ 607 01fb DA030000 		.4byte	.LASF39
+ 608 01ff 05       		.byte	0x5
+ 609 0200 62       		.byte	0x62
+ 610 0201 25000000 		.4byte	0x25
+ 611 0205 0C       		.byte	0xc
+ 612 0206 08       		.uleb128 0x8
+ 613 0207 C7030000 		.4byte	.LASF40
+ 614 020b 05       		.byte	0x5
+ 615 020c 64       		.byte	0x64
+ 616 020d 25000000 		.4byte	0x25
+ 617 0211 10       		.byte	0x10
+ 618 0212 08       		.uleb128 0x8
+ 619 0213 F5000000 		.4byte	.LASF41
+ 620 0217 05       		.byte	0x5
+ 621 0218 65       		.byte	0x65
+ 622 0219 25000000 		.4byte	0x25
+ 623 021d 14       		.byte	0x14
+ 624 021e 08       		.uleb128 0x8
+ 625 021f 44020000 		.4byte	.LASF42
+ 626 0223 05       		.byte	0x5
+ 627 0224 67       		.byte	0x67
+ 628 0225 25000000 		.4byte	0x25
+ 629 0229 18       		.byte	0x18
+ 630 022a 08       		.uleb128 0x8
+ 631 022b CD040000 		.4byte	.LASF43
+ 632 022f 05       		.byte	0x5
+ 633 0230 68       		.byte	0x68
+ 634 0231 25000000 		.4byte	0x25
+ 635 0235 1C       		.byte	0x1c
+ 636 0236 08       		.uleb128 0x8
+ 637 0237 B4040000 		.4byte	.LASF44
+ 638 023b 05       		.byte	0x5
+ 639 023c 6A       		.byte	0x6a
+ 640 023d 25000000 		.4byte	0x25
+ 641 0241 20       		.byte	0x20
+ 642 0242 00       		.byte	0
+ 643 0243 04       		.uleb128 0x4
+ 644 0244 ED020000 		.4byte	.LASF45
+ 645 0248 05       		.byte	0x5
+ 646 0249 6B       		.byte	0x6b
+ 647 024a CE010000 		.4byte	0x1ce
+ 648 024e 07       		.uleb128 0x7
+ 649 024f 30       		.byte	0x30
+ 650 0250 05       		.byte	0x5
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczfLGDl.s 			page 14
+
+
+ 651 0251 6D       		.byte	0x6d
+ 652 0252 87020000 		.4byte	0x287
+ 653 0256 08       		.uleb128 0x8
+ 654 0257 8B020000 		.4byte	.LASF46
+ 655 025b 05       		.byte	0x5
+ 656 025c 6E       		.byte	0x6e
+ 657 025d 76000000 		.4byte	0x76
+ 658 0261 00       		.byte	0
+ 659 0262 08       		.uleb128 0x8
+ 660 0263 63010000 		.4byte	.LASF47
+ 661 0267 05       		.byte	0x5
+ 662 0268 6F       		.byte	0x6f
+ 663 0269 25000000 		.4byte	0x25
+ 664 026d 04       		.byte	0x4
+ 665 026e 08       		.uleb128 0x8
+ 666 026f 81010000 		.4byte	.LASF48
+ 667 0273 05       		.byte	0x5
+ 668 0274 70       		.byte	0x70
+ 669 0275 C3010000 		.4byte	0x1c3
+ 670 0279 08       		.byte	0x8
+ 671 027a 08       		.uleb128 0x8
+ 672 027b 23010000 		.4byte	.LASF49
+ 673 027f 05       		.byte	0x5
+ 674 0280 71       		.byte	0x71
+ 675 0281 43020000 		.4byte	0x243
+ 676 0285 0C       		.byte	0xc
+ 677 0286 00       		.byte	0
+ 678 0287 04       		.uleb128 0x4
+ 679 0288 E5040000 		.4byte	.LASF50
+ 680 028c 05       		.byte	0x5
+ 681 028d 72       		.byte	0x72
+ 682 028e 4E020000 		.4byte	0x24e
+ 683 0292 09       		.uleb128 0x9
+ 684 0293 01       		.byte	0x1
+ 685 0294 45000000 		.4byte	0x45
+ 686 0298 05       		.byte	0x5
+ 687 0299 86       		.byte	0x86
+ 688 029a B1020000 		.4byte	0x2b1
+ 689 029e 0A       		.uleb128 0xa
+ 690 029f F9040000 		.4byte	.LASF51
+ 691 02a3 00       		.byte	0
+ 692 02a4 0A       		.uleb128 0xa
+ 693 02a5 38010000 		.4byte	.LASF52
+ 694 02a9 01       		.byte	0x1
+ 695 02aa 0A       		.uleb128 0xa
+ 696 02ab 6C040000 		.4byte	.LASF53
+ 697 02af 02       		.byte	0x2
+ 698 02b0 00       		.byte	0
+ 699 02b1 04       		.uleb128 0x4
+ 700 02b2 7B030000 		.4byte	.LASF54
+ 701 02b6 05       		.byte	0x5
+ 702 02b7 8A       		.byte	0x8a
+ 703 02b8 92020000 		.4byte	0x292
+ 704 02bc 11       		.uleb128 0x11
+ 705 02bd 09050000 		.4byte	.LASF58
+ 706 02c1 01       		.byte	0x1
+ 707 02c2 1B       		.byte	0x1b
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczfLGDl.s 			page 15
+
+
+ 708 02c3 00000000 		.4byte	.LFB34
+ 709 02c7 5C000000 		.4byte	.LFE34-.LFB34
+ 710 02cb 01       		.uleb128 0x1
+ 711 02cc 9C       		.byte	0x9c
+ 712 02cd FC020000 		.4byte	0x2fc
+ 713 02d1 12       		.uleb128 0x12
+ 714 02d2 F0040000 		.4byte	.LASF60
+ 715 02d6 01       		.byte	0x1
+ 716 02d7 1B       		.byte	0x1b
+ 717 02d8 25000000 		.4byte	0x25
+ 718 02dc 00000000 		.4byte	.LLST0
+ 719 02e0 13       		.uleb128 0x13
+ 720 02e1 20000000 		.4byte	.LVL4
+ 721 02e5 46040000 		.4byte	0x446
+ 722 02e9 13       		.uleb128 0x13
+ 723 02ea 36000000 		.4byte	.LVL8
+ 724 02ee 51040000 		.4byte	0x451
+ 725 02f2 13       		.uleb128 0x13
+ 726 02f3 4C000000 		.4byte	.LVL11
+ 727 02f7 5C040000 		.4byte	0x45c
+ 728 02fb 00       		.byte	0
+ 729 02fc 14       		.uleb128 0x14
+ 730 02fd E8010000 		.4byte	.LASF75
+ 731 0301 01       		.byte	0x1
+ 732 0302 12       		.byte	0x12
+ 733 0303 00000000 		.4byte	.LFB33
+ 734 0307 2C000000 		.4byte	.LFE33-.LFB33
+ 735 030b 01       		.uleb128 0x1
+ 736 030c 9C       		.byte	0x9c
+ 737 030d 21030000 		.4byte	0x321
+ 738 0311 15       		.uleb128 0x15
+ 739 0312 12000000 		.4byte	.LVL13
+ 740 0316 BC020000 		.4byte	0x2bc
+ 741 031a 16       		.uleb128 0x16
+ 742 031b 01       		.uleb128 0x1
+ 743 031c 50       		.byte	0x50
+ 744 031d 01       		.uleb128 0x1
+ 745 031e 30       		.byte	0x30
+ 746 031f 00       		.byte	0
+ 747 0320 00       		.byte	0
+ 748 0321 17       		.uleb128 0x17
+ 749 0322 C5010000 		.4byte	.LASF55
+ 750 0326 01       		.byte	0x1
+ 751 0327 2B       		.byte	0x2b
+ 752 0328 25000000 		.4byte	0x25
+ 753 032c 00000000 		.4byte	.LFB35
+ 754 0330 0C000000 		.4byte	.LFE35-.LFB35
+ 755 0334 01       		.uleb128 0x1
+ 756 0335 9C       		.byte	0x9c
+ 757 0336 17       		.uleb128 0x17
+ 758 0337 04030000 		.4byte	.LASF56
+ 759 033b 01       		.byte	0x1
+ 760 033c 32       		.byte	0x32
+ 761 033d 81000000 		.4byte	0x81
+ 762 0341 00000000 		.4byte	.LFB36
+ 763 0345 0C000000 		.4byte	.LFE36-.LFB36
+ 764 0349 01       		.uleb128 0x1
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczfLGDl.s 			page 16
+
+
+ 765 034a 9C       		.byte	0x9c
+ 766 034b 17       		.uleb128 0x17
+ 767 034c 63020000 		.4byte	.LASF57
+ 768 0350 01       		.byte	0x1
+ 769 0351 36       		.byte	0x36
+ 770 0352 81000000 		.4byte	0x81
+ 771 0356 00000000 		.4byte	.LFB37
+ 772 035a 0C000000 		.4byte	.LFE37-.LFB37
+ 773 035e 01       		.uleb128 0x1
+ 774 035f 9C       		.byte	0x9c
+ 775 0360 18       		.uleb128 0x18
+ 776 0361 46000000 		.4byte	.LASF59
+ 777 0365 01       		.byte	0x1
+ 778 0366 3C       		.byte	0x3c
+ 779 0367 00000000 		.4byte	.LFB38
+ 780 036b 48000000 		.4byte	.LFE38-.LFB38
+ 781 036f 01       		.uleb128 0x1
+ 782 0370 9C       		.byte	0x9c
+ 783 0371 FF030000 		.4byte	0x3ff
+ 784 0375 12       		.uleb128 0x12
+ 785 0376 AC010000 		.4byte	.LASF61
+ 786 037a 01       		.byte	0x1
+ 787 037b 3C       		.byte	0x3c
+ 788 037c B1020000 		.4byte	0x2b1
+ 789 0380 29000000 		.4byte	.LLST1
+ 790 0384 13       		.uleb128 0x13
+ 791 0385 18000000 		.4byte	.LVL15
+ 792 0389 67040000 		.4byte	0x467
+ 793 038d 19       		.uleb128 0x19
+ 794 038e 1E000000 		.4byte	.LVL16
+ 795 0392 72040000 		.4byte	0x472
+ 796 0396 A0030000 		.4byte	0x3a0
+ 797 039a 16       		.uleb128 0x16
+ 798 039b 01       		.uleb128 0x1
+ 799 039c 50       		.byte	0x50
+ 800 039d 01       		.uleb128 0x1
+ 801 039e 30       		.byte	0x30
+ 802 039f 00       		.byte	0
+ 803 03a0 19       		.uleb128 0x19
+ 804 03a1 24000000 		.4byte	.LVL17
+ 805 03a5 7D040000 		.4byte	0x47d
+ 806 03a9 B3030000 		.4byte	0x3b3
+ 807 03ad 16       		.uleb128 0x16
+ 808 03ae 01       		.uleb128 0x1
+ 809 03af 50       		.byte	0x50
+ 810 03b0 01       		.uleb128 0x1
+ 811 03b1 36       		.byte	0x36
+ 812 03b2 00       		.byte	0
+ 813 03b3 13       		.uleb128 0x13
+ 814 03b4 2A000000 		.4byte	.LVL19
+ 815 03b8 67040000 		.4byte	0x467
+ 816 03bc 19       		.uleb128 0x19
+ 817 03bd 30000000 		.4byte	.LVL20
+ 818 03c1 72040000 		.4byte	0x472
+ 819 03c5 CF030000 		.4byte	0x3cf
+ 820 03c9 16       		.uleb128 0x16
+ 821 03ca 01       		.uleb128 0x1
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczfLGDl.s 			page 17
+
+
+ 822 03cb 50       		.byte	0x50
+ 823 03cc 01       		.uleb128 0x1
+ 824 03cd 31       		.byte	0x31
+ 825 03ce 00       		.byte	0
+ 826 03cf 19       		.uleb128 0x19
+ 827 03d0 36000000 		.4byte	.LVL21
+ 828 03d4 7D040000 		.4byte	0x47d
+ 829 03d8 E2030000 		.4byte	0x3e2
+ 830 03dc 16       		.uleb128 0x16
+ 831 03dd 01       		.uleb128 0x1
+ 832 03de 50       		.byte	0x50
+ 833 03df 01       		.uleb128 0x1
+ 834 03e0 36       		.byte	0x36
+ 835 03e1 00       		.byte	0
+ 836 03e2 19       		.uleb128 0x19
+ 837 03e3 3E000000 		.4byte	.LVL24
+ 838 03e7 7D040000 		.4byte	0x47d
+ 839 03eb F5030000 		.4byte	0x3f5
+ 840 03ef 16       		.uleb128 0x16
+ 841 03f0 01       		.uleb128 0x1
+ 842 03f1 50       		.byte	0x50
+ 843 03f2 01       		.uleb128 0x1
+ 844 03f3 30       		.byte	0x30
+ 845 03f4 00       		.byte	0
+ 846 03f5 13       		.uleb128 0x13
+ 847 03f6 42000000 		.4byte	.LVL25
+ 848 03fa 88040000 		.4byte	0x488
+ 849 03fe 00       		.byte	0
+ 850 03ff 17       		.uleb128 0x17
+ 851 0400 A5020000 		.4byte	.LASF62
+ 852 0404 01       		.byte	0x1
+ 853 0405 53       		.byte	0x53
+ 854 0406 B1020000 		.4byte	0x2b1
+ 855 040a 00000000 		.4byte	.LFB39
+ 856 040e 0C000000 		.4byte	.LFE39-.LFB39
+ 857 0412 01       		.uleb128 0x1
+ 858 0413 9C       		.byte	0x9c
+ 859 0414 1A       		.uleb128 0x1a
+ 860 0415 16030000 		.4byte	.LASF76
+ 861 0419 01       		.byte	0x1
+ 862 041a 3A       		.byte	0x3a
+ 863 041b B1020000 		.4byte	0x2b1
+ 864 041f 05       		.uleb128 0x5
+ 865 0420 03       		.byte	0x3
+ 866 0421 00000000 		.4byte	current_output_mode
+ 867 0425 1B       		.uleb128 0x1b
+ 868 0426 EF000000 		.4byte	.LASF63
+ 869 042a 05       		.byte	0x5
+ 870 042b 44       		.byte	0x44
+ 871 042c F3000000 		.4byte	0xf3
+ 872 0430 1B       		.uleb128 0x1b
+ 873 0431 11020000 		.4byte	.LASF64
+ 874 0435 05       		.byte	0x5
+ 875 0436 74       		.byte	0x74
+ 876 0437 3B040000 		.4byte	0x43b
+ 877 043b 1C       		.uleb128 0x1c
+ 878 043c 04       		.byte	0x4
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczfLGDl.s 			page 18
+
+
+ 879 043d 41040000 		.4byte	0x441
+ 880 0441 0D       		.uleb128 0xd
+ 881 0442 87020000 		.4byte	0x287
+ 882 0446 1D       		.uleb128 0x1d
+ 883 0447 9A040000 		.4byte	.LASF65
+ 884 044b 9A040000 		.4byte	.LASF65
+ 885 044f 05       		.byte	0x5
+ 886 0450 80       		.byte	0x80
+ 887 0451 1D       		.uleb128 0x1d
+ 888 0452 06010000 		.4byte	.LASF66
+ 889 0456 06010000 		.4byte	.LASF66
+ 890 045a 06       		.byte	0x6
+ 891 045b 54       		.byte	0x54
+ 892 045c 1D       		.uleb128 0x1d
+ 893 045d 0D040000 		.4byte	.LASF67
+ 894 0461 0D040000 		.4byte	.LASF67
+ 895 0465 07       		.byte	0x7
+ 896 0466 54       		.byte	0x54
+ 897 0467 1D       		.uleb128 0x1d
+ 898 0468 B1010000 		.4byte	.LASF68
+ 899 046c B1010000 		.4byte	.LASF68
+ 900 0470 08       		.byte	0x8
+ 901 0471 2A       		.byte	0x2a
+ 902 0472 1D       		.uleb128 0x1d
+ 903 0473 2B020000 		.4byte	.LASF69
+ 904 0477 2B020000 		.4byte	.LASF69
+ 905 047b 09       		.byte	0x9
+ 906 047c 33       		.byte	0x33
+ 907 047d 1D       		.uleb128 0x1d
+ 908 047e 5A030000 		.4byte	.LASF70
+ 909 0482 5A030000 		.4byte	.LASF70
+ 910 0486 09       		.byte	0x9
+ 911 0487 36       		.byte	0x36
+ 912 0488 1D       		.uleb128 0x1d
+ 913 0489 57020000 		.4byte	.LASF71
+ 914 048d 57020000 		.4byte	.LASF71
+ 915 0491 08       		.byte	0x8
+ 916 0492 29       		.byte	0x29
+ 917 0493 00       		.byte	0
+ 918              		.section	.debug_abbrev,"",%progbits
+ 919              	.Ldebug_abbrev0:
+ 920 0000 01       		.uleb128 0x1
+ 921 0001 11       		.uleb128 0x11
+ 922 0002 01       		.byte	0x1
+ 923 0003 25       		.uleb128 0x25
+ 924 0004 0E       		.uleb128 0xe
+ 925 0005 13       		.uleb128 0x13
+ 926 0006 0B       		.uleb128 0xb
+ 927 0007 03       		.uleb128 0x3
+ 928 0008 0E       		.uleb128 0xe
+ 929 0009 1B       		.uleb128 0x1b
+ 930 000a 0E       		.uleb128 0xe
+ 931 000b 55       		.uleb128 0x55
+ 932 000c 17       		.uleb128 0x17
+ 933 000d 11       		.uleb128 0x11
+ 934 000e 01       		.uleb128 0x1
+ 935 000f 10       		.uleb128 0x10
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczfLGDl.s 			page 19
+
+
+ 936 0010 17       		.uleb128 0x17
+ 937 0011 00       		.byte	0
+ 938 0012 00       		.byte	0
+ 939 0013 02       		.uleb128 0x2
+ 940 0014 24       		.uleb128 0x24
+ 941 0015 00       		.byte	0
+ 942 0016 0B       		.uleb128 0xb
+ 943 0017 0B       		.uleb128 0xb
+ 944 0018 3E       		.uleb128 0x3e
+ 945 0019 0B       		.uleb128 0xb
+ 946 001a 03       		.uleb128 0x3
+ 947 001b 08       		.uleb128 0x8
+ 948 001c 00       		.byte	0
+ 949 001d 00       		.byte	0
+ 950 001e 03       		.uleb128 0x3
+ 951 001f 24       		.uleb128 0x24
+ 952 0020 00       		.byte	0
+ 953 0021 0B       		.uleb128 0xb
+ 954 0022 0B       		.uleb128 0xb
+ 955 0023 3E       		.uleb128 0x3e
+ 956 0024 0B       		.uleb128 0xb
+ 957 0025 03       		.uleb128 0x3
+ 958 0026 0E       		.uleb128 0xe
+ 959 0027 00       		.byte	0
+ 960 0028 00       		.byte	0
+ 961 0029 04       		.uleb128 0x4
+ 962 002a 16       		.uleb128 0x16
+ 963 002b 00       		.byte	0
+ 964 002c 03       		.uleb128 0x3
+ 965 002d 0E       		.uleb128 0xe
+ 966 002e 3A       		.uleb128 0x3a
+ 967 002f 0B       		.uleb128 0xb
+ 968 0030 3B       		.uleb128 0x3b
+ 969 0031 0B       		.uleb128 0xb
+ 970 0032 49       		.uleb128 0x49
+ 971 0033 13       		.uleb128 0x13
+ 972 0034 00       		.byte	0
+ 973 0035 00       		.byte	0
+ 974 0036 05       		.uleb128 0x5
+ 975 0037 16       		.uleb128 0x16
+ 976 0038 00       		.byte	0
+ 977 0039 03       		.uleb128 0x3
+ 978 003a 0E       		.uleb128 0xe
+ 979 003b 3A       		.uleb128 0x3a
+ 980 003c 0B       		.uleb128 0xb
+ 981 003d 3B       		.uleb128 0x3b
+ 982 003e 05       		.uleb128 0x5
+ 983 003f 49       		.uleb128 0x49
+ 984 0040 13       		.uleb128 0x13
+ 985 0041 00       		.byte	0
+ 986 0042 00       		.byte	0
+ 987 0043 06       		.uleb128 0x6
+ 988 0044 35       		.uleb128 0x35
+ 989 0045 00       		.byte	0
+ 990 0046 49       		.uleb128 0x49
+ 991 0047 13       		.uleb128 0x13
+ 992 0048 00       		.byte	0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczfLGDl.s 			page 20
+
+
+ 993 0049 00       		.byte	0
+ 994 004a 07       		.uleb128 0x7
+ 995 004b 13       		.uleb128 0x13
+ 996 004c 01       		.byte	0x1
+ 997 004d 0B       		.uleb128 0xb
+ 998 004e 0B       		.uleb128 0xb
+ 999 004f 3A       		.uleb128 0x3a
+ 1000 0050 0B       		.uleb128 0xb
+ 1001 0051 3B       		.uleb128 0x3b
+ 1002 0052 0B       		.uleb128 0xb
+ 1003 0053 01       		.uleb128 0x1
+ 1004 0054 13       		.uleb128 0x13
+ 1005 0055 00       		.byte	0
+ 1006 0056 00       		.byte	0
+ 1007 0057 08       		.uleb128 0x8
+ 1008 0058 0D       		.uleb128 0xd
+ 1009 0059 00       		.byte	0
+ 1010 005a 03       		.uleb128 0x3
+ 1011 005b 0E       		.uleb128 0xe
+ 1012 005c 3A       		.uleb128 0x3a
+ 1013 005d 0B       		.uleb128 0xb
+ 1014 005e 3B       		.uleb128 0x3b
+ 1015 005f 0B       		.uleb128 0xb
+ 1016 0060 49       		.uleb128 0x49
+ 1017 0061 13       		.uleb128 0x13
+ 1018 0062 38       		.uleb128 0x38
+ 1019 0063 0B       		.uleb128 0xb
+ 1020 0064 00       		.byte	0
+ 1021 0065 00       		.byte	0
+ 1022 0066 09       		.uleb128 0x9
+ 1023 0067 04       		.uleb128 0x4
+ 1024 0068 01       		.byte	0x1
+ 1025 0069 0B       		.uleb128 0xb
+ 1026 006a 0B       		.uleb128 0xb
+ 1027 006b 49       		.uleb128 0x49
+ 1028 006c 13       		.uleb128 0x13
+ 1029 006d 3A       		.uleb128 0x3a
+ 1030 006e 0B       		.uleb128 0xb
+ 1031 006f 3B       		.uleb128 0x3b
+ 1032 0070 0B       		.uleb128 0xb
+ 1033 0071 01       		.uleb128 0x1
+ 1034 0072 13       		.uleb128 0x13
+ 1035 0073 00       		.byte	0
+ 1036 0074 00       		.byte	0
+ 1037 0075 0A       		.uleb128 0xa
+ 1038 0076 28       		.uleb128 0x28
+ 1039 0077 00       		.byte	0
+ 1040 0078 03       		.uleb128 0x3
+ 1041 0079 0E       		.uleb128 0xe
+ 1042 007a 1C       		.uleb128 0x1c
+ 1043 007b 0B       		.uleb128 0xb
+ 1044 007c 00       		.byte	0
+ 1045 007d 00       		.byte	0
+ 1046 007e 0B       		.uleb128 0xb
+ 1047 007f 01       		.uleb128 0x1
+ 1048 0080 01       		.byte	0x1
+ 1049 0081 49       		.uleb128 0x49
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczfLGDl.s 			page 21
+
+
+ 1050 0082 13       		.uleb128 0x13
+ 1051 0083 01       		.uleb128 0x1
+ 1052 0084 13       		.uleb128 0x13
+ 1053 0085 00       		.byte	0
+ 1054 0086 00       		.byte	0
+ 1055 0087 0C       		.uleb128 0xc
+ 1056 0088 21       		.uleb128 0x21
+ 1057 0089 00       		.byte	0
+ 1058 008a 49       		.uleb128 0x49
+ 1059 008b 13       		.uleb128 0x13
+ 1060 008c 2F       		.uleb128 0x2f
+ 1061 008d 0B       		.uleb128 0xb
+ 1062 008e 00       		.byte	0
+ 1063 008f 00       		.byte	0
+ 1064 0090 0D       		.uleb128 0xd
+ 1065 0091 26       		.uleb128 0x26
+ 1066 0092 00       		.byte	0
+ 1067 0093 49       		.uleb128 0x49
+ 1068 0094 13       		.uleb128 0x13
+ 1069 0095 00       		.byte	0
+ 1070 0096 00       		.byte	0
+ 1071 0097 0E       		.uleb128 0xe
+ 1072 0098 0D       		.uleb128 0xd
+ 1073 0099 00       		.byte	0
+ 1074 009a 03       		.uleb128 0x3
+ 1075 009b 08       		.uleb128 0x8
+ 1076 009c 3A       		.uleb128 0x3a
+ 1077 009d 0B       		.uleb128 0xb
+ 1078 009e 3B       		.uleb128 0x3b
+ 1079 009f 0B       		.uleb128 0xb
+ 1080 00a0 49       		.uleb128 0x49
+ 1081 00a1 13       		.uleb128 0x13
+ 1082 00a2 38       		.uleb128 0x38
+ 1083 00a3 0B       		.uleb128 0xb
+ 1084 00a4 00       		.byte	0
+ 1085 00a5 00       		.byte	0
+ 1086 00a6 0F       		.uleb128 0xf
+ 1087 00a7 17       		.uleb128 0x17
+ 1088 00a8 01       		.byte	0x1
+ 1089 00a9 0B       		.uleb128 0xb
+ 1090 00aa 0B       		.uleb128 0xb
+ 1091 00ab 3A       		.uleb128 0x3a
+ 1092 00ac 0B       		.uleb128 0xb
+ 1093 00ad 3B       		.uleb128 0x3b
+ 1094 00ae 0B       		.uleb128 0xb
+ 1095 00af 01       		.uleb128 0x1
+ 1096 00b0 13       		.uleb128 0x13
+ 1097 00b1 00       		.byte	0
+ 1098 00b2 00       		.byte	0
+ 1099 00b3 10       		.uleb128 0x10
+ 1100 00b4 0D       		.uleb128 0xd
+ 1101 00b5 00       		.byte	0
+ 1102 00b6 03       		.uleb128 0x3
+ 1103 00b7 0E       		.uleb128 0xe
+ 1104 00b8 3A       		.uleb128 0x3a
+ 1105 00b9 0B       		.uleb128 0xb
+ 1106 00ba 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczfLGDl.s 			page 22
+
+
+ 1107 00bb 0B       		.uleb128 0xb
+ 1108 00bc 49       		.uleb128 0x49
+ 1109 00bd 13       		.uleb128 0x13
+ 1110 00be 00       		.byte	0
+ 1111 00bf 00       		.byte	0
+ 1112 00c0 11       		.uleb128 0x11
+ 1113 00c1 2E       		.uleb128 0x2e
+ 1114 00c2 01       		.byte	0x1
+ 1115 00c3 3F       		.uleb128 0x3f
+ 1116 00c4 19       		.uleb128 0x19
+ 1117 00c5 03       		.uleb128 0x3
+ 1118 00c6 0E       		.uleb128 0xe
+ 1119 00c7 3A       		.uleb128 0x3a
+ 1120 00c8 0B       		.uleb128 0xb
+ 1121 00c9 3B       		.uleb128 0x3b
+ 1122 00ca 0B       		.uleb128 0xb
+ 1123 00cb 27       		.uleb128 0x27
+ 1124 00cc 19       		.uleb128 0x19
+ 1125 00cd 11       		.uleb128 0x11
+ 1126 00ce 01       		.uleb128 0x1
+ 1127 00cf 12       		.uleb128 0x12
+ 1128 00d0 06       		.uleb128 0x6
+ 1129 00d1 40       		.uleb128 0x40
+ 1130 00d2 18       		.uleb128 0x18
+ 1131 00d3 9642     		.uleb128 0x2116
+ 1132 00d5 19       		.uleb128 0x19
+ 1133 00d6 01       		.uleb128 0x1
+ 1134 00d7 13       		.uleb128 0x13
+ 1135 00d8 00       		.byte	0
+ 1136 00d9 00       		.byte	0
+ 1137 00da 12       		.uleb128 0x12
+ 1138 00db 05       		.uleb128 0x5
+ 1139 00dc 00       		.byte	0
+ 1140 00dd 03       		.uleb128 0x3
+ 1141 00de 0E       		.uleb128 0xe
+ 1142 00df 3A       		.uleb128 0x3a
+ 1143 00e0 0B       		.uleb128 0xb
+ 1144 00e1 3B       		.uleb128 0x3b
+ 1145 00e2 0B       		.uleb128 0xb
+ 1146 00e3 49       		.uleb128 0x49
+ 1147 00e4 13       		.uleb128 0x13
+ 1148 00e5 02       		.uleb128 0x2
+ 1149 00e6 17       		.uleb128 0x17
+ 1150 00e7 00       		.byte	0
+ 1151 00e8 00       		.byte	0
+ 1152 00e9 13       		.uleb128 0x13
+ 1153 00ea 898201   		.uleb128 0x4109
+ 1154 00ed 00       		.byte	0
+ 1155 00ee 11       		.uleb128 0x11
+ 1156 00ef 01       		.uleb128 0x1
+ 1157 00f0 31       		.uleb128 0x31
+ 1158 00f1 13       		.uleb128 0x13
+ 1159 00f2 00       		.byte	0
+ 1160 00f3 00       		.byte	0
+ 1161 00f4 14       		.uleb128 0x14
+ 1162 00f5 2E       		.uleb128 0x2e
+ 1163 00f6 01       		.byte	0x1
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczfLGDl.s 			page 23
+
+
+ 1164 00f7 3F       		.uleb128 0x3f
+ 1165 00f8 19       		.uleb128 0x19
+ 1166 00f9 03       		.uleb128 0x3
+ 1167 00fa 0E       		.uleb128 0xe
+ 1168 00fb 3A       		.uleb128 0x3a
+ 1169 00fc 0B       		.uleb128 0xb
+ 1170 00fd 3B       		.uleb128 0x3b
+ 1171 00fe 0B       		.uleb128 0xb
+ 1172 00ff 11       		.uleb128 0x11
+ 1173 0100 01       		.uleb128 0x1
+ 1174 0101 12       		.uleb128 0x12
+ 1175 0102 06       		.uleb128 0x6
+ 1176 0103 40       		.uleb128 0x40
+ 1177 0104 18       		.uleb128 0x18
+ 1178 0105 9742     		.uleb128 0x2117
+ 1179 0107 19       		.uleb128 0x19
+ 1180 0108 01       		.uleb128 0x1
+ 1181 0109 13       		.uleb128 0x13
+ 1182 010a 00       		.byte	0
+ 1183 010b 00       		.byte	0
+ 1184 010c 15       		.uleb128 0x15
+ 1185 010d 898201   		.uleb128 0x4109
+ 1186 0110 01       		.byte	0x1
+ 1187 0111 11       		.uleb128 0x11
+ 1188 0112 01       		.uleb128 0x1
+ 1189 0113 31       		.uleb128 0x31
+ 1190 0114 13       		.uleb128 0x13
+ 1191 0115 00       		.byte	0
+ 1192 0116 00       		.byte	0
+ 1193 0117 16       		.uleb128 0x16
+ 1194 0118 8A8201   		.uleb128 0x410a
+ 1195 011b 00       		.byte	0
+ 1196 011c 02       		.uleb128 0x2
+ 1197 011d 18       		.uleb128 0x18
+ 1198 011e 9142     		.uleb128 0x2111
+ 1199 0120 18       		.uleb128 0x18
+ 1200 0121 00       		.byte	0
+ 1201 0122 00       		.byte	0
+ 1202 0123 17       		.uleb128 0x17
+ 1203 0124 2E       		.uleb128 0x2e
+ 1204 0125 00       		.byte	0
+ 1205 0126 3F       		.uleb128 0x3f
+ 1206 0127 19       		.uleb128 0x19
+ 1207 0128 03       		.uleb128 0x3
+ 1208 0129 0E       		.uleb128 0xe
+ 1209 012a 3A       		.uleb128 0x3a
+ 1210 012b 0B       		.uleb128 0xb
+ 1211 012c 3B       		.uleb128 0x3b
+ 1212 012d 0B       		.uleb128 0xb
+ 1213 012e 49       		.uleb128 0x49
+ 1214 012f 13       		.uleb128 0x13
+ 1215 0130 11       		.uleb128 0x11
+ 1216 0131 01       		.uleb128 0x1
+ 1217 0132 12       		.uleb128 0x12
+ 1218 0133 06       		.uleb128 0x6
+ 1219 0134 40       		.uleb128 0x40
+ 1220 0135 18       		.uleb128 0x18
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczfLGDl.s 			page 24
+
+
+ 1221 0136 9742     		.uleb128 0x2117
+ 1222 0138 19       		.uleb128 0x19
+ 1223 0139 00       		.byte	0
+ 1224 013a 00       		.byte	0
+ 1225 013b 18       		.uleb128 0x18
+ 1226 013c 2E       		.uleb128 0x2e
+ 1227 013d 01       		.byte	0x1
+ 1228 013e 3F       		.uleb128 0x3f
+ 1229 013f 19       		.uleb128 0x19
+ 1230 0140 03       		.uleb128 0x3
+ 1231 0141 0E       		.uleb128 0xe
+ 1232 0142 3A       		.uleb128 0x3a
+ 1233 0143 0B       		.uleb128 0xb
+ 1234 0144 3B       		.uleb128 0x3b
+ 1235 0145 0B       		.uleb128 0xb
+ 1236 0146 27       		.uleb128 0x27
+ 1237 0147 19       		.uleb128 0x19
+ 1238 0148 11       		.uleb128 0x11
+ 1239 0149 01       		.uleb128 0x1
+ 1240 014a 12       		.uleb128 0x12
+ 1241 014b 06       		.uleb128 0x6
+ 1242 014c 40       		.uleb128 0x40
+ 1243 014d 18       		.uleb128 0x18
+ 1244 014e 9742     		.uleb128 0x2117
+ 1245 0150 19       		.uleb128 0x19
+ 1246 0151 01       		.uleb128 0x1
+ 1247 0152 13       		.uleb128 0x13
+ 1248 0153 00       		.byte	0
+ 1249 0154 00       		.byte	0
+ 1250 0155 19       		.uleb128 0x19
+ 1251 0156 898201   		.uleb128 0x4109
+ 1252 0159 01       		.byte	0x1
+ 1253 015a 11       		.uleb128 0x11
+ 1254 015b 01       		.uleb128 0x1
+ 1255 015c 31       		.uleb128 0x31
+ 1256 015d 13       		.uleb128 0x13
+ 1257 015e 01       		.uleb128 0x1
+ 1258 015f 13       		.uleb128 0x13
+ 1259 0160 00       		.byte	0
+ 1260 0161 00       		.byte	0
+ 1261 0162 1A       		.uleb128 0x1a
+ 1262 0163 34       		.uleb128 0x34
+ 1263 0164 00       		.byte	0
+ 1264 0165 03       		.uleb128 0x3
+ 1265 0166 0E       		.uleb128 0xe
+ 1266 0167 3A       		.uleb128 0x3a
+ 1267 0168 0B       		.uleb128 0xb
+ 1268 0169 3B       		.uleb128 0x3b
+ 1269 016a 0B       		.uleb128 0xb
+ 1270 016b 49       		.uleb128 0x49
+ 1271 016c 13       		.uleb128 0x13
+ 1272 016d 02       		.uleb128 0x2
+ 1273 016e 18       		.uleb128 0x18
+ 1274 016f 00       		.byte	0
+ 1275 0170 00       		.byte	0
+ 1276 0171 1B       		.uleb128 0x1b
+ 1277 0172 34       		.uleb128 0x34
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczfLGDl.s 			page 25
+
+
+ 1278 0173 00       		.byte	0
+ 1279 0174 03       		.uleb128 0x3
+ 1280 0175 0E       		.uleb128 0xe
+ 1281 0176 3A       		.uleb128 0x3a
+ 1282 0177 0B       		.uleb128 0xb
+ 1283 0178 3B       		.uleb128 0x3b
+ 1284 0179 0B       		.uleb128 0xb
+ 1285 017a 49       		.uleb128 0x49
+ 1286 017b 13       		.uleb128 0x13
+ 1287 017c 3F       		.uleb128 0x3f
+ 1288 017d 19       		.uleb128 0x19
+ 1289 017e 3C       		.uleb128 0x3c
+ 1290 017f 19       		.uleb128 0x19
+ 1291 0180 00       		.byte	0
+ 1292 0181 00       		.byte	0
+ 1293 0182 1C       		.uleb128 0x1c
+ 1294 0183 0F       		.uleb128 0xf
+ 1295 0184 00       		.byte	0
+ 1296 0185 0B       		.uleb128 0xb
+ 1297 0186 0B       		.uleb128 0xb
+ 1298 0187 49       		.uleb128 0x49
+ 1299 0188 13       		.uleb128 0x13
+ 1300 0189 00       		.byte	0
+ 1301 018a 00       		.byte	0
+ 1302 018b 1D       		.uleb128 0x1d
+ 1303 018c 2E       		.uleb128 0x2e
+ 1304 018d 00       		.byte	0
+ 1305 018e 3F       		.uleb128 0x3f
+ 1306 018f 19       		.uleb128 0x19
+ 1307 0190 3C       		.uleb128 0x3c
+ 1308 0191 19       		.uleb128 0x19
+ 1309 0192 6E       		.uleb128 0x6e
+ 1310 0193 0E       		.uleb128 0xe
+ 1311 0194 03       		.uleb128 0x3
+ 1312 0195 0E       		.uleb128 0xe
+ 1313 0196 3A       		.uleb128 0x3a
+ 1314 0197 0B       		.uleb128 0xb
+ 1315 0198 3B       		.uleb128 0x3b
+ 1316 0199 0B       		.uleb128 0xb
+ 1317 019a 00       		.byte	0
+ 1318 019b 00       		.byte	0
+ 1319 019c 00       		.byte	0
+ 1320              		.section	.debug_loc,"",%progbits
+ 1321              	.Ldebug_loc0:
+ 1322              	.LLST0:
+ 1323 0000 00000000 		.4byte	.LVL0
+ 1324 0004 08000000 		.4byte	.LVL1
+ 1325 0008 0100     		.2byte	0x1
+ 1326 000a 50       		.byte	0x50
+ 1327 000b 08000000 		.4byte	.LVL1
+ 1328 000f 1C000000 		.4byte	.LVL3
+ 1329 0013 0100     		.2byte	0x1
+ 1330 0015 50       		.byte	0x50
+ 1331 0016 1C000000 		.4byte	.LVL3
+ 1332 001a 4C000000 		.4byte	.LVL12
+ 1333 001e 0100     		.2byte	0x1
+ 1334 0020 54       		.byte	0x54
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczfLGDl.s 			page 26
+
+
+ 1335 0021 00000000 		.4byte	0
+ 1336 0025 00000000 		.4byte	0
+ 1337              	.LLST1:
+ 1338 0029 00000000 		.4byte	.LVL14
+ 1339 002d 17000000 		.4byte	.LVL15-1
+ 1340 0031 0100     		.2byte	0x1
+ 1341 0033 50       		.byte	0x50
+ 1342 0034 17000000 		.4byte	.LVL15-1
+ 1343 0038 26000000 		.4byte	.LVL18
+ 1344 003c 0400     		.2byte	0x4
+ 1345 003e F3       		.byte	0xf3
+ 1346 003f 01       		.uleb128 0x1
+ 1347 0040 50       		.byte	0x50
+ 1348 0041 9F       		.byte	0x9f
+ 1349 0042 26000000 		.4byte	.LVL18
+ 1350 0046 29000000 		.4byte	.LVL19-1
+ 1351 004a 0100     		.2byte	0x1
+ 1352 004c 50       		.byte	0x50
+ 1353 004d 29000000 		.4byte	.LVL19-1
+ 1354 0051 38000000 		.4byte	.LVL22
+ 1355 0055 0400     		.2byte	0x4
+ 1356 0057 F3       		.byte	0xf3
+ 1357 0058 01       		.uleb128 0x1
+ 1358 0059 50       		.byte	0x50
+ 1359 005a 9F       		.byte	0x9f
+ 1360 005b 38000000 		.4byte	.LVL22
+ 1361 005f 3A000000 		.4byte	.LVL23
+ 1362 0063 0100     		.2byte	0x1
+ 1363 0065 50       		.byte	0x50
+ 1364 0066 3A000000 		.4byte	.LVL23
+ 1365 006a 3D000000 		.4byte	.LVL24-1
+ 1366 006e 0500     		.2byte	0x5
+ 1367 0070 03       		.byte	0x3
+ 1368 0071 00000000 		.4byte	current_output_mode
+ 1369 0075 3D000000 		.4byte	.LVL24-1
+ 1370 0079 48000000 		.4byte	.LFE38
+ 1371 007d 0400     		.2byte	0x4
+ 1372 007f F3       		.byte	0xf3
+ 1373 0080 01       		.uleb128 0x1
+ 1374 0081 50       		.byte	0x50
+ 1375 0082 9F       		.byte	0x9f
+ 1376 0083 00000000 		.4byte	0
+ 1377 0087 00000000 		.4byte	0
+ 1378              		.section	.debug_aranges,"",%progbits
+ 1379 0000 4C000000 		.4byte	0x4c
+ 1380 0004 0200     		.2byte	0x2
+ 1381 0006 00000000 		.4byte	.Ldebug_info0
+ 1382 000a 04       		.byte	0x4
+ 1383 000b 00       		.byte	0
+ 1384 000c 0000     		.2byte	0
+ 1385 000e 0000     		.2byte	0
+ 1386 0010 00000000 		.4byte	.LFB34
+ 1387 0014 5C000000 		.4byte	.LFE34-.LFB34
+ 1388 0018 00000000 		.4byte	.LFB33
+ 1389 001c 2C000000 		.4byte	.LFE33-.LFB33
+ 1390 0020 00000000 		.4byte	.LFB35
+ 1391 0024 0C000000 		.4byte	.LFE35-.LFB35
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczfLGDl.s 			page 27
+
+
+ 1392 0028 00000000 		.4byte	.LFB36
+ 1393 002c 0C000000 		.4byte	.LFE36-.LFB36
+ 1394 0030 00000000 		.4byte	.LFB37
+ 1395 0034 0C000000 		.4byte	.LFE37-.LFB37
+ 1396 0038 00000000 		.4byte	.LFB38
+ 1397 003c 48000000 		.4byte	.LFE38-.LFB38
+ 1398 0040 00000000 		.4byte	.LFB39
+ 1399 0044 0C000000 		.4byte	.LFE39-.LFB39
+ 1400 0048 00000000 		.4byte	0
+ 1401 004c 00000000 		.4byte	0
+ 1402              		.section	.debug_ranges,"",%progbits
+ 1403              	.Ldebug_ranges0:
+ 1404 0000 00000000 		.4byte	.LFB34
+ 1405 0004 5C000000 		.4byte	.LFE34
+ 1406 0008 00000000 		.4byte	.LFB33
+ 1407 000c 2C000000 		.4byte	.LFE33
+ 1408 0010 00000000 		.4byte	.LFB35
+ 1409 0014 0C000000 		.4byte	.LFE35
+ 1410 0018 00000000 		.4byte	.LFB36
+ 1411 001c 0C000000 		.4byte	.LFE36
+ 1412 0020 00000000 		.4byte	.LFB37
+ 1413 0024 0C000000 		.4byte	.LFE37
+ 1414 0028 00000000 		.4byte	.LFB38
+ 1415 002c 48000000 		.4byte	.LFE38
+ 1416 0030 00000000 		.4byte	.LFB39
+ 1417 0034 0C000000 		.4byte	.LFE39
+ 1418 0038 00000000 		.4byte	0
+ 1419 003c 00000000 		.4byte	0
+ 1420              		.section	.debug_line,"",%progbits
+ 1421              	.Ldebug_line0:
+ 1422 0000 18020000 		.section	.debug_str,"MS",%progbits,1
+ 1422      02008201 
+ 1422      00000201 
+ 1422      FB0E0D00 
+ 1422      01010101 
+ 1423              	.LASF38:
+ 1424 0000 6461635F 		.ascii	"dac_offset\000"
+ 1424      6F666673 
+ 1424      657400
+ 1425              	.LASF74:
+ 1426 000b 443A5C31 		.ascii	"D:\\1_work\\my_project\\ReloadPro\\psoc42boot\\Relo"
+ 1426      5F776F72 
+ 1426      6B5C6D79 
+ 1426      5F70726F 
+ 1426      6A656374 
+ 1427 0039 61642050 		.ascii	"ad Pro.cydsn\000"
+ 1427      726F2E63 
+ 1427      7964736E 
+ 1427      00
+ 1428              	.LASF59:
+ 1429 0046 7365745F 		.ascii	"set_output_mode\000"
+ 1429      6F757470 
+ 1429      75745F6D 
+ 1429      6F646500 
+ 1430              	.LASF72:
+ 1431 0056 474E5520 		.ascii	"GNU C99 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1431      43393920 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczfLGDl.s 			page 28
+
+
+ 1431      352E342E 
+ 1431      31203230 
+ 1431      31363036 
+ 1432 0089 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 1432      20726576 
+ 1432      6973696F 
+ 1432      6E203233 
+ 1432      37373135 
+ 1433 00bc 67202D73 		.ascii	"g -std=gnu99 -ffunction-sections -ffat-lto-objects\000"
+ 1433      74643D67 
+ 1433      6E753939 
+ 1433      202D6666 
+ 1433      756E6374 
+ 1434              	.LASF63:
+ 1435 00ef 73746174 		.ascii	"state\000"
+ 1435      6500
+ 1436              	.LASF41:
+ 1437 00f5 6164635F 		.ascii	"adc_current_gain\000"
+ 1437      63757272 
+ 1437      656E745F 
+ 1437      6761696E 
+ 1437      00
+ 1438              	.LASF66:
+ 1439 0106 49444143 		.ascii	"IDAC_High_SetValue\000"
+ 1439      5F486967 
+ 1439      685F5365 
+ 1439      7456616C 
+ 1439      756500
+ 1440              	.LASF3:
+ 1441 0119 73686F72 		.ascii	"short int\000"
+ 1441      7420696E 
+ 1441      7400
+ 1442              	.LASF49:
+ 1443 0123 63616C69 		.ascii	"calibration_settings\000"
+ 1443      62726174 
+ 1443      696F6E5F 
+ 1443      73657474 
+ 1443      696E6773 
+ 1444              	.LASF52:
+ 1445 0138 4F555450 		.ascii	"OUTPUT_MODE_ON\000"
+ 1445      55545F4D 
+ 1445      4F44455F 
+ 1445      4F4E00
+ 1446              	.LASF17:
+ 1447 0147 73697A65 		.ascii	"sizetype\000"
+ 1447      74797065 
+ 1447      00
+ 1448              	.LASF35:
+ 1449 0150 64697370 		.ascii	"display_settings_t\000"
+ 1449      6C61795F 
+ 1449      73657474 
+ 1449      696E6773 
+ 1449      5F7400
+ 1450              	.LASF47:
+ 1451 0163 6C63645F 		.ascii	"lcd_contrast\000"
+ 1451      636F6E74 
+ 1451      72617374 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczfLGDl.s 			page 29
+
+
+ 1451      00
+ 1452              	.LASF30:
+ 1453 0170 72656164 		.ascii	"readout_function\000"
+ 1453      6F75745F 
+ 1453      66756E63 
+ 1453      74696F6E 
+ 1453      00
+ 1454              	.LASF48:
+ 1455 0181 64697370 		.ascii	"display_settings\000"
+ 1455      6C61795F 
+ 1455      73657474 
+ 1455      696E6773 
+ 1455      00
+ 1456              	.LASF7:
+ 1457 0192 6C6F6E67 		.ascii	"long long int\000"
+ 1457      206C6F6E 
+ 1457      6720696E 
+ 1457      7400
+ 1458              	.LASF20:
+ 1459 01a0 63616C69 		.ascii	"calibrating\000"
+ 1459      62726174 
+ 1459      696E6700 
+ 1460              	.LASF61:
+ 1461 01ac 6D6F6465 		.ascii	"mode\000"
+ 1461      00
+ 1462              	.LASF68:
+ 1463 01b1 4F70616D 		.ascii	"Opamp_Stop\000"
+ 1463      705F5374 
+ 1463      6F7000
+ 1464              	.LASF31:
+ 1465 01bc 72656164 		.ascii	"readouts\000"
+ 1465      6F757473 
+ 1465      00
+ 1466              	.LASF55:
+ 1467 01c5 6765745F 		.ascii	"get_current_setpoint\000"
+ 1467      63757272 
+ 1467      656E745F 
+ 1467      73657470 
+ 1467      6F696E74 
+ 1468              	.LASF10:
+ 1469 01da 75696E74 		.ascii	"uint8_t\000"
+ 1469      385F7400 
+ 1470              	.LASF11:
+ 1471 01e2 75696E74 		.ascii	"uint8\000"
+ 1471      3800
+ 1472              	.LASF75:
+ 1473 01e8 73657475 		.ascii	"setup\000"
+ 1473      7000
+ 1474              	.LASF36:
+ 1475 01ee 6461635F 		.ascii	"dac_low_gain\000"
+ 1475      6C6F775F 
+ 1475      6761696E 
+ 1475      00
+ 1476              	.LASF73:
+ 1477 01fb 7574696C 		.ascii	"utils.c\000"
+ 1477      732E6300 
+ 1478              	.LASF13:
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczfLGDl.s 			page 30
+
+
+ 1479 0203 666C6F61 		.ascii	"float\000"
+ 1479      7400
+ 1480              	.LASF21:
+ 1481 0209 73746174 		.ascii	"state_t\000"
+ 1481      655F7400 
+ 1482              	.LASF64:
+ 1483 0211 73657474 		.ascii	"settings\000"
+ 1483      696E6773 
+ 1483      00
+ 1484              	.LASF18:
+ 1485 021a 63757272 		.ascii	"current_setpoint\000"
+ 1485      656E745F 
+ 1485      73657470 
+ 1485      6F696E74 
+ 1485      00
+ 1486              	.LASF69:
+ 1487 022b 4F70616D 		.ascii	"Opamp_Out_Write\000"
+ 1487      705F4F75 
+ 1487      745F5772 
+ 1487      69746500 
+ 1488              	.LASF5:
+ 1489 023b 6C6F6E67 		.ascii	"long int\000"
+ 1489      20696E74 
+ 1489      00
+ 1490              	.LASF42:
+ 1491 0244 6164635F 		.ascii	"adc_voltage_offset\000"
+ 1491      766F6C74 
+ 1491      6167655F 
+ 1491      6F666673 
+ 1491      657400
+ 1492              	.LASF71:
+ 1493 0257 4F70616D 		.ascii	"Opamp_Start\000"
+ 1493      705F5374 
+ 1493      61727400 
+ 1494              	.LASF57:
+ 1495 0263 6765745F 		.ascii	"get_minor_version\000"
+ 1495      6D696E6F 
+ 1495      725F7665 
+ 1495      7273696F 
+ 1495      6E00
+ 1496              	.LASF28:
+ 1497 0275 52454144 		.ascii	"READOUT_TOTAL_CURRENT\000"
+ 1497      4F55545F 
+ 1497      544F5441 
+ 1497      4C5F4355 
+ 1497      5252454E 
+ 1498              	.LASF46:
+ 1499 028b 73657474 		.ascii	"settings_version\000"
+ 1499      696E6773 
+ 1499      5F766572 
+ 1499      73696F6E 
+ 1499      00
+ 1500              	.LASF34:
+ 1501 029c 6E756D62 		.ascii	"numbered\000"
+ 1501      65726564 
+ 1501      00
+ 1502              	.LASF62:
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczfLGDl.s 			page 31
+
+
+ 1503 02a5 6765745F 		.ascii	"get_output_mode\000"
+ 1503      6F757470 
+ 1503      75745F6D 
+ 1503      6F646500 
+ 1504              	.LASF37:
+ 1505 02b5 6461635F 		.ascii	"dac_high_gain\000"
+ 1505      68696768 
+ 1505      5F676169 
+ 1505      6E00
+ 1506              	.LASF2:
+ 1507 02c3 756E7369 		.ascii	"unsigned char\000"
+ 1507      676E6564 
+ 1507      20636861 
+ 1507      7200
+ 1508              	.LASF24:
+ 1509 02d1 52454144 		.ascii	"READOUT_CURRENT_USAGE\000"
+ 1509      4F55545F 
+ 1509      43555252 
+ 1509      454E545F 
+ 1509      55534147 
+ 1510              	.LASF33:
+ 1511 02e7 6E616D65 		.ascii	"named\000"
+ 1511      6400
+ 1512              	.LASF45:
+ 1513 02ed 63616C69 		.ascii	"calibration_settings_t\000"
+ 1513      62726174 
+ 1513      696F6E5F 
+ 1513      73657474 
+ 1513      696E6773 
+ 1514              	.LASF56:
+ 1515 0304 6765745F 		.ascii	"get_major_version\000"
+ 1515      6D616A6F 
+ 1515      725F7665 
+ 1515      7273696F 
+ 1515      6E00
+ 1516              	.LASF76:
+ 1517 0316 63757272 		.ascii	"current_output_mode\000"
+ 1517      656E745F 
+ 1517      6F757470 
+ 1517      75745F6D 
+ 1517      6F646500 
+ 1518              	.LASF1:
+ 1519 032a 7369676E 		.ascii	"signed char\000"
+ 1519      65642063 
+ 1519      68617200 
+ 1520              	.LASF8:
+ 1521 0336 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1521      206C6F6E 
+ 1521      6720756E 
+ 1521      7369676E 
+ 1521      65642069 
+ 1522              	.LASF0:
+ 1523 034d 756E7369 		.ascii	"unsigned int\000"
+ 1523      676E6564 
+ 1523      20696E74 
+ 1523      00
+ 1524              	.LASF70:
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczfLGDl.s 			page 32
+
+
+ 1525 035a 4F70616D 		.ascii	"Opamp_Out_SetDriveMode\000"
+ 1525      705F4F75 
+ 1525      745F5365 
+ 1525      74447269 
+ 1525      76654D6F 
+ 1526              	.LASF9:
+ 1527 0371 5F5F7569 		.ascii	"__uint8_t\000"
+ 1527      6E74385F 
+ 1527      7400
+ 1528              	.LASF54:
+ 1529 037b 6F757470 		.ascii	"output_mode\000"
+ 1529      75745F6D 
+ 1529      6F646500 
+ 1530              	.LASF29:
+ 1531 0387 52454144 		.ascii	"READOUT_TOTAL_POWER\000"
+ 1531      4F55545F 
+ 1531      544F5441 
+ 1531      4C5F504F 
+ 1531      57455200 
+ 1532              	.LASF16:
+ 1533 039b 72656733 		.ascii	"reg32\000"
+ 1533      3200
+ 1534              	.LASF26:
+ 1535 03a1 52454144 		.ascii	"READOUT_POWER\000"
+ 1535      4F55545F 
+ 1535      504F5745 
+ 1535      5200
+ 1536              	.LASF27:
+ 1537 03af 52454144 		.ascii	"READOUT_RESISTANCE\000"
+ 1537      4F55545F 
+ 1537      52455349 
+ 1537      5354414E 
+ 1537      434500
+ 1538              	.LASF15:
+ 1539 03c2 63686172 		.ascii	"char\000"
+ 1539      00
+ 1540              	.LASF40:
+ 1541 03c7 6164635F 		.ascii	"adc_current_offset\000"
+ 1541      63757272 
+ 1541      656E745F 
+ 1541      6F666673 
+ 1541      657400
+ 1542              	.LASF39:
+ 1543 03da 6F70616D 		.ascii	"opamp_offset_trim\000"
+ 1543      705F6F66 
+ 1543      66736574 
+ 1543      5F747269 
+ 1543      6D00
+ 1544              	.LASF22:
+ 1545 03ec 52454144 		.ascii	"READOUT_NONE\000"
+ 1545      4F55545F 
+ 1545      4E4F4E45 
+ 1545      00
+ 1546              	.LASF19:
+ 1547 03f9 6C6F7765 		.ascii	"lower_voltage_limit\000"
+ 1547      725F766F 
+ 1547      6C746167 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczfLGDl.s 			page 33
+
+
+ 1547      655F6C69 
+ 1547      6D697400 
+ 1548              	.LASF67:
+ 1549 040d 49444143 		.ascii	"IDAC_Low_SetValue\000"
+ 1549      5F4C6F77 
+ 1549      5F536574 
+ 1549      56616C75 
+ 1549      6500
+ 1550              	.LASF32:
+ 1551 041f 64697370 		.ascii	"display_config_t\000"
+ 1551      6C61795F 
+ 1551      636F6E66 
+ 1551      69675F74 
+ 1551      00
+ 1552              	.LASF4:
+ 1553 0430 73686F72 		.ascii	"short unsigned int\000"
+ 1553      7420756E 
+ 1553      7369676E 
+ 1553      65642069 
+ 1553      6E7400
+ 1554              	.LASF12:
+ 1555 0443 75696E74 		.ascii	"uint32\000"
+ 1555      333200
+ 1556              	.LASF25:
+ 1557 044a 52454144 		.ascii	"READOUT_VOLTAGE\000"
+ 1557      4F55545F 
+ 1557      564F4C54 
+ 1557      41474500 
+ 1558              	.LASF6:
+ 1559 045a 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1559      20756E73 
+ 1559      69676E65 
+ 1559      6420696E 
+ 1559      7400
+ 1560              	.LASF53:
+ 1561 046c 4F555450 		.ascii	"OUTPUT_MODE_FEEDBACK\000"
+ 1561      55545F4D 
+ 1561      4F44455F 
+ 1561      46454544 
+ 1561      4241434B 
+ 1562              	.LASF23:
+ 1563 0481 52454144 		.ascii	"READOUT_CURRENT_SETPOINT\000"
+ 1563      4F55545F 
+ 1563      43555252 
+ 1563      454E545F 
+ 1563      53455450 
+ 1564              	.LASF65:
+ 1565 049a 6765745F 		.ascii	"get_dac_offset_correction\000"
+ 1565      6461635F 
+ 1565      6F666673 
+ 1565      65745F63 
+ 1565      6F727265 
+ 1566              	.LASF44:
+ 1567 04b4 766F6C74 		.ascii	"voltage_correction_ratio\000"
+ 1567      6167655F 
+ 1567      636F7272 
+ 1567      65637469 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczfLGDl.s 			page 34
+
+
+ 1567      6F6E5F72 
+ 1568              	.LASF43:
+ 1569 04cd 6164635F 		.ascii	"adc_voltage_gain\000"
+ 1569      766F6C74 
+ 1569      6167655F 
+ 1569      6761696E 
+ 1569      00
+ 1570              	.LASF14:
+ 1571 04de 646F7562 		.ascii	"double\000"
+ 1571      6C6500
+ 1572              	.LASF50:
+ 1573 04e5 73657474 		.ascii	"settings_t\000"
+ 1573      696E6773 
+ 1573      5F7400
+ 1574              	.LASF60:
+ 1575 04f0 73657470 		.ascii	"setpoint\000"
+ 1575      6F696E74 
+ 1575      00
+ 1576              	.LASF51:
+ 1577 04f9 4F555450 		.ascii	"OUTPUT_MODE_OFF\000"
+ 1577      55545F4D 
+ 1577      4F44455F 
+ 1577      4F464600 
+ 1578              	.LASF58:
+ 1579 0509 7365745F 		.ascii	"set_current\000"
+ 1579      63757272 
+ 1579      656E7400 
+ 1580              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

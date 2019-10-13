@@ -1,0 +1,1486 @@
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccZf7krf.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.CyBtldrCommStart,"ax",%progbits
+  20              		.align	2
+  21              		.global	CyBtldrCommStart
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	CyBtldrCommStart, %function
+  25              	CyBtldrCommStart:
+  26              	.LFB32:
+  27              		.file 1 "main.c"
+   1:main.c        **** #include <project.h>
+   2:main.c        **** 
+   3:main.c        **** void CyBtldrCommStart(void) {
+  28              		.loc 1 3 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 10B5     		push	{r4, lr}
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 4, -8
+  35              		.cfi_offset 14, -4
+   4:main.c        **** 	UART_Start();
+  36              		.loc 1 4 0
+  37 0002 FFF7FEFF 		bl	UART_Start
+  38              	.LVL0:
+   5:main.c        **** }
+  39              		.loc 1 5 0
+  40              		@ sp needed
+  41 0006 10BD     		pop	{r4, pc}
+  42              		.cfi_endproc
+  43              	.LFE32:
+  44              		.size	CyBtldrCommStart, .-CyBtldrCommStart
+  45              		.section	.text.CyBtldrCommStop,"ax",%progbits
+  46              		.align	2
+  47              		.global	CyBtldrCommStop
+  48              		.code	16
+  49              		.thumb_func
+  50              		.type	CyBtldrCommStop, %function
+  51              	CyBtldrCommStop:
+  52              	.LFB33:
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccZf7krf.s 			page 2
+
+
+   6:main.c        **** 
+   7:main.c        **** void CyBtldrCommStop (void) {
+  53              		.loc 1 7 0
+  54              		.cfi_startproc
+  55              		@ args = 0, pretend = 0, frame = 0
+  56              		@ frame_needed = 0, uses_anonymous_args = 0
+  57 0000 10B5     		push	{r4, lr}
+  58              		.cfi_def_cfa_offset 8
+  59              		.cfi_offset 4, -8
+  60              		.cfi_offset 14, -4
+   8:main.c        **** 	UART_Stop();
+  61              		.loc 1 8 0
+  62 0002 FFF7FEFF 		bl	UART_Stop
+  63              	.LVL1:
+   9:main.c        **** }
+  64              		.loc 1 9 0
+  65              		@ sp needed
+  66 0006 10BD     		pop	{r4, pc}
+  67              		.cfi_endproc
+  68              	.LFE33:
+  69              		.size	CyBtldrCommStop, .-CyBtldrCommStop
+  70              		.section	.text.CyBtldrCommReset,"ax",%progbits
+  71              		.align	2
+  72              		.global	CyBtldrCommReset
+  73              		.code	16
+  74              		.thumb_func
+  75              		.type	CyBtldrCommReset, %function
+  76              	CyBtldrCommReset:
+  77              	.LFB34:
+  10:main.c        **** 
+  11:main.c        **** void CyBtldrCommReset(void) {
+  78              		.loc 1 11 0
+  79              		.cfi_startproc
+  80              		@ args = 0, pretend = 0, frame = 0
+  81              		@ frame_needed = 0, uses_anonymous_args = 0
+  82 0000 10B5     		push	{r4, lr}
+  83              		.cfi_def_cfa_offset 8
+  84              		.cfi_offset 4, -8
+  85              		.cfi_offset 14, -4
+  12:main.c        **** 	UART_SpiUartClearRxBuffer();
+  86              		.loc 1 12 0
+  87 0002 FFF7FEFF 		bl	UART_SpiUartClearRxBuffer
+  88              	.LVL2:
+  13:main.c        **** 	UART_SpiUartClearTxBuffer();
+  89              		.loc 1 13 0
+  90 0006 FFF7FEFF 		bl	UART_SpiUartClearTxBuffer
+  91              	.LVL3:
+  14:main.c        **** }
+  92              		.loc 1 14 0
+  93              		@ sp needed
+  94 000a 10BD     		pop	{r4, pc}
+  95              		.cfi_endproc
+  96              	.LFE34:
+  97              		.size	CyBtldrCommReset, .-CyBtldrCommReset
+  98              		.section	.text.CyBtldrCommWrite,"ax",%progbits
+  99              		.align	2
+ 100              		.global	CyBtldrCommWrite
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccZf7krf.s 			page 3
+
+
+ 101              		.code	16
+ 102              		.thumb_func
+ 103              		.type	CyBtldrCommWrite, %function
+ 104              	CyBtldrCommWrite:
+ 105              	.LFB35:
+  15:main.c        **** 
+  16:main.c        **** cystatus CyBtldrCommWrite(uint8* buffer, uint16 size, uint16* count, uint8 timeOut) {
+ 106              		.loc 1 16 0
+ 107              		.cfi_startproc
+ 108              		@ args = 0, pretend = 0, frame = 0
+ 109              		@ frame_needed = 0, uses_anonymous_args = 0
+ 110              	.LVL4:
+ 111 0000 70B5     		push	{r4, r5, r6, lr}
+ 112              		.cfi_def_cfa_offset 16
+ 113              		.cfi_offset 4, -16
+ 114              		.cfi_offset 5, -12
+ 115              		.cfi_offset 6, -8
+ 116              		.cfi_offset 14, -4
+ 117 0002 0600     		movs	r6, r0
+ 118 0004 0D00     		movs	r5, r1
+ 119 0006 1400     		movs	r4, r2
+  17:main.c        **** 	for(*count = 0; *count < size; (*count)++) {
+ 120              		.loc 1 17 0
+ 121 0008 0023     		movs	r3, #0
+ 122              	.LVL5:
+ 123 000a 1380     		strh	r3, [r2]
+ 124 000c 05E0     		b	.L5
+ 125              	.LVL6:
+ 126              	.L6:
+  18:main.c        **** 		UART_UartPutChar(buffer[*count]);
+ 127              		.loc 1 18 0 discriminator 3
+ 128 000e F05C     		ldrb	r0, [r6, r3]
+ 129 0010 FFF7FEFF 		bl	UART_SpiUartWriteTxData
+ 130              	.LVL7:
+  17:main.c        **** 	for(*count = 0; *count < size; (*count)++) {
+ 131              		.loc 1 17 0 discriminator 3
+ 132 0014 2388     		ldrh	r3, [r4]
+ 133 0016 0133     		adds	r3, r3, #1
+ 134 0018 2380     		strh	r3, [r4]
+ 135              	.L5:
+  17:main.c        **** 	for(*count = 0; *count < size; (*count)++) {
+ 136              		.loc 1 17 0 is_stmt 0 discriminator 1
+ 137 001a 2388     		ldrh	r3, [r4]
+ 138 001c AB42     		cmp	r3, r5
+ 139 001e F6D3     		bcc	.L6
+  19:main.c        **** 	}
+  20:main.c        **** 	
+  21:main.c        **** 	return CYRET_SUCCESS;
+  22:main.c        **** }
+ 140              		.loc 1 22 0 is_stmt 1
+ 141 0020 0020     		movs	r0, #0
+ 142              		@ sp needed
+ 143              	.LVL8:
+ 144              	.LVL9:
+ 145 0022 70BD     		pop	{r4, r5, r6, pc}
+ 146              		.cfi_endproc
+ 147              	.LFE35:
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccZf7krf.s 			page 4
+
+
+ 148              		.size	CyBtldrCommWrite, .-CyBtldrCommWrite
+ 149              		.section	.text.CyBtldrCommRead,"ax",%progbits
+ 150              		.align	2
+ 151              		.global	CyBtldrCommRead
+ 152              		.code	16
+ 153              		.thumb_func
+ 154              		.type	CyBtldrCommRead, %function
+ 155              	CyBtldrCommRead:
+ 156              	.LFB36:
+  23:main.c        **** 
+  24:main.c        **** cystatus CyBtldrCommRead (uint8* buffer, uint16 size, uint16* count, uint8 timeOut) {
+ 157              		.loc 1 24 0
+ 158              		.cfi_startproc
+ 159              		@ args = 0, pretend = 0, frame = 0
+ 160              		@ frame_needed = 0, uses_anonymous_args = 0
+ 161              	.LVL10:
+ 162 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 163              		.cfi_def_cfa_offset 20
+ 164              		.cfi_offset 4, -20
+ 165              		.cfi_offset 5, -16
+ 166              		.cfi_offset 6, -12
+ 167              		.cfi_offset 7, -8
+ 168              		.cfi_offset 14, -4
+ 169 0002 4746     		mov	r7, r8
+ 170 0004 80B4     		push	{r7}
+ 171              		.cfi_def_cfa_offset 24
+ 172              		.cfi_offset 8, -24
+ 173 0006 0700     		movs	r7, r0
+ 174 0008 0E00     		movs	r6, r1
+ 175 000a 1500     		movs	r5, r2
+  25:main.c        **** 	int timeoutUs = timeOut * 10000;
+ 176              		.loc 1 25 0
+ 177 000c 114A     		ldr	r2, .L13
+ 178              	.LVL11:
+ 179 000e 5A43     		muls	r2, r3
+ 180 0010 1400     		movs	r4, r2
+ 181              	.LVL12:
+  26:main.c        **** 	cystatus status = CYRET_TIMEOUT;
+  27:main.c        **** 	
+  28:main.c        **** 	*count = 0;
+ 182              		.loc 1 28 0
+ 183 0012 0023     		movs	r3, #0
+ 184              	.LVL13:
+ 185 0014 2B80     		strh	r3, [r5]
+  26:main.c        **** 	cystatus status = CYRET_TIMEOUT;
+ 186              		.loc 1 26 0
+ 187 0016 1033     		adds	r3, r3, #16
+ 188 0018 9846     		mov	r8, r3
+  29:main.c        **** 	while(*count < size && timeoutUs >= 0) {
+ 189              		.loc 1 29 0
+ 190 001a 12E0     		b	.L8
+ 191              	.LVL14:
+ 192              	.L12:
+  30:main.c        **** 		if(UART_SpiUartGetRxBufferSize() > 0) {
+ 193              		.loc 1 30 0
+ 194 001c FFF7FEFF 		bl	UART_SpiUartGetRxBufferSize
+ 195              	.LVL15:
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccZf7krf.s 			page 5
+
+
+ 196 0020 0028     		cmp	r0, #0
+ 197 0022 0AD0     		beq	.L9
+  31:main.c        **** 			buffer[(*count)++] = UART_UartGetByte();
+ 198              		.loc 1 31 0
+ 199 0024 2B88     		ldrh	r3, [r5]
+ 200 0026 5A1C     		adds	r2, r3, #1
+ 201 0028 2A80     		strh	r2, [r5]
+ 202 002a FC18     		adds	r4, r7, r3
+ 203              	.LVL16:
+ 204 002c FFF7FEFF 		bl	UART_UartGetByte
+ 205              	.LVL17:
+ 206 0030 2070     		strb	r0, [r4]
+ 207              	.LVL18:
+  32:main.c        **** 			// Switch to byte-to-byte timeout and mark as success
+  33:main.c        **** 			timeoutUs = 10000; //10mS
+  34:main.c        **** 			status = CYRET_SUCCESS;
+ 208              		.loc 1 34 0
+ 209 0032 0023     		movs	r3, #0
+ 210 0034 9846     		mov	r8, r3
+  33:main.c        **** 			status = CYRET_SUCCESS;
+ 211              		.loc 1 33 0
+ 212 0036 074C     		ldr	r4, .L13
+ 213 0038 03E0     		b	.L8
+ 214              	.LVL19:
+ 215              	.L9:
+  35:main.c        **** 		} else {
+  36:main.c        **** 			CyDelayUs(10);
+ 216              		.loc 1 36 0
+ 217 003a 0A20     		movs	r0, #10
+ 218 003c FFF7FEFF 		bl	CyDelayUs
+ 219              	.LVL20:
+  37:main.c        **** 			timeoutUs -= 10;
+ 220              		.loc 1 37 0
+ 221 0040 0A3C     		subs	r4, r4, #10
+ 222              	.LVL21:
+ 223              	.L8:
+  29:main.c        **** 		if(UART_SpiUartGetRxBufferSize() > 0) {
+ 224              		.loc 1 29 0
+ 225 0042 2B88     		ldrh	r3, [r5]
+ 226 0044 B342     		cmp	r3, r6
+ 227 0046 01D2     		bcs	.L11
+  29:main.c        **** 		if(UART_SpiUartGetRxBufferSize() > 0) {
+ 228              		.loc 1 29 0 is_stmt 0 discriminator 1
+ 229 0048 002C     		cmp	r4, #0
+ 230 004a E7DA     		bge	.L12
+ 231              	.L11:
+  38:main.c        **** 		}
+  39:main.c        **** 	}
+  40:main.c        **** 	
+  41:main.c        **** 	return status;
+  42:main.c        **** }
+ 232              		.loc 1 42 0 is_stmt 1
+ 233 004c 4046     		mov	r0, r8
+ 234              		@ sp needed
+ 235              	.LVL22:
+ 236              	.LVL23:
+ 237              	.LVL24:
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccZf7krf.s 			page 6
+
+
+ 238              	.LVL25:
+ 239 004e 04BC     		pop	{r2}
+ 240 0050 9046     		mov	r8, r2
+ 241 0052 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 242              	.L14:
+ 243              		.align	2
+ 244              	.L13:
+ 245 0054 10270000 		.word	10000
+ 246              		.cfi_endproc
+ 247              	.LFE36:
+ 248              		.size	CyBtldrCommRead, .-CyBtldrCommRead
+ 249              		.section	.text.main,"ax",%progbits
+ 250              		.align	2
+ 251              		.global	main
+ 252              		.code	16
+ 253              		.thumb_func
+ 254              		.type	main, %function
+ 255              	main:
+ 256              	.LFB37:
+  43:main.c        **** 
+  44:main.c        **** int main()
+  45:main.c        **** {
+ 257              		.loc 1 45 0
+ 258              		.cfi_startproc
+ 259              		@ args = 0, pretend = 0, frame = 0
+ 260              		@ frame_needed = 0, uses_anonymous_args = 0
+ 261 0000 10B5     		push	{r4, lr}
+ 262              		.cfi_def_cfa_offset 8
+ 263              		.cfi_offset 4, -8
+ 264              		.cfi_offset 14, -4
+  46:main.c        ****     if(Bootloader_GET_RUN_TYPE == Bootloader_START_BTLDR)
+ 265              		.loc 1 46 0
+ 266 0002 0C4B     		ldr	r3, .L19
+ 267 0004 1B68     		ldr	r3, [r3]
+ 268 0006 402B     		cmp	r3, #64
+ 269 0008 01D1     		bne	.L16
+  47:main.c        **** 		Bootloader_Start();
+ 270              		.loc 1 47 0
+ 271 000a FFF7FEFF 		bl	Bootloader_Start
+ 272              	.LVL26:
+ 273              	.L16:
+  48:main.c        **** 	
+  49:main.c        **** 	CyDelay(1);
+ 274              		.loc 1 49 0
+ 275 000e 0120     		movs	r0, #1
+ 276 0010 FFF7FEFF 		bl	CyDelay
+ 277              	.LVL27:
+  50:main.c        ****     if(Button_Read()) {
+ 278              		.loc 1 50 0
+ 279 0014 FFF7FEFF 		bl	Button_Read
+ 280              	.LVL28:
+ 281 0018 0028     		cmp	r0, #0
+ 282 001a 03D0     		beq	.L17
+  51:main.c        ****         // No button press, run app
+  52:main.c        **** 		Bootloader_SET_RUN_TYPE(Bootloader_START_APP);
+ 283              		.loc 1 52 0
+ 284 001c 8022     		movs	r2, #128
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccZf7krf.s 			page 7
+
+
+ 285 001e 054B     		ldr	r3, .L19
+ 286 0020 1A60     		str	r2, [r3]
+ 287 0022 02E0     		b	.L18
+ 288              	.L17:
+  53:main.c        ****     } else {
+  54:main.c        ****         // Button is being pressed; start bootloader
+  55:main.c        **** 		Bootloader_SET_RUN_TYPE(Bootloader_START_BTLDR);
+ 289              		.loc 1 55 0
+ 290 0024 4022     		movs	r2, #64
+ 291 0026 034B     		ldr	r3, .L19
+ 292 0028 1A60     		str	r2, [r3]
+ 293              	.L18:
+  56:main.c        ****     }
+  57:main.c        ****     Bootloader_Start();
+ 294              		.loc 1 57 0
+ 295 002a FFF7FEFF 		bl	Bootloader_Start
+ 296              	.LVL29:
+  58:main.c        **** }
+ 297              		.loc 1 58 0
+ 298 002e 0020     		movs	r0, #0
+ 299              		@ sp needed
+ 300 0030 10BD     		pop	{r4, pc}
+ 301              	.L20:
+ 302 0032 C046     		.align	2
+ 303              	.L19:
+ 304 0034 00000000 		.word	cyBtldrRunType
+ 305              		.cfi_endproc
+ 306              	.LFE37:
+ 307              		.size	main, .-main
+ 308              		.text
+ 309              	.Letext0:
+ 310              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+ 311              		.file 3 "Generated_Source\\PSoC4/UART.h"
+ 312              		.file 4 "Generated_Source\\PSoC4/UART_SPI_UART.h"
+ 313              		.file 5 "Generated_Source\\PSoC4/CyLib.h"
+ 314              		.file 6 "Generated_Source\\PSoC4/Bootloader.h"
+ 315              		.file 7 "Generated_Source\\PSoC4/Button.h"
+ 316              		.section	.debug_info,"",%progbits
+ 317              	.Ldebug_info0:
+ 318 0000 F0020000 		.4byte	0x2f0
+ 319 0004 0400     		.2byte	0x4
+ 320 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 321 000a 04       		.byte	0x4
+ 322 000b 01       		.uleb128 0x1
+ 323 000c 20000000 		.4byte	.LASF40
+ 324 0010 0C       		.byte	0xc
+ 325 0011 31020000 		.4byte	.LASF41
+ 326 0015 7B020000 		.4byte	.LASF42
+ 327 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 328 001d 00000000 		.4byte	0
+ 329 0021 00000000 		.4byte	.Ldebug_line0
+ 330 0025 02       		.uleb128 0x2
+ 331 0026 01       		.byte	0x1
+ 332 0027 06       		.byte	0x6
+ 333 0028 B6020000 		.4byte	.LASF0
+ 334 002c 02       		.uleb128 0x2
+ 335 002d 01       		.byte	0x1
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccZf7krf.s 			page 8
+
+
+ 336 002e 08       		.byte	0x8
+ 337 002f 76010000 		.4byte	.LASF1
+ 338 0033 02       		.uleb128 0x2
+ 339 0034 02       		.byte	0x2
+ 340 0035 05       		.byte	0x5
+ 341 0036 3D020000 		.4byte	.LASF2
+ 342 003a 02       		.uleb128 0x2
+ 343 003b 02       		.byte	0x2
+ 344 003c 07       		.byte	0x7
+ 345 003d 36010000 		.4byte	.LASF3
+ 346 0041 02       		.uleb128 0x2
+ 347 0042 04       		.byte	0x4
+ 348 0043 05       		.byte	0x5
+ 349 0044 58020000 		.4byte	.LASF4
+ 350 0048 02       		.uleb128 0x2
+ 351 0049 04       		.byte	0x4
+ 352 004a 07       		.byte	0x7
+ 353 004b 24010000 		.4byte	.LASF5
+ 354 004f 02       		.uleb128 0x2
+ 355 0050 08       		.byte	0x8
+ 356 0051 05       		.byte	0x5
+ 357 0052 23020000 		.4byte	.LASF6
+ 358 0056 02       		.uleb128 0x2
+ 359 0057 08       		.byte	0x8
+ 360 0058 07       		.byte	0x7
+ 361 0059 DE010000 		.4byte	.LASF7
+ 362 005d 03       		.uleb128 0x3
+ 363 005e 04       		.byte	0x4
+ 364 005f 05       		.byte	0x5
+ 365 0060 696E7400 		.ascii	"int\000"
+ 366 0064 02       		.uleb128 0x2
+ 367 0065 04       		.byte	0x4
+ 368 0066 07       		.byte	0x7
+ 369 0067 D1010000 		.4byte	.LASF8
+ 370 006b 04       		.uleb128 0x4
+ 371 006c 09010000 		.4byte	.LASF9
+ 372 0070 02       		.byte	0x2
+ 373 0071 E401     		.2byte	0x1e4
+ 374 0073 2C000000 		.4byte	0x2c
+ 375 0077 04       		.uleb128 0x4
+ 376 0078 8B010000 		.4byte	.LASF10
+ 377 007c 02       		.byte	0x2
+ 378 007d E501     		.2byte	0x1e5
+ 379 007f 3A000000 		.4byte	0x3a
+ 380 0083 04       		.uleb128 0x4
+ 381 0084 B0010000 		.4byte	.LASF11
+ 382 0088 02       		.byte	0x2
+ 383 0089 E601     		.2byte	0x1e6
+ 384 008b 48000000 		.4byte	0x48
+ 385 008f 02       		.uleb128 0x2
+ 386 0090 04       		.byte	0x4
+ 387 0091 04       		.byte	0x4
+ 388 0092 03010000 		.4byte	.LASF12
+ 389 0096 02       		.uleb128 0x2
+ 390 0097 08       		.byte	0x8
+ 391 0098 04       		.byte	0x4
+ 392 0099 84010000 		.4byte	.LASF13
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccZf7krf.s 			page 9
+
+
+ 393 009d 02       		.uleb128 0x2
+ 394 009e 01       		.byte	0x1
+ 395 009f 08       		.byte	0x8
+ 396 00a0 38020000 		.4byte	.LASF14
+ 397 00a4 04       		.uleb128 0x4
+ 398 00a5 11000000 		.4byte	.LASF15
+ 399 00a9 02       		.byte	0x2
+ 400 00aa 8602     		.2byte	0x286
+ 401 00ac 48000000 		.4byte	0x48
+ 402 00b0 05       		.uleb128 0x5
+ 403 00b1 83000000 		.4byte	0x83
+ 404 00b5 02       		.uleb128 0x2
+ 405 00b6 04       		.byte	0x4
+ 406 00b7 07       		.byte	0x7
+ 407 00b8 1A020000 		.4byte	.LASF16
+ 408 00bc 06       		.uleb128 0x6
+ 409 00bd 04       		.byte	0x4
+ 410 00be 6B000000 		.4byte	0x6b
+ 411 00c2 07       		.uleb128 0x7
+ 412 00c3 D1000000 		.4byte	.LASF17
+ 413 00c7 01       		.byte	0x1
+ 414 00c8 03       		.byte	0x3
+ 415 00c9 00000000 		.4byte	.LFB32
+ 416 00cd 08000000 		.4byte	.LFE32-.LFB32
+ 417 00d1 01       		.uleb128 0x1
+ 418 00d2 9C       		.byte	0x9c
+ 419 00d3 E1000000 		.4byte	0xe1
+ 420 00d7 08       		.uleb128 0x8
+ 421 00d8 06000000 		.4byte	.LVL0
+ 422 00dc 75020000 		.4byte	0x275
+ 423 00e0 00       		.byte	0
+ 424 00e1 07       		.uleb128 0x7
+ 425 00e2 F3000000 		.4byte	.LASF18
+ 426 00e6 01       		.byte	0x1
+ 427 00e7 07       		.byte	0x7
+ 428 00e8 00000000 		.4byte	.LFB33
+ 429 00ec 08000000 		.4byte	.LFE33-.LFB33
+ 430 00f0 01       		.uleb128 0x1
+ 431 00f1 9C       		.byte	0x9c
+ 432 00f2 00010000 		.4byte	0x100
+ 433 00f6 08       		.uleb128 0x8
+ 434 00f7 06000000 		.4byte	.LVL1
+ 435 00fb 80020000 		.4byte	0x280
+ 436 00ff 00       		.byte	0
+ 437 0100 07       		.uleb128 0x7
+ 438 0101 00000000 		.4byte	.LASF19
+ 439 0105 01       		.byte	0x1
+ 440 0106 0B       		.byte	0xb
+ 441 0107 00000000 		.4byte	.LFB34
+ 442 010b 0C000000 		.4byte	.LFE34-.LFB34
+ 443 010f 01       		.uleb128 0x1
+ 444 0110 9C       		.byte	0x9c
+ 445 0111 28010000 		.4byte	0x128
+ 446 0115 08       		.uleb128 0x8
+ 447 0116 06000000 		.4byte	.LVL2
+ 448 011a 8B020000 		.4byte	0x28b
+ 449 011e 08       		.uleb128 0x8
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccZf7krf.s 			page 10
+
+
+ 450 011f 0A000000 		.4byte	.LVL3
+ 451 0123 97020000 		.4byte	0x297
+ 452 0127 00       		.byte	0
+ 453 0128 09       		.uleb128 0x9
+ 454 0129 65010000 		.4byte	.LASF24
+ 455 012d 01       		.byte	0x1
+ 456 012e 10       		.byte	0x10
+ 457 012f A4000000 		.4byte	0xa4
+ 458 0133 00000000 		.4byte	.LFB35
+ 459 0137 24000000 		.4byte	.LFE35-.LFB35
+ 460 013b 01       		.uleb128 0x1
+ 461 013c 9C       		.byte	0x9c
+ 462 013d 87010000 		.4byte	0x187
+ 463 0141 0A       		.uleb128 0xa
+ 464 0142 47020000 		.4byte	.LASF20
+ 465 0146 01       		.byte	0x1
+ 466 0147 10       		.byte	0x10
+ 467 0148 BC000000 		.4byte	0xbc
+ 468 014c 00000000 		.4byte	.LLST0
+ 469 0150 0A       		.uleb128 0xa
+ 470 0151 0F010000 		.4byte	.LASF21
+ 471 0155 01       		.byte	0x1
+ 472 0156 10       		.byte	0x10
+ 473 0157 77000000 		.4byte	0x77
+ 474 015b 2C000000 		.4byte	.LLST1
+ 475 015f 0A       		.uleb128 0xa
+ 476 0160 1A000000 		.4byte	.LASF22
+ 477 0164 01       		.byte	0x1
+ 478 0165 10       		.byte	0x10
+ 479 0166 87010000 		.4byte	0x187
+ 480 016a 4D000000 		.4byte	.LLST2
+ 481 016e 0A       		.uleb128 0xa
+ 482 016f F5010000 		.4byte	.LASF23
+ 483 0173 01       		.byte	0x1
+ 484 0174 10       		.byte	0x10
+ 485 0175 6B000000 		.4byte	0x6b
+ 486 0179 79000000 		.4byte	.LLST3
+ 487 017d 08       		.uleb128 0x8
+ 488 017e 14000000 		.4byte	.LVL7
+ 489 0182 A3020000 		.4byte	0x2a3
+ 490 0186 00       		.byte	0
+ 491 0187 06       		.uleb128 0x6
+ 492 0188 04       		.byte	0x4
+ 493 0189 77000000 		.4byte	0x77
+ 494 018d 09       		.uleb128 0x9
+ 495 018e 14010000 		.4byte	.LASF25
+ 496 0192 01       		.byte	0x1
+ 497 0193 18       		.byte	0x18
+ 498 0194 A4000000 		.4byte	0xa4
+ 499 0198 00000000 		.4byte	.LFB36
+ 500 019c 58000000 		.4byte	.LFE36-.LFB36
+ 501 01a0 01       		.uleb128 0x1
+ 502 01a1 9C       		.byte	0x9c
+ 503 01a2 22020000 		.4byte	0x222
+ 504 01a6 0A       		.uleb128 0xa
+ 505 01a7 47020000 		.4byte	.LASF20
+ 506 01ab 01       		.byte	0x1
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccZf7krf.s 			page 11
+
+
+ 507 01ac 18       		.byte	0x18
+ 508 01ad BC000000 		.4byte	0xbc
+ 509 01b1 9A000000 		.4byte	.LLST4
+ 510 01b5 0A       		.uleb128 0xa
+ 511 01b6 0F010000 		.4byte	.LASF21
+ 512 01ba 01       		.byte	0x1
+ 513 01bb 18       		.byte	0x18
+ 514 01bc 77000000 		.4byte	0x77
+ 515 01c0 C6000000 		.4byte	.LLST5
+ 516 01c4 0A       		.uleb128 0xa
+ 517 01c5 1A000000 		.4byte	.LASF22
+ 518 01c9 01       		.byte	0x1
+ 519 01ca 18       		.byte	0x18
+ 520 01cb 87010000 		.4byte	0x187
+ 521 01cf E7000000 		.4byte	.LLST6
+ 522 01d3 0A       		.uleb128 0xa
+ 523 01d4 F5010000 		.4byte	.LASF23
+ 524 01d8 01       		.byte	0x1
+ 525 01d9 18       		.byte	0x18
+ 526 01da 6B000000 		.4byte	0x6b
+ 527 01de 13010000 		.4byte	.LLST7
+ 528 01e2 0B       		.uleb128 0xb
+ 529 01e3 E2000000 		.4byte	.LASF26
+ 530 01e7 01       		.byte	0x1
+ 531 01e8 19       		.byte	0x19
+ 532 01e9 5D000000 		.4byte	0x5d
+ 533 01ed 34010000 		.4byte	.LLST8
+ 534 01f1 0B       		.uleb128 0xb
+ 535 01f2 EC000000 		.4byte	.LASF27
+ 536 01f6 01       		.byte	0x1
+ 537 01f7 1A       		.byte	0x1a
+ 538 01f8 A4000000 		.4byte	0xa4
+ 539 01fc 6B010000 		.4byte	.LLST9
+ 540 0200 08       		.uleb128 0x8
+ 541 0201 20000000 		.4byte	.LVL15
+ 542 0205 AF020000 		.4byte	0x2af
+ 543 0209 08       		.uleb128 0x8
+ 544 020a 30000000 		.4byte	.LVL17
+ 545 020e BB020000 		.4byte	0x2bb
+ 546 0212 0C       		.uleb128 0xc
+ 547 0213 40000000 		.4byte	.LVL20
+ 548 0217 C7020000 		.4byte	0x2c7
+ 549 021b 0D       		.uleb128 0xd
+ 550 021c 01       		.uleb128 0x1
+ 551 021d 50       		.byte	0x50
+ 552 021e 01       		.uleb128 0x1
+ 553 021f 3A       		.byte	0x3a
+ 554 0220 00       		.byte	0
+ 555 0221 00       		.byte	0
+ 556 0222 0E       		.uleb128 0xe
+ 557 0223 92010000 		.4byte	.LASF28
+ 558 0227 01       		.byte	0x1
+ 559 0228 2C       		.byte	0x2c
+ 560 0229 5D000000 		.4byte	0x5d
+ 561 022d 00000000 		.4byte	.LFB37
+ 562 0231 38000000 		.4byte	.LFE37-.LFB37
+ 563 0235 01       		.uleb128 0x1
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccZf7krf.s 			page 12
+
+
+ 564 0236 9C       		.byte	0x9c
+ 565 0237 6A020000 		.4byte	0x26a
+ 566 023b 08       		.uleb128 0x8
+ 567 023c 0E000000 		.4byte	.LVL26
+ 568 0240 D2020000 		.4byte	0x2d2
+ 569 0244 0F       		.uleb128 0xf
+ 570 0245 14000000 		.4byte	.LVL27
+ 571 0249 DD020000 		.4byte	0x2dd
+ 572 024d 57020000 		.4byte	0x257
+ 573 0251 0D       		.uleb128 0xd
+ 574 0252 01       		.uleb128 0x1
+ 575 0253 50       		.byte	0x50
+ 576 0254 01       		.uleb128 0x1
+ 577 0255 31       		.byte	0x31
+ 578 0256 00       		.byte	0
+ 579 0257 08       		.uleb128 0x8
+ 580 0258 18000000 		.4byte	.LVL28
+ 581 025c E8020000 		.4byte	0x2e8
+ 582 0260 08       		.uleb128 0x8
+ 583 0261 2E000000 		.4byte	.LVL29
+ 584 0265 D2020000 		.4byte	0x2d2
+ 585 0269 00       		.byte	0
+ 586 026a 10       		.uleb128 0x10
+ 587 026b 97010000 		.4byte	.LASF43
+ 588 026f 06       		.byte	0x6
+ 589 0270 A8       		.byte	0xa8
+ 590 0271 B0000000 		.4byte	0xb0
+ 591 0275 11       		.uleb128 0x11
+ 592 0276 49010000 		.4byte	.LASF29
+ 593 027a 49010000 		.4byte	.LASF29
+ 594 027e 03       		.byte	0x3
+ 595 027f 72       		.byte	0x72
+ 596 0280 11       		.uleb128 0x11
+ 597 0281 4E020000 		.4byte	.LASF30
+ 598 0285 4E020000 		.4byte	.LASF30
+ 599 0289 03       		.byte	0x3
+ 600 028a 73       		.byte	0x73
+ 601 028b 12       		.uleb128 0x12
+ 602 028c 61020000 		.4byte	.LASF31
+ 603 0290 61020000 		.4byte	.LASF31
+ 604 0294 04       		.byte	0x4
+ 605 0295 3F03     		.2byte	0x33f
+ 606 0297 12       		.uleb128 0x12
+ 607 0298 B7010000 		.4byte	.LASF32
+ 608 029c B7010000 		.4byte	.LASF32
+ 609 02a0 04       		.byte	0x4
+ 610 02a1 4703     		.2byte	0x347
+ 611 02a3 12       		.uleb128 0x12
+ 612 02a4 B9000000 		.4byte	.LASF33
+ 613 02a8 B9000000 		.4byte	.LASF33
+ 614 02ac 04       		.byte	0x4
+ 615 02ad 4403     		.2byte	0x344
+ 616 02af 12       		.uleb128 0x12
+ 617 02b0 C2020000 		.4byte	.LASF34
+ 618 02b4 C2020000 		.4byte	.LASF34
+ 619 02b8 04       		.byte	0x4
+ 620 02b9 3E03     		.2byte	0x33e
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccZf7krf.s 			page 13
+
+
+ 621 02bb 12       		.uleb128 0x12
+ 622 02bc 54010000 		.4byte	.LASF35
+ 623 02c0 54010000 		.4byte	.LASF35
+ 624 02c4 04       		.byte	0x4
+ 625 02c5 1003     		.2byte	0x310
+ 626 02c7 11       		.uleb128 0x11
+ 627 02c8 A6010000 		.4byte	.LASF36
+ 628 02cc A6010000 		.4byte	.LASF36
+ 629 02d0 05       		.byte	0x5
+ 630 02d1 DA       		.byte	0xda
+ 631 02d2 11       		.uleb128 0x11
+ 632 02d3 FD010000 		.4byte	.LASF37
+ 633 02d7 FD010000 		.4byte	.LASF37
+ 634 02db 06       		.byte	0x6
+ 635 02dc E6       		.byte	0xe6
+ 636 02dd 11       		.uleb128 0x11
+ 637 02de DE020000 		.4byte	.LASF38
+ 638 02e2 DE020000 		.4byte	.LASF38
+ 639 02e6 05       		.byte	0x5
+ 640 02e7 D9       		.byte	0xd9
+ 641 02e8 11       		.uleb128 0x11
+ 642 02e9 0E020000 		.4byte	.LASF39
+ 643 02ed 0E020000 		.4byte	.LASF39
+ 644 02f1 07       		.byte	0x7
+ 645 02f2 32       		.byte	0x32
+ 646 02f3 00       		.byte	0
+ 647              		.section	.debug_abbrev,"",%progbits
+ 648              	.Ldebug_abbrev0:
+ 649 0000 01       		.uleb128 0x1
+ 650 0001 11       		.uleb128 0x11
+ 651 0002 01       		.byte	0x1
+ 652 0003 25       		.uleb128 0x25
+ 653 0004 0E       		.uleb128 0xe
+ 654 0005 13       		.uleb128 0x13
+ 655 0006 0B       		.uleb128 0xb
+ 656 0007 03       		.uleb128 0x3
+ 657 0008 0E       		.uleb128 0xe
+ 658 0009 1B       		.uleb128 0x1b
+ 659 000a 0E       		.uleb128 0xe
+ 660 000b 55       		.uleb128 0x55
+ 661 000c 17       		.uleb128 0x17
+ 662 000d 11       		.uleb128 0x11
+ 663 000e 01       		.uleb128 0x1
+ 664 000f 10       		.uleb128 0x10
+ 665 0010 17       		.uleb128 0x17
+ 666 0011 00       		.byte	0
+ 667 0012 00       		.byte	0
+ 668 0013 02       		.uleb128 0x2
+ 669 0014 24       		.uleb128 0x24
+ 670 0015 00       		.byte	0
+ 671 0016 0B       		.uleb128 0xb
+ 672 0017 0B       		.uleb128 0xb
+ 673 0018 3E       		.uleb128 0x3e
+ 674 0019 0B       		.uleb128 0xb
+ 675 001a 03       		.uleb128 0x3
+ 676 001b 0E       		.uleb128 0xe
+ 677 001c 00       		.byte	0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccZf7krf.s 			page 14
+
+
+ 678 001d 00       		.byte	0
+ 679 001e 03       		.uleb128 0x3
+ 680 001f 24       		.uleb128 0x24
+ 681 0020 00       		.byte	0
+ 682 0021 0B       		.uleb128 0xb
+ 683 0022 0B       		.uleb128 0xb
+ 684 0023 3E       		.uleb128 0x3e
+ 685 0024 0B       		.uleb128 0xb
+ 686 0025 03       		.uleb128 0x3
+ 687 0026 08       		.uleb128 0x8
+ 688 0027 00       		.byte	0
+ 689 0028 00       		.byte	0
+ 690 0029 04       		.uleb128 0x4
+ 691 002a 16       		.uleb128 0x16
+ 692 002b 00       		.byte	0
+ 693 002c 03       		.uleb128 0x3
+ 694 002d 0E       		.uleb128 0xe
+ 695 002e 3A       		.uleb128 0x3a
+ 696 002f 0B       		.uleb128 0xb
+ 697 0030 3B       		.uleb128 0x3b
+ 698 0031 05       		.uleb128 0x5
+ 699 0032 49       		.uleb128 0x49
+ 700 0033 13       		.uleb128 0x13
+ 701 0034 00       		.byte	0
+ 702 0035 00       		.byte	0
+ 703 0036 05       		.uleb128 0x5
+ 704 0037 35       		.uleb128 0x35
+ 705 0038 00       		.byte	0
+ 706 0039 49       		.uleb128 0x49
+ 707 003a 13       		.uleb128 0x13
+ 708 003b 00       		.byte	0
+ 709 003c 00       		.byte	0
+ 710 003d 06       		.uleb128 0x6
+ 711 003e 0F       		.uleb128 0xf
+ 712 003f 00       		.byte	0
+ 713 0040 0B       		.uleb128 0xb
+ 714 0041 0B       		.uleb128 0xb
+ 715 0042 49       		.uleb128 0x49
+ 716 0043 13       		.uleb128 0x13
+ 717 0044 00       		.byte	0
+ 718 0045 00       		.byte	0
+ 719 0046 07       		.uleb128 0x7
+ 720 0047 2E       		.uleb128 0x2e
+ 721 0048 01       		.byte	0x1
+ 722 0049 3F       		.uleb128 0x3f
+ 723 004a 19       		.uleb128 0x19
+ 724 004b 03       		.uleb128 0x3
+ 725 004c 0E       		.uleb128 0xe
+ 726 004d 3A       		.uleb128 0x3a
+ 727 004e 0B       		.uleb128 0xb
+ 728 004f 3B       		.uleb128 0x3b
+ 729 0050 0B       		.uleb128 0xb
+ 730 0051 27       		.uleb128 0x27
+ 731 0052 19       		.uleb128 0x19
+ 732 0053 11       		.uleb128 0x11
+ 733 0054 01       		.uleb128 0x1
+ 734 0055 12       		.uleb128 0x12
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccZf7krf.s 			page 15
+
+
+ 735 0056 06       		.uleb128 0x6
+ 736 0057 40       		.uleb128 0x40
+ 737 0058 18       		.uleb128 0x18
+ 738 0059 9742     		.uleb128 0x2117
+ 739 005b 19       		.uleb128 0x19
+ 740 005c 01       		.uleb128 0x1
+ 741 005d 13       		.uleb128 0x13
+ 742 005e 00       		.byte	0
+ 743 005f 00       		.byte	0
+ 744 0060 08       		.uleb128 0x8
+ 745 0061 898201   		.uleb128 0x4109
+ 746 0064 00       		.byte	0
+ 747 0065 11       		.uleb128 0x11
+ 748 0066 01       		.uleb128 0x1
+ 749 0067 31       		.uleb128 0x31
+ 750 0068 13       		.uleb128 0x13
+ 751 0069 00       		.byte	0
+ 752 006a 00       		.byte	0
+ 753 006b 09       		.uleb128 0x9
+ 754 006c 2E       		.uleb128 0x2e
+ 755 006d 01       		.byte	0x1
+ 756 006e 3F       		.uleb128 0x3f
+ 757 006f 19       		.uleb128 0x19
+ 758 0070 03       		.uleb128 0x3
+ 759 0071 0E       		.uleb128 0xe
+ 760 0072 3A       		.uleb128 0x3a
+ 761 0073 0B       		.uleb128 0xb
+ 762 0074 3B       		.uleb128 0x3b
+ 763 0075 0B       		.uleb128 0xb
+ 764 0076 27       		.uleb128 0x27
+ 765 0077 19       		.uleb128 0x19
+ 766 0078 49       		.uleb128 0x49
+ 767 0079 13       		.uleb128 0x13
+ 768 007a 11       		.uleb128 0x11
+ 769 007b 01       		.uleb128 0x1
+ 770 007c 12       		.uleb128 0x12
+ 771 007d 06       		.uleb128 0x6
+ 772 007e 40       		.uleb128 0x40
+ 773 007f 18       		.uleb128 0x18
+ 774 0080 9742     		.uleb128 0x2117
+ 775 0082 19       		.uleb128 0x19
+ 776 0083 01       		.uleb128 0x1
+ 777 0084 13       		.uleb128 0x13
+ 778 0085 00       		.byte	0
+ 779 0086 00       		.byte	0
+ 780 0087 0A       		.uleb128 0xa
+ 781 0088 05       		.uleb128 0x5
+ 782 0089 00       		.byte	0
+ 783 008a 03       		.uleb128 0x3
+ 784 008b 0E       		.uleb128 0xe
+ 785 008c 3A       		.uleb128 0x3a
+ 786 008d 0B       		.uleb128 0xb
+ 787 008e 3B       		.uleb128 0x3b
+ 788 008f 0B       		.uleb128 0xb
+ 789 0090 49       		.uleb128 0x49
+ 790 0091 13       		.uleb128 0x13
+ 791 0092 02       		.uleb128 0x2
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccZf7krf.s 			page 16
+
+
+ 792 0093 17       		.uleb128 0x17
+ 793 0094 00       		.byte	0
+ 794 0095 00       		.byte	0
+ 795 0096 0B       		.uleb128 0xb
+ 796 0097 34       		.uleb128 0x34
+ 797 0098 00       		.byte	0
+ 798 0099 03       		.uleb128 0x3
+ 799 009a 0E       		.uleb128 0xe
+ 800 009b 3A       		.uleb128 0x3a
+ 801 009c 0B       		.uleb128 0xb
+ 802 009d 3B       		.uleb128 0x3b
+ 803 009e 0B       		.uleb128 0xb
+ 804 009f 49       		.uleb128 0x49
+ 805 00a0 13       		.uleb128 0x13
+ 806 00a1 02       		.uleb128 0x2
+ 807 00a2 17       		.uleb128 0x17
+ 808 00a3 00       		.byte	0
+ 809 00a4 00       		.byte	0
+ 810 00a5 0C       		.uleb128 0xc
+ 811 00a6 898201   		.uleb128 0x4109
+ 812 00a9 01       		.byte	0x1
+ 813 00aa 11       		.uleb128 0x11
+ 814 00ab 01       		.uleb128 0x1
+ 815 00ac 31       		.uleb128 0x31
+ 816 00ad 13       		.uleb128 0x13
+ 817 00ae 00       		.byte	0
+ 818 00af 00       		.byte	0
+ 819 00b0 0D       		.uleb128 0xd
+ 820 00b1 8A8201   		.uleb128 0x410a
+ 821 00b4 00       		.byte	0
+ 822 00b5 02       		.uleb128 0x2
+ 823 00b6 18       		.uleb128 0x18
+ 824 00b7 9142     		.uleb128 0x2111
+ 825 00b9 18       		.uleb128 0x18
+ 826 00ba 00       		.byte	0
+ 827 00bb 00       		.byte	0
+ 828 00bc 0E       		.uleb128 0xe
+ 829 00bd 2E       		.uleb128 0x2e
+ 830 00be 01       		.byte	0x1
+ 831 00bf 3F       		.uleb128 0x3f
+ 832 00c0 19       		.uleb128 0x19
+ 833 00c1 03       		.uleb128 0x3
+ 834 00c2 0E       		.uleb128 0xe
+ 835 00c3 3A       		.uleb128 0x3a
+ 836 00c4 0B       		.uleb128 0xb
+ 837 00c5 3B       		.uleb128 0x3b
+ 838 00c6 0B       		.uleb128 0xb
+ 839 00c7 49       		.uleb128 0x49
+ 840 00c8 13       		.uleb128 0x13
+ 841 00c9 11       		.uleb128 0x11
+ 842 00ca 01       		.uleb128 0x1
+ 843 00cb 12       		.uleb128 0x12
+ 844 00cc 06       		.uleb128 0x6
+ 845 00cd 40       		.uleb128 0x40
+ 846 00ce 18       		.uleb128 0x18
+ 847 00cf 9742     		.uleb128 0x2117
+ 848 00d1 19       		.uleb128 0x19
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccZf7krf.s 			page 17
+
+
+ 849 00d2 01       		.uleb128 0x1
+ 850 00d3 13       		.uleb128 0x13
+ 851 00d4 00       		.byte	0
+ 852 00d5 00       		.byte	0
+ 853 00d6 0F       		.uleb128 0xf
+ 854 00d7 898201   		.uleb128 0x4109
+ 855 00da 01       		.byte	0x1
+ 856 00db 11       		.uleb128 0x11
+ 857 00dc 01       		.uleb128 0x1
+ 858 00dd 31       		.uleb128 0x31
+ 859 00de 13       		.uleb128 0x13
+ 860 00df 01       		.uleb128 0x1
+ 861 00e0 13       		.uleb128 0x13
+ 862 00e1 00       		.byte	0
+ 863 00e2 00       		.byte	0
+ 864 00e3 10       		.uleb128 0x10
+ 865 00e4 34       		.uleb128 0x34
+ 866 00e5 00       		.byte	0
+ 867 00e6 03       		.uleb128 0x3
+ 868 00e7 0E       		.uleb128 0xe
+ 869 00e8 3A       		.uleb128 0x3a
+ 870 00e9 0B       		.uleb128 0xb
+ 871 00ea 3B       		.uleb128 0x3b
+ 872 00eb 0B       		.uleb128 0xb
+ 873 00ec 49       		.uleb128 0x49
+ 874 00ed 13       		.uleb128 0x13
+ 875 00ee 3F       		.uleb128 0x3f
+ 876 00ef 19       		.uleb128 0x19
+ 877 00f0 3C       		.uleb128 0x3c
+ 878 00f1 19       		.uleb128 0x19
+ 879 00f2 00       		.byte	0
+ 880 00f3 00       		.byte	0
+ 881 00f4 11       		.uleb128 0x11
+ 882 00f5 2E       		.uleb128 0x2e
+ 883 00f6 00       		.byte	0
+ 884 00f7 3F       		.uleb128 0x3f
+ 885 00f8 19       		.uleb128 0x19
+ 886 00f9 3C       		.uleb128 0x3c
+ 887 00fa 19       		.uleb128 0x19
+ 888 00fb 6E       		.uleb128 0x6e
+ 889 00fc 0E       		.uleb128 0xe
+ 890 00fd 03       		.uleb128 0x3
+ 891 00fe 0E       		.uleb128 0xe
+ 892 00ff 3A       		.uleb128 0x3a
+ 893 0100 0B       		.uleb128 0xb
+ 894 0101 3B       		.uleb128 0x3b
+ 895 0102 0B       		.uleb128 0xb
+ 896 0103 00       		.byte	0
+ 897 0104 00       		.byte	0
+ 898 0105 12       		.uleb128 0x12
+ 899 0106 2E       		.uleb128 0x2e
+ 900 0107 00       		.byte	0
+ 901 0108 3F       		.uleb128 0x3f
+ 902 0109 19       		.uleb128 0x19
+ 903 010a 3C       		.uleb128 0x3c
+ 904 010b 19       		.uleb128 0x19
+ 905 010c 6E       		.uleb128 0x6e
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccZf7krf.s 			page 18
+
+
+ 906 010d 0E       		.uleb128 0xe
+ 907 010e 03       		.uleb128 0x3
+ 908 010f 0E       		.uleb128 0xe
+ 909 0110 3A       		.uleb128 0x3a
+ 910 0111 0B       		.uleb128 0xb
+ 911 0112 3B       		.uleb128 0x3b
+ 912 0113 05       		.uleb128 0x5
+ 913 0114 00       		.byte	0
+ 914 0115 00       		.byte	0
+ 915 0116 00       		.byte	0
+ 916              		.section	.debug_loc,"",%progbits
+ 917              	.Ldebug_loc0:
+ 918              	.LLST0:
+ 919 0000 00000000 		.4byte	.LVL4
+ 920 0004 0E000000 		.4byte	.LVL6
+ 921 0008 0100     		.2byte	0x1
+ 922 000a 50       		.byte	0x50
+ 923 000b 0E000000 		.4byte	.LVL6
+ 924 000f 22000000 		.4byte	.LVL9
+ 925 0013 0100     		.2byte	0x1
+ 926 0015 56       		.byte	0x56
+ 927 0016 22000000 		.4byte	.LVL9
+ 928 001a 24000000 		.4byte	.LFE35
+ 929 001e 0400     		.2byte	0x4
+ 930 0020 F3       		.byte	0xf3
+ 931 0021 01       		.uleb128 0x1
+ 932 0022 50       		.byte	0x50
+ 933 0023 9F       		.byte	0x9f
+ 934 0024 00000000 		.4byte	0
+ 935 0028 00000000 		.4byte	0
+ 936              	.LLST1:
+ 937 002c 00000000 		.4byte	.LVL4
+ 938 0030 0E000000 		.4byte	.LVL6
+ 939 0034 0100     		.2byte	0x1
+ 940 0036 51       		.byte	0x51
+ 941 0037 0E000000 		.4byte	.LVL6
+ 942 003b 24000000 		.4byte	.LFE35
+ 943 003f 0400     		.2byte	0x4
+ 944 0041 F3       		.byte	0xf3
+ 945 0042 01       		.uleb128 0x1
+ 946 0043 51       		.byte	0x51
+ 947 0044 9F       		.byte	0x9f
+ 948 0045 00000000 		.4byte	0
+ 949 0049 00000000 		.4byte	0
+ 950              	.LLST2:
+ 951 004d 00000000 		.4byte	.LVL4
+ 952 0051 0E000000 		.4byte	.LVL6
+ 953 0055 0100     		.2byte	0x1
+ 954 0057 52       		.byte	0x52
+ 955 0058 0E000000 		.4byte	.LVL6
+ 956 005c 22000000 		.4byte	.LVL8
+ 957 0060 0100     		.2byte	0x1
+ 958 0062 54       		.byte	0x54
+ 959 0063 22000000 		.4byte	.LVL8
+ 960 0067 24000000 		.4byte	.LFE35
+ 961 006b 0400     		.2byte	0x4
+ 962 006d F3       		.byte	0xf3
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccZf7krf.s 			page 19
+
+
+ 963 006e 01       		.uleb128 0x1
+ 964 006f 52       		.byte	0x52
+ 965 0070 9F       		.byte	0x9f
+ 966 0071 00000000 		.4byte	0
+ 967 0075 00000000 		.4byte	0
+ 968              	.LLST3:
+ 969 0079 00000000 		.4byte	.LVL4
+ 970 007d 0A000000 		.4byte	.LVL5
+ 971 0081 0100     		.2byte	0x1
+ 972 0083 53       		.byte	0x53
+ 973 0084 0A000000 		.4byte	.LVL5
+ 974 0088 24000000 		.4byte	.LFE35
+ 975 008c 0400     		.2byte	0x4
+ 976 008e F3       		.byte	0xf3
+ 977 008f 01       		.uleb128 0x1
+ 978 0090 53       		.byte	0x53
+ 979 0091 9F       		.byte	0x9f
+ 980 0092 00000000 		.4byte	0
+ 981 0096 00000000 		.4byte	0
+ 982              	.LLST4:
+ 983 009a 00000000 		.4byte	.LVL10
+ 984 009e 1C000000 		.4byte	.LVL14
+ 985 00a2 0100     		.2byte	0x1
+ 986 00a4 50       		.byte	0x50
+ 987 00a5 1C000000 		.4byte	.LVL14
+ 988 00a9 4E000000 		.4byte	.LVL24
+ 989 00ad 0100     		.2byte	0x1
+ 990 00af 57       		.byte	0x57
+ 991 00b0 4E000000 		.4byte	.LVL24
+ 992 00b4 58000000 		.4byte	.LFE36
+ 993 00b8 0400     		.2byte	0x4
+ 994 00ba F3       		.byte	0xf3
+ 995 00bb 01       		.uleb128 0x1
+ 996 00bc 50       		.byte	0x50
+ 997 00bd 9F       		.byte	0x9f
+ 998 00be 00000000 		.4byte	0
+ 999 00c2 00000000 		.4byte	0
+ 1000              	.LLST5:
+ 1001 00c6 00000000 		.4byte	.LVL10
+ 1002 00ca 1C000000 		.4byte	.LVL14
+ 1003 00ce 0100     		.2byte	0x1
+ 1004 00d0 51       		.byte	0x51
+ 1005 00d1 1C000000 		.4byte	.LVL14
+ 1006 00d5 58000000 		.4byte	.LFE36
+ 1007 00d9 0400     		.2byte	0x4
+ 1008 00db F3       		.byte	0xf3
+ 1009 00dc 01       		.uleb128 0x1
+ 1010 00dd 51       		.byte	0x51
+ 1011 00de 9F       		.byte	0x9f
+ 1012 00df 00000000 		.4byte	0
+ 1013 00e3 00000000 		.4byte	0
+ 1014              	.LLST6:
+ 1015 00e7 00000000 		.4byte	.LVL10
+ 1016 00eb 0E000000 		.4byte	.LVL11
+ 1017 00ef 0100     		.2byte	0x1
+ 1018 00f1 52       		.byte	0x52
+ 1019 00f2 0E000000 		.4byte	.LVL11
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccZf7krf.s 			page 20
+
+
+ 1020 00f6 4E000000 		.4byte	.LVL23
+ 1021 00fa 0100     		.2byte	0x1
+ 1022 00fc 55       		.byte	0x55
+ 1023 00fd 4E000000 		.4byte	.LVL23
+ 1024 0101 58000000 		.4byte	.LFE36
+ 1025 0105 0400     		.2byte	0x4
+ 1026 0107 F3       		.byte	0xf3
+ 1027 0108 01       		.uleb128 0x1
+ 1028 0109 52       		.byte	0x52
+ 1029 010a 9F       		.byte	0x9f
+ 1030 010b 00000000 		.4byte	0
+ 1031 010f 00000000 		.4byte	0
+ 1032              	.LLST7:
+ 1033 0113 00000000 		.4byte	.LVL10
+ 1034 0117 14000000 		.4byte	.LVL13
+ 1035 011b 0100     		.2byte	0x1
+ 1036 011d 53       		.byte	0x53
+ 1037 011e 14000000 		.4byte	.LVL13
+ 1038 0122 58000000 		.4byte	.LFE36
+ 1039 0126 0400     		.2byte	0x4
+ 1040 0128 F3       		.byte	0xf3
+ 1041 0129 01       		.uleb128 0x1
+ 1042 012a 53       		.byte	0x53
+ 1043 012b 9F       		.byte	0x9f
+ 1044 012c 00000000 		.4byte	0
+ 1045 0130 00000000 		.4byte	0
+ 1046              	.LLST8:
+ 1047 0134 12000000 		.4byte	.LVL12
+ 1048 0138 1C000000 		.4byte	.LVL14
+ 1049 013c 0100     		.2byte	0x1
+ 1050 013e 52       		.byte	0x52
+ 1051 013f 1C000000 		.4byte	.LVL14
+ 1052 0143 2C000000 		.4byte	.LVL16
+ 1053 0147 0100     		.2byte	0x1
+ 1054 0149 54       		.byte	0x54
+ 1055 014a 32000000 		.4byte	.LVL18
+ 1056 014e 3A000000 		.4byte	.LVL19
+ 1057 0152 0400     		.2byte	0x4
+ 1058 0154 0A       		.byte	0xa
+ 1059 0155 1027     		.2byte	0x2710
+ 1060 0157 9F       		.byte	0x9f
+ 1061 0158 3A000000 		.4byte	.LVL19
+ 1062 015c 4E000000 		.4byte	.LVL22
+ 1063 0160 0100     		.2byte	0x1
+ 1064 0162 54       		.byte	0x54
+ 1065 0163 00000000 		.4byte	0
+ 1066 0167 00000000 		.4byte	0
+ 1067              	.LLST9:
+ 1068 016b 12000000 		.4byte	.LVL12
+ 1069 016f 1C000000 		.4byte	.LVL14
+ 1070 0173 0200     		.2byte	0x2
+ 1071 0175 40       		.byte	0x40
+ 1072 0176 9F       		.byte	0x9f
+ 1073 0177 1C000000 		.4byte	.LVL14
+ 1074 017b 32000000 		.4byte	.LVL18
+ 1075 017f 0100     		.2byte	0x1
+ 1076 0181 58       		.byte	0x58
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccZf7krf.s 			page 21
+
+
+ 1077 0182 32000000 		.4byte	.LVL18
+ 1078 0186 3A000000 		.4byte	.LVL19
+ 1079 018a 0200     		.2byte	0x2
+ 1080 018c 30       		.byte	0x30
+ 1081 018d 9F       		.byte	0x9f
+ 1082 018e 3A000000 		.4byte	.LVL19
+ 1083 0192 4E000000 		.4byte	.LVL25
+ 1084 0196 0100     		.2byte	0x1
+ 1085 0198 58       		.byte	0x58
+ 1086 0199 4E000000 		.4byte	.LVL25
+ 1087 019d 58000000 		.4byte	.LFE36
+ 1088 01a1 0100     		.2byte	0x1
+ 1089 01a3 50       		.byte	0x50
+ 1090 01a4 00000000 		.4byte	0
+ 1091 01a8 00000000 		.4byte	0
+ 1092              		.section	.debug_aranges,"",%progbits
+ 1093 0000 44000000 		.4byte	0x44
+ 1094 0004 0200     		.2byte	0x2
+ 1095 0006 00000000 		.4byte	.Ldebug_info0
+ 1096 000a 04       		.byte	0x4
+ 1097 000b 00       		.byte	0
+ 1098 000c 0000     		.2byte	0
+ 1099 000e 0000     		.2byte	0
+ 1100 0010 00000000 		.4byte	.LFB32
+ 1101 0014 08000000 		.4byte	.LFE32-.LFB32
+ 1102 0018 00000000 		.4byte	.LFB33
+ 1103 001c 08000000 		.4byte	.LFE33-.LFB33
+ 1104 0020 00000000 		.4byte	.LFB34
+ 1105 0024 0C000000 		.4byte	.LFE34-.LFB34
+ 1106 0028 00000000 		.4byte	.LFB35
+ 1107 002c 24000000 		.4byte	.LFE35-.LFB35
+ 1108 0030 00000000 		.4byte	.LFB36
+ 1109 0034 58000000 		.4byte	.LFE36-.LFB36
+ 1110 0038 00000000 		.4byte	.LFB37
+ 1111 003c 38000000 		.4byte	.LFE37-.LFB37
+ 1112 0040 00000000 		.4byte	0
+ 1113 0044 00000000 		.4byte	0
+ 1114              		.section	.debug_ranges,"",%progbits
+ 1115              	.Ldebug_ranges0:
+ 1116 0000 00000000 		.4byte	.LFB32
+ 1117 0004 08000000 		.4byte	.LFE32
+ 1118 0008 00000000 		.4byte	.LFB33
+ 1119 000c 08000000 		.4byte	.LFE33
+ 1120 0010 00000000 		.4byte	.LFB34
+ 1121 0014 0C000000 		.4byte	.LFE34
+ 1122 0018 00000000 		.4byte	.LFB35
+ 1123 001c 24000000 		.4byte	.LFE35
+ 1124 0020 00000000 		.4byte	.LFB36
+ 1125 0024 58000000 		.4byte	.LFE36
+ 1126 0028 00000000 		.4byte	.LFB37
+ 1127 002c 38000000 		.4byte	.LFE37
+ 1128 0030 00000000 		.4byte	0
+ 1129 0034 00000000 		.4byte	0
+ 1130              		.section	.debug_line,"",%progbits
+ 1131              	.Ldebug_line0:
+ 1132 0000 1A010000 		.section	.debug_str,"MS",%progbits,1
+ 1132      02008500 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccZf7krf.s 			page 22
+
+
+ 1132      00000201 
+ 1132      FB0E0D00 
+ 1132      01010101 
+ 1133              	.LASF19:
+ 1134 0000 43794274 		.ascii	"CyBtldrCommReset\000"
+ 1134      6C647243 
+ 1134      6F6D6D52 
+ 1134      65736574 
+ 1134      00
+ 1135              	.LASF15:
+ 1136 0011 63797374 		.ascii	"cystatus\000"
+ 1136      61747573 
+ 1136      00
+ 1137              	.LASF22:
+ 1138 001a 636F756E 		.ascii	"count\000"
+ 1138      7400
+ 1139              	.LASF40:
+ 1140 0020 474E5520 		.ascii	"GNU C99 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1140      43393920 
+ 1140      352E342E 
+ 1140      31203230 
+ 1140      31363036 
+ 1141 0053 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 1141      20726576 
+ 1141      6973696F 
+ 1141      6E203233 
+ 1141      37373135 
+ 1142 0086 67202D73 		.ascii	"g -std=gnu99 -ffunction-sections -ffat-lto-objects\000"
+ 1142      74643D67 
+ 1142      6E753939 
+ 1142      202D6666 
+ 1142      756E6374 
+ 1143              	.LASF33:
+ 1144 00b9 55415254 		.ascii	"UART_SpiUartWriteTxData\000"
+ 1144      5F537069 
+ 1144      55617274 
+ 1144      57726974 
+ 1144      65547844 
+ 1145              	.LASF17:
+ 1146 00d1 43794274 		.ascii	"CyBtldrCommStart\000"
+ 1146      6C647243 
+ 1146      6F6D6D53 
+ 1146      74617274 
+ 1146      00
+ 1147              	.LASF26:
+ 1148 00e2 74696D65 		.ascii	"timeoutUs\000"
+ 1148      6F757455 
+ 1148      7300
+ 1149              	.LASF27:
+ 1150 00ec 73746174 		.ascii	"status\000"
+ 1150      757300
+ 1151              	.LASF18:
+ 1152 00f3 43794274 		.ascii	"CyBtldrCommStop\000"
+ 1152      6C647243 
+ 1152      6F6D6D53 
+ 1152      746F7000 
+ 1153              	.LASF12:
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccZf7krf.s 			page 23
+
+
+ 1154 0103 666C6F61 		.ascii	"float\000"
+ 1154      7400
+ 1155              	.LASF9:
+ 1156 0109 75696E74 		.ascii	"uint8\000"
+ 1156      3800
+ 1157              	.LASF21:
+ 1158 010f 73697A65 		.ascii	"size\000"
+ 1158      00
+ 1159              	.LASF25:
+ 1160 0114 43794274 		.ascii	"CyBtldrCommRead\000"
+ 1160      6C647243 
+ 1160      6F6D6D52 
+ 1160      65616400 
+ 1161              	.LASF5:
+ 1162 0124 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1162      20756E73 
+ 1162      69676E65 
+ 1162      6420696E 
+ 1162      7400
+ 1163              	.LASF3:
+ 1164 0136 73686F72 		.ascii	"short unsigned int\000"
+ 1164      7420756E 
+ 1164      7369676E 
+ 1164      65642069 
+ 1164      6E7400
+ 1165              	.LASF29:
+ 1166 0149 55415254 		.ascii	"UART_Start\000"
+ 1166      5F537461 
+ 1166      727400
+ 1167              	.LASF35:
+ 1168 0154 55415254 		.ascii	"UART_UartGetByte\000"
+ 1168      5F556172 
+ 1168      74476574 
+ 1168      42797465 
+ 1168      00
+ 1169              	.LASF24:
+ 1170 0165 43794274 		.ascii	"CyBtldrCommWrite\000"
+ 1170      6C647243 
+ 1170      6F6D6D57 
+ 1170      72697465 
+ 1170      00
+ 1171              	.LASF1:
+ 1172 0176 756E7369 		.ascii	"unsigned char\000"
+ 1172      676E6564 
+ 1172      20636861 
+ 1172      7200
+ 1173              	.LASF13:
+ 1174 0184 646F7562 		.ascii	"double\000"
+ 1174      6C6500
+ 1175              	.LASF10:
+ 1176 018b 75696E74 		.ascii	"uint16\000"
+ 1176      313600
+ 1177              	.LASF28:
+ 1178 0192 6D61696E 		.ascii	"main\000"
+ 1178      00
+ 1179              	.LASF43:
+ 1180 0197 63794274 		.ascii	"cyBtldrRunType\000"
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccZf7krf.s 			page 24
+
+
+ 1180      6C647252 
+ 1180      756E5479 
+ 1180      706500
+ 1181              	.LASF36:
+ 1182 01a6 43794465 		.ascii	"CyDelayUs\000"
+ 1182      6C617955 
+ 1182      7300
+ 1183              	.LASF11:
+ 1184 01b0 75696E74 		.ascii	"uint32\000"
+ 1184      333200
+ 1185              	.LASF32:
+ 1186 01b7 55415254 		.ascii	"UART_SpiUartClearTxBuffer\000"
+ 1186      5F537069 
+ 1186      55617274 
+ 1186      436C6561 
+ 1186      72547842 
+ 1187              	.LASF8:
+ 1188 01d1 756E7369 		.ascii	"unsigned int\000"
+ 1188      676E6564 
+ 1188      20696E74 
+ 1188      00
+ 1189              	.LASF7:
+ 1190 01de 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1190      206C6F6E 
+ 1190      6720756E 
+ 1190      7369676E 
+ 1190      65642069 
+ 1191              	.LASF23:
+ 1192 01f5 74696D65 		.ascii	"timeOut\000"
+ 1192      4F757400 
+ 1193              	.LASF37:
+ 1194 01fd 426F6F74 		.ascii	"Bootloader_Start\000"
+ 1194      6C6F6164 
+ 1194      65725F53 
+ 1194      74617274 
+ 1194      00
+ 1195              	.LASF39:
+ 1196 020e 42757474 		.ascii	"Button_Read\000"
+ 1196      6F6E5F52 
+ 1196      65616400 
+ 1197              	.LASF16:
+ 1198 021a 73697A65 		.ascii	"sizetype\000"
+ 1198      74797065 
+ 1198      00
+ 1199              	.LASF6:
+ 1200 0223 6C6F6E67 		.ascii	"long long int\000"
+ 1200      206C6F6E 
+ 1200      6720696E 
+ 1200      7400
+ 1201              	.LASF41:
+ 1202 0231 6D61696E 		.ascii	"main.c\000"
+ 1202      2E6300
+ 1203              	.LASF14:
+ 1204 0238 63686172 		.ascii	"char\000"
+ 1204      00
+ 1205              	.LASF2:
+ 1206 023d 73686F72 		.ascii	"short int\000"
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccZf7krf.s 			page 25
+
+
+ 1206      7420696E 
+ 1206      7400
+ 1207              	.LASF20:
+ 1208 0247 62756666 		.ascii	"buffer\000"
+ 1208      657200
+ 1209              	.LASF30:
+ 1210 024e 55415254 		.ascii	"UART_Stop\000"
+ 1210      5F53746F 
+ 1210      7000
+ 1211              	.LASF4:
+ 1212 0258 6C6F6E67 		.ascii	"long int\000"
+ 1212      20696E74 
+ 1212      00
+ 1213              	.LASF31:
+ 1214 0261 55415254 		.ascii	"UART_SpiUartClearRxBuffer\000"
+ 1214      5F537069 
+ 1214      55617274 
+ 1214      436C6561 
+ 1214      72527842 
+ 1215              	.LASF42:
+ 1216 027b 443A5C31 		.ascii	"D:\\1_work\\my_project\\ReloadPro\\psoc42boot\\Boot"
+ 1216      5F776F72 
+ 1216      6B5C6D79 
+ 1216      5F70726F 
+ 1216      6A656374 
+ 1217 02a9 6C6F6164 		.ascii	"loader.cydsn\000"
+ 1217      65722E63 
+ 1217      7964736E 
+ 1217      00
+ 1218              	.LASF0:
+ 1219 02b6 7369676E 		.ascii	"signed char\000"
+ 1219      65642063 
+ 1219      68617200 
+ 1220              	.LASF34:
+ 1221 02c2 55415254 		.ascii	"UART_SpiUartGetRxBufferSize\000"
+ 1221      5F537069 
+ 1221      55617274 
+ 1221      47657452 
+ 1221      78427566 
+ 1222              	.LASF38:
+ 1223 02de 43794465 		.ascii	"CyDelay\000"
+ 1223      6C617900 
+ 1224              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

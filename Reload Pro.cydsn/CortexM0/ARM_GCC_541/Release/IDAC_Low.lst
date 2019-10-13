@@ -1,0 +1,1265 @@
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccTBS2km.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"IDAC_Low.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.IDAC_Low_Init,"ax",%progbits
+  20              		.align	1
+  21              		.global	IDAC_Low_Init
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	IDAC_Low_Init, %function
+  25              	IDAC_Low_Init:
+  26              	.LFB0:
+  27              		.file 1 "Generated_Source\\PSoC4\\IDAC_Low.c"
+   1:Generated_Source\PSoC4/IDAC_Low.c **** /*******************************************************************************
+   2:Generated_Source\PSoC4/IDAC_Low.c **** * File Name: IDAC_Low.c
+   3:Generated_Source\PSoC4/IDAC_Low.c **** * Version 1.10
+   4:Generated_Source\PSoC4/IDAC_Low.c **** *
+   5:Generated_Source\PSoC4/IDAC_Low.c **** * Description:
+   6:Generated_Source\PSoC4/IDAC_Low.c **** *  This file provides the source code of APIs for the IDAC_P4 component.
+   7:Generated_Source\PSoC4/IDAC_Low.c **** *
+   8:Generated_Source\PSoC4/IDAC_Low.c **** *******************************************************************************
+   9:Generated_Source\PSoC4/IDAC_Low.c **** * Copyright 2013-2015, Cypress Semiconductor Corporation.  All rights reserved.
+  10:Generated_Source\PSoC4/IDAC_Low.c **** * You may use this file only in accordance with the license, terms, conditions,
+  11:Generated_Source\PSoC4/IDAC_Low.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  12:Generated_Source\PSoC4/IDAC_Low.c **** * the software package with which this file was provided.
+  13:Generated_Source\PSoC4/IDAC_Low.c **** *******************************************************************************/
+  14:Generated_Source\PSoC4/IDAC_Low.c **** 
+  15:Generated_Source\PSoC4/IDAC_Low.c **** #include "IDAC_Low.h"
+  16:Generated_Source\PSoC4/IDAC_Low.c **** 
+  17:Generated_Source\PSoC4/IDAC_Low.c **** uint32 IDAC_Low_initVar = 0u;
+  18:Generated_Source\PSoC4/IDAC_Low.c **** 
+  19:Generated_Source\PSoC4/IDAC_Low.c **** 
+  20:Generated_Source\PSoC4/IDAC_Low.c **** /*******************************************************************************
+  21:Generated_Source\PSoC4/IDAC_Low.c **** * Function Name: IDAC_Low_Init
+  22:Generated_Source\PSoC4/IDAC_Low.c **** ********************************************************************************
+  23:Generated_Source\PSoC4/IDAC_Low.c **** *
+  24:Generated_Source\PSoC4/IDAC_Low.c **** * Summary:
+  25:Generated_Source\PSoC4/IDAC_Low.c **** *  Initializes IDAC registers with initial values provided from customizer.
+  26:Generated_Source\PSoC4/IDAC_Low.c **** *
+  27:Generated_Source\PSoC4/IDAC_Low.c **** * Parameters:
+  28:Generated_Source\PSoC4/IDAC_Low.c **** *  None
+  29:Generated_Source\PSoC4/IDAC_Low.c **** *
+  30:Generated_Source\PSoC4/IDAC_Low.c **** * Return:
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccTBS2km.s 			page 2
+
+
+  31:Generated_Source\PSoC4/IDAC_Low.c **** *  None
+  32:Generated_Source\PSoC4/IDAC_Low.c **** *
+  33:Generated_Source\PSoC4/IDAC_Low.c **** * Global variables:
+  34:Generated_Source\PSoC4/IDAC_Low.c **** *  None
+  35:Generated_Source\PSoC4/IDAC_Low.c **** *
+  36:Generated_Source\PSoC4/IDAC_Low.c **** *******************************************************************************/
+  37:Generated_Source\PSoC4/IDAC_Low.c **** void IDAC_Low_Init(void)
+  38:Generated_Source\PSoC4/IDAC_Low.c **** {
+  28              		.loc 1 38 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 10B5     		push	{r4, lr}
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 4, -8
+  35              		.cfi_offset 14, -4
+  39:Generated_Source\PSoC4/IDAC_Low.c ****     uint32 regVal;
+  40:Generated_Source\PSoC4/IDAC_Low.c ****     uint8 enableInterrupts;
+  41:Generated_Source\PSoC4/IDAC_Low.c **** 
+  42:Generated_Source\PSoC4/IDAC_Low.c ****     /* Set initial configuration */
+  43:Generated_Source\PSoC4/IDAC_Low.c ****     enableInterrupts = CyEnterCriticalSection();
+  36              		.loc 1 43 0
+  37 0002 FFF7FEFF 		bl	CyEnterCriticalSection
+  38              	.LVL0:
+  44:Generated_Source\PSoC4/IDAC_Low.c ****     
+  45:Generated_Source\PSoC4/IDAC_Low.c ****     #if(IDAC_Low_MODE_SOURCE == IDAC_Low_IDAC_POLARITY)
+  46:Generated_Source\PSoC4/IDAC_Low.c ****         regVal  = IDAC_Low_CSD_TRIM1_REG & ~(IDAC_Low_CSD_IDAC_TRIM1_MASK);
+  39              		.loc 1 46 0
+  40 0006 F022     		movs	r2, #240
+  41 0008 0D49     		ldr	r1, .L2
+  47:Generated_Source\PSoC4/IDAC_Low.c ****         regVal |=  (IDAC_Low_SFLASH_TRIM1_REG & IDAC_Low_CSD_IDAC_TRIM1_MASK);
+  42              		.loc 1 47 0
+  43 000a 0F24     		movs	r4, #15
+  46:Generated_Source\PSoC4/IDAC_Low.c ****         regVal |=  (IDAC_Low_SFLASH_TRIM1_REG & IDAC_Low_CSD_IDAC_TRIM1_MASK);
+  44              		.loc 1 46 0
+  45 000c 0B68     		ldr	r3, [r1]
+  48:Generated_Source\PSoC4/IDAC_Low.c ****         IDAC_Low_CSD_TRIM1_REG = regVal;
+  49:Generated_Source\PSoC4/IDAC_Low.c ****     #else
+  50:Generated_Source\PSoC4/IDAC_Low.c ****         regVal  = IDAC_Low_CSD_TRIM2_REG & ~(IDAC_Low_CSD_IDAC_TRIM2_MASK);
+  51:Generated_Source\PSoC4/IDAC_Low.c ****         regVal |=  (IDAC_Low_SFLASH_TRIM2_REG & IDAC_Low_CSD_IDAC_TRIM2_MASK);
+  52:Generated_Source\PSoC4/IDAC_Low.c ****         IDAC_Low_CSD_TRIM2_REG = regVal;
+  53:Generated_Source\PSoC4/IDAC_Low.c ****     #endif /* (IDAC_Low_MODE_SOURCE == IDAC_Low_IDAC_POLARITY) */
+  54:Generated_Source\PSoC4/IDAC_Low.c **** 
+  55:Generated_Source\PSoC4/IDAC_Low.c ****     /* clear previous values */
+  56:Generated_Source\PSoC4/IDAC_Low.c ****     IDAC_Low_IDAC_CONTROL_REG &= ((uint32)~((uint32)IDAC_Low_IDAC_VALUE_MASK <<
+  57:Generated_Source\PSoC4/IDAC_Low.c ****         IDAC_Low_IDAC_VALUE_POSITION)) | ((uint32)~((uint32)IDAC_Low_IDAC_MODE_MASK <<
+  58:Generated_Source\PSoC4/IDAC_Low.c ****         IDAC_Low_IDAC_MODE_POSITION))  | ((uint32)~((uint32)IDAC_Low_IDAC_RANGE_MASK  <<
+  59:Generated_Source\PSoC4/IDAC_Low.c ****         IDAC_Low_IDAC_RANGE_POSITION));
+  60:Generated_Source\PSoC4/IDAC_Low.c **** 
+  61:Generated_Source\PSoC4/IDAC_Low.c ****     IDAC_Low_IDAC_POLARITY_CONTROL_REG &= (~(uint32)((uint32)IDAC_Low_IDAC_POLARITY_MASK <<
+  62:Generated_Source\PSoC4/IDAC_Low.c ****         IDAC_Low_IDAC_POLARITY_POSITION));
+  63:Generated_Source\PSoC4/IDAC_Low.c **** 
+  64:Generated_Source\PSoC4/IDAC_Low.c ****     /* set new configuration */
+  65:Generated_Source\PSoC4/IDAC_Low.c ****     IDAC_Low_IDAC_CONTROL_REG |= (((uint32)IDAC_Low_IDAC_INIT_VALUE <<
+  66:Generated_Source\PSoC4/IDAC_Low.c ****         IDAC_Low_IDAC_VALUE_POSITION) | ((uint32)IDAC_Low_IDAC_RANGE <<
+  67:Generated_Source\PSoC4/IDAC_Low.c ****         IDAC_Low_IDAC_RANGE_POSITION));
+  68:Generated_Source\PSoC4/IDAC_Low.c **** 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccTBS2km.s 			page 3
+
+
+  69:Generated_Source\PSoC4/IDAC_Low.c ****     IDAC_Low_IDAC_POLARITY_CONTROL_REG |= ((uint32)IDAC_Low_IDAC_POLARITY <<
+  70:Generated_Source\PSoC4/IDAC_Low.c ****                                                            IDAC_Low_IDAC_POLARITY_POSITION);
+  71:Generated_Source\PSoC4/IDAC_Low.c **** 
+  72:Generated_Source\PSoC4/IDAC_Low.c ****     CyExitCriticalSection(enableInterrupts);
+  73:Generated_Source\PSoC4/IDAC_Low.c **** 
+  74:Generated_Source\PSoC4/IDAC_Low.c **** }
+  46              		.loc 1 74 0
+  47              		@ sp needed
+  46:Generated_Source\PSoC4/IDAC_Low.c ****         regVal |=  (IDAC_Low_SFLASH_TRIM1_REG & IDAC_Low_CSD_IDAC_TRIM1_MASK);
+  48              		.loc 1 46 0
+  49 000e 9343     		bics	r3, r2
+  50 0010 1A00     		movs	r2, r3
+  51              	.LVL1:
+  47:Generated_Source\PSoC4/IDAC_Low.c ****         IDAC_Low_CSD_TRIM1_REG = regVal;
+  52              		.loc 1 47 0
+  53 0012 0C4B     		ldr	r3, .L2+4
+  54 0014 1B78     		ldrb	r3, [r3]
+  55 0016 A343     		bics	r3, r4
+  56 0018 1343     		orrs	r3, r2
+  57              	.LVL2:
+  56:Generated_Source\PSoC4/IDAC_Low.c ****         IDAC_Low_IDAC_VALUE_POSITION)) | ((uint32)~((uint32)IDAC_Low_IDAC_MODE_MASK <<
+  58              		.loc 1 56 0
+  59 001a 0B4A     		ldr	r2, .L2+8
+  48:Generated_Source\PSoC4/IDAC_Low.c ****         IDAC_Low_CSD_TRIM1_REG = regVal;
+  60              		.loc 1 48 0
+  61 001c 0B60     		str	r3, [r1]
+  56:Generated_Source\PSoC4/IDAC_Low.c ****         IDAC_Low_IDAC_VALUE_POSITION)) | ((uint32)~((uint32)IDAC_Low_IDAC_MODE_MASK <<
+  62              		.loc 1 56 0
+  63 001e 1368     		ldr	r3, [r2]
+  64              	.LVL3:
+  61:Generated_Source\PSoC4/IDAC_Low.c ****         IDAC_Low_IDAC_POLARITY_POSITION));
+  65              		.loc 1 61 0
+  66 0020 0A49     		ldr	r1, .L2+12
+  67              	.LVL4:
+  56:Generated_Source\PSoC4/IDAC_Low.c ****         IDAC_Low_IDAC_VALUE_POSITION)) | ((uint32)~((uint32)IDAC_Low_IDAC_MODE_MASK <<
+  68              		.loc 1 56 0
+  69 0022 1360     		str	r3, [r2]
+  70              	.LVL5:
+  61:Generated_Source\PSoC4/IDAC_Low.c ****         IDAC_Low_IDAC_POLARITY_POSITION));
+  71              		.loc 1 61 0
+  72 0024 0A4B     		ldr	r3, .L2+16
+  73 0026 1C68     		ldr	r4, [r3]
+  74 0028 2140     		ands	r1, r4
+  65:Generated_Source\PSoC4/IDAC_Low.c ****         IDAC_Low_IDAC_VALUE_POSITION) | ((uint32)IDAC_Low_IDAC_RANGE <<
+  75              		.loc 1 65 0
+  76 002a F024     		movs	r4, #240
+  61:Generated_Source\PSoC4/IDAC_Low.c ****         IDAC_Low_IDAC_POLARITY_POSITION));
+  77              		.loc 1 61 0
+  78 002c 1960     		str	r1, [r3]
+  65:Generated_Source\PSoC4/IDAC_Low.c ****         IDAC_Low_IDAC_VALUE_POSITION) | ((uint32)IDAC_Low_IDAC_RANGE <<
+  79              		.loc 1 65 0
+  80 002e 1168     		ldr	r1, [r2]
+  81 0030 E403     		lsls	r4, r4, #15
+  82 0032 2143     		orrs	r1, r4
+  83 0034 1160     		str	r1, [r2]
+  69:Generated_Source\PSoC4/IDAC_Low.c ****                                                            IDAC_Low_IDAC_POLARITY_POSITION);
+  84              		.loc 1 69 0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccTBS2km.s 			page 4
+
+
+  85 0036 1A68     		ldr	r2, [r3]
+  86 0038 1A60     		str	r2, [r3]
+  72:Generated_Source\PSoC4/IDAC_Low.c **** 
+  87              		.loc 1 72 0
+  88 003a FFF7FEFF 		bl	CyExitCriticalSection
+  89              	.LVL6:
+  90              		.loc 1 74 0
+  91 003e 10BD     		pop	{r4, pc}
+  92              	.L3:
+  93              		.align	2
+  94              	.L2:
+  95 0040 00FF0840 		.word	1074331392
+  96 0044 60F1FF0F 		.word	268431712
+  97 0048 08000840 		.word	1074266120
+  98 004c FFFFFDFF 		.word	-131073
+  99 0050 04000840 		.word	1074266116
+ 100              		.cfi_endproc
+ 101              	.LFE0:
+ 102              		.size	IDAC_Low_Init, .-IDAC_Low_Init
+ 103              		.section	.text.IDAC_Low_Enable,"ax",%progbits
+ 104              		.align	1
+ 105              		.global	IDAC_Low_Enable
+ 106              		.code	16
+ 107              		.thumb_func
+ 108              		.type	IDAC_Low_Enable, %function
+ 109              	IDAC_Low_Enable:
+ 110              	.LFB1:
+  75:Generated_Source\PSoC4/IDAC_Low.c **** 
+  76:Generated_Source\PSoC4/IDAC_Low.c **** 
+  77:Generated_Source\PSoC4/IDAC_Low.c **** /*******************************************************************************
+  78:Generated_Source\PSoC4/IDAC_Low.c **** * Function Name: IDAC_Low_Enable
+  79:Generated_Source\PSoC4/IDAC_Low.c **** ********************************************************************************
+  80:Generated_Source\PSoC4/IDAC_Low.c **** *
+  81:Generated_Source\PSoC4/IDAC_Low.c **** * Summary:
+  82:Generated_Source\PSoC4/IDAC_Low.c **** *  Enables IDAC operations.
+  83:Generated_Source\PSoC4/IDAC_Low.c **** *
+  84:Generated_Source\PSoC4/IDAC_Low.c **** * Parameters:
+  85:Generated_Source\PSoC4/IDAC_Low.c **** *  None
+  86:Generated_Source\PSoC4/IDAC_Low.c **** *
+  87:Generated_Source\PSoC4/IDAC_Low.c **** * Return:
+  88:Generated_Source\PSoC4/IDAC_Low.c **** *  None
+  89:Generated_Source\PSoC4/IDAC_Low.c **** *
+  90:Generated_Source\PSoC4/IDAC_Low.c **** * Global variables:
+  91:Generated_Source\PSoC4/IDAC_Low.c **** *  None
+  92:Generated_Source\PSoC4/IDAC_Low.c **** *
+  93:Generated_Source\PSoC4/IDAC_Low.c **** *******************************************************************************/
+  94:Generated_Source\PSoC4/IDAC_Low.c **** void IDAC_Low_Enable(void)
+  95:Generated_Source\PSoC4/IDAC_Low.c **** {
+ 111              		.loc 1 95 0
+ 112              		.cfi_startproc
+ 113              		@ args = 0, pretend = 0, frame = 0
+ 114              		@ frame_needed = 0, uses_anonymous_args = 0
+ 115 0000 10B5     		push	{r4, lr}
+ 116              		.cfi_def_cfa_offset 8
+ 117              		.cfi_offset 4, -8
+ 118              		.cfi_offset 14, -4
+  96:Generated_Source\PSoC4/IDAC_Low.c ****     uint8 enableInterrupts;
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccTBS2km.s 			page 5
+
+
+  97:Generated_Source\PSoC4/IDAC_Low.c **** 
+  98:Generated_Source\PSoC4/IDAC_Low.c ****     enableInterrupts = CyEnterCriticalSection();
+ 119              		.loc 1 98 0
+ 120 0002 FFF7FEFF 		bl	CyEnterCriticalSection
+ 121              	.LVL7:
+  99:Generated_Source\PSoC4/IDAC_Low.c **** 
+ 100:Generated_Source\PSoC4/IDAC_Low.c ****     /* Enable the IDAC */
+ 101:Generated_Source\PSoC4/IDAC_Low.c ****     IDAC_Low_IDAC_CONTROL_REG |= ((uint32)IDAC_Low_IDAC_EN_MODE <<
+ 122              		.loc 1 101 0
+ 123 0006 C021     		movs	r1, #192
+ 124 0008 064A     		ldr	r2, .L5
+ 125 000a 8904     		lsls	r1, r1, #18
+ 126 000c 1368     		ldr	r3, [r2]
+ 102:Generated_Source\PSoC4/IDAC_Low.c ****                                                   IDAC_Low_IDAC_MODE_POSITION);
+ 103:Generated_Source\PSoC4/IDAC_Low.c ****     IDAC_Low_IDAC_POLARITY_CONTROL_REG |= ((uint32)IDAC_Low_IDAC_CSD_EN <<
+ 104:Generated_Source\PSoC4/IDAC_Low.c ****                                                            IDAC_Low_IDAC_CSD_EN_POSITION);
+ 105:Generated_Source\PSoC4/IDAC_Low.c ****     CyExitCriticalSection(enableInterrupts);
+ 106:Generated_Source\PSoC4/IDAC_Low.c **** 
+ 107:Generated_Source\PSoC4/IDAC_Low.c **** }
+ 127              		.loc 1 107 0
+ 128              		@ sp needed
+ 101:Generated_Source\PSoC4/IDAC_Low.c ****                                                   IDAC_Low_IDAC_MODE_POSITION);
+ 129              		.loc 1 101 0
+ 130 000e 0B43     		orrs	r3, r1
+ 103:Generated_Source\PSoC4/IDAC_Low.c ****                                                            IDAC_Low_IDAC_CSD_EN_POSITION);
+ 131              		.loc 1 103 0
+ 132 0010 8021     		movs	r1, #128
+ 101:Generated_Source\PSoC4/IDAC_Low.c ****                                                   IDAC_Low_IDAC_MODE_POSITION);
+ 133              		.loc 1 101 0
+ 134 0012 1360     		str	r3, [r2]
+ 103:Generated_Source\PSoC4/IDAC_Low.c ****                                                            IDAC_Low_IDAC_CSD_EN_POSITION);
+ 135              		.loc 1 103 0
+ 136 0014 044A     		ldr	r2, .L5+4
+ 137 0016 0906     		lsls	r1, r1, #24
+ 138 0018 1368     		ldr	r3, [r2]
+ 139 001a 0B43     		orrs	r3, r1
+ 140 001c 1360     		str	r3, [r2]
+ 105:Generated_Source\PSoC4/IDAC_Low.c **** 
+ 141              		.loc 1 105 0
+ 142 001e FFF7FEFF 		bl	CyExitCriticalSection
+ 143              	.LVL8:
+ 144              		.loc 1 107 0
+ 145 0022 10BD     		pop	{r4, pc}
+ 146              	.L6:
+ 147              		.align	2
+ 148              	.L5:
+ 149 0024 08000840 		.word	1074266120
+ 150 0028 04000840 		.word	1074266116
+ 151              		.cfi_endproc
+ 152              	.LFE1:
+ 153              		.size	IDAC_Low_Enable, .-IDAC_Low_Enable
+ 154              		.section	.text.IDAC_Low_Start,"ax",%progbits
+ 155              		.align	1
+ 156              		.global	IDAC_Low_Start
+ 157              		.code	16
+ 158              		.thumb_func
+ 159              		.type	IDAC_Low_Start, %function
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccTBS2km.s 			page 6
+
+
+ 160              	IDAC_Low_Start:
+ 161              	.LFB2:
+ 108:Generated_Source\PSoC4/IDAC_Low.c **** 
+ 109:Generated_Source\PSoC4/IDAC_Low.c **** 
+ 110:Generated_Source\PSoC4/IDAC_Low.c **** /*******************************************************************************
+ 111:Generated_Source\PSoC4/IDAC_Low.c **** * Function Name: IDAC_Low_Start
+ 112:Generated_Source\PSoC4/IDAC_Low.c **** ********************************************************************************
+ 113:Generated_Source\PSoC4/IDAC_Low.c **** *
+ 114:Generated_Source\PSoC4/IDAC_Low.c **** * Summary:
+ 115:Generated_Source\PSoC4/IDAC_Low.c **** *  Starts the IDAC hardware.
+ 116:Generated_Source\PSoC4/IDAC_Low.c **** *
+ 117:Generated_Source\PSoC4/IDAC_Low.c **** * Parameters:
+ 118:Generated_Source\PSoC4/IDAC_Low.c **** *  None
+ 119:Generated_Source\PSoC4/IDAC_Low.c **** *
+ 120:Generated_Source\PSoC4/IDAC_Low.c **** * Return:
+ 121:Generated_Source\PSoC4/IDAC_Low.c **** *  None
+ 122:Generated_Source\PSoC4/IDAC_Low.c **** *
+ 123:Generated_Source\PSoC4/IDAC_Low.c **** * Global variables:
+ 124:Generated_Source\PSoC4/IDAC_Low.c **** *  IDAC_Low_initVar
+ 125:Generated_Source\PSoC4/IDAC_Low.c **** *
+ 126:Generated_Source\PSoC4/IDAC_Low.c **** *******************************************************************************/
+ 127:Generated_Source\PSoC4/IDAC_Low.c **** void IDAC_Low_Start(void)
+ 128:Generated_Source\PSoC4/IDAC_Low.c **** {
+ 162              		.loc 1 128 0
+ 163              		.cfi_startproc
+ 164              		@ args = 0, pretend = 0, frame = 0
+ 165              		@ frame_needed = 0, uses_anonymous_args = 0
+ 166 0000 10B5     		push	{r4, lr}
+ 167              		.cfi_def_cfa_offset 8
+ 168              		.cfi_offset 4, -8
+ 169              		.cfi_offset 14, -4
+ 129:Generated_Source\PSoC4/IDAC_Low.c ****     if(0u == IDAC_Low_initVar)
+ 170              		.loc 1 129 0
+ 171 0002 054C     		ldr	r4, .L10
+ 172 0004 2368     		ldr	r3, [r4]
+ 173 0006 002B     		cmp	r3, #0
+ 174 0008 03D1     		bne	.L8
+ 130:Generated_Source\PSoC4/IDAC_Low.c ****     {
+ 131:Generated_Source\PSoC4/IDAC_Low.c ****         IDAC_Low_Init();
+ 175              		.loc 1 131 0
+ 176 000a FFF7FEFF 		bl	IDAC_Low_Init
+ 177              	.LVL9:
+ 132:Generated_Source\PSoC4/IDAC_Low.c ****         IDAC_Low_initVar = 1u;
+ 178              		.loc 1 132 0
+ 179 000e 0123     		movs	r3, #1
+ 180 0010 2360     		str	r3, [r4]
+ 181              	.L8:
+ 133:Generated_Source\PSoC4/IDAC_Low.c ****     }
+ 134:Generated_Source\PSoC4/IDAC_Low.c **** 
+ 135:Generated_Source\PSoC4/IDAC_Low.c ****     IDAC_Low_Enable();
+ 182              		.loc 1 135 0
+ 183 0012 FFF7FEFF 		bl	IDAC_Low_Enable
+ 184              	.LVL10:
+ 136:Generated_Source\PSoC4/IDAC_Low.c **** 
+ 137:Generated_Source\PSoC4/IDAC_Low.c **** }
+ 185              		.loc 1 137 0
+ 186              		@ sp needed
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccTBS2km.s 			page 7
+
+
+ 187 0016 10BD     		pop	{r4, pc}
+ 188              	.L11:
+ 189              		.align	2
+ 190              	.L10:
+ 191 0018 00000000 		.word	.LANCHOR0
+ 192              		.cfi_endproc
+ 193              	.LFE2:
+ 194              		.size	IDAC_Low_Start, .-IDAC_Low_Start
+ 195              		.section	.text.IDAC_Low_Stop,"ax",%progbits
+ 196              		.align	1
+ 197              		.global	IDAC_Low_Stop
+ 198              		.code	16
+ 199              		.thumb_func
+ 200              		.type	IDAC_Low_Stop, %function
+ 201              	IDAC_Low_Stop:
+ 202              	.LFB3:
+ 138:Generated_Source\PSoC4/IDAC_Low.c **** 
+ 139:Generated_Source\PSoC4/IDAC_Low.c **** 
+ 140:Generated_Source\PSoC4/IDAC_Low.c **** /*******************************************************************************
+ 141:Generated_Source\PSoC4/IDAC_Low.c **** * Function Name: IDAC_Low_Stop
+ 142:Generated_Source\PSoC4/IDAC_Low.c **** ********************************************************************************
+ 143:Generated_Source\PSoC4/IDAC_Low.c **** *
+ 144:Generated_Source\PSoC4/IDAC_Low.c **** * Summary:
+ 145:Generated_Source\PSoC4/IDAC_Low.c **** *  Stops the IDAC hardware.
+ 146:Generated_Source\PSoC4/IDAC_Low.c **** *
+ 147:Generated_Source\PSoC4/IDAC_Low.c **** * Parameters:
+ 148:Generated_Source\PSoC4/IDAC_Low.c **** *  None
+ 149:Generated_Source\PSoC4/IDAC_Low.c **** *
+ 150:Generated_Source\PSoC4/IDAC_Low.c **** * Return:
+ 151:Generated_Source\PSoC4/IDAC_Low.c **** *  None
+ 152:Generated_Source\PSoC4/IDAC_Low.c **** *
+ 153:Generated_Source\PSoC4/IDAC_Low.c **** * Global variables:
+ 154:Generated_Source\PSoC4/IDAC_Low.c **** *  None
+ 155:Generated_Source\PSoC4/IDAC_Low.c **** *
+ 156:Generated_Source\PSoC4/IDAC_Low.c **** *******************************************************************************/
+ 157:Generated_Source\PSoC4/IDAC_Low.c **** void IDAC_Low_Stop(void)
+ 158:Generated_Source\PSoC4/IDAC_Low.c **** {
+ 203              		.loc 1 158 0
+ 204              		.cfi_startproc
+ 205              		@ args = 0, pretend = 0, frame = 0
+ 206              		@ frame_needed = 0, uses_anonymous_args = 0
+ 207 0000 10B5     		push	{r4, lr}
+ 208              		.cfi_def_cfa_offset 8
+ 209              		.cfi_offset 4, -8
+ 210              		.cfi_offset 14, -4
+ 159:Generated_Source\PSoC4/IDAC_Low.c ****     uint8 enableInterrupts;
+ 160:Generated_Source\PSoC4/IDAC_Low.c **** 
+ 161:Generated_Source\PSoC4/IDAC_Low.c ****     enableInterrupts = CyEnterCriticalSection();
+ 211              		.loc 1 161 0
+ 212 0002 FFF7FEFF 		bl	CyEnterCriticalSection
+ 213              	.LVL11:
+ 162:Generated_Source\PSoC4/IDAC_Low.c **** 
+ 163:Generated_Source\PSoC4/IDAC_Low.c ****     /* Disable the IDAC */
+ 164:Generated_Source\PSoC4/IDAC_Low.c ****     IDAC_Low_IDAC_CONTROL_REG &= ((uint32)~((uint32)IDAC_Low_IDAC_MODE_MASK <<
+ 214              		.loc 1 164 0
+ 215 0006 044A     		ldr	r2, .L13
+ 216 0008 044B     		ldr	r3, .L13+4
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccTBS2km.s 			page 8
+
+
+ 217 000a 1168     		ldr	r1, [r2]
+ 165:Generated_Source\PSoC4/IDAC_Low.c ****         IDAC_Low_IDAC_MODE_POSITION));
+ 166:Generated_Source\PSoC4/IDAC_Low.c ****     CyExitCriticalSection(enableInterrupts);
+ 167:Generated_Source\PSoC4/IDAC_Low.c **** }
+ 218              		.loc 1 167 0
+ 219              		@ sp needed
+ 164:Generated_Source\PSoC4/IDAC_Low.c ****         IDAC_Low_IDAC_MODE_POSITION));
+ 220              		.loc 1 164 0
+ 221 000c 0B40     		ands	r3, r1
+ 222 000e 1360     		str	r3, [r2]
+ 166:Generated_Source\PSoC4/IDAC_Low.c **** }
+ 223              		.loc 1 166 0
+ 224 0010 FFF7FEFF 		bl	CyExitCriticalSection
+ 225              	.LVL12:
+ 226              		.loc 1 167 0
+ 227 0014 10BD     		pop	{r4, pc}
+ 228              	.L14:
+ 229 0016 C046     		.align	2
+ 230              	.L13:
+ 231 0018 08000840 		.word	1074266120
+ 232 001c FFFFFFFC 		.word	-50331649
+ 233              		.cfi_endproc
+ 234              	.LFE3:
+ 235              		.size	IDAC_Low_Stop, .-IDAC_Low_Stop
+ 236              		.section	.text.IDAC_Low_SetValue,"ax",%progbits
+ 237              		.align	1
+ 238              		.global	IDAC_Low_SetValue
+ 239              		.code	16
+ 240              		.thumb_func
+ 241              		.type	IDAC_Low_SetValue, %function
+ 242              	IDAC_Low_SetValue:
+ 243              	.LFB4:
+ 168:Generated_Source\PSoC4/IDAC_Low.c **** 
+ 169:Generated_Source\PSoC4/IDAC_Low.c **** 
+ 170:Generated_Source\PSoC4/IDAC_Low.c **** /*******************************************************************************
+ 171:Generated_Source\PSoC4/IDAC_Low.c **** * Function Name: IDAC_Low_SetValue
+ 172:Generated_Source\PSoC4/IDAC_Low.c **** ********************************************************************************
+ 173:Generated_Source\PSoC4/IDAC_Low.c **** *
+ 174:Generated_Source\PSoC4/IDAC_Low.c **** * Summary:
+ 175:Generated_Source\PSoC4/IDAC_Low.c **** *  Sets the IDAC value.
+ 176:Generated_Source\PSoC4/IDAC_Low.c **** *
+ 177:Generated_Source\PSoC4/IDAC_Low.c **** * Parameters:
+ 178:Generated_Source\PSoC4/IDAC_Low.c **** *  uint32 value
+ 179:Generated_Source\PSoC4/IDAC_Low.c **** *
+ 180:Generated_Source\PSoC4/IDAC_Low.c **** * Return:
+ 181:Generated_Source\PSoC4/IDAC_Low.c **** *  None
+ 182:Generated_Source\PSoC4/IDAC_Low.c **** *
+ 183:Generated_Source\PSoC4/IDAC_Low.c **** * Global variables:
+ 184:Generated_Source\PSoC4/IDAC_Low.c **** *  None
+ 185:Generated_Source\PSoC4/IDAC_Low.c **** *
+ 186:Generated_Source\PSoC4/IDAC_Low.c **** *******************************************************************************/
+ 187:Generated_Source\PSoC4/IDAC_Low.c **** void IDAC_Low_SetValue(uint32 value)
+ 188:Generated_Source\PSoC4/IDAC_Low.c **** {
+ 244              		.loc 1 188 0
+ 245              		.cfi_startproc
+ 246              		@ args = 0, pretend = 0, frame = 0
+ 247              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccTBS2km.s 			page 9
+
+
+ 248              	.LVL13:
+ 249 0000 10B5     		push	{r4, lr}
+ 250              		.cfi_def_cfa_offset 8
+ 251              		.cfi_offset 4, -8
+ 252              		.cfi_offset 14, -4
+ 253              		.loc 1 188 0
+ 254 0002 0400     		movs	r4, r0
+ 189:Generated_Source\PSoC4/IDAC_Low.c ****     uint8 enableInterrupts;
+ 190:Generated_Source\PSoC4/IDAC_Low.c ****     uint32 newRegisterValue;
+ 191:Generated_Source\PSoC4/IDAC_Low.c **** 
+ 192:Generated_Source\PSoC4/IDAC_Low.c ****     enableInterrupts = CyEnterCriticalSection();
+ 255              		.loc 1 192 0
+ 256 0004 FFF7FEFF 		bl	CyEnterCriticalSection
+ 257              	.LVL14:
+ 193:Generated_Source\PSoC4/IDAC_Low.c **** 
+ 194:Generated_Source\PSoC4/IDAC_Low.c ****     #if(IDAC_Low_IDAC_VALUE_POSITION != 0u)
+ 195:Generated_Source\PSoC4/IDAC_Low.c ****         newRegisterValue = ((IDAC_Low_IDAC_CONTROL_REG & (~(uint32)((uint32)IDAC_Low_IDAC_VALUE_MAS
+ 258              		.loc 1 195 0
+ 259 0008 044A     		ldr	r2, .L16
+ 260 000a 054B     		ldr	r3, .L16+4
+ 261 000c 1168     		ldr	r1, [r2]
+ 262 000e 2404     		lsls	r4, r4, #16
+ 263              	.LVL15:
+ 264 0010 0B40     		ands	r3, r1
+ 265 0012 1C43     		orrs	r4, r3
+ 266              	.LVL16:
+ 196:Generated_Source\PSoC4/IDAC_Low.c ****         IDAC_Low_IDAC_VALUE_POSITION))) | (value << IDAC_Low_IDAC_VALUE_POSITION));
+ 197:Generated_Source\PSoC4/IDAC_Low.c ****     #else
+ 198:Generated_Source\PSoC4/IDAC_Low.c ****         newRegisterValue = ((IDAC_Low_IDAC_CONTROL_REG & (~(uint32)IDAC_Low_IDAC_VALUE_MASK)) | val
+ 199:Generated_Source\PSoC4/IDAC_Low.c ****     #endif /* IDAC_Low_IDAC_VALUE_POSITION != 0u */
+ 200:Generated_Source\PSoC4/IDAC_Low.c **** 
+ 201:Generated_Source\PSoC4/IDAC_Low.c ****     IDAC_Low_IDAC_CONTROL_REG = newRegisterValue;
+ 267              		.loc 1 201 0
+ 268 0014 1460     		str	r4, [r2]
+ 202:Generated_Source\PSoC4/IDAC_Low.c **** 
+ 203:Generated_Source\PSoC4/IDAC_Low.c ****     CyExitCriticalSection(enableInterrupts);
+ 269              		.loc 1 203 0
+ 270 0016 FFF7FEFF 		bl	CyExitCriticalSection
+ 271              	.LVL17:
+ 204:Generated_Source\PSoC4/IDAC_Low.c **** }
+ 272              		.loc 1 204 0
+ 273              		@ sp needed
+ 274              	.LVL18:
+ 275 001a 10BD     		pop	{r4, pc}
+ 276              	.L17:
+ 277              		.align	2
+ 278              	.L16:
+ 279 001c 08000840 		.word	1074266120
+ 280 0020 FFFF80FF 		.word	-8323073
+ 281              		.cfi_endproc
+ 282              	.LFE4:
+ 283              		.size	IDAC_Low_SetValue, .-IDAC_Low_SetValue
+ 284              		.global	IDAC_Low_initVar
+ 285              		.bss
+ 286              		.align	2
+ 287              		.set	.LANCHOR0,. + 0
+ 288              		.type	IDAC_Low_initVar, %object
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccTBS2km.s 			page 10
+
+
+ 289              		.size	IDAC_Low_initVar, 4
+ 290              	IDAC_Low_initVar:
+ 291 0000 00000000 		.space	4
+ 292              		.text
+ 293              	.Letext0:
+ 294              		.file 2 "Generated_Source\\PSoC4\\cytypes.h"
+ 295              		.file 3 "Generated_Source\\PSoC4\\CyLib.h"
+ 296              		.section	.debug_info,"",%progbits
+ 297              	.Ldebug_info0:
+ 298 0000 16020000 		.4byte	0x216
+ 299 0004 0400     		.2byte	0x4
+ 300 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 301 000a 04       		.byte	0x4
+ 302 000b 01       		.uleb128 0x1
+ 303 000c 4C010000 		.4byte	.LASF27
+ 304 0010 0C       		.byte	0xc
+ 305 0011 20020000 		.4byte	.LASF28
+ 306 0015 16000000 		.4byte	.LASF29
+ 307 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 308 001d 00000000 		.4byte	0
+ 309 0021 00000000 		.4byte	.Ldebug_line0
+ 310 0025 02       		.uleb128 0x2
+ 311 0026 01       		.byte	0x1
+ 312 0027 06       		.byte	0x6
+ 313 0028 14020000 		.4byte	.LASF0
+ 314 002c 02       		.uleb128 0x2
+ 315 002d 01       		.byte	0x1
+ 316 002e 08       		.byte	0x8
+ 317 002f A4000000 		.4byte	.LASF1
+ 318 0033 02       		.uleb128 0x2
+ 319 0034 02       		.byte	0x2
+ 320 0035 05       		.byte	0x5
+ 321 0036 01020000 		.4byte	.LASF2
+ 322 003a 02       		.uleb128 0x2
+ 323 003b 02       		.byte	0x2
+ 324 003c 07       		.byte	0x7
+ 325 003d 68000000 		.4byte	.LASF3
+ 326 0041 02       		.uleb128 0x2
+ 327 0042 04       		.byte	0x4
+ 328 0043 05       		.byte	0x5
+ 329 0044 0B020000 		.4byte	.LASF4
+ 330 0048 02       		.uleb128 0x2
+ 331 0049 04       		.byte	0x4
+ 332 004a 07       		.byte	0x7
+ 333 004b B7000000 		.4byte	.LASF5
+ 334 004f 02       		.uleb128 0x2
+ 335 0050 08       		.byte	0x8
+ 336 0051 05       		.byte	0x5
+ 337 0052 EE010000 		.4byte	.LASF6
+ 338 0056 02       		.uleb128 0x2
+ 339 0057 08       		.byte	0x8
+ 340 0058 07       		.byte	0x7
+ 341 0059 42020000 		.4byte	.LASF7
+ 342 005d 03       		.uleb128 0x3
+ 343 005e 04       		.byte	0x4
+ 344 005f 05       		.byte	0x5
+ 345 0060 696E7400 		.ascii	"int\000"
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccTBS2km.s 			page 11
+
+
+ 346 0064 02       		.uleb128 0x2
+ 347 0065 04       		.byte	0x4
+ 348 0066 07       		.byte	0x7
+ 349 0067 0C010000 		.4byte	.LASF8
+ 350 006b 04       		.uleb128 0x4
+ 351 006c C9000000 		.4byte	.LASF9
+ 352 0070 02       		.byte	0x2
+ 353 0071 E401     		.2byte	0x1e4
+ 354 0073 2C000000 		.4byte	0x2c
+ 355 0077 04       		.uleb128 0x4
+ 356 0078 EE000000 		.4byte	.LASF10
+ 357 007c 02       		.byte	0x2
+ 358 007d E601     		.2byte	0x1e6
+ 359 007f 48000000 		.4byte	0x48
+ 360 0083 02       		.uleb128 0x2
+ 361 0084 04       		.byte	0x4
+ 362 0085 04       		.byte	0x4
+ 363 0086 8C000000 		.4byte	.LASF11
+ 364 008a 02       		.uleb128 0x2
+ 365 008b 08       		.byte	0x8
+ 366 008c 04       		.byte	0x4
+ 367 008d E0000000 		.4byte	.LASF12
+ 368 0091 02       		.uleb128 0x2
+ 369 0092 01       		.byte	0x1
+ 370 0093 08       		.byte	0x8
+ 371 0094 FC010000 		.4byte	.LASF13
+ 372 0098 04       		.uleb128 0x4
+ 373 0099 B2000000 		.4byte	.LASF14
+ 374 009d 02       		.byte	0x2
+ 375 009e 8E02     		.2byte	0x28e
+ 376 00a0 A4000000 		.4byte	0xa4
+ 377 00a4 05       		.uleb128 0x5
+ 378 00a5 6B000000 		.4byte	0x6b
+ 379 00a9 04       		.uleb128 0x4
+ 380 00aa 10000000 		.4byte	.LASF15
+ 381 00ae 02       		.byte	0x2
+ 382 00af 9002     		.2byte	0x290
+ 383 00b1 B5000000 		.4byte	0xb5
+ 384 00b5 05       		.uleb128 0x5
+ 385 00b6 77000000 		.4byte	0x77
+ 386 00ba 02       		.uleb128 0x2
+ 387 00bb 04       		.byte	0x4
+ 388 00bc 07       		.byte	0x7
+ 389 00bd E5010000 		.4byte	.LASF16
+ 390 00c1 06       		.uleb128 0x6
+ 391 00c2 3E010000 		.4byte	.LASF19
+ 392 00c6 01       		.byte	0x1
+ 393 00c7 25       		.byte	0x25
+ 394 00c8 00000000 		.4byte	.LFB0
+ 395 00cc 54000000 		.4byte	.LFE0-.LFB0
+ 396 00d0 01       		.uleb128 0x1
+ 397 00d1 9C       		.byte	0x9c
+ 398 00d2 07010000 		.4byte	0x107
+ 399 00d6 07       		.uleb128 0x7
+ 400 00d7 E7000000 		.4byte	.LASF17
+ 401 00db 01       		.byte	0x1
+ 402 00dc 27       		.byte	0x27
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccTBS2km.s 			page 12
+
+
+ 403 00dd 77000000 		.4byte	0x77
+ 404 00e1 00000000 		.4byte	.LLST0
+ 405 00e5 07       		.uleb128 0x7
+ 406 00e6 CF000000 		.4byte	.LASF18
+ 407 00ea 01       		.byte	0x1
+ 408 00eb 28       		.byte	0x28
+ 409 00ec 6B000000 		.4byte	0x6b
+ 410 00f0 39000000 		.4byte	.LLST1
+ 411 00f4 08       		.uleb128 0x8
+ 412 00f5 06000000 		.4byte	.LVL0
+ 413 00f9 03020000 		.4byte	0x203
+ 414 00fd 08       		.uleb128 0x8
+ 415 00fe 3E000000 		.4byte	.LVL6
+ 416 0102 0E020000 		.4byte	0x20e
+ 417 0106 00       		.byte	0
+ 418 0107 06       		.uleb128 0x6
+ 419 0108 00000000 		.4byte	.LASF20
+ 420 010c 01       		.byte	0x1
+ 421 010d 5E       		.byte	0x5e
+ 422 010e 00000000 		.4byte	.LFB1
+ 423 0112 2C000000 		.4byte	.LFE1-.LFB1
+ 424 0116 01       		.uleb128 0x1
+ 425 0117 9C       		.byte	0x9c
+ 426 0118 3E010000 		.4byte	0x13e
+ 427 011c 07       		.uleb128 0x7
+ 428 011d CF000000 		.4byte	.LASF18
+ 429 0121 01       		.byte	0x1
+ 430 0122 60       		.byte	0x60
+ 431 0123 6B000000 		.4byte	0x6b
+ 432 0127 4C000000 		.4byte	.LLST2
+ 433 012b 08       		.uleb128 0x8
+ 434 012c 06000000 		.4byte	.LVL7
+ 435 0130 03020000 		.4byte	0x203
+ 436 0134 08       		.uleb128 0x8
+ 437 0135 22000000 		.4byte	.LVL8
+ 438 0139 0E020000 		.4byte	0x20e
+ 439 013d 00       		.byte	0
+ 440 013e 06       		.uleb128 0x6
+ 441 013f 2F010000 		.4byte	.LASF21
+ 442 0143 01       		.byte	0x1
+ 443 0144 7F       		.byte	0x7f
+ 444 0145 00000000 		.4byte	.LFB2
+ 445 0149 1C000000 		.4byte	.LFE2-.LFB2
+ 446 014d 01       		.uleb128 0x1
+ 447 014e 9C       		.byte	0x9c
+ 448 014f 66010000 		.4byte	0x166
+ 449 0153 08       		.uleb128 0x8
+ 450 0154 0E000000 		.4byte	.LVL9
+ 451 0158 C1000000 		.4byte	0xc1
+ 452 015c 08       		.uleb128 0x8
+ 453 015d 16000000 		.4byte	.LVL10
+ 454 0161 07010000 		.4byte	0x107
+ 455 0165 00       		.byte	0
+ 456 0166 06       		.uleb128 0x6
+ 457 0167 59020000 		.4byte	.LASF22
+ 458 016b 01       		.byte	0x1
+ 459 016c 9D       		.byte	0x9d
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccTBS2km.s 			page 13
+
+
+ 460 016d 00000000 		.4byte	.LFB3
+ 461 0171 20000000 		.4byte	.LFE3-.LFB3
+ 462 0175 01       		.uleb128 0x1
+ 463 0176 9C       		.byte	0x9c
+ 464 0177 9D010000 		.4byte	0x19d
+ 465 017b 07       		.uleb128 0x7
+ 466 017c CF000000 		.4byte	.LASF18
+ 467 0180 01       		.byte	0x1
+ 468 0181 9F       		.byte	0x9f
+ 469 0182 6B000000 		.4byte	0x6b
+ 470 0186 5F000000 		.4byte	.LLST3
+ 471 018a 08       		.uleb128 0x8
+ 472 018b 06000000 		.4byte	.LVL11
+ 473 018f 03020000 		.4byte	0x203
+ 474 0193 08       		.uleb128 0x8
+ 475 0194 14000000 		.4byte	.LVL12
+ 476 0198 0E020000 		.4byte	0x20e
+ 477 019c 00       		.byte	0
+ 478 019d 06       		.uleb128 0x6
+ 479 019e 92000000 		.4byte	.LASF23
+ 480 01a2 01       		.byte	0x1
+ 481 01a3 BB       		.byte	0xbb
+ 482 01a4 00000000 		.4byte	.LFB4
+ 483 01a8 24000000 		.4byte	.LFE4-.LFB4
+ 484 01ac 01       		.uleb128 0x1
+ 485 01ad 9C       		.byte	0x9c
+ 486 01ae F2010000 		.4byte	0x1f2
+ 487 01b2 09       		.uleb128 0x9
+ 488 01b3 51000000 		.4byte	.LASF30
+ 489 01b7 01       		.byte	0x1
+ 490 01b8 BB       		.byte	0xbb
+ 491 01b9 77000000 		.4byte	0x77
+ 492 01bd 72000000 		.4byte	.LLST4
+ 493 01c1 07       		.uleb128 0x7
+ 494 01c2 CF000000 		.4byte	.LASF18
+ 495 01c6 01       		.byte	0x1
+ 496 01c7 BD       		.byte	0xbd
+ 497 01c8 6B000000 		.4byte	0x6b
+ 498 01cc 9E000000 		.4byte	.LLST5
+ 499 01d0 07       		.uleb128 0x7
+ 500 01d1 7B000000 		.4byte	.LASF24
+ 501 01d5 01       		.byte	0x1
+ 502 01d6 BE       		.byte	0xbe
+ 503 01d7 77000000 		.4byte	0x77
+ 504 01db B1000000 		.4byte	.LLST6
+ 505 01df 08       		.uleb128 0x8
+ 506 01e0 08000000 		.4byte	.LVL14
+ 507 01e4 03020000 		.4byte	0x203
+ 508 01e8 08       		.uleb128 0x8
+ 509 01e9 1A000000 		.4byte	.LVL17
+ 510 01ed 0E020000 		.4byte	0x20e
+ 511 01f1 00       		.byte	0
+ 512 01f2 0A       		.uleb128 0xa
+ 513 01f3 57000000 		.4byte	.LASF31
+ 514 01f7 01       		.byte	0x1
+ 515 01f8 11       		.byte	0x11
+ 516 01f9 77000000 		.4byte	0x77
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccTBS2km.s 			page 14
+
+
+ 517 01fd 05       		.uleb128 0x5
+ 518 01fe 03       		.byte	0x3
+ 519 01ff 00000000 		.4byte	IDAC_Low_initVar
+ 520 0203 0B       		.uleb128 0xb
+ 521 0204 F5000000 		.4byte	.LASF25
+ 522 0208 F5000000 		.4byte	.LASF25
+ 523 020c 03       		.byte	0x3
+ 524 020d E5       		.byte	0xe5
+ 525 020e 0B       		.uleb128 0xb
+ 526 020f 19010000 		.4byte	.LASF26
+ 527 0213 19010000 		.4byte	.LASF26
+ 528 0217 03       		.byte	0x3
+ 529 0218 E6       		.byte	0xe6
+ 530 0219 00       		.byte	0
+ 531              		.section	.debug_abbrev,"",%progbits
+ 532              	.Ldebug_abbrev0:
+ 533 0000 01       		.uleb128 0x1
+ 534 0001 11       		.uleb128 0x11
+ 535 0002 01       		.byte	0x1
+ 536 0003 25       		.uleb128 0x25
+ 537 0004 0E       		.uleb128 0xe
+ 538 0005 13       		.uleb128 0x13
+ 539 0006 0B       		.uleb128 0xb
+ 540 0007 03       		.uleb128 0x3
+ 541 0008 0E       		.uleb128 0xe
+ 542 0009 1B       		.uleb128 0x1b
+ 543 000a 0E       		.uleb128 0xe
+ 544 000b 55       		.uleb128 0x55
+ 545 000c 17       		.uleb128 0x17
+ 546 000d 11       		.uleb128 0x11
+ 547 000e 01       		.uleb128 0x1
+ 548 000f 10       		.uleb128 0x10
+ 549 0010 17       		.uleb128 0x17
+ 550 0011 00       		.byte	0
+ 551 0012 00       		.byte	0
+ 552 0013 02       		.uleb128 0x2
+ 553 0014 24       		.uleb128 0x24
+ 554 0015 00       		.byte	0
+ 555 0016 0B       		.uleb128 0xb
+ 556 0017 0B       		.uleb128 0xb
+ 557 0018 3E       		.uleb128 0x3e
+ 558 0019 0B       		.uleb128 0xb
+ 559 001a 03       		.uleb128 0x3
+ 560 001b 0E       		.uleb128 0xe
+ 561 001c 00       		.byte	0
+ 562 001d 00       		.byte	0
+ 563 001e 03       		.uleb128 0x3
+ 564 001f 24       		.uleb128 0x24
+ 565 0020 00       		.byte	0
+ 566 0021 0B       		.uleb128 0xb
+ 567 0022 0B       		.uleb128 0xb
+ 568 0023 3E       		.uleb128 0x3e
+ 569 0024 0B       		.uleb128 0xb
+ 570 0025 03       		.uleb128 0x3
+ 571 0026 08       		.uleb128 0x8
+ 572 0027 00       		.byte	0
+ 573 0028 00       		.byte	0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccTBS2km.s 			page 15
+
+
+ 574 0029 04       		.uleb128 0x4
+ 575 002a 16       		.uleb128 0x16
+ 576 002b 00       		.byte	0
+ 577 002c 03       		.uleb128 0x3
+ 578 002d 0E       		.uleb128 0xe
+ 579 002e 3A       		.uleb128 0x3a
+ 580 002f 0B       		.uleb128 0xb
+ 581 0030 3B       		.uleb128 0x3b
+ 582 0031 05       		.uleb128 0x5
+ 583 0032 49       		.uleb128 0x49
+ 584 0033 13       		.uleb128 0x13
+ 585 0034 00       		.byte	0
+ 586 0035 00       		.byte	0
+ 587 0036 05       		.uleb128 0x5
+ 588 0037 35       		.uleb128 0x35
+ 589 0038 00       		.byte	0
+ 590 0039 49       		.uleb128 0x49
+ 591 003a 13       		.uleb128 0x13
+ 592 003b 00       		.byte	0
+ 593 003c 00       		.byte	0
+ 594 003d 06       		.uleb128 0x6
+ 595 003e 2E       		.uleb128 0x2e
+ 596 003f 01       		.byte	0x1
+ 597 0040 3F       		.uleb128 0x3f
+ 598 0041 19       		.uleb128 0x19
+ 599 0042 03       		.uleb128 0x3
+ 600 0043 0E       		.uleb128 0xe
+ 601 0044 3A       		.uleb128 0x3a
+ 602 0045 0B       		.uleb128 0xb
+ 603 0046 3B       		.uleb128 0x3b
+ 604 0047 0B       		.uleb128 0xb
+ 605 0048 27       		.uleb128 0x27
+ 606 0049 19       		.uleb128 0x19
+ 607 004a 11       		.uleb128 0x11
+ 608 004b 01       		.uleb128 0x1
+ 609 004c 12       		.uleb128 0x12
+ 610 004d 06       		.uleb128 0x6
+ 611 004e 40       		.uleb128 0x40
+ 612 004f 18       		.uleb128 0x18
+ 613 0050 9742     		.uleb128 0x2117
+ 614 0052 19       		.uleb128 0x19
+ 615 0053 01       		.uleb128 0x1
+ 616 0054 13       		.uleb128 0x13
+ 617 0055 00       		.byte	0
+ 618 0056 00       		.byte	0
+ 619 0057 07       		.uleb128 0x7
+ 620 0058 34       		.uleb128 0x34
+ 621 0059 00       		.byte	0
+ 622 005a 03       		.uleb128 0x3
+ 623 005b 0E       		.uleb128 0xe
+ 624 005c 3A       		.uleb128 0x3a
+ 625 005d 0B       		.uleb128 0xb
+ 626 005e 3B       		.uleb128 0x3b
+ 627 005f 0B       		.uleb128 0xb
+ 628 0060 49       		.uleb128 0x49
+ 629 0061 13       		.uleb128 0x13
+ 630 0062 02       		.uleb128 0x2
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccTBS2km.s 			page 16
+
+
+ 631 0063 17       		.uleb128 0x17
+ 632 0064 00       		.byte	0
+ 633 0065 00       		.byte	0
+ 634 0066 08       		.uleb128 0x8
+ 635 0067 898201   		.uleb128 0x4109
+ 636 006a 00       		.byte	0
+ 637 006b 11       		.uleb128 0x11
+ 638 006c 01       		.uleb128 0x1
+ 639 006d 31       		.uleb128 0x31
+ 640 006e 13       		.uleb128 0x13
+ 641 006f 00       		.byte	0
+ 642 0070 00       		.byte	0
+ 643 0071 09       		.uleb128 0x9
+ 644 0072 05       		.uleb128 0x5
+ 645 0073 00       		.byte	0
+ 646 0074 03       		.uleb128 0x3
+ 647 0075 0E       		.uleb128 0xe
+ 648 0076 3A       		.uleb128 0x3a
+ 649 0077 0B       		.uleb128 0xb
+ 650 0078 3B       		.uleb128 0x3b
+ 651 0079 0B       		.uleb128 0xb
+ 652 007a 49       		.uleb128 0x49
+ 653 007b 13       		.uleb128 0x13
+ 654 007c 02       		.uleb128 0x2
+ 655 007d 17       		.uleb128 0x17
+ 656 007e 00       		.byte	0
+ 657 007f 00       		.byte	0
+ 658 0080 0A       		.uleb128 0xa
+ 659 0081 34       		.uleb128 0x34
+ 660 0082 00       		.byte	0
+ 661 0083 03       		.uleb128 0x3
+ 662 0084 0E       		.uleb128 0xe
+ 663 0085 3A       		.uleb128 0x3a
+ 664 0086 0B       		.uleb128 0xb
+ 665 0087 3B       		.uleb128 0x3b
+ 666 0088 0B       		.uleb128 0xb
+ 667 0089 49       		.uleb128 0x49
+ 668 008a 13       		.uleb128 0x13
+ 669 008b 3F       		.uleb128 0x3f
+ 670 008c 19       		.uleb128 0x19
+ 671 008d 02       		.uleb128 0x2
+ 672 008e 18       		.uleb128 0x18
+ 673 008f 00       		.byte	0
+ 674 0090 00       		.byte	0
+ 675 0091 0B       		.uleb128 0xb
+ 676 0092 2E       		.uleb128 0x2e
+ 677 0093 00       		.byte	0
+ 678 0094 3F       		.uleb128 0x3f
+ 679 0095 19       		.uleb128 0x19
+ 680 0096 3C       		.uleb128 0x3c
+ 681 0097 19       		.uleb128 0x19
+ 682 0098 6E       		.uleb128 0x6e
+ 683 0099 0E       		.uleb128 0xe
+ 684 009a 03       		.uleb128 0x3
+ 685 009b 0E       		.uleb128 0xe
+ 686 009c 3A       		.uleb128 0x3a
+ 687 009d 0B       		.uleb128 0xb
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccTBS2km.s 			page 17
+
+
+ 688 009e 3B       		.uleb128 0x3b
+ 689 009f 0B       		.uleb128 0xb
+ 690 00a0 00       		.byte	0
+ 691 00a1 00       		.byte	0
+ 692 00a2 00       		.byte	0
+ 693              		.section	.debug_loc,"",%progbits
+ 694              	.Ldebug_loc0:
+ 695              	.LLST0:
+ 696 0000 12000000 		.4byte	.LVL1
+ 697 0004 1A000000 		.4byte	.LVL2
+ 698 0008 0100     		.2byte	0x1
+ 699 000a 52       		.byte	0x52
+ 700 000b 1A000000 		.4byte	.LVL2
+ 701 000f 20000000 		.4byte	.LVL3
+ 702 0013 0100     		.2byte	0x1
+ 703 0015 53       		.byte	0x53
+ 704 0016 20000000 		.4byte	.LVL3
+ 705 001a 22000000 		.4byte	.LVL4
+ 706 001e 0200     		.2byte	0x2
+ 707 0020 71       		.byte	0x71
+ 708 0021 00       		.sleb128 0
+ 709 0022 22000000 		.4byte	.LVL4
+ 710 0026 24000000 		.4byte	.LVL5
+ 711 002a 0500     		.2byte	0x5
+ 712 002c 0C       		.byte	0xc
+ 713 002d 00FF0840 		.4byte	0x4008ff00
+ 714 0031 00000000 		.4byte	0
+ 715 0035 00000000 		.4byte	0
+ 716              	.LLST1:
+ 717 0039 06000000 		.4byte	.LVL0
+ 718 003d 3D000000 		.4byte	.LVL6-1
+ 719 0041 0100     		.2byte	0x1
+ 720 0043 50       		.byte	0x50
+ 721 0044 00000000 		.4byte	0
+ 722 0048 00000000 		.4byte	0
+ 723              	.LLST2:
+ 724 004c 06000000 		.4byte	.LVL7
+ 725 0050 21000000 		.4byte	.LVL8-1
+ 726 0054 0100     		.2byte	0x1
+ 727 0056 50       		.byte	0x50
+ 728 0057 00000000 		.4byte	0
+ 729 005b 00000000 		.4byte	0
+ 730              	.LLST3:
+ 731 005f 06000000 		.4byte	.LVL11
+ 732 0063 13000000 		.4byte	.LVL12-1
+ 733 0067 0100     		.2byte	0x1
+ 734 0069 50       		.byte	0x50
+ 735 006a 00000000 		.4byte	0
+ 736 006e 00000000 		.4byte	0
+ 737              	.LLST4:
+ 738 0072 00000000 		.4byte	.LVL13
+ 739 0076 07000000 		.4byte	.LVL14-1
+ 740 007a 0100     		.2byte	0x1
+ 741 007c 50       		.byte	0x50
+ 742 007d 07000000 		.4byte	.LVL14-1
+ 743 0081 10000000 		.4byte	.LVL15
+ 744 0085 0100     		.2byte	0x1
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccTBS2km.s 			page 18
+
+
+ 745 0087 54       		.byte	0x54
+ 746 0088 10000000 		.4byte	.LVL15
+ 747 008c 24000000 		.4byte	.LFE4
+ 748 0090 0400     		.2byte	0x4
+ 749 0092 F3       		.byte	0xf3
+ 750 0093 01       		.uleb128 0x1
+ 751 0094 50       		.byte	0x50
+ 752 0095 9F       		.byte	0x9f
+ 753 0096 00000000 		.4byte	0
+ 754 009a 00000000 		.4byte	0
+ 755              	.LLST5:
+ 756 009e 08000000 		.4byte	.LVL14
+ 757 00a2 19000000 		.4byte	.LVL17-1
+ 758 00a6 0100     		.2byte	0x1
+ 759 00a8 50       		.byte	0x50
+ 760 00a9 00000000 		.4byte	0
+ 761 00ad 00000000 		.4byte	0
+ 762              	.LLST6:
+ 763 00b1 14000000 		.4byte	.LVL16
+ 764 00b5 1A000000 		.4byte	.LVL18
+ 765 00b9 0100     		.2byte	0x1
+ 766 00bb 54       		.byte	0x54
+ 767 00bc 00000000 		.4byte	0
+ 768 00c0 00000000 		.4byte	0
+ 769              		.section	.debug_aranges,"",%progbits
+ 770 0000 3C000000 		.4byte	0x3c
+ 771 0004 0200     		.2byte	0x2
+ 772 0006 00000000 		.4byte	.Ldebug_info0
+ 773 000a 04       		.byte	0x4
+ 774 000b 00       		.byte	0
+ 775 000c 0000     		.2byte	0
+ 776 000e 0000     		.2byte	0
+ 777 0010 00000000 		.4byte	.LFB0
+ 778 0014 54000000 		.4byte	.LFE0-.LFB0
+ 779 0018 00000000 		.4byte	.LFB1
+ 780 001c 2C000000 		.4byte	.LFE1-.LFB1
+ 781 0020 00000000 		.4byte	.LFB2
+ 782 0024 1C000000 		.4byte	.LFE2-.LFB2
+ 783 0028 00000000 		.4byte	.LFB3
+ 784 002c 20000000 		.4byte	.LFE3-.LFB3
+ 785 0030 00000000 		.4byte	.LFB4
+ 786 0034 24000000 		.4byte	.LFE4-.LFB4
+ 787 0038 00000000 		.4byte	0
+ 788 003c 00000000 		.4byte	0
+ 789              		.section	.debug_ranges,"",%progbits
+ 790              	.Ldebug_ranges0:
+ 791 0000 00000000 		.4byte	.LFB0
+ 792 0004 54000000 		.4byte	.LFE0
+ 793 0008 00000000 		.4byte	.LFB1
+ 794 000c 2C000000 		.4byte	.LFE1
+ 795 0010 00000000 		.4byte	.LFB2
+ 796 0014 1C000000 		.4byte	.LFE2
+ 797 0018 00000000 		.4byte	.LFB3
+ 798 001c 20000000 		.4byte	.LFE3
+ 799 0020 00000000 		.4byte	.LFB4
+ 800 0024 24000000 		.4byte	.LFE4
+ 801 0028 00000000 		.4byte	0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccTBS2km.s 			page 19
+
+
+ 802 002c 00000000 		.4byte	0
+ 803              		.section	.debug_line,"",%progbits
+ 804              	.Ldebug_line0:
+ 805 0000 DC000000 		.section	.debug_str,"MS",%progbits,1
+ 805      02005000 
+ 805      00000201 
+ 805      FB0E0D00 
+ 805      01010101 
+ 806              	.LASF20:
+ 807 0000 49444143 		.ascii	"IDAC_Low_Enable\000"
+ 807      5F4C6F77 
+ 807      5F456E61 
+ 807      626C6500 
+ 808              	.LASF15:
+ 809 0010 72656733 		.ascii	"reg32\000"
+ 809      3200
+ 810              	.LASF29:
+ 811 0016 443A5C31 		.ascii	"D:\\1_work\\my_project\\ReloadPro\\psoc42boot\\Relo"
+ 811      5F776F72 
+ 811      6B5C6D79 
+ 811      5F70726F 
+ 811      6A656374 
+ 812 0044 61642050 		.ascii	"ad Pro.cydsn\000"
+ 812      726F2E63 
+ 812      7964736E 
+ 812      00
+ 813              	.LASF30:
+ 814 0051 76616C75 		.ascii	"value\000"
+ 814      6500
+ 815              	.LASF31:
+ 816 0057 49444143 		.ascii	"IDAC_Low_initVar\000"
+ 816      5F4C6F77 
+ 816      5F696E69 
+ 816      74566172 
+ 816      00
+ 817              	.LASF3:
+ 818 0068 73686F72 		.ascii	"short unsigned int\000"
+ 818      7420756E 
+ 818      7369676E 
+ 818      65642069 
+ 818      6E7400
+ 819              	.LASF24:
+ 820 007b 6E657752 		.ascii	"newRegisterValue\000"
+ 820      65676973 
+ 820      74657256 
+ 820      616C7565 
+ 820      00
+ 821              	.LASF11:
+ 822 008c 666C6F61 		.ascii	"float\000"
+ 822      7400
+ 823              	.LASF23:
+ 824 0092 49444143 		.ascii	"IDAC_Low_SetValue\000"
+ 824      5F4C6F77 
+ 824      5F536574 
+ 824      56616C75 
+ 824      6500
+ 825              	.LASF1:
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccTBS2km.s 			page 20
+
+
+ 826 00a4 756E7369 		.ascii	"unsigned char\000"
+ 826      676E6564 
+ 826      20636861 
+ 826      7200
+ 827              	.LASF14:
+ 828 00b2 72656738 		.ascii	"reg8\000"
+ 828      00
+ 829              	.LASF5:
+ 830 00b7 6C6F6E67 		.ascii	"long unsigned int\000"
+ 830      20756E73 
+ 830      69676E65 
+ 830      6420696E 
+ 830      7400
+ 831              	.LASF9:
+ 832 00c9 75696E74 		.ascii	"uint8\000"
+ 832      3800
+ 833              	.LASF18:
+ 834 00cf 656E6162 		.ascii	"enableInterrupts\000"
+ 834      6C65496E 
+ 834      74657272 
+ 834      75707473 
+ 834      00
+ 835              	.LASF12:
+ 836 00e0 646F7562 		.ascii	"double\000"
+ 836      6C6500
+ 837              	.LASF17:
+ 838 00e7 72656756 		.ascii	"regVal\000"
+ 838      616C00
+ 839              	.LASF10:
+ 840 00ee 75696E74 		.ascii	"uint32\000"
+ 840      333200
+ 841              	.LASF25:
+ 842 00f5 4379456E 		.ascii	"CyEnterCriticalSection\000"
+ 842      74657243 
+ 842      72697469 
+ 842      63616C53 
+ 842      65637469 
+ 843              	.LASF8:
+ 844 010c 756E7369 		.ascii	"unsigned int\000"
+ 844      676E6564 
+ 844      20696E74 
+ 844      00
+ 845              	.LASF26:
+ 846 0119 43794578 		.ascii	"CyExitCriticalSection\000"
+ 846      69744372 
+ 846      69746963 
+ 846      616C5365 
+ 846      6374696F 
+ 847              	.LASF21:
+ 848 012f 49444143 		.ascii	"IDAC_Low_Start\000"
+ 848      5F4C6F77 
+ 848      5F537461 
+ 848      727400
+ 849              	.LASF19:
+ 850 013e 49444143 		.ascii	"IDAC_Low_Init\000"
+ 850      5F4C6F77 
+ 850      5F496E69 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccTBS2km.s 			page 21
+
+
+ 850      7400
+ 851              	.LASF27:
+ 852 014c 474E5520 		.ascii	"GNU C99 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 852      43393920 
+ 852      352E342E 
+ 852      31203230 
+ 852      31363036 
+ 853 017f 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 853      20726576 
+ 853      6973696F 
+ 853      6E203233 
+ 853      37373135 
+ 854 01b2 73202D73 		.ascii	"s -std=gnu99 -ffunction-sections -ffat-lto-objects\000"
+ 854      74643D67 
+ 854      6E753939 
+ 854      202D6666 
+ 854      756E6374 
+ 855              	.LASF16:
+ 856 01e5 73697A65 		.ascii	"sizetype\000"
+ 856      74797065 
+ 856      00
+ 857              	.LASF6:
+ 858 01ee 6C6F6E67 		.ascii	"long long int\000"
+ 858      206C6F6E 
+ 858      6720696E 
+ 858      7400
+ 859              	.LASF13:
+ 860 01fc 63686172 		.ascii	"char\000"
+ 860      00
+ 861              	.LASF2:
+ 862 0201 73686F72 		.ascii	"short int\000"
+ 862      7420696E 
+ 862      7400
+ 863              	.LASF4:
+ 864 020b 6C6F6E67 		.ascii	"long int\000"
+ 864      20696E74 
+ 864      00
+ 865              	.LASF0:
+ 866 0214 7369676E 		.ascii	"signed char\000"
+ 866      65642063 
+ 866      68617200 
+ 867              	.LASF28:
+ 868 0220 47656E65 		.ascii	"Generated_Source\\PSoC4\\IDAC_Low.c\000"
+ 868      72617465 
+ 868      645F536F 
+ 868      75726365 
+ 868      5C50536F 
+ 869              	.LASF7:
+ 870 0242 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 870      206C6F6E 
+ 870      6720756E 
+ 870      7369676E 
+ 870      65642069 
+ 871              	.LASF22:
+ 872 0259 49444143 		.ascii	"IDAC_Low_Stop\000"
+ 872      5F4C6F77 
+ 872      5F53746F 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccTBS2km.s 			page 22
+
+
+ 872      7000
+ 873              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

@@ -1,0 +1,2435 @@
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc3LHdap.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"FanController_DataSend.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.FanController_DataSend_Interrupt,"ax",%progbits
+  20              		.align	1
+  21              		.global	FanController_DataSend_Interrupt
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	FanController_DataSend_Interrupt, %function
+  25              	FanController_DataSend_Interrupt:
+  26              	.LFB3:
+  27              		.file 1 "Generated_Source\\PSoC4\\FanController_DataSend.c"
+   1:Generated_Source\PSoC4/FanController_DataSend.c **** /*******************************************************************************
+   2:Generated_Source\PSoC4/FanController_DataSend.c **** * File Name: FanController_DataSend.c  
+   3:Generated_Source\PSoC4/FanController_DataSend.c **** * Version 1.70
+   4:Generated_Source\PSoC4/FanController_DataSend.c **** *
+   5:Generated_Source\PSoC4/FanController_DataSend.c **** *  Description:
+   6:Generated_Source\PSoC4/FanController_DataSend.c **** *   API for controlling the state of an interrupt.
+   7:Generated_Source\PSoC4/FanController_DataSend.c **** *
+   8:Generated_Source\PSoC4/FanController_DataSend.c **** *
+   9:Generated_Source\PSoC4/FanController_DataSend.c **** *  Note:
+  10:Generated_Source\PSoC4/FanController_DataSend.c **** *
+  11:Generated_Source\PSoC4/FanController_DataSend.c **** ********************************************************************************
+  12:Generated_Source\PSoC4/FanController_DataSend.c **** * Copyright 2008-2015, Cypress Semiconductor Corporation.  All rights reserved.
+  13:Generated_Source\PSoC4/FanController_DataSend.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  14:Generated_Source\PSoC4/FanController_DataSend.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  15:Generated_Source\PSoC4/FanController_DataSend.c **** * the software package with which this file was provided.
+  16:Generated_Source\PSoC4/FanController_DataSend.c **** *******************************************************************************/
+  17:Generated_Source\PSoC4/FanController_DataSend.c **** 
+  18:Generated_Source\PSoC4/FanController_DataSend.c **** 
+  19:Generated_Source\PSoC4/FanController_DataSend.c **** #include <cydevice_trm.h>
+  20:Generated_Source\PSoC4/FanController_DataSend.c **** #include <CyLib.h>
+  21:Generated_Source\PSoC4/FanController_DataSend.c **** #include <FanController_DataSend.h>
+  22:Generated_Source\PSoC4/FanController_DataSend.c **** 
+  23:Generated_Source\PSoC4/FanController_DataSend.c **** 
+  24:Generated_Source\PSoC4/FanController_DataSend.c **** #if !defined(FanController_DataSend__REMOVED) /* Check for removal by optimization */
+  25:Generated_Source\PSoC4/FanController_DataSend.c **** 
+  26:Generated_Source\PSoC4/FanController_DataSend.c **** /*******************************************************************************
+  27:Generated_Source\PSoC4/FanController_DataSend.c **** *  Place your includes, defines and code here 
+  28:Generated_Source\PSoC4/FanController_DataSend.c **** ********************************************************************************/
+  29:Generated_Source\PSoC4/FanController_DataSend.c **** /* `#START FanController_DataSend_intc` */
+  30:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc3LHdap.s 			page 2
+
+
+  31:Generated_Source\PSoC4/FanController_DataSend.c **** /* `#END` */
+  32:Generated_Source\PSoC4/FanController_DataSend.c **** 
+  33:Generated_Source\PSoC4/FanController_DataSend.c **** extern cyisraddress CyRamVectors[CYINT_IRQ_BASE + CY_NUM_INTERRUPTS];
+  34:Generated_Source\PSoC4/FanController_DataSend.c **** 
+  35:Generated_Source\PSoC4/FanController_DataSend.c **** /* Declared in startup, used to set unused interrupts to. */
+  36:Generated_Source\PSoC4/FanController_DataSend.c **** CY_ISR_PROTO(IntDefaultHandler);
+  37:Generated_Source\PSoC4/FanController_DataSend.c **** 
+  38:Generated_Source\PSoC4/FanController_DataSend.c **** 
+  39:Generated_Source\PSoC4/FanController_DataSend.c **** /*******************************************************************************
+  40:Generated_Source\PSoC4/FanController_DataSend.c **** * Function Name: FanController_DataSend_Start
+  41:Generated_Source\PSoC4/FanController_DataSend.c **** ********************************************************************************
+  42:Generated_Source\PSoC4/FanController_DataSend.c **** *
+  43:Generated_Source\PSoC4/FanController_DataSend.c **** * Summary:
+  44:Generated_Source\PSoC4/FanController_DataSend.c **** *  Set up the interrupt and enable it. This function disables the interrupt, 
+  45:Generated_Source\PSoC4/FanController_DataSend.c **** *  sets the default interrupt vector, sets the priority from the value in the
+  46:Generated_Source\PSoC4/FanController_DataSend.c **** *  Design Wide Resources Interrupt Editor, then enables the interrupt to the 
+  47:Generated_Source\PSoC4/FanController_DataSend.c **** *  interrupt controller.
+  48:Generated_Source\PSoC4/FanController_DataSend.c **** *
+  49:Generated_Source\PSoC4/FanController_DataSend.c **** * Parameters:  
+  50:Generated_Source\PSoC4/FanController_DataSend.c **** *   None
+  51:Generated_Source\PSoC4/FanController_DataSend.c **** *
+  52:Generated_Source\PSoC4/FanController_DataSend.c **** * Return:
+  53:Generated_Source\PSoC4/FanController_DataSend.c **** *   None
+  54:Generated_Source\PSoC4/FanController_DataSend.c **** *
+  55:Generated_Source\PSoC4/FanController_DataSend.c **** *******************************************************************************/
+  56:Generated_Source\PSoC4/FanController_DataSend.c **** void FanController_DataSend_Start(void)
+  57:Generated_Source\PSoC4/FanController_DataSend.c **** {
+  58:Generated_Source\PSoC4/FanController_DataSend.c ****     /* For all we know the interrupt is active. */
+  59:Generated_Source\PSoC4/FanController_DataSend.c ****     FanController_DataSend_Disable();
+  60:Generated_Source\PSoC4/FanController_DataSend.c **** 
+  61:Generated_Source\PSoC4/FanController_DataSend.c ****     /* Set the ISR to point to the FanController_DataSend Interrupt. */
+  62:Generated_Source\PSoC4/FanController_DataSend.c ****     FanController_DataSend_SetVector(&FanController_DataSend_Interrupt);
+  63:Generated_Source\PSoC4/FanController_DataSend.c **** 
+  64:Generated_Source\PSoC4/FanController_DataSend.c ****     /* Set the priority. */
+  65:Generated_Source\PSoC4/FanController_DataSend.c ****     FanController_DataSend_SetPriority((uint8)FanController_DataSend_INTC_PRIOR_NUMBER);
+  66:Generated_Source\PSoC4/FanController_DataSend.c **** 
+  67:Generated_Source\PSoC4/FanController_DataSend.c ****     /* Enable it. */
+  68:Generated_Source\PSoC4/FanController_DataSend.c ****     FanController_DataSend_Enable();
+  69:Generated_Source\PSoC4/FanController_DataSend.c **** }
+  70:Generated_Source\PSoC4/FanController_DataSend.c **** 
+  71:Generated_Source\PSoC4/FanController_DataSend.c **** 
+  72:Generated_Source\PSoC4/FanController_DataSend.c **** /*******************************************************************************
+  73:Generated_Source\PSoC4/FanController_DataSend.c **** * Function Name: FanController_DataSend_StartEx
+  74:Generated_Source\PSoC4/FanController_DataSend.c **** ********************************************************************************
+  75:Generated_Source\PSoC4/FanController_DataSend.c **** *
+  76:Generated_Source\PSoC4/FanController_DataSend.c **** * Summary:
+  77:Generated_Source\PSoC4/FanController_DataSend.c **** *  Sets up the interrupt and enables it. This function disables the interrupt,
+  78:Generated_Source\PSoC4/FanController_DataSend.c **** *  sets the interrupt vector based on the address passed in, sets the priority 
+  79:Generated_Source\PSoC4/FanController_DataSend.c **** *  from the value in the Design Wide Resources Interrupt Editor, then enables 
+  80:Generated_Source\PSoC4/FanController_DataSend.c **** *  the interrupt to the interrupt controller.
+  81:Generated_Source\PSoC4/FanController_DataSend.c **** *  
+  82:Generated_Source\PSoC4/FanController_DataSend.c **** *  When defining ISR functions, the CY_ISR and CY_ISR_PROTO macros should be 
+  83:Generated_Source\PSoC4/FanController_DataSend.c **** *  used to provide consistent definition across compilers:
+  84:Generated_Source\PSoC4/FanController_DataSend.c **** *  
+  85:Generated_Source\PSoC4/FanController_DataSend.c **** *  Function definition example:
+  86:Generated_Source\PSoC4/FanController_DataSend.c **** *   CY_ISR(MyISR)
+  87:Generated_Source\PSoC4/FanController_DataSend.c **** *   {
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc3LHdap.s 			page 3
+
+
+  88:Generated_Source\PSoC4/FanController_DataSend.c **** *   }
+  89:Generated_Source\PSoC4/FanController_DataSend.c **** *   Function prototype example:
+  90:Generated_Source\PSoC4/FanController_DataSend.c **** *   CY_ISR_PROTO(MyISR);
+  91:Generated_Source\PSoC4/FanController_DataSend.c **** *
+  92:Generated_Source\PSoC4/FanController_DataSend.c **** * Parameters:  
+  93:Generated_Source\PSoC4/FanController_DataSend.c **** *   address: Address of the ISR to set in the interrupt vector table.
+  94:Generated_Source\PSoC4/FanController_DataSend.c **** *
+  95:Generated_Source\PSoC4/FanController_DataSend.c **** * Return:
+  96:Generated_Source\PSoC4/FanController_DataSend.c **** *   None
+  97:Generated_Source\PSoC4/FanController_DataSend.c **** *
+  98:Generated_Source\PSoC4/FanController_DataSend.c **** *******************************************************************************/
+  99:Generated_Source\PSoC4/FanController_DataSend.c **** void FanController_DataSend_StartEx(cyisraddress address)
+ 100:Generated_Source\PSoC4/FanController_DataSend.c **** {
+ 101:Generated_Source\PSoC4/FanController_DataSend.c ****     /* For all we know the interrupt is active. */
+ 102:Generated_Source\PSoC4/FanController_DataSend.c ****     FanController_DataSend_Disable();
+ 103:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 104:Generated_Source\PSoC4/FanController_DataSend.c ****     /* Set the ISR to point to the FanController_DataSend Interrupt. */
+ 105:Generated_Source\PSoC4/FanController_DataSend.c ****     FanController_DataSend_SetVector(address);
+ 106:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 107:Generated_Source\PSoC4/FanController_DataSend.c ****     /* Set the priority. */
+ 108:Generated_Source\PSoC4/FanController_DataSend.c ****     FanController_DataSend_SetPriority((uint8)FanController_DataSend_INTC_PRIOR_NUMBER);
+ 109:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 110:Generated_Source\PSoC4/FanController_DataSend.c ****     /* Enable it. */
+ 111:Generated_Source\PSoC4/FanController_DataSend.c ****     FanController_DataSend_Enable();
+ 112:Generated_Source\PSoC4/FanController_DataSend.c **** }
+ 113:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 114:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 115:Generated_Source\PSoC4/FanController_DataSend.c **** /*******************************************************************************
+ 116:Generated_Source\PSoC4/FanController_DataSend.c **** * Function Name: FanController_DataSend_Stop
+ 117:Generated_Source\PSoC4/FanController_DataSend.c **** ********************************************************************************
+ 118:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 119:Generated_Source\PSoC4/FanController_DataSend.c **** * Summary:
+ 120:Generated_Source\PSoC4/FanController_DataSend.c **** *   Disables and removes the interrupt.
+ 121:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 122:Generated_Source\PSoC4/FanController_DataSend.c **** * Parameters:  
+ 123:Generated_Source\PSoC4/FanController_DataSend.c **** *   None
+ 124:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 125:Generated_Source\PSoC4/FanController_DataSend.c **** * Return:
+ 126:Generated_Source\PSoC4/FanController_DataSend.c **** *   None
+ 127:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 128:Generated_Source\PSoC4/FanController_DataSend.c **** *******************************************************************************/
+ 129:Generated_Source\PSoC4/FanController_DataSend.c **** void FanController_DataSend_Stop(void)
+ 130:Generated_Source\PSoC4/FanController_DataSend.c **** {
+ 131:Generated_Source\PSoC4/FanController_DataSend.c ****     /* Disable this interrupt. */
+ 132:Generated_Source\PSoC4/FanController_DataSend.c ****     FanController_DataSend_Disable();
+ 133:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 134:Generated_Source\PSoC4/FanController_DataSend.c ****     /* Set the ISR to point to the passive one. */
+ 135:Generated_Source\PSoC4/FanController_DataSend.c ****     FanController_DataSend_SetVector(&IntDefaultHandler);
+ 136:Generated_Source\PSoC4/FanController_DataSend.c **** }
+ 137:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 138:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 139:Generated_Source\PSoC4/FanController_DataSend.c **** /*******************************************************************************
+ 140:Generated_Source\PSoC4/FanController_DataSend.c **** * Function Name: FanController_DataSend_Interrupt
+ 141:Generated_Source\PSoC4/FanController_DataSend.c **** ********************************************************************************
+ 142:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 143:Generated_Source\PSoC4/FanController_DataSend.c **** * Summary:
+ 144:Generated_Source\PSoC4/FanController_DataSend.c **** *   The default Interrupt Service Routine for FanController_DataSend.
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc3LHdap.s 			page 4
+
+
+ 145:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 146:Generated_Source\PSoC4/FanController_DataSend.c **** *   Add custom code between the START and END comments to keep the next version
+ 147:Generated_Source\PSoC4/FanController_DataSend.c **** *   of this file from over-writing your code.
+ 148:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 149:Generated_Source\PSoC4/FanController_DataSend.c **** *   Note You may use either the default ISR by using this API, or you may define
+ 150:Generated_Source\PSoC4/FanController_DataSend.c **** *   your own separate ISR through ISR_StartEx().
+ 151:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 152:Generated_Source\PSoC4/FanController_DataSend.c **** * Parameters:  
+ 153:Generated_Source\PSoC4/FanController_DataSend.c **** *   None
+ 154:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 155:Generated_Source\PSoC4/FanController_DataSend.c **** * Return:
+ 156:Generated_Source\PSoC4/FanController_DataSend.c **** *   None
+ 157:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 158:Generated_Source\PSoC4/FanController_DataSend.c **** *******************************************************************************/
+ 159:Generated_Source\PSoC4/FanController_DataSend.c **** CY_ISR(FanController_DataSend_Interrupt)
+ 160:Generated_Source\PSoC4/FanController_DataSend.c **** {
+  28              		.loc 1 160 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+ 161:Generated_Source\PSoC4/FanController_DataSend.c ****     #ifdef FanController_DataSend_INTERRUPT_INTERRUPT_CALLBACK
+ 162:Generated_Source\PSoC4/FanController_DataSend.c ****         FanController_DataSend_Interrupt_InterruptCallback();
+ 163:Generated_Source\PSoC4/FanController_DataSend.c ****     #endif /* FanController_DataSend_INTERRUPT_INTERRUPT_CALLBACK */ 
+ 164:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 165:Generated_Source\PSoC4/FanController_DataSend.c ****     /*  Place your Interrupt code here. */
+ 166:Generated_Source\PSoC4/FanController_DataSend.c ****     /* `#START FanController_DataSend_Interrupt` */
+ 167:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 168:Generated_Source\PSoC4/FanController_DataSend.c ****     /* `#END` */
+ 169:Generated_Source\PSoC4/FanController_DataSend.c **** }
+  33              		.loc 1 169 0
+  34              		@ sp needed
+  35 0000 7047     		bx	lr
+  36              		.cfi_endproc
+  37              	.LFE3:
+  38              		.size	FanController_DataSend_Interrupt, .-FanController_DataSend_Interrupt
+  39              		.section	.text.FanController_DataSend_Stop,"ax",%progbits
+  40              		.align	1
+  41              		.global	FanController_DataSend_Stop
+  42              		.code	16
+  43              		.thumb_func
+  44              		.type	FanController_DataSend_Stop, %function
+  45              	FanController_DataSend_Stop:
+  46              	.LFB2:
+ 130:Generated_Source\PSoC4/FanController_DataSend.c ****     /* Disable this interrupt. */
+  47              		.loc 1 130 0
+  48              		.cfi_startproc
+  49              		@ args = 0, pretend = 0, frame = 0
+  50              		@ frame_needed = 0, uses_anonymous_args = 0
+  51              		@ link register save eliminated.
+  52              	.LBB18:
+  53              	.LBB19:
+ 170:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 171:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 172:Generated_Source\PSoC4/FanController_DataSend.c **** /*******************************************************************************
+ 173:Generated_Source\PSoC4/FanController_DataSend.c **** * Function Name: FanController_DataSend_SetVector
+ 174:Generated_Source\PSoC4/FanController_DataSend.c **** ********************************************************************************
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc3LHdap.s 			page 5
+
+
+ 175:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 176:Generated_Source\PSoC4/FanController_DataSend.c **** * Summary:
+ 177:Generated_Source\PSoC4/FanController_DataSend.c **** *   Change the ISR vector for the Interrupt. Note calling FanController_DataSend_Start
+ 178:Generated_Source\PSoC4/FanController_DataSend.c **** *   will override any effect this method would have had. To set the vector 
+ 179:Generated_Source\PSoC4/FanController_DataSend.c **** *   before the component has been started use FanController_DataSend_StartEx instead.
+ 180:Generated_Source\PSoC4/FanController_DataSend.c **** * 
+ 181:Generated_Source\PSoC4/FanController_DataSend.c **** *   When defining ISR functions, the CY_ISR and CY_ISR_PROTO macros should be 
+ 182:Generated_Source\PSoC4/FanController_DataSend.c **** *   used to provide consistent definition across compilers:
+ 183:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 184:Generated_Source\PSoC4/FanController_DataSend.c **** *   Function definition example:
+ 185:Generated_Source\PSoC4/FanController_DataSend.c **** *   CY_ISR(MyISR)
+ 186:Generated_Source\PSoC4/FanController_DataSend.c **** *   {
+ 187:Generated_Source\PSoC4/FanController_DataSend.c **** *   }
+ 188:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 189:Generated_Source\PSoC4/FanController_DataSend.c **** *   Function prototype example:
+ 190:Generated_Source\PSoC4/FanController_DataSend.c **** *     CY_ISR_PROTO(MyISR);
+ 191:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 192:Generated_Source\PSoC4/FanController_DataSend.c **** * Parameters:
+ 193:Generated_Source\PSoC4/FanController_DataSend.c **** *   address: Address of the ISR to set in the interrupt vector table.
+ 194:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 195:Generated_Source\PSoC4/FanController_DataSend.c **** * Return:
+ 196:Generated_Source\PSoC4/FanController_DataSend.c **** *   None
+ 197:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 198:Generated_Source\PSoC4/FanController_DataSend.c **** *******************************************************************************/
+ 199:Generated_Source\PSoC4/FanController_DataSend.c **** void FanController_DataSend_SetVector(cyisraddress address)
+ 200:Generated_Source\PSoC4/FanController_DataSend.c **** {
+ 201:Generated_Source\PSoC4/FanController_DataSend.c ****     CyRamVectors[CYINT_IRQ_BASE + FanController_DataSend__INTC_NUMBER] = address;
+ 202:Generated_Source\PSoC4/FanController_DataSend.c **** }
+ 203:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 204:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 205:Generated_Source\PSoC4/FanController_DataSend.c **** /*******************************************************************************
+ 206:Generated_Source\PSoC4/FanController_DataSend.c **** * Function Name: FanController_DataSend_GetVector
+ 207:Generated_Source\PSoC4/FanController_DataSend.c **** ********************************************************************************
+ 208:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 209:Generated_Source\PSoC4/FanController_DataSend.c **** * Summary:
+ 210:Generated_Source\PSoC4/FanController_DataSend.c **** *   Gets the "address" of the current ISR vector for the Interrupt.
+ 211:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 212:Generated_Source\PSoC4/FanController_DataSend.c **** * Parameters:
+ 213:Generated_Source\PSoC4/FanController_DataSend.c **** *   None
+ 214:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 215:Generated_Source\PSoC4/FanController_DataSend.c **** * Return:
+ 216:Generated_Source\PSoC4/FanController_DataSend.c **** *   Address of the ISR in the interrupt vector table.
+ 217:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 218:Generated_Source\PSoC4/FanController_DataSend.c **** *******************************************************************************/
+ 219:Generated_Source\PSoC4/FanController_DataSend.c **** cyisraddress FanController_DataSend_GetVector(void)
+ 220:Generated_Source\PSoC4/FanController_DataSend.c **** {
+ 221:Generated_Source\PSoC4/FanController_DataSend.c ****     return CyRamVectors[CYINT_IRQ_BASE + FanController_DataSend__INTC_NUMBER];
+ 222:Generated_Source\PSoC4/FanController_DataSend.c **** }
+ 223:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 224:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 225:Generated_Source\PSoC4/FanController_DataSend.c **** /*******************************************************************************
+ 226:Generated_Source\PSoC4/FanController_DataSend.c **** * Function Name: FanController_DataSend_SetPriority
+ 227:Generated_Source\PSoC4/FanController_DataSend.c **** ********************************************************************************
+ 228:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 229:Generated_Source\PSoC4/FanController_DataSend.c **** * Summary:
+ 230:Generated_Source\PSoC4/FanController_DataSend.c **** *   Sets the Priority of the Interrupt. 
+ 231:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc3LHdap.s 			page 6
+
+
+ 232:Generated_Source\PSoC4/FanController_DataSend.c **** *   Note calling FanController_DataSend_Start or FanController_DataSend_StartEx will 
+ 233:Generated_Source\PSoC4/FanController_DataSend.c **** *   override any effect this API would have had. This API should only be called
+ 234:Generated_Source\PSoC4/FanController_DataSend.c **** *   after FanController_DataSend_Start or FanController_DataSend_StartEx has been called. 
+ 235:Generated_Source\PSoC4/FanController_DataSend.c **** *   To set the initial priority for the component, use the Design-Wide Resources
+ 236:Generated_Source\PSoC4/FanController_DataSend.c **** *   Interrupt Editor.
+ 237:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 238:Generated_Source\PSoC4/FanController_DataSend.c **** *   Note This API has no effect on Non-maskable interrupt NMI).
+ 239:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 240:Generated_Source\PSoC4/FanController_DataSend.c **** * Parameters:
+ 241:Generated_Source\PSoC4/FanController_DataSend.c **** *   priority: Priority of the interrupt, 0 being the highest priority
+ 242:Generated_Source\PSoC4/FanController_DataSend.c **** *             PSoC 3 and PSoC 5LP: Priority is from 0 to 7.
+ 243:Generated_Source\PSoC4/FanController_DataSend.c **** *             PSoC 4: Priority is from 0 to 3.
+ 244:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 245:Generated_Source\PSoC4/FanController_DataSend.c **** * Return:
+ 246:Generated_Source\PSoC4/FanController_DataSend.c **** *   None
+ 247:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 248:Generated_Source\PSoC4/FanController_DataSend.c **** *******************************************************************************/
+ 249:Generated_Source\PSoC4/FanController_DataSend.c **** void FanController_DataSend_SetPriority(uint8 priority)
+ 250:Generated_Source\PSoC4/FanController_DataSend.c **** {
+ 251:Generated_Source\PSoC4/FanController_DataSend.c **** 	uint8 interruptState;
+ 252:Generated_Source\PSoC4/FanController_DataSend.c ****     uint32 priorityOffset = ((FanController_DataSend__INTC_NUMBER % 4u) * 8u) + 6u;
+ 253:Generated_Source\PSoC4/FanController_DataSend.c ****     
+ 254:Generated_Source\PSoC4/FanController_DataSend.c **** 	interruptState = CyEnterCriticalSection();
+ 255:Generated_Source\PSoC4/FanController_DataSend.c ****     *FanController_DataSend_INTC_PRIOR = (*FanController_DataSend_INTC_PRIOR & (uint32)(~FanControl
+ 256:Generated_Source\PSoC4/FanController_DataSend.c ****                                     ((uint32)priority << priorityOffset);
+ 257:Generated_Source\PSoC4/FanController_DataSend.c **** 	CyExitCriticalSection(interruptState);
+ 258:Generated_Source\PSoC4/FanController_DataSend.c **** }
+ 259:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 260:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 261:Generated_Source\PSoC4/FanController_DataSend.c **** /*******************************************************************************
+ 262:Generated_Source\PSoC4/FanController_DataSend.c **** * Function Name: FanController_DataSend_GetPriority
+ 263:Generated_Source\PSoC4/FanController_DataSend.c **** ********************************************************************************
+ 264:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 265:Generated_Source\PSoC4/FanController_DataSend.c **** * Summary:
+ 266:Generated_Source\PSoC4/FanController_DataSend.c **** *   Gets the Priority of the Interrupt.
+ 267:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 268:Generated_Source\PSoC4/FanController_DataSend.c **** * Parameters:
+ 269:Generated_Source\PSoC4/FanController_DataSend.c **** *   None
+ 270:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 271:Generated_Source\PSoC4/FanController_DataSend.c **** * Return:
+ 272:Generated_Source\PSoC4/FanController_DataSend.c **** *   Priority of the interrupt, 0 being the highest priority
+ 273:Generated_Source\PSoC4/FanController_DataSend.c **** *    PSoC 3 and PSoC 5LP: Priority is from 0 to 7.
+ 274:Generated_Source\PSoC4/FanController_DataSend.c **** *    PSoC 4: Priority is from 0 to 3.
+ 275:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 276:Generated_Source\PSoC4/FanController_DataSend.c **** *******************************************************************************/
+ 277:Generated_Source\PSoC4/FanController_DataSend.c **** uint8 FanController_DataSend_GetPriority(void)
+ 278:Generated_Source\PSoC4/FanController_DataSend.c **** {
+ 279:Generated_Source\PSoC4/FanController_DataSend.c ****     uint32 priority;
+ 280:Generated_Source\PSoC4/FanController_DataSend.c **** 	uint32 priorityOffset = ((FanController_DataSend__INTC_NUMBER % 4u) * 8u) + 6u;
+ 281:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 282:Generated_Source\PSoC4/FanController_DataSend.c ****     priority = (*FanController_DataSend_INTC_PRIOR & FanController_DataSend__INTC_PRIOR_MASK) >> pr
+ 283:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 284:Generated_Source\PSoC4/FanController_DataSend.c ****     return (uint8)priority;
+ 285:Generated_Source\PSoC4/FanController_DataSend.c **** }
+ 286:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 287:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 288:Generated_Source\PSoC4/FanController_DataSend.c **** /*******************************************************************************
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc3LHdap.s 			page 7
+
+
+ 289:Generated_Source\PSoC4/FanController_DataSend.c **** * Function Name: FanController_DataSend_Enable
+ 290:Generated_Source\PSoC4/FanController_DataSend.c **** ********************************************************************************
+ 291:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 292:Generated_Source\PSoC4/FanController_DataSend.c **** * Summary:
+ 293:Generated_Source\PSoC4/FanController_DataSend.c **** *   Enables the interrupt to the interrupt controller. Do not call this function
+ 294:Generated_Source\PSoC4/FanController_DataSend.c **** *   unless ISR_Start() has been called or the functionality of the ISR_Start() 
+ 295:Generated_Source\PSoC4/FanController_DataSend.c **** *   function, which sets the vector and the priority, has been called.
+ 296:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 297:Generated_Source\PSoC4/FanController_DataSend.c **** * Parameters:
+ 298:Generated_Source\PSoC4/FanController_DataSend.c **** *   None
+ 299:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 300:Generated_Source\PSoC4/FanController_DataSend.c **** * Return:
+ 301:Generated_Source\PSoC4/FanController_DataSend.c **** *   None
+ 302:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 303:Generated_Source\PSoC4/FanController_DataSend.c **** *******************************************************************************/
+ 304:Generated_Source\PSoC4/FanController_DataSend.c **** void FanController_DataSend_Enable(void)
+ 305:Generated_Source\PSoC4/FanController_DataSend.c **** {
+ 306:Generated_Source\PSoC4/FanController_DataSend.c ****     /* Enable the general interrupt. */
+ 307:Generated_Source\PSoC4/FanController_DataSend.c ****     *FanController_DataSend_INTC_SET_EN = FanController_DataSend__INTC_MASK;
+ 308:Generated_Source\PSoC4/FanController_DataSend.c **** }
+ 309:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 310:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 311:Generated_Source\PSoC4/FanController_DataSend.c **** /*******************************************************************************
+ 312:Generated_Source\PSoC4/FanController_DataSend.c **** * Function Name: FanController_DataSend_GetState
+ 313:Generated_Source\PSoC4/FanController_DataSend.c **** ********************************************************************************
+ 314:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 315:Generated_Source\PSoC4/FanController_DataSend.c **** * Summary:
+ 316:Generated_Source\PSoC4/FanController_DataSend.c **** *   Gets the state (enabled, disabled) of the Interrupt.
+ 317:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 318:Generated_Source\PSoC4/FanController_DataSend.c **** * Parameters:
+ 319:Generated_Source\PSoC4/FanController_DataSend.c **** *   None
+ 320:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 321:Generated_Source\PSoC4/FanController_DataSend.c **** * Return:
+ 322:Generated_Source\PSoC4/FanController_DataSend.c **** *   1 if enabled, 0 if disabled.
+ 323:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 324:Generated_Source\PSoC4/FanController_DataSend.c **** *******************************************************************************/
+ 325:Generated_Source\PSoC4/FanController_DataSend.c **** uint8 FanController_DataSend_GetState(void)
+ 326:Generated_Source\PSoC4/FanController_DataSend.c **** {
+ 327:Generated_Source\PSoC4/FanController_DataSend.c ****     /* Get the state of the general interrupt. */
+ 328:Generated_Source\PSoC4/FanController_DataSend.c ****     return ((*FanController_DataSend_INTC_SET_EN & (uint32)FanController_DataSend__INTC_MASK) != 0u
+ 329:Generated_Source\PSoC4/FanController_DataSend.c **** }
+ 330:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 331:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 332:Generated_Source\PSoC4/FanController_DataSend.c **** /*******************************************************************************
+ 333:Generated_Source\PSoC4/FanController_DataSend.c **** * Function Name: FanController_DataSend_Disable
+ 334:Generated_Source\PSoC4/FanController_DataSend.c **** ********************************************************************************
+ 335:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 336:Generated_Source\PSoC4/FanController_DataSend.c **** * Summary:
+ 337:Generated_Source\PSoC4/FanController_DataSend.c **** *   Disables the Interrupt in the interrupt controller.
+ 338:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 339:Generated_Source\PSoC4/FanController_DataSend.c **** * Parameters:
+ 340:Generated_Source\PSoC4/FanController_DataSend.c **** *   None
+ 341:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 342:Generated_Source\PSoC4/FanController_DataSend.c **** * Return:
+ 343:Generated_Source\PSoC4/FanController_DataSend.c **** *   None
+ 344:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 345:Generated_Source\PSoC4/FanController_DataSend.c **** *******************************************************************************/
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc3LHdap.s 			page 8
+
+
+ 346:Generated_Source\PSoC4/FanController_DataSend.c **** void FanController_DataSend_Disable(void)
+ 347:Generated_Source\PSoC4/FanController_DataSend.c **** {
+ 348:Generated_Source\PSoC4/FanController_DataSend.c ****     /* Disable the general interrupt. */
+ 349:Generated_Source\PSoC4/FanController_DataSend.c ****     *FanController_DataSend_INTC_CLR_EN = FanController_DataSend__INTC_MASK;
+  54              		.loc 1 349 0
+  55 0000 0222     		movs	r2, #2
+  56 0002 034B     		ldr	r3, .L3
+  57              	.LBE19:
+  58              	.LBE18:
+ 136:Generated_Source\PSoC4/FanController_DataSend.c **** 
+  59              		.loc 1 136 0
+  60              		@ sp needed
+  61              	.LBB21:
+  62              	.LBB20:
+  63              		.loc 1 349 0
+  64 0004 1A60     		str	r2, [r3]
+  65              	.LVL0:
+  66              	.LBE20:
+  67              	.LBE21:
+  68              	.LBB22:
+  69              	.LBB23:
+ 201:Generated_Source\PSoC4/FanController_DataSend.c **** }
+  70              		.loc 1 201 0
+  71 0006 034A     		ldr	r2, .L3+4
+  72 0008 034B     		ldr	r3, .L3+8
+  73 000a 5A64     		str	r2, [r3, #68]
+  74              	.LVL1:
+  75              	.LBE23:
+  76              	.LBE22:
+ 136:Generated_Source\PSoC4/FanController_DataSend.c **** 
+  77              		.loc 1 136 0
+  78 000c 7047     		bx	lr
+  79              	.L4:
+  80 000e C046     		.align	2
+  81              	.L3:
+  82 0010 80E100E0 		.word	-536813184
+  83 0014 00000000 		.word	IntDefaultHandler
+  84 0018 00000000 		.word	CyRamVectors
+  85              		.cfi_endproc
+  86              	.LFE2:
+  87              		.size	FanController_DataSend_Stop, .-FanController_DataSend_Stop
+  88              		.section	.text.FanController_DataSend_SetVector,"ax",%progbits
+  89              		.align	1
+  90              		.global	FanController_DataSend_SetVector
+  91              		.code	16
+  92              		.thumb_func
+  93              		.type	FanController_DataSend_SetVector, %function
+  94              	FanController_DataSend_SetVector:
+  95              	.LFB4:
+ 200:Generated_Source\PSoC4/FanController_DataSend.c ****     CyRamVectors[CYINT_IRQ_BASE + FanController_DataSend__INTC_NUMBER] = address;
+  96              		.loc 1 200 0
+  97              		.cfi_startproc
+  98              		@ args = 0, pretend = 0, frame = 0
+  99              		@ frame_needed = 0, uses_anonymous_args = 0
+ 100              		@ link register save eliminated.
+ 101              	.LVL2:
+ 201:Generated_Source\PSoC4/FanController_DataSend.c **** }
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc3LHdap.s 			page 9
+
+
+ 102              		.loc 1 201 0
+ 103 0000 014B     		ldr	r3, .L6
+ 202:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 104              		.loc 1 202 0
+ 105              		@ sp needed
+ 201:Generated_Source\PSoC4/FanController_DataSend.c **** }
+ 106              		.loc 1 201 0
+ 107 0002 5864     		str	r0, [r3, #68]
+ 202:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 108              		.loc 1 202 0
+ 109 0004 7047     		bx	lr
+ 110              	.L7:
+ 111 0006 C046     		.align	2
+ 112              	.L6:
+ 113 0008 00000000 		.word	CyRamVectors
+ 114              		.cfi_endproc
+ 115              	.LFE4:
+ 116              		.size	FanController_DataSend_SetVector, .-FanController_DataSend_SetVector
+ 117              		.section	.text.FanController_DataSend_GetVector,"ax",%progbits
+ 118              		.align	1
+ 119              		.global	FanController_DataSend_GetVector
+ 120              		.code	16
+ 121              		.thumb_func
+ 122              		.type	FanController_DataSend_GetVector, %function
+ 123              	FanController_DataSend_GetVector:
+ 124              	.LFB5:
+ 220:Generated_Source\PSoC4/FanController_DataSend.c ****     return CyRamVectors[CYINT_IRQ_BASE + FanController_DataSend__INTC_NUMBER];
+ 125              		.loc 1 220 0
+ 126              		.cfi_startproc
+ 127              		@ args = 0, pretend = 0, frame = 0
+ 128              		@ frame_needed = 0, uses_anonymous_args = 0
+ 129              		@ link register save eliminated.
+ 221:Generated_Source\PSoC4/FanController_DataSend.c **** }
+ 130              		.loc 1 221 0
+ 131 0000 014B     		ldr	r3, .L9
+ 222:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 132              		.loc 1 222 0
+ 133              		@ sp needed
+ 221:Generated_Source\PSoC4/FanController_DataSend.c **** }
+ 134              		.loc 1 221 0
+ 135 0002 586C     		ldr	r0, [r3, #68]
+ 222:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 136              		.loc 1 222 0
+ 137 0004 7047     		bx	lr
+ 138              	.L10:
+ 139 0006 C046     		.align	2
+ 140              	.L9:
+ 141 0008 00000000 		.word	CyRamVectors
+ 142              		.cfi_endproc
+ 143              	.LFE5:
+ 144              		.size	FanController_DataSend_GetVector, .-FanController_DataSend_GetVector
+ 145              		.section	.text.FanController_DataSend_SetPriority,"ax",%progbits
+ 146              		.align	1
+ 147              		.global	FanController_DataSend_SetPriority
+ 148              		.code	16
+ 149              		.thumb_func
+ 150              		.type	FanController_DataSend_SetPriority, %function
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc3LHdap.s 			page 10
+
+
+ 151              	FanController_DataSend_SetPriority:
+ 152              	.LFB6:
+ 250:Generated_Source\PSoC4/FanController_DataSend.c **** 	uint8 interruptState;
+ 153              		.loc 1 250 0
+ 154              		.cfi_startproc
+ 155              		@ args = 0, pretend = 0, frame = 0
+ 156              		@ frame_needed = 0, uses_anonymous_args = 0
+ 157              	.LVL3:
+ 158 0000 10B5     		push	{r4, lr}
+ 159              		.cfi_def_cfa_offset 8
+ 160              		.cfi_offset 4, -8
+ 161              		.cfi_offset 14, -4
+ 250:Generated_Source\PSoC4/FanController_DataSend.c **** 	uint8 interruptState;
+ 162              		.loc 1 250 0
+ 163 0002 0400     		movs	r4, r0
+ 254:Generated_Source\PSoC4/FanController_DataSend.c ****     *FanController_DataSend_INTC_PRIOR = (*FanController_DataSend_INTC_PRIOR & (uint32)(~FanControl
+ 164              		.loc 1 254 0
+ 165 0004 FFF7FEFF 		bl	CyEnterCriticalSection
+ 166              	.LVL4:
+ 255:Generated_Source\PSoC4/FanController_DataSend.c ****                                     ((uint32)priority << priorityOffset);
+ 167              		.loc 1 255 0
+ 168 0008 044A     		ldr	r2, .L12
+ 169 000a 054B     		ldr	r3, .L12+4
+ 170 000c 1168     		ldr	r1, [r2]
+ 171 000e A403     		lsls	r4, r4, #14
+ 172 0010 0B40     		ands	r3, r1
+ 173 0012 1C43     		orrs	r4, r3
+ 174 0014 1460     		str	r4, [r2]
+ 257:Generated_Source\PSoC4/FanController_DataSend.c **** }
+ 175              		.loc 1 257 0
+ 176 0016 FFF7FEFF 		bl	CyExitCriticalSection
+ 177              	.LVL5:
+ 258:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 178              		.loc 1 258 0
+ 179              		@ sp needed
+ 180 001a 10BD     		pop	{r4, pc}
+ 181              	.L13:
+ 182              		.align	2
+ 183              	.L12:
+ 184 001c 00E400E0 		.word	-536812544
+ 185 0020 FF3FFFFF 		.word	-49153
+ 186              		.cfi_endproc
+ 187              	.LFE6:
+ 188              		.size	FanController_DataSend_SetPriority, .-FanController_DataSend_SetPriority
+ 189              		.section	.text.FanController_DataSend_Start,"ax",%progbits
+ 190              		.align	1
+ 191              		.global	FanController_DataSend_Start
+ 192              		.code	16
+ 193              		.thumb_func
+ 194              		.type	FanController_DataSend_Start, %function
+ 195              	FanController_DataSend_Start:
+ 196              	.LFB0:
+  57:Generated_Source\PSoC4/FanController_DataSend.c ****     /* For all we know the interrupt is active. */
+ 197              		.loc 1 57 0
+ 198              		.cfi_startproc
+ 199              		@ args = 0, pretend = 0, frame = 0
+ 200              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc3LHdap.s 			page 11
+
+
+ 201 0000 10B5     		push	{r4, lr}
+ 202              		.cfi_def_cfa_offset 8
+ 203              		.cfi_offset 4, -8
+ 204              		.cfi_offset 14, -4
+ 205              	.LBB24:
+ 206              	.LBB25:
+ 207              		.loc 1 349 0
+ 208 0002 0224     		movs	r4, #2
+ 209 0004 054B     		ldr	r3, .L15
+ 210              	.LBE25:
+ 211              	.LBE24:
+ 212              	.LBB27:
+ 213              	.LBB28:
+ 201:Generated_Source\PSoC4/FanController_DataSend.c **** }
+ 214              		.loc 1 201 0
+ 215 0006 064A     		ldr	r2, .L15+4
+ 216              	.LBE28:
+ 217              	.LBE27:
+ 218              	.LBB31:
+ 219              	.LBB26:
+ 220              		.loc 1 349 0
+ 221 0008 1C60     		str	r4, [r3]
+ 222              	.LVL6:
+ 223              	.LBE26:
+ 224              	.LBE31:
+ 225              	.LBB32:
+ 226              	.LBB29:
+ 201:Generated_Source\PSoC4/FanController_DataSend.c **** }
+ 227              		.loc 1 201 0
+ 228 000a 064B     		ldr	r3, .L15+8
+ 229              	.LBE29:
+ 230              	.LBE32:
+  65:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 231              		.loc 1 65 0
+ 232 000c 0320     		movs	r0, #3
+ 233              	.LBB33:
+ 234              	.LBB30:
+ 201:Generated_Source\PSoC4/FanController_DataSend.c **** }
+ 235              		.loc 1 201 0
+ 236 000e 5A64     		str	r2, [r3, #68]
+ 237              	.LVL7:
+ 238              	.LBE30:
+ 239              	.LBE33:
+  65:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 240              		.loc 1 65 0
+ 241 0010 FFF7FEFF 		bl	FanController_DataSend_SetPriority
+ 242              	.LVL8:
+ 243              	.LBB34:
+ 244              	.LBB35:
+ 307:Generated_Source\PSoC4/FanController_DataSend.c **** }
+ 245              		.loc 1 307 0
+ 246 0014 044B     		ldr	r3, .L15+12
+ 247              	.LBE35:
+ 248              	.LBE34:
+  69:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 249              		.loc 1 69 0
+ 250              		@ sp needed
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc3LHdap.s 			page 12
+
+
+ 251              	.LBB37:
+ 252              	.LBB36:
+ 307:Generated_Source\PSoC4/FanController_DataSend.c **** }
+ 253              		.loc 1 307 0
+ 254 0016 1C60     		str	r4, [r3]
+ 255              	.LBE36:
+ 256              	.LBE37:
+  69:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 257              		.loc 1 69 0
+ 258 0018 10BD     		pop	{r4, pc}
+ 259              	.L16:
+ 260 001a C046     		.align	2
+ 261              	.L15:
+ 262 001c 80E100E0 		.word	-536813184
+ 263 0020 00000000 		.word	FanController_DataSend_Interrupt
+ 264 0024 00000000 		.word	CyRamVectors
+ 265 0028 00E100E0 		.word	-536813312
+ 266              		.cfi_endproc
+ 267              	.LFE0:
+ 268              		.size	FanController_DataSend_Start, .-FanController_DataSend_Start
+ 269              		.section	.text.FanController_DataSend_StartEx,"ax",%progbits
+ 270              		.align	1
+ 271              		.global	FanController_DataSend_StartEx
+ 272              		.code	16
+ 273              		.thumb_func
+ 274              		.type	FanController_DataSend_StartEx, %function
+ 275              	FanController_DataSend_StartEx:
+ 276              	.LFB1:
+ 100:Generated_Source\PSoC4/FanController_DataSend.c ****     /* For all we know the interrupt is active. */
+ 277              		.loc 1 100 0
+ 278              		.cfi_startproc
+ 279              		@ args = 0, pretend = 0, frame = 0
+ 280              		@ frame_needed = 0, uses_anonymous_args = 0
+ 281              	.LVL9:
+ 282 0000 10B5     		push	{r4, lr}
+ 283              		.cfi_def_cfa_offset 8
+ 284              		.cfi_offset 4, -8
+ 285              		.cfi_offset 14, -4
+ 286              	.LBB38:
+ 287              	.LBB39:
+ 288              		.loc 1 349 0
+ 289 0002 0224     		movs	r4, #2
+ 290 0004 044B     		ldr	r3, .L18
+ 291              	.LBE39:
+ 292              	.LBE38:
+ 112:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 293              		.loc 1 112 0
+ 294              		@ sp needed
+ 295              	.LBB41:
+ 296              	.LBB40:
+ 297              		.loc 1 349 0
+ 298 0006 1C60     		str	r4, [r3]
+ 299              	.LVL10:
+ 300              	.LBE40:
+ 301              	.LBE41:
+ 302              	.LBB42:
+ 303              	.LBB43:
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc3LHdap.s 			page 13
+
+
+ 201:Generated_Source\PSoC4/FanController_DataSend.c **** }
+ 304              		.loc 1 201 0
+ 305 0008 044B     		ldr	r3, .L18+4
+ 306 000a 5864     		str	r0, [r3, #68]
+ 307              	.LVL11:
+ 308              	.LBE43:
+ 309              	.LBE42:
+ 108:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 310              		.loc 1 108 0
+ 311 000c 0320     		movs	r0, #3
+ 312              	.LVL12:
+ 313 000e FFF7FEFF 		bl	FanController_DataSend_SetPriority
+ 314              	.LVL13:
+ 315              	.LBB44:
+ 316              	.LBB45:
+ 307:Generated_Source\PSoC4/FanController_DataSend.c **** }
+ 317              		.loc 1 307 0
+ 318 0012 034B     		ldr	r3, .L18+8
+ 319 0014 1C60     		str	r4, [r3]
+ 320              	.LBE45:
+ 321              	.LBE44:
+ 112:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 322              		.loc 1 112 0
+ 323 0016 10BD     		pop	{r4, pc}
+ 324              	.L19:
+ 325              		.align	2
+ 326              	.L18:
+ 327 0018 80E100E0 		.word	-536813184
+ 328 001c 00000000 		.word	CyRamVectors
+ 329 0020 00E100E0 		.word	-536813312
+ 330              		.cfi_endproc
+ 331              	.LFE1:
+ 332              		.size	FanController_DataSend_StartEx, .-FanController_DataSend_StartEx
+ 333              		.section	.text.FanController_DataSend_GetPriority,"ax",%progbits
+ 334              		.align	1
+ 335              		.global	FanController_DataSend_GetPriority
+ 336              		.code	16
+ 337              		.thumb_func
+ 338              		.type	FanController_DataSend_GetPriority, %function
+ 339              	FanController_DataSend_GetPriority:
+ 340              	.LFB7:
+ 278:Generated_Source\PSoC4/FanController_DataSend.c ****     uint32 priority;
+ 341              		.loc 1 278 0
+ 342              		.cfi_startproc
+ 343              		@ args = 0, pretend = 0, frame = 0
+ 344              		@ frame_needed = 0, uses_anonymous_args = 0
+ 345              		@ link register save eliminated.
+ 346              	.LVL14:
+ 282:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 347              		.loc 1 282 0
+ 348 0000 024B     		ldr	r3, .L21
+ 285:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 349              		.loc 1 285 0
+ 350              		@ sp needed
+ 282:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 351              		.loc 1 282 0
+ 352 0002 1868     		ldr	r0, [r3]
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc3LHdap.s 			page 14
+
+
+ 353              	.LVL15:
+ 284:Generated_Source\PSoC4/FanController_DataSend.c **** }
+ 354              		.loc 1 284 0
+ 355 0004 0004     		lsls	r0, r0, #16
+ 356              	.LVL16:
+ 357 0006 800F     		lsrs	r0, r0, #30
+ 285:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 358              		.loc 1 285 0
+ 359 0008 7047     		bx	lr
+ 360              	.L22:
+ 361 000a C046     		.align	2
+ 362              	.L21:
+ 363 000c 00E400E0 		.word	-536812544
+ 364              		.cfi_endproc
+ 365              	.LFE7:
+ 366              		.size	FanController_DataSend_GetPriority, .-FanController_DataSend_GetPriority
+ 367              		.section	.text.FanController_DataSend_Enable,"ax",%progbits
+ 368              		.align	1
+ 369              		.global	FanController_DataSend_Enable
+ 370              		.code	16
+ 371              		.thumb_func
+ 372              		.type	FanController_DataSend_Enable, %function
+ 373              	FanController_DataSend_Enable:
+ 374              	.LFB8:
+ 305:Generated_Source\PSoC4/FanController_DataSend.c ****     /* Enable the general interrupt. */
+ 375              		.loc 1 305 0
+ 376              		.cfi_startproc
+ 377              		@ args = 0, pretend = 0, frame = 0
+ 378              		@ frame_needed = 0, uses_anonymous_args = 0
+ 379              		@ link register save eliminated.
+ 307:Generated_Source\PSoC4/FanController_DataSend.c **** }
+ 380              		.loc 1 307 0
+ 381 0000 0222     		movs	r2, #2
+ 382 0002 014B     		ldr	r3, .L24
+ 308:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 383              		.loc 1 308 0
+ 384              		@ sp needed
+ 307:Generated_Source\PSoC4/FanController_DataSend.c **** }
+ 385              		.loc 1 307 0
+ 386 0004 1A60     		str	r2, [r3]
+ 308:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 387              		.loc 1 308 0
+ 388 0006 7047     		bx	lr
+ 389              	.L25:
+ 390              		.align	2
+ 391              	.L24:
+ 392 0008 00E100E0 		.word	-536813312
+ 393              		.cfi_endproc
+ 394              	.LFE8:
+ 395              		.size	FanController_DataSend_Enable, .-FanController_DataSend_Enable
+ 396              		.section	.text.FanController_DataSend_GetState,"ax",%progbits
+ 397              		.align	1
+ 398              		.global	FanController_DataSend_GetState
+ 399              		.code	16
+ 400              		.thumb_func
+ 401              		.type	FanController_DataSend_GetState, %function
+ 402              	FanController_DataSend_GetState:
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc3LHdap.s 			page 15
+
+
+ 403              	.LFB9:
+ 326:Generated_Source\PSoC4/FanController_DataSend.c ****     /* Get the state of the general interrupt. */
+ 404              		.loc 1 326 0
+ 405              		.cfi_startproc
+ 406              		@ args = 0, pretend = 0, frame = 0
+ 407              		@ frame_needed = 0, uses_anonymous_args = 0
+ 408              		@ link register save eliminated.
+ 328:Generated_Source\PSoC4/FanController_DataSend.c **** }
+ 409              		.loc 1 328 0
+ 410 0000 024B     		ldr	r3, .L27
+ 329:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 411              		.loc 1 329 0
+ 412              		@ sp needed
+ 328:Generated_Source\PSoC4/FanController_DataSend.c **** }
+ 413              		.loc 1 328 0
+ 414 0002 1868     		ldr	r0, [r3]
+ 415 0004 8007     		lsls	r0, r0, #30
+ 416 0006 C00F     		lsrs	r0, r0, #31
+ 329:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 417              		.loc 1 329 0
+ 418 0008 7047     		bx	lr
+ 419              	.L28:
+ 420 000a C046     		.align	2
+ 421              	.L27:
+ 422 000c 00E100E0 		.word	-536813312
+ 423              		.cfi_endproc
+ 424              	.LFE9:
+ 425              		.size	FanController_DataSend_GetState, .-FanController_DataSend_GetState
+ 426              		.section	.text.FanController_DataSend_Disable,"ax",%progbits
+ 427              		.align	1
+ 428              		.global	FanController_DataSend_Disable
+ 429              		.code	16
+ 430              		.thumb_func
+ 431              		.type	FanController_DataSend_Disable, %function
+ 432              	FanController_DataSend_Disable:
+ 433              	.LFB10:
+ 347:Generated_Source\PSoC4/FanController_DataSend.c ****     /* Disable the general interrupt. */
+ 434              		.loc 1 347 0
+ 435              		.cfi_startproc
+ 436              		@ args = 0, pretend = 0, frame = 0
+ 437              		@ frame_needed = 0, uses_anonymous_args = 0
+ 438              		@ link register save eliminated.
+ 439              		.loc 1 349 0
+ 440 0000 0222     		movs	r2, #2
+ 441 0002 014B     		ldr	r3, .L30
+ 350:Generated_Source\PSoC4/FanController_DataSend.c **** }
+ 442              		.loc 1 350 0
+ 443              		@ sp needed
+ 349:Generated_Source\PSoC4/FanController_DataSend.c **** }
+ 444              		.loc 1 349 0
+ 445 0004 1A60     		str	r2, [r3]
+ 446              		.loc 1 350 0
+ 447 0006 7047     		bx	lr
+ 448              	.L31:
+ 449              		.align	2
+ 450              	.L30:
+ 451 0008 80E100E0 		.word	-536813184
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc3LHdap.s 			page 16
+
+
+ 452              		.cfi_endproc
+ 453              	.LFE10:
+ 454              		.size	FanController_DataSend_Disable, .-FanController_DataSend_Disable
+ 455              		.section	.text.FanController_DataSend_SetPending,"ax",%progbits
+ 456              		.align	1
+ 457              		.global	FanController_DataSend_SetPending
+ 458              		.code	16
+ 459              		.thumb_func
+ 460              		.type	FanController_DataSend_SetPending, %function
+ 461              	FanController_DataSend_SetPending:
+ 462              	.LFB11:
+ 351:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 352:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 353:Generated_Source\PSoC4/FanController_DataSend.c **** /*******************************************************************************
+ 354:Generated_Source\PSoC4/FanController_DataSend.c **** * Function Name: FanController_DataSend_SetPending
+ 355:Generated_Source\PSoC4/FanController_DataSend.c **** ********************************************************************************
+ 356:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 357:Generated_Source\PSoC4/FanController_DataSend.c **** * Summary:
+ 358:Generated_Source\PSoC4/FanController_DataSend.c **** *   Causes the Interrupt to enter the pending state, a software method of
+ 359:Generated_Source\PSoC4/FanController_DataSend.c **** *   generating the interrupt.
+ 360:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 361:Generated_Source\PSoC4/FanController_DataSend.c **** * Parameters:
+ 362:Generated_Source\PSoC4/FanController_DataSend.c **** *   None
+ 363:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 364:Generated_Source\PSoC4/FanController_DataSend.c **** * Return:
+ 365:Generated_Source\PSoC4/FanController_DataSend.c **** *   None
+ 366:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 367:Generated_Source\PSoC4/FanController_DataSend.c **** * Side Effects:
+ 368:Generated_Source\PSoC4/FanController_DataSend.c **** *   If interrupts are enabled and the interrupt is set up properly, the ISR is
+ 369:Generated_Source\PSoC4/FanController_DataSend.c **** *   entered (depending on the priority of this interrupt and other pending 
+ 370:Generated_Source\PSoC4/FanController_DataSend.c **** *   interrupts).
+ 371:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 372:Generated_Source\PSoC4/FanController_DataSend.c **** *******************************************************************************/
+ 373:Generated_Source\PSoC4/FanController_DataSend.c **** void FanController_DataSend_SetPending(void)
+ 374:Generated_Source\PSoC4/FanController_DataSend.c **** {
+ 463              		.loc 1 374 0
+ 464              		.cfi_startproc
+ 465              		@ args = 0, pretend = 0, frame = 0
+ 466              		@ frame_needed = 0, uses_anonymous_args = 0
+ 467              		@ link register save eliminated.
+ 375:Generated_Source\PSoC4/FanController_DataSend.c ****     *FanController_DataSend_INTC_SET_PD = FanController_DataSend__INTC_MASK;
+ 468              		.loc 1 375 0
+ 469 0000 0222     		movs	r2, #2
+ 470 0002 014B     		ldr	r3, .L33
+ 376:Generated_Source\PSoC4/FanController_DataSend.c **** }
+ 471              		.loc 1 376 0
+ 472              		@ sp needed
+ 375:Generated_Source\PSoC4/FanController_DataSend.c ****     *FanController_DataSend_INTC_SET_PD = FanController_DataSend__INTC_MASK;
+ 473              		.loc 1 375 0
+ 474 0004 1A60     		str	r2, [r3]
+ 475              		.loc 1 376 0
+ 476 0006 7047     		bx	lr
+ 477              	.L34:
+ 478              		.align	2
+ 479              	.L33:
+ 480 0008 00E200E0 		.word	-536813056
+ 481              		.cfi_endproc
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc3LHdap.s 			page 17
+
+
+ 482              	.LFE11:
+ 483              		.size	FanController_DataSend_SetPending, .-FanController_DataSend_SetPending
+ 484              		.section	.text.FanController_DataSend_ClearPending,"ax",%progbits
+ 485              		.align	1
+ 486              		.global	FanController_DataSend_ClearPending
+ 487              		.code	16
+ 488              		.thumb_func
+ 489              		.type	FanController_DataSend_ClearPending, %function
+ 490              	FanController_DataSend_ClearPending:
+ 491              	.LFB12:
+ 377:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 378:Generated_Source\PSoC4/FanController_DataSend.c **** 
+ 379:Generated_Source\PSoC4/FanController_DataSend.c **** /*******************************************************************************
+ 380:Generated_Source\PSoC4/FanController_DataSend.c **** * Function Name: FanController_DataSend_ClearPending
+ 381:Generated_Source\PSoC4/FanController_DataSend.c **** ********************************************************************************
+ 382:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 383:Generated_Source\PSoC4/FanController_DataSend.c **** * Summary:
+ 384:Generated_Source\PSoC4/FanController_DataSend.c **** *   Clears a pending interrupt in the interrupt controller.
+ 385:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 386:Generated_Source\PSoC4/FanController_DataSend.c **** *   Note Some interrupt sources are clear-on-read and require the block 
+ 387:Generated_Source\PSoC4/FanController_DataSend.c **** *   interrupt/status register to be read/cleared with the appropriate block API 
+ 388:Generated_Source\PSoC4/FanController_DataSend.c **** *   (GPIO, UART, and so on). Otherwise the ISR will continue to remain in 
+ 389:Generated_Source\PSoC4/FanController_DataSend.c **** *   pending state even though the interrupt itself is cleared using this API.
+ 390:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 391:Generated_Source\PSoC4/FanController_DataSend.c **** * Parameters:
+ 392:Generated_Source\PSoC4/FanController_DataSend.c **** *   None
+ 393:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 394:Generated_Source\PSoC4/FanController_DataSend.c **** * Return:
+ 395:Generated_Source\PSoC4/FanController_DataSend.c **** *   None
+ 396:Generated_Source\PSoC4/FanController_DataSend.c **** *
+ 397:Generated_Source\PSoC4/FanController_DataSend.c **** *******************************************************************************/
+ 398:Generated_Source\PSoC4/FanController_DataSend.c **** void FanController_DataSend_ClearPending(void)
+ 399:Generated_Source\PSoC4/FanController_DataSend.c **** {
+ 492              		.loc 1 399 0
+ 493              		.cfi_startproc
+ 494              		@ args = 0, pretend = 0, frame = 0
+ 495              		@ frame_needed = 0, uses_anonymous_args = 0
+ 496              		@ link register save eliminated.
+ 400:Generated_Source\PSoC4/FanController_DataSend.c ****     *FanController_DataSend_INTC_CLR_PD = FanController_DataSend__INTC_MASK;
+ 497              		.loc 1 400 0
+ 498 0000 0222     		movs	r2, #2
+ 499 0002 014B     		ldr	r3, .L36
+ 401:Generated_Source\PSoC4/FanController_DataSend.c **** }
+ 500              		.loc 1 401 0
+ 501              		@ sp needed
+ 400:Generated_Source\PSoC4/FanController_DataSend.c ****     *FanController_DataSend_INTC_CLR_PD = FanController_DataSend__INTC_MASK;
+ 502              		.loc 1 400 0
+ 503 0004 1A60     		str	r2, [r3]
+ 504              		.loc 1 401 0
+ 505 0006 7047     		bx	lr
+ 506              	.L37:
+ 507              		.align	2
+ 508              	.L36:
+ 509 0008 80E200E0 		.word	-536812928
+ 510              		.cfi_endproc
+ 511              	.LFE12:
+ 512              		.size	FanController_DataSend_ClearPending, .-FanController_DataSend_ClearPending
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc3LHdap.s 			page 18
+
+
+ 513              		.text
+ 514              	.Letext0:
+ 515              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+ 516              		.file 3 "Generated_Source\\PSoC4/CyLib.h"
+ 517              		.section	.debug_info,"",%progbits
+ 518              	.Ldebug_info0:
+ 519 0000 47030000 		.4byte	0x347
+ 520 0004 0400     		.2byte	0x4
+ 521 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 522 000a 04       		.byte	0x4
+ 523 000b 01       		.uleb128 0x1
+ 524 000c 7C020000 		.4byte	.LASF34
+ 525 0010 0C       		.byte	0xc
+ 526 0011 4E000000 		.4byte	.LASF35
+ 527 0015 06000000 		.4byte	.LASF36
+ 528 0019 80000000 		.4byte	.Ldebug_ranges0+0x80
+ 529 001d 00000000 		.4byte	0
+ 530 0021 00000000 		.4byte	.Ldebug_line0
+ 531 0025 02       		.uleb128 0x2
+ 532 0026 01       		.byte	0x1
+ 533 0027 06       		.byte	0x6
+ 534 0028 A8030000 		.4byte	.LASF0
+ 535 002c 02       		.uleb128 0x2
+ 536 002d 01       		.byte	0x1
+ 537 002e 08       		.byte	0x8
+ 538 002f DE000000 		.4byte	.LASF1
+ 539 0033 02       		.uleb128 0x2
+ 540 0034 02       		.byte	0x2
+ 541 0035 05       		.byte	0x5
+ 542 0036 31030000 		.4byte	.LASF2
+ 543 003a 02       		.uleb128 0x2
+ 544 003b 02       		.byte	0x2
+ 545 003c 07       		.byte	0x7
+ 546 003d A1000000 		.4byte	.LASF3
+ 547 0041 02       		.uleb128 0x2
+ 548 0042 04       		.byte	0x4
+ 549 0043 05       		.byte	0x5
+ 550 0044 9F030000 		.4byte	.LASF4
+ 551 0048 02       		.uleb128 0x2
+ 552 0049 04       		.byte	0x4
+ 553 004a 07       		.byte	0x7
+ 554 004b 2D010000 		.4byte	.LASF5
+ 555 004f 02       		.uleb128 0x2
+ 556 0050 08       		.byte	0x8
+ 557 0051 05       		.byte	0x5
+ 558 0052 1E030000 		.4byte	.LASF6
+ 559 0056 02       		.uleb128 0x2
+ 560 0057 08       		.byte	0x8
+ 561 0058 07       		.byte	0x7
+ 562 0059 0C020000 		.4byte	.LASF7
+ 563 005d 03       		.uleb128 0x3
+ 564 005e 04       		.byte	0x4
+ 565 005f 05       		.byte	0x5
+ 566 0060 696E7400 		.ascii	"int\000"
+ 567 0064 02       		.uleb128 0x2
+ 568 0065 04       		.byte	0x4
+ 569 0066 07       		.byte	0x7
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc3LHdap.s 			page 19
+
+
+ 570 0067 F7010000 		.4byte	.LASF8
+ 571 006b 04       		.uleb128 0x4
+ 572 006c 3F010000 		.4byte	.LASF9
+ 573 0070 02       		.byte	0x2
+ 574 0071 E401     		.2byte	0x1e4
+ 575 0073 2C000000 		.4byte	0x2c
+ 576 0077 04       		.uleb128 0x4
+ 577 0078 D9010000 		.4byte	.LASF10
+ 578 007c 02       		.byte	0x2
+ 579 007d E601     		.2byte	0x1e6
+ 580 007f 48000000 		.4byte	0x48
+ 581 0083 02       		.uleb128 0x2
+ 582 0084 04       		.byte	0x4
+ 583 0085 04       		.byte	0x4
+ 584 0086 B4000000 		.4byte	.LASF11
+ 585 008a 02       		.uleb128 0x2
+ 586 008b 08       		.byte	0x8
+ 587 008c 04       		.byte	0x4
+ 588 008d 6F010000 		.4byte	.LASF12
+ 589 0091 02       		.uleb128 0x2
+ 590 0092 01       		.byte	0x1
+ 591 0093 08       		.byte	0x8
+ 592 0094 2C030000 		.4byte	.LASF13
+ 593 0098 04       		.uleb128 0x4
+ 594 0099 00000000 		.4byte	.LASF14
+ 595 009d 02       		.byte	0x2
+ 596 009e 9002     		.2byte	0x290
+ 597 00a0 A4000000 		.4byte	0xa4
+ 598 00a4 05       		.uleb128 0x5
+ 599 00a5 77000000 		.4byte	0x77
+ 600 00a9 04       		.uleb128 0x4
+ 601 00aa 23020000 		.4byte	.LASF15
+ 602 00ae 02       		.byte	0x2
+ 603 00af A002     		.2byte	0x2a0
+ 604 00b1 B5000000 		.4byte	0xb5
+ 605 00b5 06       		.uleb128 0x6
+ 606 00b6 04       		.byte	0x4
+ 607 00b7 BB000000 		.4byte	0xbb
+ 608 00bb 07       		.uleb128 0x7
+ 609 00bc 02       		.uleb128 0x2
+ 610 00bd 04       		.byte	0x4
+ 611 00be 07       		.byte	0x7
+ 612 00bf 15030000 		.4byte	.LASF16
+ 613 00c3 08       		.uleb128 0x8
+ 614 00c4 3B030000 		.4byte	.LASF17
+ 615 00c8 01       		.byte	0x1
+ 616 00c9 3001     		.2byte	0x130
+ 617 00cb 01       		.byte	0x1
+ 618 00cc 09       		.uleb128 0x9
+ 619 00cd 76010000 		.4byte	.LASF37
+ 620 00d1 01       		.byte	0x1
+ 621 00d2 C7       		.byte	0xc7
+ 622 00d3 01       		.byte	0x1
+ 623 00d4 E4000000 		.4byte	0xe4
+ 624 00d8 0A       		.uleb128 0xa
+ 625 00d9 04020000 		.4byte	.LASF26
+ 626 00dd 01       		.byte	0x1
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc3LHdap.s 			page 20
+
+
+ 627 00de C7       		.byte	0xc7
+ 628 00df A9000000 		.4byte	0xa9
+ 629 00e3 00       		.byte	0
+ 630 00e4 08       		.uleb128 0x8
+ 631 00e5 97010000 		.4byte	.LASF18
+ 632 00e9 01       		.byte	0x1
+ 633 00ea 5A01     		.2byte	0x15a
+ 634 00ec 01       		.byte	0x1
+ 635 00ed 0B       		.uleb128 0xb
+ 636 00ee 4E010000 		.4byte	.LASF29
+ 637 00f2 01       		.byte	0x1
+ 638 00f3 9F       		.byte	0x9f
+ 639 00f4 00000000 		.4byte	.LFB3
+ 640 00f8 02000000 		.4byte	.LFE3-.LFB3
+ 641 00fc 01       		.uleb128 0x1
+ 642 00fd 9C       		.byte	0x9c
+ 643 00fe 0C       		.uleb128 0xc
+ 644 00ff B4030000 		.4byte	.LASF19
+ 645 0103 01       		.byte	0x1
+ 646 0104 81       		.byte	0x81
+ 647 0105 00000000 		.4byte	.LFB2
+ 648 0109 1C000000 		.4byte	.LFE2-.LFB2
+ 649 010d 01       		.uleb128 0x1
+ 650 010e 9C       		.byte	0x9c
+ 651 010f 38010000 		.4byte	0x138
+ 652 0113 0D       		.uleb128 0xd
+ 653 0114 E4000000 		.4byte	0xe4
+ 654 0118 00000000 		.4byte	.LBB18
+ 655 011c 00000000 		.4byte	.Ldebug_ranges0+0
+ 656 0120 01       		.byte	0x1
+ 657 0121 84       		.byte	0x84
+ 658 0122 0E       		.uleb128 0xe
+ 659 0123 CC000000 		.4byte	0xcc
+ 660 0127 06000000 		.4byte	.LBB22
+ 661 012b 06000000 		.4byte	.LBE22-.LBB22
+ 662 012f 01       		.byte	0x1
+ 663 0130 87       		.byte	0x87
+ 664 0131 0F       		.uleb128 0xf
+ 665 0132 D8000000 		.4byte	0xd8
+ 666 0136 00       		.byte	0
+ 667 0137 00       		.byte	0
+ 668 0138 10       		.uleb128 0x10
+ 669 0139 CC000000 		.4byte	0xcc
+ 670 013d 00000000 		.4byte	.LFB4
+ 671 0141 0C000000 		.4byte	.LFE4-.LFB4
+ 672 0145 01       		.uleb128 0x1
+ 673 0146 9C       		.byte	0x9c
+ 674 0147 53010000 		.4byte	0x153
+ 675 014b 11       		.uleb128 0x11
+ 676 014c D8000000 		.4byte	0xd8
+ 677 0150 01       		.uleb128 0x1
+ 678 0151 50       		.byte	0x50
+ 679 0152 00       		.byte	0
+ 680 0153 12       		.uleb128 0x12
+ 681 0154 6F030000 		.4byte	.LASF27
+ 682 0158 01       		.byte	0x1
+ 683 0159 DB       		.byte	0xdb
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc3LHdap.s 			page 21
+
+
+ 684 015a A9000000 		.4byte	0xa9
+ 685 015e 00000000 		.4byte	.LFB5
+ 686 0162 0C000000 		.4byte	.LFE5-.LFB5
+ 687 0166 01       		.uleb128 0x1
+ 688 0167 9C       		.byte	0x9c
+ 689 0168 0C       		.uleb128 0xc
+ 690 0169 B6010000 		.4byte	.LASF20
+ 691 016d 01       		.byte	0x1
+ 692 016e F9       		.byte	0xf9
+ 693 016f 00000000 		.4byte	.LFB6
+ 694 0173 24000000 		.4byte	.LFE6-.LFB6
+ 695 0177 01       		.uleb128 0x1
+ 696 0178 9C       		.byte	0x9c
+ 697 0179 BA010000 		.4byte	0x1ba
+ 698 017d 13       		.uleb128 0x13
+ 699 017e 45010000 		.4byte	.LASF25
+ 700 0182 01       		.byte	0x1
+ 701 0183 F9       		.byte	0xf9
+ 702 0184 6B000000 		.4byte	0x6b
+ 703 0188 00000000 		.4byte	.LLST0
+ 704 018c 14       		.uleb128 0x14
+ 705 018d 6D020000 		.4byte	.LASF21
+ 706 0191 01       		.byte	0x1
+ 707 0192 FB       		.byte	0xfb
+ 708 0193 6B000000 		.4byte	0x6b
+ 709 0197 21000000 		.4byte	.LLST1
+ 710 019b 15       		.uleb128 0x15
+ 711 019c 90030000 		.4byte	.LASF22
+ 712 01a0 01       		.byte	0x1
+ 713 01a1 FC       		.byte	0xfc
+ 714 01a2 77000000 		.4byte	0x77
+ 715 01a6 0E       		.byte	0xe
+ 716 01a7 16       		.uleb128 0x16
+ 717 01a8 08000000 		.4byte	.LVL4
+ 718 01ac 34030000 		.4byte	0x334
+ 719 01b0 16       		.uleb128 0x16
+ 720 01b1 1A000000 		.4byte	.LVL5
+ 721 01b5 3F030000 		.4byte	0x33f
+ 722 01b9 00       		.byte	0
+ 723 01ba 0C       		.uleb128 0xc
+ 724 01bb 30020000 		.4byte	.LASF23
+ 725 01bf 01       		.byte	0x1
+ 726 01c0 38       		.byte	0x38
+ 727 01c1 00000000 		.4byte	.LFB0
+ 728 01c5 2C000000 		.4byte	.LFE0-.LFB0
+ 729 01c9 01       		.uleb128 0x1
+ 730 01ca 9C       		.byte	0x9c
+ 731 01cb 1A020000 		.4byte	0x21a
+ 732 01cf 0D       		.uleb128 0xd
+ 733 01d0 E4000000 		.4byte	0xe4
+ 734 01d4 02000000 		.4byte	.LBB24
+ 735 01d8 18000000 		.4byte	.Ldebug_ranges0+0x18
+ 736 01dc 01       		.byte	0x1
+ 737 01dd 3B       		.byte	0x3b
+ 738 01de 17       		.uleb128 0x17
+ 739 01df CC000000 		.4byte	0xcc
+ 740 01e3 06000000 		.4byte	.LBB27
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc3LHdap.s 			page 22
+
+
+ 741 01e7 30000000 		.4byte	.Ldebug_ranges0+0x30
+ 742 01eb 01       		.byte	0x1
+ 743 01ec 3E       		.byte	0x3e
+ 744 01ed FB010000 		.4byte	0x1fb
+ 745 01f1 18       		.uleb128 0x18
+ 746 01f2 D8000000 		.4byte	0xd8
+ 747 01f6 34000000 		.4byte	.LLST2
+ 748 01fa 00       		.byte	0
+ 749 01fb 0D       		.uleb128 0xd
+ 750 01fc C3000000 		.4byte	0xc3
+ 751 0200 14000000 		.4byte	.LBB34
+ 752 0204 50000000 		.4byte	.Ldebug_ranges0+0x50
+ 753 0208 01       		.byte	0x1
+ 754 0209 44       		.byte	0x44
+ 755 020a 19       		.uleb128 0x19
+ 756 020b 14000000 		.4byte	.LVL8
+ 757 020f 68010000 		.4byte	0x168
+ 758 0213 1A       		.uleb128 0x1a
+ 759 0214 01       		.uleb128 0x1
+ 760 0215 50       		.byte	0x50
+ 761 0216 01       		.uleb128 0x1
+ 762 0217 33       		.byte	0x33
+ 763 0218 00       		.byte	0
+ 764 0219 00       		.byte	0
+ 765 021a 0C       		.uleb128 0xc
+ 766 021b 0E010000 		.4byte	.LASF24
+ 767 021f 01       		.byte	0x1
+ 768 0220 63       		.byte	0x63
+ 769 0221 00000000 		.4byte	.LFB1
+ 770 0225 24000000 		.4byte	.LFE1-.LFB1
+ 771 0229 01       		.uleb128 0x1
+ 772 022a 9C       		.byte	0x9c
+ 773 022b 89020000 		.4byte	0x289
+ 774 022f 13       		.uleb128 0x13
+ 775 0230 04020000 		.4byte	.LASF26
+ 776 0234 01       		.byte	0x1
+ 777 0235 63       		.byte	0x63
+ 778 0236 A9000000 		.4byte	0xa9
+ 779 023a 4C000000 		.4byte	.LLST3
+ 780 023e 0D       		.uleb128 0xd
+ 781 023f E4000000 		.4byte	0xe4
+ 782 0243 02000000 		.4byte	.LBB38
+ 783 0247 68000000 		.4byte	.Ldebug_ranges0+0x68
+ 784 024b 01       		.byte	0x1
+ 785 024c 66       		.byte	0x66
+ 786 024d 1B       		.uleb128 0x1b
+ 787 024e CC000000 		.4byte	0xcc
+ 788 0252 08000000 		.4byte	.LBB42
+ 789 0256 04000000 		.4byte	.LBE42-.LBB42
+ 790 025a 01       		.byte	0x1
+ 791 025b 69       		.byte	0x69
+ 792 025c 6A020000 		.4byte	0x26a
+ 793 0260 18       		.uleb128 0x18
+ 794 0261 D8000000 		.4byte	0xd8
+ 795 0265 7A000000 		.4byte	.LLST4
+ 796 0269 00       		.byte	0
+ 797 026a 1C       		.uleb128 0x1c
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc3LHdap.s 			page 23
+
+
+ 798 026b C3000000 		.4byte	0xc3
+ 799 026f 12000000 		.4byte	.LBB44
+ 800 0273 04000000 		.4byte	.LBE44-.LBB44
+ 801 0277 01       		.byte	0x1
+ 802 0278 6F       		.byte	0x6f
+ 803 0279 19       		.uleb128 0x19
+ 804 027a 12000000 		.4byte	.LVL13
+ 805 027e 68010000 		.4byte	0x168
+ 806 0282 1A       		.uleb128 0x1a
+ 807 0283 01       		.uleb128 0x1
+ 808 0284 50       		.byte	0x50
+ 809 0285 01       		.uleb128 0x1
+ 810 0286 33       		.byte	0x33
+ 811 0287 00       		.byte	0
+ 812 0288 00       		.byte	0
+ 813 0289 1D       		.uleb128 0x1d
+ 814 028a 7E000000 		.4byte	.LASF38
+ 815 028e 01       		.byte	0x1
+ 816 028f 1501     		.2byte	0x115
+ 817 0291 6B000000 		.4byte	0x6b
+ 818 0295 00000000 		.4byte	.LFB7
+ 819 0299 10000000 		.4byte	.LFE7-.LFB7
+ 820 029d 01       		.uleb128 0x1
+ 821 029e 9C       		.byte	0x9c
+ 822 029f C1020000 		.4byte	0x2c1
+ 823 02a3 1E       		.uleb128 0x1e
+ 824 02a4 45010000 		.4byte	.LASF25
+ 825 02a8 01       		.byte	0x1
+ 826 02a9 1701     		.2byte	0x117
+ 827 02ab 77000000 		.4byte	0x77
+ 828 02af 8D000000 		.4byte	.LLST5
+ 829 02b3 1F       		.uleb128 0x1f
+ 830 02b4 90030000 		.4byte	.LASF22
+ 831 02b8 01       		.byte	0x1
+ 832 02b9 1801     		.2byte	0x118
+ 833 02bb 77000000 		.4byte	0x77
+ 834 02bf 0E       		.byte	0xe
+ 835 02c0 00       		.byte	0
+ 836 02c1 20       		.uleb128 0x20
+ 837 02c2 C3000000 		.4byte	0xc3
+ 838 02c6 00000000 		.4byte	.LFB8
+ 839 02ca 0C000000 		.4byte	.LFE8-.LFB8
+ 840 02ce 01       		.uleb128 0x1
+ 841 02cf 9C       		.byte	0x9c
+ 842 02d0 21       		.uleb128 0x21
+ 843 02d1 4D020000 		.4byte	.LASF28
+ 844 02d5 01       		.byte	0x1
+ 845 02d6 4501     		.2byte	0x145
+ 846 02d8 6B000000 		.4byte	0x6b
+ 847 02dc 00000000 		.4byte	.LFB9
+ 848 02e0 10000000 		.4byte	.LFE9-.LFB9
+ 849 02e4 01       		.uleb128 0x1
+ 850 02e5 9C       		.byte	0x9c
+ 851 02e6 20       		.uleb128 0x20
+ 852 02e7 E4000000 		.4byte	0xe4
+ 853 02eb 00000000 		.4byte	.LFB10
+ 854 02ef 0C000000 		.4byte	.LFE10-.LFB10
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc3LHdap.s 			page 24
+
+
+ 855 02f3 01       		.uleb128 0x1
+ 856 02f4 9C       		.byte	0x9c
+ 857 02f5 22       		.uleb128 0x22
+ 858 02f6 EC000000 		.4byte	.LASF30
+ 859 02fa 01       		.byte	0x1
+ 860 02fb 7501     		.2byte	0x175
+ 861 02fd 00000000 		.4byte	.LFB11
+ 862 0301 0C000000 		.4byte	.LFE11-.LFB11
+ 863 0305 01       		.uleb128 0x1
+ 864 0306 9C       		.byte	0x9c
+ 865 0307 22       		.uleb128 0x22
+ 866 0308 BA000000 		.4byte	.LASF31
+ 867 030c 01       		.byte	0x1
+ 868 030d 8E01     		.2byte	0x18e
+ 869 030f 00000000 		.4byte	.LFB12
+ 870 0313 0C000000 		.4byte	.LFE12-.LFB12
+ 871 0317 01       		.uleb128 0x1
+ 872 0318 9C       		.byte	0x9c
+ 873 0319 23       		.uleb128 0x23
+ 874 031a A9000000 		.4byte	0xa9
+ 875 031e 29030000 		.4byte	0x329
+ 876 0322 24       		.uleb128 0x24
+ 877 0323 BC000000 		.4byte	0xbc
+ 878 0327 2F       		.byte	0x2f
+ 879 0328 00       		.byte	0
+ 880 0329 25       		.uleb128 0x25
+ 881 032a 41000000 		.4byte	.LASF39
+ 882 032e 01       		.byte	0x1
+ 883 032f 21       		.byte	0x21
+ 884 0330 19030000 		.4byte	0x319
+ 885 0334 26       		.uleb128 0x26
+ 886 0335 E0010000 		.4byte	.LASF32
+ 887 0339 E0010000 		.4byte	.LASF32
+ 888 033d 03       		.byte	0x3
+ 889 033e E5       		.byte	0xe5
+ 890 033f 26       		.uleb128 0x26
+ 891 0340 59030000 		.4byte	.LASF33
+ 892 0344 59030000 		.4byte	.LASF33
+ 893 0348 03       		.byte	0x3
+ 894 0349 E6       		.byte	0xe6
+ 895 034a 00       		.byte	0
+ 896              		.section	.debug_abbrev,"",%progbits
+ 897              	.Ldebug_abbrev0:
+ 898 0000 01       		.uleb128 0x1
+ 899 0001 11       		.uleb128 0x11
+ 900 0002 01       		.byte	0x1
+ 901 0003 25       		.uleb128 0x25
+ 902 0004 0E       		.uleb128 0xe
+ 903 0005 13       		.uleb128 0x13
+ 904 0006 0B       		.uleb128 0xb
+ 905 0007 03       		.uleb128 0x3
+ 906 0008 0E       		.uleb128 0xe
+ 907 0009 1B       		.uleb128 0x1b
+ 908 000a 0E       		.uleb128 0xe
+ 909 000b 55       		.uleb128 0x55
+ 910 000c 17       		.uleb128 0x17
+ 911 000d 11       		.uleb128 0x11
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc3LHdap.s 			page 25
+
+
+ 912 000e 01       		.uleb128 0x1
+ 913 000f 10       		.uleb128 0x10
+ 914 0010 17       		.uleb128 0x17
+ 915 0011 00       		.byte	0
+ 916 0012 00       		.byte	0
+ 917 0013 02       		.uleb128 0x2
+ 918 0014 24       		.uleb128 0x24
+ 919 0015 00       		.byte	0
+ 920 0016 0B       		.uleb128 0xb
+ 921 0017 0B       		.uleb128 0xb
+ 922 0018 3E       		.uleb128 0x3e
+ 923 0019 0B       		.uleb128 0xb
+ 924 001a 03       		.uleb128 0x3
+ 925 001b 0E       		.uleb128 0xe
+ 926 001c 00       		.byte	0
+ 927 001d 00       		.byte	0
+ 928 001e 03       		.uleb128 0x3
+ 929 001f 24       		.uleb128 0x24
+ 930 0020 00       		.byte	0
+ 931 0021 0B       		.uleb128 0xb
+ 932 0022 0B       		.uleb128 0xb
+ 933 0023 3E       		.uleb128 0x3e
+ 934 0024 0B       		.uleb128 0xb
+ 935 0025 03       		.uleb128 0x3
+ 936 0026 08       		.uleb128 0x8
+ 937 0027 00       		.byte	0
+ 938 0028 00       		.byte	0
+ 939 0029 04       		.uleb128 0x4
+ 940 002a 16       		.uleb128 0x16
+ 941 002b 00       		.byte	0
+ 942 002c 03       		.uleb128 0x3
+ 943 002d 0E       		.uleb128 0xe
+ 944 002e 3A       		.uleb128 0x3a
+ 945 002f 0B       		.uleb128 0xb
+ 946 0030 3B       		.uleb128 0x3b
+ 947 0031 05       		.uleb128 0x5
+ 948 0032 49       		.uleb128 0x49
+ 949 0033 13       		.uleb128 0x13
+ 950 0034 00       		.byte	0
+ 951 0035 00       		.byte	0
+ 952 0036 05       		.uleb128 0x5
+ 953 0037 35       		.uleb128 0x35
+ 954 0038 00       		.byte	0
+ 955 0039 49       		.uleb128 0x49
+ 956 003a 13       		.uleb128 0x13
+ 957 003b 00       		.byte	0
+ 958 003c 00       		.byte	0
+ 959 003d 06       		.uleb128 0x6
+ 960 003e 0F       		.uleb128 0xf
+ 961 003f 00       		.byte	0
+ 962 0040 0B       		.uleb128 0xb
+ 963 0041 0B       		.uleb128 0xb
+ 964 0042 49       		.uleb128 0x49
+ 965 0043 13       		.uleb128 0x13
+ 966 0044 00       		.byte	0
+ 967 0045 00       		.byte	0
+ 968 0046 07       		.uleb128 0x7
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc3LHdap.s 			page 26
+
+
+ 969 0047 15       		.uleb128 0x15
+ 970 0048 00       		.byte	0
+ 971 0049 27       		.uleb128 0x27
+ 972 004a 19       		.uleb128 0x19
+ 973 004b 00       		.byte	0
+ 974 004c 00       		.byte	0
+ 975 004d 08       		.uleb128 0x8
+ 976 004e 2E       		.uleb128 0x2e
+ 977 004f 00       		.byte	0
+ 978 0050 3F       		.uleb128 0x3f
+ 979 0051 19       		.uleb128 0x19
+ 980 0052 03       		.uleb128 0x3
+ 981 0053 0E       		.uleb128 0xe
+ 982 0054 3A       		.uleb128 0x3a
+ 983 0055 0B       		.uleb128 0xb
+ 984 0056 3B       		.uleb128 0x3b
+ 985 0057 05       		.uleb128 0x5
+ 986 0058 27       		.uleb128 0x27
+ 987 0059 19       		.uleb128 0x19
+ 988 005a 20       		.uleb128 0x20
+ 989 005b 0B       		.uleb128 0xb
+ 990 005c 00       		.byte	0
+ 991 005d 00       		.byte	0
+ 992 005e 09       		.uleb128 0x9
+ 993 005f 2E       		.uleb128 0x2e
+ 994 0060 01       		.byte	0x1
+ 995 0061 3F       		.uleb128 0x3f
+ 996 0062 19       		.uleb128 0x19
+ 997 0063 03       		.uleb128 0x3
+ 998 0064 0E       		.uleb128 0xe
+ 999 0065 3A       		.uleb128 0x3a
+ 1000 0066 0B       		.uleb128 0xb
+ 1001 0067 3B       		.uleb128 0x3b
+ 1002 0068 0B       		.uleb128 0xb
+ 1003 0069 27       		.uleb128 0x27
+ 1004 006a 19       		.uleb128 0x19
+ 1005 006b 20       		.uleb128 0x20
+ 1006 006c 0B       		.uleb128 0xb
+ 1007 006d 01       		.uleb128 0x1
+ 1008 006e 13       		.uleb128 0x13
+ 1009 006f 00       		.byte	0
+ 1010 0070 00       		.byte	0
+ 1011 0071 0A       		.uleb128 0xa
+ 1012 0072 05       		.uleb128 0x5
+ 1013 0073 00       		.byte	0
+ 1014 0074 03       		.uleb128 0x3
+ 1015 0075 0E       		.uleb128 0xe
+ 1016 0076 3A       		.uleb128 0x3a
+ 1017 0077 0B       		.uleb128 0xb
+ 1018 0078 3B       		.uleb128 0x3b
+ 1019 0079 0B       		.uleb128 0xb
+ 1020 007a 49       		.uleb128 0x49
+ 1021 007b 13       		.uleb128 0x13
+ 1022 007c 00       		.byte	0
+ 1023 007d 00       		.byte	0
+ 1024 007e 0B       		.uleb128 0xb
+ 1025 007f 2E       		.uleb128 0x2e
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc3LHdap.s 			page 27
+
+
+ 1026 0080 00       		.byte	0
+ 1027 0081 3F       		.uleb128 0x3f
+ 1028 0082 19       		.uleb128 0x19
+ 1029 0083 03       		.uleb128 0x3
+ 1030 0084 0E       		.uleb128 0xe
+ 1031 0085 3A       		.uleb128 0x3a
+ 1032 0086 0B       		.uleb128 0xb
+ 1033 0087 3B       		.uleb128 0x3b
+ 1034 0088 0B       		.uleb128 0xb
+ 1035 0089 27       		.uleb128 0x27
+ 1036 008a 19       		.uleb128 0x19
+ 1037 008b 11       		.uleb128 0x11
+ 1038 008c 01       		.uleb128 0x1
+ 1039 008d 12       		.uleb128 0x12
+ 1040 008e 06       		.uleb128 0x6
+ 1041 008f 40       		.uleb128 0x40
+ 1042 0090 18       		.uleb128 0x18
+ 1043 0091 9742     		.uleb128 0x2117
+ 1044 0093 19       		.uleb128 0x19
+ 1045 0094 00       		.byte	0
+ 1046 0095 00       		.byte	0
+ 1047 0096 0C       		.uleb128 0xc
+ 1048 0097 2E       		.uleb128 0x2e
+ 1049 0098 01       		.byte	0x1
+ 1050 0099 3F       		.uleb128 0x3f
+ 1051 009a 19       		.uleb128 0x19
+ 1052 009b 03       		.uleb128 0x3
+ 1053 009c 0E       		.uleb128 0xe
+ 1054 009d 3A       		.uleb128 0x3a
+ 1055 009e 0B       		.uleb128 0xb
+ 1056 009f 3B       		.uleb128 0x3b
+ 1057 00a0 0B       		.uleb128 0xb
+ 1058 00a1 27       		.uleb128 0x27
+ 1059 00a2 19       		.uleb128 0x19
+ 1060 00a3 11       		.uleb128 0x11
+ 1061 00a4 01       		.uleb128 0x1
+ 1062 00a5 12       		.uleb128 0x12
+ 1063 00a6 06       		.uleb128 0x6
+ 1064 00a7 40       		.uleb128 0x40
+ 1065 00a8 18       		.uleb128 0x18
+ 1066 00a9 9742     		.uleb128 0x2117
+ 1067 00ab 19       		.uleb128 0x19
+ 1068 00ac 01       		.uleb128 0x1
+ 1069 00ad 13       		.uleb128 0x13
+ 1070 00ae 00       		.byte	0
+ 1071 00af 00       		.byte	0
+ 1072 00b0 0D       		.uleb128 0xd
+ 1073 00b1 1D       		.uleb128 0x1d
+ 1074 00b2 00       		.byte	0
+ 1075 00b3 31       		.uleb128 0x31
+ 1076 00b4 13       		.uleb128 0x13
+ 1077 00b5 52       		.uleb128 0x52
+ 1078 00b6 01       		.uleb128 0x1
+ 1079 00b7 55       		.uleb128 0x55
+ 1080 00b8 17       		.uleb128 0x17
+ 1081 00b9 58       		.uleb128 0x58
+ 1082 00ba 0B       		.uleb128 0xb
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc3LHdap.s 			page 28
+
+
+ 1083 00bb 59       		.uleb128 0x59
+ 1084 00bc 0B       		.uleb128 0xb
+ 1085 00bd 00       		.byte	0
+ 1086 00be 00       		.byte	0
+ 1087 00bf 0E       		.uleb128 0xe
+ 1088 00c0 1D       		.uleb128 0x1d
+ 1089 00c1 01       		.byte	0x1
+ 1090 00c2 31       		.uleb128 0x31
+ 1091 00c3 13       		.uleb128 0x13
+ 1092 00c4 11       		.uleb128 0x11
+ 1093 00c5 01       		.uleb128 0x1
+ 1094 00c6 12       		.uleb128 0x12
+ 1095 00c7 06       		.uleb128 0x6
+ 1096 00c8 58       		.uleb128 0x58
+ 1097 00c9 0B       		.uleb128 0xb
+ 1098 00ca 59       		.uleb128 0x59
+ 1099 00cb 0B       		.uleb128 0xb
+ 1100 00cc 00       		.byte	0
+ 1101 00cd 00       		.byte	0
+ 1102 00ce 0F       		.uleb128 0xf
+ 1103 00cf 05       		.uleb128 0x5
+ 1104 00d0 00       		.byte	0
+ 1105 00d1 31       		.uleb128 0x31
+ 1106 00d2 13       		.uleb128 0x13
+ 1107 00d3 00       		.byte	0
+ 1108 00d4 00       		.byte	0
+ 1109 00d5 10       		.uleb128 0x10
+ 1110 00d6 2E       		.uleb128 0x2e
+ 1111 00d7 01       		.byte	0x1
+ 1112 00d8 31       		.uleb128 0x31
+ 1113 00d9 13       		.uleb128 0x13
+ 1114 00da 11       		.uleb128 0x11
+ 1115 00db 01       		.uleb128 0x1
+ 1116 00dc 12       		.uleb128 0x12
+ 1117 00dd 06       		.uleb128 0x6
+ 1118 00de 40       		.uleb128 0x40
+ 1119 00df 18       		.uleb128 0x18
+ 1120 00e0 9742     		.uleb128 0x2117
+ 1121 00e2 19       		.uleb128 0x19
+ 1122 00e3 01       		.uleb128 0x1
+ 1123 00e4 13       		.uleb128 0x13
+ 1124 00e5 00       		.byte	0
+ 1125 00e6 00       		.byte	0
+ 1126 00e7 11       		.uleb128 0x11
+ 1127 00e8 05       		.uleb128 0x5
+ 1128 00e9 00       		.byte	0
+ 1129 00ea 31       		.uleb128 0x31
+ 1130 00eb 13       		.uleb128 0x13
+ 1131 00ec 02       		.uleb128 0x2
+ 1132 00ed 18       		.uleb128 0x18
+ 1133 00ee 00       		.byte	0
+ 1134 00ef 00       		.byte	0
+ 1135 00f0 12       		.uleb128 0x12
+ 1136 00f1 2E       		.uleb128 0x2e
+ 1137 00f2 00       		.byte	0
+ 1138 00f3 3F       		.uleb128 0x3f
+ 1139 00f4 19       		.uleb128 0x19
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc3LHdap.s 			page 29
+
+
+ 1140 00f5 03       		.uleb128 0x3
+ 1141 00f6 0E       		.uleb128 0xe
+ 1142 00f7 3A       		.uleb128 0x3a
+ 1143 00f8 0B       		.uleb128 0xb
+ 1144 00f9 3B       		.uleb128 0x3b
+ 1145 00fa 0B       		.uleb128 0xb
+ 1146 00fb 27       		.uleb128 0x27
+ 1147 00fc 19       		.uleb128 0x19
+ 1148 00fd 49       		.uleb128 0x49
+ 1149 00fe 13       		.uleb128 0x13
+ 1150 00ff 11       		.uleb128 0x11
+ 1151 0100 01       		.uleb128 0x1
+ 1152 0101 12       		.uleb128 0x12
+ 1153 0102 06       		.uleb128 0x6
+ 1154 0103 40       		.uleb128 0x40
+ 1155 0104 18       		.uleb128 0x18
+ 1156 0105 9742     		.uleb128 0x2117
+ 1157 0107 19       		.uleb128 0x19
+ 1158 0108 00       		.byte	0
+ 1159 0109 00       		.byte	0
+ 1160 010a 13       		.uleb128 0x13
+ 1161 010b 05       		.uleb128 0x5
+ 1162 010c 00       		.byte	0
+ 1163 010d 03       		.uleb128 0x3
+ 1164 010e 0E       		.uleb128 0xe
+ 1165 010f 3A       		.uleb128 0x3a
+ 1166 0110 0B       		.uleb128 0xb
+ 1167 0111 3B       		.uleb128 0x3b
+ 1168 0112 0B       		.uleb128 0xb
+ 1169 0113 49       		.uleb128 0x49
+ 1170 0114 13       		.uleb128 0x13
+ 1171 0115 02       		.uleb128 0x2
+ 1172 0116 17       		.uleb128 0x17
+ 1173 0117 00       		.byte	0
+ 1174 0118 00       		.byte	0
+ 1175 0119 14       		.uleb128 0x14
+ 1176 011a 34       		.uleb128 0x34
+ 1177 011b 00       		.byte	0
+ 1178 011c 03       		.uleb128 0x3
+ 1179 011d 0E       		.uleb128 0xe
+ 1180 011e 3A       		.uleb128 0x3a
+ 1181 011f 0B       		.uleb128 0xb
+ 1182 0120 3B       		.uleb128 0x3b
+ 1183 0121 0B       		.uleb128 0xb
+ 1184 0122 49       		.uleb128 0x49
+ 1185 0123 13       		.uleb128 0x13
+ 1186 0124 02       		.uleb128 0x2
+ 1187 0125 17       		.uleb128 0x17
+ 1188 0126 00       		.byte	0
+ 1189 0127 00       		.byte	0
+ 1190 0128 15       		.uleb128 0x15
+ 1191 0129 34       		.uleb128 0x34
+ 1192 012a 00       		.byte	0
+ 1193 012b 03       		.uleb128 0x3
+ 1194 012c 0E       		.uleb128 0xe
+ 1195 012d 3A       		.uleb128 0x3a
+ 1196 012e 0B       		.uleb128 0xb
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc3LHdap.s 			page 30
+
+
+ 1197 012f 3B       		.uleb128 0x3b
+ 1198 0130 0B       		.uleb128 0xb
+ 1199 0131 49       		.uleb128 0x49
+ 1200 0132 13       		.uleb128 0x13
+ 1201 0133 1C       		.uleb128 0x1c
+ 1202 0134 0B       		.uleb128 0xb
+ 1203 0135 00       		.byte	0
+ 1204 0136 00       		.byte	0
+ 1205 0137 16       		.uleb128 0x16
+ 1206 0138 898201   		.uleb128 0x4109
+ 1207 013b 00       		.byte	0
+ 1208 013c 11       		.uleb128 0x11
+ 1209 013d 01       		.uleb128 0x1
+ 1210 013e 31       		.uleb128 0x31
+ 1211 013f 13       		.uleb128 0x13
+ 1212 0140 00       		.byte	0
+ 1213 0141 00       		.byte	0
+ 1214 0142 17       		.uleb128 0x17
+ 1215 0143 1D       		.uleb128 0x1d
+ 1216 0144 01       		.byte	0x1
+ 1217 0145 31       		.uleb128 0x31
+ 1218 0146 13       		.uleb128 0x13
+ 1219 0147 52       		.uleb128 0x52
+ 1220 0148 01       		.uleb128 0x1
+ 1221 0149 55       		.uleb128 0x55
+ 1222 014a 17       		.uleb128 0x17
+ 1223 014b 58       		.uleb128 0x58
+ 1224 014c 0B       		.uleb128 0xb
+ 1225 014d 59       		.uleb128 0x59
+ 1226 014e 0B       		.uleb128 0xb
+ 1227 014f 01       		.uleb128 0x1
+ 1228 0150 13       		.uleb128 0x13
+ 1229 0151 00       		.byte	0
+ 1230 0152 00       		.byte	0
+ 1231 0153 18       		.uleb128 0x18
+ 1232 0154 05       		.uleb128 0x5
+ 1233 0155 00       		.byte	0
+ 1234 0156 31       		.uleb128 0x31
+ 1235 0157 13       		.uleb128 0x13
+ 1236 0158 02       		.uleb128 0x2
+ 1237 0159 17       		.uleb128 0x17
+ 1238 015a 00       		.byte	0
+ 1239 015b 00       		.byte	0
+ 1240 015c 19       		.uleb128 0x19
+ 1241 015d 898201   		.uleb128 0x4109
+ 1242 0160 01       		.byte	0x1
+ 1243 0161 11       		.uleb128 0x11
+ 1244 0162 01       		.uleb128 0x1
+ 1245 0163 31       		.uleb128 0x31
+ 1246 0164 13       		.uleb128 0x13
+ 1247 0165 00       		.byte	0
+ 1248 0166 00       		.byte	0
+ 1249 0167 1A       		.uleb128 0x1a
+ 1250 0168 8A8201   		.uleb128 0x410a
+ 1251 016b 00       		.byte	0
+ 1252 016c 02       		.uleb128 0x2
+ 1253 016d 18       		.uleb128 0x18
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc3LHdap.s 			page 31
+
+
+ 1254 016e 9142     		.uleb128 0x2111
+ 1255 0170 18       		.uleb128 0x18
+ 1256 0171 00       		.byte	0
+ 1257 0172 00       		.byte	0
+ 1258 0173 1B       		.uleb128 0x1b
+ 1259 0174 1D       		.uleb128 0x1d
+ 1260 0175 01       		.byte	0x1
+ 1261 0176 31       		.uleb128 0x31
+ 1262 0177 13       		.uleb128 0x13
+ 1263 0178 11       		.uleb128 0x11
+ 1264 0179 01       		.uleb128 0x1
+ 1265 017a 12       		.uleb128 0x12
+ 1266 017b 06       		.uleb128 0x6
+ 1267 017c 58       		.uleb128 0x58
+ 1268 017d 0B       		.uleb128 0xb
+ 1269 017e 59       		.uleb128 0x59
+ 1270 017f 0B       		.uleb128 0xb
+ 1271 0180 01       		.uleb128 0x1
+ 1272 0181 13       		.uleb128 0x13
+ 1273 0182 00       		.byte	0
+ 1274 0183 00       		.byte	0
+ 1275 0184 1C       		.uleb128 0x1c
+ 1276 0185 1D       		.uleb128 0x1d
+ 1277 0186 00       		.byte	0
+ 1278 0187 31       		.uleb128 0x31
+ 1279 0188 13       		.uleb128 0x13
+ 1280 0189 11       		.uleb128 0x11
+ 1281 018a 01       		.uleb128 0x1
+ 1282 018b 12       		.uleb128 0x12
+ 1283 018c 06       		.uleb128 0x6
+ 1284 018d 58       		.uleb128 0x58
+ 1285 018e 0B       		.uleb128 0xb
+ 1286 018f 59       		.uleb128 0x59
+ 1287 0190 0B       		.uleb128 0xb
+ 1288 0191 00       		.byte	0
+ 1289 0192 00       		.byte	0
+ 1290 0193 1D       		.uleb128 0x1d
+ 1291 0194 2E       		.uleb128 0x2e
+ 1292 0195 01       		.byte	0x1
+ 1293 0196 3F       		.uleb128 0x3f
+ 1294 0197 19       		.uleb128 0x19
+ 1295 0198 03       		.uleb128 0x3
+ 1296 0199 0E       		.uleb128 0xe
+ 1297 019a 3A       		.uleb128 0x3a
+ 1298 019b 0B       		.uleb128 0xb
+ 1299 019c 3B       		.uleb128 0x3b
+ 1300 019d 05       		.uleb128 0x5
+ 1301 019e 27       		.uleb128 0x27
+ 1302 019f 19       		.uleb128 0x19
+ 1303 01a0 49       		.uleb128 0x49
+ 1304 01a1 13       		.uleb128 0x13
+ 1305 01a2 11       		.uleb128 0x11
+ 1306 01a3 01       		.uleb128 0x1
+ 1307 01a4 12       		.uleb128 0x12
+ 1308 01a5 06       		.uleb128 0x6
+ 1309 01a6 40       		.uleb128 0x40
+ 1310 01a7 18       		.uleb128 0x18
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc3LHdap.s 			page 32
+
+
+ 1311 01a8 9742     		.uleb128 0x2117
+ 1312 01aa 19       		.uleb128 0x19
+ 1313 01ab 01       		.uleb128 0x1
+ 1314 01ac 13       		.uleb128 0x13
+ 1315 01ad 00       		.byte	0
+ 1316 01ae 00       		.byte	0
+ 1317 01af 1E       		.uleb128 0x1e
+ 1318 01b0 34       		.uleb128 0x34
+ 1319 01b1 00       		.byte	0
+ 1320 01b2 03       		.uleb128 0x3
+ 1321 01b3 0E       		.uleb128 0xe
+ 1322 01b4 3A       		.uleb128 0x3a
+ 1323 01b5 0B       		.uleb128 0xb
+ 1324 01b6 3B       		.uleb128 0x3b
+ 1325 01b7 05       		.uleb128 0x5
+ 1326 01b8 49       		.uleb128 0x49
+ 1327 01b9 13       		.uleb128 0x13
+ 1328 01ba 02       		.uleb128 0x2
+ 1329 01bb 17       		.uleb128 0x17
+ 1330 01bc 00       		.byte	0
+ 1331 01bd 00       		.byte	0
+ 1332 01be 1F       		.uleb128 0x1f
+ 1333 01bf 34       		.uleb128 0x34
+ 1334 01c0 00       		.byte	0
+ 1335 01c1 03       		.uleb128 0x3
+ 1336 01c2 0E       		.uleb128 0xe
+ 1337 01c3 3A       		.uleb128 0x3a
+ 1338 01c4 0B       		.uleb128 0xb
+ 1339 01c5 3B       		.uleb128 0x3b
+ 1340 01c6 05       		.uleb128 0x5
+ 1341 01c7 49       		.uleb128 0x49
+ 1342 01c8 13       		.uleb128 0x13
+ 1343 01c9 1C       		.uleb128 0x1c
+ 1344 01ca 0B       		.uleb128 0xb
+ 1345 01cb 00       		.byte	0
+ 1346 01cc 00       		.byte	0
+ 1347 01cd 20       		.uleb128 0x20
+ 1348 01ce 2E       		.uleb128 0x2e
+ 1349 01cf 00       		.byte	0
+ 1350 01d0 31       		.uleb128 0x31
+ 1351 01d1 13       		.uleb128 0x13
+ 1352 01d2 11       		.uleb128 0x11
+ 1353 01d3 01       		.uleb128 0x1
+ 1354 01d4 12       		.uleb128 0x12
+ 1355 01d5 06       		.uleb128 0x6
+ 1356 01d6 40       		.uleb128 0x40
+ 1357 01d7 18       		.uleb128 0x18
+ 1358 01d8 9742     		.uleb128 0x2117
+ 1359 01da 19       		.uleb128 0x19
+ 1360 01db 00       		.byte	0
+ 1361 01dc 00       		.byte	0
+ 1362 01dd 21       		.uleb128 0x21
+ 1363 01de 2E       		.uleb128 0x2e
+ 1364 01df 00       		.byte	0
+ 1365 01e0 3F       		.uleb128 0x3f
+ 1366 01e1 19       		.uleb128 0x19
+ 1367 01e2 03       		.uleb128 0x3
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc3LHdap.s 			page 33
+
+
+ 1368 01e3 0E       		.uleb128 0xe
+ 1369 01e4 3A       		.uleb128 0x3a
+ 1370 01e5 0B       		.uleb128 0xb
+ 1371 01e6 3B       		.uleb128 0x3b
+ 1372 01e7 05       		.uleb128 0x5
+ 1373 01e8 27       		.uleb128 0x27
+ 1374 01e9 19       		.uleb128 0x19
+ 1375 01ea 49       		.uleb128 0x49
+ 1376 01eb 13       		.uleb128 0x13
+ 1377 01ec 11       		.uleb128 0x11
+ 1378 01ed 01       		.uleb128 0x1
+ 1379 01ee 12       		.uleb128 0x12
+ 1380 01ef 06       		.uleb128 0x6
+ 1381 01f0 40       		.uleb128 0x40
+ 1382 01f1 18       		.uleb128 0x18
+ 1383 01f2 9742     		.uleb128 0x2117
+ 1384 01f4 19       		.uleb128 0x19
+ 1385 01f5 00       		.byte	0
+ 1386 01f6 00       		.byte	0
+ 1387 01f7 22       		.uleb128 0x22
+ 1388 01f8 2E       		.uleb128 0x2e
+ 1389 01f9 00       		.byte	0
+ 1390 01fa 3F       		.uleb128 0x3f
+ 1391 01fb 19       		.uleb128 0x19
+ 1392 01fc 03       		.uleb128 0x3
+ 1393 01fd 0E       		.uleb128 0xe
+ 1394 01fe 3A       		.uleb128 0x3a
+ 1395 01ff 0B       		.uleb128 0xb
+ 1396 0200 3B       		.uleb128 0x3b
+ 1397 0201 05       		.uleb128 0x5
+ 1398 0202 27       		.uleb128 0x27
+ 1399 0203 19       		.uleb128 0x19
+ 1400 0204 11       		.uleb128 0x11
+ 1401 0205 01       		.uleb128 0x1
+ 1402 0206 12       		.uleb128 0x12
+ 1403 0207 06       		.uleb128 0x6
+ 1404 0208 40       		.uleb128 0x40
+ 1405 0209 18       		.uleb128 0x18
+ 1406 020a 9742     		.uleb128 0x2117
+ 1407 020c 19       		.uleb128 0x19
+ 1408 020d 00       		.byte	0
+ 1409 020e 00       		.byte	0
+ 1410 020f 23       		.uleb128 0x23
+ 1411 0210 01       		.uleb128 0x1
+ 1412 0211 01       		.byte	0x1
+ 1413 0212 49       		.uleb128 0x49
+ 1414 0213 13       		.uleb128 0x13
+ 1415 0214 01       		.uleb128 0x1
+ 1416 0215 13       		.uleb128 0x13
+ 1417 0216 00       		.byte	0
+ 1418 0217 00       		.byte	0
+ 1419 0218 24       		.uleb128 0x24
+ 1420 0219 21       		.uleb128 0x21
+ 1421 021a 00       		.byte	0
+ 1422 021b 49       		.uleb128 0x49
+ 1423 021c 13       		.uleb128 0x13
+ 1424 021d 2F       		.uleb128 0x2f
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc3LHdap.s 			page 34
+
+
+ 1425 021e 0B       		.uleb128 0xb
+ 1426 021f 00       		.byte	0
+ 1427 0220 00       		.byte	0
+ 1428 0221 25       		.uleb128 0x25
+ 1429 0222 34       		.uleb128 0x34
+ 1430 0223 00       		.byte	0
+ 1431 0224 03       		.uleb128 0x3
+ 1432 0225 0E       		.uleb128 0xe
+ 1433 0226 3A       		.uleb128 0x3a
+ 1434 0227 0B       		.uleb128 0xb
+ 1435 0228 3B       		.uleb128 0x3b
+ 1436 0229 0B       		.uleb128 0xb
+ 1437 022a 49       		.uleb128 0x49
+ 1438 022b 13       		.uleb128 0x13
+ 1439 022c 3F       		.uleb128 0x3f
+ 1440 022d 19       		.uleb128 0x19
+ 1441 022e 3C       		.uleb128 0x3c
+ 1442 022f 19       		.uleb128 0x19
+ 1443 0230 00       		.byte	0
+ 1444 0231 00       		.byte	0
+ 1445 0232 26       		.uleb128 0x26
+ 1446 0233 2E       		.uleb128 0x2e
+ 1447 0234 00       		.byte	0
+ 1448 0235 3F       		.uleb128 0x3f
+ 1449 0236 19       		.uleb128 0x19
+ 1450 0237 3C       		.uleb128 0x3c
+ 1451 0238 19       		.uleb128 0x19
+ 1452 0239 6E       		.uleb128 0x6e
+ 1453 023a 0E       		.uleb128 0xe
+ 1454 023b 03       		.uleb128 0x3
+ 1455 023c 0E       		.uleb128 0xe
+ 1456 023d 3A       		.uleb128 0x3a
+ 1457 023e 0B       		.uleb128 0xb
+ 1458 023f 3B       		.uleb128 0x3b
+ 1459 0240 0B       		.uleb128 0xb
+ 1460 0241 00       		.byte	0
+ 1461 0242 00       		.byte	0
+ 1462 0243 00       		.byte	0
+ 1463              		.section	.debug_loc,"",%progbits
+ 1464              	.Ldebug_loc0:
+ 1465              	.LLST0:
+ 1466 0000 00000000 		.4byte	.LVL3
+ 1467 0004 07000000 		.4byte	.LVL4-1
+ 1468 0008 0100     		.2byte	0x1
+ 1469 000a 50       		.byte	0x50
+ 1470 000b 07000000 		.4byte	.LVL4-1
+ 1471 000f 24000000 		.4byte	.LFE6
+ 1472 0013 0400     		.2byte	0x4
+ 1473 0015 F3       		.byte	0xf3
+ 1474 0016 01       		.uleb128 0x1
+ 1475 0017 50       		.byte	0x50
+ 1476 0018 9F       		.byte	0x9f
+ 1477 0019 00000000 		.4byte	0
+ 1478 001d 00000000 		.4byte	0
+ 1479              	.LLST1:
+ 1480 0021 08000000 		.4byte	.LVL4
+ 1481 0025 19000000 		.4byte	.LVL5-1
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc3LHdap.s 			page 35
+
+
+ 1482 0029 0100     		.2byte	0x1
+ 1483 002b 50       		.byte	0x50
+ 1484 002c 00000000 		.4byte	0
+ 1485 0030 00000000 		.4byte	0
+ 1486              	.LLST2:
+ 1487 0034 0A000000 		.4byte	.LVL6
+ 1488 0038 10000000 		.4byte	.LVL7
+ 1489 003c 0600     		.2byte	0x6
+ 1490 003e 03       		.byte	0x3
+ 1491 003f 00000000 		.4byte	FanController_DataSend_Interrupt
+ 1492 0043 9F       		.byte	0x9f
+ 1493 0044 00000000 		.4byte	0
+ 1494 0048 00000000 		.4byte	0
+ 1495              	.LLST3:
+ 1496 004c 00000000 		.4byte	.LVL9
+ 1497 0050 0E000000 		.4byte	.LVL12
+ 1498 0054 0100     		.2byte	0x1
+ 1499 0056 50       		.byte	0x50
+ 1500 0057 0E000000 		.4byte	.LVL12
+ 1501 005b 11000000 		.4byte	.LVL13-1
+ 1502 005f 0300     		.2byte	0x3
+ 1503 0061 73       		.byte	0x73
+ 1504 0062 C400     		.sleb128 68
+ 1505 0064 11000000 		.4byte	.LVL13-1
+ 1506 0068 24000000 		.4byte	.LFE1
+ 1507 006c 0400     		.2byte	0x4
+ 1508 006e F3       		.byte	0xf3
+ 1509 006f 01       		.uleb128 0x1
+ 1510 0070 50       		.byte	0x50
+ 1511 0071 9F       		.byte	0x9f
+ 1512 0072 00000000 		.4byte	0
+ 1513 0076 00000000 		.4byte	0
+ 1514              	.LLST4:
+ 1515 007a 08000000 		.4byte	.LVL10
+ 1516 007e 0C000000 		.4byte	.LVL11
+ 1517 0082 0100     		.2byte	0x1
+ 1518 0084 50       		.byte	0x50
+ 1519 0085 00000000 		.4byte	0
+ 1520 0089 00000000 		.4byte	0
+ 1521              	.LLST5:
+ 1522 008d 04000000 		.4byte	.LVL15
+ 1523 0091 06000000 		.4byte	.LVL16
+ 1524 0095 0700     		.2byte	0x7
+ 1525 0097 70       		.byte	0x70
+ 1526 0098 00       		.sleb128 0
+ 1527 0099 3E       		.byte	0x3e
+ 1528 009a 25       		.byte	0x25
+ 1529 009b 33       		.byte	0x33
+ 1530 009c 1A       		.byte	0x1a
+ 1531 009d 9F       		.byte	0x9f
+ 1532 009e 00000000 		.4byte	0
+ 1533 00a2 00000000 		.4byte	0
+ 1534              		.section	.debug_aranges,"",%progbits
+ 1535 0000 7C000000 		.4byte	0x7c
+ 1536 0004 0200     		.2byte	0x2
+ 1537 0006 00000000 		.4byte	.Ldebug_info0
+ 1538 000a 04       		.byte	0x4
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc3LHdap.s 			page 36
+
+
+ 1539 000b 00       		.byte	0
+ 1540 000c 0000     		.2byte	0
+ 1541 000e 0000     		.2byte	0
+ 1542 0010 00000000 		.4byte	.LFB3
+ 1543 0014 02000000 		.4byte	.LFE3-.LFB3
+ 1544 0018 00000000 		.4byte	.LFB2
+ 1545 001c 1C000000 		.4byte	.LFE2-.LFB2
+ 1546 0020 00000000 		.4byte	.LFB4
+ 1547 0024 0C000000 		.4byte	.LFE4-.LFB4
+ 1548 0028 00000000 		.4byte	.LFB5
+ 1549 002c 0C000000 		.4byte	.LFE5-.LFB5
+ 1550 0030 00000000 		.4byte	.LFB6
+ 1551 0034 24000000 		.4byte	.LFE6-.LFB6
+ 1552 0038 00000000 		.4byte	.LFB0
+ 1553 003c 2C000000 		.4byte	.LFE0-.LFB0
+ 1554 0040 00000000 		.4byte	.LFB1
+ 1555 0044 24000000 		.4byte	.LFE1-.LFB1
+ 1556 0048 00000000 		.4byte	.LFB7
+ 1557 004c 10000000 		.4byte	.LFE7-.LFB7
+ 1558 0050 00000000 		.4byte	.LFB8
+ 1559 0054 0C000000 		.4byte	.LFE8-.LFB8
+ 1560 0058 00000000 		.4byte	.LFB9
+ 1561 005c 10000000 		.4byte	.LFE9-.LFB9
+ 1562 0060 00000000 		.4byte	.LFB10
+ 1563 0064 0C000000 		.4byte	.LFE10-.LFB10
+ 1564 0068 00000000 		.4byte	.LFB11
+ 1565 006c 0C000000 		.4byte	.LFE11-.LFB11
+ 1566 0070 00000000 		.4byte	.LFB12
+ 1567 0074 0C000000 		.4byte	.LFE12-.LFB12
+ 1568 0078 00000000 		.4byte	0
+ 1569 007c 00000000 		.4byte	0
+ 1570              		.section	.debug_ranges,"",%progbits
+ 1571              	.Ldebug_ranges0:
+ 1572 0000 00000000 		.4byte	.LBB18
+ 1573 0004 04000000 		.4byte	.LBE18
+ 1574 0008 04000000 		.4byte	.LBB21
+ 1575 000c 06000000 		.4byte	.LBE21
+ 1576 0010 00000000 		.4byte	0
+ 1577 0014 00000000 		.4byte	0
+ 1578 0018 02000000 		.4byte	.LBB24
+ 1579 001c 06000000 		.4byte	.LBE24
+ 1580 0020 08000000 		.4byte	.LBB31
+ 1581 0024 0A000000 		.4byte	.LBE31
+ 1582 0028 00000000 		.4byte	0
+ 1583 002c 00000000 		.4byte	0
+ 1584 0030 06000000 		.4byte	.LBB27
+ 1585 0034 08000000 		.4byte	.LBE27
+ 1586 0038 0A000000 		.4byte	.LBB32
+ 1587 003c 0C000000 		.4byte	.LBE32
+ 1588 0040 0E000000 		.4byte	.LBB33
+ 1589 0044 10000000 		.4byte	.LBE33
+ 1590 0048 00000000 		.4byte	0
+ 1591 004c 00000000 		.4byte	0
+ 1592 0050 14000000 		.4byte	.LBB34
+ 1593 0054 16000000 		.4byte	.LBE34
+ 1594 0058 16000000 		.4byte	.LBB37
+ 1595 005c 18000000 		.4byte	.LBE37
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc3LHdap.s 			page 37
+
+
+ 1596 0060 00000000 		.4byte	0
+ 1597 0064 00000000 		.4byte	0
+ 1598 0068 02000000 		.4byte	.LBB38
+ 1599 006c 06000000 		.4byte	.LBE38
+ 1600 0070 06000000 		.4byte	.LBB41
+ 1601 0074 08000000 		.4byte	.LBE41
+ 1602 0078 00000000 		.4byte	0
+ 1603 007c 00000000 		.4byte	0
+ 1604 0080 00000000 		.4byte	.LFB3
+ 1605 0084 02000000 		.4byte	.LFE3
+ 1606 0088 00000000 		.4byte	.LFB2
+ 1607 008c 1C000000 		.4byte	.LFE2
+ 1608 0090 00000000 		.4byte	.LFB4
+ 1609 0094 0C000000 		.4byte	.LFE4
+ 1610 0098 00000000 		.4byte	.LFB5
+ 1611 009c 0C000000 		.4byte	.LFE5
+ 1612 00a0 00000000 		.4byte	.LFB6
+ 1613 00a4 24000000 		.4byte	.LFE6
+ 1614 00a8 00000000 		.4byte	.LFB0
+ 1615 00ac 2C000000 		.4byte	.LFE0
+ 1616 00b0 00000000 		.4byte	.LFB1
+ 1617 00b4 24000000 		.4byte	.LFE1
+ 1618 00b8 00000000 		.4byte	.LFB7
+ 1619 00bc 10000000 		.4byte	.LFE7
+ 1620 00c0 00000000 		.4byte	.LFB8
+ 1621 00c4 0C000000 		.4byte	.LFE8
+ 1622 00c8 00000000 		.4byte	.LFB9
+ 1623 00cc 10000000 		.4byte	.LFE9
+ 1624 00d0 00000000 		.4byte	.LFB10
+ 1625 00d4 0C000000 		.4byte	.LFE10
+ 1626 00d8 00000000 		.4byte	.LFB11
+ 1627 00dc 0C000000 		.4byte	.LFE11
+ 1628 00e0 00000000 		.4byte	.LFB12
+ 1629 00e4 0C000000 		.4byte	.LFE12
+ 1630 00e8 00000000 		.4byte	0
+ 1631 00ec 00000000 		.4byte	0
+ 1632              		.section	.debug_line,"",%progbits
+ 1633              	.Ldebug_line0:
+ 1634 0000 B8010000 		.section	.debug_str,"MS",%progbits,1
+ 1634      02005E00 
+ 1634      00000201 
+ 1634      FB0E0D00 
+ 1634      01010101 
+ 1635              	.LASF14:
+ 1636 0000 72656733 		.ascii	"reg32\000"
+ 1636      3200
+ 1637              	.LASF36:
+ 1638 0006 443A5C31 		.ascii	"D:\\1_work\\my_project\\ReloadPro\\psoc42boot\\Relo"
+ 1638      5F776F72 
+ 1638      6B5C6D79 
+ 1638      5F70726F 
+ 1638      6A656374 
+ 1639 0034 61642050 		.ascii	"ad Pro.cydsn\000"
+ 1639      726F2E63 
+ 1639      7964736E 
+ 1639      00
+ 1640              	.LASF39:
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc3LHdap.s 			page 38
+
+
+ 1641 0041 43795261 		.ascii	"CyRamVectors\000"
+ 1641      6D566563 
+ 1641      746F7273 
+ 1641      00
+ 1642              	.LASF35:
+ 1643 004e 47656E65 		.ascii	"Generated_Source\\PSoC4\\FanController_DataSend.c\000"
+ 1643      72617465 
+ 1643      645F536F 
+ 1643      75726365 
+ 1643      5C50536F 
+ 1644              	.LASF38:
+ 1645 007e 46616E43 		.ascii	"FanController_DataSend_GetPriority\000"
+ 1645      6F6E7472 
+ 1645      6F6C6C65 
+ 1645      725F4461 
+ 1645      74615365 
+ 1646              	.LASF3:
+ 1647 00a1 73686F72 		.ascii	"short unsigned int\000"
+ 1647      7420756E 
+ 1647      7369676E 
+ 1647      65642069 
+ 1647      6E7400
+ 1648              	.LASF11:
+ 1649 00b4 666C6F61 		.ascii	"float\000"
+ 1649      7400
+ 1650              	.LASF31:
+ 1651 00ba 46616E43 		.ascii	"FanController_DataSend_ClearPending\000"
+ 1651      6F6E7472 
+ 1651      6F6C6C65 
+ 1651      725F4461 
+ 1651      74615365 
+ 1652              	.LASF1:
+ 1653 00de 756E7369 		.ascii	"unsigned char\000"
+ 1653      676E6564 
+ 1653      20636861 
+ 1653      7200
+ 1654              	.LASF30:
+ 1655 00ec 46616E43 		.ascii	"FanController_DataSend_SetPending\000"
+ 1655      6F6E7472 
+ 1655      6F6C6C65 
+ 1655      725F4461 
+ 1655      74615365 
+ 1656              	.LASF24:
+ 1657 010e 46616E43 		.ascii	"FanController_DataSend_StartEx\000"
+ 1657      6F6E7472 
+ 1657      6F6C6C65 
+ 1657      725F4461 
+ 1657      74615365 
+ 1658              	.LASF5:
+ 1659 012d 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1659      20756E73 
+ 1659      69676E65 
+ 1659      6420696E 
+ 1659      7400
+ 1660              	.LASF9:
+ 1661 013f 75696E74 		.ascii	"uint8\000"
+ 1661      3800
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc3LHdap.s 			page 39
+
+
+ 1662              	.LASF25:
+ 1663 0145 7072696F 		.ascii	"priority\000"
+ 1663      72697479 
+ 1663      00
+ 1664              	.LASF29:
+ 1665 014e 46616E43 		.ascii	"FanController_DataSend_Interrupt\000"
+ 1665      6F6E7472 
+ 1665      6F6C6C65 
+ 1665      725F4461 
+ 1665      74615365 
+ 1666              	.LASF12:
+ 1667 016f 646F7562 		.ascii	"double\000"
+ 1667      6C6500
+ 1668              	.LASF37:
+ 1669 0176 46616E43 		.ascii	"FanController_DataSend_SetVector\000"
+ 1669      6F6E7472 
+ 1669      6F6C6C65 
+ 1669      725F4461 
+ 1669      74615365 
+ 1670              	.LASF18:
+ 1671 0197 46616E43 		.ascii	"FanController_DataSend_Disable\000"
+ 1671      6F6E7472 
+ 1671      6F6C6C65 
+ 1671      725F4461 
+ 1671      74615365 
+ 1672              	.LASF20:
+ 1673 01b6 46616E43 		.ascii	"FanController_DataSend_SetPriority\000"
+ 1673      6F6E7472 
+ 1673      6F6C6C65 
+ 1673      725F4461 
+ 1673      74615365 
+ 1674              	.LASF10:
+ 1675 01d9 75696E74 		.ascii	"uint32\000"
+ 1675      333200
+ 1676              	.LASF32:
+ 1677 01e0 4379456E 		.ascii	"CyEnterCriticalSection\000"
+ 1677      74657243 
+ 1677      72697469 
+ 1677      63616C53 
+ 1677      65637469 
+ 1678              	.LASF8:
+ 1679 01f7 756E7369 		.ascii	"unsigned int\000"
+ 1679      676E6564 
+ 1679      20696E74 
+ 1679      00
+ 1680              	.LASF26:
+ 1681 0204 61646472 		.ascii	"address\000"
+ 1681      65737300 
+ 1682              	.LASF7:
+ 1683 020c 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1683      206C6F6E 
+ 1683      6720756E 
+ 1683      7369676E 
+ 1683      65642069 
+ 1684              	.LASF15:
+ 1685 0223 63796973 		.ascii	"cyisraddress\000"
+ 1685      72616464 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc3LHdap.s 			page 40
+
+
+ 1685      72657373 
+ 1685      00
+ 1686              	.LASF23:
+ 1687 0230 46616E43 		.ascii	"FanController_DataSend_Start\000"
+ 1687      6F6E7472 
+ 1687      6F6C6C65 
+ 1687      725F4461 
+ 1687      74615365 
+ 1688              	.LASF28:
+ 1689 024d 46616E43 		.ascii	"FanController_DataSend_GetState\000"
+ 1689      6F6E7472 
+ 1689      6F6C6C65 
+ 1689      725F4461 
+ 1689      74615365 
+ 1690              	.LASF21:
+ 1691 026d 696E7465 		.ascii	"interruptState\000"
+ 1691      72727570 
+ 1691      74537461 
+ 1691      746500
+ 1692              	.LASF34:
+ 1693 027c 474E5520 		.ascii	"GNU C99 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1693      43393920 
+ 1693      352E342E 
+ 1693      31203230 
+ 1693      31363036 
+ 1694 02af 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 1694      20726576 
+ 1694      6973696F 
+ 1694      6E203233 
+ 1694      37373135 
+ 1695 02e2 73202D73 		.ascii	"s -std=gnu99 -ffunction-sections -ffat-lto-objects\000"
+ 1695      74643D67 
+ 1695      6E753939 
+ 1695      202D6666 
+ 1695      756E6374 
+ 1696              	.LASF16:
+ 1697 0315 73697A65 		.ascii	"sizetype\000"
+ 1697      74797065 
+ 1697      00
+ 1698              	.LASF6:
+ 1699 031e 6C6F6E67 		.ascii	"long long int\000"
+ 1699      206C6F6E 
+ 1699      6720696E 
+ 1699      7400
+ 1700              	.LASF13:
+ 1701 032c 63686172 		.ascii	"char\000"
+ 1701      00
+ 1702              	.LASF2:
+ 1703 0331 73686F72 		.ascii	"short int\000"
+ 1703      7420696E 
+ 1703      7400
+ 1704              	.LASF17:
+ 1705 033b 46616E43 		.ascii	"FanController_DataSend_Enable\000"
+ 1705      6F6E7472 
+ 1705      6F6C6C65 
+ 1705      725F4461 
+ 1705      74615365 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cc3LHdap.s 			page 41
+
+
+ 1706              	.LASF33:
+ 1707 0359 43794578 		.ascii	"CyExitCriticalSection\000"
+ 1707      69744372 
+ 1707      69746963 
+ 1707      616C5365 
+ 1707      6374696F 
+ 1708              	.LASF27:
+ 1709 036f 46616E43 		.ascii	"FanController_DataSend_GetVector\000"
+ 1709      6F6E7472 
+ 1709      6F6C6C65 
+ 1709      725F4461 
+ 1709      74615365 
+ 1710              	.LASF22:
+ 1711 0390 7072696F 		.ascii	"priorityOffset\000"
+ 1711      72697479 
+ 1711      4F666673 
+ 1711      657400
+ 1712              	.LASF4:
+ 1713 039f 6C6F6E67 		.ascii	"long int\000"
+ 1713      20696E74 
+ 1713      00
+ 1714              	.LASF0:
+ 1715 03a8 7369676E 		.ascii	"signed char\000"
+ 1715      65642063 
+ 1715      68617200 
+ 1716              	.LASF19:
+ 1717 03b4 46616E43 		.ascii	"FanController_DataSend_Stop\000"
+ 1717      6F6E7472 
+ 1717      6F6C6C65 
+ 1717      725F4461 
+ 1717      74615365 
+ 1718              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

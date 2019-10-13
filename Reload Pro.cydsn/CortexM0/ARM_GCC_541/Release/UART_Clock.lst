@@ -1,0 +1,1026 @@
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczEvYY1.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"UART_Clock.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.UART_Clock_Start,"ax",%progbits
+  20              		.align	1
+  21              		.global	UART_Clock_Start
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	UART_Clock_Start, %function
+  25              	UART_Clock_Start:
+  26              	.LFB0:
+  27              		.file 1 "Generated_Source\\PSoC4\\UART_Clock.c"
+   1:Generated_Source\PSoC4/UART_Clock.c **** /*******************************************************************************
+   2:Generated_Source\PSoC4/UART_Clock.c **** * File Name: UART_Clock.c
+   3:Generated_Source\PSoC4/UART_Clock.c **** * Version 2.20
+   4:Generated_Source\PSoC4/UART_Clock.c **** *
+   5:Generated_Source\PSoC4/UART_Clock.c **** *  Description:
+   6:Generated_Source\PSoC4/UART_Clock.c **** *   Provides system API for the clocking, interrupts and watchdog timer.
+   7:Generated_Source\PSoC4/UART_Clock.c **** *
+   8:Generated_Source\PSoC4/UART_Clock.c **** *  Note:
+   9:Generated_Source\PSoC4/UART_Clock.c **** *   Documentation of the API's in this file is located in the
+  10:Generated_Source\PSoC4/UART_Clock.c **** *   System Reference Guide provided with PSoC Creator.
+  11:Generated_Source\PSoC4/UART_Clock.c **** *
+  12:Generated_Source\PSoC4/UART_Clock.c **** ********************************************************************************
+  13:Generated_Source\PSoC4/UART_Clock.c **** * Copyright 2008-2012, Cypress Semiconductor Corporation.  All rights reserved.
+  14:Generated_Source\PSoC4/UART_Clock.c **** * You may use this file only in accordance with the license, terms, conditions,
+  15:Generated_Source\PSoC4/UART_Clock.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  16:Generated_Source\PSoC4/UART_Clock.c **** * the software package with which this file was provided.
+  17:Generated_Source\PSoC4/UART_Clock.c **** *******************************************************************************/
+  18:Generated_Source\PSoC4/UART_Clock.c **** 
+  19:Generated_Source\PSoC4/UART_Clock.c **** #include <cydevice_trm.h>
+  20:Generated_Source\PSoC4/UART_Clock.c **** #include "UART_Clock.h"
+  21:Generated_Source\PSoC4/UART_Clock.c **** 
+  22:Generated_Source\PSoC4/UART_Clock.c **** #if defined CYREG_PERI_DIV_CMD
+  23:Generated_Source\PSoC4/UART_Clock.c **** 
+  24:Generated_Source\PSoC4/UART_Clock.c **** /*******************************************************************************
+  25:Generated_Source\PSoC4/UART_Clock.c **** * Function Name: UART_Clock_StartEx
+  26:Generated_Source\PSoC4/UART_Clock.c **** ********************************************************************************
+  27:Generated_Source\PSoC4/UART_Clock.c **** *
+  28:Generated_Source\PSoC4/UART_Clock.c **** * Summary:
+  29:Generated_Source\PSoC4/UART_Clock.c **** *  Starts the clock, aligned to the specified running clock.
+  30:Generated_Source\PSoC4/UART_Clock.c **** *
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczEvYY1.s 			page 2
+
+
+  31:Generated_Source\PSoC4/UART_Clock.c **** * Parameters:
+  32:Generated_Source\PSoC4/UART_Clock.c **** *  alignClkDiv:  The divider to which phase alignment is performed when the
+  33:Generated_Source\PSoC4/UART_Clock.c **** *    clock is started.
+  34:Generated_Source\PSoC4/UART_Clock.c **** *
+  35:Generated_Source\PSoC4/UART_Clock.c **** * Returns:
+  36:Generated_Source\PSoC4/UART_Clock.c **** *  None
+  37:Generated_Source\PSoC4/UART_Clock.c **** *
+  38:Generated_Source\PSoC4/UART_Clock.c **** *******************************************************************************/
+  39:Generated_Source\PSoC4/UART_Clock.c **** void UART_Clock_StartEx(uint32 alignClkDiv)
+  40:Generated_Source\PSoC4/UART_Clock.c **** {
+  41:Generated_Source\PSoC4/UART_Clock.c ****     /* Make sure any previous start command has finished. */
+  42:Generated_Source\PSoC4/UART_Clock.c ****     while((UART_Clock_CMD_REG & UART_Clock_CMD_ENABLE_MASK) != 0u)
+  43:Generated_Source\PSoC4/UART_Clock.c ****     {
+  44:Generated_Source\PSoC4/UART_Clock.c ****     }
+  45:Generated_Source\PSoC4/UART_Clock.c ****     
+  46:Generated_Source\PSoC4/UART_Clock.c ****     /* Specify the target divider and it's alignment divider, and enable. */
+  47:Generated_Source\PSoC4/UART_Clock.c ****     UART_Clock_CMD_REG =
+  48:Generated_Source\PSoC4/UART_Clock.c ****         ((uint32)UART_Clock__DIV_ID << UART_Clock_CMD_DIV_SHIFT)|
+  49:Generated_Source\PSoC4/UART_Clock.c ****         (alignClkDiv << UART_Clock_CMD_PA_DIV_SHIFT) |
+  50:Generated_Source\PSoC4/UART_Clock.c ****         (uint32)UART_Clock_CMD_ENABLE_MASK;
+  51:Generated_Source\PSoC4/UART_Clock.c **** }
+  52:Generated_Source\PSoC4/UART_Clock.c **** 
+  53:Generated_Source\PSoC4/UART_Clock.c **** #else
+  54:Generated_Source\PSoC4/UART_Clock.c **** 
+  55:Generated_Source\PSoC4/UART_Clock.c **** /*******************************************************************************
+  56:Generated_Source\PSoC4/UART_Clock.c **** * Function Name: UART_Clock_Start
+  57:Generated_Source\PSoC4/UART_Clock.c **** ********************************************************************************
+  58:Generated_Source\PSoC4/UART_Clock.c **** *
+  59:Generated_Source\PSoC4/UART_Clock.c **** * Summary:
+  60:Generated_Source\PSoC4/UART_Clock.c **** *  Starts the clock.
+  61:Generated_Source\PSoC4/UART_Clock.c **** *
+  62:Generated_Source\PSoC4/UART_Clock.c **** * Parameters:
+  63:Generated_Source\PSoC4/UART_Clock.c **** *  None
+  64:Generated_Source\PSoC4/UART_Clock.c **** *
+  65:Generated_Source\PSoC4/UART_Clock.c **** * Returns:
+  66:Generated_Source\PSoC4/UART_Clock.c **** *  None
+  67:Generated_Source\PSoC4/UART_Clock.c **** *
+  68:Generated_Source\PSoC4/UART_Clock.c **** *******************************************************************************/
+  69:Generated_Source\PSoC4/UART_Clock.c **** 
+  70:Generated_Source\PSoC4/UART_Clock.c **** void UART_Clock_Start(void)
+  71:Generated_Source\PSoC4/UART_Clock.c **** {
+  28              		.loc 1 71 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+  72:Generated_Source\PSoC4/UART_Clock.c ****     /* Set the bit to enable the clock. */
+  73:Generated_Source\PSoC4/UART_Clock.c ****     UART_Clock_ENABLE_REG |= UART_Clock__ENABLE_MASK;
+  33              		.loc 1 73 0
+  34 0000 8021     		movs	r1, #128
+  35 0002 034A     		ldr	r2, .L2
+  36 0004 0906     		lsls	r1, r1, #24
+  37 0006 1368     		ldr	r3, [r2]
+  74:Generated_Source\PSoC4/UART_Clock.c **** }
+  38              		.loc 1 74 0
+  39              		@ sp needed
+  73:Generated_Source\PSoC4/UART_Clock.c **** }
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczEvYY1.s 			page 3
+
+
+  40              		.loc 1 73 0
+  41 0008 0B43     		orrs	r3, r1
+  42 000a 1360     		str	r3, [r2]
+  43              		.loc 1 74 0
+  44 000c 7047     		bx	lr
+  45              	.L3:
+  46 000e C046     		.align	2
+  47              	.L2:
+  48 0010 00010240 		.word	1073873152
+  49              		.cfi_endproc
+  50              	.LFE0:
+  51              		.size	UART_Clock_Start, .-UART_Clock_Start
+  52              		.section	.text.UART_Clock_Stop,"ax",%progbits
+  53              		.align	1
+  54              		.global	UART_Clock_Stop
+  55              		.code	16
+  56              		.thumb_func
+  57              		.type	UART_Clock_Stop, %function
+  58              	UART_Clock_Stop:
+  59              	.LFB1:
+  75:Generated_Source\PSoC4/UART_Clock.c **** 
+  76:Generated_Source\PSoC4/UART_Clock.c **** #endif /* CYREG_PERI_DIV_CMD */
+  77:Generated_Source\PSoC4/UART_Clock.c **** 
+  78:Generated_Source\PSoC4/UART_Clock.c **** 
+  79:Generated_Source\PSoC4/UART_Clock.c **** /*******************************************************************************
+  80:Generated_Source\PSoC4/UART_Clock.c **** * Function Name: UART_Clock_Stop
+  81:Generated_Source\PSoC4/UART_Clock.c **** ********************************************************************************
+  82:Generated_Source\PSoC4/UART_Clock.c **** *
+  83:Generated_Source\PSoC4/UART_Clock.c **** * Summary:
+  84:Generated_Source\PSoC4/UART_Clock.c **** *  Stops the clock and returns immediately. This API does not require the
+  85:Generated_Source\PSoC4/UART_Clock.c **** *  source clock to be running but may return before the hardware is actually
+  86:Generated_Source\PSoC4/UART_Clock.c **** *  disabled.
+  87:Generated_Source\PSoC4/UART_Clock.c **** *
+  88:Generated_Source\PSoC4/UART_Clock.c **** * Parameters:
+  89:Generated_Source\PSoC4/UART_Clock.c **** *  None
+  90:Generated_Source\PSoC4/UART_Clock.c **** *
+  91:Generated_Source\PSoC4/UART_Clock.c **** * Returns:
+  92:Generated_Source\PSoC4/UART_Clock.c **** *  None
+  93:Generated_Source\PSoC4/UART_Clock.c **** *
+  94:Generated_Source\PSoC4/UART_Clock.c **** *******************************************************************************/
+  95:Generated_Source\PSoC4/UART_Clock.c **** void UART_Clock_Stop(void)
+  96:Generated_Source\PSoC4/UART_Clock.c **** {
+  60              		.loc 1 96 0
+  61              		.cfi_startproc
+  62              		@ args = 0, pretend = 0, frame = 0
+  63              		@ frame_needed = 0, uses_anonymous_args = 0
+  64              		@ link register save eliminated.
+  97:Generated_Source\PSoC4/UART_Clock.c **** #if defined CYREG_PERI_DIV_CMD
+  98:Generated_Source\PSoC4/UART_Clock.c **** 
+  99:Generated_Source\PSoC4/UART_Clock.c ****     /* Make sure any previous start command has finished. */
+ 100:Generated_Source\PSoC4/UART_Clock.c ****     while((UART_Clock_CMD_REG & UART_Clock_CMD_ENABLE_MASK) != 0u)
+ 101:Generated_Source\PSoC4/UART_Clock.c ****     {
+ 102:Generated_Source\PSoC4/UART_Clock.c ****     }
+ 103:Generated_Source\PSoC4/UART_Clock.c ****     
+ 104:Generated_Source\PSoC4/UART_Clock.c ****     /* Specify the target divider and it's alignment divider, and disable. */
+ 105:Generated_Source\PSoC4/UART_Clock.c ****     UART_Clock_CMD_REG =
+ 106:Generated_Source\PSoC4/UART_Clock.c ****         ((uint32)UART_Clock__DIV_ID << UART_Clock_CMD_DIV_SHIFT)|
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczEvYY1.s 			page 4
+
+
+ 107:Generated_Source\PSoC4/UART_Clock.c ****         ((uint32)UART_Clock_CMD_DISABLE_MASK);
+ 108:Generated_Source\PSoC4/UART_Clock.c **** 
+ 109:Generated_Source\PSoC4/UART_Clock.c **** #else
+ 110:Generated_Source\PSoC4/UART_Clock.c **** 
+ 111:Generated_Source\PSoC4/UART_Clock.c ****     /* Clear the bit to disable the clock. */
+ 112:Generated_Source\PSoC4/UART_Clock.c ****     UART_Clock_ENABLE_REG &= (uint32)(~UART_Clock__ENABLE_MASK);
+  65              		.loc 1 112 0
+  66 0000 024A     		ldr	r2, .L5
+ 113:Generated_Source\PSoC4/UART_Clock.c ****     
+ 114:Generated_Source\PSoC4/UART_Clock.c **** #endif /* CYREG_PERI_DIV_CMD */
+ 115:Generated_Source\PSoC4/UART_Clock.c **** }
+  67              		.loc 1 115 0
+  68              		@ sp needed
+ 112:Generated_Source\PSoC4/UART_Clock.c ****     
+  69              		.loc 1 112 0
+  70 0002 1368     		ldr	r3, [r2]
+  71 0004 5B00     		lsls	r3, r3, #1
+  72 0006 5B08     		lsrs	r3, r3, #1
+  73 0008 1360     		str	r3, [r2]
+  74              		.loc 1 115 0
+  75 000a 7047     		bx	lr
+  76              	.L6:
+  77              		.align	2
+  78              	.L5:
+  79 000c 00010240 		.word	1073873152
+  80              		.cfi_endproc
+  81              	.LFE1:
+  82              		.size	UART_Clock_Stop, .-UART_Clock_Stop
+  83              		.section	.text.UART_Clock_SetFractionalDividerRegister,"ax",%progbits
+  84              		.align	1
+  85              		.global	UART_Clock_SetFractionalDividerRegister
+  86              		.code	16
+  87              		.thumb_func
+  88              		.type	UART_Clock_SetFractionalDividerRegister, %function
+  89              	UART_Clock_SetFractionalDividerRegister:
+  90              	.LFB2:
+ 116:Generated_Source\PSoC4/UART_Clock.c **** 
+ 117:Generated_Source\PSoC4/UART_Clock.c **** 
+ 118:Generated_Source\PSoC4/UART_Clock.c **** /*******************************************************************************
+ 119:Generated_Source\PSoC4/UART_Clock.c **** * Function Name: UART_Clock_SetFractionalDividerRegister
+ 120:Generated_Source\PSoC4/UART_Clock.c **** ********************************************************************************
+ 121:Generated_Source\PSoC4/UART_Clock.c **** *
+ 122:Generated_Source\PSoC4/UART_Clock.c **** * Summary:
+ 123:Generated_Source\PSoC4/UART_Clock.c **** *  Modifies the clock divider and the fractional divider.
+ 124:Generated_Source\PSoC4/UART_Clock.c **** *
+ 125:Generated_Source\PSoC4/UART_Clock.c **** * Parameters:
+ 126:Generated_Source\PSoC4/UART_Clock.c **** *  clkDivider:  Divider register value (0-65535). This value is NOT the
+ 127:Generated_Source\PSoC4/UART_Clock.c **** *    divider; the clock hardware divides by clkDivider plus one. For example,
+ 128:Generated_Source\PSoC4/UART_Clock.c **** *    to divide the clock by 2, this parameter should be set to 1.
+ 129:Generated_Source\PSoC4/UART_Clock.c **** *  fracDivider:  Fractional Divider register value (0-31).
+ 130:Generated_Source\PSoC4/UART_Clock.c **** * Returns:
+ 131:Generated_Source\PSoC4/UART_Clock.c **** *  None
+ 132:Generated_Source\PSoC4/UART_Clock.c **** *
+ 133:Generated_Source\PSoC4/UART_Clock.c **** *******************************************************************************/
+ 134:Generated_Source\PSoC4/UART_Clock.c **** void UART_Clock_SetFractionalDividerRegister(uint16 clkDivider, uint8 clkFractional)
+ 135:Generated_Source\PSoC4/UART_Clock.c **** {
+  91              		.loc 1 135 0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczEvYY1.s 			page 5
+
+
+  92              		.cfi_startproc
+  93              		@ args = 0, pretend = 0, frame = 0
+  94              		@ frame_needed = 0, uses_anonymous_args = 0
+  95              		@ link register save eliminated.
+  96              	.LVL0:
+ 136:Generated_Source\PSoC4/UART_Clock.c ****     uint32 maskVal;
+ 137:Generated_Source\PSoC4/UART_Clock.c ****     uint32 regVal;
+ 138:Generated_Source\PSoC4/UART_Clock.c ****     
+ 139:Generated_Source\PSoC4/UART_Clock.c **** #if defined (UART_Clock__FRAC_MASK) || defined (CYREG_PERI_DIV_CMD)
+ 140:Generated_Source\PSoC4/UART_Clock.c ****     
+ 141:Generated_Source\PSoC4/UART_Clock.c **** 	/* get all but divider bits */
+ 142:Generated_Source\PSoC4/UART_Clock.c ****     maskVal = UART_Clock_DIV_REG & 
+  97              		.loc 1 142 0
+  98 0000 054A     		ldr	r2, .L8
+ 143:Generated_Source\PSoC4/UART_Clock.c ****                     (uint32)(~(uint32)(UART_Clock_DIV_INT_MASK | UART_Clock_DIV_FRAC_MASK)); 
+ 144:Generated_Source\PSoC4/UART_Clock.c **** 	/* combine mask and new divider vals into 32-bit value */
+ 145:Generated_Source\PSoC4/UART_Clock.c ****     regVal = maskVal |
+  99              		.loc 1 145 0
+ 100 0002 0904     		lsls	r1, r1, #16
+ 101              	.LVL1:
+ 142:Generated_Source\PSoC4/UART_Clock.c ****                     (uint32)(~(uint32)(UART_Clock_DIV_INT_MASK | UART_Clock_DIV_FRAC_MASK)); 
+ 102              		.loc 1 142 0
+ 103 0004 1368     		ldr	r3, [r2]
+ 104              	.LVL2:
+ 146:Generated_Source\PSoC4/UART_Clock.c ****         ((uint32)((uint32)clkDivider <<  UART_Clock_DIV_INT_SHIFT) & UART_Clock_DIV_INT_MASK) |
+ 147:Generated_Source\PSoC4/UART_Clock.c ****         ((uint32)((uint32)clkFractional << UART_Clock_DIV_FRAC_SHIFT) & UART_Clock_DIV_FRAC_MASK);
+ 148:Generated_Source\PSoC4/UART_Clock.c ****     
+ 149:Generated_Source\PSoC4/UART_Clock.c **** #else
+ 150:Generated_Source\PSoC4/UART_Clock.c ****     /* get all but integer divider bits */
+ 151:Generated_Source\PSoC4/UART_Clock.c ****     maskVal = UART_Clock_DIV_REG & (uint32)(~(uint32)UART_Clock__DIVIDER_MASK);
+ 152:Generated_Source\PSoC4/UART_Clock.c ****     /* combine mask and new divider val into 32-bit value */
+ 153:Generated_Source\PSoC4/UART_Clock.c ****     regVal = clkDivider | maskVal;
+ 154:Generated_Source\PSoC4/UART_Clock.c ****     
+ 155:Generated_Source\PSoC4/UART_Clock.c **** #endif /* UART_Clock__FRAC_MASK || CYREG_PERI_DIV_CMD */
+ 156:Generated_Source\PSoC4/UART_Clock.c **** 
+ 157:Generated_Source\PSoC4/UART_Clock.c ****     UART_Clock_DIV_REG = regVal;
+ 158:Generated_Source\PSoC4/UART_Clock.c **** }
+ 105              		.loc 1 158 0
+ 106              		@ sp needed
+ 145:Generated_Source\PSoC4/UART_Clock.c ****         ((uint32)((uint32)clkDivider <<  UART_Clock_DIV_INT_SHIFT) & UART_Clock_DIV_INT_MASK) |
+ 107              		.loc 1 145 0
+ 108 0006 5B0D     		lsrs	r3, r3, #21
+ 109              	.LVL3:
+ 110 0008 5B05     		lsls	r3, r3, #21
+ 111 000a 1843     		orrs	r0, r3
+ 112              	.LVL4:
+ 113 000c F823     		movs	r3, #248
+ 114 000e 5B03     		lsls	r3, r3, #13
+ 115 0010 1940     		ands	r1, r3
+ 116 0012 0843     		orrs	r0, r1
+ 117              	.LVL5:
+ 157:Generated_Source\PSoC4/UART_Clock.c **** }
+ 118              		.loc 1 157 0
+ 119 0014 1060     		str	r0, [r2]
+ 120              		.loc 1 158 0
+ 121 0016 7047     		bx	lr
+ 122              	.L9:
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczEvYY1.s 			page 6
+
+
+ 123              		.align	2
+ 124              	.L8:
+ 125 0018 00010240 		.word	1073873152
+ 126              		.cfi_endproc
+ 127              	.LFE2:
+ 128              		.size	UART_Clock_SetFractionalDividerRegister, .-UART_Clock_SetFractionalDividerRegister
+ 129              		.section	.text.UART_Clock_GetDividerRegister,"ax",%progbits
+ 130              		.align	1
+ 131              		.global	UART_Clock_GetDividerRegister
+ 132              		.code	16
+ 133              		.thumb_func
+ 134              		.type	UART_Clock_GetDividerRegister, %function
+ 135              	UART_Clock_GetDividerRegister:
+ 136              	.LFB3:
+ 159:Generated_Source\PSoC4/UART_Clock.c **** 
+ 160:Generated_Source\PSoC4/UART_Clock.c **** 
+ 161:Generated_Source\PSoC4/UART_Clock.c **** /*******************************************************************************
+ 162:Generated_Source\PSoC4/UART_Clock.c **** * Function Name: UART_Clock_GetDividerRegister
+ 163:Generated_Source\PSoC4/UART_Clock.c **** ********************************************************************************
+ 164:Generated_Source\PSoC4/UART_Clock.c **** *
+ 165:Generated_Source\PSoC4/UART_Clock.c **** * Summary:
+ 166:Generated_Source\PSoC4/UART_Clock.c **** *  Gets the clock divider register value.
+ 167:Generated_Source\PSoC4/UART_Clock.c **** *
+ 168:Generated_Source\PSoC4/UART_Clock.c **** * Parameters:
+ 169:Generated_Source\PSoC4/UART_Clock.c **** *  None
+ 170:Generated_Source\PSoC4/UART_Clock.c **** *
+ 171:Generated_Source\PSoC4/UART_Clock.c **** * Returns:
+ 172:Generated_Source\PSoC4/UART_Clock.c **** *  Divide value of the clock minus 1. For example, if the clock is set to
+ 173:Generated_Source\PSoC4/UART_Clock.c **** *  divide by 2, the return value will be 1.
+ 174:Generated_Source\PSoC4/UART_Clock.c **** *
+ 175:Generated_Source\PSoC4/UART_Clock.c **** *******************************************************************************/
+ 176:Generated_Source\PSoC4/UART_Clock.c **** uint16 UART_Clock_GetDividerRegister(void)
+ 177:Generated_Source\PSoC4/UART_Clock.c **** {
+ 137              		.loc 1 177 0
+ 138              		.cfi_startproc
+ 139              		@ args = 0, pretend = 0, frame = 0
+ 140              		@ frame_needed = 0, uses_anonymous_args = 0
+ 141              		@ link register save eliminated.
+ 178:Generated_Source\PSoC4/UART_Clock.c ****     return (uint16)((UART_Clock_DIV_REG & UART_Clock_DIV_INT_MASK)
+ 142              		.loc 1 178 0
+ 143 0000 014B     		ldr	r3, .L11
+ 179:Generated_Source\PSoC4/UART_Clock.c ****         >> UART_Clock_DIV_INT_SHIFT);
+ 180:Generated_Source\PSoC4/UART_Clock.c **** }
+ 144              		.loc 1 180 0
+ 145              		@ sp needed
+ 178:Generated_Source\PSoC4/UART_Clock.c ****     return (uint16)((UART_Clock_DIV_REG & UART_Clock_DIV_INT_MASK)
+ 146              		.loc 1 178 0
+ 147 0002 1868     		ldr	r0, [r3]
+ 148 0004 80B2     		uxth	r0, r0
+ 149              		.loc 1 180 0
+ 150 0006 7047     		bx	lr
+ 151              	.L12:
+ 152              		.align	2
+ 153              	.L11:
+ 154 0008 00010240 		.word	1073873152
+ 155              		.cfi_endproc
+ 156              	.LFE3:
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczEvYY1.s 			page 7
+
+
+ 157              		.size	UART_Clock_GetDividerRegister, .-UART_Clock_GetDividerRegister
+ 158              		.section	.text.UART_Clock_GetFractionalDividerRegister,"ax",%progbits
+ 159              		.align	1
+ 160              		.global	UART_Clock_GetFractionalDividerRegister
+ 161              		.code	16
+ 162              		.thumb_func
+ 163              		.type	UART_Clock_GetFractionalDividerRegister, %function
+ 164              	UART_Clock_GetFractionalDividerRegister:
+ 165              	.LFB4:
+ 181:Generated_Source\PSoC4/UART_Clock.c **** 
+ 182:Generated_Source\PSoC4/UART_Clock.c **** 
+ 183:Generated_Source\PSoC4/UART_Clock.c **** /*******************************************************************************
+ 184:Generated_Source\PSoC4/UART_Clock.c **** * Function Name: UART_Clock_GetFractionalDividerRegister
+ 185:Generated_Source\PSoC4/UART_Clock.c **** ********************************************************************************
+ 186:Generated_Source\PSoC4/UART_Clock.c **** *
+ 187:Generated_Source\PSoC4/UART_Clock.c **** * Summary:
+ 188:Generated_Source\PSoC4/UART_Clock.c **** *  Gets the clock fractional divider register value.
+ 189:Generated_Source\PSoC4/UART_Clock.c **** *
+ 190:Generated_Source\PSoC4/UART_Clock.c **** * Parameters:
+ 191:Generated_Source\PSoC4/UART_Clock.c **** *  None
+ 192:Generated_Source\PSoC4/UART_Clock.c **** *
+ 193:Generated_Source\PSoC4/UART_Clock.c **** * Returns:
+ 194:Generated_Source\PSoC4/UART_Clock.c **** *  Fractional Divide value of the clock
+ 195:Generated_Source\PSoC4/UART_Clock.c **** *  0 if the fractional divider is not in use.
+ 196:Generated_Source\PSoC4/UART_Clock.c **** *
+ 197:Generated_Source\PSoC4/UART_Clock.c **** *******************************************************************************/
+ 198:Generated_Source\PSoC4/UART_Clock.c **** uint8 UART_Clock_GetFractionalDividerRegister(void)
+ 199:Generated_Source\PSoC4/UART_Clock.c **** {
+ 166              		.loc 1 199 0
+ 167              		.cfi_startproc
+ 168              		@ args = 0, pretend = 0, frame = 0
+ 169              		@ frame_needed = 0, uses_anonymous_args = 0
+ 170              		@ link register save eliminated.
+ 200:Generated_Source\PSoC4/UART_Clock.c **** #if defined (UART_Clock__FRAC_MASK)
+ 201:Generated_Source\PSoC4/UART_Clock.c ****     /* return fractional divider bits */
+ 202:Generated_Source\PSoC4/UART_Clock.c ****     return (uint8)((UART_Clock_DIV_REG & UART_Clock_DIV_FRAC_MASK)
+ 171              		.loc 1 202 0
+ 172 0000 024B     		ldr	r3, .L14
+ 203:Generated_Source\PSoC4/UART_Clock.c ****         >> UART_Clock_DIV_FRAC_SHIFT);
+ 204:Generated_Source\PSoC4/UART_Clock.c **** #else
+ 205:Generated_Source\PSoC4/UART_Clock.c ****     return 0u;
+ 206:Generated_Source\PSoC4/UART_Clock.c **** #endif /* UART_Clock__FRAC_MASK */
+ 207:Generated_Source\PSoC4/UART_Clock.c **** }
+ 173              		.loc 1 207 0
+ 174              		@ sp needed
+ 202:Generated_Source\PSoC4/UART_Clock.c ****         >> UART_Clock_DIV_FRAC_SHIFT);
+ 175              		.loc 1 202 0
+ 176 0002 1868     		ldr	r0, [r3]
+ 177 0004 C002     		lsls	r0, r0, #11
+ 178 0006 C00E     		lsrs	r0, r0, #27
+ 179              		.loc 1 207 0
+ 180 0008 7047     		bx	lr
+ 181              	.L15:
+ 182 000a C046     		.align	2
+ 183              	.L14:
+ 184 000c 00010240 		.word	1073873152
+ 185              		.cfi_endproc
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczEvYY1.s 			page 8
+
+
+ 186              	.LFE4:
+ 187              		.size	UART_Clock_GetFractionalDividerRegister, .-UART_Clock_GetFractionalDividerRegister
+ 188              		.text
+ 189              	.Letext0:
+ 190              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+ 191              		.section	.debug_info,"",%progbits
+ 192              	.Ldebug_info0:
+ 193 0000 4E010000 		.4byte	0x14e
+ 194 0004 0400     		.2byte	0x4
+ 195 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 196 000a 04       		.byte	0x4
+ 197 000b 01       		.uleb128 0x1
+ 198 000c 7D010000 		.4byte	.LASF24
+ 199 0010 0C       		.byte	0xc
+ 200 0011 59010000 		.4byte	.LASF25
+ 201 0015 06000000 		.4byte	.LASF26
+ 202 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 203 001d 00000000 		.4byte	0
+ 204 0021 00000000 		.4byte	.Ldebug_line0
+ 205 0025 02       		.uleb128 0x2
+ 206 0026 01       		.byte	0x1
+ 207 0027 06       		.byte	0x6
+ 208 0028 53020000 		.4byte	.LASF0
+ 209 002c 02       		.uleb128 0x2
+ 210 002d 01       		.byte	0x1
+ 211 002e 08       		.byte	0x8
+ 212 002f A5000000 		.4byte	.LASF1
+ 213 0033 02       		.uleb128 0x2
+ 214 0034 02       		.byte	0x2
+ 215 0035 05       		.byte	0x5
+ 216 0036 29020000 		.4byte	.LASF2
+ 217 003a 02       		.uleb128 0x2
+ 218 003b 02       		.byte	0x2
+ 219 003c 07       		.byte	0x7
+ 220 003d ED000000 		.4byte	.LASF3
+ 221 0041 02       		.uleb128 0x2
+ 222 0042 04       		.byte	0x4
+ 223 0043 05       		.byte	0x5
+ 224 0044 4A020000 		.4byte	.LASF4
+ 225 0048 02       		.uleb128 0x2
+ 226 0049 04       		.byte	0x4
+ 227 004a 07       		.byte	0x7
+ 228 004b DB000000 		.4byte	.LASF5
+ 229 004f 02       		.uleb128 0x2
+ 230 0050 08       		.byte	0x8
+ 231 0051 05       		.byte	0x5
+ 232 0052 16020000 		.4byte	.LASF6
+ 233 0056 02       		.uleb128 0x2
+ 234 0057 08       		.byte	0x8
+ 235 0058 07       		.byte	0x7
+ 236 0059 42010000 		.4byte	.LASF7
+ 237 005d 03       		.uleb128 0x3
+ 238 005e 04       		.byte	0x4
+ 239 005f 05       		.byte	0x5
+ 240 0060 696E7400 		.ascii	"int\000"
+ 241 0064 02       		.uleb128 0x2
+ 242 0065 04       		.byte	0x4
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczEvYY1.s 			page 9
+
+
+ 243 0066 07       		.byte	0x7
+ 244 0067 35010000 		.4byte	.LASF8
+ 245 006b 04       		.uleb128 0x4
+ 246 006c 33020000 		.4byte	.LASF9
+ 247 0070 02       		.byte	0x2
+ 248 0071 E401     		.2byte	0x1e4
+ 249 0073 2C000000 		.4byte	0x2c
+ 250 0077 04       		.uleb128 0x4
+ 251 0078 27010000 		.4byte	.LASF10
+ 252 007c 02       		.byte	0x2
+ 253 007d E501     		.2byte	0x1e5
+ 254 007f 3A000000 		.4byte	0x3a
+ 255 0083 04       		.uleb128 0x4
+ 256 0084 2E010000 		.4byte	.LASF11
+ 257 0088 02       		.byte	0x2
+ 258 0089 E601     		.2byte	0x1e6
+ 259 008b 48000000 		.4byte	0x48
+ 260 008f 02       		.uleb128 0x2
+ 261 0090 04       		.byte	0x4
+ 262 0091 04       		.byte	0x4
+ 263 0092 9F000000 		.4byte	.LASF12
+ 264 0096 02       		.uleb128 0x2
+ 265 0097 08       		.byte	0x8
+ 266 0098 04       		.byte	0x4
+ 267 0099 0B010000 		.4byte	.LASF13
+ 268 009d 02       		.uleb128 0x2
+ 269 009e 01       		.byte	0x1
+ 270 009f 08       		.byte	0x8
+ 271 00a0 24020000 		.4byte	.LASF14
+ 272 00a4 04       		.uleb128 0x4
+ 273 00a5 00000000 		.4byte	.LASF15
+ 274 00a9 02       		.byte	0x2
+ 275 00aa 9002     		.2byte	0x290
+ 276 00ac B0000000 		.4byte	0xb0
+ 277 00b0 05       		.uleb128 0x5
+ 278 00b1 83000000 		.4byte	0x83
+ 279 00b5 06       		.uleb128 0x6
+ 280 00b6 39020000 		.4byte	.LASF16
+ 281 00ba 01       		.byte	0x1
+ 282 00bb 46       		.byte	0x46
+ 283 00bc 00000000 		.4byte	.LFB0
+ 284 00c0 14000000 		.4byte	.LFE0-.LFB0
+ 285 00c4 01       		.uleb128 0x1
+ 286 00c5 9C       		.byte	0x9c
+ 287 00c6 06       		.uleb128 0x6
+ 288 00c7 67000000 		.4byte	.LASF17
+ 289 00cb 01       		.byte	0x1
+ 290 00cc 5F       		.byte	0x5f
+ 291 00cd 00000000 		.4byte	.LFB1
+ 292 00d1 10000000 		.4byte	.LFE1-.LFB1
+ 293 00d5 01       		.uleb128 0x1
+ 294 00d6 9C       		.byte	0x9c
+ 295 00d7 07       		.uleb128 0x7
+ 296 00d8 B3000000 		.4byte	.LASF27
+ 297 00dc 01       		.byte	0x1
+ 298 00dd 86       		.byte	0x86
+ 299 00de 00000000 		.4byte	.LFB2
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczEvYY1.s 			page 10
+
+
+ 300 00e2 1C000000 		.4byte	.LFE2-.LFB2
+ 301 00e6 01       		.uleb128 0x1
+ 302 00e7 9C       		.byte	0x9c
+ 303 00e8 27010000 		.4byte	0x127
+ 304 00ec 08       		.uleb128 0x8
+ 305 00ed 00010000 		.4byte	.LASF18
+ 306 00f1 01       		.byte	0x1
+ 307 00f2 86       		.byte	0x86
+ 308 00f3 77000000 		.4byte	0x77
+ 309 00f7 00000000 		.4byte	.LLST0
+ 310 00fb 08       		.uleb128 0x8
+ 311 00fc 19010000 		.4byte	.LASF19
+ 312 0100 01       		.byte	0x1
+ 313 0101 86       		.byte	0x86
+ 314 0102 6B000000 		.4byte	0x6b
+ 315 0106 21000000 		.4byte	.LLST1
+ 316 010a 09       		.uleb128 0x9
+ 317 010b 5F000000 		.4byte	.LASF20
+ 318 010f 01       		.byte	0x1
+ 319 0110 88       		.byte	0x88
+ 320 0111 83000000 		.4byte	0x83
+ 321 0115 42000000 		.4byte	.LLST2
+ 322 0119 0A       		.uleb128 0xa
+ 323 011a 12010000 		.4byte	.LASF21
+ 324 011e 01       		.byte	0x1
+ 325 011f 89       		.byte	0x89
+ 326 0120 83000000 		.4byte	0x83
+ 327 0124 01       		.uleb128 0x1
+ 328 0125 50       		.byte	0x50
+ 329 0126 00       		.byte	0
+ 330 0127 0B       		.uleb128 0xb
+ 331 0128 41000000 		.4byte	.LASF22
+ 332 012c 01       		.byte	0x1
+ 333 012d B0       		.byte	0xb0
+ 334 012e 77000000 		.4byte	0x77
+ 335 0132 00000000 		.4byte	.LFB3
+ 336 0136 0C000000 		.4byte	.LFE3-.LFB3
+ 337 013a 01       		.uleb128 0x1
+ 338 013b 9C       		.byte	0x9c
+ 339 013c 0B       		.uleb128 0xb
+ 340 013d 77000000 		.4byte	.LASF23
+ 341 0141 01       		.byte	0x1
+ 342 0142 C6       		.byte	0xc6
+ 343 0143 6B000000 		.4byte	0x6b
+ 344 0147 00000000 		.4byte	.LFB4
+ 345 014b 10000000 		.4byte	.LFE4-.LFB4
+ 346 014f 01       		.uleb128 0x1
+ 347 0150 9C       		.byte	0x9c
+ 348 0151 00       		.byte	0
+ 349              		.section	.debug_abbrev,"",%progbits
+ 350              	.Ldebug_abbrev0:
+ 351 0000 01       		.uleb128 0x1
+ 352 0001 11       		.uleb128 0x11
+ 353 0002 01       		.byte	0x1
+ 354 0003 25       		.uleb128 0x25
+ 355 0004 0E       		.uleb128 0xe
+ 356 0005 13       		.uleb128 0x13
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczEvYY1.s 			page 11
+
+
+ 357 0006 0B       		.uleb128 0xb
+ 358 0007 03       		.uleb128 0x3
+ 359 0008 0E       		.uleb128 0xe
+ 360 0009 1B       		.uleb128 0x1b
+ 361 000a 0E       		.uleb128 0xe
+ 362 000b 55       		.uleb128 0x55
+ 363 000c 17       		.uleb128 0x17
+ 364 000d 11       		.uleb128 0x11
+ 365 000e 01       		.uleb128 0x1
+ 366 000f 10       		.uleb128 0x10
+ 367 0010 17       		.uleb128 0x17
+ 368 0011 00       		.byte	0
+ 369 0012 00       		.byte	0
+ 370 0013 02       		.uleb128 0x2
+ 371 0014 24       		.uleb128 0x24
+ 372 0015 00       		.byte	0
+ 373 0016 0B       		.uleb128 0xb
+ 374 0017 0B       		.uleb128 0xb
+ 375 0018 3E       		.uleb128 0x3e
+ 376 0019 0B       		.uleb128 0xb
+ 377 001a 03       		.uleb128 0x3
+ 378 001b 0E       		.uleb128 0xe
+ 379 001c 00       		.byte	0
+ 380 001d 00       		.byte	0
+ 381 001e 03       		.uleb128 0x3
+ 382 001f 24       		.uleb128 0x24
+ 383 0020 00       		.byte	0
+ 384 0021 0B       		.uleb128 0xb
+ 385 0022 0B       		.uleb128 0xb
+ 386 0023 3E       		.uleb128 0x3e
+ 387 0024 0B       		.uleb128 0xb
+ 388 0025 03       		.uleb128 0x3
+ 389 0026 08       		.uleb128 0x8
+ 390 0027 00       		.byte	0
+ 391 0028 00       		.byte	0
+ 392 0029 04       		.uleb128 0x4
+ 393 002a 16       		.uleb128 0x16
+ 394 002b 00       		.byte	0
+ 395 002c 03       		.uleb128 0x3
+ 396 002d 0E       		.uleb128 0xe
+ 397 002e 3A       		.uleb128 0x3a
+ 398 002f 0B       		.uleb128 0xb
+ 399 0030 3B       		.uleb128 0x3b
+ 400 0031 05       		.uleb128 0x5
+ 401 0032 49       		.uleb128 0x49
+ 402 0033 13       		.uleb128 0x13
+ 403 0034 00       		.byte	0
+ 404 0035 00       		.byte	0
+ 405 0036 05       		.uleb128 0x5
+ 406 0037 35       		.uleb128 0x35
+ 407 0038 00       		.byte	0
+ 408 0039 49       		.uleb128 0x49
+ 409 003a 13       		.uleb128 0x13
+ 410 003b 00       		.byte	0
+ 411 003c 00       		.byte	0
+ 412 003d 06       		.uleb128 0x6
+ 413 003e 2E       		.uleb128 0x2e
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczEvYY1.s 			page 12
+
+
+ 414 003f 00       		.byte	0
+ 415 0040 3F       		.uleb128 0x3f
+ 416 0041 19       		.uleb128 0x19
+ 417 0042 03       		.uleb128 0x3
+ 418 0043 0E       		.uleb128 0xe
+ 419 0044 3A       		.uleb128 0x3a
+ 420 0045 0B       		.uleb128 0xb
+ 421 0046 3B       		.uleb128 0x3b
+ 422 0047 0B       		.uleb128 0xb
+ 423 0048 27       		.uleb128 0x27
+ 424 0049 19       		.uleb128 0x19
+ 425 004a 11       		.uleb128 0x11
+ 426 004b 01       		.uleb128 0x1
+ 427 004c 12       		.uleb128 0x12
+ 428 004d 06       		.uleb128 0x6
+ 429 004e 40       		.uleb128 0x40
+ 430 004f 18       		.uleb128 0x18
+ 431 0050 9742     		.uleb128 0x2117
+ 432 0052 19       		.uleb128 0x19
+ 433 0053 00       		.byte	0
+ 434 0054 00       		.byte	0
+ 435 0055 07       		.uleb128 0x7
+ 436 0056 2E       		.uleb128 0x2e
+ 437 0057 01       		.byte	0x1
+ 438 0058 3F       		.uleb128 0x3f
+ 439 0059 19       		.uleb128 0x19
+ 440 005a 03       		.uleb128 0x3
+ 441 005b 0E       		.uleb128 0xe
+ 442 005c 3A       		.uleb128 0x3a
+ 443 005d 0B       		.uleb128 0xb
+ 444 005e 3B       		.uleb128 0x3b
+ 445 005f 0B       		.uleb128 0xb
+ 446 0060 27       		.uleb128 0x27
+ 447 0061 19       		.uleb128 0x19
+ 448 0062 11       		.uleb128 0x11
+ 449 0063 01       		.uleb128 0x1
+ 450 0064 12       		.uleb128 0x12
+ 451 0065 06       		.uleb128 0x6
+ 452 0066 40       		.uleb128 0x40
+ 453 0067 18       		.uleb128 0x18
+ 454 0068 9742     		.uleb128 0x2117
+ 455 006a 19       		.uleb128 0x19
+ 456 006b 01       		.uleb128 0x1
+ 457 006c 13       		.uleb128 0x13
+ 458 006d 00       		.byte	0
+ 459 006e 00       		.byte	0
+ 460 006f 08       		.uleb128 0x8
+ 461 0070 05       		.uleb128 0x5
+ 462 0071 00       		.byte	0
+ 463 0072 03       		.uleb128 0x3
+ 464 0073 0E       		.uleb128 0xe
+ 465 0074 3A       		.uleb128 0x3a
+ 466 0075 0B       		.uleb128 0xb
+ 467 0076 3B       		.uleb128 0x3b
+ 468 0077 0B       		.uleb128 0xb
+ 469 0078 49       		.uleb128 0x49
+ 470 0079 13       		.uleb128 0x13
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczEvYY1.s 			page 13
+
+
+ 471 007a 02       		.uleb128 0x2
+ 472 007b 17       		.uleb128 0x17
+ 473 007c 00       		.byte	0
+ 474 007d 00       		.byte	0
+ 475 007e 09       		.uleb128 0x9
+ 476 007f 34       		.uleb128 0x34
+ 477 0080 00       		.byte	0
+ 478 0081 03       		.uleb128 0x3
+ 479 0082 0E       		.uleb128 0xe
+ 480 0083 3A       		.uleb128 0x3a
+ 481 0084 0B       		.uleb128 0xb
+ 482 0085 3B       		.uleb128 0x3b
+ 483 0086 0B       		.uleb128 0xb
+ 484 0087 49       		.uleb128 0x49
+ 485 0088 13       		.uleb128 0x13
+ 486 0089 02       		.uleb128 0x2
+ 487 008a 17       		.uleb128 0x17
+ 488 008b 00       		.byte	0
+ 489 008c 00       		.byte	0
+ 490 008d 0A       		.uleb128 0xa
+ 491 008e 34       		.uleb128 0x34
+ 492 008f 00       		.byte	0
+ 493 0090 03       		.uleb128 0x3
+ 494 0091 0E       		.uleb128 0xe
+ 495 0092 3A       		.uleb128 0x3a
+ 496 0093 0B       		.uleb128 0xb
+ 497 0094 3B       		.uleb128 0x3b
+ 498 0095 0B       		.uleb128 0xb
+ 499 0096 49       		.uleb128 0x49
+ 500 0097 13       		.uleb128 0x13
+ 501 0098 02       		.uleb128 0x2
+ 502 0099 18       		.uleb128 0x18
+ 503 009a 00       		.byte	0
+ 504 009b 00       		.byte	0
+ 505 009c 0B       		.uleb128 0xb
+ 506 009d 2E       		.uleb128 0x2e
+ 507 009e 00       		.byte	0
+ 508 009f 3F       		.uleb128 0x3f
+ 509 00a0 19       		.uleb128 0x19
+ 510 00a1 03       		.uleb128 0x3
+ 511 00a2 0E       		.uleb128 0xe
+ 512 00a3 3A       		.uleb128 0x3a
+ 513 00a4 0B       		.uleb128 0xb
+ 514 00a5 3B       		.uleb128 0x3b
+ 515 00a6 0B       		.uleb128 0xb
+ 516 00a7 27       		.uleb128 0x27
+ 517 00a8 19       		.uleb128 0x19
+ 518 00a9 49       		.uleb128 0x49
+ 519 00aa 13       		.uleb128 0x13
+ 520 00ab 11       		.uleb128 0x11
+ 521 00ac 01       		.uleb128 0x1
+ 522 00ad 12       		.uleb128 0x12
+ 523 00ae 06       		.uleb128 0x6
+ 524 00af 40       		.uleb128 0x40
+ 525 00b0 18       		.uleb128 0x18
+ 526 00b1 9742     		.uleb128 0x2117
+ 527 00b3 19       		.uleb128 0x19
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczEvYY1.s 			page 14
+
+
+ 528 00b4 00       		.byte	0
+ 529 00b5 00       		.byte	0
+ 530 00b6 00       		.byte	0
+ 531              		.section	.debug_loc,"",%progbits
+ 532              	.Ldebug_loc0:
+ 533              	.LLST0:
+ 534 0000 00000000 		.4byte	.LVL0
+ 535 0004 0C000000 		.4byte	.LVL4
+ 536 0008 0100     		.2byte	0x1
+ 537 000a 50       		.byte	0x50
+ 538 000b 0C000000 		.4byte	.LVL4
+ 539 000f 1C000000 		.4byte	.LFE2
+ 540 0013 0400     		.2byte	0x4
+ 541 0015 F3       		.byte	0xf3
+ 542 0016 01       		.uleb128 0x1
+ 543 0017 50       		.byte	0x50
+ 544 0018 9F       		.byte	0x9f
+ 545 0019 00000000 		.4byte	0
+ 546 001d 00000000 		.4byte	0
+ 547              	.LLST1:
+ 548 0021 00000000 		.4byte	.LVL0
+ 549 0025 04000000 		.4byte	.LVL1
+ 550 0029 0100     		.2byte	0x1
+ 551 002b 51       		.byte	0x51
+ 552 002c 04000000 		.4byte	.LVL1
+ 553 0030 1C000000 		.4byte	.LFE2
+ 554 0034 0400     		.2byte	0x4
+ 555 0036 F3       		.byte	0xf3
+ 556 0037 01       		.uleb128 0x1
+ 557 0038 51       		.byte	0x51
+ 558 0039 9F       		.byte	0x9f
+ 559 003a 00000000 		.4byte	0
+ 560 003e 00000000 		.4byte	0
+ 561              	.LLST2:
+ 562 0042 06000000 		.4byte	.LVL2
+ 563 0046 08000000 		.4byte	.LVL3
+ 564 004a 0800     		.2byte	0x8
+ 565 004c 73       		.byte	0x73
+ 566 004d 00       		.sleb128 0
+ 567 004e 40       		.byte	0x40
+ 568 004f 41       		.byte	0x41
+ 569 0050 24       		.byte	0x24
+ 570 0051 1F       		.byte	0x1f
+ 571 0052 1A       		.byte	0x1a
+ 572 0053 9F       		.byte	0x9f
+ 573 0054 00000000 		.4byte	0
+ 574 0058 00000000 		.4byte	0
+ 575              		.section	.debug_aranges,"",%progbits
+ 576 0000 3C000000 		.4byte	0x3c
+ 577 0004 0200     		.2byte	0x2
+ 578 0006 00000000 		.4byte	.Ldebug_info0
+ 579 000a 04       		.byte	0x4
+ 580 000b 00       		.byte	0
+ 581 000c 0000     		.2byte	0
+ 582 000e 0000     		.2byte	0
+ 583 0010 00000000 		.4byte	.LFB0
+ 584 0014 14000000 		.4byte	.LFE0-.LFB0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczEvYY1.s 			page 15
+
+
+ 585 0018 00000000 		.4byte	.LFB1
+ 586 001c 10000000 		.4byte	.LFE1-.LFB1
+ 587 0020 00000000 		.4byte	.LFB2
+ 588 0024 1C000000 		.4byte	.LFE2-.LFB2
+ 589 0028 00000000 		.4byte	.LFB3
+ 590 002c 0C000000 		.4byte	.LFE3-.LFB3
+ 591 0030 00000000 		.4byte	.LFB4
+ 592 0034 10000000 		.4byte	.LFE4-.LFB4
+ 593 0038 00000000 		.4byte	0
+ 594 003c 00000000 		.4byte	0
+ 595              		.section	.debug_ranges,"",%progbits
+ 596              	.Ldebug_ranges0:
+ 597 0000 00000000 		.4byte	.LFB0
+ 598 0004 14000000 		.4byte	.LFE0
+ 599 0008 00000000 		.4byte	.LFB1
+ 600 000c 10000000 		.4byte	.LFE1
+ 601 0010 00000000 		.4byte	.LFB2
+ 602 0014 1C000000 		.4byte	.LFE2
+ 603 0018 00000000 		.4byte	.LFB3
+ 604 001c 0C000000 		.4byte	.LFE3
+ 605 0020 00000000 		.4byte	.LFB4
+ 606 0024 10000000 		.4byte	.LFE4
+ 607 0028 00000000 		.4byte	0
+ 608 002c 00000000 		.4byte	0
+ 609              		.section	.debug_line,"",%progbits
+ 610              	.Ldebug_line0:
+ 611 0000 BC000000 		.section	.debug_str,"MS",%progbits,1
+ 611      02004700 
+ 611      00000201 
+ 611      FB0E0D00 
+ 611      01010101 
+ 612              	.LASF15:
+ 613 0000 72656733 		.ascii	"reg32\000"
+ 613      3200
+ 614              	.LASF26:
+ 615 0006 443A5C31 		.ascii	"D:\\1_work\\my_project\\ReloadPro\\psoc42boot\\Relo"
+ 615      5F776F72 
+ 615      6B5C6D79 
+ 615      5F70726F 
+ 615      6A656374 
+ 616 0034 61642050 		.ascii	"ad Pro.cydsn\000"
+ 616      726F2E63 
+ 616      7964736E 
+ 616      00
+ 617              	.LASF22:
+ 618 0041 55415254 		.ascii	"UART_Clock_GetDividerRegister\000"
+ 618      5F436C6F 
+ 618      636B5F47 
+ 618      65744469 
+ 618      76696465 
+ 619              	.LASF20:
+ 620 005f 6D61736B 		.ascii	"maskVal\000"
+ 620      56616C00 
+ 621              	.LASF17:
+ 622 0067 55415254 		.ascii	"UART_Clock_Stop\000"
+ 622      5F436C6F 
+ 622      636B5F53 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczEvYY1.s 			page 16
+
+
+ 622      746F7000 
+ 623              	.LASF23:
+ 624 0077 55415254 		.ascii	"UART_Clock_GetFractionalDividerRegister\000"
+ 624      5F436C6F 
+ 624      636B5F47 
+ 624      65744672 
+ 624      61637469 
+ 625              	.LASF12:
+ 626 009f 666C6F61 		.ascii	"float\000"
+ 626      7400
+ 627              	.LASF1:
+ 628 00a5 756E7369 		.ascii	"unsigned char\000"
+ 628      676E6564 
+ 628      20636861 
+ 628      7200
+ 629              	.LASF27:
+ 630 00b3 55415254 		.ascii	"UART_Clock_SetFractionalDividerRegister\000"
+ 630      5F436C6F 
+ 630      636B5F53 
+ 630      65744672 
+ 630      61637469 
+ 631              	.LASF5:
+ 632 00db 6C6F6E67 		.ascii	"long unsigned int\000"
+ 632      20756E73 
+ 632      69676E65 
+ 632      6420696E 
+ 632      7400
+ 633              	.LASF3:
+ 634 00ed 73686F72 		.ascii	"short unsigned int\000"
+ 634      7420756E 
+ 634      7369676E 
+ 634      65642069 
+ 634      6E7400
+ 635              	.LASF18:
+ 636 0100 636C6B44 		.ascii	"clkDivider\000"
+ 636      69766964 
+ 636      657200
+ 637              	.LASF13:
+ 638 010b 646F7562 		.ascii	"double\000"
+ 638      6C6500
+ 639              	.LASF21:
+ 640 0112 72656756 		.ascii	"regVal\000"
+ 640      616C00
+ 641              	.LASF19:
+ 642 0119 636C6B46 		.ascii	"clkFractional\000"
+ 642      72616374 
+ 642      696F6E61 
+ 642      6C00
+ 643              	.LASF10:
+ 644 0127 75696E74 		.ascii	"uint16\000"
+ 644      313600
+ 645              	.LASF11:
+ 646 012e 75696E74 		.ascii	"uint32\000"
+ 646      333200
+ 647              	.LASF8:
+ 648 0135 756E7369 		.ascii	"unsigned int\000"
+ 648      676E6564 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczEvYY1.s 			page 17
+
+
+ 648      20696E74 
+ 648      00
+ 649              	.LASF7:
+ 650 0142 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 650      206C6F6E 
+ 650      6720756E 
+ 650      7369676E 
+ 650      65642069 
+ 651              	.LASF25:
+ 652 0159 47656E65 		.ascii	"Generated_Source\\PSoC4\\UART_Clock.c\000"
+ 652      72617465 
+ 652      645F536F 
+ 652      75726365 
+ 652      5C50536F 
+ 653              	.LASF24:
+ 654 017d 474E5520 		.ascii	"GNU C99 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 654      43393920 
+ 654      352E342E 
+ 654      31203230 
+ 654      31363036 
+ 655 01b0 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 655      20726576 
+ 655      6973696F 
+ 655      6E203233 
+ 655      37373135 
+ 656 01e3 73202D73 		.ascii	"s -std=gnu99 -ffunction-sections -ffat-lto-objects\000"
+ 656      74643D67 
+ 656      6E753939 
+ 656      202D6666 
+ 656      756E6374 
+ 657              	.LASF6:
+ 658 0216 6C6F6E67 		.ascii	"long long int\000"
+ 658      206C6F6E 
+ 658      6720696E 
+ 658      7400
+ 659              	.LASF14:
+ 660 0224 63686172 		.ascii	"char\000"
+ 660      00
+ 661              	.LASF2:
+ 662 0229 73686F72 		.ascii	"short int\000"
+ 662      7420696E 
+ 662      7400
+ 663              	.LASF9:
+ 664 0233 75696E74 		.ascii	"uint8\000"
+ 664      3800
+ 665              	.LASF16:
+ 666 0239 55415254 		.ascii	"UART_Clock_Start\000"
+ 666      5F436C6F 
+ 666      636B5F53 
+ 666      74617274 
+ 666      00
+ 667              	.LASF4:
+ 668 024a 6C6F6E67 		.ascii	"long int\000"
+ 668      20696E74 
+ 668      00
+ 669              	.LASF0:
+ 670 0253 7369676E 		.ascii	"signed char\000"
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cczEvYY1.s 			page 18
+
+
+ 670      65642063 
+ 670      68617200 
+ 671              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

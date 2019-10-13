@@ -1,0 +1,1187 @@
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccyqH2sL.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"Quadrature.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.Quadrature_SetDriveMode,"ax",%progbits
+  20              		.align	1
+  21              		.global	Quadrature_SetDriveMode
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	Quadrature_SetDriveMode, %function
+  25              	Quadrature_SetDriveMode:
+  26              	.LFB0:
+  27              		.file 1 "Generated_Source\\PSoC4\\Quadrature.c"
+   1:Generated_Source\PSoC4/Quadrature.c **** /*******************************************************************************
+   2:Generated_Source\PSoC4/Quadrature.c **** * File Name: Quadrature.c  
+   3:Generated_Source\PSoC4/Quadrature.c **** * Version 2.20
+   4:Generated_Source\PSoC4/Quadrature.c **** *
+   5:Generated_Source\PSoC4/Quadrature.c **** * Description:
+   6:Generated_Source\PSoC4/Quadrature.c **** *  This file contains API to enable firmware control of a Pins component.
+   7:Generated_Source\PSoC4/Quadrature.c **** *
+   8:Generated_Source\PSoC4/Quadrature.c **** ********************************************************************************
+   9:Generated_Source\PSoC4/Quadrature.c **** * Copyright 2008-2015, Cypress Semiconductor Corporation.  All rights reserved.
+  10:Generated_Source\PSoC4/Quadrature.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  11:Generated_Source\PSoC4/Quadrature.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  12:Generated_Source\PSoC4/Quadrature.c **** * the software package with which this file was provided.
+  13:Generated_Source\PSoC4/Quadrature.c **** *******************************************************************************/
+  14:Generated_Source\PSoC4/Quadrature.c **** 
+  15:Generated_Source\PSoC4/Quadrature.c **** #include "cytypes.h"
+  16:Generated_Source\PSoC4/Quadrature.c **** #include "Quadrature.h"
+  17:Generated_Source\PSoC4/Quadrature.c **** 
+  18:Generated_Source\PSoC4/Quadrature.c **** 
+  19:Generated_Source\PSoC4/Quadrature.c **** #if defined(Quadrature__PC)
+  20:Generated_Source\PSoC4/Quadrature.c ****     #define Quadrature_SetP4PinDriveMode(shift, mode)  \
+  21:Generated_Source\PSoC4/Quadrature.c ****     do { \
+  22:Generated_Source\PSoC4/Quadrature.c ****         Quadrature_PC =   (Quadrature_PC & \
+  23:Generated_Source\PSoC4/Quadrature.c ****                                 (uint32)(~(uint32)(Quadrature_DRIVE_MODE_IND_MASK << \
+  24:Generated_Source\PSoC4/Quadrature.c ****                                 (Quadrature_DRIVE_MODE_BITS * (shift))))) | \
+  25:Generated_Source\PSoC4/Quadrature.c ****                                 (uint32)((uint32)(mode) << \
+  26:Generated_Source\PSoC4/Quadrature.c ****                                 (Quadrature_DRIVE_MODE_BITS * (shift))); \
+  27:Generated_Source\PSoC4/Quadrature.c ****     } while (0)
+  28:Generated_Source\PSoC4/Quadrature.c **** #else
+  29:Generated_Source\PSoC4/Quadrature.c ****     #if (CY_PSOC4_4200L)
+  30:Generated_Source\PSoC4/Quadrature.c ****         #define Quadrature_SetP4PinDriveMode(shift, mode)  \
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccyqH2sL.s 			page 2
+
+
+  31:Generated_Source\PSoC4/Quadrature.c ****         do { \
+  32:Generated_Source\PSoC4/Quadrature.c ****             Quadrature_USBIO_CTRL_REG = (Quadrature_USBIO_CTRL_REG & \
+  33:Generated_Source\PSoC4/Quadrature.c ****                                     (uint32)(~(uint32)(Quadrature_DRIVE_MODE_IND_MASK << \
+  34:Generated_Source\PSoC4/Quadrature.c ****                                     (Quadrature_DRIVE_MODE_BITS * (shift))))) | \
+  35:Generated_Source\PSoC4/Quadrature.c ****                                     (uint32)((uint32)(mode) << \
+  36:Generated_Source\PSoC4/Quadrature.c ****                                     (Quadrature_DRIVE_MODE_BITS * (shift))); \
+  37:Generated_Source\PSoC4/Quadrature.c ****         } while (0)
+  38:Generated_Source\PSoC4/Quadrature.c ****     #endif
+  39:Generated_Source\PSoC4/Quadrature.c **** #endif
+  40:Generated_Source\PSoC4/Quadrature.c ****   
+  41:Generated_Source\PSoC4/Quadrature.c **** 
+  42:Generated_Source\PSoC4/Quadrature.c **** #if defined(Quadrature__PC) || (CY_PSOC4_4200L) 
+  43:Generated_Source\PSoC4/Quadrature.c ****     /*******************************************************************************
+  44:Generated_Source\PSoC4/Quadrature.c ****     * Function Name: Quadrature_SetDriveMode
+  45:Generated_Source\PSoC4/Quadrature.c ****     ****************************************************************************//**
+  46:Generated_Source\PSoC4/Quadrature.c ****     *
+  47:Generated_Source\PSoC4/Quadrature.c ****     * \brief Sets the drive mode for each of the Pins component's pins.
+  48:Generated_Source\PSoC4/Quadrature.c ****     * 
+  49:Generated_Source\PSoC4/Quadrature.c ****     * <b>Note</b> This affects all pins in the Pins component instance. Use the
+  50:Generated_Source\PSoC4/Quadrature.c ****     * Per-Pin APIs if you wish to control individual pin's drive modes.
+  51:Generated_Source\PSoC4/Quadrature.c ****     *
+  52:Generated_Source\PSoC4/Quadrature.c ****     * <b>Note</b> USBIOs have limited drive functionality. Refer to the Drive Mode
+  53:Generated_Source\PSoC4/Quadrature.c ****     * parameter for more information.
+  54:Generated_Source\PSoC4/Quadrature.c ****     *
+  55:Generated_Source\PSoC4/Quadrature.c ****     * \param mode
+  56:Generated_Source\PSoC4/Quadrature.c ****     *  Mode for the selected signals. Valid options are documented in 
+  57:Generated_Source\PSoC4/Quadrature.c ****     *  \ref driveMode.
+  58:Generated_Source\PSoC4/Quadrature.c ****     *
+  59:Generated_Source\PSoC4/Quadrature.c ****     * \return
+  60:Generated_Source\PSoC4/Quadrature.c ****     *  None
+  61:Generated_Source\PSoC4/Quadrature.c ****     *
+  62:Generated_Source\PSoC4/Quadrature.c ****     * \sideeffect
+  63:Generated_Source\PSoC4/Quadrature.c ****     *  If you use read-modify-write operations that are not atomic, the ISR can
+  64:Generated_Source\PSoC4/Quadrature.c ****     *  cause corruption of this function. An ISR that interrupts this function 
+  65:Generated_Source\PSoC4/Quadrature.c ****     *  and performs writes to the Pins component Drive Mode registers can cause 
+  66:Generated_Source\PSoC4/Quadrature.c ****     *  corrupted port data. To avoid this issue, you should either use the Per-Pin
+  67:Generated_Source\PSoC4/Quadrature.c ****     *  APIs (primary method) or disable interrupts around this function.
+  68:Generated_Source\PSoC4/Quadrature.c ****     *
+  69:Generated_Source\PSoC4/Quadrature.c ****     * \funcusage
+  70:Generated_Source\PSoC4/Quadrature.c ****     *  \snippet Quadrature_SUT.c usage_Quadrature_SetDriveMode
+  71:Generated_Source\PSoC4/Quadrature.c ****     *******************************************************************************/
+  72:Generated_Source\PSoC4/Quadrature.c ****     void Quadrature_SetDriveMode(uint8 mode)
+  73:Generated_Source\PSoC4/Quadrature.c ****     {
+  28              		.loc 1 73 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+  33              	.LVL0:
+  74:Generated_Source\PSoC4/Quadrature.c **** 		Quadrature_SetP4PinDriveMode(Quadrature__0__SHIFT, mode);
+  34              		.loc 1 74 0
+  35 0000 0721     		movs	r1, #7
+  36 0002 064A     		ldr	r2, .L2
+  75:Generated_Source\PSoC4/Quadrature.c **** 		Quadrature_SetP4PinDriveMode(Quadrature__1__SHIFT, mode);
+  76:Generated_Source\PSoC4/Quadrature.c ****     }
+  37              		.loc 1 76 0
+  38              		@ sp needed
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccyqH2sL.s 			page 3
+
+
+  74:Generated_Source\PSoC4/Quadrature.c **** 		Quadrature_SetP4PinDriveMode(Quadrature__0__SHIFT, mode);
+  39              		.loc 1 74 0
+  40 0004 1368     		ldr	r3, [r2]
+  41 0006 8B43     		bics	r3, r1
+  42 0008 0343     		orrs	r3, r0
+  43 000a 1360     		str	r3, [r2]
+  75:Generated_Source\PSoC4/Quadrature.c **** 		Quadrature_SetP4PinDriveMode(Quadrature__1__SHIFT, mode);
+  44              		.loc 1 75 0
+  45 000c 1368     		ldr	r3, [r2]
+  46 000e 3131     		adds	r1, r1, #49
+  47 0010 8B43     		bics	r3, r1
+  48 0012 C000     		lsls	r0, r0, #3
+  49              	.LVL1:
+  50 0014 1843     		orrs	r0, r3
+  51 0016 1060     		str	r0, [r2]
+  52              		.loc 1 76 0
+  53 0018 7047     		bx	lr
+  54              	.L3:
+  55 001a C046     		.align	2
+  56              	.L2:
+  57 001c 08000440 		.word	1074003976
+  58              		.cfi_endproc
+  59              	.LFE0:
+  60              		.size	Quadrature_SetDriveMode, .-Quadrature_SetDriveMode
+  61              		.section	.text.Quadrature_Write,"ax",%progbits
+  62              		.align	1
+  63              		.global	Quadrature_Write
+  64              		.code	16
+  65              		.thumb_func
+  66              		.type	Quadrature_Write, %function
+  67              	Quadrature_Write:
+  68              	.LFB1:
+  77:Generated_Source\PSoC4/Quadrature.c **** #endif
+  78:Generated_Source\PSoC4/Quadrature.c **** 
+  79:Generated_Source\PSoC4/Quadrature.c **** 
+  80:Generated_Source\PSoC4/Quadrature.c **** /*******************************************************************************
+  81:Generated_Source\PSoC4/Quadrature.c **** * Function Name: Quadrature_Write
+  82:Generated_Source\PSoC4/Quadrature.c **** ****************************************************************************//**
+  83:Generated_Source\PSoC4/Quadrature.c **** *
+  84:Generated_Source\PSoC4/Quadrature.c **** * \brief Writes the value to the physical port (data output register), masking
+  85:Generated_Source\PSoC4/Quadrature.c **** *  and shifting the bits appropriately. 
+  86:Generated_Source\PSoC4/Quadrature.c **** *
+  87:Generated_Source\PSoC4/Quadrature.c **** * The data output register controls the signal applied to the physical pin in 
+  88:Generated_Source\PSoC4/Quadrature.c **** * conjunction with the drive mode parameter. This function avoids changing 
+  89:Generated_Source\PSoC4/Quadrature.c **** * other bits in the port by using the appropriate method (read-modify-write or
+  90:Generated_Source\PSoC4/Quadrature.c **** * bit banding).
+  91:Generated_Source\PSoC4/Quadrature.c **** *
+  92:Generated_Source\PSoC4/Quadrature.c **** * <b>Note</b> This function should not be used on a hardware digital output pin 
+  93:Generated_Source\PSoC4/Quadrature.c **** * as it is driven by the hardware signal attached to it.
+  94:Generated_Source\PSoC4/Quadrature.c **** *
+  95:Generated_Source\PSoC4/Quadrature.c **** * \param value
+  96:Generated_Source\PSoC4/Quadrature.c **** *  Value to write to the component instance.
+  97:Generated_Source\PSoC4/Quadrature.c **** *
+  98:Generated_Source\PSoC4/Quadrature.c **** * \return 
+  99:Generated_Source\PSoC4/Quadrature.c **** *  None 
+ 100:Generated_Source\PSoC4/Quadrature.c **** *
+ 101:Generated_Source\PSoC4/Quadrature.c **** * \sideeffect
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccyqH2sL.s 			page 4
+
+
+ 102:Generated_Source\PSoC4/Quadrature.c **** *  If you use read-modify-write operations that are not atomic; the Interrupt 
+ 103:Generated_Source\PSoC4/Quadrature.c **** *  Service Routines (ISR) can cause corruption of this function. An ISR that 
+ 104:Generated_Source\PSoC4/Quadrature.c **** *  interrupts this function and performs writes to the Pins component data 
+ 105:Generated_Source\PSoC4/Quadrature.c **** *  register can cause corrupted port data. To avoid this issue, you should 
+ 106:Generated_Source\PSoC4/Quadrature.c **** *  either use the Per-Pin APIs (primary method) or disable interrupts around 
+ 107:Generated_Source\PSoC4/Quadrature.c **** *  this function.
+ 108:Generated_Source\PSoC4/Quadrature.c **** *
+ 109:Generated_Source\PSoC4/Quadrature.c **** * \funcusage
+ 110:Generated_Source\PSoC4/Quadrature.c **** *  \snippet Quadrature_SUT.c usage_Quadrature_Write
+ 111:Generated_Source\PSoC4/Quadrature.c **** *******************************************************************************/
+ 112:Generated_Source\PSoC4/Quadrature.c **** void Quadrature_Write(uint8 value)
+ 113:Generated_Source\PSoC4/Quadrature.c **** {
+  69              		.loc 1 113 0
+  70              		.cfi_startproc
+  71              		@ args = 0, pretend = 0, frame = 0
+  72              		@ frame_needed = 0, uses_anonymous_args = 0
+  73              		@ link register save eliminated.
+  74              	.LVL2:
+ 114:Generated_Source\PSoC4/Quadrature.c ****     uint8 drVal = (uint8)(Quadrature_DR & (uint8)(~Quadrature_MASK));
+  75              		.loc 1 114 0
+  76 0000 0323     		movs	r3, #3
+  77 0002 0449     		ldr	r1, .L5
+ 115:Generated_Source\PSoC4/Quadrature.c ****     drVal = (drVal | ((uint8)(value << Quadrature_SHIFT) & Quadrature_MASK));
+ 116:Generated_Source\PSoC4/Quadrature.c ****     Quadrature_DR = (uint32)drVal;
+ 117:Generated_Source\PSoC4/Quadrature.c **** }
+  78              		.loc 1 117 0
+  79              		@ sp needed
+ 114:Generated_Source\PSoC4/Quadrature.c ****     uint8 drVal = (uint8)(Quadrature_DR & (uint8)(~Quadrature_MASK));
+  80              		.loc 1 114 0
+  81 0004 0A68     		ldr	r2, [r1]
+  82 0006 9A43     		bics	r2, r3
+  83 0008 D2B2     		uxtb	r2, r2
+  84              	.LVL3:
+ 116:Generated_Source\PSoC4/Quadrature.c **** }
+  85              		.loc 1 116 0
+  86 000a 0340     		ands	r3, r0
+  87 000c 1343     		orrs	r3, r2
+  88 000e 0B60     		str	r3, [r1]
+  89              		.loc 1 117 0
+  90 0010 7047     		bx	lr
+  91              	.L6:
+  92 0012 C046     		.align	2
+  93              	.L5:
+  94 0014 00000440 		.word	1074003968
+  95              		.cfi_endproc
+  96              	.LFE1:
+  97              		.size	Quadrature_Write, .-Quadrature_Write
+  98              		.section	.text.Quadrature_Read,"ax",%progbits
+  99              		.align	1
+ 100              		.global	Quadrature_Read
+ 101              		.code	16
+ 102              		.thumb_func
+ 103              		.type	Quadrature_Read, %function
+ 104              	Quadrature_Read:
+ 105              	.LFB2:
+ 118:Generated_Source\PSoC4/Quadrature.c **** 
+ 119:Generated_Source\PSoC4/Quadrature.c **** 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccyqH2sL.s 			page 5
+
+
+ 120:Generated_Source\PSoC4/Quadrature.c **** /*******************************************************************************
+ 121:Generated_Source\PSoC4/Quadrature.c **** * Function Name: Quadrature_Read
+ 122:Generated_Source\PSoC4/Quadrature.c **** ****************************************************************************//**
+ 123:Generated_Source\PSoC4/Quadrature.c **** *
+ 124:Generated_Source\PSoC4/Quadrature.c **** * \brief Reads the associated physical port (pin status register) and masks 
+ 125:Generated_Source\PSoC4/Quadrature.c **** *  the required bits according to the width and bit position of the component
+ 126:Generated_Source\PSoC4/Quadrature.c **** *  instance. 
+ 127:Generated_Source\PSoC4/Quadrature.c **** *
+ 128:Generated_Source\PSoC4/Quadrature.c **** * The pin's status register returns the current logic level present on the 
+ 129:Generated_Source\PSoC4/Quadrature.c **** * physical pin.
+ 130:Generated_Source\PSoC4/Quadrature.c **** *
+ 131:Generated_Source\PSoC4/Quadrature.c **** * \return 
+ 132:Generated_Source\PSoC4/Quadrature.c **** *  The current value for the pins in the component as a right justified number.
+ 133:Generated_Source\PSoC4/Quadrature.c **** *
+ 134:Generated_Source\PSoC4/Quadrature.c **** * \funcusage
+ 135:Generated_Source\PSoC4/Quadrature.c **** *  \snippet Quadrature_SUT.c usage_Quadrature_Read  
+ 136:Generated_Source\PSoC4/Quadrature.c **** *******************************************************************************/
+ 137:Generated_Source\PSoC4/Quadrature.c **** uint8 Quadrature_Read(void)
+ 138:Generated_Source\PSoC4/Quadrature.c **** {
+ 106              		.loc 1 138 0
+ 107              		.cfi_startproc
+ 108              		@ args = 0, pretend = 0, frame = 0
+ 109              		@ frame_needed = 0, uses_anonymous_args = 0
+ 110              		@ link register save eliminated.
+ 139:Generated_Source\PSoC4/Quadrature.c ****     return (uint8)((Quadrature_PS & Quadrature_MASK) >> Quadrature_SHIFT);
+ 111              		.loc 1 139 0
+ 112 0000 024B     		ldr	r3, .L8
+ 140:Generated_Source\PSoC4/Quadrature.c **** }
+ 113              		.loc 1 140 0
+ 114              		@ sp needed
+ 139:Generated_Source\PSoC4/Quadrature.c ****     return (uint8)((Quadrature_PS & Quadrature_MASK) >> Quadrature_SHIFT);
+ 115              		.loc 1 139 0
+ 116 0002 1868     		ldr	r0, [r3]
+ 117 0004 0323     		movs	r3, #3
+ 118 0006 1840     		ands	r0, r3
+ 119              		.loc 1 140 0
+ 120 0008 7047     		bx	lr
+ 121              	.L9:
+ 122 000a C046     		.align	2
+ 123              	.L8:
+ 124 000c 04000440 		.word	1074003972
+ 125              		.cfi_endproc
+ 126              	.LFE2:
+ 127              		.size	Quadrature_Read, .-Quadrature_Read
+ 128              		.section	.text.Quadrature_ReadDataReg,"ax",%progbits
+ 129              		.align	1
+ 130              		.global	Quadrature_ReadDataReg
+ 131              		.code	16
+ 132              		.thumb_func
+ 133              		.type	Quadrature_ReadDataReg, %function
+ 134              	Quadrature_ReadDataReg:
+ 135              	.LFB3:
+ 141:Generated_Source\PSoC4/Quadrature.c **** 
+ 142:Generated_Source\PSoC4/Quadrature.c **** 
+ 143:Generated_Source\PSoC4/Quadrature.c **** /*******************************************************************************
+ 144:Generated_Source\PSoC4/Quadrature.c **** * Function Name: Quadrature_ReadDataReg
+ 145:Generated_Source\PSoC4/Quadrature.c **** ****************************************************************************//**
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccyqH2sL.s 			page 6
+
+
+ 146:Generated_Source\PSoC4/Quadrature.c **** *
+ 147:Generated_Source\PSoC4/Quadrature.c **** * \brief Reads the associated physical port's data output register and masks 
+ 148:Generated_Source\PSoC4/Quadrature.c **** *  the correct bits according to the width and bit position of the component 
+ 149:Generated_Source\PSoC4/Quadrature.c **** *  instance. 
+ 150:Generated_Source\PSoC4/Quadrature.c **** *
+ 151:Generated_Source\PSoC4/Quadrature.c **** * The data output register controls the signal applied to the physical pin in 
+ 152:Generated_Source\PSoC4/Quadrature.c **** * conjunction with the drive mode parameter. This is not the same as the 
+ 153:Generated_Source\PSoC4/Quadrature.c **** * preferred Quadrature_Read() API because the 
+ 154:Generated_Source\PSoC4/Quadrature.c **** * Quadrature_ReadDataReg() reads the data register instead of the status 
+ 155:Generated_Source\PSoC4/Quadrature.c **** * register. For output pins this is a useful function to determine the value 
+ 156:Generated_Source\PSoC4/Quadrature.c **** * just written to the pin.
+ 157:Generated_Source\PSoC4/Quadrature.c **** *
+ 158:Generated_Source\PSoC4/Quadrature.c **** * \return 
+ 159:Generated_Source\PSoC4/Quadrature.c **** *  The current value of the data register masked and shifted into a right 
+ 160:Generated_Source\PSoC4/Quadrature.c **** *  justified number for the component instance.
+ 161:Generated_Source\PSoC4/Quadrature.c **** *
+ 162:Generated_Source\PSoC4/Quadrature.c **** * \funcusage
+ 163:Generated_Source\PSoC4/Quadrature.c **** *  \snippet Quadrature_SUT.c usage_Quadrature_ReadDataReg 
+ 164:Generated_Source\PSoC4/Quadrature.c **** *******************************************************************************/
+ 165:Generated_Source\PSoC4/Quadrature.c **** uint8 Quadrature_ReadDataReg(void)
+ 166:Generated_Source\PSoC4/Quadrature.c **** {
+ 136              		.loc 1 166 0
+ 137              		.cfi_startproc
+ 138              		@ args = 0, pretend = 0, frame = 0
+ 139              		@ frame_needed = 0, uses_anonymous_args = 0
+ 140              		@ link register save eliminated.
+ 167:Generated_Source\PSoC4/Quadrature.c ****     return (uint8)((Quadrature_DR & Quadrature_MASK) >> Quadrature_SHIFT);
+ 141              		.loc 1 167 0
+ 142 0000 024B     		ldr	r3, .L11
+ 168:Generated_Source\PSoC4/Quadrature.c **** }
+ 143              		.loc 1 168 0
+ 144              		@ sp needed
+ 167:Generated_Source\PSoC4/Quadrature.c ****     return (uint8)((Quadrature_DR & Quadrature_MASK) >> Quadrature_SHIFT);
+ 145              		.loc 1 167 0
+ 146 0002 1868     		ldr	r0, [r3]
+ 147 0004 0323     		movs	r3, #3
+ 148 0006 1840     		ands	r0, r3
+ 149              		.loc 1 168 0
+ 150 0008 7047     		bx	lr
+ 151              	.L12:
+ 152 000a C046     		.align	2
+ 153              	.L11:
+ 154 000c 00000440 		.word	1074003968
+ 155              		.cfi_endproc
+ 156              	.LFE3:
+ 157              		.size	Quadrature_ReadDataReg, .-Quadrature_ReadDataReg
+ 158              		.section	.text.Quadrature_SetInterruptMode,"ax",%progbits
+ 159              		.align	1
+ 160              		.global	Quadrature_SetInterruptMode
+ 161              		.code	16
+ 162              		.thumb_func
+ 163              		.type	Quadrature_SetInterruptMode, %function
+ 164              	Quadrature_SetInterruptMode:
+ 165              	.LFB4:
+ 169:Generated_Source\PSoC4/Quadrature.c **** 
+ 170:Generated_Source\PSoC4/Quadrature.c **** 
+ 171:Generated_Source\PSoC4/Quadrature.c **** /*******************************************************************************
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccyqH2sL.s 			page 7
+
+
+ 172:Generated_Source\PSoC4/Quadrature.c **** * Function Name: Quadrature_SetInterruptMode
+ 173:Generated_Source\PSoC4/Quadrature.c **** ****************************************************************************//**
+ 174:Generated_Source\PSoC4/Quadrature.c **** *
+ 175:Generated_Source\PSoC4/Quadrature.c **** * \brief Configures the interrupt mode for each of the Pins component's
+ 176:Generated_Source\PSoC4/Quadrature.c **** *  pins. Alternatively you may set the interrupt mode for all the pins
+ 177:Generated_Source\PSoC4/Quadrature.c **** *  specified in the Pins component.
+ 178:Generated_Source\PSoC4/Quadrature.c **** *
+ 179:Generated_Source\PSoC4/Quadrature.c **** *  <b>Note</b> The interrupt is port-wide and therefore any enabled pin
+ 180:Generated_Source\PSoC4/Quadrature.c **** *  interrupt may trigger it.
+ 181:Generated_Source\PSoC4/Quadrature.c **** *
+ 182:Generated_Source\PSoC4/Quadrature.c **** * \param position
+ 183:Generated_Source\PSoC4/Quadrature.c **** *  The pin position as listed in the Pins component. You may OR these to be 
+ 184:Generated_Source\PSoC4/Quadrature.c **** *  able to configure the interrupt mode of multiple pins within a Pins 
+ 185:Generated_Source\PSoC4/Quadrature.c **** *  component. Or you may use Quadrature_INTR_ALL to configure the
+ 186:Generated_Source\PSoC4/Quadrature.c **** *  interrupt mode of all the pins in the Pins component.       
+ 187:Generated_Source\PSoC4/Quadrature.c **** *  - Quadrature_0_INTR       (First pin in the list)
+ 188:Generated_Source\PSoC4/Quadrature.c **** *  - Quadrature_1_INTR       (Second pin in the list)
+ 189:Generated_Source\PSoC4/Quadrature.c **** *  - ...
+ 190:Generated_Source\PSoC4/Quadrature.c **** *  - Quadrature_INTR_ALL     (All pins in Pins component)
+ 191:Generated_Source\PSoC4/Quadrature.c **** *
+ 192:Generated_Source\PSoC4/Quadrature.c **** * \param mode
+ 193:Generated_Source\PSoC4/Quadrature.c **** *  Interrupt mode for the selected pins. Valid options are documented in
+ 194:Generated_Source\PSoC4/Quadrature.c **** *  \ref intrMode.
+ 195:Generated_Source\PSoC4/Quadrature.c **** *
+ 196:Generated_Source\PSoC4/Quadrature.c **** * \return 
+ 197:Generated_Source\PSoC4/Quadrature.c **** *  None
+ 198:Generated_Source\PSoC4/Quadrature.c **** *  
+ 199:Generated_Source\PSoC4/Quadrature.c **** * \sideeffect
+ 200:Generated_Source\PSoC4/Quadrature.c **** *  It is recommended that the interrupt be disabled before calling this 
+ 201:Generated_Source\PSoC4/Quadrature.c **** *  function to avoid unintended interrupt requests. Note that the interrupt
+ 202:Generated_Source\PSoC4/Quadrature.c **** *  type is port wide, and therefore will trigger for any enabled pin on the 
+ 203:Generated_Source\PSoC4/Quadrature.c **** *  port.
+ 204:Generated_Source\PSoC4/Quadrature.c **** *
+ 205:Generated_Source\PSoC4/Quadrature.c **** * \funcusage
+ 206:Generated_Source\PSoC4/Quadrature.c **** *  \snippet Quadrature_SUT.c usage_Quadrature_SetInterruptMode
+ 207:Generated_Source\PSoC4/Quadrature.c **** *******************************************************************************/
+ 208:Generated_Source\PSoC4/Quadrature.c **** void Quadrature_SetInterruptMode(uint16 position, uint16 mode)
+ 209:Generated_Source\PSoC4/Quadrature.c **** {
+ 166              		.loc 1 209 0
+ 167              		.cfi_startproc
+ 168              		@ args = 0, pretend = 0, frame = 0
+ 169              		@ frame_needed = 0, uses_anonymous_args = 0
+ 170              		@ link register save eliminated.
+ 171              	.LVL4:
+ 210:Generated_Source\PSoC4/Quadrature.c ****     uint32 intrCfg;
+ 211:Generated_Source\PSoC4/Quadrature.c ****     
+ 212:Generated_Source\PSoC4/Quadrature.c ****     intrCfg =  Quadrature_INTCFG & (uint32)(~(uint32)position);
+ 172              		.loc 1 212 0
+ 173 0000 034A     		ldr	r2, .L14
+ 213:Generated_Source\PSoC4/Quadrature.c ****     Quadrature_INTCFG = intrCfg | ((uint32)position & (uint32)mode);
+ 214:Generated_Source\PSoC4/Quadrature.c **** }
+ 174              		.loc 1 214 0
+ 175              		@ sp needed
+ 212:Generated_Source\PSoC4/Quadrature.c ****     Quadrature_INTCFG = intrCfg | ((uint32)position & (uint32)mode);
+ 176              		.loc 1 212 0
+ 177 0002 1368     		ldr	r3, [r2]
+ 178              	.LVL5:
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccyqH2sL.s 			page 8
+
+
+ 213:Generated_Source\PSoC4/Quadrature.c ****     Quadrature_INTCFG = intrCfg | ((uint32)position & (uint32)mode);
+ 179              		.loc 1 213 0
+ 180 0004 8343     		bics	r3, r0
+ 181              	.LVL6:
+ 182 0006 0840     		ands	r0, r1
+ 183              	.LVL7:
+ 184 0008 1843     		orrs	r0, r3
+ 185 000a 1060     		str	r0, [r2]
+ 186              		.loc 1 214 0
+ 187 000c 7047     		bx	lr
+ 188              	.L15:
+ 189 000e C046     		.align	2
+ 190              	.L14:
+ 191 0010 0C000440 		.word	1074003980
+ 192              		.cfi_endproc
+ 193              	.LFE4:
+ 194              		.size	Quadrature_SetInterruptMode, .-Quadrature_SetInterruptMode
+ 195              		.section	.text.Quadrature_ClearInterrupt,"ax",%progbits
+ 196              		.align	1
+ 197              		.global	Quadrature_ClearInterrupt
+ 198              		.code	16
+ 199              		.thumb_func
+ 200              		.type	Quadrature_ClearInterrupt, %function
+ 201              	Quadrature_ClearInterrupt:
+ 202              	.LFB5:
+ 215:Generated_Source\PSoC4/Quadrature.c **** 
+ 216:Generated_Source\PSoC4/Quadrature.c **** 
+ 217:Generated_Source\PSoC4/Quadrature.c **** /*******************************************************************************
+ 218:Generated_Source\PSoC4/Quadrature.c **** * Function Name: Quadrature_ClearInterrupt
+ 219:Generated_Source\PSoC4/Quadrature.c **** ****************************************************************************//**
+ 220:Generated_Source\PSoC4/Quadrature.c **** *
+ 221:Generated_Source\PSoC4/Quadrature.c **** * \brief Clears any active interrupts attached with the component and returns 
+ 222:Generated_Source\PSoC4/Quadrature.c **** *  the value of the interrupt status register allowing determination of which
+ 223:Generated_Source\PSoC4/Quadrature.c **** *  pins generated an interrupt event.
+ 224:Generated_Source\PSoC4/Quadrature.c **** *
+ 225:Generated_Source\PSoC4/Quadrature.c **** * \return 
+ 226:Generated_Source\PSoC4/Quadrature.c **** *  The right-shifted current value of the interrupt status register. Each pin 
+ 227:Generated_Source\PSoC4/Quadrature.c **** *  has one bit set if it generated an interrupt event. For example, bit 0 is 
+ 228:Generated_Source\PSoC4/Quadrature.c **** *  for pin 0 and bit 1 is for pin 1 of the Pins component.
+ 229:Generated_Source\PSoC4/Quadrature.c **** *  
+ 230:Generated_Source\PSoC4/Quadrature.c **** * \sideeffect
+ 231:Generated_Source\PSoC4/Quadrature.c **** *  Clears all bits of the physical port's interrupt status register, not just
+ 232:Generated_Source\PSoC4/Quadrature.c **** *  those associated with the Pins component.
+ 233:Generated_Source\PSoC4/Quadrature.c **** *
+ 234:Generated_Source\PSoC4/Quadrature.c **** * \funcusage
+ 235:Generated_Source\PSoC4/Quadrature.c **** *  \snippet Quadrature_SUT.c usage_Quadrature_ClearInterrupt
+ 236:Generated_Source\PSoC4/Quadrature.c **** *******************************************************************************/
+ 237:Generated_Source\PSoC4/Quadrature.c **** uint8 Quadrature_ClearInterrupt(void)
+ 238:Generated_Source\PSoC4/Quadrature.c **** {
+ 203              		.loc 1 238 0
+ 204              		.cfi_startproc
+ 205              		@ args = 0, pretend = 0, frame = 0
+ 206              		@ frame_needed = 0, uses_anonymous_args = 0
+ 207              		@ link register save eliminated.
+ 239:Generated_Source\PSoC4/Quadrature.c **** 	uint8 maskedStatus = (uint8)(Quadrature_INTSTAT & Quadrature_MASK);
+ 208              		.loc 1 239 0
+ 209 0000 0323     		movs	r3, #3
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccyqH2sL.s 			page 9
+
+
+ 210 0002 024A     		ldr	r2, .L17
+ 240:Generated_Source\PSoC4/Quadrature.c **** 	Quadrature_INTSTAT = maskedStatus;
+ 241:Generated_Source\PSoC4/Quadrature.c ****     return maskedStatus >> Quadrature_SHIFT;
+ 242:Generated_Source\PSoC4/Quadrature.c **** }
+ 211              		.loc 1 242 0
+ 212              		@ sp needed
+ 239:Generated_Source\PSoC4/Quadrature.c **** 	uint8 maskedStatus = (uint8)(Quadrature_INTSTAT & Quadrature_MASK);
+ 213              		.loc 1 239 0
+ 214 0004 1068     		ldr	r0, [r2]
+ 215 0006 1840     		ands	r0, r3
+ 216              	.LVL8:
+ 240:Generated_Source\PSoC4/Quadrature.c **** 	Quadrature_INTSTAT = maskedStatus;
+ 217              		.loc 1 240 0
+ 218 0008 1060     		str	r0, [r2]
+ 219              		.loc 1 242 0
+ 220 000a 7047     		bx	lr
+ 221              	.L18:
+ 222              		.align	2
+ 223              	.L17:
+ 224 000c 10000440 		.word	1074003984
+ 225              		.cfi_endproc
+ 226              	.LFE5:
+ 227              		.size	Quadrature_ClearInterrupt, .-Quadrature_ClearInterrupt
+ 228              		.text
+ 229              	.Letext0:
+ 230              		.file 2 "Generated_Source\\PSoC4\\cytypes.h"
+ 231              		.section	.debug_info,"",%progbits
+ 232              	.Ldebug_info0:
+ 233 0000 9C010000 		.4byte	0x19c
+ 234 0004 0400     		.2byte	0x4
+ 235 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 236 000a 04       		.byte	0x4
+ 237 000b 01       		.uleb128 0x1
+ 238 000c 63010000 		.4byte	.LASF28
+ 239 0010 0C       		.byte	0xc
+ 240 0011 78000000 		.4byte	.LASF29
+ 241 0015 06000000 		.4byte	.LASF30
+ 242 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 243 001d 00000000 		.4byte	0
+ 244 0021 00000000 		.4byte	.Ldebug_line0
+ 245 0025 02       		.uleb128 0x2
+ 246 0026 01       		.byte	0x1
+ 247 0027 06       		.byte	0x6
+ 248 0028 51020000 		.4byte	.LASF0
+ 249 002c 02       		.uleb128 0x2
+ 250 002d 01       		.byte	0x1
+ 251 002e 08       		.byte	0x8
+ 252 002f BA000000 		.4byte	.LASF1
+ 253 0033 02       		.uleb128 0x2
+ 254 0034 02       		.byte	0x2
+ 255 0035 05       		.byte	0x5
+ 256 0036 38020000 		.4byte	.LASF2
+ 257 003a 02       		.uleb128 0x2
+ 258 003b 02       		.byte	0x2
+ 259 003c 07       		.byte	0x7
+ 260 003d E0000000 		.4byte	.LASF3
+ 261 0041 02       		.uleb128 0x2
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccyqH2sL.s 			page 10
+
+
+ 262 0042 04       		.byte	0x4
+ 263 0043 05       		.byte	0x5
+ 264 0044 48020000 		.4byte	.LASF4
+ 265 0048 02       		.uleb128 0x2
+ 266 0049 04       		.byte	0x4
+ 267 004a 07       		.byte	0x7
+ 268 004b CE000000 		.4byte	.LASF5
+ 269 004f 02       		.uleb128 0x2
+ 270 0050 08       		.byte	0x8
+ 271 0051 05       		.byte	0x5
+ 272 0052 FC010000 		.4byte	.LASF6
+ 273 0056 02       		.uleb128 0x2
+ 274 0057 08       		.byte	0x8
+ 275 0058 07       		.byte	0x7
+ 276 0059 47010000 		.4byte	.LASF7
+ 277 005d 03       		.uleb128 0x3
+ 278 005e 04       		.byte	0x4
+ 279 005f 05       		.byte	0x5
+ 280 0060 696E7400 		.ascii	"int\000"
+ 281 0064 02       		.uleb128 0x2
+ 282 0065 04       		.byte	0x4
+ 283 0066 07       		.byte	0x7
+ 284 0067 3A010000 		.4byte	.LASF8
+ 285 006b 04       		.uleb128 0x4
+ 286 006c 42020000 		.4byte	.LASF9
+ 287 0070 02       		.byte	0x2
+ 288 0071 E401     		.2byte	0x1e4
+ 289 0073 2C000000 		.4byte	0x2c
+ 290 0077 04       		.uleb128 0x4
+ 291 0078 1B010000 		.4byte	.LASF10
+ 292 007c 02       		.byte	0x2
+ 293 007d E501     		.2byte	0x1e5
+ 294 007f 3A000000 		.4byte	0x3a
+ 295 0083 04       		.uleb128 0x4
+ 296 0084 2B010000 		.4byte	.LASF11
+ 297 0088 02       		.byte	0x2
+ 298 0089 E601     		.2byte	0x1e6
+ 299 008b 48000000 		.4byte	0x48
+ 300 008f 02       		.uleb128 0x2
+ 301 0090 04       		.byte	0x4
+ 302 0091 04       		.byte	0x4
+ 303 0092 B4000000 		.4byte	.LASF12
+ 304 0096 02       		.uleb128 0x2
+ 305 0097 08       		.byte	0x8
+ 306 0098 04       		.byte	0x4
+ 307 0099 14010000 		.4byte	.LASF13
+ 308 009d 02       		.uleb128 0x2
+ 309 009e 01       		.byte	0x1
+ 310 009f 08       		.byte	0x8
+ 311 00a0 17020000 		.4byte	.LASF14
+ 312 00a4 04       		.uleb128 0x4
+ 313 00a5 00000000 		.4byte	.LASF15
+ 314 00a9 02       		.byte	0x2
+ 315 00aa 9002     		.2byte	0x290
+ 316 00ac B0000000 		.4byte	0xb0
+ 317 00b0 05       		.uleb128 0x5
+ 318 00b1 83000000 		.4byte	0x83
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccyqH2sL.s 			page 11
+
+
+ 319 00b5 06       		.uleb128 0x6
+ 320 00b6 9C000000 		.4byte	.LASF16
+ 321 00ba 01       		.byte	0x1
+ 322 00bb 48       		.byte	0x48
+ 323 00bc 00000000 		.4byte	.LFB0
+ 324 00c0 20000000 		.4byte	.LFE0-.LFB0
+ 325 00c4 01       		.uleb128 0x1
+ 326 00c5 9C       		.byte	0x9c
+ 327 00c6 DA000000 		.4byte	0xda
+ 328 00ca 07       		.uleb128 0x7
+ 329 00cb 5E010000 		.4byte	.LASF18
+ 330 00cf 01       		.byte	0x1
+ 331 00d0 48       		.byte	0x48
+ 332 00d1 6B000000 		.4byte	0x6b
+ 333 00d5 00000000 		.4byte	.LLST0
+ 334 00d9 00       		.byte	0
+ 335 00da 06       		.uleb128 0x6
+ 336 00db F3000000 		.4byte	.LASF17
+ 337 00df 01       		.byte	0x1
+ 338 00e0 70       		.byte	0x70
+ 339 00e1 00000000 		.4byte	.LFB1
+ 340 00e5 18000000 		.4byte	.LFE1-.LFB1
+ 341 00e9 01       		.uleb128 0x1
+ 342 00ea 9C       		.byte	0x9c
+ 343 00eb 11010000 		.4byte	0x111
+ 344 00ef 08       		.uleb128 0x8
+ 345 00f0 58000000 		.4byte	.LASF19
+ 346 00f4 01       		.byte	0x1
+ 347 00f5 70       		.byte	0x70
+ 348 00f6 6B000000 		.4byte	0x6b
+ 349 00fa 01       		.uleb128 0x1
+ 350 00fb 50       		.byte	0x50
+ 351 00fc 09       		.uleb128 0x9
+ 352 00fd C8000000 		.4byte	.LASF24
+ 353 0101 01       		.byte	0x1
+ 354 0102 72       		.byte	0x72
+ 355 0103 6B000000 		.4byte	0x6b
+ 356 0107 08       		.uleb128 0x8
+ 357 0108 70       		.byte	0x70
+ 358 0109 00       		.sleb128 0
+ 359 010a 33       		.byte	0x33
+ 360 010b 1A       		.byte	0x1a
+ 361 010c 72       		.byte	0x72
+ 362 010d 00       		.sleb128 0
+ 363 010e 21       		.byte	0x21
+ 364 010f 9F       		.byte	0x9f
+ 365 0110 00       		.byte	0
+ 366 0111 0A       		.uleb128 0xa
+ 367 0112 04010000 		.4byte	.LASF20
+ 368 0116 01       		.byte	0x1
+ 369 0117 89       		.byte	0x89
+ 370 0118 6B000000 		.4byte	0x6b
+ 371 011c 00000000 		.4byte	.LFB2
+ 372 0120 10000000 		.4byte	.LFE2-.LFB2
+ 373 0124 01       		.uleb128 0x1
+ 374 0125 9C       		.byte	0x9c
+ 375 0126 0A       		.uleb128 0xa
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccyqH2sL.s 			page 12
+
+
+ 376 0127 41000000 		.4byte	.LASF21
+ 377 012b 01       		.byte	0x1
+ 378 012c A5       		.byte	0xa5
+ 379 012d 6B000000 		.4byte	0x6b
+ 380 0131 00000000 		.4byte	.LFB3
+ 381 0135 10000000 		.4byte	.LFE3-.LFB3
+ 382 0139 01       		.uleb128 0x1
+ 383 013a 9C       		.byte	0x9c
+ 384 013b 06       		.uleb128 0x6
+ 385 013c 1C020000 		.4byte	.LASF22
+ 386 0140 01       		.byte	0x1
+ 387 0141 D0       		.byte	0xd0
+ 388 0142 00000000 		.4byte	.LFB4
+ 389 0146 14000000 		.4byte	.LFE4-.LFB4
+ 390 014a 01       		.uleb128 0x1
+ 391 014b 9C       		.byte	0x9c
+ 392 014c 7C010000 		.4byte	0x17c
+ 393 0150 07       		.uleb128 0x7
+ 394 0151 22010000 		.4byte	.LASF23
+ 395 0155 01       		.byte	0x1
+ 396 0156 D0       		.byte	0xd0
+ 397 0157 77000000 		.4byte	0x77
+ 398 015b 21000000 		.4byte	.LLST1
+ 399 015f 08       		.uleb128 0x8
+ 400 0160 5E010000 		.4byte	.LASF18
+ 401 0164 01       		.byte	0x1
+ 402 0165 D0       		.byte	0xd0
+ 403 0166 77000000 		.4byte	0x77
+ 404 016a 01       		.uleb128 0x1
+ 405 016b 51       		.byte	0x51
+ 406 016c 0B       		.uleb128 0xb
+ 407 016d 32010000 		.4byte	.LASF25
+ 408 0171 01       		.byte	0x1
+ 409 0172 D2       		.byte	0xd2
+ 410 0173 83000000 		.4byte	0x83
+ 411 0177 42000000 		.4byte	.LLST2
+ 412 017b 00       		.byte	0
+ 413 017c 0C       		.uleb128 0xc
+ 414 017d 5E000000 		.4byte	.LASF26
+ 415 0181 01       		.byte	0x1
+ 416 0182 ED       		.byte	0xed
+ 417 0183 6B000000 		.4byte	0x6b
+ 418 0187 00000000 		.4byte	.LFB5
+ 419 018b 10000000 		.4byte	.LFE5-.LFB5
+ 420 018f 01       		.uleb128 0x1
+ 421 0190 9C       		.byte	0x9c
+ 422 0191 09       		.uleb128 0x9
+ 423 0192 0A020000 		.4byte	.LASF27
+ 424 0196 01       		.byte	0x1
+ 425 0197 EF       		.byte	0xef
+ 426 0198 6B000000 		.4byte	0x6b
+ 427 019c 01       		.uleb128 0x1
+ 428 019d 50       		.byte	0x50
+ 429 019e 00       		.byte	0
+ 430 019f 00       		.byte	0
+ 431              		.section	.debug_abbrev,"",%progbits
+ 432              	.Ldebug_abbrev0:
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccyqH2sL.s 			page 13
+
+
+ 433 0000 01       		.uleb128 0x1
+ 434 0001 11       		.uleb128 0x11
+ 435 0002 01       		.byte	0x1
+ 436 0003 25       		.uleb128 0x25
+ 437 0004 0E       		.uleb128 0xe
+ 438 0005 13       		.uleb128 0x13
+ 439 0006 0B       		.uleb128 0xb
+ 440 0007 03       		.uleb128 0x3
+ 441 0008 0E       		.uleb128 0xe
+ 442 0009 1B       		.uleb128 0x1b
+ 443 000a 0E       		.uleb128 0xe
+ 444 000b 55       		.uleb128 0x55
+ 445 000c 17       		.uleb128 0x17
+ 446 000d 11       		.uleb128 0x11
+ 447 000e 01       		.uleb128 0x1
+ 448 000f 10       		.uleb128 0x10
+ 449 0010 17       		.uleb128 0x17
+ 450 0011 00       		.byte	0
+ 451 0012 00       		.byte	0
+ 452 0013 02       		.uleb128 0x2
+ 453 0014 24       		.uleb128 0x24
+ 454 0015 00       		.byte	0
+ 455 0016 0B       		.uleb128 0xb
+ 456 0017 0B       		.uleb128 0xb
+ 457 0018 3E       		.uleb128 0x3e
+ 458 0019 0B       		.uleb128 0xb
+ 459 001a 03       		.uleb128 0x3
+ 460 001b 0E       		.uleb128 0xe
+ 461 001c 00       		.byte	0
+ 462 001d 00       		.byte	0
+ 463 001e 03       		.uleb128 0x3
+ 464 001f 24       		.uleb128 0x24
+ 465 0020 00       		.byte	0
+ 466 0021 0B       		.uleb128 0xb
+ 467 0022 0B       		.uleb128 0xb
+ 468 0023 3E       		.uleb128 0x3e
+ 469 0024 0B       		.uleb128 0xb
+ 470 0025 03       		.uleb128 0x3
+ 471 0026 08       		.uleb128 0x8
+ 472 0027 00       		.byte	0
+ 473 0028 00       		.byte	0
+ 474 0029 04       		.uleb128 0x4
+ 475 002a 16       		.uleb128 0x16
+ 476 002b 00       		.byte	0
+ 477 002c 03       		.uleb128 0x3
+ 478 002d 0E       		.uleb128 0xe
+ 479 002e 3A       		.uleb128 0x3a
+ 480 002f 0B       		.uleb128 0xb
+ 481 0030 3B       		.uleb128 0x3b
+ 482 0031 05       		.uleb128 0x5
+ 483 0032 49       		.uleb128 0x49
+ 484 0033 13       		.uleb128 0x13
+ 485 0034 00       		.byte	0
+ 486 0035 00       		.byte	0
+ 487 0036 05       		.uleb128 0x5
+ 488 0037 35       		.uleb128 0x35
+ 489 0038 00       		.byte	0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccyqH2sL.s 			page 14
+
+
+ 490 0039 49       		.uleb128 0x49
+ 491 003a 13       		.uleb128 0x13
+ 492 003b 00       		.byte	0
+ 493 003c 00       		.byte	0
+ 494 003d 06       		.uleb128 0x6
+ 495 003e 2E       		.uleb128 0x2e
+ 496 003f 01       		.byte	0x1
+ 497 0040 3F       		.uleb128 0x3f
+ 498 0041 19       		.uleb128 0x19
+ 499 0042 03       		.uleb128 0x3
+ 500 0043 0E       		.uleb128 0xe
+ 501 0044 3A       		.uleb128 0x3a
+ 502 0045 0B       		.uleb128 0xb
+ 503 0046 3B       		.uleb128 0x3b
+ 504 0047 0B       		.uleb128 0xb
+ 505 0048 27       		.uleb128 0x27
+ 506 0049 19       		.uleb128 0x19
+ 507 004a 11       		.uleb128 0x11
+ 508 004b 01       		.uleb128 0x1
+ 509 004c 12       		.uleb128 0x12
+ 510 004d 06       		.uleb128 0x6
+ 511 004e 40       		.uleb128 0x40
+ 512 004f 18       		.uleb128 0x18
+ 513 0050 9742     		.uleb128 0x2117
+ 514 0052 19       		.uleb128 0x19
+ 515 0053 01       		.uleb128 0x1
+ 516 0054 13       		.uleb128 0x13
+ 517 0055 00       		.byte	0
+ 518 0056 00       		.byte	0
+ 519 0057 07       		.uleb128 0x7
+ 520 0058 05       		.uleb128 0x5
+ 521 0059 00       		.byte	0
+ 522 005a 03       		.uleb128 0x3
+ 523 005b 0E       		.uleb128 0xe
+ 524 005c 3A       		.uleb128 0x3a
+ 525 005d 0B       		.uleb128 0xb
+ 526 005e 3B       		.uleb128 0x3b
+ 527 005f 0B       		.uleb128 0xb
+ 528 0060 49       		.uleb128 0x49
+ 529 0061 13       		.uleb128 0x13
+ 530 0062 02       		.uleb128 0x2
+ 531 0063 17       		.uleb128 0x17
+ 532 0064 00       		.byte	0
+ 533 0065 00       		.byte	0
+ 534 0066 08       		.uleb128 0x8
+ 535 0067 05       		.uleb128 0x5
+ 536 0068 00       		.byte	0
+ 537 0069 03       		.uleb128 0x3
+ 538 006a 0E       		.uleb128 0xe
+ 539 006b 3A       		.uleb128 0x3a
+ 540 006c 0B       		.uleb128 0xb
+ 541 006d 3B       		.uleb128 0x3b
+ 542 006e 0B       		.uleb128 0xb
+ 543 006f 49       		.uleb128 0x49
+ 544 0070 13       		.uleb128 0x13
+ 545 0071 02       		.uleb128 0x2
+ 546 0072 18       		.uleb128 0x18
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccyqH2sL.s 			page 15
+
+
+ 547 0073 00       		.byte	0
+ 548 0074 00       		.byte	0
+ 549 0075 09       		.uleb128 0x9
+ 550 0076 34       		.uleb128 0x34
+ 551 0077 00       		.byte	0
+ 552 0078 03       		.uleb128 0x3
+ 553 0079 0E       		.uleb128 0xe
+ 554 007a 3A       		.uleb128 0x3a
+ 555 007b 0B       		.uleb128 0xb
+ 556 007c 3B       		.uleb128 0x3b
+ 557 007d 0B       		.uleb128 0xb
+ 558 007e 49       		.uleb128 0x49
+ 559 007f 13       		.uleb128 0x13
+ 560 0080 02       		.uleb128 0x2
+ 561 0081 18       		.uleb128 0x18
+ 562 0082 00       		.byte	0
+ 563 0083 00       		.byte	0
+ 564 0084 0A       		.uleb128 0xa
+ 565 0085 2E       		.uleb128 0x2e
+ 566 0086 00       		.byte	0
+ 567 0087 3F       		.uleb128 0x3f
+ 568 0088 19       		.uleb128 0x19
+ 569 0089 03       		.uleb128 0x3
+ 570 008a 0E       		.uleb128 0xe
+ 571 008b 3A       		.uleb128 0x3a
+ 572 008c 0B       		.uleb128 0xb
+ 573 008d 3B       		.uleb128 0x3b
+ 574 008e 0B       		.uleb128 0xb
+ 575 008f 27       		.uleb128 0x27
+ 576 0090 19       		.uleb128 0x19
+ 577 0091 49       		.uleb128 0x49
+ 578 0092 13       		.uleb128 0x13
+ 579 0093 11       		.uleb128 0x11
+ 580 0094 01       		.uleb128 0x1
+ 581 0095 12       		.uleb128 0x12
+ 582 0096 06       		.uleb128 0x6
+ 583 0097 40       		.uleb128 0x40
+ 584 0098 18       		.uleb128 0x18
+ 585 0099 9742     		.uleb128 0x2117
+ 586 009b 19       		.uleb128 0x19
+ 587 009c 00       		.byte	0
+ 588 009d 00       		.byte	0
+ 589 009e 0B       		.uleb128 0xb
+ 590 009f 34       		.uleb128 0x34
+ 591 00a0 00       		.byte	0
+ 592 00a1 03       		.uleb128 0x3
+ 593 00a2 0E       		.uleb128 0xe
+ 594 00a3 3A       		.uleb128 0x3a
+ 595 00a4 0B       		.uleb128 0xb
+ 596 00a5 3B       		.uleb128 0x3b
+ 597 00a6 0B       		.uleb128 0xb
+ 598 00a7 49       		.uleb128 0x49
+ 599 00a8 13       		.uleb128 0x13
+ 600 00a9 02       		.uleb128 0x2
+ 601 00aa 17       		.uleb128 0x17
+ 602 00ab 00       		.byte	0
+ 603 00ac 00       		.byte	0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccyqH2sL.s 			page 16
+
+
+ 604 00ad 0C       		.uleb128 0xc
+ 605 00ae 2E       		.uleb128 0x2e
+ 606 00af 01       		.byte	0x1
+ 607 00b0 3F       		.uleb128 0x3f
+ 608 00b1 19       		.uleb128 0x19
+ 609 00b2 03       		.uleb128 0x3
+ 610 00b3 0E       		.uleb128 0xe
+ 611 00b4 3A       		.uleb128 0x3a
+ 612 00b5 0B       		.uleb128 0xb
+ 613 00b6 3B       		.uleb128 0x3b
+ 614 00b7 0B       		.uleb128 0xb
+ 615 00b8 27       		.uleb128 0x27
+ 616 00b9 19       		.uleb128 0x19
+ 617 00ba 49       		.uleb128 0x49
+ 618 00bb 13       		.uleb128 0x13
+ 619 00bc 11       		.uleb128 0x11
+ 620 00bd 01       		.uleb128 0x1
+ 621 00be 12       		.uleb128 0x12
+ 622 00bf 06       		.uleb128 0x6
+ 623 00c0 40       		.uleb128 0x40
+ 624 00c1 18       		.uleb128 0x18
+ 625 00c2 9742     		.uleb128 0x2117
+ 626 00c4 19       		.uleb128 0x19
+ 627 00c5 00       		.byte	0
+ 628 00c6 00       		.byte	0
+ 629 00c7 00       		.byte	0
+ 630              		.section	.debug_loc,"",%progbits
+ 631              	.Ldebug_loc0:
+ 632              	.LLST0:
+ 633 0000 00000000 		.4byte	.LVL0
+ 634 0004 14000000 		.4byte	.LVL1
+ 635 0008 0100     		.2byte	0x1
+ 636 000a 50       		.byte	0x50
+ 637 000b 14000000 		.4byte	.LVL1
+ 638 000f 20000000 		.4byte	.LFE0
+ 639 0013 0400     		.2byte	0x4
+ 640 0015 F3       		.byte	0xf3
+ 641 0016 01       		.uleb128 0x1
+ 642 0017 50       		.byte	0x50
+ 643 0018 9F       		.byte	0x9f
+ 644 0019 00000000 		.4byte	0
+ 645 001d 00000000 		.4byte	0
+ 646              	.LLST1:
+ 647 0021 00000000 		.4byte	.LVL4
+ 648 0025 08000000 		.4byte	.LVL7
+ 649 0029 0100     		.2byte	0x1
+ 650 002b 50       		.byte	0x50
+ 651 002c 08000000 		.4byte	.LVL7
+ 652 0030 14000000 		.4byte	.LFE4
+ 653 0034 0400     		.2byte	0x4
+ 654 0036 F3       		.byte	0xf3
+ 655 0037 01       		.uleb128 0x1
+ 656 0038 50       		.byte	0x50
+ 657 0039 9F       		.byte	0x9f
+ 658 003a 00000000 		.4byte	0
+ 659 003e 00000000 		.4byte	0
+ 660              	.LLST2:
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccyqH2sL.s 			page 17
+
+
+ 661 0042 04000000 		.4byte	.LVL5
+ 662 0046 06000000 		.4byte	.LVL6
+ 663 004a 0B00     		.2byte	0xb
+ 664 004c 70       		.byte	0x70
+ 665 004d 00       		.sleb128 0
+ 666 004e 0A       		.byte	0xa
+ 667 004f FFFF     		.2byte	0xffff
+ 668 0051 1A       		.byte	0x1a
+ 669 0052 20       		.byte	0x20
+ 670 0053 73       		.byte	0x73
+ 671 0054 00       		.sleb128 0
+ 672 0055 1A       		.byte	0x1a
+ 673 0056 9F       		.byte	0x9f
+ 674 0057 00000000 		.4byte	0
+ 675 005b 00000000 		.4byte	0
+ 676              		.section	.debug_aranges,"",%progbits
+ 677 0000 44000000 		.4byte	0x44
+ 678 0004 0200     		.2byte	0x2
+ 679 0006 00000000 		.4byte	.Ldebug_info0
+ 680 000a 04       		.byte	0x4
+ 681 000b 00       		.byte	0
+ 682 000c 0000     		.2byte	0
+ 683 000e 0000     		.2byte	0
+ 684 0010 00000000 		.4byte	.LFB0
+ 685 0014 20000000 		.4byte	.LFE0-.LFB0
+ 686 0018 00000000 		.4byte	.LFB1
+ 687 001c 18000000 		.4byte	.LFE1-.LFB1
+ 688 0020 00000000 		.4byte	.LFB2
+ 689 0024 10000000 		.4byte	.LFE2-.LFB2
+ 690 0028 00000000 		.4byte	.LFB3
+ 691 002c 10000000 		.4byte	.LFE3-.LFB3
+ 692 0030 00000000 		.4byte	.LFB4
+ 693 0034 14000000 		.4byte	.LFE4-.LFB4
+ 694 0038 00000000 		.4byte	.LFB5
+ 695 003c 10000000 		.4byte	.LFE5-.LFB5
+ 696 0040 00000000 		.4byte	0
+ 697 0044 00000000 		.4byte	0
+ 698              		.section	.debug_ranges,"",%progbits
+ 699              	.Ldebug_ranges0:
+ 700 0000 00000000 		.4byte	.LFB0
+ 701 0004 20000000 		.4byte	.LFE0
+ 702 0008 00000000 		.4byte	.LFB1
+ 703 000c 18000000 		.4byte	.LFE1
+ 704 0010 00000000 		.4byte	.LFB2
+ 705 0014 10000000 		.4byte	.LFE2
+ 706 0018 00000000 		.4byte	.LFB3
+ 707 001c 10000000 		.4byte	.LFE3
+ 708 0020 00000000 		.4byte	.LFB4
+ 709 0024 14000000 		.4byte	.LFE4
+ 710 0028 00000000 		.4byte	.LFB5
+ 711 002c 10000000 		.4byte	.LFE5
+ 712 0030 00000000 		.4byte	0
+ 713 0034 00000000 		.4byte	0
+ 714              		.section	.debug_line,"",%progbits
+ 715              	.Ldebug_line0:
+ 716 0000 C9000000 		.section	.debug_str,"MS",%progbits,1
+ 716      02004700 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccyqH2sL.s 			page 18
+
+
+ 716      00000201 
+ 716      FB0E0D00 
+ 716      01010101 
+ 717              	.LASF15:
+ 718 0000 72656733 		.ascii	"reg32\000"
+ 718      3200
+ 719              	.LASF30:
+ 720 0006 443A5C31 		.ascii	"D:\\1_work\\my_project\\ReloadPro\\psoc42boot\\Relo"
+ 720      5F776F72 
+ 720      6B5C6D79 
+ 720      5F70726F 
+ 720      6A656374 
+ 721 0034 61642050 		.ascii	"ad Pro.cydsn\000"
+ 721      726F2E63 
+ 721      7964736E 
+ 721      00
+ 722              	.LASF21:
+ 723 0041 51756164 		.ascii	"Quadrature_ReadDataReg\000"
+ 723      72617475 
+ 723      72655F52 
+ 723      65616444 
+ 723      61746152 
+ 724              	.LASF19:
+ 725 0058 76616C75 		.ascii	"value\000"
+ 725      6500
+ 726              	.LASF26:
+ 727 005e 51756164 		.ascii	"Quadrature_ClearInterrupt\000"
+ 727      72617475 
+ 727      72655F43 
+ 727      6C656172 
+ 727      496E7465 
+ 728              	.LASF29:
+ 729 0078 47656E65 		.ascii	"Generated_Source\\PSoC4\\Quadrature.c\000"
+ 729      72617465 
+ 729      645F536F 
+ 729      75726365 
+ 729      5C50536F 
+ 730              	.LASF16:
+ 731 009c 51756164 		.ascii	"Quadrature_SetDriveMode\000"
+ 731      72617475 
+ 731      72655F53 
+ 731      65744472 
+ 731      6976654D 
+ 732              	.LASF12:
+ 733 00b4 666C6F61 		.ascii	"float\000"
+ 733      7400
+ 734              	.LASF1:
+ 735 00ba 756E7369 		.ascii	"unsigned char\000"
+ 735      676E6564 
+ 735      20636861 
+ 735      7200
+ 736              	.LASF24:
+ 737 00c8 64725661 		.ascii	"drVal\000"
+ 737      6C00
+ 738              	.LASF5:
+ 739 00ce 6C6F6E67 		.ascii	"long unsigned int\000"
+ 739      20756E73 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccyqH2sL.s 			page 19
+
+
+ 739      69676E65 
+ 739      6420696E 
+ 739      7400
+ 740              	.LASF3:
+ 741 00e0 73686F72 		.ascii	"short unsigned int\000"
+ 741      7420756E 
+ 741      7369676E 
+ 741      65642069 
+ 741      6E7400
+ 742              	.LASF17:
+ 743 00f3 51756164 		.ascii	"Quadrature_Write\000"
+ 743      72617475 
+ 743      72655F57 
+ 743      72697465 
+ 743      00
+ 744              	.LASF20:
+ 745 0104 51756164 		.ascii	"Quadrature_Read\000"
+ 745      72617475 
+ 745      72655F52 
+ 745      65616400 
+ 746              	.LASF13:
+ 747 0114 646F7562 		.ascii	"double\000"
+ 747      6C6500
+ 748              	.LASF10:
+ 749 011b 75696E74 		.ascii	"uint16\000"
+ 749      313600
+ 750              	.LASF23:
+ 751 0122 706F7369 		.ascii	"position\000"
+ 751      74696F6E 
+ 751      00
+ 752              	.LASF11:
+ 753 012b 75696E74 		.ascii	"uint32\000"
+ 753      333200
+ 754              	.LASF25:
+ 755 0132 696E7472 		.ascii	"intrCfg\000"
+ 755      43666700 
+ 756              	.LASF8:
+ 757 013a 756E7369 		.ascii	"unsigned int\000"
+ 757      676E6564 
+ 757      20696E74 
+ 757      00
+ 758              	.LASF7:
+ 759 0147 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 759      206C6F6E 
+ 759      6720756E 
+ 759      7369676E 
+ 759      65642069 
+ 760              	.LASF18:
+ 761 015e 6D6F6465 		.ascii	"mode\000"
+ 761      00
+ 762              	.LASF28:
+ 763 0163 474E5520 		.ascii	"GNU C99 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 763      43393920 
+ 763      352E342E 
+ 763      31203230 
+ 763      31363036 
+ 764 0196 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccyqH2sL.s 			page 20
+
+
+ 764      20726576 
+ 764      6973696F 
+ 764      6E203233 
+ 764      37373135 
+ 765 01c9 73202D73 		.ascii	"s -std=gnu99 -ffunction-sections -ffat-lto-objects\000"
+ 765      74643D67 
+ 765      6E753939 
+ 765      202D6666 
+ 765      756E6374 
+ 766              	.LASF6:
+ 767 01fc 6C6F6E67 		.ascii	"long long int\000"
+ 767      206C6F6E 
+ 767      6720696E 
+ 767      7400
+ 768              	.LASF27:
+ 769 020a 6D61736B 		.ascii	"maskedStatus\000"
+ 769      65645374 
+ 769      61747573 
+ 769      00
+ 770              	.LASF14:
+ 771 0217 63686172 		.ascii	"char\000"
+ 771      00
+ 772              	.LASF22:
+ 773 021c 51756164 		.ascii	"Quadrature_SetInterruptMode\000"
+ 773      72617475 
+ 773      72655F53 
+ 773      6574496E 
+ 773      74657272 
+ 774              	.LASF2:
+ 775 0238 73686F72 		.ascii	"short int\000"
+ 775      7420696E 
+ 775      7400
+ 776              	.LASF9:
+ 777 0242 75696E74 		.ascii	"uint8\000"
+ 777      3800
+ 778              	.LASF4:
+ 779 0248 6C6F6E67 		.ascii	"long int\000"
+ 779      20696E74 
+ 779      00
+ 780              	.LASF0:
+ 781 0251 7369676E 		.ascii	"signed char\000"
+ 781      65642063 
+ 781      68617200 
+ 782              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

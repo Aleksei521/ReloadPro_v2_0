@@ -1,0 +1,9 @@
+D:\1_work\my_project\ReloadPro\psoc42boot\Reload Pro.cydsn\Reload Pro.cyprj|7b6be1aa-9f31-4084-8f96-44b5e7a1447c
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|f28f2181-6afe-4501-8476-1e1aeeb49beb
+C:\Users\VideoHOME\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\Downloads ( 4.2).cyprj|30ab01f7-1cb7-4e4e-94c4-c0a5689ae6f7
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|f93303da-0cca-4cdc-9e40-8ad069cec7f5
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|8e0bd249-047a-431c-ba19-1ebe2b44b74c
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|efdf6250-ca4b-4d2f-88f4-5e39d74abcc9
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\default\CyReferenceLibrary\CyReferenceLibrary.cylib\CyReferenceLibrary.cyprj|8d48429f-033d-4ea1-810e-db3d87747f8a
+D:\1_work\my_project\ReloadPro\psoc42boot\Parts.cylib\Parts.cyprj|6a428997-f2ac-4435-a7c3-c0d5e6850469
+D:\1_work\my_project\ReloadPro\psoc42boot\Bootloader.cydsn\Bootloader.cyprj|b38883ef-f141-4ccf-9f78-363fee054873

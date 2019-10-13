@@ -1,0 +1,1375 @@
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cceSQHMC.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"list.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.vListInitialise,"ax",%progbits
+  20              		.align	1
+  21              		.global	vListInitialise
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	vListInitialise, %function
+  25              	vListInitialise:
+  26              	.LFB32:
+  27              		.file 1 "freertos\\src\\list.c"
+   1:freertos\src/list.c **** /*
+   2:freertos\src/list.c ****     FreeRTOS V7.6.0 - Copyright (C) 2013 Real Time Engineers Ltd. 
+   3:freertos\src/list.c ****     All rights reserved
+   4:freertos\src/list.c **** 
+   5:freertos\src/list.c ****     VISIT http://www.FreeRTOS.org TO ENSURE YOU ARE USING THE LATEST VERSION.
+   6:freertos\src/list.c **** 
+   7:freertos\src/list.c ****     ***************************************************************************
+   8:freertos\src/list.c ****      *                                                                       *
+   9:freertos\src/list.c ****      *    FreeRTOS provides completely free yet professionally developed,    *
+  10:freertos\src/list.c ****      *    robust, strictly quality controlled, supported, and cross          *
+  11:freertos\src/list.c ****      *    platform software that has become a de facto standard.             *
+  12:freertos\src/list.c ****      *                                                                       *
+  13:freertos\src/list.c ****      *    Help yourself get started quickly and support the FreeRTOS         *
+  14:freertos\src/list.c ****      *    project by purchasing a FreeRTOS tutorial book, reference          *
+  15:freertos\src/list.c ****      *    manual, or both from: http://www.FreeRTOS.org/Documentation        *
+  16:freertos\src/list.c ****      *                                                                       *
+  17:freertos\src/list.c ****      *    Thank you!                                                         *
+  18:freertos\src/list.c ****      *                                                                       *
+  19:freertos\src/list.c ****     ***************************************************************************
+  20:freertos\src/list.c **** 
+  21:freertos\src/list.c ****     This file is part of the FreeRTOS distribution.
+  22:freertos\src/list.c **** 
+  23:freertos\src/list.c ****     FreeRTOS is free software; you can redistribute it and/or modify it under
+  24:freertos\src/list.c ****     the terms of the GNU General Public License (version 2) as published by the
+  25:freertos\src/list.c ****     Free Software Foundation >>!AND MODIFIED BY!<< the FreeRTOS exception.
+  26:freertos\src/list.c **** 
+  27:freertos\src/list.c ****     >>! NOTE: The modification to the GPL is included to allow you to distribute
+  28:freertos\src/list.c ****     >>! a combined work that includes FreeRTOS without being obliged to provide
+  29:freertos\src/list.c ****     >>! the source code for proprietary components outside of the FreeRTOS
+  30:freertos\src/list.c ****     >>! kernel.
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cceSQHMC.s 			page 2
+
+
+  31:freertos\src/list.c **** 
+  32:freertos\src/list.c ****     FreeRTOS is distributed in the hope that it will be useful, but WITHOUT ANY
+  33:freertos\src/list.c ****     WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+  34:freertos\src/list.c ****     FOR A PARTICULAR PURPOSE.  Full license text is available from the following
+  35:freertos\src/list.c ****     link: http://www.freertos.org/a00114.html
+  36:freertos\src/list.c **** 
+  37:freertos\src/list.c ****     1 tab == 4 spaces!
+  38:freertos\src/list.c **** 
+  39:freertos\src/list.c ****     ***************************************************************************
+  40:freertos\src/list.c ****      *                                                                       *
+  41:freertos\src/list.c ****      *    Having a problem?  Start by reading the FAQ "My application does   *
+  42:freertos\src/list.c ****      *    not run, what could be wrong?"                                     *
+  43:freertos\src/list.c ****      *                                                                       *
+  44:freertos\src/list.c ****      *    http://www.FreeRTOS.org/FAQHelp.html                               *
+  45:freertos\src/list.c ****      *                                                                       *
+  46:freertos\src/list.c ****     ***************************************************************************
+  47:freertos\src/list.c **** 
+  48:freertos\src/list.c ****     http://www.FreeRTOS.org - Documentation, books, training, latest versions,
+  49:freertos\src/list.c ****     license and Real Time Engineers Ltd. contact details.
+  50:freertos\src/list.c **** 
+  51:freertos\src/list.c ****     http://www.FreeRTOS.org/plus - A selection of FreeRTOS ecosystem products,
+  52:freertos\src/list.c ****     including FreeRTOS+Trace - an indispensable productivity tool, a DOS
+  53:freertos\src/list.c ****     compatible FAT file system, and our tiny thread aware UDP/IP stack.
+  54:freertos\src/list.c **** 
+  55:freertos\src/list.c ****     http://www.OpenRTOS.com - Real Time Engineers ltd license FreeRTOS to High
+  56:freertos\src/list.c ****     Integrity Systems to sell under the OpenRTOS brand.  Low cost OpenRTOS
+  57:freertos\src/list.c ****     licenses offer ticketed support, indemnification and middleware.
+  58:freertos\src/list.c **** 
+  59:freertos\src/list.c ****     http://www.SafeRTOS.com - High Integrity Systems also provide a safety
+  60:freertos\src/list.c ****     engineered and independently SIL3 certified version for use in safety and
+  61:freertos\src/list.c ****     mission critical applications that require provable dependability.
+  62:freertos\src/list.c **** 
+  63:freertos\src/list.c ****     1 tab == 4 spaces!
+  64:freertos\src/list.c **** */
+  65:freertos\src/list.c **** 
+  66:freertos\src/list.c **** 
+  67:freertos\src/list.c **** #include <stdlib.h>
+  68:freertos\src/list.c **** #include "FreeRTOS.h"
+  69:freertos\src/list.c **** #include "list.h"
+  70:freertos\src/list.c **** 
+  71:freertos\src/list.c **** /*-----------------------------------------------------------
+  72:freertos\src/list.c ****  * PUBLIC LIST API documented in list.h
+  73:freertos\src/list.c ****  *----------------------------------------------------------*/
+  74:freertos\src/list.c **** 
+  75:freertos\src/list.c **** void vListInitialise( xList * const pxList )
+  76:freertos\src/list.c **** {
+  28              		.loc 1 76 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+  33              	.LVL0:
+  77:freertos\src/list.c **** 	/* The list structure contains a list item which is used to mark the
+  78:freertos\src/list.c **** 	end of the list.  To initialise the list the list end is inserted
+  79:freertos\src/list.c **** 	as the only list entry. */
+  80:freertos\src/list.c **** 	pxList->pxIndex = ( xListItem * ) &( pxList->xListEnd );			/*lint !e826 !e740 The mini list struct
+  34              		.loc 1 80 0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cceSQHMC.s 			page 3
+
+
+  35 0000 0300     		movs	r3, r0
+  81:freertos\src/list.c **** 
+  82:freertos\src/list.c **** 	/* The list end value is the highest possible value in the list to
+  83:freertos\src/list.c **** 	ensure it remains at the end of the list. */
+  84:freertos\src/list.c **** 	pxList->xListEnd.xItemValue = portMAX_DELAY;
+  36              		.loc 1 84 0
+  37 0002 0122     		movs	r2, #1
+  80:freertos\src/list.c **** 
+  38              		.loc 1 80 0
+  39 0004 0833     		adds	r3, r3, #8
+  40 0006 4360     		str	r3, [r0, #4]
+  85:freertos\src/list.c **** 
+  86:freertos\src/list.c **** 	/* The list end next and previous pointers point to itself so we know
+  87:freertos\src/list.c **** 	when the list is empty. */
+  88:freertos\src/list.c **** 	pxList->xListEnd.pxNext = ( xListItem * ) &( pxList->xListEnd );	/*lint !e826 !e740 The mini list 
+  41              		.loc 1 88 0
+  42 0008 C360     		str	r3, [r0, #12]
+  89:freertos\src/list.c **** 	pxList->xListEnd.pxPrevious = ( xListItem * ) &( pxList->xListEnd );/*lint !e826 !e740 The mini li
+  43              		.loc 1 89 0
+  44 000a 0361     		str	r3, [r0, #16]
+  90:freertos\src/list.c **** 
+  91:freertos\src/list.c **** 	pxList->uxNumberOfItems = ( unsigned portBASE_TYPE ) 0U;
+  45              		.loc 1 91 0
+  46 000c 0023     		movs	r3, #0
+  84:freertos\src/list.c **** 
+  47              		.loc 1 84 0
+  48 000e 5242     		rsbs	r2, r2, #0
+  49 0010 8260     		str	r2, [r0, #8]
+  50              		.loc 1 91 0
+  51 0012 0360     		str	r3, [r0]
+  92:freertos\src/list.c **** }
+  52              		.loc 1 92 0
+  53              		@ sp needed
+  54 0014 7047     		bx	lr
+  55              		.cfi_endproc
+  56              	.LFE32:
+  57              		.size	vListInitialise, .-vListInitialise
+  58              		.section	.text.vListInitialiseItem,"ax",%progbits
+  59              		.align	1
+  60              		.global	vListInitialiseItem
+  61              		.code	16
+  62              		.thumb_func
+  63              		.type	vListInitialiseItem, %function
+  64              	vListInitialiseItem:
+  65              	.LFB33:
+  93:freertos\src/list.c **** /*-----------------------------------------------------------*/
+  94:freertos\src/list.c **** 
+  95:freertos\src/list.c **** void vListInitialiseItem( xListItem * const pxItem )
+  96:freertos\src/list.c **** {
+  66              		.loc 1 96 0
+  67              		.cfi_startproc
+  68              		@ args = 0, pretend = 0, frame = 0
+  69              		@ frame_needed = 0, uses_anonymous_args = 0
+  70              		@ link register save eliminated.
+  71              	.LVL1:
+  97:freertos\src/list.c **** 	/* Make sure the list item is not recorded as being on a list. */
+  98:freertos\src/list.c **** 	pxItem->pvContainer = NULL;
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cceSQHMC.s 			page 4
+
+
+  72              		.loc 1 98 0
+  73 0000 0023     		movs	r3, #0
+  99:freertos\src/list.c **** }
+  74              		.loc 1 99 0
+  75              		@ sp needed
+  98:freertos\src/list.c **** }
+  76              		.loc 1 98 0
+  77 0002 0361     		str	r3, [r0, #16]
+  78              		.loc 1 99 0
+  79 0004 7047     		bx	lr
+  80              		.cfi_endproc
+  81              	.LFE33:
+  82              		.size	vListInitialiseItem, .-vListInitialiseItem
+  83              		.section	.text.vListInsertEnd,"ax",%progbits
+  84              		.align	1
+  85              		.global	vListInsertEnd
+  86              		.code	16
+  87              		.thumb_func
+  88              		.type	vListInsertEnd, %function
+  89              	vListInsertEnd:
+  90              	.LFB34:
+ 100:freertos\src/list.c **** /*-----------------------------------------------------------*/
+ 101:freertos\src/list.c **** 
+ 102:freertos\src/list.c **** void vListInsertEnd( xList * const pxList, xListItem * const pxNewListItem )
+ 103:freertos\src/list.c **** {
+  91              		.loc 1 103 0
+  92              		.cfi_startproc
+  93              		@ args = 0, pretend = 0, frame = 0
+  94              		@ frame_needed = 0, uses_anonymous_args = 0
+  95              		@ link register save eliminated.
+  96              	.LVL2:
+ 104:freertos\src/list.c **** xListItem * pxIndex;
+ 105:freertos\src/list.c **** 
+ 106:freertos\src/list.c **** 	/* Insert a new list item into pxList, but rather than sort the list,
+ 107:freertos\src/list.c **** 	makes the new list item the last item to be removed by a call to
+ 108:freertos\src/list.c **** 	pvListGetOwnerOfNextEntry. */
+ 109:freertos\src/list.c **** 	pxIndex = pxList->pxIndex;
+  97              		.loc 1 109 0
+  98 0000 4368     		ldr	r3, [r0, #4]
+  99              	.LVL3:
+ 110:freertos\src/list.c **** 
+ 111:freertos\src/list.c **** 	pxNewListItem->pxNext = pxIndex;
+ 112:freertos\src/list.c **** 	pxNewListItem->pxPrevious = pxIndex->pxPrevious;
+ 113:freertos\src/list.c **** 	pxIndex->pxPrevious->pxNext = pxNewListItem;
+ 114:freertos\src/list.c **** 	pxIndex->pxPrevious = pxNewListItem;
+ 115:freertos\src/list.c **** 
+ 116:freertos\src/list.c **** 	/* Remember which list the item is in. */
+ 117:freertos\src/list.c **** 	pxNewListItem->pvContainer = ( void * ) pxList;
+ 118:freertos\src/list.c **** 
+ 119:freertos\src/list.c **** 	( pxList->uxNumberOfItems )++;
+ 120:freertos\src/list.c **** }
+ 100              		.loc 1 120 0
+ 101              		@ sp needed
+ 112:freertos\src/list.c **** 	pxIndex->pxPrevious->pxNext = pxNewListItem;
+ 102              		.loc 1 112 0
+ 103 0002 9A68     		ldr	r2, [r3, #8]
+ 111:freertos\src/list.c **** 	pxNewListItem->pxPrevious = pxIndex->pxPrevious;
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cceSQHMC.s 			page 5
+
+
+ 104              		.loc 1 111 0
+ 105 0004 4B60     		str	r3, [r1, #4]
+ 112:freertos\src/list.c **** 	pxIndex->pxPrevious->pxNext = pxNewListItem;
+ 106              		.loc 1 112 0
+ 107 0006 8A60     		str	r2, [r1, #8]
+ 113:freertos\src/list.c **** 	pxIndex->pxPrevious = pxNewListItem;
+ 108              		.loc 1 113 0
+ 109 0008 9A68     		ldr	r2, [r3, #8]
+ 110 000a 5160     		str	r1, [r2, #4]
+ 114:freertos\src/list.c **** 
+ 111              		.loc 1 114 0
+ 112 000c 9960     		str	r1, [r3, #8]
+ 119:freertos\src/list.c **** }
+ 113              		.loc 1 119 0
+ 114 000e 0368     		ldr	r3, [r0]
+ 115              	.LVL4:
+ 117:freertos\src/list.c **** 
+ 116              		.loc 1 117 0
+ 117 0010 0861     		str	r0, [r1, #16]
+ 119:freertos\src/list.c **** }
+ 118              		.loc 1 119 0
+ 119 0012 0133     		adds	r3, r3, #1
+ 120 0014 0360     		str	r3, [r0]
+ 121              		.loc 1 120 0
+ 122 0016 7047     		bx	lr
+ 123              		.cfi_endproc
+ 124              	.LFE34:
+ 125              		.size	vListInsertEnd, .-vListInsertEnd
+ 126              		.section	.text.vListInsert,"ax",%progbits
+ 127              		.align	1
+ 128              		.global	vListInsert
+ 129              		.code	16
+ 130              		.thumb_func
+ 131              		.type	vListInsert, %function
+ 132              	vListInsert:
+ 133              	.LFB35:
+ 121:freertos\src/list.c **** /*-----------------------------------------------------------*/
+ 122:freertos\src/list.c **** 
+ 123:freertos\src/list.c **** void vListInsert( xList * const pxList, xListItem * const pxNewListItem )
+ 124:freertos\src/list.c **** {
+ 134              		.loc 1 124 0
+ 135              		.cfi_startproc
+ 136              		@ args = 0, pretend = 0, frame = 0
+ 137              		@ frame_needed = 0, uses_anonymous_args = 0
+ 138              	.LVL5:
+ 125:freertos\src/list.c **** xListItem *pxIterator;
+ 126:freertos\src/list.c **** portTickType xValueOfInsertion;
+ 127:freertos\src/list.c **** 
+ 128:freertos\src/list.c **** 	/* Insert the new list item into the list, sorted in ulListItem order. */
+ 129:freertos\src/list.c **** 	xValueOfInsertion = pxNewListItem->xItemValue;
+ 130:freertos\src/list.c **** 
+ 131:freertos\src/list.c **** 	/* If the list already contains a list item with the same item value then
+ 132:freertos\src/list.c **** 	the new list item should be placed after it.  This ensures that TCB's which
+ 133:freertos\src/list.c **** 	are stored in ready lists (all of which have the same ulListItem value)
+ 134:freertos\src/list.c **** 	get an equal share of the CPU.  However, if the xItemValue is the same as
+ 135:freertos\src/list.c **** 	the back marker the iteration loop below will not end.  This means we need
+ 136:freertos\src/list.c **** 	to guard against this by checking the value first and modifying the
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cceSQHMC.s 			page 6
+
+
+ 137:freertos\src/list.c **** 	algorithm slightly if necessary. */
+ 138:freertos\src/list.c **** 	if( xValueOfInsertion == portMAX_DELAY )
+ 139:freertos\src/list.c **** 	{
+ 140:freertos\src/list.c **** 		pxIterator = pxList->xListEnd.pxPrevious;
+ 141:freertos\src/list.c **** 	}
+ 142:freertos\src/list.c **** 	else
+ 143:freertos\src/list.c **** 	{
+ 144:freertos\src/list.c **** 		/* *** NOTE ***********************************************************
+ 145:freertos\src/list.c **** 		If you find your application is crashing here then likely causes are:
+ 146:freertos\src/list.c **** 			1) Stack overflow -
+ 147:freertos\src/list.c **** 			   see http://www.freertos.org/Stacks-and-stack-overflow-checking.html
+ 148:freertos\src/list.c **** 			2) Incorrect interrupt priority assignment, especially on Cortex-M3
+ 149:freertos\src/list.c **** 			   parts where numerically high priority values denote low actual
+ 150:freertos\src/list.c **** 			   interrupt priories, which can seem counter intuitive.  See
+ 151:freertos\src/list.c **** 			   configMAX_SYSCALL_INTERRUPT_PRIORITY on http://www.freertos.org/a00110.html
+ 152:freertos\src/list.c **** 			3) Calling an API function from within a critical section or when
+ 153:freertos\src/list.c **** 			   the scheduler is suspended, or calling an API function that does
+ 154:freertos\src/list.c **** 			   not end in "FromISR" from an interrupt.
+ 155:freertos\src/list.c **** 			4) Using a queue or semaphore before it has been initialised or
+ 156:freertos\src/list.c **** 			   before the scheduler has been started (are interrupts firing
+ 157:freertos\src/list.c **** 			   before vTaskStartScheduler() has been called?).
+ 158:freertos\src/list.c **** 		See http://www.freertos.org/FAQHelp.html for more tips.
+ 159:freertos\src/list.c **** 		**********************************************************************/
+ 160:freertos\src/list.c **** 
+ 161:freertos\src/list.c **** 		for( pxIterator = ( xListItem * ) &( pxList->xListEnd ); pxIterator->pxNext->xItemValue <= xValue
+ 139              		.loc 1 161 0
+ 140 0000 0300     		movs	r3, r0
+ 129:freertos\src/list.c **** 
+ 141              		.loc 1 129 0
+ 142 0002 0A68     		ldr	r2, [r1]
+ 143              	.LVL6:
+ 124:freertos\src/list.c **** xListItem *pxIterator;
+ 144              		.loc 1 124 0
+ 145 0004 30B5     		push	{r4, r5, lr}
+ 146              		.cfi_def_cfa_offset 12
+ 147              		.cfi_offset 4, -12
+ 148              		.cfi_offset 5, -8
+ 149              		.cfi_offset 14, -4
+ 150              		.loc 1 161 0
+ 151 0006 0833     		adds	r3, r3, #8
+ 138:freertos\src/list.c **** 	{
+ 152              		.loc 1 138 0
+ 153 0008 541C     		adds	r4, r2, #1
+ 154 000a 01D1     		bne	.L9
+ 140:freertos\src/list.c **** 	}
+ 155              		.loc 1 140 0
+ 156 000c 0369     		ldr	r3, [r0, #16]
+ 157              	.LVL7:
+ 158 000e 05E0     		b	.L6
+ 159              	.LVL8:
+ 160              	.L9:
+ 161              		.loc 1 161 0 discriminator 1
+ 162 0010 5C68     		ldr	r4, [r3, #4]
+ 163 0012 2568     		ldr	r5, [r4]
+ 164 0014 AA42     		cmp	r2, r5
+ 165 0016 01D3     		bcc	.L6
+ 166 0018 2300     		movs	r3, r4
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cceSQHMC.s 			page 7
+
+
+ 167              	.LVL9:
+ 168 001a F9E7     		b	.L9
+ 169              	.LVL10:
+ 170              	.L6:
+ 162:freertos\src/list.c **** 		{
+ 163:freertos\src/list.c **** 			/* There is nothing to do here, we are just iterating to the
+ 164:freertos\src/list.c **** 			wanted insertion position. */
+ 165:freertos\src/list.c **** 		}
+ 166:freertos\src/list.c **** 	}
+ 167:freertos\src/list.c **** 
+ 168:freertos\src/list.c **** 	pxNewListItem->pxNext = pxIterator->pxNext;
+ 171              		.loc 1 168 0
+ 172 001c 5A68     		ldr	r2, [r3, #4]
+ 173              	.LVL11:
+ 169:freertos\src/list.c **** 	pxNewListItem->pxNext->pxPrevious = pxNewListItem;
+ 170:freertos\src/list.c **** 	pxNewListItem->pxPrevious = pxIterator;
+ 171:freertos\src/list.c **** 	pxIterator->pxNext = pxNewListItem;
+ 172:freertos\src/list.c **** 
+ 173:freertos\src/list.c **** 	/* Remember which list the item is in.  This allows fast removal of the
+ 174:freertos\src/list.c **** 	item later. */
+ 175:freertos\src/list.c **** 	pxNewListItem->pvContainer = ( void * ) pxList;
+ 176:freertos\src/list.c **** 
+ 177:freertos\src/list.c **** 	( pxList->uxNumberOfItems )++;
+ 178:freertos\src/list.c **** }
+ 174              		.loc 1 178 0
+ 175              		@ sp needed
+ 168:freertos\src/list.c **** 	pxNewListItem->pxNext->pxPrevious = pxNewListItem;
+ 176              		.loc 1 168 0
+ 177 001e 4A60     		str	r2, [r1, #4]
+ 169:freertos\src/list.c **** 	pxNewListItem->pxNext->pxPrevious = pxNewListItem;
+ 178              		.loc 1 169 0
+ 179 0020 9160     		str	r1, [r2, #8]
+ 170:freertos\src/list.c **** 	pxIterator->pxNext = pxNewListItem;
+ 180              		.loc 1 170 0
+ 181 0022 8B60     		str	r3, [r1, #8]
+ 171:freertos\src/list.c **** 
+ 182              		.loc 1 171 0
+ 183 0024 5960     		str	r1, [r3, #4]
+ 177:freertos\src/list.c **** }
+ 184              		.loc 1 177 0
+ 185 0026 0368     		ldr	r3, [r0]
+ 186              	.LVL12:
+ 175:freertos\src/list.c **** 
+ 187              		.loc 1 175 0
+ 188 0028 0861     		str	r0, [r1, #16]
+ 177:freertos\src/list.c **** }
+ 189              		.loc 1 177 0
+ 190 002a 0133     		adds	r3, r3, #1
+ 191 002c 0360     		str	r3, [r0]
+ 192              		.loc 1 178 0
+ 193 002e 30BD     		pop	{r4, r5, pc}
+ 194              		.cfi_endproc
+ 195              	.LFE35:
+ 196              		.size	vListInsert, .-vListInsert
+ 197              		.section	.text.uxListRemove,"ax",%progbits
+ 198              		.align	1
+ 199              		.global	uxListRemove
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cceSQHMC.s 			page 8
+
+
+ 200              		.code	16
+ 201              		.thumb_func
+ 202              		.type	uxListRemove, %function
+ 203              	uxListRemove:
+ 204              	.LFB36:
+ 179:freertos\src/list.c **** /*-----------------------------------------------------------*/
+ 180:freertos\src/list.c **** 
+ 181:freertos\src/list.c **** unsigned portBASE_TYPE uxListRemove( xListItem * const pxItemToRemove )
+ 182:freertos\src/list.c **** {
+ 205              		.loc 1 182 0
+ 206              		.cfi_startproc
+ 207              		@ args = 0, pretend = 0, frame = 0
+ 208              		@ frame_needed = 0, uses_anonymous_args = 0
+ 209              		@ link register save eliminated.
+ 210              	.LVL13:
+ 183:freertos\src/list.c **** xList * pxList;
+ 184:freertos\src/list.c **** 
+ 185:freertos\src/list.c **** 	pxItemToRemove->pxNext->pxPrevious = pxItemToRemove->pxPrevious;
+ 211              		.loc 1 185 0
+ 212 0000 4368     		ldr	r3, [r0, #4]
+ 213 0002 8268     		ldr	r2, [r0, #8]
+ 214 0004 9A60     		str	r2, [r3, #8]
+ 186:freertos\src/list.c **** 	pxItemToRemove->pxPrevious->pxNext = pxItemToRemove->pxNext;
+ 215              		.loc 1 186 0
+ 216 0006 8268     		ldr	r2, [r0, #8]
+ 217 0008 5360     		str	r3, [r2, #4]
+ 187:freertos\src/list.c **** 
+ 188:freertos\src/list.c **** 	/* The list item knows which list it is in.  Obtain the list from the list
+ 189:freertos\src/list.c **** 	item. */
+ 190:freertos\src/list.c **** 	pxList = ( xList * ) pxItemToRemove->pvContainer;
+ 218              		.loc 1 190 0
+ 219 000a 0369     		ldr	r3, [r0, #16]
+ 220              	.LVL14:
+ 191:freertos\src/list.c **** 
+ 192:freertos\src/list.c **** 	/* Make sure the index is left pointing to a valid item. */
+ 193:freertos\src/list.c **** 	if( pxList->pxIndex == pxItemToRemove )
+ 221              		.loc 1 193 0
+ 222 000c 5968     		ldr	r1, [r3, #4]
+ 223 000e 8842     		cmp	r0, r1
+ 224 0010 00D1     		bne	.L12
+ 194:freertos\src/list.c **** 	{
+ 195:freertos\src/list.c **** 		pxList->pxIndex = pxItemToRemove->pxPrevious;
+ 225              		.loc 1 195 0
+ 226 0012 5A60     		str	r2, [r3, #4]
+ 227              	.L12:
+ 196:freertos\src/list.c **** 	}
+ 197:freertos\src/list.c **** 
+ 198:freertos\src/list.c **** 	pxItemToRemove->pvContainer = NULL;
+ 228              		.loc 1 198 0
+ 229 0014 0022     		movs	r2, #0
+ 230 0016 0261     		str	r2, [r0, #16]
+ 199:freertos\src/list.c **** 	( pxList->uxNumberOfItems )--;
+ 231              		.loc 1 199 0
+ 232 0018 1A68     		ldr	r2, [r3]
+ 200:freertos\src/list.c **** 
+ 201:freertos\src/list.c **** 	return pxList->uxNumberOfItems;
+ 202:freertos\src/list.c **** }
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cceSQHMC.s 			page 9
+
+
+ 233              		.loc 1 202 0
+ 234              		@ sp needed
+ 199:freertos\src/list.c **** 	( pxList->uxNumberOfItems )--;
+ 235              		.loc 1 199 0
+ 236 001a 501E     		subs	r0, r2, #1
+ 237              	.LVL15:
+ 238 001c 1860     		str	r0, [r3]
+ 239              		.loc 1 202 0
+ 240 001e 7047     		bx	lr
+ 241              		.cfi_endproc
+ 242              	.LFE36:
+ 243              		.size	uxListRemove, .-uxListRemove
+ 244              		.text
+ 245              	.Letext0:
+ 246              		.file 2 ".\\freertos\\include/list.h"
+ 247              		.file 3 ".\\freertos\\include/portmacro.h"
+ 248              		.section	.debug_info,"",%progbits
+ 249              	.Ldebug_info0:
+ 250 0000 7E020000 		.4byte	0x27e
+ 251 0004 0400     		.2byte	0x4
+ 252 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 253 000a 04       		.byte	0x4
+ 254 000b 01       		.uleb128 0x1
+ 255 000c CA000000 		.4byte	.LASF39
+ 256 0010 0C       		.byte	0xc
+ 257 0011 11020000 		.4byte	.LASF40
+ 258 0015 D6010000 		.4byte	.LASF41
+ 259 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 260 001d 00000000 		.4byte	0
+ 261 0021 00000000 		.4byte	.Ldebug_line0
+ 262 0025 02       		.uleb128 0x2
+ 263 0026 04       		.byte	0x4
+ 264 0027 07       		.byte	0x7
+ 265 0028 89010000 		.4byte	.LASF0
+ 266 002c 03       		.uleb128 0x3
+ 267 002d 04       		.byte	0x4
+ 268 002e 05       		.byte	0x5
+ 269 002f 696E7400 		.ascii	"int\000"
+ 270 0033 02       		.uleb128 0x2
+ 271 0034 01       		.byte	0x1
+ 272 0035 06       		.byte	0x6
+ 273 0036 86020000 		.4byte	.LASF1
+ 274 003a 02       		.uleb128 0x2
+ 275 003b 01       		.byte	0x1
+ 276 003c 08       		.byte	0x8
+ 277 003d 54000000 		.4byte	.LASF2
+ 278 0041 02       		.uleb128 0x2
+ 279 0042 02       		.byte	0x2
+ 280 0043 05       		.byte	0x5
+ 281 0044 56020000 		.4byte	.LASF3
+ 282 0048 02       		.uleb128 0x2
+ 283 0049 02       		.byte	0x2
+ 284 004a 07       		.byte	0x7
+ 285 004b B7000000 		.4byte	.LASF4
+ 286 004f 02       		.uleb128 0x2
+ 287 0050 04       		.byte	0x4
+ 288 0051 05       		.byte	0x5
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cceSQHMC.s 			page 10
+
+
+ 289 0052 60020000 		.4byte	.LASF5
+ 290 0056 02       		.uleb128 0x2
+ 291 0057 04       		.byte	0x4
+ 292 0058 07       		.byte	0x7
+ 293 0059 62000000 		.4byte	.LASF6
+ 294 005d 02       		.uleb128 0x2
+ 295 005e 08       		.byte	0x8
+ 296 005f 05       		.byte	0x5
+ 297 0060 2E020000 		.4byte	.LASF7
+ 298 0064 02       		.uleb128 0x2
+ 299 0065 08       		.byte	0x8
+ 300 0066 07       		.byte	0x7
+ 301 0067 B8010000 		.4byte	.LASF8
+ 302 006b 02       		.uleb128 0x2
+ 303 006c 04       		.byte	0x4
+ 304 006d 07       		.byte	0x7
+ 305 006e 25020000 		.4byte	.LASF9
+ 306 0072 04       		.uleb128 0x4
+ 307 0073 04       		.byte	0x4
+ 308 0074 02       		.uleb128 0x2
+ 309 0075 01       		.byte	0x1
+ 310 0076 08       		.byte	0x8
+ 311 0077 46020000 		.4byte	.LASF10
+ 312 007b 02       		.uleb128 0x2
+ 313 007c 04       		.byte	0x4
+ 314 007d 04       		.byte	0x4
+ 315 007e 4E000000 		.4byte	.LASF11
+ 316 0082 02       		.uleb128 0x2
+ 317 0083 08       		.byte	0x8
+ 318 0084 04       		.byte	0x4
+ 319 0085 B0000000 		.4byte	.LASF12
+ 320 0089 05       		.uleb128 0x5
+ 321 008a 14000000 		.4byte	.LASF18
+ 322 008e 03       		.byte	0x3
+ 323 008f 61       		.byte	0x61
+ 324 0090 56000000 		.4byte	0x56
+ 325 0094 06       		.uleb128 0x6
+ 326 0095 43000000 		.4byte	.LASF20
+ 327 0099 14       		.byte	0x14
+ 328 009a 02       		.byte	0x2
+ 329 009b 88       		.byte	0x88
+ 330 009c DD000000 		.4byte	0xdd
+ 331 00a0 07       		.uleb128 0x7
+ 332 00a1 21000000 		.4byte	.LASF13
+ 333 00a5 02       		.byte	0x2
+ 334 00a6 8A       		.byte	0x8a
+ 335 00a7 89000000 		.4byte	0x89
+ 336 00ab 00       		.byte	0
+ 337 00ac 07       		.uleb128 0x7
+ 338 00ad 82010000 		.4byte	.LASF14
+ 339 00b1 02       		.byte	0x2
+ 340 00b2 8B       		.byte	0x8b
+ 341 00b3 DD000000 		.4byte	0xdd
+ 342 00b7 04       		.byte	0x4
+ 343 00b8 07       		.uleb128 0x7
+ 344 00b9 83000000 		.4byte	.LASF15
+ 345 00bd 02       		.byte	0x2
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cceSQHMC.s 			page 11
+
+
+ 346 00be 8C       		.byte	0x8c
+ 347 00bf DD000000 		.4byte	0xdd
+ 348 00c3 08       		.byte	0x8
+ 349 00c4 07       		.uleb128 0x7
+ 350 00c5 3B000000 		.4byte	.LASF16
+ 351 00c9 02       		.byte	0x2
+ 352 00ca 8D       		.byte	0x8d
+ 353 00cb 72000000 		.4byte	0x72
+ 354 00cf 0C       		.byte	0xc
+ 355 00d0 07       		.uleb128 0x7
+ 356 00d1 00000000 		.4byte	.LASF17
+ 357 00d5 02       		.byte	0x2
+ 358 00d6 8E       		.byte	0x8e
+ 359 00d7 72000000 		.4byte	0x72
+ 360 00db 10       		.byte	0x10
+ 361 00dc 00       		.byte	0
+ 362 00dd 08       		.uleb128 0x8
+ 363 00de 04       		.byte	0x4
+ 364 00df 94000000 		.4byte	0x94
+ 365 00e3 05       		.uleb128 0x5
+ 366 00e4 3C020000 		.4byte	.LASF19
+ 367 00e8 02       		.byte	0x2
+ 368 00e9 90       		.byte	0x90
+ 369 00ea 94000000 		.4byte	0x94
+ 370 00ee 06       		.uleb128 0x6
+ 371 00ef 76020000 		.4byte	.LASF21
+ 372 00f3 0C       		.byte	0xc
+ 373 00f4 02       		.byte	0x2
+ 374 00f5 92       		.byte	0x92
+ 375 00f6 1F010000 		.4byte	0x11f
+ 376 00fa 07       		.uleb128 0x7
+ 377 00fb 21000000 		.4byte	.LASF13
+ 378 00ff 02       		.byte	0x2
+ 379 0100 94       		.byte	0x94
+ 380 0101 89000000 		.4byte	0x89
+ 381 0105 00       		.byte	0
+ 382 0106 07       		.uleb128 0x7
+ 383 0107 82010000 		.4byte	.LASF14
+ 384 010b 02       		.byte	0x2
+ 385 010c 95       		.byte	0x95
+ 386 010d DD000000 		.4byte	0xdd
+ 387 0111 04       		.byte	0x4
+ 388 0112 07       		.uleb128 0x7
+ 389 0113 83000000 		.4byte	.LASF15
+ 390 0117 02       		.byte	0x2
+ 391 0118 96       		.byte	0x96
+ 392 0119 DD000000 		.4byte	0xdd
+ 393 011d 08       		.byte	0x8
+ 394 011e 00       		.byte	0
+ 395 011f 05       		.uleb128 0x5
+ 396 0120 A2000000 		.4byte	.LASF22
+ 397 0124 02       		.byte	0x2
+ 398 0125 98       		.byte	0x98
+ 399 0126 EE000000 		.4byte	0xee
+ 400 012a 06       		.uleb128 0x6
+ 401 012b 99020000 		.4byte	.LASF23
+ 402 012f 14       		.byte	0x14
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cceSQHMC.s 			page 12
+
+
+ 403 0130 02       		.byte	0x2
+ 404 0131 9D       		.byte	0x9d
+ 405 0132 5B010000 		.4byte	0x15b
+ 406 0136 07       		.uleb128 0x7
+ 407 0137 63010000 		.4byte	.LASF24
+ 408 013b 02       		.byte	0x2
+ 409 013c 9F       		.byte	0x9f
+ 410 013d 56000000 		.4byte	0x56
+ 411 0141 00       		.byte	0
+ 412 0142 07       		.uleb128 0x7
+ 413 0143 0C000000 		.4byte	.LASF25
+ 414 0147 02       		.byte	0x2
+ 415 0148 A0       		.byte	0xa0
+ 416 0149 5B010000 		.4byte	0x15b
+ 417 014d 04       		.byte	0x4
+ 418 014e 07       		.uleb128 0x7
+ 419 014f 32000000 		.4byte	.LASF26
+ 420 0153 02       		.byte	0x2
+ 421 0154 A1       		.byte	0xa1
+ 422 0155 1F010000 		.4byte	0x11f
+ 423 0159 08       		.byte	0x8
+ 424 015a 00       		.byte	0
+ 425 015b 08       		.uleb128 0x8
+ 426 015c 04       		.byte	0x4
+ 427 015d E3000000 		.4byte	0xe3
+ 428 0161 05       		.uleb128 0x5
+ 429 0162 2C000000 		.4byte	.LASF27
+ 430 0166 02       		.byte	0x2
+ 431 0167 A2       		.byte	0xa2
+ 432 0168 2A010000 		.4byte	0x12a
+ 433 016c 09       		.uleb128 0x9
+ 434 016d 96010000 		.4byte	.LASF28
+ 435 0171 01       		.byte	0x1
+ 436 0172 4B       		.byte	0x4b
+ 437 0173 00000000 		.4byte	.LFB32
+ 438 0177 16000000 		.4byte	.LFE32-.LFB32
+ 439 017b 01       		.uleb128 0x1
+ 440 017c 9C       		.byte	0x9c
+ 441 017d 8F010000 		.4byte	0x18f
+ 442 0181 0A       		.uleb128 0xa
+ 443 0182 92020000 		.4byte	.LASF30
+ 444 0186 01       		.byte	0x1
+ 445 0187 4B       		.byte	0x4b
+ 446 0188 95010000 		.4byte	0x195
+ 447 018c 01       		.uleb128 0x1
+ 448 018d 50       		.byte	0x50
+ 449 018e 00       		.byte	0
+ 450 018f 08       		.uleb128 0x8
+ 451 0190 04       		.byte	0x4
+ 452 0191 61010000 		.4byte	0x161
+ 453 0195 0B       		.uleb128 0xb
+ 454 0196 8F010000 		.4byte	0x18f
+ 455 019a 09       		.uleb128 0x9
+ 456 019b 8E000000 		.4byte	.LASF29
+ 457 019f 01       		.byte	0x1
+ 458 01a0 5F       		.byte	0x5f
+ 459 01a1 00000000 		.4byte	.LFB33
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cceSQHMC.s 			page 13
+
+
+ 460 01a5 06000000 		.4byte	.LFE33-.LFB33
+ 461 01a9 01       		.uleb128 0x1
+ 462 01aa 9C       		.byte	0x9c
+ 463 01ab BD010000 		.4byte	0x1bd
+ 464 01af 0A       		.uleb128 0xa
+ 465 01b0 CF010000 		.4byte	.LASF31
+ 466 01b4 01       		.byte	0x1
+ 467 01b5 5F       		.byte	0x5f
+ 468 01b6 BD010000 		.4byte	0x1bd
+ 469 01ba 01       		.uleb128 0x1
+ 470 01bb 50       		.byte	0x50
+ 471 01bc 00       		.byte	0
+ 472 01bd 0B       		.uleb128 0xb
+ 473 01be 5B010000 		.4byte	0x15b
+ 474 01c2 09       		.uleb128 0x9
+ 475 01c3 73010000 		.4byte	.LASF32
+ 476 01c7 01       		.byte	0x1
+ 477 01c8 66       		.byte	0x66
+ 478 01c9 00000000 		.4byte	.LFB34
+ 479 01cd 18000000 		.4byte	.LFE34-.LFB34
+ 480 01d1 01       		.uleb128 0x1
+ 481 01d2 9C       		.byte	0x9c
+ 482 01d3 01020000 		.4byte	0x201
+ 483 01d7 0A       		.uleb128 0xa
+ 484 01d8 92020000 		.4byte	.LASF30
+ 485 01dc 01       		.byte	0x1
+ 486 01dd 66       		.byte	0x66
+ 487 01de 95010000 		.4byte	0x195
+ 488 01e2 01       		.uleb128 0x1
+ 489 01e3 50       		.byte	0x50
+ 490 01e4 0A       		.uleb128 0xa
+ 491 01e5 9F020000 		.4byte	.LASF33
+ 492 01e9 01       		.byte	0x1
+ 493 01ea 66       		.byte	0x66
+ 494 01eb BD010000 		.4byte	0x1bd
+ 495 01ef 01       		.uleb128 0x1
+ 496 01f0 51       		.byte	0x51
+ 497 01f1 0C       		.uleb128 0xc
+ 498 01f2 0C000000 		.4byte	.LASF25
+ 499 01f6 01       		.byte	0x1
+ 500 01f7 68       		.byte	0x68
+ 501 01f8 5B010000 		.4byte	0x15b
+ 502 01fc 00000000 		.4byte	.LLST0
+ 503 0200 00       		.byte	0
+ 504 0201 09       		.uleb128 0x9
+ 505 0202 AD020000 		.4byte	.LASF34
+ 506 0206 01       		.byte	0x1
+ 507 0207 7B       		.byte	0x7b
+ 508 0208 00000000 		.4byte	.LFB35
+ 509 020c 30000000 		.4byte	.LFE35-.LFB35
+ 510 0210 01       		.uleb128 0x1
+ 511 0211 9C       		.byte	0x9c
+ 512 0212 4F020000 		.4byte	0x24f
+ 513 0216 0A       		.uleb128 0xa
+ 514 0217 92020000 		.4byte	.LASF30
+ 515 021b 01       		.byte	0x1
+ 516 021c 7B       		.byte	0x7b
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cceSQHMC.s 			page 14
+
+
+ 517 021d 95010000 		.4byte	0x195
+ 518 0221 01       		.uleb128 0x1
+ 519 0222 50       		.byte	0x50
+ 520 0223 0A       		.uleb128 0xa
+ 521 0224 9F020000 		.4byte	.LASF33
+ 522 0228 01       		.byte	0x1
+ 523 0229 7B       		.byte	0x7b
+ 524 022a BD010000 		.4byte	0x1bd
+ 525 022e 01       		.uleb128 0x1
+ 526 022f 51       		.byte	0x51
+ 527 0230 0C       		.uleb128 0xc
+ 528 0231 4B020000 		.4byte	.LASF35
+ 529 0235 01       		.byte	0x1
+ 530 0236 7D       		.byte	0x7d
+ 531 0237 5B010000 		.4byte	0x15b
+ 532 023b 1F000000 		.4byte	.LLST1
+ 533 023f 0C       		.uleb128 0xc
+ 534 0240 A6010000 		.4byte	.LASF36
+ 535 0244 01       		.byte	0x1
+ 536 0245 7E       		.byte	0x7e
+ 537 0246 89000000 		.4byte	0x89
+ 538 024a 49000000 		.4byte	.LLST2
+ 539 024e 00       		.byte	0
+ 540 024f 0D       		.uleb128 0xd
+ 541 0250 69020000 		.4byte	.LASF37
+ 542 0254 01       		.byte	0x1
+ 543 0255 B5       		.byte	0xb5
+ 544 0256 56000000 		.4byte	0x56
+ 545 025a 00000000 		.4byte	.LFB36
+ 546 025e 20000000 		.4byte	.LFE36-.LFB36
+ 547 0262 01       		.uleb128 0x1
+ 548 0263 9C       		.byte	0x9c
+ 549 0264 0E       		.uleb128 0xe
+ 550 0265 74000000 		.4byte	.LASF38
+ 551 0269 01       		.byte	0x1
+ 552 026a B5       		.byte	0xb5
+ 553 026b BD010000 		.4byte	0x1bd
+ 554 026f 68000000 		.4byte	.LLST3
+ 555 0273 0F       		.uleb128 0xf
+ 556 0274 92020000 		.4byte	.LASF30
+ 557 0278 01       		.byte	0x1
+ 558 0279 B7       		.byte	0xb7
+ 559 027a 8F010000 		.4byte	0x18f
+ 560 027e 01       		.uleb128 0x1
+ 561 027f 53       		.byte	0x53
+ 562 0280 00       		.byte	0
+ 563 0281 00       		.byte	0
+ 564              		.section	.debug_abbrev,"",%progbits
+ 565              	.Ldebug_abbrev0:
+ 566 0000 01       		.uleb128 0x1
+ 567 0001 11       		.uleb128 0x11
+ 568 0002 01       		.byte	0x1
+ 569 0003 25       		.uleb128 0x25
+ 570 0004 0E       		.uleb128 0xe
+ 571 0005 13       		.uleb128 0x13
+ 572 0006 0B       		.uleb128 0xb
+ 573 0007 03       		.uleb128 0x3
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cceSQHMC.s 			page 15
+
+
+ 574 0008 0E       		.uleb128 0xe
+ 575 0009 1B       		.uleb128 0x1b
+ 576 000a 0E       		.uleb128 0xe
+ 577 000b 55       		.uleb128 0x55
+ 578 000c 17       		.uleb128 0x17
+ 579 000d 11       		.uleb128 0x11
+ 580 000e 01       		.uleb128 0x1
+ 581 000f 10       		.uleb128 0x10
+ 582 0010 17       		.uleb128 0x17
+ 583 0011 00       		.byte	0
+ 584 0012 00       		.byte	0
+ 585 0013 02       		.uleb128 0x2
+ 586 0014 24       		.uleb128 0x24
+ 587 0015 00       		.byte	0
+ 588 0016 0B       		.uleb128 0xb
+ 589 0017 0B       		.uleb128 0xb
+ 590 0018 3E       		.uleb128 0x3e
+ 591 0019 0B       		.uleb128 0xb
+ 592 001a 03       		.uleb128 0x3
+ 593 001b 0E       		.uleb128 0xe
+ 594 001c 00       		.byte	0
+ 595 001d 00       		.byte	0
+ 596 001e 03       		.uleb128 0x3
+ 597 001f 24       		.uleb128 0x24
+ 598 0020 00       		.byte	0
+ 599 0021 0B       		.uleb128 0xb
+ 600 0022 0B       		.uleb128 0xb
+ 601 0023 3E       		.uleb128 0x3e
+ 602 0024 0B       		.uleb128 0xb
+ 603 0025 03       		.uleb128 0x3
+ 604 0026 08       		.uleb128 0x8
+ 605 0027 00       		.byte	0
+ 606 0028 00       		.byte	0
+ 607 0029 04       		.uleb128 0x4
+ 608 002a 0F       		.uleb128 0xf
+ 609 002b 00       		.byte	0
+ 610 002c 0B       		.uleb128 0xb
+ 611 002d 0B       		.uleb128 0xb
+ 612 002e 00       		.byte	0
+ 613 002f 00       		.byte	0
+ 614 0030 05       		.uleb128 0x5
+ 615 0031 16       		.uleb128 0x16
+ 616 0032 00       		.byte	0
+ 617 0033 03       		.uleb128 0x3
+ 618 0034 0E       		.uleb128 0xe
+ 619 0035 3A       		.uleb128 0x3a
+ 620 0036 0B       		.uleb128 0xb
+ 621 0037 3B       		.uleb128 0x3b
+ 622 0038 0B       		.uleb128 0xb
+ 623 0039 49       		.uleb128 0x49
+ 624 003a 13       		.uleb128 0x13
+ 625 003b 00       		.byte	0
+ 626 003c 00       		.byte	0
+ 627 003d 06       		.uleb128 0x6
+ 628 003e 13       		.uleb128 0x13
+ 629 003f 01       		.byte	0x1
+ 630 0040 03       		.uleb128 0x3
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cceSQHMC.s 			page 16
+
+
+ 631 0041 0E       		.uleb128 0xe
+ 632 0042 0B       		.uleb128 0xb
+ 633 0043 0B       		.uleb128 0xb
+ 634 0044 3A       		.uleb128 0x3a
+ 635 0045 0B       		.uleb128 0xb
+ 636 0046 3B       		.uleb128 0x3b
+ 637 0047 0B       		.uleb128 0xb
+ 638 0048 01       		.uleb128 0x1
+ 639 0049 13       		.uleb128 0x13
+ 640 004a 00       		.byte	0
+ 641 004b 00       		.byte	0
+ 642 004c 07       		.uleb128 0x7
+ 643 004d 0D       		.uleb128 0xd
+ 644 004e 00       		.byte	0
+ 645 004f 03       		.uleb128 0x3
+ 646 0050 0E       		.uleb128 0xe
+ 647 0051 3A       		.uleb128 0x3a
+ 648 0052 0B       		.uleb128 0xb
+ 649 0053 3B       		.uleb128 0x3b
+ 650 0054 0B       		.uleb128 0xb
+ 651 0055 49       		.uleb128 0x49
+ 652 0056 13       		.uleb128 0x13
+ 653 0057 38       		.uleb128 0x38
+ 654 0058 0B       		.uleb128 0xb
+ 655 0059 00       		.byte	0
+ 656 005a 00       		.byte	0
+ 657 005b 08       		.uleb128 0x8
+ 658 005c 0F       		.uleb128 0xf
+ 659 005d 00       		.byte	0
+ 660 005e 0B       		.uleb128 0xb
+ 661 005f 0B       		.uleb128 0xb
+ 662 0060 49       		.uleb128 0x49
+ 663 0061 13       		.uleb128 0x13
+ 664 0062 00       		.byte	0
+ 665 0063 00       		.byte	0
+ 666 0064 09       		.uleb128 0x9
+ 667 0065 2E       		.uleb128 0x2e
+ 668 0066 01       		.byte	0x1
+ 669 0067 3F       		.uleb128 0x3f
+ 670 0068 19       		.uleb128 0x19
+ 671 0069 03       		.uleb128 0x3
+ 672 006a 0E       		.uleb128 0xe
+ 673 006b 3A       		.uleb128 0x3a
+ 674 006c 0B       		.uleb128 0xb
+ 675 006d 3B       		.uleb128 0x3b
+ 676 006e 0B       		.uleb128 0xb
+ 677 006f 27       		.uleb128 0x27
+ 678 0070 19       		.uleb128 0x19
+ 679 0071 11       		.uleb128 0x11
+ 680 0072 01       		.uleb128 0x1
+ 681 0073 12       		.uleb128 0x12
+ 682 0074 06       		.uleb128 0x6
+ 683 0075 40       		.uleb128 0x40
+ 684 0076 18       		.uleb128 0x18
+ 685 0077 9742     		.uleb128 0x2117
+ 686 0079 19       		.uleb128 0x19
+ 687 007a 01       		.uleb128 0x1
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cceSQHMC.s 			page 17
+
+
+ 688 007b 13       		.uleb128 0x13
+ 689 007c 00       		.byte	0
+ 690 007d 00       		.byte	0
+ 691 007e 0A       		.uleb128 0xa
+ 692 007f 05       		.uleb128 0x5
+ 693 0080 00       		.byte	0
+ 694 0081 03       		.uleb128 0x3
+ 695 0082 0E       		.uleb128 0xe
+ 696 0083 3A       		.uleb128 0x3a
+ 697 0084 0B       		.uleb128 0xb
+ 698 0085 3B       		.uleb128 0x3b
+ 699 0086 0B       		.uleb128 0xb
+ 700 0087 49       		.uleb128 0x49
+ 701 0088 13       		.uleb128 0x13
+ 702 0089 02       		.uleb128 0x2
+ 703 008a 18       		.uleb128 0x18
+ 704 008b 00       		.byte	0
+ 705 008c 00       		.byte	0
+ 706 008d 0B       		.uleb128 0xb
+ 707 008e 26       		.uleb128 0x26
+ 708 008f 00       		.byte	0
+ 709 0090 49       		.uleb128 0x49
+ 710 0091 13       		.uleb128 0x13
+ 711 0092 00       		.byte	0
+ 712 0093 00       		.byte	0
+ 713 0094 0C       		.uleb128 0xc
+ 714 0095 34       		.uleb128 0x34
+ 715 0096 00       		.byte	0
+ 716 0097 03       		.uleb128 0x3
+ 717 0098 0E       		.uleb128 0xe
+ 718 0099 3A       		.uleb128 0x3a
+ 719 009a 0B       		.uleb128 0xb
+ 720 009b 3B       		.uleb128 0x3b
+ 721 009c 0B       		.uleb128 0xb
+ 722 009d 49       		.uleb128 0x49
+ 723 009e 13       		.uleb128 0x13
+ 724 009f 02       		.uleb128 0x2
+ 725 00a0 17       		.uleb128 0x17
+ 726 00a1 00       		.byte	0
+ 727 00a2 00       		.byte	0
+ 728 00a3 0D       		.uleb128 0xd
+ 729 00a4 2E       		.uleb128 0x2e
+ 730 00a5 01       		.byte	0x1
+ 731 00a6 3F       		.uleb128 0x3f
+ 732 00a7 19       		.uleb128 0x19
+ 733 00a8 03       		.uleb128 0x3
+ 734 00a9 0E       		.uleb128 0xe
+ 735 00aa 3A       		.uleb128 0x3a
+ 736 00ab 0B       		.uleb128 0xb
+ 737 00ac 3B       		.uleb128 0x3b
+ 738 00ad 0B       		.uleb128 0xb
+ 739 00ae 27       		.uleb128 0x27
+ 740 00af 19       		.uleb128 0x19
+ 741 00b0 49       		.uleb128 0x49
+ 742 00b1 13       		.uleb128 0x13
+ 743 00b2 11       		.uleb128 0x11
+ 744 00b3 01       		.uleb128 0x1
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cceSQHMC.s 			page 18
+
+
+ 745 00b4 12       		.uleb128 0x12
+ 746 00b5 06       		.uleb128 0x6
+ 747 00b6 40       		.uleb128 0x40
+ 748 00b7 18       		.uleb128 0x18
+ 749 00b8 9742     		.uleb128 0x2117
+ 750 00ba 19       		.uleb128 0x19
+ 751 00bb 00       		.byte	0
+ 752 00bc 00       		.byte	0
+ 753 00bd 0E       		.uleb128 0xe
+ 754 00be 05       		.uleb128 0x5
+ 755 00bf 00       		.byte	0
+ 756 00c0 03       		.uleb128 0x3
+ 757 00c1 0E       		.uleb128 0xe
+ 758 00c2 3A       		.uleb128 0x3a
+ 759 00c3 0B       		.uleb128 0xb
+ 760 00c4 3B       		.uleb128 0x3b
+ 761 00c5 0B       		.uleb128 0xb
+ 762 00c6 49       		.uleb128 0x49
+ 763 00c7 13       		.uleb128 0x13
+ 764 00c8 02       		.uleb128 0x2
+ 765 00c9 17       		.uleb128 0x17
+ 766 00ca 00       		.byte	0
+ 767 00cb 00       		.byte	0
+ 768 00cc 0F       		.uleb128 0xf
+ 769 00cd 34       		.uleb128 0x34
+ 770 00ce 00       		.byte	0
+ 771 00cf 03       		.uleb128 0x3
+ 772 00d0 0E       		.uleb128 0xe
+ 773 00d1 3A       		.uleb128 0x3a
+ 774 00d2 0B       		.uleb128 0xb
+ 775 00d3 3B       		.uleb128 0x3b
+ 776 00d4 0B       		.uleb128 0xb
+ 777 00d5 49       		.uleb128 0x49
+ 778 00d6 13       		.uleb128 0x13
+ 779 00d7 02       		.uleb128 0x2
+ 780 00d8 18       		.uleb128 0x18
+ 781 00d9 00       		.byte	0
+ 782 00da 00       		.byte	0
+ 783 00db 00       		.byte	0
+ 784              		.section	.debug_loc,"",%progbits
+ 785              	.Ldebug_loc0:
+ 786              	.LLST0:
+ 787 0000 02000000 		.4byte	.LVL3
+ 788 0004 10000000 		.4byte	.LVL4
+ 789 0008 0100     		.2byte	0x1
+ 790 000a 53       		.byte	0x53
+ 791 000b 10000000 		.4byte	.LVL4
+ 792 000f 18000000 		.4byte	.LFE34
+ 793 0013 0200     		.2byte	0x2
+ 794 0015 70       		.byte	0x70
+ 795 0016 04       		.sleb128 4
+ 796 0017 00000000 		.4byte	0
+ 797 001b 00000000 		.4byte	0
+ 798              	.LLST1:
+ 799 001f 0E000000 		.4byte	.LVL7
+ 800 0023 1A000000 		.4byte	.LVL9
+ 801 0027 0100     		.2byte	0x1
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cceSQHMC.s 			page 19
+
+
+ 802 0029 53       		.byte	0x53
+ 803 002a 1C000000 		.4byte	.LVL10
+ 804 002e 28000000 		.4byte	.LVL12
+ 805 0032 0100     		.2byte	0x1
+ 806 0034 53       		.byte	0x53
+ 807 0035 28000000 		.4byte	.LVL12
+ 808 0039 30000000 		.4byte	.LFE35
+ 809 003d 0200     		.2byte	0x2
+ 810 003f 71       		.byte	0x71
+ 811 0040 08       		.sleb128 8
+ 812 0041 00000000 		.4byte	0
+ 813 0045 00000000 		.4byte	0
+ 814              	.LLST2:
+ 815 0049 04000000 		.4byte	.LVL6
+ 816 004d 1E000000 		.4byte	.LVL11
+ 817 0051 0100     		.2byte	0x1
+ 818 0053 52       		.byte	0x52
+ 819 0054 1E000000 		.4byte	.LVL11
+ 820 0058 30000000 		.4byte	.LFE35
+ 821 005c 0200     		.2byte	0x2
+ 822 005e 71       		.byte	0x71
+ 823 005f 00       		.sleb128 0
+ 824 0060 00000000 		.4byte	0
+ 825 0064 00000000 		.4byte	0
+ 826              	.LLST3:
+ 827 0068 00000000 		.4byte	.LVL13
+ 828 006c 1C000000 		.4byte	.LVL15
+ 829 0070 0100     		.2byte	0x1
+ 830 0072 50       		.byte	0x50
+ 831 0073 1C000000 		.4byte	.LVL15
+ 832 0077 20000000 		.4byte	.LFE36
+ 833 007b 0400     		.2byte	0x4
+ 834 007d F3       		.byte	0xf3
+ 835 007e 01       		.uleb128 0x1
+ 836 007f 50       		.byte	0x50
+ 837 0080 9F       		.byte	0x9f
+ 838 0081 00000000 		.4byte	0
+ 839 0085 00000000 		.4byte	0
+ 840              		.section	.debug_aranges,"",%progbits
+ 841 0000 3C000000 		.4byte	0x3c
+ 842 0004 0200     		.2byte	0x2
+ 843 0006 00000000 		.4byte	.Ldebug_info0
+ 844 000a 04       		.byte	0x4
+ 845 000b 00       		.byte	0
+ 846 000c 0000     		.2byte	0
+ 847 000e 0000     		.2byte	0
+ 848 0010 00000000 		.4byte	.LFB32
+ 849 0014 16000000 		.4byte	.LFE32-.LFB32
+ 850 0018 00000000 		.4byte	.LFB33
+ 851 001c 06000000 		.4byte	.LFE33-.LFB33
+ 852 0020 00000000 		.4byte	.LFB34
+ 853 0024 18000000 		.4byte	.LFE34-.LFB34
+ 854 0028 00000000 		.4byte	.LFB35
+ 855 002c 30000000 		.4byte	.LFE35-.LFB35
+ 856 0030 00000000 		.4byte	.LFB36
+ 857 0034 20000000 		.4byte	.LFE36-.LFB36
+ 858 0038 00000000 		.4byte	0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cceSQHMC.s 			page 20
+
+
+ 859 003c 00000000 		.4byte	0
+ 860              		.section	.debug_ranges,"",%progbits
+ 861              	.Ldebug_ranges0:
+ 862 0000 00000000 		.4byte	.LFB32
+ 863 0004 16000000 		.4byte	.LFE32
+ 864 0008 00000000 		.4byte	.LFB33
+ 865 000c 06000000 		.4byte	.LFE33
+ 866 0010 00000000 		.4byte	.LFB34
+ 867 0014 18000000 		.4byte	.LFE34
+ 868 0018 00000000 		.4byte	.LFB35
+ 869 001c 30000000 		.4byte	.LFE35
+ 870 0020 00000000 		.4byte	.LFB36
+ 871 0024 20000000 		.4byte	.LFE36
+ 872 0028 00000000 		.4byte	0
+ 873 002c 00000000 		.4byte	0
+ 874              		.section	.debug_line,"",%progbits
+ 875              	.Ldebug_line0:
+ 876 0000 F7000000 		.section	.debug_str,"MS",%progbits,1
+ 876      02005600 
+ 876      00000201 
+ 876      FB0E0D00 
+ 876      01010101 
+ 877              	.LASF17:
+ 878 0000 7076436F 		.ascii	"pvContainer\000"
+ 878      6E746169 
+ 878      6E657200 
+ 879              	.LASF25:
+ 880 000c 7078496E 		.ascii	"pxIndex\000"
+ 880      64657800 
+ 881              	.LASF18:
+ 882 0014 706F7274 		.ascii	"portTickType\000"
+ 882      5469636B 
+ 882      54797065 
+ 882      00
+ 883              	.LASF13:
+ 884 0021 78497465 		.ascii	"xItemValue\000"
+ 884      6D56616C 
+ 884      756500
+ 885              	.LASF27:
+ 886 002c 784C6973 		.ascii	"xList\000"
+ 886      7400
+ 887              	.LASF26:
+ 888 0032 784C6973 		.ascii	"xListEnd\000"
+ 888      74456E64 
+ 888      00
+ 889              	.LASF16:
+ 890 003b 70764F77 		.ascii	"pvOwner\000"
+ 890      6E657200 
+ 891              	.LASF20:
+ 892 0043 784C4953 		.ascii	"xLIST_ITEM\000"
+ 892      545F4954 
+ 892      454D00
+ 893              	.LASF11:
+ 894 004e 666C6F61 		.ascii	"float\000"
+ 894      7400
+ 895              	.LASF2:
+ 896 0054 756E7369 		.ascii	"unsigned char\000"
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cceSQHMC.s 			page 21
+
+
+ 896      676E6564 
+ 896      20636861 
+ 896      7200
+ 897              	.LASF6:
+ 898 0062 6C6F6E67 		.ascii	"long unsigned int\000"
+ 898      20756E73 
+ 898      69676E65 
+ 898      6420696E 
+ 898      7400
+ 899              	.LASF38:
+ 900 0074 70784974 		.ascii	"pxItemToRemove\000"
+ 900      656D546F 
+ 900      52656D6F 
+ 900      766500
+ 901              	.LASF15:
+ 902 0083 70785072 		.ascii	"pxPrevious\000"
+ 902      6576696F 
+ 902      757300
+ 903              	.LASF29:
+ 904 008e 764C6973 		.ascii	"vListInitialiseItem\000"
+ 904      74496E69 
+ 904      7469616C 
+ 904      69736549 
+ 904      74656D00 
+ 905              	.LASF22:
+ 906 00a2 784D696E 		.ascii	"xMiniListItem\000"
+ 906      694C6973 
+ 906      74497465 
+ 906      6D00
+ 907              	.LASF12:
+ 908 00b0 646F7562 		.ascii	"double\000"
+ 908      6C6500
+ 909              	.LASF4:
+ 910 00b7 73686F72 		.ascii	"short unsigned int\000"
+ 910      7420756E 
+ 910      7369676E 
+ 910      65642069 
+ 910      6E7400
+ 911              	.LASF39:
+ 912 00ca 474E5520 		.ascii	"GNU C99 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 912      43393920 
+ 912      352E342E 
+ 912      31203230 
+ 912      31363036 
+ 913 00fd 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 913      20726576 
+ 913      6973696F 
+ 913      6E203233 
+ 913      37373135 
+ 914 0130 73202D73 		.ascii	"s -std=gnu99 -ffunction-sections -ffat-lto-objects\000"
+ 914      74643D67 
+ 914      6E753939 
+ 914      202D6666 
+ 914      756E6374 
+ 915              	.LASF24:
+ 916 0163 75784E75 		.ascii	"uxNumberOfItems\000"
+ 916      6D626572 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cceSQHMC.s 			page 22
+
+
+ 916      4F664974 
+ 916      656D7300 
+ 917              	.LASF32:
+ 918 0173 764C6973 		.ascii	"vListInsertEnd\000"
+ 918      74496E73 
+ 918      65727445 
+ 918      6E6400
+ 919              	.LASF14:
+ 920 0182 70784E65 		.ascii	"pxNext\000"
+ 920      787400
+ 921              	.LASF0:
+ 922 0189 756E7369 		.ascii	"unsigned int\000"
+ 922      676E6564 
+ 922      20696E74 
+ 922      00
+ 923              	.LASF28:
+ 924 0196 764C6973 		.ascii	"vListInitialise\000"
+ 924      74496E69 
+ 924      7469616C 
+ 924      69736500 
+ 925              	.LASF36:
+ 926 01a6 7856616C 		.ascii	"xValueOfInsertion\000"
+ 926      75654F66 
+ 926      496E7365 
+ 926      7274696F 
+ 926      6E00
+ 927              	.LASF8:
+ 928 01b8 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 928      206C6F6E 
+ 928      6720756E 
+ 928      7369676E 
+ 928      65642069 
+ 929              	.LASF31:
+ 930 01cf 70784974 		.ascii	"pxItem\000"
+ 930      656D00
+ 931              	.LASF41:
+ 932 01d6 443A5C31 		.ascii	"D:\\1_work\\my_project\\ReloadPro\\psoc42boot\\Relo"
+ 932      5F776F72 
+ 932      6B5C6D79 
+ 932      5F70726F 
+ 932      6A656374 
+ 933 0204 61642050 		.ascii	"ad Pro.cydsn\000"
+ 933      726F2E63 
+ 933      7964736E 
+ 933      00
+ 934              	.LASF40:
+ 935 0211 66726565 		.ascii	"freertos\\src\\list.c\000"
+ 935      72746F73 
+ 935      5C737263 
+ 935      5C6C6973 
+ 935      742E6300 
+ 936              	.LASF9:
+ 937 0225 73697A65 		.ascii	"sizetype\000"
+ 937      74797065 
+ 937      00
+ 938              	.LASF7:
+ 939 022e 6C6F6E67 		.ascii	"long long int\000"
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cceSQHMC.s 			page 23
+
+
+ 939      206C6F6E 
+ 939      6720696E 
+ 939      7400
+ 940              	.LASF19:
+ 941 023c 784C6973 		.ascii	"xListItem\000"
+ 941      74497465 
+ 941      6D00
+ 942              	.LASF10:
+ 943 0246 63686172 		.ascii	"char\000"
+ 943      00
+ 944              	.LASF35:
+ 945 024b 70784974 		.ascii	"pxIterator\000"
+ 945      65726174 
+ 945      6F7200
+ 946              	.LASF3:
+ 947 0256 73686F72 		.ascii	"short int\000"
+ 947      7420696E 
+ 947      7400
+ 948              	.LASF5:
+ 949 0260 6C6F6E67 		.ascii	"long int\000"
+ 949      20696E74 
+ 949      00
+ 950              	.LASF37:
+ 951 0269 75784C69 		.ascii	"uxListRemove\000"
+ 951      73745265 
+ 951      6D6F7665 
+ 951      00
+ 952              	.LASF21:
+ 953 0276 784D494E 		.ascii	"xMINI_LIST_ITEM\000"
+ 953      495F4C49 
+ 953      53545F49 
+ 953      54454D00 
+ 954              	.LASF1:
+ 955 0286 7369676E 		.ascii	"signed char\000"
+ 955      65642063 
+ 955      68617200 
+ 956              	.LASF30:
+ 957 0292 70784C69 		.ascii	"pxList\000"
+ 957      737400
+ 958              	.LASF23:
+ 959 0299 784C4953 		.ascii	"xLIST\000"
+ 959      5400
+ 960              	.LASF33:
+ 961 029f 70784E65 		.ascii	"pxNewListItem\000"
+ 961      774C6973 
+ 961      74497465 
+ 961      6D00
+ 962              	.LASF34:
+ 963 02ad 764C6973 		.ascii	"vListInsert\000"
+ 963      74496E73 
+ 963      65727400 
+ 964              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

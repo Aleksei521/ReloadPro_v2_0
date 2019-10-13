@@ -1,0 +1,1121 @@
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccIN1nIg.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"Opamp_REF.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.Opamp_REF_Init,"ax",%progbits
+  20              		.align	1
+  21              		.global	Opamp_REF_Init
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	Opamp_REF_Init, %function
+  25              	Opamp_REF_Init:
+  26              	.LFB0:
+  27              		.file 1 "Generated_Source\\PSoC4\\Opamp_REF.c"
+   1:Generated_Source\PSoC4/Opamp_REF.c **** /*******************************************************************************
+   2:Generated_Source\PSoC4/Opamp_REF.c **** * File Name: Opamp_REF.c
+   3:Generated_Source\PSoC4/Opamp_REF.c **** * Version 1.20
+   4:Generated_Source\PSoC4/Opamp_REF.c **** *
+   5:Generated_Source\PSoC4/Opamp_REF.c **** * Description:
+   6:Generated_Source\PSoC4/Opamp_REF.c **** *  This file provides the source code to the API for the Opamp (Analog Buffer)
+   7:Generated_Source\PSoC4/Opamp_REF.c **** *  Component.
+   8:Generated_Source\PSoC4/Opamp_REF.c **** *
+   9:Generated_Source\PSoC4/Opamp_REF.c **** *
+  10:Generated_Source\PSoC4/Opamp_REF.c **** ********************************************************************************
+  11:Generated_Source\PSoC4/Opamp_REF.c **** * Copyright 2013-2015, Cypress Semiconductor Corporation.  All rights reserved.
+  12:Generated_Source\PSoC4/Opamp_REF.c **** * You may use this file only in accordance with the license, terms, conditions,
+  13:Generated_Source\PSoC4/Opamp_REF.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  14:Generated_Source\PSoC4/Opamp_REF.c **** * the software package with which this file was provided.
+  15:Generated_Source\PSoC4/Opamp_REF.c **** *******************************************************************************/
+  16:Generated_Source\PSoC4/Opamp_REF.c **** 
+  17:Generated_Source\PSoC4/Opamp_REF.c **** #include "Opamp_REF.h"
+  18:Generated_Source\PSoC4/Opamp_REF.c **** 
+  19:Generated_Source\PSoC4/Opamp_REF.c **** uint8 Opamp_REF_initVar = 0u; /* Defines if component was initialized */
+  20:Generated_Source\PSoC4/Opamp_REF.c **** static uint32 Opamp_REF_internalPower = 0u; /* Defines component Power value */
+  21:Generated_Source\PSoC4/Opamp_REF.c **** 
+  22:Generated_Source\PSoC4/Opamp_REF.c **** 
+  23:Generated_Source\PSoC4/Opamp_REF.c **** /*******************************************************************************
+  24:Generated_Source\PSoC4/Opamp_REF.c **** * Function Name: Opamp_REF_Init
+  25:Generated_Source\PSoC4/Opamp_REF.c **** ********************************************************************************
+  26:Generated_Source\PSoC4/Opamp_REF.c **** *
+  27:Generated_Source\PSoC4/Opamp_REF.c **** * Summary:
+  28:Generated_Source\PSoC4/Opamp_REF.c **** *  Initializes or restores the component according to the customizer Configure 
+  29:Generated_Source\PSoC4/Opamp_REF.c **** *  dialog settings. It is not necessary to call Init() because the Start() API 
+  30:Generated_Source\PSoC4/Opamp_REF.c **** *  calls this function and is the preferred method to begin the component operation.
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccIN1nIg.s 			page 2
+
+
+  31:Generated_Source\PSoC4/Opamp_REF.c **** *
+  32:Generated_Source\PSoC4/Opamp_REF.c **** * Parameters:
+  33:Generated_Source\PSoC4/Opamp_REF.c **** *  None
+  34:Generated_Source\PSoC4/Opamp_REF.c **** *
+  35:Generated_Source\PSoC4/Opamp_REF.c **** * Return:
+  36:Generated_Source\PSoC4/Opamp_REF.c **** *  None
+  37:Generated_Source\PSoC4/Opamp_REF.c **** *
+  38:Generated_Source\PSoC4/Opamp_REF.c **** *******************************************************************************/
+  39:Generated_Source\PSoC4/Opamp_REF.c **** void Opamp_REF_Init(void)
+  40:Generated_Source\PSoC4/Opamp_REF.c **** {
+  28              		.loc 1 40 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+  41:Generated_Source\PSoC4/Opamp_REF.c ****     Opamp_REF_internalPower = Opamp_REF_POWER;
+  33              		.loc 1 41 0
+  34 0000 0323     		movs	r3, #3
+  42:Generated_Source\PSoC4/Opamp_REF.c ****     Opamp_REF_CTB_CTRL_REG = Opamp_REF_DEFAULT_CTB_CTRL;
+  35              		.loc 1 42 0
+  36 0002 8021     		movs	r1, #128
+  41:Generated_Source\PSoC4/Opamp_REF.c ****     Opamp_REF_internalPower = Opamp_REF_POWER;
+  37              		.loc 1 41 0
+  38 0004 054A     		ldr	r2, .L2
+  39              		.loc 1 42 0
+  40 0006 0906     		lsls	r1, r1, #24
+  41:Generated_Source\PSoC4/Opamp_REF.c ****     Opamp_REF_internalPower = Opamp_REF_POWER;
+  41              		.loc 1 41 0
+  42 0008 1360     		str	r3, [r2]
+  43              		.loc 1 42 0
+  44 000a 054A     		ldr	r2, .L2+4
+  43:Generated_Source\PSoC4/Opamp_REF.c ****     Opamp_REF_OA_RES_CTRL_REG = Opamp_REF_DEFAULT_OA_RES_CTRL;
+  44:Generated_Source\PSoC4/Opamp_REF.c ****     Opamp_REF_OA_COMP_TRIM_REG = Opamp_REF_DEFAULT_OA_COMP_TRIM_REG;
+  45:Generated_Source\PSoC4/Opamp_REF.c **** }
+  45              		.loc 1 45 0
+  46              		@ sp needed
+  42:Generated_Source\PSoC4/Opamp_REF.c ****     Opamp_REF_CTB_CTRL_REG = Opamp_REF_DEFAULT_CTB_CTRL;
+  47              		.loc 1 42 0
+  48 000c 1160     		str	r1, [r2]
+  43:Generated_Source\PSoC4/Opamp_REF.c ****     Opamp_REF_OA_RES_CTRL_REG = Opamp_REF_DEFAULT_OA_RES_CTRL;
+  49              		.loc 1 43 0
+  50 000e 0421     		movs	r1, #4
+  51 0010 044A     		ldr	r2, .L2+8
+  52 0012 1160     		str	r1, [r2]
+  44:Generated_Source\PSoC4/Opamp_REF.c **** }
+  53              		.loc 1 44 0
+  54 0014 044A     		ldr	r2, .L2+12
+  55 0016 1360     		str	r3, [r2]
+  56              		.loc 1 45 0
+  57 0018 7047     		bx	lr
+  58              	.L3:
+  59 001a C046     		.align	2
+  60              	.L2:
+  61 001c 00000000 		.word	.LANCHOR0
+  62 0020 00001040 		.word	1074790400
+  63 0024 08001040 		.word	1074790408
+  64 0028 140F1040 		.word	1074794260
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccIN1nIg.s 			page 3
+
+
+  65              		.cfi_endproc
+  66              	.LFE0:
+  67              		.size	Opamp_REF_Init, .-Opamp_REF_Init
+  68              		.section	.text.Opamp_REF_Enable,"ax",%progbits
+  69              		.align	1
+  70              		.global	Opamp_REF_Enable
+  71              		.code	16
+  72              		.thumb_func
+  73              		.type	Opamp_REF_Enable, %function
+  74              	Opamp_REF_Enable:
+  75              	.LFB1:
+  46:Generated_Source\PSoC4/Opamp_REF.c **** 
+  47:Generated_Source\PSoC4/Opamp_REF.c **** 
+  48:Generated_Source\PSoC4/Opamp_REF.c **** /*******************************************************************************
+  49:Generated_Source\PSoC4/Opamp_REF.c **** * Function Name: Opamp_REF_Enable
+  50:Generated_Source\PSoC4/Opamp_REF.c **** ********************************************************************************
+  51:Generated_Source\PSoC4/Opamp_REF.c **** *
+  52:Generated_Source\PSoC4/Opamp_REF.c **** * Summary:
+  53:Generated_Source\PSoC4/Opamp_REF.c **** *  Activates the hardware and begins the component operation. It is not necessary to 
+  54:Generated_Source\PSoC4/Opamp_REF.c **** *  call Enable() because the Start() API calls this function, which is the 
+  55:Generated_Source\PSoC4/Opamp_REF.c **** *  preferred method to begin the component operation.
+  56:Generated_Source\PSoC4/Opamp_REF.c **** *
+  57:Generated_Source\PSoC4/Opamp_REF.c **** * Parameters:
+  58:Generated_Source\PSoC4/Opamp_REF.c **** *  None
+  59:Generated_Source\PSoC4/Opamp_REF.c **** *
+  60:Generated_Source\PSoC4/Opamp_REF.c **** * Return:
+  61:Generated_Source\PSoC4/Opamp_REF.c **** *  None
+  62:Generated_Source\PSoC4/Opamp_REF.c **** *
+  63:Generated_Source\PSoC4/Opamp_REF.c **** *******************************************************************************/
+  64:Generated_Source\PSoC4/Opamp_REF.c **** void Opamp_REF_Enable(void)
+  65:Generated_Source\PSoC4/Opamp_REF.c **** {
+  76              		.loc 1 65 0
+  77              		.cfi_startproc
+  78              		@ args = 0, pretend = 0, frame = 0
+  79              		@ frame_needed = 0, uses_anonymous_args = 0
+  80              		@ link register save eliminated.
+  66:Generated_Source\PSoC4/Opamp_REF.c ****     Opamp_REF_OA_RES_CTRL_REG |= Opamp_REF_internalPower | \
+  81              		.loc 1 66 0
+  82 0000 044A     		ldr	r2, .L5
+  83 0002 054B     		ldr	r3, .L5+4
+  84 0004 1168     		ldr	r1, [r2]
+  85 0006 1B68     		ldr	r3, [r3]
+  67:Generated_Source\PSoC4/Opamp_REF.c ****                                         Opamp_REF_OA_PUMP_EN;
+  68:Generated_Source\PSoC4/Opamp_REF.c **** }
+  86              		.loc 1 68 0
+  87              		@ sp needed
+  66:Generated_Source\PSoC4/Opamp_REF.c ****     Opamp_REF_OA_RES_CTRL_REG |= Opamp_REF_internalPower | \
+  88              		.loc 1 66 0
+  89 0008 0B43     		orrs	r3, r1
+  90 000a 8021     		movs	r1, #128
+  91 000c 0901     		lsls	r1, r1, #4
+  92 000e 0B43     		orrs	r3, r1
+  93 0010 1360     		str	r3, [r2]
+  94              		.loc 1 68 0
+  95 0012 7047     		bx	lr
+  96              	.L6:
+  97              		.align	2
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccIN1nIg.s 			page 4
+
+
+  98              	.L5:
+  99 0014 08001040 		.word	1074790408
+ 100 0018 00000000 		.word	.LANCHOR0
+ 101              		.cfi_endproc
+ 102              	.LFE1:
+ 103              		.size	Opamp_REF_Enable, .-Opamp_REF_Enable
+ 104              		.section	.text.Opamp_REF_Start,"ax",%progbits
+ 105              		.align	1
+ 106              		.global	Opamp_REF_Start
+ 107              		.code	16
+ 108              		.thumb_func
+ 109              		.type	Opamp_REF_Start, %function
+ 110              	Opamp_REF_Start:
+ 111              	.LFB2:
+  69:Generated_Source\PSoC4/Opamp_REF.c **** 
+  70:Generated_Source\PSoC4/Opamp_REF.c **** 
+  71:Generated_Source\PSoC4/Opamp_REF.c **** /*******************************************************************************
+  72:Generated_Source\PSoC4/Opamp_REF.c **** * Function Name: Opamp_REF_Start
+  73:Generated_Source\PSoC4/Opamp_REF.c **** ********************************************************************************
+  74:Generated_Source\PSoC4/Opamp_REF.c **** *
+  75:Generated_Source\PSoC4/Opamp_REF.c **** * Summary:
+  76:Generated_Source\PSoC4/Opamp_REF.c **** *  Performs all of the required initialization for the component and enables power 
+  77:Generated_Source\PSoC4/Opamp_REF.c **** *  to the block. The first time the routine is executed, the Power level, Mode, 
+  78:Generated_Source\PSoC4/Opamp_REF.c **** *  and Output mode are set. When called to restart the Opamp following a Stop() call, 
+  79:Generated_Source\PSoC4/Opamp_REF.c **** *  the current component parameter settings are retained.
+  80:Generated_Source\PSoC4/Opamp_REF.c **** *
+  81:Generated_Source\PSoC4/Opamp_REF.c **** * Parameters:
+  82:Generated_Source\PSoC4/Opamp_REF.c **** *  None
+  83:Generated_Source\PSoC4/Opamp_REF.c **** *
+  84:Generated_Source\PSoC4/Opamp_REF.c **** * Return:
+  85:Generated_Source\PSoC4/Opamp_REF.c **** *  None
+  86:Generated_Source\PSoC4/Opamp_REF.c **** *
+  87:Generated_Source\PSoC4/Opamp_REF.c **** * Global variables:
+  88:Generated_Source\PSoC4/Opamp_REF.c **** *  Opamp_REF_initVar: Used to check the initial configuration, modified
+  89:Generated_Source\PSoC4/Opamp_REF.c **** *  when this function is called for the first time.
+  90:Generated_Source\PSoC4/Opamp_REF.c **** *
+  91:Generated_Source\PSoC4/Opamp_REF.c **** *******************************************************************************/
+  92:Generated_Source\PSoC4/Opamp_REF.c **** void Opamp_REF_Start(void)
+  93:Generated_Source\PSoC4/Opamp_REF.c **** {
+ 112              		.loc 1 93 0
+ 113              		.cfi_startproc
+ 114              		@ args = 0, pretend = 0, frame = 0
+ 115              		@ frame_needed = 0, uses_anonymous_args = 0
+ 116 0000 10B5     		push	{r4, lr}
+ 117              		.cfi_def_cfa_offset 8
+ 118              		.cfi_offset 4, -8
+ 119              		.cfi_offset 14, -4
+  94:Generated_Source\PSoC4/Opamp_REF.c ****     if( 0u == Opamp_REF_initVar)
+ 120              		.loc 1 94 0
+ 121 0002 054C     		ldr	r4, .L10
+ 122 0004 2379     		ldrb	r3, [r4, #4]
+ 123 0006 002B     		cmp	r3, #0
+ 124 0008 03D1     		bne	.L8
+  95:Generated_Source\PSoC4/Opamp_REF.c ****     {
+  96:Generated_Source\PSoC4/Opamp_REF.c ****         Opamp_REF_Init();
+ 125              		.loc 1 96 0
+ 126 000a FFF7FEFF 		bl	Opamp_REF_Init
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccIN1nIg.s 			page 5
+
+
+ 127              	.LVL0:
+  97:Generated_Source\PSoC4/Opamp_REF.c ****         Opamp_REF_initVar = 1u;
+ 128              		.loc 1 97 0
+ 129 000e 0123     		movs	r3, #1
+ 130 0010 2371     		strb	r3, [r4, #4]
+ 131              	.L8:
+  98:Generated_Source\PSoC4/Opamp_REF.c ****     }
+  99:Generated_Source\PSoC4/Opamp_REF.c ****     Opamp_REF_Enable();
+ 132              		.loc 1 99 0
+ 133 0012 FFF7FEFF 		bl	Opamp_REF_Enable
+ 134              	.LVL1:
+ 100:Generated_Source\PSoC4/Opamp_REF.c **** }
+ 135              		.loc 1 100 0
+ 136              		@ sp needed
+ 137 0016 10BD     		pop	{r4, pc}
+ 138              	.L11:
+ 139              		.align	2
+ 140              	.L10:
+ 141 0018 00000000 		.word	.LANCHOR0
+ 142              		.cfi_endproc
+ 143              	.LFE2:
+ 144              		.size	Opamp_REF_Start, .-Opamp_REF_Start
+ 145              		.section	.text.Opamp_REF_Stop,"ax",%progbits
+ 146              		.align	1
+ 147              		.global	Opamp_REF_Stop
+ 148              		.code	16
+ 149              		.thumb_func
+ 150              		.type	Opamp_REF_Stop, %function
+ 151              	Opamp_REF_Stop:
+ 152              	.LFB3:
+ 101:Generated_Source\PSoC4/Opamp_REF.c **** 
+ 102:Generated_Source\PSoC4/Opamp_REF.c **** 
+ 103:Generated_Source\PSoC4/Opamp_REF.c **** /*******************************************************************************
+ 104:Generated_Source\PSoC4/Opamp_REF.c **** * Function Name: Opamp_REF_Stop
+ 105:Generated_Source\PSoC4/Opamp_REF.c **** ********************************************************************************
+ 106:Generated_Source\PSoC4/Opamp_REF.c **** *
+ 107:Generated_Source\PSoC4/Opamp_REF.c **** * Summary:
+ 108:Generated_Source\PSoC4/Opamp_REF.c **** *  Turn off the Opamp block.
+ 109:Generated_Source\PSoC4/Opamp_REF.c **** *
+ 110:Generated_Source\PSoC4/Opamp_REF.c **** * Parameters:
+ 111:Generated_Source\PSoC4/Opamp_REF.c **** *  None
+ 112:Generated_Source\PSoC4/Opamp_REF.c **** *
+ 113:Generated_Source\PSoC4/Opamp_REF.c **** * Return:
+ 114:Generated_Source\PSoC4/Opamp_REF.c **** *  None
+ 115:Generated_Source\PSoC4/Opamp_REF.c **** *
+ 116:Generated_Source\PSoC4/Opamp_REF.c **** *******************************************************************************/
+ 117:Generated_Source\PSoC4/Opamp_REF.c **** void Opamp_REF_Stop(void)
+ 118:Generated_Source\PSoC4/Opamp_REF.c **** {
+ 153              		.loc 1 118 0
+ 154              		.cfi_startproc
+ 155              		@ args = 0, pretend = 0, frame = 0
+ 156              		@ frame_needed = 0, uses_anonymous_args = 0
+ 157              		@ link register save eliminated.
+ 119:Generated_Source\PSoC4/Opamp_REF.c ****     Opamp_REF_OA_RES_CTRL_REG &= ((uint32)~(Opamp_REF_OA_PWR_MODE_MASK | \
+ 158              		.loc 1 119 0
+ 159 0000 024A     		ldr	r2, .L13
+ 160 0002 034B     		ldr	r3, .L13+4
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccIN1nIg.s 			page 6
+
+
+ 161 0004 1168     		ldr	r1, [r2]
+ 120:Generated_Source\PSoC4/Opamp_REF.c ****                                                    Opamp_REF_OA_PUMP_EN));
+ 121:Generated_Source\PSoC4/Opamp_REF.c **** }
+ 162              		.loc 1 121 0
+ 163              		@ sp needed
+ 119:Generated_Source\PSoC4/Opamp_REF.c ****     Opamp_REF_OA_RES_CTRL_REG &= ((uint32)~(Opamp_REF_OA_PWR_MODE_MASK | \
+ 164              		.loc 1 119 0
+ 165 0006 0B40     		ands	r3, r1
+ 166 0008 1360     		str	r3, [r2]
+ 167              		.loc 1 121 0
+ 168 000a 7047     		bx	lr
+ 169              	.L14:
+ 170              		.align	2
+ 171              	.L13:
+ 172 000c 08001040 		.word	1074790408
+ 173 0010 FCF7FFFF 		.word	-2052
+ 174              		.cfi_endproc
+ 175              	.LFE3:
+ 176              		.size	Opamp_REF_Stop, .-Opamp_REF_Stop
+ 177              		.section	.text.Opamp_REF_SetPower,"ax",%progbits
+ 178              		.align	1
+ 179              		.global	Opamp_REF_SetPower
+ 180              		.code	16
+ 181              		.thumb_func
+ 182              		.type	Opamp_REF_SetPower, %function
+ 183              	Opamp_REF_SetPower:
+ 184              	.LFB4:
+ 122:Generated_Source\PSoC4/Opamp_REF.c **** 
+ 123:Generated_Source\PSoC4/Opamp_REF.c **** 
+ 124:Generated_Source\PSoC4/Opamp_REF.c **** /*******************************************************************************
+ 125:Generated_Source\PSoC4/Opamp_REF.c **** * Function Name: Opamp_REF_SetPower
+ 126:Generated_Source\PSoC4/Opamp_REF.c **** ********************************************************************************
+ 127:Generated_Source\PSoC4/Opamp_REF.c **** *
+ 128:Generated_Source\PSoC4/Opamp_REF.c **** * Summary:
+ 129:Generated_Source\PSoC4/Opamp_REF.c **** *  Sets the Opamp to one of the three power levels.
+ 130:Generated_Source\PSoC4/Opamp_REF.c **** *
+ 131:Generated_Source\PSoC4/Opamp_REF.c **** * Parameters:
+ 132:Generated_Source\PSoC4/Opamp_REF.c **** *  power: power levels.
+ 133:Generated_Source\PSoC4/Opamp_REF.c **** *   Opamp_REF_LOW_POWER - Lowest active power
+ 134:Generated_Source\PSoC4/Opamp_REF.c **** *   Opamp_REF_MED_POWER - Medium power
+ 135:Generated_Source\PSoC4/Opamp_REF.c **** *   Opamp_REF_HIGH_POWER - Highest active power
+ 136:Generated_Source\PSoC4/Opamp_REF.c **** *
+ 137:Generated_Source\PSoC4/Opamp_REF.c **** * Return:
+ 138:Generated_Source\PSoC4/Opamp_REF.c **** *  None
+ 139:Generated_Source\PSoC4/Opamp_REF.c **** *
+ 140:Generated_Source\PSoC4/Opamp_REF.c **** **********************************************************************************/
+ 141:Generated_Source\PSoC4/Opamp_REF.c **** void Opamp_REF_SetPower(uint32 power)
+ 142:Generated_Source\PSoC4/Opamp_REF.c **** {
+ 185              		.loc 1 142 0
+ 186              		.cfi_startproc
+ 187              		@ args = 0, pretend = 0, frame = 0
+ 188              		@ frame_needed = 0, uses_anonymous_args = 0
+ 189              		@ link register save eliminated.
+ 190              	.LVL2:
+ 143:Generated_Source\PSoC4/Opamp_REF.c ****     uint32 tmp;
+ 144:Generated_Source\PSoC4/Opamp_REF.c ****     
+ 145:Generated_Source\PSoC4/Opamp_REF.c ****     Opamp_REF_internalPower = Opamp_REF_GET_OA_PWR_MODE(power);
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccIN1nIg.s 			page 7
+
+
+ 191              		.loc 1 145 0
+ 192 0000 0321     		movs	r1, #3
+ 193 0002 044B     		ldr	r3, .L16
+ 194 0004 0840     		ands	r0, r1
+ 195              	.LVL3:
+ 146:Generated_Source\PSoC4/Opamp_REF.c ****     tmp = Opamp_REF_OA_RES_CTRL_REG & \
+ 196              		.loc 1 146 0
+ 197 0006 044A     		ldr	r2, .L16+4
+ 145:Generated_Source\PSoC4/Opamp_REF.c ****     tmp = Opamp_REF_OA_RES_CTRL_REG & \
+ 198              		.loc 1 145 0
+ 199 0008 1860     		str	r0, [r3]
+ 200              		.loc 1 146 0
+ 201 000a 1368     		ldr	r3, [r2]
+ 202              	.LVL4:
+ 147:Generated_Source\PSoC4/Opamp_REF.c ****            (uint32)~Opamp_REF_OA_PWR_MODE_MASK;
+ 148:Generated_Source\PSoC4/Opamp_REF.c ****     Opamp_REF_OA_RES_CTRL_REG = tmp | Opamp_REF_internalPower;
+ 149:Generated_Source\PSoC4/Opamp_REF.c **** }
+ 203              		.loc 1 149 0
+ 204              		@ sp needed
+ 148:Generated_Source\PSoC4/Opamp_REF.c **** }
+ 205              		.loc 1 148 0
+ 206 000c 8B43     		bics	r3, r1
+ 207              	.LVL5:
+ 208 000e 1843     		orrs	r0, r3
+ 209 0010 1060     		str	r0, [r2]
+ 210              		.loc 1 149 0
+ 211 0012 7047     		bx	lr
+ 212              	.L17:
+ 213              		.align	2
+ 214              	.L16:
+ 215 0014 00000000 		.word	.LANCHOR0
+ 216 0018 08001040 		.word	1074790408
+ 217              		.cfi_endproc
+ 218              	.LFE4:
+ 219              		.size	Opamp_REF_SetPower, .-Opamp_REF_SetPower
+ 220              		.section	.text.Opamp_REF_PumpControl,"ax",%progbits
+ 221              		.align	1
+ 222              		.global	Opamp_REF_PumpControl
+ 223              		.code	16
+ 224              		.thumb_func
+ 225              		.type	Opamp_REF_PumpControl, %function
+ 226              	Opamp_REF_PumpControl:
+ 227              	.LFB5:
+ 150:Generated_Source\PSoC4/Opamp_REF.c **** 
+ 151:Generated_Source\PSoC4/Opamp_REF.c **** 
+ 152:Generated_Source\PSoC4/Opamp_REF.c **** /*******************************************************************************
+ 153:Generated_Source\PSoC4/Opamp_REF.c **** * Function Name: Opamp_REF_PumpControl
+ 154:Generated_Source\PSoC4/Opamp_REF.c **** ********************************************************************************
+ 155:Generated_Source\PSoC4/Opamp_REF.c **** *
+ 156:Generated_Source\PSoC4/Opamp_REF.c **** * Summary:
+ 157:Generated_Source\PSoC4/Opamp_REF.c **** *  Allows the user to turn the Opamp's boost pump on or off. By Default the Start() 
+ 158:Generated_Source\PSoC4/Opamp_REF.c **** *  function turns on the pump. Use this API to turn it off. The boost must be 
+ 159:Generated_Source\PSoC4/Opamp_REF.c **** *  turned on when the supply is less than 2.7 volts and off if the supply is more 
+ 160:Generated_Source\PSoC4/Opamp_REF.c **** *  than 4 volts.
+ 161:Generated_Source\PSoC4/Opamp_REF.c **** *
+ 162:Generated_Source\PSoC4/Opamp_REF.c **** * Parameters:
+ 163:Generated_Source\PSoC4/Opamp_REF.c **** *  onOff: Control the pump.
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccIN1nIg.s 			page 8
+
+
+ 164:Generated_Source\PSoC4/Opamp_REF.c **** *   Opamp_REF_PUMP_OFF - Turn off the pump
+ 165:Generated_Source\PSoC4/Opamp_REF.c **** *   Opamp_REF_PUMP_ON - Turn on the pump
+ 166:Generated_Source\PSoC4/Opamp_REF.c **** *
+ 167:Generated_Source\PSoC4/Opamp_REF.c **** * Return:
+ 168:Generated_Source\PSoC4/Opamp_REF.c **** *  None
+ 169:Generated_Source\PSoC4/Opamp_REF.c **** *
+ 170:Generated_Source\PSoC4/Opamp_REF.c **** **********************************************************************************/
+ 171:Generated_Source\PSoC4/Opamp_REF.c **** void Opamp_REF_PumpControl(uint32 onOff)
+ 172:Generated_Source\PSoC4/Opamp_REF.c **** {
+ 228              		.loc 1 172 0
+ 229              		.cfi_startproc
+ 230              		@ args = 0, pretend = 0, frame = 0
+ 231              		@ frame_needed = 0, uses_anonymous_args = 0
+ 232              		@ link register save eliminated.
+ 233              	.LVL6:
+ 234 0000 064B     		ldr	r3, .L22
+ 173:Generated_Source\PSoC4/Opamp_REF.c ****     
+ 174:Generated_Source\PSoC4/Opamp_REF.c ****     if(0u != onOff)
+ 235              		.loc 1 174 0
+ 236 0002 0028     		cmp	r0, #0
+ 237 0004 04D0     		beq	.L19
+ 175:Generated_Source\PSoC4/Opamp_REF.c ****     {
+ 176:Generated_Source\PSoC4/Opamp_REF.c ****         Opamp_REF_OA_RES_CTRL |= Opamp_REF_OA_PUMP_EN;    
+ 238              		.loc 1 176 0
+ 239 0006 8021     		movs	r1, #128
+ 240 0008 1A68     		ldr	r2, [r3]
+ 241 000a 0901     		lsls	r1, r1, #4
+ 242 000c 0A43     		orrs	r2, r1
+ 243 000e 02E0     		b	.L21
+ 244              	.L19:
+ 177:Generated_Source\PSoC4/Opamp_REF.c ****     }
+ 178:Generated_Source\PSoC4/Opamp_REF.c ****     else
+ 179:Generated_Source\PSoC4/Opamp_REF.c ****     {
+ 180:Generated_Source\PSoC4/Opamp_REF.c ****         Opamp_REF_OA_RES_CTRL &= (uint32)~Opamp_REF_OA_PUMP_EN;
+ 245              		.loc 1 180 0
+ 246 0010 1968     		ldr	r1, [r3]
+ 247 0012 034A     		ldr	r2, .L22+4
+ 248 0014 0A40     		ands	r2, r1
+ 249              	.L21:
+ 250 0016 1A60     		str	r2, [r3]
+ 181:Generated_Source\PSoC4/Opamp_REF.c ****     }
+ 182:Generated_Source\PSoC4/Opamp_REF.c **** }
+ 251              		.loc 1 182 0
+ 252              		@ sp needed
+ 253 0018 7047     		bx	lr
+ 254              	.L23:
+ 255 001a C046     		.align	2
+ 256              	.L22:
+ 257 001c 08001040 		.word	1074790408
+ 258 0020 FFF7FFFF 		.word	-2049
+ 259              		.cfi_endproc
+ 260              	.LFE5:
+ 261              		.size	Opamp_REF_PumpControl, .-Opamp_REF_PumpControl
+ 262              		.global	Opamp_REF_initVar
+ 263              		.bss
+ 264              		.align	2
+ 265              		.set	.LANCHOR0,. + 0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccIN1nIg.s 			page 9
+
+
+ 266              		.type	Opamp_REF_internalPower, %object
+ 267              		.size	Opamp_REF_internalPower, 4
+ 268              	Opamp_REF_internalPower:
+ 269 0000 00000000 		.space	4
+ 270              		.type	Opamp_REF_initVar, %object
+ 271              		.size	Opamp_REF_initVar, 1
+ 272              	Opamp_REF_initVar:
+ 273 0004 00       		.space	1
+ 274              		.text
+ 275              	.Letext0:
+ 276              		.file 2 "Generated_Source\\PSoC4\\cytypes.h"
+ 277              		.section	.debug_info,"",%progbits
+ 278              	.Ldebug_info0:
+ 279 0000 7A010000 		.4byte	0x17a
+ 280 0004 0400     		.2byte	0x4
+ 281 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 282 000a 04       		.byte	0x4
+ 283 000b 01       		.uleb128 0x1
+ 284 000c 36010000 		.4byte	.LASF24
+ 285 0010 0C       		.byte	0xc
+ 286 0011 E8000000 		.4byte	.LASF25
+ 287 0015 15000000 		.4byte	.LASF26
+ 288 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 289 001d 00000000 		.4byte	0
+ 290 0021 00000000 		.4byte	.Ldebug_line0
+ 291 0025 02       		.uleb128 0x2
+ 292 0026 01       		.byte	0x1
+ 293 0027 06       		.byte	0x6
+ 294 0028 32020000 		.4byte	.LASF0
+ 295 002c 02       		.uleb128 0x2
+ 296 002d 01       		.byte	0x1
+ 297 002e 08       		.byte	0x8
+ 298 002f A8000000 		.4byte	.LASF1
+ 299 0033 02       		.uleb128 0x2
+ 300 0034 02       		.byte	0x2
+ 301 0035 05       		.byte	0x5
+ 302 0036 09020000 		.4byte	.LASF2
+ 303 003a 02       		.uleb128 0x2
+ 304 003b 02       		.byte	0x2
+ 305 003c 07       		.byte	0x7
+ 306 003d CE000000 		.4byte	.LASF3
+ 307 0041 02       		.uleb128 0x2
+ 308 0042 04       		.byte	0x4
+ 309 0043 05       		.byte	0x5
+ 310 0044 19020000 		.4byte	.LASF4
+ 311 0048 02       		.uleb128 0x2
+ 312 0049 04       		.byte	0x4
+ 313 004a 07       		.byte	0x7
+ 314 004b BC000000 		.4byte	.LASF5
+ 315 004f 02       		.uleb128 0x2
+ 316 0050 08       		.byte	0x8
+ 317 0051 05       		.byte	0x5
+ 318 0052 CF010000 		.4byte	.LASF6
+ 319 0056 02       		.uleb128 0x2
+ 320 0057 08       		.byte	0x8
+ 321 0058 07       		.byte	0x7
+ 322 0059 1F010000 		.4byte	.LASF7
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccIN1nIg.s 			page 10
+
+
+ 323 005d 03       		.uleb128 0x3
+ 324 005e 04       		.byte	0x4
+ 325 005f 05       		.byte	0x5
+ 326 0060 696E7400 		.ascii	"int\000"
+ 327 0064 02       		.uleb128 0x2
+ 328 0065 04       		.byte	0x4
+ 329 0066 07       		.byte	0x7
+ 330 0067 12010000 		.4byte	.LASF8
+ 331 006b 04       		.uleb128 0x4
+ 332 006c 13020000 		.4byte	.LASF9
+ 333 0070 02       		.byte	0x2
+ 334 0071 E401     		.2byte	0x1e4
+ 335 0073 2C000000 		.4byte	0x2c
+ 336 0077 04       		.uleb128 0x4
+ 337 0078 0B010000 		.4byte	.LASF10
+ 338 007c 02       		.byte	0x2
+ 339 007d E601     		.2byte	0x1e6
+ 340 007f 48000000 		.4byte	0x48
+ 341 0083 02       		.uleb128 0x2
+ 342 0084 04       		.byte	0x4
+ 343 0085 04       		.byte	0x4
+ 344 0086 A2000000 		.4byte	.LASF11
+ 345 008a 02       		.uleb128 0x2
+ 346 008b 08       		.byte	0x8
+ 347 008c 04       		.byte	0x4
+ 348 008d E1000000 		.4byte	.LASF12
+ 349 0091 02       		.uleb128 0x2
+ 350 0092 01       		.byte	0x1
+ 351 0093 08       		.byte	0x8
+ 352 0094 F3010000 		.4byte	.LASF13
+ 353 0098 04       		.uleb128 0x4
+ 354 0099 0F000000 		.4byte	.LASF14
+ 355 009d 02       		.byte	0x2
+ 356 009e 9002     		.2byte	0x290
+ 357 00a0 A4000000 		.4byte	0xa4
+ 358 00a4 05       		.uleb128 0x5
+ 359 00a5 77000000 		.4byte	0x77
+ 360 00a9 06       		.uleb128 0x6
+ 361 00aa 00000000 		.4byte	.LASF15
+ 362 00ae 01       		.byte	0x1
+ 363 00af 27       		.byte	0x27
+ 364 00b0 00000000 		.4byte	.LFB0
+ 365 00b4 2C000000 		.4byte	.LFE0-.LFB0
+ 366 00b8 01       		.uleb128 0x1
+ 367 00b9 9C       		.byte	0x9c
+ 368 00ba 06       		.uleb128 0x6
+ 369 00bb F8010000 		.4byte	.LASF16
+ 370 00bf 01       		.byte	0x1
+ 371 00c0 40       		.byte	0x40
+ 372 00c1 00000000 		.4byte	.LFB1
+ 373 00c5 1C000000 		.4byte	.LFE1-.LFB1
+ 374 00c9 01       		.uleb128 0x1
+ 375 00ca 9C       		.byte	0x9c
+ 376 00cb 07       		.uleb128 0x7
+ 377 00cc 22020000 		.4byte	.LASF18
+ 378 00d0 01       		.byte	0x1
+ 379 00d1 5C       		.byte	0x5c
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccIN1nIg.s 			page 11
+
+
+ 380 00d2 00000000 		.4byte	.LFB2
+ 381 00d6 1C000000 		.4byte	.LFE2-.LFB2
+ 382 00da 01       		.uleb128 0x1
+ 383 00db 9C       		.byte	0x9c
+ 384 00dc F3000000 		.4byte	0xf3
+ 385 00e0 08       		.uleb128 0x8
+ 386 00e1 0E000000 		.4byte	.LVL0
+ 387 00e5 A9000000 		.4byte	0xa9
+ 388 00e9 08       		.uleb128 0x8
+ 389 00ea 16000000 		.4byte	.LVL1
+ 390 00ee BA000000 		.4byte	0xba
+ 391 00f2 00       		.byte	0
+ 392 00f3 06       		.uleb128 0x6
+ 393 00f4 7A000000 		.4byte	.LASF17
+ 394 00f8 01       		.byte	0x1
+ 395 00f9 75       		.byte	0x75
+ 396 00fa 00000000 		.4byte	.LFB3
+ 397 00fe 14000000 		.4byte	.LFE3-.LFB3
+ 398 0102 01       		.uleb128 0x1
+ 399 0103 9C       		.byte	0x9c
+ 400 0104 07       		.uleb128 0x7
+ 401 0105 8F000000 		.4byte	.LASF19
+ 402 0109 01       		.byte	0x1
+ 403 010a 8D       		.byte	0x8d
+ 404 010b 00000000 		.4byte	.LFB4
+ 405 010f 1C000000 		.4byte	.LFE4-.LFB4
+ 406 0113 01       		.uleb128 0x1
+ 407 0114 9C       		.byte	0x9c
+ 408 0115 38010000 		.4byte	0x138
+ 409 0119 09       		.uleb128 0x9
+ 410 011a 89000000 		.4byte	.LASF21
+ 411 011e 01       		.byte	0x1
+ 412 011f 8D       		.byte	0x8d
+ 413 0120 77000000 		.4byte	0x77
+ 414 0124 00000000 		.4byte	.LLST0
+ 415 0128 0A       		.uleb128 0xa
+ 416 0129 746D7000 		.ascii	"tmp\000"
+ 417 012d 01       		.byte	0x1
+ 418 012e 8F       		.byte	0x8f
+ 419 012f 77000000 		.4byte	0x77
+ 420 0133 21000000 		.4byte	.LLST1
+ 421 0137 00       		.byte	0
+ 422 0138 07       		.uleb128 0x7
+ 423 0139 DD010000 		.4byte	.LASF20
+ 424 013d 01       		.byte	0x1
+ 425 013e AB       		.byte	0xab
+ 426 013f 00000000 		.4byte	.LFB5
+ 427 0143 24000000 		.4byte	.LFE5-.LFB5
+ 428 0147 01       		.uleb128 0x1
+ 429 0148 9C       		.byte	0x9c
+ 430 0149 5B010000 		.4byte	0x15b
+ 431 014d 0B       		.uleb128 0xb
+ 432 014e B6000000 		.4byte	.LASF22
+ 433 0152 01       		.byte	0x1
+ 434 0153 AB       		.byte	0xab
+ 435 0154 77000000 		.4byte	0x77
+ 436 0158 01       		.uleb128 0x1
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccIN1nIg.s 			page 12
+
+
+ 437 0159 50       		.byte	0x50
+ 438 015a 00       		.byte	0
+ 439 015b 0C       		.uleb128 0xc
+ 440 015c 62000000 		.4byte	.LASF23
+ 441 0160 01       		.byte	0x1
+ 442 0161 14       		.byte	0x14
+ 443 0162 77000000 		.4byte	0x77
+ 444 0166 05       		.uleb128 0x5
+ 445 0167 03       		.byte	0x3
+ 446 0168 00000000 		.4byte	Opamp_REF_internalPower
+ 447 016c 0D       		.uleb128 0xd
+ 448 016d 50000000 		.4byte	.LASF27
+ 449 0171 01       		.byte	0x1
+ 450 0172 13       		.byte	0x13
+ 451 0173 6B000000 		.4byte	0x6b
+ 452 0177 05       		.uleb128 0x5
+ 453 0178 03       		.byte	0x3
+ 454 0179 00000000 		.4byte	Opamp_REF_initVar
+ 455 017d 00       		.byte	0
+ 456              		.section	.debug_abbrev,"",%progbits
+ 457              	.Ldebug_abbrev0:
+ 458 0000 01       		.uleb128 0x1
+ 459 0001 11       		.uleb128 0x11
+ 460 0002 01       		.byte	0x1
+ 461 0003 25       		.uleb128 0x25
+ 462 0004 0E       		.uleb128 0xe
+ 463 0005 13       		.uleb128 0x13
+ 464 0006 0B       		.uleb128 0xb
+ 465 0007 03       		.uleb128 0x3
+ 466 0008 0E       		.uleb128 0xe
+ 467 0009 1B       		.uleb128 0x1b
+ 468 000a 0E       		.uleb128 0xe
+ 469 000b 55       		.uleb128 0x55
+ 470 000c 17       		.uleb128 0x17
+ 471 000d 11       		.uleb128 0x11
+ 472 000e 01       		.uleb128 0x1
+ 473 000f 10       		.uleb128 0x10
+ 474 0010 17       		.uleb128 0x17
+ 475 0011 00       		.byte	0
+ 476 0012 00       		.byte	0
+ 477 0013 02       		.uleb128 0x2
+ 478 0014 24       		.uleb128 0x24
+ 479 0015 00       		.byte	0
+ 480 0016 0B       		.uleb128 0xb
+ 481 0017 0B       		.uleb128 0xb
+ 482 0018 3E       		.uleb128 0x3e
+ 483 0019 0B       		.uleb128 0xb
+ 484 001a 03       		.uleb128 0x3
+ 485 001b 0E       		.uleb128 0xe
+ 486 001c 00       		.byte	0
+ 487 001d 00       		.byte	0
+ 488 001e 03       		.uleb128 0x3
+ 489 001f 24       		.uleb128 0x24
+ 490 0020 00       		.byte	0
+ 491 0021 0B       		.uleb128 0xb
+ 492 0022 0B       		.uleb128 0xb
+ 493 0023 3E       		.uleb128 0x3e
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccIN1nIg.s 			page 13
+
+
+ 494 0024 0B       		.uleb128 0xb
+ 495 0025 03       		.uleb128 0x3
+ 496 0026 08       		.uleb128 0x8
+ 497 0027 00       		.byte	0
+ 498 0028 00       		.byte	0
+ 499 0029 04       		.uleb128 0x4
+ 500 002a 16       		.uleb128 0x16
+ 501 002b 00       		.byte	0
+ 502 002c 03       		.uleb128 0x3
+ 503 002d 0E       		.uleb128 0xe
+ 504 002e 3A       		.uleb128 0x3a
+ 505 002f 0B       		.uleb128 0xb
+ 506 0030 3B       		.uleb128 0x3b
+ 507 0031 05       		.uleb128 0x5
+ 508 0032 49       		.uleb128 0x49
+ 509 0033 13       		.uleb128 0x13
+ 510 0034 00       		.byte	0
+ 511 0035 00       		.byte	0
+ 512 0036 05       		.uleb128 0x5
+ 513 0037 35       		.uleb128 0x35
+ 514 0038 00       		.byte	0
+ 515 0039 49       		.uleb128 0x49
+ 516 003a 13       		.uleb128 0x13
+ 517 003b 00       		.byte	0
+ 518 003c 00       		.byte	0
+ 519 003d 06       		.uleb128 0x6
+ 520 003e 2E       		.uleb128 0x2e
+ 521 003f 00       		.byte	0
+ 522 0040 3F       		.uleb128 0x3f
+ 523 0041 19       		.uleb128 0x19
+ 524 0042 03       		.uleb128 0x3
+ 525 0043 0E       		.uleb128 0xe
+ 526 0044 3A       		.uleb128 0x3a
+ 527 0045 0B       		.uleb128 0xb
+ 528 0046 3B       		.uleb128 0x3b
+ 529 0047 0B       		.uleb128 0xb
+ 530 0048 27       		.uleb128 0x27
+ 531 0049 19       		.uleb128 0x19
+ 532 004a 11       		.uleb128 0x11
+ 533 004b 01       		.uleb128 0x1
+ 534 004c 12       		.uleb128 0x12
+ 535 004d 06       		.uleb128 0x6
+ 536 004e 40       		.uleb128 0x40
+ 537 004f 18       		.uleb128 0x18
+ 538 0050 9742     		.uleb128 0x2117
+ 539 0052 19       		.uleb128 0x19
+ 540 0053 00       		.byte	0
+ 541 0054 00       		.byte	0
+ 542 0055 07       		.uleb128 0x7
+ 543 0056 2E       		.uleb128 0x2e
+ 544 0057 01       		.byte	0x1
+ 545 0058 3F       		.uleb128 0x3f
+ 546 0059 19       		.uleb128 0x19
+ 547 005a 03       		.uleb128 0x3
+ 548 005b 0E       		.uleb128 0xe
+ 549 005c 3A       		.uleb128 0x3a
+ 550 005d 0B       		.uleb128 0xb
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccIN1nIg.s 			page 14
+
+
+ 551 005e 3B       		.uleb128 0x3b
+ 552 005f 0B       		.uleb128 0xb
+ 553 0060 27       		.uleb128 0x27
+ 554 0061 19       		.uleb128 0x19
+ 555 0062 11       		.uleb128 0x11
+ 556 0063 01       		.uleb128 0x1
+ 557 0064 12       		.uleb128 0x12
+ 558 0065 06       		.uleb128 0x6
+ 559 0066 40       		.uleb128 0x40
+ 560 0067 18       		.uleb128 0x18
+ 561 0068 9742     		.uleb128 0x2117
+ 562 006a 19       		.uleb128 0x19
+ 563 006b 01       		.uleb128 0x1
+ 564 006c 13       		.uleb128 0x13
+ 565 006d 00       		.byte	0
+ 566 006e 00       		.byte	0
+ 567 006f 08       		.uleb128 0x8
+ 568 0070 898201   		.uleb128 0x4109
+ 569 0073 00       		.byte	0
+ 570 0074 11       		.uleb128 0x11
+ 571 0075 01       		.uleb128 0x1
+ 572 0076 31       		.uleb128 0x31
+ 573 0077 13       		.uleb128 0x13
+ 574 0078 00       		.byte	0
+ 575 0079 00       		.byte	0
+ 576 007a 09       		.uleb128 0x9
+ 577 007b 05       		.uleb128 0x5
+ 578 007c 00       		.byte	0
+ 579 007d 03       		.uleb128 0x3
+ 580 007e 0E       		.uleb128 0xe
+ 581 007f 3A       		.uleb128 0x3a
+ 582 0080 0B       		.uleb128 0xb
+ 583 0081 3B       		.uleb128 0x3b
+ 584 0082 0B       		.uleb128 0xb
+ 585 0083 49       		.uleb128 0x49
+ 586 0084 13       		.uleb128 0x13
+ 587 0085 02       		.uleb128 0x2
+ 588 0086 17       		.uleb128 0x17
+ 589 0087 00       		.byte	0
+ 590 0088 00       		.byte	0
+ 591 0089 0A       		.uleb128 0xa
+ 592 008a 34       		.uleb128 0x34
+ 593 008b 00       		.byte	0
+ 594 008c 03       		.uleb128 0x3
+ 595 008d 08       		.uleb128 0x8
+ 596 008e 3A       		.uleb128 0x3a
+ 597 008f 0B       		.uleb128 0xb
+ 598 0090 3B       		.uleb128 0x3b
+ 599 0091 0B       		.uleb128 0xb
+ 600 0092 49       		.uleb128 0x49
+ 601 0093 13       		.uleb128 0x13
+ 602 0094 02       		.uleb128 0x2
+ 603 0095 17       		.uleb128 0x17
+ 604 0096 00       		.byte	0
+ 605 0097 00       		.byte	0
+ 606 0098 0B       		.uleb128 0xb
+ 607 0099 05       		.uleb128 0x5
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccIN1nIg.s 			page 15
+
+
+ 608 009a 00       		.byte	0
+ 609 009b 03       		.uleb128 0x3
+ 610 009c 0E       		.uleb128 0xe
+ 611 009d 3A       		.uleb128 0x3a
+ 612 009e 0B       		.uleb128 0xb
+ 613 009f 3B       		.uleb128 0x3b
+ 614 00a0 0B       		.uleb128 0xb
+ 615 00a1 49       		.uleb128 0x49
+ 616 00a2 13       		.uleb128 0x13
+ 617 00a3 02       		.uleb128 0x2
+ 618 00a4 18       		.uleb128 0x18
+ 619 00a5 00       		.byte	0
+ 620 00a6 00       		.byte	0
+ 621 00a7 0C       		.uleb128 0xc
+ 622 00a8 34       		.uleb128 0x34
+ 623 00a9 00       		.byte	0
+ 624 00aa 03       		.uleb128 0x3
+ 625 00ab 0E       		.uleb128 0xe
+ 626 00ac 3A       		.uleb128 0x3a
+ 627 00ad 0B       		.uleb128 0xb
+ 628 00ae 3B       		.uleb128 0x3b
+ 629 00af 0B       		.uleb128 0xb
+ 630 00b0 49       		.uleb128 0x49
+ 631 00b1 13       		.uleb128 0x13
+ 632 00b2 02       		.uleb128 0x2
+ 633 00b3 18       		.uleb128 0x18
+ 634 00b4 00       		.byte	0
+ 635 00b5 00       		.byte	0
+ 636 00b6 0D       		.uleb128 0xd
+ 637 00b7 34       		.uleb128 0x34
+ 638 00b8 00       		.byte	0
+ 639 00b9 03       		.uleb128 0x3
+ 640 00ba 0E       		.uleb128 0xe
+ 641 00bb 3A       		.uleb128 0x3a
+ 642 00bc 0B       		.uleb128 0xb
+ 643 00bd 3B       		.uleb128 0x3b
+ 644 00be 0B       		.uleb128 0xb
+ 645 00bf 49       		.uleb128 0x49
+ 646 00c0 13       		.uleb128 0x13
+ 647 00c1 3F       		.uleb128 0x3f
+ 648 00c2 19       		.uleb128 0x19
+ 649 00c3 02       		.uleb128 0x2
+ 650 00c4 18       		.uleb128 0x18
+ 651 00c5 00       		.byte	0
+ 652 00c6 00       		.byte	0
+ 653 00c7 00       		.byte	0
+ 654              		.section	.debug_loc,"",%progbits
+ 655              	.Ldebug_loc0:
+ 656              	.LLST0:
+ 657 0000 00000000 		.4byte	.LVL2
+ 658 0004 06000000 		.4byte	.LVL3
+ 659 0008 0100     		.2byte	0x1
+ 660 000a 50       		.byte	0x50
+ 661 000b 06000000 		.4byte	.LVL3
+ 662 000f 1C000000 		.4byte	.LFE4
+ 663 0013 0400     		.2byte	0x4
+ 664 0015 F3       		.byte	0xf3
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccIN1nIg.s 			page 16
+
+
+ 665 0016 01       		.uleb128 0x1
+ 666 0017 50       		.byte	0x50
+ 667 0018 9F       		.byte	0x9f
+ 668 0019 00000000 		.4byte	0
+ 669 001d 00000000 		.4byte	0
+ 670              	.LLST1:
+ 671 0021 0C000000 		.4byte	.LVL4
+ 672 0025 0E000000 		.4byte	.LVL5
+ 673 0029 0600     		.2byte	0x6
+ 674 002b 73       		.byte	0x73
+ 675 002c 00       		.sleb128 0
+ 676 002d 09       		.byte	0x9
+ 677 002e FC       		.byte	0xfc
+ 678 002f 1A       		.byte	0x1a
+ 679 0030 9F       		.byte	0x9f
+ 680 0031 00000000 		.4byte	0
+ 681 0035 00000000 		.4byte	0
+ 682              		.section	.debug_aranges,"",%progbits
+ 683 0000 44000000 		.4byte	0x44
+ 684 0004 0200     		.2byte	0x2
+ 685 0006 00000000 		.4byte	.Ldebug_info0
+ 686 000a 04       		.byte	0x4
+ 687 000b 00       		.byte	0
+ 688 000c 0000     		.2byte	0
+ 689 000e 0000     		.2byte	0
+ 690 0010 00000000 		.4byte	.LFB0
+ 691 0014 2C000000 		.4byte	.LFE0-.LFB0
+ 692 0018 00000000 		.4byte	.LFB1
+ 693 001c 1C000000 		.4byte	.LFE1-.LFB1
+ 694 0020 00000000 		.4byte	.LFB2
+ 695 0024 1C000000 		.4byte	.LFE2-.LFB2
+ 696 0028 00000000 		.4byte	.LFB3
+ 697 002c 14000000 		.4byte	.LFE3-.LFB3
+ 698 0030 00000000 		.4byte	.LFB4
+ 699 0034 1C000000 		.4byte	.LFE4-.LFB4
+ 700 0038 00000000 		.4byte	.LFB5
+ 701 003c 24000000 		.4byte	.LFE5-.LFB5
+ 702 0040 00000000 		.4byte	0
+ 703 0044 00000000 		.4byte	0
+ 704              		.section	.debug_ranges,"",%progbits
+ 705              	.Ldebug_ranges0:
+ 706 0000 00000000 		.4byte	.LFB0
+ 707 0004 2C000000 		.4byte	.LFE0
+ 708 0008 00000000 		.4byte	.LFB1
+ 709 000c 1C000000 		.4byte	.LFE1
+ 710 0010 00000000 		.4byte	.LFB2
+ 711 0014 1C000000 		.4byte	.LFE2
+ 712 0018 00000000 		.4byte	.LFB3
+ 713 001c 14000000 		.4byte	.LFE3
+ 714 0020 00000000 		.4byte	.LFB4
+ 715 0024 1C000000 		.4byte	.LFE4
+ 716 0028 00000000 		.4byte	.LFB5
+ 717 002c 24000000 		.4byte	.LFE5
+ 718 0030 00000000 		.4byte	0
+ 719 0034 00000000 		.4byte	0
+ 720              		.section	.debug_line,"",%progbits
+ 721              	.Ldebug_line0:
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccIN1nIg.s 			page 17
+
+
+ 722 0000 CE000000 		.section	.debug_str,"MS",%progbits,1
+ 722      02004600 
+ 722      00000201 
+ 722      FB0E0D00 
+ 722      01010101 
+ 723              	.LASF15:
+ 724 0000 4F70616D 		.ascii	"Opamp_REF_Init\000"
+ 724      705F5245 
+ 724      465F496E 
+ 724      697400
+ 725              	.LASF14:
+ 726 000f 72656733 		.ascii	"reg32\000"
+ 726      3200
+ 727              	.LASF26:
+ 728 0015 443A5C31 		.ascii	"D:\\1_work\\my_project\\ReloadPro\\psoc42boot\\Relo"
+ 728      5F776F72 
+ 728      6B5C6D79 
+ 728      5F70726F 
+ 728      6A656374 
+ 729 0043 61642050 		.ascii	"ad Pro.cydsn\000"
+ 729      726F2E63 
+ 729      7964736E 
+ 729      00
+ 730              	.LASF27:
+ 731 0050 4F70616D 		.ascii	"Opamp_REF_initVar\000"
+ 731      705F5245 
+ 731      465F696E 
+ 731      69745661 
+ 731      7200
+ 732              	.LASF23:
+ 733 0062 4F70616D 		.ascii	"Opamp_REF_internalPower\000"
+ 733      705F5245 
+ 733      465F696E 
+ 733      7465726E 
+ 733      616C506F 
+ 734              	.LASF17:
+ 735 007a 4F70616D 		.ascii	"Opamp_REF_Stop\000"
+ 735      705F5245 
+ 735      465F5374 
+ 735      6F7000
+ 736              	.LASF21:
+ 737 0089 706F7765 		.ascii	"power\000"
+ 737      7200
+ 738              	.LASF19:
+ 739 008f 4F70616D 		.ascii	"Opamp_REF_SetPower\000"
+ 739      705F5245 
+ 739      465F5365 
+ 739      74506F77 
+ 739      657200
+ 740              	.LASF11:
+ 741 00a2 666C6F61 		.ascii	"float\000"
+ 741      7400
+ 742              	.LASF1:
+ 743 00a8 756E7369 		.ascii	"unsigned char\000"
+ 743      676E6564 
+ 743      20636861 
+ 743      7200
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccIN1nIg.s 			page 18
+
+
+ 744              	.LASF22:
+ 745 00b6 6F6E4F66 		.ascii	"onOff\000"
+ 745      6600
+ 746              	.LASF5:
+ 747 00bc 6C6F6E67 		.ascii	"long unsigned int\000"
+ 747      20756E73 
+ 747      69676E65 
+ 747      6420696E 
+ 747      7400
+ 748              	.LASF3:
+ 749 00ce 73686F72 		.ascii	"short unsigned int\000"
+ 749      7420756E 
+ 749      7369676E 
+ 749      65642069 
+ 749      6E7400
+ 750              	.LASF12:
+ 751 00e1 646F7562 		.ascii	"double\000"
+ 751      6C6500
+ 752              	.LASF25:
+ 753 00e8 47656E65 		.ascii	"Generated_Source\\PSoC4\\Opamp_REF.c\000"
+ 753      72617465 
+ 753      645F536F 
+ 753      75726365 
+ 753      5C50536F 
+ 754              	.LASF10:
+ 755 010b 75696E74 		.ascii	"uint32\000"
+ 755      333200
+ 756              	.LASF8:
+ 757 0112 756E7369 		.ascii	"unsigned int\000"
+ 757      676E6564 
+ 757      20696E74 
+ 757      00
+ 758              	.LASF7:
+ 759 011f 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 759      206C6F6E 
+ 759      6720756E 
+ 759      7369676E 
+ 759      65642069 
+ 760              	.LASF24:
+ 761 0136 474E5520 		.ascii	"GNU C99 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 761      43393920 
+ 761      352E342E 
+ 761      31203230 
+ 761      31363036 
+ 762 0169 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 762      20726576 
+ 762      6973696F 
+ 762      6E203233 
+ 762      37373135 
+ 763 019c 73202D73 		.ascii	"s -std=gnu99 -ffunction-sections -ffat-lto-objects\000"
+ 763      74643D67 
+ 763      6E753939 
+ 763      202D6666 
+ 763      756E6374 
+ 764              	.LASF6:
+ 765 01cf 6C6F6E67 		.ascii	"long long int\000"
+ 765      206C6F6E 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccIN1nIg.s 			page 19
+
+
+ 765      6720696E 
+ 765      7400
+ 766              	.LASF20:
+ 767 01dd 4F70616D 		.ascii	"Opamp_REF_PumpControl\000"
+ 767      705F5245 
+ 767      465F5075 
+ 767      6D70436F 
+ 767      6E74726F 
+ 768              	.LASF13:
+ 769 01f3 63686172 		.ascii	"char\000"
+ 769      00
+ 770              	.LASF16:
+ 771 01f8 4F70616D 		.ascii	"Opamp_REF_Enable\000"
+ 771      705F5245 
+ 771      465F456E 
+ 771      61626C65 
+ 771      00
+ 772              	.LASF2:
+ 773 0209 73686F72 		.ascii	"short int\000"
+ 773      7420696E 
+ 773      7400
+ 774              	.LASF9:
+ 775 0213 75696E74 		.ascii	"uint8\000"
+ 775      3800
+ 776              	.LASF4:
+ 777 0219 6C6F6E67 		.ascii	"long int\000"
+ 777      20696E74 
+ 777      00
+ 778              	.LASF18:
+ 779 0222 4F70616D 		.ascii	"Opamp_REF_Start\000"
+ 779      705F5245 
+ 779      465F5374 
+ 779      61727400 
+ 780              	.LASF0:
+ 781 0232 7369676E 		.ascii	"signed char\000"
+ 781      65642063 
+ 781      68617200 
+ 782              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

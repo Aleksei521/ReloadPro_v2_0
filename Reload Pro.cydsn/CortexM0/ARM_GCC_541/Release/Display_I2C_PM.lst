@@ -1,0 +1,864 @@
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccFUQIqa.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"Display_I2C_PM.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.Display_I2C_Sleep,"ax",%progbits
+  20              		.align	1
+  21              		.global	Display_I2C_Sleep
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	Display_I2C_Sleep, %function
+  25              	Display_I2C_Sleep:
+  26              	.LFB0:
+  27              		.file 1 "Generated_Source\\PSoC4\\Display_I2C_PM.c"
+   1:Generated_Source\PSoC4/Display_I2C_PM.c **** /***************************************************************************//**
+   2:Generated_Source\PSoC4/Display_I2C_PM.c **** * \file Display_I2C_PM.c
+   3:Generated_Source\PSoC4/Display_I2C_PM.c **** * \version 4.0
+   4:Generated_Source\PSoC4/Display_I2C_PM.c **** *
+   5:Generated_Source\PSoC4/Display_I2C_PM.c **** * \brief
+   6:Generated_Source\PSoC4/Display_I2C_PM.c **** *  This file provides the source code to the Power Management support for
+   7:Generated_Source\PSoC4/Display_I2C_PM.c **** *  the SCB Component.
+   8:Generated_Source\PSoC4/Display_I2C_PM.c **** *
+   9:Generated_Source\PSoC4/Display_I2C_PM.c **** * Note:
+  10:Generated_Source\PSoC4/Display_I2C_PM.c **** *
+  11:Generated_Source\PSoC4/Display_I2C_PM.c **** ********************************************************************************
+  12:Generated_Source\PSoC4/Display_I2C_PM.c **** * \copyright
+  13:Generated_Source\PSoC4/Display_I2C_PM.c **** * Copyright 2013-2017, Cypress Semiconductor Corporation.  All rights reserved.
+  14:Generated_Source\PSoC4/Display_I2C_PM.c **** * You may use this file only in accordance with the license, terms, conditions,
+  15:Generated_Source\PSoC4/Display_I2C_PM.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  16:Generated_Source\PSoC4/Display_I2C_PM.c **** * the software package with which this file was provided.
+  17:Generated_Source\PSoC4/Display_I2C_PM.c **** *******************************************************************************/
+  18:Generated_Source\PSoC4/Display_I2C_PM.c **** 
+  19:Generated_Source\PSoC4/Display_I2C_PM.c **** #include "Display_I2C.h"
+  20:Generated_Source\PSoC4/Display_I2C_PM.c **** #include "Display_I2C_PVT.h"
+  21:Generated_Source\PSoC4/Display_I2C_PM.c **** 
+  22:Generated_Source\PSoC4/Display_I2C_PM.c **** #if(Display_I2C_SCB_MODE_I2C_INC)
+  23:Generated_Source\PSoC4/Display_I2C_PM.c ****     #include "Display_I2C_I2C_PVT.h"
+  24:Generated_Source\PSoC4/Display_I2C_PM.c **** #endif /* (Display_I2C_SCB_MODE_I2C_INC) */
+  25:Generated_Source\PSoC4/Display_I2C_PM.c **** 
+  26:Generated_Source\PSoC4/Display_I2C_PM.c **** #if(Display_I2C_SCB_MODE_EZI2C_INC)
+  27:Generated_Source\PSoC4/Display_I2C_PM.c ****     #include "Display_I2C_EZI2C_PVT.h"
+  28:Generated_Source\PSoC4/Display_I2C_PM.c **** #endif /* (Display_I2C_SCB_MODE_EZI2C_INC) */
+  29:Generated_Source\PSoC4/Display_I2C_PM.c **** 
+  30:Generated_Source\PSoC4/Display_I2C_PM.c **** #if(Display_I2C_SCB_MODE_SPI_INC || Display_I2C_SCB_MODE_UART_INC)
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccFUQIqa.s 			page 2
+
+
+  31:Generated_Source\PSoC4/Display_I2C_PM.c ****     #include "Display_I2C_SPI_UART_PVT.h"
+  32:Generated_Source\PSoC4/Display_I2C_PM.c **** #endif /* (Display_I2C_SCB_MODE_SPI_INC || Display_I2C_SCB_MODE_UART_INC) */
+  33:Generated_Source\PSoC4/Display_I2C_PM.c **** 
+  34:Generated_Source\PSoC4/Display_I2C_PM.c **** 
+  35:Generated_Source\PSoC4/Display_I2C_PM.c **** /***************************************
+  36:Generated_Source\PSoC4/Display_I2C_PM.c **** *   Backup Structure declaration
+  37:Generated_Source\PSoC4/Display_I2C_PM.c **** ***************************************/
+  38:Generated_Source\PSoC4/Display_I2C_PM.c **** 
+  39:Generated_Source\PSoC4/Display_I2C_PM.c **** #if(Display_I2C_SCB_MODE_UNCONFIG_CONST_CFG || \
+  40:Generated_Source\PSoC4/Display_I2C_PM.c ****    (Display_I2C_SCB_MODE_I2C_CONST_CFG   && (!Display_I2C_I2C_WAKE_ENABLE_CONST))   || \
+  41:Generated_Source\PSoC4/Display_I2C_PM.c ****    (Display_I2C_SCB_MODE_EZI2C_CONST_CFG && (!Display_I2C_EZI2C_WAKE_ENABLE_CONST)) || \
+  42:Generated_Source\PSoC4/Display_I2C_PM.c ****    (Display_I2C_SCB_MODE_SPI_CONST_CFG   && (!Display_I2C_SPI_WAKE_ENABLE_CONST))   || \
+  43:Generated_Source\PSoC4/Display_I2C_PM.c ****    (Display_I2C_SCB_MODE_UART_CONST_CFG  && (!Display_I2C_UART_WAKE_ENABLE_CONST)))
+  44:Generated_Source\PSoC4/Display_I2C_PM.c **** 
+  45:Generated_Source\PSoC4/Display_I2C_PM.c ****     Display_I2C_BACKUP_STRUCT Display_I2C_backup =
+  46:Generated_Source\PSoC4/Display_I2C_PM.c ****     {
+  47:Generated_Source\PSoC4/Display_I2C_PM.c ****         0u, /* enableState */
+  48:Generated_Source\PSoC4/Display_I2C_PM.c ****     };
+  49:Generated_Source\PSoC4/Display_I2C_PM.c **** #endif
+  50:Generated_Source\PSoC4/Display_I2C_PM.c **** 
+  51:Generated_Source\PSoC4/Display_I2C_PM.c **** 
+  52:Generated_Source\PSoC4/Display_I2C_PM.c **** /*******************************************************************************
+  53:Generated_Source\PSoC4/Display_I2C_PM.c **** * Function Name: Display_I2C_Sleep
+  54:Generated_Source\PSoC4/Display_I2C_PM.c **** ****************************************************************************//**
+  55:Generated_Source\PSoC4/Display_I2C_PM.c **** *
+  56:Generated_Source\PSoC4/Display_I2C_PM.c **** *  Prepares the Display_I2C component to enter Deep Sleep.
+  57:Generated_Source\PSoC4/Display_I2C_PM.c **** *  The “Enable wakeup from Deep Sleep Mode” selection has an influence on this 
+  58:Generated_Source\PSoC4/Display_I2C_PM.c **** *  function implementation:
+  59:Generated_Source\PSoC4/Display_I2C_PM.c **** *  - Checked: configures the component to be wakeup source from Deep Sleep.
+  60:Generated_Source\PSoC4/Display_I2C_PM.c **** *  - Unchecked: stores the current component state (enabled or disabled) and 
+  61:Generated_Source\PSoC4/Display_I2C_PM.c **** *    disables the component. See SCB_Stop() function for details about component 
+  62:Generated_Source\PSoC4/Display_I2C_PM.c **** *    disabling.
+  63:Generated_Source\PSoC4/Display_I2C_PM.c **** *
+  64:Generated_Source\PSoC4/Display_I2C_PM.c **** *  Call the Display_I2C_Sleep() function before calling the 
+  65:Generated_Source\PSoC4/Display_I2C_PM.c **** *  CyPmSysDeepSleep() function. 
+  66:Generated_Source\PSoC4/Display_I2C_PM.c **** *  Refer to the PSoC Creator System Reference Guide for more information about 
+  67:Generated_Source\PSoC4/Display_I2C_PM.c **** *  power management functions and Low power section of this document for the 
+  68:Generated_Source\PSoC4/Display_I2C_PM.c **** *  selected mode.
+  69:Generated_Source\PSoC4/Display_I2C_PM.c **** *
+  70:Generated_Source\PSoC4/Display_I2C_PM.c **** *  This function should not be called before entering Sleep.
+  71:Generated_Source\PSoC4/Display_I2C_PM.c **** *
+  72:Generated_Source\PSoC4/Display_I2C_PM.c **** *******************************************************************************/
+  73:Generated_Source\PSoC4/Display_I2C_PM.c **** void Display_I2C_Sleep(void)
+  74:Generated_Source\PSoC4/Display_I2C_PM.c **** {
+  28              		.loc 1 74 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  75:Generated_Source\PSoC4/Display_I2C_PM.c **** #if(Display_I2C_SCB_MODE_UNCONFIG_CONST_CFG)
+  76:Generated_Source\PSoC4/Display_I2C_PM.c **** 
+  77:Generated_Source\PSoC4/Display_I2C_PM.c ****     if(Display_I2C_SCB_WAKE_ENABLE_CHECK)
+  78:Generated_Source\PSoC4/Display_I2C_PM.c ****     {
+  79:Generated_Source\PSoC4/Display_I2C_PM.c ****         if(Display_I2C_SCB_MODE_I2C_RUNTM_CFG)
+  80:Generated_Source\PSoC4/Display_I2C_PM.c ****         {
+  81:Generated_Source\PSoC4/Display_I2C_PM.c ****             Display_I2C_I2CSaveConfig();
+  82:Generated_Source\PSoC4/Display_I2C_PM.c ****         }
+  83:Generated_Source\PSoC4/Display_I2C_PM.c ****         else if(Display_I2C_SCB_MODE_EZI2C_RUNTM_CFG)
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccFUQIqa.s 			page 3
+
+
+  84:Generated_Source\PSoC4/Display_I2C_PM.c ****         {
+  85:Generated_Source\PSoC4/Display_I2C_PM.c ****             Display_I2C_EzI2CSaveConfig();
+  86:Generated_Source\PSoC4/Display_I2C_PM.c ****         }
+  87:Generated_Source\PSoC4/Display_I2C_PM.c ****     #if(!Display_I2C_CY_SCBIP_V1)
+  88:Generated_Source\PSoC4/Display_I2C_PM.c ****         else if(Display_I2C_SCB_MODE_SPI_RUNTM_CFG)
+  89:Generated_Source\PSoC4/Display_I2C_PM.c ****         {
+  90:Generated_Source\PSoC4/Display_I2C_PM.c ****             Display_I2C_SpiSaveConfig();
+  91:Generated_Source\PSoC4/Display_I2C_PM.c ****         }
+  92:Generated_Source\PSoC4/Display_I2C_PM.c ****         else if(Display_I2C_SCB_MODE_UART_RUNTM_CFG)
+  93:Generated_Source\PSoC4/Display_I2C_PM.c ****         {
+  94:Generated_Source\PSoC4/Display_I2C_PM.c ****             Display_I2C_UartSaveConfig();
+  95:Generated_Source\PSoC4/Display_I2C_PM.c ****         }
+  96:Generated_Source\PSoC4/Display_I2C_PM.c ****     #endif /* (!Display_I2C_CY_SCBIP_V1) */
+  97:Generated_Source\PSoC4/Display_I2C_PM.c ****         else
+  98:Generated_Source\PSoC4/Display_I2C_PM.c ****         {
+  99:Generated_Source\PSoC4/Display_I2C_PM.c ****             /* Unknown mode */
+ 100:Generated_Source\PSoC4/Display_I2C_PM.c ****         }
+ 101:Generated_Source\PSoC4/Display_I2C_PM.c ****     }
+ 102:Generated_Source\PSoC4/Display_I2C_PM.c ****     else
+ 103:Generated_Source\PSoC4/Display_I2C_PM.c ****     {
+ 104:Generated_Source\PSoC4/Display_I2C_PM.c ****         Display_I2C_backup.enableState = (uint8) Display_I2C_GET_CTRL_ENABLED;
+ 105:Generated_Source\PSoC4/Display_I2C_PM.c **** 
+ 106:Generated_Source\PSoC4/Display_I2C_PM.c ****         if(0u != Display_I2C_backup.enableState)
+ 107:Generated_Source\PSoC4/Display_I2C_PM.c ****         {
+ 108:Generated_Source\PSoC4/Display_I2C_PM.c ****             Display_I2C_Stop();
+ 109:Generated_Source\PSoC4/Display_I2C_PM.c ****         }
+ 110:Generated_Source\PSoC4/Display_I2C_PM.c ****     }
+ 111:Generated_Source\PSoC4/Display_I2C_PM.c **** 
+ 112:Generated_Source\PSoC4/Display_I2C_PM.c **** #else
+ 113:Generated_Source\PSoC4/Display_I2C_PM.c **** 
+ 114:Generated_Source\PSoC4/Display_I2C_PM.c ****     #if (Display_I2C_SCB_MODE_I2C_CONST_CFG && Display_I2C_I2C_WAKE_ENABLE_CONST)
+ 115:Generated_Source\PSoC4/Display_I2C_PM.c ****         Display_I2C_I2CSaveConfig();
+ 116:Generated_Source\PSoC4/Display_I2C_PM.c **** 
+ 117:Generated_Source\PSoC4/Display_I2C_PM.c ****     #elif (Display_I2C_SCB_MODE_EZI2C_CONST_CFG && Display_I2C_EZI2C_WAKE_ENABLE_CONST)
+ 118:Generated_Source\PSoC4/Display_I2C_PM.c ****         Display_I2C_EzI2CSaveConfig();
+ 119:Generated_Source\PSoC4/Display_I2C_PM.c **** 
+ 120:Generated_Source\PSoC4/Display_I2C_PM.c ****     #elif (Display_I2C_SCB_MODE_SPI_CONST_CFG && Display_I2C_SPI_WAKE_ENABLE_CONST)
+ 121:Generated_Source\PSoC4/Display_I2C_PM.c ****         Display_I2C_SpiSaveConfig();
+ 122:Generated_Source\PSoC4/Display_I2C_PM.c **** 
+ 123:Generated_Source\PSoC4/Display_I2C_PM.c ****     #elif (Display_I2C_SCB_MODE_UART_CONST_CFG && Display_I2C_UART_WAKE_ENABLE_CONST)
+ 124:Generated_Source\PSoC4/Display_I2C_PM.c ****         Display_I2C_UartSaveConfig();
+ 125:Generated_Source\PSoC4/Display_I2C_PM.c **** 
+ 126:Generated_Source\PSoC4/Display_I2C_PM.c ****     #else
+ 127:Generated_Source\PSoC4/Display_I2C_PM.c **** 
+ 128:Generated_Source\PSoC4/Display_I2C_PM.c ****         Display_I2C_backup.enableState = (uint8) Display_I2C_GET_CTRL_ENABLED;
+  32              		.loc 1 128 0
+  33 0000 054B     		ldr	r3, .L4
+  34 0002 064A     		ldr	r2, .L4+4
+  35 0004 1B68     		ldr	r3, [r3]
+  74:Generated_Source\PSoC4/Display_I2C_PM.c **** #if(Display_I2C_SCB_MODE_UNCONFIG_CONST_CFG)
+  36              		.loc 1 74 0
+  37 0006 10B5     		push	{r4, lr}
+  38              		.cfi_def_cfa_offset 8
+  39              		.cfi_offset 4, -8
+  40              		.cfi_offset 14, -4
+  41              		.loc 1 128 0
+  42 0008 D90F     		lsrs	r1, r3, #31
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccFUQIqa.s 			page 4
+
+
+  43 000a 1170     		strb	r1, [r2]
+ 129:Generated_Source\PSoC4/Display_I2C_PM.c **** 
+ 130:Generated_Source\PSoC4/Display_I2C_PM.c ****         if(0u != Display_I2C_backup.enableState)
+  44              		.loc 1 130 0
+  45 000c 002B     		cmp	r3, #0
+  46 000e 01DA     		bge	.L1
+ 131:Generated_Source\PSoC4/Display_I2C_PM.c ****         {
+ 132:Generated_Source\PSoC4/Display_I2C_PM.c ****             Display_I2C_Stop();
+  47              		.loc 1 132 0
+  48 0010 FFF7FEFF 		bl	Display_I2C_Stop
+  49              	.LVL0:
+  50              	.L1:
+ 133:Generated_Source\PSoC4/Display_I2C_PM.c ****         }
+ 134:Generated_Source\PSoC4/Display_I2C_PM.c **** 
+ 135:Generated_Source\PSoC4/Display_I2C_PM.c ****     #endif /* defined (Display_I2C_SCB_MODE_I2C_CONST_CFG) && (Display_I2C_I2C_WAKE_ENABLE_CONST) *
+ 136:Generated_Source\PSoC4/Display_I2C_PM.c **** 
+ 137:Generated_Source\PSoC4/Display_I2C_PM.c **** #endif /* (Display_I2C_SCB_MODE_UNCONFIG_CONST_CFG) */
+ 138:Generated_Source\PSoC4/Display_I2C_PM.c **** }
+  51              		.loc 1 138 0
+  52              		@ sp needed
+  53 0014 10BD     		pop	{r4, pc}
+  54              	.L5:
+  55 0016 C046     		.align	2
+  56              	.L4:
+  57 0018 00000740 		.word	1074200576
+  58 001c 00000000 		.word	.LANCHOR0
+  59              		.cfi_endproc
+  60              	.LFE0:
+  61              		.size	Display_I2C_Sleep, .-Display_I2C_Sleep
+  62              		.section	.text.Display_I2C_Wakeup,"ax",%progbits
+  63              		.align	1
+  64              		.global	Display_I2C_Wakeup
+  65              		.code	16
+  66              		.thumb_func
+  67              		.type	Display_I2C_Wakeup, %function
+  68              	Display_I2C_Wakeup:
+  69              	.LFB1:
+ 139:Generated_Source\PSoC4/Display_I2C_PM.c **** 
+ 140:Generated_Source\PSoC4/Display_I2C_PM.c **** 
+ 141:Generated_Source\PSoC4/Display_I2C_PM.c **** /*******************************************************************************
+ 142:Generated_Source\PSoC4/Display_I2C_PM.c **** * Function Name: Display_I2C_Wakeup
+ 143:Generated_Source\PSoC4/Display_I2C_PM.c **** ****************************************************************************//**
+ 144:Generated_Source\PSoC4/Display_I2C_PM.c **** *
+ 145:Generated_Source\PSoC4/Display_I2C_PM.c **** *  Prepares the Display_I2C component for Active mode operation after 
+ 146:Generated_Source\PSoC4/Display_I2C_PM.c **** *  Deep Sleep.
+ 147:Generated_Source\PSoC4/Display_I2C_PM.c **** *  The “Enable wakeup from Deep Sleep Mode” selection has influence on this 
+ 148:Generated_Source\PSoC4/Display_I2C_PM.c **** *  function implementation:
+ 149:Generated_Source\PSoC4/Display_I2C_PM.c **** *  - Checked: restores the component Active mode configuration.
+ 150:Generated_Source\PSoC4/Display_I2C_PM.c **** *  - Unchecked: enables the component if it was enabled before enter Deep Sleep.
+ 151:Generated_Source\PSoC4/Display_I2C_PM.c **** *
+ 152:Generated_Source\PSoC4/Display_I2C_PM.c **** *  This function should not be called after exiting Sleep.
+ 153:Generated_Source\PSoC4/Display_I2C_PM.c **** *
+ 154:Generated_Source\PSoC4/Display_I2C_PM.c **** *  \sideeffect
+ 155:Generated_Source\PSoC4/Display_I2C_PM.c **** *   Calling the Display_I2C_Wakeup() function without first calling the 
+ 156:Generated_Source\PSoC4/Display_I2C_PM.c **** *   Display_I2C_Sleep() function may produce unexpected behavior.
+ 157:Generated_Source\PSoC4/Display_I2C_PM.c **** *
+ 158:Generated_Source\PSoC4/Display_I2C_PM.c **** *******************************************************************************/
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccFUQIqa.s 			page 5
+
+
+ 159:Generated_Source\PSoC4/Display_I2C_PM.c **** void Display_I2C_Wakeup(void)
+ 160:Generated_Source\PSoC4/Display_I2C_PM.c **** {
+  70              		.loc 1 160 0
+  71              		.cfi_startproc
+  72              		@ args = 0, pretend = 0, frame = 0
+  73              		@ frame_needed = 0, uses_anonymous_args = 0
+  74 0000 10B5     		push	{r4, lr}
+  75              		.cfi_def_cfa_offset 8
+  76              		.cfi_offset 4, -8
+  77              		.cfi_offset 14, -4
+ 161:Generated_Source\PSoC4/Display_I2C_PM.c **** #if(Display_I2C_SCB_MODE_UNCONFIG_CONST_CFG)
+ 162:Generated_Source\PSoC4/Display_I2C_PM.c **** 
+ 163:Generated_Source\PSoC4/Display_I2C_PM.c ****     if(Display_I2C_SCB_WAKE_ENABLE_CHECK)
+ 164:Generated_Source\PSoC4/Display_I2C_PM.c ****     {
+ 165:Generated_Source\PSoC4/Display_I2C_PM.c ****         if(Display_I2C_SCB_MODE_I2C_RUNTM_CFG)
+ 166:Generated_Source\PSoC4/Display_I2C_PM.c ****         {
+ 167:Generated_Source\PSoC4/Display_I2C_PM.c ****             Display_I2C_I2CRestoreConfig();
+ 168:Generated_Source\PSoC4/Display_I2C_PM.c ****         }
+ 169:Generated_Source\PSoC4/Display_I2C_PM.c ****         else if(Display_I2C_SCB_MODE_EZI2C_RUNTM_CFG)
+ 170:Generated_Source\PSoC4/Display_I2C_PM.c ****         {
+ 171:Generated_Source\PSoC4/Display_I2C_PM.c ****             Display_I2C_EzI2CRestoreConfig();
+ 172:Generated_Source\PSoC4/Display_I2C_PM.c ****         }
+ 173:Generated_Source\PSoC4/Display_I2C_PM.c ****     #if(!Display_I2C_CY_SCBIP_V1)
+ 174:Generated_Source\PSoC4/Display_I2C_PM.c ****         else if(Display_I2C_SCB_MODE_SPI_RUNTM_CFG)
+ 175:Generated_Source\PSoC4/Display_I2C_PM.c ****         {
+ 176:Generated_Source\PSoC4/Display_I2C_PM.c ****             Display_I2C_SpiRestoreConfig();
+ 177:Generated_Source\PSoC4/Display_I2C_PM.c ****         }
+ 178:Generated_Source\PSoC4/Display_I2C_PM.c ****         else if(Display_I2C_SCB_MODE_UART_RUNTM_CFG)
+ 179:Generated_Source\PSoC4/Display_I2C_PM.c ****         {
+ 180:Generated_Source\PSoC4/Display_I2C_PM.c ****             Display_I2C_UartRestoreConfig();
+ 181:Generated_Source\PSoC4/Display_I2C_PM.c ****         }
+ 182:Generated_Source\PSoC4/Display_I2C_PM.c ****     #endif /* (!Display_I2C_CY_SCBIP_V1) */
+ 183:Generated_Source\PSoC4/Display_I2C_PM.c ****         else
+ 184:Generated_Source\PSoC4/Display_I2C_PM.c ****         {
+ 185:Generated_Source\PSoC4/Display_I2C_PM.c ****             /* Unknown mode */
+ 186:Generated_Source\PSoC4/Display_I2C_PM.c ****         }
+ 187:Generated_Source\PSoC4/Display_I2C_PM.c ****     }
+ 188:Generated_Source\PSoC4/Display_I2C_PM.c ****     else
+ 189:Generated_Source\PSoC4/Display_I2C_PM.c ****     {
+ 190:Generated_Source\PSoC4/Display_I2C_PM.c ****         if(0u != Display_I2C_backup.enableState)
+ 191:Generated_Source\PSoC4/Display_I2C_PM.c ****         {
+ 192:Generated_Source\PSoC4/Display_I2C_PM.c ****             Display_I2C_Enable();
+ 193:Generated_Source\PSoC4/Display_I2C_PM.c ****         }
+ 194:Generated_Source\PSoC4/Display_I2C_PM.c ****     }
+ 195:Generated_Source\PSoC4/Display_I2C_PM.c **** 
+ 196:Generated_Source\PSoC4/Display_I2C_PM.c **** #else
+ 197:Generated_Source\PSoC4/Display_I2C_PM.c **** 
+ 198:Generated_Source\PSoC4/Display_I2C_PM.c ****     #if (Display_I2C_SCB_MODE_I2C_CONST_CFG  && Display_I2C_I2C_WAKE_ENABLE_CONST)
+ 199:Generated_Source\PSoC4/Display_I2C_PM.c ****         Display_I2C_I2CRestoreConfig();
+ 200:Generated_Source\PSoC4/Display_I2C_PM.c **** 
+ 201:Generated_Source\PSoC4/Display_I2C_PM.c ****     #elif (Display_I2C_SCB_MODE_EZI2C_CONST_CFG && Display_I2C_EZI2C_WAKE_ENABLE_CONST)
+ 202:Generated_Source\PSoC4/Display_I2C_PM.c ****         Display_I2C_EzI2CRestoreConfig();
+ 203:Generated_Source\PSoC4/Display_I2C_PM.c **** 
+ 204:Generated_Source\PSoC4/Display_I2C_PM.c ****     #elif (Display_I2C_SCB_MODE_SPI_CONST_CFG && Display_I2C_SPI_WAKE_ENABLE_CONST)
+ 205:Generated_Source\PSoC4/Display_I2C_PM.c ****         Display_I2C_SpiRestoreConfig();
+ 206:Generated_Source\PSoC4/Display_I2C_PM.c **** 
+ 207:Generated_Source\PSoC4/Display_I2C_PM.c ****     #elif (Display_I2C_SCB_MODE_UART_CONST_CFG && Display_I2C_UART_WAKE_ENABLE_CONST)
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccFUQIqa.s 			page 6
+
+
+ 208:Generated_Source\PSoC4/Display_I2C_PM.c ****         Display_I2C_UartRestoreConfig();
+ 209:Generated_Source\PSoC4/Display_I2C_PM.c **** 
+ 210:Generated_Source\PSoC4/Display_I2C_PM.c ****     #else
+ 211:Generated_Source\PSoC4/Display_I2C_PM.c **** 
+ 212:Generated_Source\PSoC4/Display_I2C_PM.c ****         if(0u != Display_I2C_backup.enableState)
+  78              		.loc 1 212 0
+  79 0002 034B     		ldr	r3, .L11
+  80 0004 1B78     		ldrb	r3, [r3]
+  81 0006 002B     		cmp	r3, #0
+  82 0008 01D0     		beq	.L6
+ 213:Generated_Source\PSoC4/Display_I2C_PM.c ****         {
+ 214:Generated_Source\PSoC4/Display_I2C_PM.c ****             Display_I2C_Enable();
+  83              		.loc 1 214 0
+  84 000a FFF7FEFF 		bl	Display_I2C_Enable
+  85              	.LVL1:
+  86              	.L6:
+ 215:Generated_Source\PSoC4/Display_I2C_PM.c ****         }
+ 216:Generated_Source\PSoC4/Display_I2C_PM.c **** 
+ 217:Generated_Source\PSoC4/Display_I2C_PM.c ****     #endif /* (Display_I2C_I2C_WAKE_ENABLE_CONST) */
+ 218:Generated_Source\PSoC4/Display_I2C_PM.c **** 
+ 219:Generated_Source\PSoC4/Display_I2C_PM.c **** #endif /* (Display_I2C_SCB_MODE_UNCONFIG_CONST_CFG) */
+ 220:Generated_Source\PSoC4/Display_I2C_PM.c **** }
+  87              		.loc 1 220 0
+  88              		@ sp needed
+  89 000e 10BD     		pop	{r4, pc}
+  90              	.L12:
+  91              		.align	2
+  92              	.L11:
+  93 0010 00000000 		.word	.LANCHOR0
+  94              		.cfi_endproc
+  95              	.LFE1:
+  96              		.size	Display_I2C_Wakeup, .-Display_I2C_Wakeup
+  97              		.global	Display_I2C_backup
+  98              		.bss
+  99              		.set	.LANCHOR0,. + 0
+ 100              		.type	Display_I2C_backup, %object
+ 101              		.size	Display_I2C_backup, 1
+ 102              	Display_I2C_backup:
+ 103 0000 00       		.space	1
+ 104              		.text
+ 105              	.Letext0:
+ 106              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+ 107              		.file 3 "Generated_Source\\PSoC4\\Display_I2C.h"
+ 108              		.section	.debug_info,"",%progbits
+ 109              	.Ldebug_info0:
+ 110 0000 32010000 		.4byte	0x132
+ 111 0004 0400     		.2byte	0x4
+ 112 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 113 000a 04       		.byte	0x4
+ 114 000b 01       		.uleb128 0x1
+ 115 000c 3F000000 		.4byte	.LASF21
+ 116 0010 0C       		.byte	0xc
+ 117 0011 6E010000 		.4byte	.LASF22
+ 118 0015 D8000000 		.4byte	.LASF23
+ 119 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 120 001d 00000000 		.4byte	0
+ 121 0021 00000000 		.4byte	.Ldebug_line0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccFUQIqa.s 			page 7
+
+
+ 122 0025 02       		.uleb128 0x2
+ 123 0026 01       		.byte	0x1
+ 124 0027 06       		.byte	0x6
+ 125 0028 D1010000 		.4byte	.LASF0
+ 126 002c 02       		.uleb128 0x2
+ 127 002d 01       		.byte	0x1
+ 128 002e 08       		.byte	0x8
+ 129 002f 5B010000 		.4byte	.LASF1
+ 130 0033 02       		.uleb128 0x2
+ 131 0034 02       		.byte	0x2
+ 132 0035 05       		.byte	0x5
+ 133 0036 0A020000 		.4byte	.LASF2
+ 134 003a 02       		.uleb128 0x2
+ 135 003b 02       		.byte	0x2
+ 136 003c 07       		.byte	0x7
+ 137 003d BE010000 		.4byte	.LASF3
+ 138 0041 02       		.uleb128 0x2
+ 139 0042 04       		.byte	0x4
+ 140 0043 05       		.byte	0x5
+ 141 0044 96010000 		.4byte	.LASF4
+ 142 0048 02       		.uleb128 0x2
+ 143 0049 04       		.byte	0x4
+ 144 004a 07       		.byte	0x7
+ 145 004b 2C010000 		.4byte	.LASF5
+ 146 004f 02       		.uleb128 0x2
+ 147 0050 08       		.byte	0x8
+ 148 0051 05       		.byte	0x5
+ 149 0052 00000000 		.4byte	.LASF6
+ 150 0056 02       		.uleb128 0x2
+ 151 0057 08       		.byte	0x8
+ 152 0058 07       		.byte	0x7
+ 153 0059 3E010000 		.4byte	.LASF7
+ 154 005d 03       		.uleb128 0x3
+ 155 005e 04       		.byte	0x4
+ 156 005f 05       		.byte	0x5
+ 157 0060 696E7400 		.ascii	"int\000"
+ 158 0064 02       		.uleb128 0x2
+ 159 0065 04       		.byte	0x4
+ 160 0066 07       		.byte	0x7
+ 161 0067 21000000 		.4byte	.LASF8
+ 162 006b 04       		.uleb128 0x4
+ 163 006c 26010000 		.4byte	.LASF9
+ 164 0070 02       		.byte	0x2
+ 165 0071 E401     		.2byte	0x1e4
+ 166 0073 2C000000 		.4byte	0x2c
+ 167 0077 04       		.uleb128 0x4
+ 168 0078 0E000000 		.4byte	.LASF10
+ 169 007c 02       		.byte	0x2
+ 170 007d E601     		.2byte	0x1e6
+ 171 007f 48000000 		.4byte	0x48
+ 172 0083 02       		.uleb128 0x2
+ 173 0084 04       		.byte	0x4
+ 174 0085 04       		.byte	0x4
+ 175 0086 55010000 		.4byte	.LASF11
+ 176 008a 02       		.uleb128 0x2
+ 177 008b 08       		.byte	0x8
+ 178 008c 04       		.byte	0x4
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccFUQIqa.s 			page 8
+
+
+ 179 008d B1010000 		.4byte	.LASF12
+ 180 0091 02       		.uleb128 0x2
+ 181 0092 01       		.byte	0x1
+ 182 0093 08       		.byte	0x8
+ 183 0094 69010000 		.4byte	.LASF13
+ 184 0098 04       		.uleb128 0x4
+ 185 0099 B8010000 		.4byte	.LASF14
+ 186 009d 02       		.byte	0x2
+ 187 009e 9002     		.2byte	0x290
+ 188 00a0 A4000000 		.4byte	0xa4
+ 189 00a4 05       		.uleb128 0x5
+ 190 00a5 77000000 		.4byte	0x77
+ 191 00a9 02       		.uleb128 0x2
+ 192 00aa 04       		.byte	0x4
+ 193 00ab 07       		.byte	0x7
+ 194 00ac 27020000 		.4byte	.LASF15
+ 195 00b0 06       		.uleb128 0x6
+ 196 00b1 01       		.byte	0x1
+ 197 00b2 03       		.byte	0x3
+ 198 00b3 60       		.byte	0x60
+ 199 00b4 C5000000 		.4byte	0xc5
+ 200 00b8 07       		.uleb128 0x7
+ 201 00b9 15000000 		.4byte	.LASF24
+ 202 00bd 03       		.byte	0x3
+ 203 00be 62       		.byte	0x62
+ 204 00bf 6B000000 		.4byte	0x6b
+ 205 00c3 00       		.byte	0
+ 206 00c4 00       		.byte	0
+ 207 00c5 08       		.uleb128 0x8
+ 208 00c6 DD010000 		.4byte	.LASF16
+ 209 00ca 03       		.byte	0x3
+ 210 00cb 63       		.byte	0x63
+ 211 00cc B0000000 		.4byte	0xb0
+ 212 00d0 09       		.uleb128 0x9
+ 213 00d1 9F010000 		.4byte	.LASF17
+ 214 00d5 01       		.byte	0x1
+ 215 00d6 49       		.byte	0x49
+ 216 00d7 00000000 		.4byte	.LFB0
+ 217 00db 20000000 		.4byte	.LFE0-.LFB0
+ 218 00df 01       		.uleb128 0x1
+ 219 00e0 9C       		.byte	0x9c
+ 220 00e1 EF000000 		.4byte	0xef
+ 221 00e5 0A       		.uleb128 0xa
+ 222 00e6 14000000 		.4byte	.LVL0
+ 223 00ea 1F010000 		.4byte	0x11f
+ 224 00ee 00       		.byte	0
+ 225 00ef 09       		.uleb128 0x9
+ 226 00f0 14020000 		.4byte	.LASF18
+ 227 00f4 01       		.byte	0x1
+ 228 00f5 9F       		.byte	0x9f
+ 229 00f6 00000000 		.4byte	.LFB1
+ 230 00fa 14000000 		.4byte	.LFE1-.LFB1
+ 231 00fe 01       		.uleb128 0x1
+ 232 00ff 9C       		.byte	0x9c
+ 233 0100 0E010000 		.4byte	0x10e
+ 234 0104 0A       		.uleb128 0xa
+ 235 0105 0E000000 		.4byte	.LVL1
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccFUQIqa.s 			page 9
+
+
+ 236 0109 2A010000 		.4byte	0x12a
+ 237 010d 00       		.byte	0
+ 238 010e 0B       		.uleb128 0xb
+ 239 010f F7010000 		.4byte	.LASF25
+ 240 0113 01       		.byte	0x1
+ 241 0114 2D       		.byte	0x2d
+ 242 0115 C5000000 		.4byte	0xc5
+ 243 0119 05       		.uleb128 0x5
+ 244 011a 03       		.byte	0x3
+ 245 011b 00000000 		.4byte	Display_I2C_backup
+ 246 011f 0C       		.uleb128 0xc
+ 247 0120 2E000000 		.4byte	.LASF19
+ 248 0124 2E000000 		.4byte	.LASF19
+ 249 0128 03       		.byte	0x3
+ 250 0129 73       		.byte	0x73
+ 251 012a 0C       		.uleb128 0xc
+ 252 012b 13010000 		.4byte	.LASF20
+ 253 012f 13010000 		.4byte	.LASF20
+ 254 0133 03       		.byte	0x3
+ 255 0134 71       		.byte	0x71
+ 256 0135 00       		.byte	0
+ 257              		.section	.debug_abbrev,"",%progbits
+ 258              	.Ldebug_abbrev0:
+ 259 0000 01       		.uleb128 0x1
+ 260 0001 11       		.uleb128 0x11
+ 261 0002 01       		.byte	0x1
+ 262 0003 25       		.uleb128 0x25
+ 263 0004 0E       		.uleb128 0xe
+ 264 0005 13       		.uleb128 0x13
+ 265 0006 0B       		.uleb128 0xb
+ 266 0007 03       		.uleb128 0x3
+ 267 0008 0E       		.uleb128 0xe
+ 268 0009 1B       		.uleb128 0x1b
+ 269 000a 0E       		.uleb128 0xe
+ 270 000b 55       		.uleb128 0x55
+ 271 000c 17       		.uleb128 0x17
+ 272 000d 11       		.uleb128 0x11
+ 273 000e 01       		.uleb128 0x1
+ 274 000f 10       		.uleb128 0x10
+ 275 0010 17       		.uleb128 0x17
+ 276 0011 00       		.byte	0
+ 277 0012 00       		.byte	0
+ 278 0013 02       		.uleb128 0x2
+ 279 0014 24       		.uleb128 0x24
+ 280 0015 00       		.byte	0
+ 281 0016 0B       		.uleb128 0xb
+ 282 0017 0B       		.uleb128 0xb
+ 283 0018 3E       		.uleb128 0x3e
+ 284 0019 0B       		.uleb128 0xb
+ 285 001a 03       		.uleb128 0x3
+ 286 001b 0E       		.uleb128 0xe
+ 287 001c 00       		.byte	0
+ 288 001d 00       		.byte	0
+ 289 001e 03       		.uleb128 0x3
+ 290 001f 24       		.uleb128 0x24
+ 291 0020 00       		.byte	0
+ 292 0021 0B       		.uleb128 0xb
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccFUQIqa.s 			page 10
+
+
+ 293 0022 0B       		.uleb128 0xb
+ 294 0023 3E       		.uleb128 0x3e
+ 295 0024 0B       		.uleb128 0xb
+ 296 0025 03       		.uleb128 0x3
+ 297 0026 08       		.uleb128 0x8
+ 298 0027 00       		.byte	0
+ 299 0028 00       		.byte	0
+ 300 0029 04       		.uleb128 0x4
+ 301 002a 16       		.uleb128 0x16
+ 302 002b 00       		.byte	0
+ 303 002c 03       		.uleb128 0x3
+ 304 002d 0E       		.uleb128 0xe
+ 305 002e 3A       		.uleb128 0x3a
+ 306 002f 0B       		.uleb128 0xb
+ 307 0030 3B       		.uleb128 0x3b
+ 308 0031 05       		.uleb128 0x5
+ 309 0032 49       		.uleb128 0x49
+ 310 0033 13       		.uleb128 0x13
+ 311 0034 00       		.byte	0
+ 312 0035 00       		.byte	0
+ 313 0036 05       		.uleb128 0x5
+ 314 0037 35       		.uleb128 0x35
+ 315 0038 00       		.byte	0
+ 316 0039 49       		.uleb128 0x49
+ 317 003a 13       		.uleb128 0x13
+ 318 003b 00       		.byte	0
+ 319 003c 00       		.byte	0
+ 320 003d 06       		.uleb128 0x6
+ 321 003e 13       		.uleb128 0x13
+ 322 003f 01       		.byte	0x1
+ 323 0040 0B       		.uleb128 0xb
+ 324 0041 0B       		.uleb128 0xb
+ 325 0042 3A       		.uleb128 0x3a
+ 326 0043 0B       		.uleb128 0xb
+ 327 0044 3B       		.uleb128 0x3b
+ 328 0045 0B       		.uleb128 0xb
+ 329 0046 01       		.uleb128 0x1
+ 330 0047 13       		.uleb128 0x13
+ 331 0048 00       		.byte	0
+ 332 0049 00       		.byte	0
+ 333 004a 07       		.uleb128 0x7
+ 334 004b 0D       		.uleb128 0xd
+ 335 004c 00       		.byte	0
+ 336 004d 03       		.uleb128 0x3
+ 337 004e 0E       		.uleb128 0xe
+ 338 004f 3A       		.uleb128 0x3a
+ 339 0050 0B       		.uleb128 0xb
+ 340 0051 3B       		.uleb128 0x3b
+ 341 0052 0B       		.uleb128 0xb
+ 342 0053 49       		.uleb128 0x49
+ 343 0054 13       		.uleb128 0x13
+ 344 0055 38       		.uleb128 0x38
+ 345 0056 0B       		.uleb128 0xb
+ 346 0057 00       		.byte	0
+ 347 0058 00       		.byte	0
+ 348 0059 08       		.uleb128 0x8
+ 349 005a 16       		.uleb128 0x16
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccFUQIqa.s 			page 11
+
+
+ 350 005b 00       		.byte	0
+ 351 005c 03       		.uleb128 0x3
+ 352 005d 0E       		.uleb128 0xe
+ 353 005e 3A       		.uleb128 0x3a
+ 354 005f 0B       		.uleb128 0xb
+ 355 0060 3B       		.uleb128 0x3b
+ 356 0061 0B       		.uleb128 0xb
+ 357 0062 49       		.uleb128 0x49
+ 358 0063 13       		.uleb128 0x13
+ 359 0064 00       		.byte	0
+ 360 0065 00       		.byte	0
+ 361 0066 09       		.uleb128 0x9
+ 362 0067 2E       		.uleb128 0x2e
+ 363 0068 01       		.byte	0x1
+ 364 0069 3F       		.uleb128 0x3f
+ 365 006a 19       		.uleb128 0x19
+ 366 006b 03       		.uleb128 0x3
+ 367 006c 0E       		.uleb128 0xe
+ 368 006d 3A       		.uleb128 0x3a
+ 369 006e 0B       		.uleb128 0xb
+ 370 006f 3B       		.uleb128 0x3b
+ 371 0070 0B       		.uleb128 0xb
+ 372 0071 27       		.uleb128 0x27
+ 373 0072 19       		.uleb128 0x19
+ 374 0073 11       		.uleb128 0x11
+ 375 0074 01       		.uleb128 0x1
+ 376 0075 12       		.uleb128 0x12
+ 377 0076 06       		.uleb128 0x6
+ 378 0077 40       		.uleb128 0x40
+ 379 0078 18       		.uleb128 0x18
+ 380 0079 9742     		.uleb128 0x2117
+ 381 007b 19       		.uleb128 0x19
+ 382 007c 01       		.uleb128 0x1
+ 383 007d 13       		.uleb128 0x13
+ 384 007e 00       		.byte	0
+ 385 007f 00       		.byte	0
+ 386 0080 0A       		.uleb128 0xa
+ 387 0081 898201   		.uleb128 0x4109
+ 388 0084 00       		.byte	0
+ 389 0085 11       		.uleb128 0x11
+ 390 0086 01       		.uleb128 0x1
+ 391 0087 31       		.uleb128 0x31
+ 392 0088 13       		.uleb128 0x13
+ 393 0089 00       		.byte	0
+ 394 008a 00       		.byte	0
+ 395 008b 0B       		.uleb128 0xb
+ 396 008c 34       		.uleb128 0x34
+ 397 008d 00       		.byte	0
+ 398 008e 03       		.uleb128 0x3
+ 399 008f 0E       		.uleb128 0xe
+ 400 0090 3A       		.uleb128 0x3a
+ 401 0091 0B       		.uleb128 0xb
+ 402 0092 3B       		.uleb128 0x3b
+ 403 0093 0B       		.uleb128 0xb
+ 404 0094 49       		.uleb128 0x49
+ 405 0095 13       		.uleb128 0x13
+ 406 0096 3F       		.uleb128 0x3f
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccFUQIqa.s 			page 12
+
+
+ 407 0097 19       		.uleb128 0x19
+ 408 0098 02       		.uleb128 0x2
+ 409 0099 18       		.uleb128 0x18
+ 410 009a 00       		.byte	0
+ 411 009b 00       		.byte	0
+ 412 009c 0C       		.uleb128 0xc
+ 413 009d 2E       		.uleb128 0x2e
+ 414 009e 00       		.byte	0
+ 415 009f 3F       		.uleb128 0x3f
+ 416 00a0 19       		.uleb128 0x19
+ 417 00a1 3C       		.uleb128 0x3c
+ 418 00a2 19       		.uleb128 0x19
+ 419 00a3 6E       		.uleb128 0x6e
+ 420 00a4 0E       		.uleb128 0xe
+ 421 00a5 03       		.uleb128 0x3
+ 422 00a6 0E       		.uleb128 0xe
+ 423 00a7 3A       		.uleb128 0x3a
+ 424 00a8 0B       		.uleb128 0xb
+ 425 00a9 3B       		.uleb128 0x3b
+ 426 00aa 0B       		.uleb128 0xb
+ 427 00ab 00       		.byte	0
+ 428 00ac 00       		.byte	0
+ 429 00ad 00       		.byte	0
+ 430              		.section	.debug_aranges,"",%progbits
+ 431 0000 24000000 		.4byte	0x24
+ 432 0004 0200     		.2byte	0x2
+ 433 0006 00000000 		.4byte	.Ldebug_info0
+ 434 000a 04       		.byte	0x4
+ 435 000b 00       		.byte	0
+ 436 000c 0000     		.2byte	0
+ 437 000e 0000     		.2byte	0
+ 438 0010 00000000 		.4byte	.LFB0
+ 439 0014 20000000 		.4byte	.LFE0-.LFB0
+ 440 0018 00000000 		.4byte	.LFB1
+ 441 001c 14000000 		.4byte	.LFE1-.LFB1
+ 442 0020 00000000 		.4byte	0
+ 443 0024 00000000 		.4byte	0
+ 444              		.section	.debug_ranges,"",%progbits
+ 445              	.Ldebug_ranges0:
+ 446 0000 00000000 		.4byte	.LFB0
+ 447 0004 20000000 		.4byte	.LFE0
+ 448 0008 00000000 		.4byte	.LFB1
+ 449 000c 14000000 		.4byte	.LFE1
+ 450 0010 00000000 		.4byte	0
+ 451 0014 00000000 		.4byte	0
+ 452              		.section	.debug_line,"",%progbits
+ 453              	.Ldebug_line0:
+ 454 0000 93000000 		.section	.debug_str,"MS",%progbits,1
+ 454      02005C00 
+ 454      00000201 
+ 454      FB0E0D00 
+ 454      01010101 
+ 455              	.LASF6:
+ 456 0000 6C6F6E67 		.ascii	"long long int\000"
+ 456      206C6F6E 
+ 456      6720696E 
+ 456      7400
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccFUQIqa.s 			page 13
+
+
+ 457              	.LASF10:
+ 458 000e 75696E74 		.ascii	"uint32\000"
+ 458      333200
+ 459              	.LASF24:
+ 460 0015 656E6162 		.ascii	"enableState\000"
+ 460      6C655374 
+ 460      61746500 
+ 461              	.LASF8:
+ 462 0021 756E7369 		.ascii	"unsigned int\000"
+ 462      676E6564 
+ 462      20696E74 
+ 462      00
+ 463              	.LASF19:
+ 464 002e 44697370 		.ascii	"Display_I2C_Stop\000"
+ 464      6C61795F 
+ 464      4932435F 
+ 464      53746F70 
+ 464      00
+ 465              	.LASF21:
+ 466 003f 474E5520 		.ascii	"GNU C99 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 466      43393920 
+ 466      352E342E 
+ 466      31203230 
+ 466      31363036 
+ 467 0072 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 467      20726576 
+ 467      6973696F 
+ 467      6E203233 
+ 467      37373135 
+ 468 00a5 73202D73 		.ascii	"s -std=gnu99 -ffunction-sections -ffat-lto-objects\000"
+ 468      74643D67 
+ 468      6E753939 
+ 468      202D6666 
+ 468      756E6374 
+ 469              	.LASF23:
+ 470 00d8 443A5C31 		.ascii	"D:\\1_work\\my_project\\ReloadPro\\psoc42boot\\Relo"
+ 470      5F776F72 
+ 470      6B5C6D79 
+ 470      5F70726F 
+ 470      6A656374 
+ 471 0106 61642050 		.ascii	"ad Pro.cydsn\000"
+ 471      726F2E63 
+ 471      7964736E 
+ 471      00
+ 472              	.LASF20:
+ 473 0113 44697370 		.ascii	"Display_I2C_Enable\000"
+ 473      6C61795F 
+ 473      4932435F 
+ 473      456E6162 
+ 473      6C6500
+ 474              	.LASF9:
+ 475 0126 75696E74 		.ascii	"uint8\000"
+ 475      3800
+ 476              	.LASF5:
+ 477 012c 6C6F6E67 		.ascii	"long unsigned int\000"
+ 477      20756E73 
+ 477      69676E65 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccFUQIqa.s 			page 14
+
+
+ 477      6420696E 
+ 477      7400
+ 478              	.LASF7:
+ 479 013e 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 479      206C6F6E 
+ 479      6720756E 
+ 479      7369676E 
+ 479      65642069 
+ 480              	.LASF11:
+ 481 0155 666C6F61 		.ascii	"float\000"
+ 481      7400
+ 482              	.LASF1:
+ 483 015b 756E7369 		.ascii	"unsigned char\000"
+ 483      676E6564 
+ 483      20636861 
+ 483      7200
+ 484              	.LASF13:
+ 485 0169 63686172 		.ascii	"char\000"
+ 485      00
+ 486              	.LASF22:
+ 487 016e 47656E65 		.ascii	"Generated_Source\\PSoC4\\Display_I2C_PM.c\000"
+ 487      72617465 
+ 487      645F536F 
+ 487      75726365 
+ 487      5C50536F 
+ 488              	.LASF4:
+ 489 0196 6C6F6E67 		.ascii	"long int\000"
+ 489      20696E74 
+ 489      00
+ 490              	.LASF17:
+ 491 019f 44697370 		.ascii	"Display_I2C_Sleep\000"
+ 491      6C61795F 
+ 491      4932435F 
+ 491      536C6565 
+ 491      7000
+ 492              	.LASF12:
+ 493 01b1 646F7562 		.ascii	"double\000"
+ 493      6C6500
+ 494              	.LASF14:
+ 495 01b8 72656733 		.ascii	"reg32\000"
+ 495      3200
+ 496              	.LASF3:
+ 497 01be 73686F72 		.ascii	"short unsigned int\000"
+ 497      7420756E 
+ 497      7369676E 
+ 497      65642069 
+ 497      6E7400
+ 498              	.LASF0:
+ 499 01d1 7369676E 		.ascii	"signed char\000"
+ 499      65642063 
+ 499      68617200 
+ 500              	.LASF16:
+ 501 01dd 44697370 		.ascii	"Display_I2C_BACKUP_STRUCT\000"
+ 501      6C61795F 
+ 501      4932435F 
+ 501      4241434B 
+ 501      55505F53 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccFUQIqa.s 			page 15
+
+
+ 502              	.LASF25:
+ 503 01f7 44697370 		.ascii	"Display_I2C_backup\000"
+ 503      6C61795F 
+ 503      4932435F 
+ 503      6261636B 
+ 503      757000
+ 504              	.LASF2:
+ 505 020a 73686F72 		.ascii	"short int\000"
+ 505      7420696E 
+ 505      7400
+ 506              	.LASF18:
+ 507 0214 44697370 		.ascii	"Display_I2C_Wakeup\000"
+ 507      6C61795F 
+ 507      4932435F 
+ 507      57616B65 
+ 507      757000
+ 508              	.LASF15:
+ 509 0227 73697A65 		.ascii	"sizetype\000"
+ 509      74797065 
+ 509      00
+ 510              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

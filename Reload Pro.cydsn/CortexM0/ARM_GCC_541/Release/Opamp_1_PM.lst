@@ -1,0 +1,857 @@
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cchUUmEF.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"Opamp_1_PM.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.Opamp_1_SaveConfig,"ax",%progbits
+  20              		.align	1
+  21              		.global	Opamp_1_SaveConfig
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	Opamp_1_SaveConfig, %function
+  25              	Opamp_1_SaveConfig:
+  26              	.LFB5:
+  27              		.cfi_startproc
+  28              		@ args = 0, pretend = 0, frame = 0
+  29              		@ frame_needed = 0, uses_anonymous_args = 0
+  30              		@ link register save eliminated.
+  31              		@ sp needed
+  32 0000 7047     		bx	lr
+  33              		.cfi_endproc
+  34              	.LFE5:
+  35              		.size	Opamp_1_SaveConfig, .-Opamp_1_SaveConfig
+  36              		.section	.text.Opamp_1_RestoreConfig,"ax",%progbits
+  37              		.align	1
+  38              		.global	Opamp_1_RestoreConfig
+  39              		.code	16
+  40              		.thumb_func
+  41              		.type	Opamp_1_RestoreConfig, %function
+  42              	Opamp_1_RestoreConfig:
+  43              	.LFB1:
+  44              		.file 1 "Generated_Source\\PSoC4\\Opamp_1_PM.c"
+   1:Generated_Source\PSoC4/Opamp_1_PM.c **** /*******************************************************************************
+   2:Generated_Source\PSoC4/Opamp_1_PM.c **** * File Name: Opamp_1_PM.c
+   3:Generated_Source\PSoC4/Opamp_1_PM.c **** * Version 1.20
+   4:Generated_Source\PSoC4/Opamp_1_PM.c **** *
+   5:Generated_Source\PSoC4/Opamp_1_PM.c **** * Description:
+   6:Generated_Source\PSoC4/Opamp_1_PM.c **** *  This file provides the power management source code to the API for the
+   7:Generated_Source\PSoC4/Opamp_1_PM.c **** *  Opamp (Analog Buffer) component.
+   8:Generated_Source\PSoC4/Opamp_1_PM.c **** *
+   9:Generated_Source\PSoC4/Opamp_1_PM.c **** *
+  10:Generated_Source\PSoC4/Opamp_1_PM.c **** ********************************************************************************
+  11:Generated_Source\PSoC4/Opamp_1_PM.c **** * Copyright 2013-2015, Cypress Semiconductor Corporation.  All rights reserved.
+  12:Generated_Source\PSoC4/Opamp_1_PM.c **** * You may use this file only in accordance with the license, terms, conditions,
+  13:Generated_Source\PSoC4/Opamp_1_PM.c **** * disclaimers, and limitations in the end user license agreement accompanying
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cchUUmEF.s 			page 2
+
+
+  14:Generated_Source\PSoC4/Opamp_1_PM.c **** * the software package with which this file was provided.
+  15:Generated_Source\PSoC4/Opamp_1_PM.c **** *******************************************************************************/
+  16:Generated_Source\PSoC4/Opamp_1_PM.c **** 
+  17:Generated_Source\PSoC4/Opamp_1_PM.c **** #include "Opamp_1.h"
+  18:Generated_Source\PSoC4/Opamp_1_PM.c **** 
+  19:Generated_Source\PSoC4/Opamp_1_PM.c **** #if(!Opamp_1_CHECK_DEEPSLEEP_SUPPORT)
+  20:Generated_Source\PSoC4/Opamp_1_PM.c ****     static Opamp_1_BACKUP_STRUCT Opamp_1_backup =
+  21:Generated_Source\PSoC4/Opamp_1_PM.c ****     {
+  22:Generated_Source\PSoC4/Opamp_1_PM.c ****         0u, /* enableState */
+  23:Generated_Source\PSoC4/Opamp_1_PM.c ****     };
+  24:Generated_Source\PSoC4/Opamp_1_PM.c **** #endif /* (Opamp_1_CHECK_DEEPSLEEP_SUPPORT) */
+  25:Generated_Source\PSoC4/Opamp_1_PM.c **** 
+  26:Generated_Source\PSoC4/Opamp_1_PM.c **** 
+  27:Generated_Source\PSoC4/Opamp_1_PM.c **** /*******************************************************************************
+  28:Generated_Source\PSoC4/Opamp_1_PM.c **** * Function Name: Opamp_1_SaveConfig
+  29:Generated_Source\PSoC4/Opamp_1_PM.c **** ********************************************************************************
+  30:Generated_Source\PSoC4/Opamp_1_PM.c **** *
+  31:Generated_Source\PSoC4/Opamp_1_PM.c **** * Summary:
+  32:Generated_Source\PSoC4/Opamp_1_PM.c **** *  Empty function. Included for consistency with other components.
+  33:Generated_Source\PSoC4/Opamp_1_PM.c **** *
+  34:Generated_Source\PSoC4/Opamp_1_PM.c **** * Parameters:
+  35:Generated_Source\PSoC4/Opamp_1_PM.c **** *  None
+  36:Generated_Source\PSoC4/Opamp_1_PM.c **** *
+  37:Generated_Source\PSoC4/Opamp_1_PM.c **** * Return:
+  38:Generated_Source\PSoC4/Opamp_1_PM.c **** *  None
+  39:Generated_Source\PSoC4/Opamp_1_PM.c **** *
+  40:Generated_Source\PSoC4/Opamp_1_PM.c **** *******************************************************************************/
+  41:Generated_Source\PSoC4/Opamp_1_PM.c **** void Opamp_1_SaveConfig(void)
+  42:Generated_Source\PSoC4/Opamp_1_PM.c **** {
+  43:Generated_Source\PSoC4/Opamp_1_PM.c **** 
+  44:Generated_Source\PSoC4/Opamp_1_PM.c **** }
+  45:Generated_Source\PSoC4/Opamp_1_PM.c **** 
+  46:Generated_Source\PSoC4/Opamp_1_PM.c **** 
+  47:Generated_Source\PSoC4/Opamp_1_PM.c **** /*******************************************************************************
+  48:Generated_Source\PSoC4/Opamp_1_PM.c **** * Function Name: Opamp_1_RestoreConfig
+  49:Generated_Source\PSoC4/Opamp_1_PM.c **** ********************************************************************************
+  50:Generated_Source\PSoC4/Opamp_1_PM.c **** *
+  51:Generated_Source\PSoC4/Opamp_1_PM.c **** * Summary:
+  52:Generated_Source\PSoC4/Opamp_1_PM.c **** *  Empty function. Included for consistency with other components.
+  53:Generated_Source\PSoC4/Opamp_1_PM.c **** *
+  54:Generated_Source\PSoC4/Opamp_1_PM.c **** * Parameters:
+  55:Generated_Source\PSoC4/Opamp_1_PM.c **** *  None
+  56:Generated_Source\PSoC4/Opamp_1_PM.c **** *
+  57:Generated_Source\PSoC4/Opamp_1_PM.c **** * Return:
+  58:Generated_Source\PSoC4/Opamp_1_PM.c **** *  None
+  59:Generated_Source\PSoC4/Opamp_1_PM.c **** *
+  60:Generated_Source\PSoC4/Opamp_1_PM.c **** *******************************************************************************/
+  61:Generated_Source\PSoC4/Opamp_1_PM.c **** void Opamp_1_RestoreConfig(void)
+  62:Generated_Source\PSoC4/Opamp_1_PM.c **** {
+  45              		.loc 1 62 0
+  46              		.cfi_startproc
+  47              		@ args = 0, pretend = 0, frame = 0
+  48              		@ frame_needed = 0, uses_anonymous_args = 0
+  49              		@ link register save eliminated.
+  63:Generated_Source\PSoC4/Opamp_1_PM.c ****     
+  64:Generated_Source\PSoC4/Opamp_1_PM.c **** }
+  50              		.loc 1 64 0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cchUUmEF.s 			page 3
+
+
+  51              		@ sp needed
+  52 0000 7047     		bx	lr
+  53              		.cfi_endproc
+  54              	.LFE1:
+  55              		.size	Opamp_1_RestoreConfig, .-Opamp_1_RestoreConfig
+  56              		.section	.text.Opamp_1_Sleep,"ax",%progbits
+  57              		.align	1
+  58              		.global	Opamp_1_Sleep
+  59              		.code	16
+  60              		.thumb_func
+  61              		.type	Opamp_1_Sleep, %function
+  62              	Opamp_1_Sleep:
+  63              	.LFB2:
+  65:Generated_Source\PSoC4/Opamp_1_PM.c **** 
+  66:Generated_Source\PSoC4/Opamp_1_PM.c **** 
+  67:Generated_Source\PSoC4/Opamp_1_PM.c **** /*******************************************************************************
+  68:Generated_Source\PSoC4/Opamp_1_PM.c **** * Function Name: Opamp_1_Sleep
+  69:Generated_Source\PSoC4/Opamp_1_PM.c **** ********************************************************************************
+  70:Generated_Source\PSoC4/Opamp_1_PM.c **** *
+  71:Generated_Source\PSoC4/Opamp_1_PM.c **** * Summary:
+  72:Generated_Source\PSoC4/Opamp_1_PM.c **** *  This is the preferred API to prepare the component for sleep. The Sleep() API 
+  73:Generated_Source\PSoC4/Opamp_1_PM.c **** *  saves the current component state. Call the Sleep() function before calling the 
+  74:Generated_Source\PSoC4/Opamp_1_PM.c **** *  CySysPmDeepSleep() or the CySysPmHibernate() functions. The "Deep sleep operation" 
+  75:Generated_Source\PSoC4/Opamp_1_PM.c **** *  option has an influence on this function implementation.
+  76:Generated_Source\PSoC4/Opamp_1_PM.c **** *
+  77:Generated_Source\PSoC4/Opamp_1_PM.c **** * Parameters:
+  78:Generated_Source\PSoC4/Opamp_1_PM.c **** *  None
+  79:Generated_Source\PSoC4/Opamp_1_PM.c **** *
+  80:Generated_Source\PSoC4/Opamp_1_PM.c **** * Return:
+  81:Generated_Source\PSoC4/Opamp_1_PM.c **** *  None
+  82:Generated_Source\PSoC4/Opamp_1_PM.c **** *
+  83:Generated_Source\PSoC4/Opamp_1_PM.c **** * Global variables:
+  84:Generated_Source\PSoC4/Opamp_1_PM.c **** *  Opamp_1_backup: The structure field 'enableState' is modified
+  85:Generated_Source\PSoC4/Opamp_1_PM.c **** *  depending on the enable state of the block before entering the sleep mode.
+  86:Generated_Source\PSoC4/Opamp_1_PM.c **** *
+  87:Generated_Source\PSoC4/Opamp_1_PM.c **** *******************************************************************************/
+  88:Generated_Source\PSoC4/Opamp_1_PM.c **** void Opamp_1_Sleep(void)
+  89:Generated_Source\PSoC4/Opamp_1_PM.c **** {
+  64              		.loc 1 89 0
+  65              		.cfi_startproc
+  66              		@ args = 0, pretend = 0, frame = 0
+  67              		@ frame_needed = 0, uses_anonymous_args = 0
+  90:Generated_Source\PSoC4/Opamp_1_PM.c **** #if(!Opamp_1_CHECK_DEEPSLEEP_SUPPORT)
+  91:Generated_Source\PSoC4/Opamp_1_PM.c ****     if(Opamp_1_CHECK_PWR_MODE_OFF)
+  68              		.loc 1 91 0
+  69 0000 064B     		ldr	r3, .L7
+  89:Generated_Source\PSoC4/Opamp_1_PM.c **** #if(!Opamp_1_CHECK_DEEPSLEEP_SUPPORT)
+  70              		.loc 1 89 0
+  71 0002 10B5     		push	{r4, lr}
+  72              		.cfi_def_cfa_offset 8
+  73              		.cfi_offset 4, -8
+  74              		.cfi_offset 14, -4
+  75              		.loc 1 91 0
+  76 0004 1A68     		ldr	r2, [r3]
+  77 0006 0323     		movs	r3, #3
+  78 0008 1340     		ands	r3, r2
+  79 000a 054A     		ldr	r2, .L7+4
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cchUUmEF.s 			page 4
+
+
+  80 000c 04D0     		beq	.L4
+  92:Generated_Source\PSoC4/Opamp_1_PM.c ****     {
+  93:Generated_Source\PSoC4/Opamp_1_PM.c ****         Opamp_1_backup.enableState = 1u;
+  81              		.loc 1 93 0
+  82 000e 0123     		movs	r3, #1
+  83 0010 1370     		strb	r3, [r2]
+  94:Generated_Source\PSoC4/Opamp_1_PM.c ****         Opamp_1_Stop();
+  84              		.loc 1 94 0
+  85 0012 FFF7FEFF 		bl	Opamp_1_Stop
+  86              	.LVL0:
+  87 0016 00E0     		b	.L3
+  88              	.L4:
+  95:Generated_Source\PSoC4/Opamp_1_PM.c ****     }
+  96:Generated_Source\PSoC4/Opamp_1_PM.c ****     else /* The component is disabled */
+  97:Generated_Source\PSoC4/Opamp_1_PM.c ****     {
+  98:Generated_Source\PSoC4/Opamp_1_PM.c ****         Opamp_1_backup.enableState = 0u;
+  89              		.loc 1 98 0
+  90 0018 1370     		strb	r3, [r2]
+  91              	.L3:
+  99:Generated_Source\PSoC4/Opamp_1_PM.c ****     }
+ 100:Generated_Source\PSoC4/Opamp_1_PM.c **** #endif /* (Opamp_1_CHECK_DEEPSLEEP_SUPPORT) */
+ 101:Generated_Source\PSoC4/Opamp_1_PM.c **** }
+  92              		.loc 1 101 0
+  93              		@ sp needed
+  94 001a 10BD     		pop	{r4, pc}
+  95              	.L8:
+  96              		.align	2
+  97              	.L7:
+  98 001c 08001040 		.word	1074790408
+  99 0020 00000000 		.word	.LANCHOR0
+ 100              		.cfi_endproc
+ 101              	.LFE2:
+ 102              		.size	Opamp_1_Sleep, .-Opamp_1_Sleep
+ 103              		.section	.text.Opamp_1_Wakeup,"ax",%progbits
+ 104              		.align	1
+ 105              		.global	Opamp_1_Wakeup
+ 106              		.code	16
+ 107              		.thumb_func
+ 108              		.type	Opamp_1_Wakeup, %function
+ 109              	Opamp_1_Wakeup:
+ 110              	.LFB3:
+ 102:Generated_Source\PSoC4/Opamp_1_PM.c **** 
+ 103:Generated_Source\PSoC4/Opamp_1_PM.c **** 
+ 104:Generated_Source\PSoC4/Opamp_1_PM.c **** /*******************************************************************************
+ 105:Generated_Source\PSoC4/Opamp_1_PM.c **** * Function Name: Opamp_1_Wakeup
+ 106:Generated_Source\PSoC4/Opamp_1_PM.c **** ********************************************************************************
+ 107:Generated_Source\PSoC4/Opamp_1_PM.c **** *
+ 108:Generated_Source\PSoC4/Opamp_1_PM.c **** * Summary:
+ 109:Generated_Source\PSoC4/Opamp_1_PM.c **** *  This is the preferred API to restore the component to the state when Sleep() 
+ 110:Generated_Source\PSoC4/Opamp_1_PM.c **** *  is called. If the component has been enabled before the Sleep() function is 
+ 111:Generated_Source\PSoC4/Opamp_1_PM.c **** *  called, the Wakeup() function will also re-enable the component.
+ 112:Generated_Source\PSoC4/Opamp_1_PM.c **** *  The "Deep sleep operation" option has an influence on this function
+ 113:Generated_Source\PSoC4/Opamp_1_PM.c **** *  implementation.
+ 114:Generated_Source\PSoC4/Opamp_1_PM.c **** *
+ 115:Generated_Source\PSoC4/Opamp_1_PM.c **** * Parameters:
+ 116:Generated_Source\PSoC4/Opamp_1_PM.c **** *  None
+ 117:Generated_Source\PSoC4/Opamp_1_PM.c **** *
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cchUUmEF.s 			page 5
+
+
+ 118:Generated_Source\PSoC4/Opamp_1_PM.c **** * Return:
+ 119:Generated_Source\PSoC4/Opamp_1_PM.c **** *  None
+ 120:Generated_Source\PSoC4/Opamp_1_PM.c **** *
+ 121:Generated_Source\PSoC4/Opamp_1_PM.c **** * Global variables:
+ 122:Generated_Source\PSoC4/Opamp_1_PM.c **** *  Opamp_1_backup: The structure field 'enableState' is used to
+ 123:Generated_Source\PSoC4/Opamp_1_PM.c **** *  restore the enable state of block after wakeup from sleep mode.
+ 124:Generated_Source\PSoC4/Opamp_1_PM.c **** *
+ 125:Generated_Source\PSoC4/Opamp_1_PM.c **** *******************************************************************************/
+ 126:Generated_Source\PSoC4/Opamp_1_PM.c **** void Opamp_1_Wakeup(void)
+ 127:Generated_Source\PSoC4/Opamp_1_PM.c **** {
+ 111              		.loc 1 127 0
+ 112              		.cfi_startproc
+ 113              		@ args = 0, pretend = 0, frame = 0
+ 114              		@ frame_needed = 0, uses_anonymous_args = 0
+ 115 0000 10B5     		push	{r4, lr}
+ 116              		.cfi_def_cfa_offset 8
+ 117              		.cfi_offset 4, -8
+ 118              		.cfi_offset 14, -4
+ 128:Generated_Source\PSoC4/Opamp_1_PM.c **** #if(!Opamp_1_CHECK_DEEPSLEEP_SUPPORT)
+ 129:Generated_Source\PSoC4/Opamp_1_PM.c ****     if(0u != Opamp_1_backup.enableState)
+ 119              		.loc 1 129 0
+ 120 0002 034B     		ldr	r3, .L14
+ 121 0004 1B78     		ldrb	r3, [r3]
+ 122 0006 002B     		cmp	r3, #0
+ 123 0008 01D0     		beq	.L9
+ 130:Generated_Source\PSoC4/Opamp_1_PM.c ****     {
+ 131:Generated_Source\PSoC4/Opamp_1_PM.c ****         /* Enable Opamp's operation */
+ 132:Generated_Source\PSoC4/Opamp_1_PM.c ****         Opamp_1_Enable();
+ 124              		.loc 1 132 0
+ 125 000a FFF7FEFF 		bl	Opamp_1_Enable
+ 126              	.LVL1:
+ 127              	.L9:
+ 133:Generated_Source\PSoC4/Opamp_1_PM.c ****     } /* Do nothing if Opamp was disabled before */
+ 134:Generated_Source\PSoC4/Opamp_1_PM.c **** #endif /* (Opamp_1_CHECK_DEEPSLEEP_SUPPORT) */
+ 135:Generated_Source\PSoC4/Opamp_1_PM.c **** }
+ 128              		.loc 1 135 0
+ 129              		@ sp needed
+ 130 000e 10BD     		pop	{r4, pc}
+ 131              	.L15:
+ 132              		.align	2
+ 133              	.L14:
+ 134 0010 00000000 		.word	.LANCHOR0
+ 135              		.cfi_endproc
+ 136              	.LFE3:
+ 137              		.size	Opamp_1_Wakeup, .-Opamp_1_Wakeup
+ 138              		.bss
+ 139              		.set	.LANCHOR0,. + 0
+ 140              		.type	Opamp_1_backup, %object
+ 141              		.size	Opamp_1_backup, 1
+ 142              	Opamp_1_backup:
+ 143 0000 00       		.space	1
+ 144              		.text
+ 145              	.Letext0:
+ 146              		.file 2 "Generated_Source\\PSoC4\\cytypes.h"
+ 147              		.file 3 "Generated_Source\\PSoC4\\Opamp_1.h"
+ 148              		.section	.debug_info,"",%progbits
+ 149              	.Ldebug_info0:
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cchUUmEF.s 			page 6
+
+
+ 150 0000 42010000 		.4byte	0x142
+ 151 0004 0400     		.2byte	0x4
+ 152 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 153 000a 04       		.byte	0x4
+ 154 000b 01       		.uleb128 0x1
+ 155 000c F5000000 		.4byte	.LASF20
+ 156 0010 0C       		.byte	0xc
+ 157 0011 AD000000 		.4byte	.LASF21
+ 158 0015 06000000 		.4byte	.LASF22
+ 159 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 160 001d 00000000 		.4byte	0
+ 161 0021 00000000 		.4byte	.Ldebug_line0
+ 162 0025 02       		.uleb128 0x2
+ 163 0026 01       		.byte	0x1
+ 164 0027 06       		.byte	0x6
+ 165 0028 E1010000 		.4byte	.LASF0
+ 166 002c 02       		.uleb128 0x2
+ 167 002d 01       		.byte	0x1
+ 168 002e 08       		.byte	0x8
+ 169 002f 5D000000 		.4byte	.LASF1
+ 170 0033 02       		.uleb128 0x2
+ 171 0034 02       		.byte	0x2
+ 172 0035 05       		.byte	0x5
+ 173 0036 BC010000 		.4byte	.LASF2
+ 174 003a 02       		.uleb128 0x2
+ 175 003b 02       		.byte	0x2
+ 176 003c 07       		.byte	0x7
+ 177 003d 8C000000 		.4byte	.LASF3
+ 178 0041 02       		.uleb128 0x2
+ 179 0042 04       		.byte	0x4
+ 180 0043 05       		.byte	0x5
+ 181 0044 CC010000 		.4byte	.LASF4
+ 182 0048 02       		.uleb128 0x2
+ 183 0049 04       		.byte	0x4
+ 184 004a 07       		.byte	0x7
+ 185 004b 7A000000 		.4byte	.LASF5
+ 186 004f 02       		.uleb128 0x2
+ 187 0050 08       		.byte	0x8
+ 188 0051 05       		.byte	0x5
+ 189 0052 9B010000 		.4byte	.LASF6
+ 190 0056 02       		.uleb128 0x2
+ 191 0057 08       		.byte	0x8
+ 192 0058 07       		.byte	0x7
+ 193 0059 DE000000 		.4byte	.LASF7
+ 194 005d 03       		.uleb128 0x3
+ 195 005e 04       		.byte	0x4
+ 196 005f 05       		.byte	0x5
+ 197 0060 696E7400 		.ascii	"int\000"
+ 198 0064 02       		.uleb128 0x2
+ 199 0065 04       		.byte	0x4
+ 200 0066 07       		.byte	0x7
+ 201 0067 D1000000 		.4byte	.LASF8
+ 202 006b 04       		.uleb128 0x4
+ 203 006c C6010000 		.4byte	.LASF9
+ 204 0070 02       		.byte	0x2
+ 205 0071 E401     		.2byte	0x1e4
+ 206 0073 2C000000 		.4byte	0x2c
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cchUUmEF.s 			page 7
+
+
+ 207 0077 04       		.uleb128 0x4
+ 208 0078 A6000000 		.4byte	.LASF10
+ 209 007c 02       		.byte	0x2
+ 210 007d E601     		.2byte	0x1e6
+ 211 007f 48000000 		.4byte	0x48
+ 212 0083 02       		.uleb128 0x2
+ 213 0084 04       		.byte	0x4
+ 214 0085 04       		.byte	0x4
+ 215 0086 41000000 		.4byte	.LASF11
+ 216 008a 02       		.uleb128 0x2
+ 217 008b 08       		.byte	0x8
+ 218 008c 04       		.byte	0x4
+ 219 008d 9F000000 		.4byte	.LASF12
+ 220 0091 02       		.uleb128 0x2
+ 221 0092 01       		.byte	0x1
+ 222 0093 08       		.byte	0x8
+ 223 0094 A9010000 		.4byte	.LASF13
+ 224 0098 04       		.uleb128 0x4
+ 225 0099 00000000 		.4byte	.LASF14
+ 226 009d 02       		.byte	0x2
+ 227 009e 9002     		.2byte	0x290
+ 228 00a0 A4000000 		.4byte	0xa4
+ 229 00a4 05       		.uleb128 0x5
+ 230 00a5 77000000 		.4byte	0x77
+ 231 00a9 06       		.uleb128 0x6
+ 232 00aa 01       		.byte	0x1
+ 233 00ab 03       		.byte	0x3
+ 234 00ac 1E       		.byte	0x1e
+ 235 00ad BE000000 		.4byte	0xbe
+ 236 00b1 07       		.uleb128 0x7
+ 237 00b2 D5010000 		.4byte	.LASF23
+ 238 00b6 03       		.byte	0x3
+ 239 00b7 20       		.byte	0x20
+ 240 00b8 6B000000 		.4byte	0x6b
+ 241 00bc 00       		.byte	0
+ 242 00bd 00       		.byte	0
+ 243 00be 08       		.uleb128 0x8
+ 244 00bf 47000000 		.4byte	.LASF15
+ 245 00c3 03       		.byte	0x3
+ 246 00c4 21       		.byte	0x21
+ 247 00c5 A9000000 		.4byte	0xa9
+ 248 00c9 09       		.uleb128 0x9
+ 249 00ca 0B020000 		.4byte	.LASF24
+ 250 00ce 01       		.byte	0x1
+ 251 00cf 3D       		.byte	0x3d
+ 252 00d0 01       		.byte	0x1
+ 253 00d1 0A       		.uleb128 0xa
+ 254 00d2 C9000000 		.4byte	0xc9
+ 255 00d6 00000000 		.4byte	.LFB1
+ 256 00da 02000000 		.4byte	.LFE1-.LFB1
+ 257 00de 01       		.uleb128 0x1
+ 258 00df 9C       		.byte	0x9c
+ 259 00e0 0B       		.uleb128 0xb
+ 260 00e1 AE010000 		.4byte	.LASF16
+ 261 00e5 01       		.byte	0x1
+ 262 00e6 58       		.byte	0x58
+ 263 00e7 00000000 		.4byte	.LFB2
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cchUUmEF.s 			page 8
+
+
+ 264 00eb 24000000 		.4byte	.LFE2-.LFB2
+ 265 00ef 01       		.uleb128 0x1
+ 266 00f0 9C       		.byte	0x9c
+ 267 00f1 FF000000 		.4byte	0xff
+ 268 00f5 0C       		.uleb128 0xc
+ 269 00f6 16000000 		.4byte	.LVL0
+ 270 00fa 2F010000 		.4byte	0x12f
+ 271 00fe 00       		.byte	0
+ 272 00ff 0B       		.uleb128 0xb
+ 273 0100 FC010000 		.4byte	.LASF17
+ 274 0104 01       		.byte	0x1
+ 275 0105 7E       		.byte	0x7e
+ 276 0106 00000000 		.4byte	.LFB3
+ 277 010a 14000000 		.4byte	.LFE3-.LFB3
+ 278 010e 01       		.uleb128 0x1
+ 279 010f 9C       		.byte	0x9c
+ 280 0110 1E010000 		.4byte	0x11e
+ 281 0114 0C       		.uleb128 0xc
+ 282 0115 0E000000 		.4byte	.LVL1
+ 283 0119 3A010000 		.4byte	0x13a
+ 284 011d 00       		.byte	0
+ 285 011e 0D       		.uleb128 0xd
+ 286 011f 6B000000 		.4byte	.LASF25
+ 287 0123 01       		.byte	0x1
+ 288 0124 14       		.byte	0x14
+ 289 0125 BE000000 		.4byte	0xbe
+ 290 0129 05       		.uleb128 0x5
+ 291 012a 03       		.byte	0x3
+ 292 012b 00000000 		.4byte	Opamp_1_backup
+ 293 012f 0E       		.uleb128 0xe
+ 294 0130 8E010000 		.4byte	.LASF18
+ 295 0134 8E010000 		.4byte	.LASF18
+ 296 0138 03       		.byte	0x3
+ 297 0139 2A       		.byte	0x2a
+ 298 013a 0E       		.uleb128 0xe
+ 299 013b ED010000 		.4byte	.LASF19
+ 300 013f ED010000 		.4byte	.LASF19
+ 301 0143 03       		.byte	0x3
+ 302 0144 28       		.byte	0x28
+ 303 0145 00       		.byte	0
+ 304              		.section	.debug_abbrev,"",%progbits
+ 305              	.Ldebug_abbrev0:
+ 306 0000 01       		.uleb128 0x1
+ 307 0001 11       		.uleb128 0x11
+ 308 0002 01       		.byte	0x1
+ 309 0003 25       		.uleb128 0x25
+ 310 0004 0E       		.uleb128 0xe
+ 311 0005 13       		.uleb128 0x13
+ 312 0006 0B       		.uleb128 0xb
+ 313 0007 03       		.uleb128 0x3
+ 314 0008 0E       		.uleb128 0xe
+ 315 0009 1B       		.uleb128 0x1b
+ 316 000a 0E       		.uleb128 0xe
+ 317 000b 55       		.uleb128 0x55
+ 318 000c 17       		.uleb128 0x17
+ 319 000d 11       		.uleb128 0x11
+ 320 000e 01       		.uleb128 0x1
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cchUUmEF.s 			page 9
+
+
+ 321 000f 10       		.uleb128 0x10
+ 322 0010 17       		.uleb128 0x17
+ 323 0011 00       		.byte	0
+ 324 0012 00       		.byte	0
+ 325 0013 02       		.uleb128 0x2
+ 326 0014 24       		.uleb128 0x24
+ 327 0015 00       		.byte	0
+ 328 0016 0B       		.uleb128 0xb
+ 329 0017 0B       		.uleb128 0xb
+ 330 0018 3E       		.uleb128 0x3e
+ 331 0019 0B       		.uleb128 0xb
+ 332 001a 03       		.uleb128 0x3
+ 333 001b 0E       		.uleb128 0xe
+ 334 001c 00       		.byte	0
+ 335 001d 00       		.byte	0
+ 336 001e 03       		.uleb128 0x3
+ 337 001f 24       		.uleb128 0x24
+ 338 0020 00       		.byte	0
+ 339 0021 0B       		.uleb128 0xb
+ 340 0022 0B       		.uleb128 0xb
+ 341 0023 3E       		.uleb128 0x3e
+ 342 0024 0B       		.uleb128 0xb
+ 343 0025 03       		.uleb128 0x3
+ 344 0026 08       		.uleb128 0x8
+ 345 0027 00       		.byte	0
+ 346 0028 00       		.byte	0
+ 347 0029 04       		.uleb128 0x4
+ 348 002a 16       		.uleb128 0x16
+ 349 002b 00       		.byte	0
+ 350 002c 03       		.uleb128 0x3
+ 351 002d 0E       		.uleb128 0xe
+ 352 002e 3A       		.uleb128 0x3a
+ 353 002f 0B       		.uleb128 0xb
+ 354 0030 3B       		.uleb128 0x3b
+ 355 0031 05       		.uleb128 0x5
+ 356 0032 49       		.uleb128 0x49
+ 357 0033 13       		.uleb128 0x13
+ 358 0034 00       		.byte	0
+ 359 0035 00       		.byte	0
+ 360 0036 05       		.uleb128 0x5
+ 361 0037 35       		.uleb128 0x35
+ 362 0038 00       		.byte	0
+ 363 0039 49       		.uleb128 0x49
+ 364 003a 13       		.uleb128 0x13
+ 365 003b 00       		.byte	0
+ 366 003c 00       		.byte	0
+ 367 003d 06       		.uleb128 0x6
+ 368 003e 13       		.uleb128 0x13
+ 369 003f 01       		.byte	0x1
+ 370 0040 0B       		.uleb128 0xb
+ 371 0041 0B       		.uleb128 0xb
+ 372 0042 3A       		.uleb128 0x3a
+ 373 0043 0B       		.uleb128 0xb
+ 374 0044 3B       		.uleb128 0x3b
+ 375 0045 0B       		.uleb128 0xb
+ 376 0046 01       		.uleb128 0x1
+ 377 0047 13       		.uleb128 0x13
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cchUUmEF.s 			page 10
+
+
+ 378 0048 00       		.byte	0
+ 379 0049 00       		.byte	0
+ 380 004a 07       		.uleb128 0x7
+ 381 004b 0D       		.uleb128 0xd
+ 382 004c 00       		.byte	0
+ 383 004d 03       		.uleb128 0x3
+ 384 004e 0E       		.uleb128 0xe
+ 385 004f 3A       		.uleb128 0x3a
+ 386 0050 0B       		.uleb128 0xb
+ 387 0051 3B       		.uleb128 0x3b
+ 388 0052 0B       		.uleb128 0xb
+ 389 0053 49       		.uleb128 0x49
+ 390 0054 13       		.uleb128 0x13
+ 391 0055 38       		.uleb128 0x38
+ 392 0056 0B       		.uleb128 0xb
+ 393 0057 00       		.byte	0
+ 394 0058 00       		.byte	0
+ 395 0059 08       		.uleb128 0x8
+ 396 005a 16       		.uleb128 0x16
+ 397 005b 00       		.byte	0
+ 398 005c 03       		.uleb128 0x3
+ 399 005d 0E       		.uleb128 0xe
+ 400 005e 3A       		.uleb128 0x3a
+ 401 005f 0B       		.uleb128 0xb
+ 402 0060 3B       		.uleb128 0x3b
+ 403 0061 0B       		.uleb128 0xb
+ 404 0062 49       		.uleb128 0x49
+ 405 0063 13       		.uleb128 0x13
+ 406 0064 00       		.byte	0
+ 407 0065 00       		.byte	0
+ 408 0066 09       		.uleb128 0x9
+ 409 0067 2E       		.uleb128 0x2e
+ 410 0068 00       		.byte	0
+ 411 0069 3F       		.uleb128 0x3f
+ 412 006a 19       		.uleb128 0x19
+ 413 006b 03       		.uleb128 0x3
+ 414 006c 0E       		.uleb128 0xe
+ 415 006d 3A       		.uleb128 0x3a
+ 416 006e 0B       		.uleb128 0xb
+ 417 006f 3B       		.uleb128 0x3b
+ 418 0070 0B       		.uleb128 0xb
+ 419 0071 27       		.uleb128 0x27
+ 420 0072 19       		.uleb128 0x19
+ 421 0073 20       		.uleb128 0x20
+ 422 0074 0B       		.uleb128 0xb
+ 423 0075 00       		.byte	0
+ 424 0076 00       		.byte	0
+ 425 0077 0A       		.uleb128 0xa
+ 426 0078 2E       		.uleb128 0x2e
+ 427 0079 00       		.byte	0
+ 428 007a 31       		.uleb128 0x31
+ 429 007b 13       		.uleb128 0x13
+ 430 007c 11       		.uleb128 0x11
+ 431 007d 01       		.uleb128 0x1
+ 432 007e 12       		.uleb128 0x12
+ 433 007f 06       		.uleb128 0x6
+ 434 0080 40       		.uleb128 0x40
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cchUUmEF.s 			page 11
+
+
+ 435 0081 18       		.uleb128 0x18
+ 436 0082 9742     		.uleb128 0x2117
+ 437 0084 19       		.uleb128 0x19
+ 438 0085 00       		.byte	0
+ 439 0086 00       		.byte	0
+ 440 0087 0B       		.uleb128 0xb
+ 441 0088 2E       		.uleb128 0x2e
+ 442 0089 01       		.byte	0x1
+ 443 008a 3F       		.uleb128 0x3f
+ 444 008b 19       		.uleb128 0x19
+ 445 008c 03       		.uleb128 0x3
+ 446 008d 0E       		.uleb128 0xe
+ 447 008e 3A       		.uleb128 0x3a
+ 448 008f 0B       		.uleb128 0xb
+ 449 0090 3B       		.uleb128 0x3b
+ 450 0091 0B       		.uleb128 0xb
+ 451 0092 27       		.uleb128 0x27
+ 452 0093 19       		.uleb128 0x19
+ 453 0094 11       		.uleb128 0x11
+ 454 0095 01       		.uleb128 0x1
+ 455 0096 12       		.uleb128 0x12
+ 456 0097 06       		.uleb128 0x6
+ 457 0098 40       		.uleb128 0x40
+ 458 0099 18       		.uleb128 0x18
+ 459 009a 9742     		.uleb128 0x2117
+ 460 009c 19       		.uleb128 0x19
+ 461 009d 01       		.uleb128 0x1
+ 462 009e 13       		.uleb128 0x13
+ 463 009f 00       		.byte	0
+ 464 00a0 00       		.byte	0
+ 465 00a1 0C       		.uleb128 0xc
+ 466 00a2 898201   		.uleb128 0x4109
+ 467 00a5 00       		.byte	0
+ 468 00a6 11       		.uleb128 0x11
+ 469 00a7 01       		.uleb128 0x1
+ 470 00a8 31       		.uleb128 0x31
+ 471 00a9 13       		.uleb128 0x13
+ 472 00aa 00       		.byte	0
+ 473 00ab 00       		.byte	0
+ 474 00ac 0D       		.uleb128 0xd
+ 475 00ad 34       		.uleb128 0x34
+ 476 00ae 00       		.byte	0
+ 477 00af 03       		.uleb128 0x3
+ 478 00b0 0E       		.uleb128 0xe
+ 479 00b1 3A       		.uleb128 0x3a
+ 480 00b2 0B       		.uleb128 0xb
+ 481 00b3 3B       		.uleb128 0x3b
+ 482 00b4 0B       		.uleb128 0xb
+ 483 00b5 49       		.uleb128 0x49
+ 484 00b6 13       		.uleb128 0x13
+ 485 00b7 02       		.uleb128 0x2
+ 486 00b8 18       		.uleb128 0x18
+ 487 00b9 00       		.byte	0
+ 488 00ba 00       		.byte	0
+ 489 00bb 0E       		.uleb128 0xe
+ 490 00bc 2E       		.uleb128 0x2e
+ 491 00bd 00       		.byte	0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cchUUmEF.s 			page 12
+
+
+ 492 00be 3F       		.uleb128 0x3f
+ 493 00bf 19       		.uleb128 0x19
+ 494 00c0 3C       		.uleb128 0x3c
+ 495 00c1 19       		.uleb128 0x19
+ 496 00c2 6E       		.uleb128 0x6e
+ 497 00c3 0E       		.uleb128 0xe
+ 498 00c4 03       		.uleb128 0x3
+ 499 00c5 0E       		.uleb128 0xe
+ 500 00c6 3A       		.uleb128 0x3a
+ 501 00c7 0B       		.uleb128 0xb
+ 502 00c8 3B       		.uleb128 0x3b
+ 503 00c9 0B       		.uleb128 0xb
+ 504 00ca 00       		.byte	0
+ 505 00cb 00       		.byte	0
+ 506 00cc 00       		.byte	0
+ 507              		.section	.debug_aranges,"",%progbits
+ 508 0000 2C000000 		.4byte	0x2c
+ 509 0004 0200     		.2byte	0x2
+ 510 0006 00000000 		.4byte	.Ldebug_info0
+ 511 000a 04       		.byte	0x4
+ 512 000b 00       		.byte	0
+ 513 000c 0000     		.2byte	0
+ 514 000e 0000     		.2byte	0
+ 515 0010 00000000 		.4byte	.LFB1
+ 516 0014 02000000 		.4byte	.LFE1-.LFB1
+ 517 0018 00000000 		.4byte	.LFB2
+ 518 001c 24000000 		.4byte	.LFE2-.LFB2
+ 519 0020 00000000 		.4byte	.LFB3
+ 520 0024 14000000 		.4byte	.LFE3-.LFB3
+ 521 0028 00000000 		.4byte	0
+ 522 002c 00000000 		.4byte	0
+ 523              		.section	.debug_ranges,"",%progbits
+ 524              	.Ldebug_ranges0:
+ 525 0000 00000000 		.4byte	.LFB1
+ 526 0004 02000000 		.4byte	.LFE1
+ 527 0008 00000000 		.4byte	.LFB2
+ 528 000c 24000000 		.4byte	.LFE2
+ 529 0010 00000000 		.4byte	.LFB3
+ 530 0014 14000000 		.4byte	.LFE3
+ 531 0018 00000000 		.4byte	0
+ 532 001c 00000000 		.4byte	0
+ 533              		.section	.debug_line,"",%progbits
+ 534              	.Ldebug_line0:
+ 535 0000 94000000 		.section	.debug_str,"MS",%progbits,1
+ 535      02005400 
+ 535      00000201 
+ 535      FB0E0D00 
+ 535      01010101 
+ 536              	.LASF14:
+ 537 0000 72656733 		.ascii	"reg32\000"
+ 537      3200
+ 538              	.LASF22:
+ 539 0006 443A5C31 		.ascii	"D:\\1_work\\my_project\\ReloadPro\\psoc42boot\\Relo"
+ 539      5F776F72 
+ 539      6B5C6D79 
+ 539      5F70726F 
+ 539      6A656374 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cchUUmEF.s 			page 13
+
+
+ 540 0034 61642050 		.ascii	"ad Pro.cydsn\000"
+ 540      726F2E63 
+ 540      7964736E 
+ 540      00
+ 541              	.LASF11:
+ 542 0041 666C6F61 		.ascii	"float\000"
+ 542      7400
+ 543              	.LASF15:
+ 544 0047 4F70616D 		.ascii	"Opamp_1_BACKUP_STRUCT\000"
+ 544      705F315F 
+ 544      4241434B 
+ 544      55505F53 
+ 544      54525543 
+ 545              	.LASF1:
+ 546 005d 756E7369 		.ascii	"unsigned char\000"
+ 546      676E6564 
+ 546      20636861 
+ 546      7200
+ 547              	.LASF25:
+ 548 006b 4F70616D 		.ascii	"Opamp_1_backup\000"
+ 548      705F315F 
+ 548      6261636B 
+ 548      757000
+ 549              	.LASF5:
+ 550 007a 6C6F6E67 		.ascii	"long unsigned int\000"
+ 550      20756E73 
+ 550      69676E65 
+ 550      6420696E 
+ 550      7400
+ 551              	.LASF3:
+ 552 008c 73686F72 		.ascii	"short unsigned int\000"
+ 552      7420756E 
+ 552      7369676E 
+ 552      65642069 
+ 552      6E7400
+ 553              	.LASF12:
+ 554 009f 646F7562 		.ascii	"double\000"
+ 554      6C6500
+ 555              	.LASF10:
+ 556 00a6 75696E74 		.ascii	"uint32\000"
+ 556      333200
+ 557              	.LASF21:
+ 558 00ad 47656E65 		.ascii	"Generated_Source\\PSoC4\\Opamp_1_PM.c\000"
+ 558      72617465 
+ 558      645F536F 
+ 558      75726365 
+ 558      5C50536F 
+ 559              	.LASF8:
+ 560 00d1 756E7369 		.ascii	"unsigned int\000"
+ 560      676E6564 
+ 560      20696E74 
+ 560      00
+ 561              	.LASF7:
+ 562 00de 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 562      206C6F6E 
+ 562      6720756E 
+ 562      7369676E 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cchUUmEF.s 			page 14
+
+
+ 562      65642069 
+ 563              	.LASF20:
+ 564 00f5 474E5520 		.ascii	"GNU C99 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 564      43393920 
+ 564      352E342E 
+ 564      31203230 
+ 564      31363036 
+ 565 0128 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 565      20726576 
+ 565      6973696F 
+ 565      6E203233 
+ 565      37373135 
+ 566 015b 73202D73 		.ascii	"s -std=gnu99 -ffunction-sections -ffat-lto-objects\000"
+ 566      74643D67 
+ 566      6E753939 
+ 566      202D6666 
+ 566      756E6374 
+ 567              	.LASF18:
+ 568 018e 4F70616D 		.ascii	"Opamp_1_Stop\000"
+ 568      705F315F 
+ 568      53746F70 
+ 568      00
+ 569              	.LASF6:
+ 570 019b 6C6F6E67 		.ascii	"long long int\000"
+ 570      206C6F6E 
+ 570      6720696E 
+ 570      7400
+ 571              	.LASF13:
+ 572 01a9 63686172 		.ascii	"char\000"
+ 572      00
+ 573              	.LASF16:
+ 574 01ae 4F70616D 		.ascii	"Opamp_1_Sleep\000"
+ 574      705F315F 
+ 574      536C6565 
+ 574      7000
+ 575              	.LASF2:
+ 576 01bc 73686F72 		.ascii	"short int\000"
+ 576      7420696E 
+ 576      7400
+ 577              	.LASF9:
+ 578 01c6 75696E74 		.ascii	"uint8\000"
+ 578      3800
+ 579              	.LASF4:
+ 580 01cc 6C6F6E67 		.ascii	"long int\000"
+ 580      20696E74 
+ 580      00
+ 581              	.LASF23:
+ 582 01d5 656E6162 		.ascii	"enableState\000"
+ 582      6C655374 
+ 582      61746500 
+ 583              	.LASF0:
+ 584 01e1 7369676E 		.ascii	"signed char\000"
+ 584      65642063 
+ 584      68617200 
+ 585              	.LASF19:
+ 586 01ed 4F70616D 		.ascii	"Opamp_1_Enable\000"
+ 586      705F315F 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\cchUUmEF.s 			page 15
+
+
+ 586      456E6162 
+ 586      6C6500
+ 587              	.LASF17:
+ 588 01fc 4F70616D 		.ascii	"Opamp_1_Wakeup\000"
+ 588      705F315F 
+ 588      57616B65 
+ 588      757000
+ 589              	.LASF24:
+ 590 020b 4F70616D 		.ascii	"Opamp_1_RestoreConfig\000"
+ 590      705F315F 
+ 590      52657374 
+ 590      6F726543 
+ 590      6F6E6669 
+ 591              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

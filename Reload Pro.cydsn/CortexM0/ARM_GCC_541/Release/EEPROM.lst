@@ -1,0 +1,1042 @@
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccAMMyed.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"EEPROM.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.EEPROM_Init,"ax",%progbits
+  20              		.align	1
+  21              		.global	EEPROM_Init
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	EEPROM_Init, %function
+  25              	EEPROM_Init:
+  26              	.LFB0:
+  27              		.file 1 "Generated_Source\\PSoC4\\EEPROM.c"
+   1:Generated_Source\PSoC4/EEPROM.c **** /*******************************************************************************
+   2:Generated_Source\PSoC4/EEPROM.c **** * File Name: EEPROM.c
+   3:Generated_Source\PSoC4/EEPROM.c **** * Version 2.20
+   4:Generated_Source\PSoC4/EEPROM.c **** *
+   5:Generated_Source\PSoC4/EEPROM.c **** * Description:
+   6:Generated_Source\PSoC4/EEPROM.c **** *  This file provides source code of the API for the Emulated EEPROM
+   7:Generated_Source\PSoC4/EEPROM.c **** *  Component.
+   8:Generated_Source\PSoC4/EEPROM.c **** *
+   9:Generated_Source\PSoC4/EEPROM.c **** ********************************************************************************
+  10:Generated_Source\PSoC4/EEPROM.c **** * Copyright 2013-2017, Cypress Semiconductor Corporation. All rights reserved.
+  11:Generated_Source\PSoC4/EEPROM.c **** * You may use this file only in accordance with the license, terms, conditions,
+  12:Generated_Source\PSoC4/EEPROM.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  13:Generated_Source\PSoC4/EEPROM.c **** * the software package with which this file was provided.
+  14:Generated_Source\PSoC4/EEPROM.c **** *******************************************************************************/
+  15:Generated_Source\PSoC4/EEPROM.c **** 
+  16:Generated_Source\PSoC4/EEPROM.c **** #include "EEPROM.h"
+  17:Generated_Source\PSoC4/EEPROM.c **** 
+  18:Generated_Source\PSoC4/EEPROM.c **** /** The instance-specific configuration structure. This should be used in the
+  19:Generated_Source\PSoC4/EEPROM.c **** *  associated EEPROM_Init() function.
+  20:Generated_Source\PSoC4/EEPROM.c **** */
+  21:Generated_Source\PSoC4/EEPROM.c **** cy_stc_eeprom_config_t const EEPROM_config =
+  22:Generated_Source\PSoC4/EEPROM.c **** {
+  23:Generated_Source\PSoC4/EEPROM.c ****     64U,
+  24:Generated_Source\PSoC4/EEPROM.c ****     1U,
+  25:Generated_Source\PSoC4/EEPROM.c ****     0U,
+  26:Generated_Source\PSoC4/EEPROM.c ****     0U,
+  27:Generated_Source\PSoC4/EEPROM.c ****     0U
+  28:Generated_Source\PSoC4/EEPROM.c **** };
+  29:Generated_Source\PSoC4/EEPROM.c **** 
+  30:Generated_Source\PSoC4/EEPROM.c **** /** The instance-specific context structure that holds all required information
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccAMMyed.s 			page 2
+
+
+  31:Generated_Source\PSoC4/EEPROM.c **** * about an EEPROM instance. This structure is filled by the Em_EEPROM
+  32:Generated_Source\PSoC4/EEPROM.c **** * library Init() function and used by EEPROM library functions.
+  33:Generated_Source\PSoC4/EEPROM.c **** */
+  34:Generated_Source\PSoC4/EEPROM.c **** cy_stc_eeprom_context_t EEPROM_context;
+  35:Generated_Source\PSoC4/EEPROM.c **** 
+  36:Generated_Source\PSoC4/EEPROM.c **** /* For PSoC 6 place EEPROM into Emulated EEPROM flash area */
+  37:Generated_Source\PSoC4/EEPROM.c **** #if ((CY_PSOC6) && (EEPROM_STORAGE_EM_EEPROM))
+  38:Generated_Source\PSoC4/EEPROM.c **** 
+  39:Generated_Source\PSoC4/EEPROM.c ****     CY_SECTION(".cy_em_eeprom") CY_ALIGN(CY_FLASH_SIZEOF_ROW)
+  40:Generated_Source\PSoC4/EEPROM.c ****     const uint8 EEPROM_em_EepromStorage[EEPROM_ACTUAL_SIZE] = {0u};
+  41:Generated_Source\PSoC4/EEPROM.c **** 
+  42:Generated_Source\PSoC4/EEPROM.c **** #endif /* ((CY_PSOC6) && (EEPROM_STORAGE_EM_EEPROM)) */
+  43:Generated_Source\PSoC4/EEPROM.c **** 
+  44:Generated_Source\PSoC4/EEPROM.c **** 
+  45:Generated_Source\PSoC4/EEPROM.c **** /*******************************************************************************
+  46:Generated_Source\PSoC4/EEPROM.c **** * Function Name: EEPROM_Init
+  47:Generated_Source\PSoC4/EEPROM.c **** ********************************************************************************
+  48:Generated_Source\PSoC4/EEPROM.c **** *
+  49:Generated_Source\PSoC4/EEPROM.c **** * Fills the start address of the EEPROM to the component configuration structure
+  50:Generated_Source\PSoC4/EEPROM.c **** * and invokes Cy_Em_EEPROM_Init() function. In case of PSoC 6 the function 
+  51:Generated_Source\PSoC4/EEPROM.c **** * is located in Cy_Em_EEPROM middleware library which is part of PDL. In case if
+  52:Generated_Source\PSoC4/EEPROM.c **** * it is utilized in the design based on non-PSOC 6 device the function is 
+  53:Generated_Source\PSoC4/EEPROM.c **** * located in internal design wide resource component - Em_EEPROM_Dynamic.
+  54:Generated_Source\PSoC4/EEPROM.c **** *
+  55:Generated_Source\PSoC4/EEPROM.c **** * \param startAddress
+  56:Generated_Source\PSoC4/EEPROM.c **** * Start address of the EEPROM storage. For PSoC 6, if Emulated EEPROM is 
+  57:Generated_Source\PSoC4/EEPROM.c **** * selected for EEPROM storage, the start address will be overwritten to some 
+  58:Generated_Source\PSoC4/EEPROM.c **** * address from Emulated EEPROM flash area.
+  59:Generated_Source\PSoC4/EEPROM.c **** *
+  60:Generated_Source\PSoC4/EEPROM.c **** * \return
+  61:Generated_Source\PSoC4/EEPROM.c **** * A result of function execution of type cy_en_em_eeprom_status_t.
+  62:Generated_Source\PSoC4/EEPROM.c **** *
+  63:Generated_Source\PSoC4/EEPROM.c **** *******************************************************************************/
+  64:Generated_Source\PSoC4/EEPROM.c **** cy_en_em_eeprom_status_t EEPROM_Init(uint32 startAddress)
+  65:Generated_Source\PSoC4/EEPROM.c **** {
+  28              		.loc 1 65 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 16
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              	.LVL0:
+  33 0000 1FB5     		push	{r0, r1, r2, r3, r4, lr}
+  34              		.cfi_def_cfa_offset 24
+  35              		.cfi_offset 0, -24
+  36              		.cfi_offset 1, -20
+  37              		.cfi_offset 2, -16
+  38              		.cfi_offset 3, -12
+  39              		.cfi_offset 4, -8
+  40              		.cfi_offset 14, -4
+  66:Generated_Source\PSoC4/EEPROM.c ****     cy_en_em_eeprom_status_t ret;
+  67:Generated_Source\PSoC4/EEPROM.c ****     cy_stc_eeprom_config_t config;
+  68:Generated_Source\PSoC4/EEPROM.c **** 
+  69:Generated_Source\PSoC4/EEPROM.c ****     config.blockingWrite =      EEPROM_config.blockingWrite;
+  41              		.loc 1 69 0
+  42 0002 0023     		movs	r3, #0
+  43 0004 6A46     		mov	r2, sp
+  44 0006 5372     		strb	r3, [r2, #9]
+  70:Generated_Source\PSoC4/EEPROM.c ****     config.eepromSize =         EEPROM_config.eepromSize;
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccAMMyed.s 			page 3
+
+
+  45              		.loc 1 70 0
+  46 0008 4022     		movs	r2, #64
+  47 000a 0092     		str	r2, [sp]
+  71:Generated_Source\PSoC4/EEPROM.c ****     config.redundantCopy =      EEPROM_config.redundantCopy;
+  48              		.loc 1 71 0
+  49 000c 6A46     		mov	r2, sp
+  72:Generated_Source\PSoC4/EEPROM.c ****     config.wearLevelingFactor = EEPROM_config.wearLevelingFactor;
+  73:Generated_Source\PSoC4/EEPROM.c ****     
+  74:Generated_Source\PSoC4/EEPROM.c **** #if ((CY_PSOC6) && (EEPROM_STORAGE_EM_EEPROM))
+  75:Generated_Source\PSoC4/EEPROM.c ****     /* For PSoC 6, if Emulated EEPROM is selected - override the eeprom start 
+  76:Generated_Source\PSoC4/EEPROM.c ****     * address.
+  77:Generated_Source\PSoC4/EEPROM.c ****     */
+  78:Generated_Source\PSoC4/EEPROM.c ****     config.userFlashStartAddr = (uint32)EEPROM_em_EepromStorage;
+  79:Generated_Source\PSoC4/EEPROM.c **** #else
+  80:Generated_Source\PSoC4/EEPROM.c ****     config.userFlashStartAddr = startAddress;
+  50              		.loc 1 80 0
+  51 000e 0390     		str	r0, [sp, #12]
+  71:Generated_Source\PSoC4/EEPROM.c ****     config.redundantCopy =      EEPROM_config.redundantCopy;
+  52              		.loc 1 71 0
+  53 0010 1372     		strb	r3, [r2, #8]
+  81:Generated_Source\PSoC4/EEPROM.c **** #endif /* ((CY_PSOC6) && (EEPROM_STORAGE_EM_EEPROM)) */
+  82:Generated_Source\PSoC4/EEPROM.c ****         
+  83:Generated_Source\PSoC4/EEPROM.c ****     ret = Cy_Em_EEPROM_Init(&config, &EEPROM_context);
+  54              		.loc 1 83 0
+  55 0012 0449     		ldr	r1, .L2
+  72:Generated_Source\PSoC4/EEPROM.c ****     config.wearLevelingFactor = EEPROM_config.wearLevelingFactor;
+  56              		.loc 1 72 0
+  57 0014 0133     		adds	r3, r3, #1
+  58              		.loc 1 83 0
+  59 0016 6846     		mov	r0, sp
+  60              	.LVL1:
+  72:Generated_Source\PSoC4/EEPROM.c ****     config.wearLevelingFactor = EEPROM_config.wearLevelingFactor;
+  61              		.loc 1 72 0
+  62 0018 0193     		str	r3, [sp, #4]
+  63              		.loc 1 83 0
+  64 001a FFF7FEFF 		bl	Cy_Em_EEPROM_Init
+  65              	.LVL2:
+  84:Generated_Source\PSoC4/EEPROM.c **** 
+  85:Generated_Source\PSoC4/EEPROM.c ****     return(ret);
+  86:Generated_Source\PSoC4/EEPROM.c **** }
+  66              		.loc 1 86 0
+  67 001e 05B0     		add	sp, sp, #20
+  68              		@ sp needed
+  69 0020 00BD     		pop	{pc}
+  70              	.L3:
+  71 0022 C046     		.align	2
+  72              	.L2:
+  73 0024 00000000 		.word	EEPROM_context
+  74              		.cfi_endproc
+  75              	.LFE0:
+  76              		.size	EEPROM_Init, .-EEPROM_Init
+  77              		.comm	EEPROM_context,28,4
+  78              		.global	EEPROM_config
+  79              		.section	.rodata
+  80              		.align	2
+  81              		.type	EEPROM_config, %object
+  82              		.size	EEPROM_config, 16
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccAMMyed.s 			page 4
+
+
+  83              	EEPROM_config:
+  84 0000 40000000 		.word	64
+  85 0004 01000000 		.word	1
+  86 0008 00       		.byte	0
+  87 0009 00       		.byte	0
+  88 000a 0000     		.space	2
+  89 000c 00000000 		.word	0
+  90              		.text
+  91              	.Letext0:
+  92              		.file 2 "Generated_Source\\PSoC4\\cytypes.h"
+  93              		.file 3 "Generated_Source\\PSoC4\\cy_em_eeprom.h"
+  94              		.section	.debug_info,"",%progbits
+  95              	.Ldebug_info0:
+  96 0000 37020000 		.4byte	0x237
+  97 0004 0400     		.2byte	0x4
+  98 0006 00000000 		.4byte	.Ldebug_abbrev0
+  99 000a 04       		.byte	0x4
+ 100 000b 01       		.uleb128 0x1
+ 101 000c DA010000 		.4byte	.LASF34
+ 102 0010 0C       		.byte	0xc
+ 103 0011 4B000000 		.4byte	.LASF35
+ 104 0015 CD000000 		.4byte	.LASF36
+ 105 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 106 001d 00000000 		.4byte	0
+ 107 0021 00000000 		.4byte	.Ldebug_line0
+ 108 0025 02       		.uleb128 0x2
+ 109 0026 01       		.byte	0x1
+ 110 0027 06       		.byte	0x6
+ 111 0028 F7020000 		.4byte	.LASF0
+ 112 002c 02       		.uleb128 0x2
+ 113 002d 01       		.byte	0x1
+ 114 002e 08       		.byte	0x8
+ 115 002f 8F000000 		.4byte	.LASF1
+ 116 0033 02       		.uleb128 0x2
+ 117 0034 02       		.byte	0x2
+ 118 0035 05       		.byte	0x5
+ 119 0036 CC020000 		.4byte	.LASF2
+ 120 003a 02       		.uleb128 0x2
+ 121 003b 02       		.byte	0x2
+ 122 003c 07       		.byte	0x7
+ 123 003d 20000000 		.4byte	.LASF3
+ 124 0041 02       		.uleb128 0x2
+ 125 0042 04       		.byte	0x4
+ 126 0043 05       		.byte	0x5
+ 127 0044 E0020000 		.4byte	.LASF4
+ 128 0048 02       		.uleb128 0x2
+ 129 0049 04       		.byte	0x4
+ 130 004a 07       		.byte	0x7
+ 131 004b B5000000 		.4byte	.LASF5
+ 132 004f 02       		.uleb128 0x2
+ 133 0050 08       		.byte	0x8
+ 134 0051 05       		.byte	0x5
+ 135 0052 7C020000 		.4byte	.LASF6
+ 136 0056 02       		.uleb128 0x2
+ 137 0057 08       		.byte	0x8
+ 138 0058 07       		.byte	0x7
+ 139 0059 7D010000 		.4byte	.LASF7
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccAMMyed.s 			page 5
+
+
+ 140 005d 03       		.uleb128 0x3
+ 141 005e 04       		.byte	0x4
+ 142 005f 05       		.byte	0x5
+ 143 0060 696E7400 		.ascii	"int\000"
+ 144 0064 02       		.uleb128 0x2
+ 145 0065 04       		.byte	0x4
+ 146 0066 07       		.byte	0x7
+ 147 0067 5A010000 		.4byte	.LASF8
+ 148 006b 04       		.uleb128 0x4
+ 149 006c C7000000 		.4byte	.LASF9
+ 150 0070 02       		.byte	0x2
+ 151 0071 E401     		.2byte	0x1e4
+ 152 0073 2C000000 		.4byte	0x2c
+ 153 0077 04       		.uleb128 0x4
+ 154 0078 44010000 		.4byte	.LASF10
+ 155 007c 02       		.byte	0x2
+ 156 007d E601     		.2byte	0x1e6
+ 157 007f 48000000 		.4byte	0x48
+ 158 0083 02       		.uleb128 0x2
+ 159 0084 04       		.byte	0x4
+ 160 0085 04       		.byte	0x4
+ 161 0086 89000000 		.4byte	.LASF11
+ 162 008a 02       		.uleb128 0x2
+ 163 008b 08       		.byte	0x8
+ 164 008c 04       		.byte	0x4
+ 165 008d 3D010000 		.4byte	.LASF12
+ 166 0091 02       		.uleb128 0x2
+ 167 0092 01       		.byte	0x1
+ 168 0093 08       		.byte	0x8
+ 169 0094 97020000 		.4byte	.LASF13
+ 170 0098 02       		.uleb128 0x2
+ 171 0099 04       		.byte	0x4
+ 172 009a 07       		.byte	0x7
+ 173 009b 73020000 		.4byte	.LASF14
+ 174 009f 05       		.uleb128 0x5
+ 175 00a0 10       		.byte	0x10
+ 176 00a1 03       		.byte	0x3
+ 177 00a2 FB       		.byte	0xfb
+ 178 00a3 E8000000 		.4byte	0xe8
+ 179 00a7 06       		.uleb128 0x6
+ 180 00a8 7E000000 		.4byte	.LASF15
+ 181 00ac 03       		.byte	0x3
+ 182 00ad FE       		.byte	0xfe
+ 183 00ae 77000000 		.4byte	0x77
+ 184 00b2 00       		.byte	0
+ 185 00b3 07       		.uleb128 0x7
+ 186 00b4 6B000000 		.4byte	.LASF16
+ 187 00b8 03       		.byte	0x3
+ 188 00b9 0301     		.2byte	0x103
+ 189 00bb 77000000 		.4byte	0x77
+ 190 00bf 04       		.byte	0x4
+ 191 00c0 07       		.uleb128 0x7
+ 192 00c1 CC010000 		.4byte	.LASF17
+ 193 00c5 03       		.byte	0x3
+ 194 00c6 0601     		.2byte	0x106
+ 195 00c8 6B000000 		.4byte	0x6b
+ 196 00cc 08       		.byte	0x8
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccAMMyed.s 			page 6
+
+
+ 197 00cd 07       		.uleb128 0x7
+ 198 00ce B7010000 		.4byte	.LASF18
+ 199 00d2 03       		.byte	0x3
+ 200 00d3 0B01     		.2byte	0x10b
+ 201 00d5 6B000000 		.4byte	0x6b
+ 202 00d9 09       		.byte	0x9
+ 203 00da 07       		.uleb128 0x7
+ 204 00db 00000000 		.4byte	.LASF19
+ 205 00df 03       		.byte	0x3
+ 206 00e0 0E01     		.2byte	0x10e
+ 207 00e2 77000000 		.4byte	0x77
+ 208 00e6 0C       		.byte	0xc
+ 209 00e7 00       		.byte	0
+ 210 00e8 04       		.uleb128 0x4
+ 211 00e9 08010000 		.4byte	.LASF20
+ 212 00ed 03       		.byte	0x3
+ 213 00ee 0F01     		.2byte	0x10f
+ 214 00f0 9F000000 		.4byte	0x9f
+ 215 00f4 08       		.uleb128 0x8
+ 216 00f5 1C       		.byte	0x1c
+ 217 00f6 03       		.byte	0x3
+ 218 00f7 1601     		.2byte	0x116
+ 219 00f9 66010000 		.4byte	0x166
+ 220 00fd 07       		.uleb128 0x7
+ 221 00fe D6020000 		.4byte	.LASF21
+ 222 0102 03       		.byte	0x3
+ 223 0103 1B01     		.2byte	0x11b
+ 224 0105 77000000 		.4byte	0x77
+ 225 0109 00       		.byte	0
+ 226 010a 07       		.uleb128 0x7
+ 227 010b 13000000 		.4byte	.LASF22
+ 228 010f 03       		.byte	0x3
+ 229 0110 2001     		.2byte	0x120
+ 230 0112 77000000 		.4byte	0x77
+ 231 0116 04       		.byte	0x4
+ 232 0117 07       		.uleb128 0x7
+ 233 0118 E9020000 		.4byte	.LASF23
+ 234 011c 03       		.byte	0x3
+ 235 011d 2301     		.2byte	0x123
+ 236 011f 77000000 		.4byte	0x77
+ 237 0123 08       		.byte	0x8
+ 238 0124 07       		.uleb128 0x7
+ 239 0125 7E000000 		.4byte	.LASF15
+ 240 0129 03       		.byte	0x3
+ 241 012a 2601     		.2byte	0x126
+ 242 012c 77000000 		.4byte	0x77
+ 243 0130 0C       		.byte	0xc
+ 244 0131 07       		.uleb128 0x7
+ 245 0132 6B000000 		.4byte	.LASF16
+ 246 0136 03       		.byte	0x3
+ 247 0137 2B01     		.2byte	0x12b
+ 248 0139 77000000 		.4byte	0x77
+ 249 013d 10       		.byte	0x10
+ 250 013e 07       		.uleb128 0x7
+ 251 013f CC010000 		.4byte	.LASF17
+ 252 0143 03       		.byte	0x3
+ 253 0144 2E01     		.2byte	0x12e
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccAMMyed.s 			page 7
+
+
+ 254 0146 6B000000 		.4byte	0x6b
+ 255 014a 14       		.byte	0x14
+ 256 014b 07       		.uleb128 0x7
+ 257 014c B7010000 		.4byte	.LASF18
+ 258 0150 03       		.byte	0x3
+ 259 0151 3301     		.2byte	0x133
+ 260 0153 6B000000 		.4byte	0x6b
+ 261 0157 15       		.byte	0x15
+ 262 0158 07       		.uleb128 0x7
+ 263 0159 00000000 		.4byte	.LASF19
+ 264 015d 03       		.byte	0x3
+ 265 015e 3601     		.2byte	0x136
+ 266 0160 77000000 		.4byte	0x77
+ 267 0164 18       		.byte	0x18
+ 268 0165 00       		.byte	0
+ 269 0166 04       		.uleb128 0x4
+ 270 0167 33000000 		.4byte	.LASF24
+ 271 016b 03       		.byte	0x3
+ 272 016c 3701     		.2byte	0x137
+ 273 016e F4000000 		.4byte	0xf4
+ 274 0172 09       		.uleb128 0x9
+ 275 0173 01       		.byte	0x1
+ 276 0174 2C000000 		.4byte	0x2c
+ 277 0178 03       		.byte	0x3
+ 278 0179 5401     		.2byte	0x154
+ 279 017b 9E010000 		.4byte	0x19e
+ 280 017f 0A       		.uleb128 0xa
+ 281 0180 A2010000 		.4byte	.LASF25
+ 282 0184 00       		.byte	0
+ 283 0185 0A       		.uleb128 0xa
+ 284 0186 9C020000 		.4byte	.LASF26
+ 285 018a 01       		.byte	0x1
+ 286 018b 0A       		.uleb128 0xa
+ 287 018c 03030000 		.4byte	.LASF27
+ 288 0190 02       		.byte	0x2
+ 289 0191 0A       		.uleb128 0xa
+ 290 0192 67010000 		.4byte	.LASF28
+ 291 0196 03       		.byte	0x3
+ 292 0197 0A       		.uleb128 0xa
+ 293 0198 9D000000 		.4byte	.LASF29
+ 294 019c 04       		.byte	0x4
+ 295 019d 00       		.byte	0
+ 296 019e 04       		.uleb128 0x4
+ 297 019f B3020000 		.4byte	.LASF30
+ 298 01a3 03       		.byte	0x3
+ 299 01a4 5A01     		.2byte	0x15a
+ 300 01a6 72010000 		.4byte	0x172
+ 301 01aa 0B       		.uleb128 0xb
+ 302 01ab 1F010000 		.4byte	.LASF37
+ 303 01af 01       		.byte	0x1
+ 304 01b0 40       		.byte	0x40
+ 305 01b1 9E010000 		.4byte	0x19e
+ 306 01b5 00000000 		.4byte	.LFB0
+ 307 01b9 28000000 		.4byte	.LFE0-.LFB0
+ 308 01bd 01       		.uleb128 0x1
+ 309 01be 9C       		.byte	0x9c
+ 310 01bf 07020000 		.4byte	0x207
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccAMMyed.s 			page 8
+
+
+ 311 01c3 0C       		.uleb128 0xc
+ 312 01c4 8A020000 		.4byte	.LASF38
+ 313 01c8 01       		.byte	0x1
+ 314 01c9 40       		.byte	0x40
+ 315 01ca 77000000 		.4byte	0x77
+ 316 01ce 00000000 		.4byte	.LLST0
+ 317 01d2 0D       		.uleb128 0xd
+ 318 01d3 72657400 		.ascii	"ret\000"
+ 319 01d7 01       		.byte	0x1
+ 320 01d8 42       		.byte	0x42
+ 321 01d9 9E010000 		.4byte	0x19e
+ 322 01dd 01       		.uleb128 0x1
+ 323 01de 50       		.byte	0x50
+ 324 01df 0E       		.uleb128 0xe
+ 325 01e0 C5010000 		.4byte	.LASF31
+ 326 01e4 01       		.byte	0x1
+ 327 01e5 43       		.byte	0x43
+ 328 01e6 E8000000 		.4byte	0xe8
+ 329 01ea 02       		.uleb128 0x2
+ 330 01eb 91       		.byte	0x91
+ 331 01ec 68       		.sleb128 -24
+ 332 01ed 0F       		.uleb128 0xf
+ 333 01ee 1E000000 		.4byte	.LVL2
+ 334 01f2 2E020000 		.4byte	0x22e
+ 335 01f6 10       		.uleb128 0x10
+ 336 01f7 01       		.uleb128 0x1
+ 337 01f8 50       		.byte	0x50
+ 338 01f9 02       		.uleb128 0x2
+ 339 01fa 7D       		.byte	0x7d
+ 340 01fb 00       		.sleb128 0
+ 341 01fc 10       		.uleb128 0x10
+ 342 01fd 01       		.uleb128 0x1
+ 343 01fe 51       		.byte	0x51
+ 344 01ff 05       		.uleb128 0x5
+ 345 0200 03       		.byte	0x3
+ 346 0201 00000000 		.4byte	EEPROM_context
+ 347 0205 00       		.byte	0
+ 348 0206 00       		.byte	0
+ 349 0207 11       		.uleb128 0x11
+ 350 0208 94010000 		.4byte	.LASF32
+ 351 020c 01       		.byte	0x1
+ 352 020d 15       		.byte	0x15
+ 353 020e 18020000 		.4byte	0x218
+ 354 0212 05       		.uleb128 0x5
+ 355 0213 03       		.byte	0x3
+ 356 0214 00000000 		.4byte	EEPROM_config
+ 357 0218 12       		.uleb128 0x12
+ 358 0219 E8000000 		.4byte	0xe8
+ 359 021d 11       		.uleb128 0x11
+ 360 021e 4B010000 		.4byte	.LASF33
+ 361 0222 01       		.byte	0x1
+ 362 0223 22       		.byte	0x22
+ 363 0224 66010000 		.4byte	0x166
+ 364 0228 05       		.uleb128 0x5
+ 365 0229 03       		.byte	0x3
+ 366 022a 00000000 		.4byte	EEPROM_context
+ 367 022e 13       		.uleb128 0x13
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccAMMyed.s 			page 9
+
+
+ 368 022f 2B010000 		.4byte	.LASF39
+ 369 0233 2B010000 		.4byte	.LASF39
+ 370 0237 03       		.byte	0x3
+ 371 0238 6701     		.2byte	0x167
+ 372 023a 00       		.byte	0
+ 373              		.section	.debug_abbrev,"",%progbits
+ 374              	.Ldebug_abbrev0:
+ 375 0000 01       		.uleb128 0x1
+ 376 0001 11       		.uleb128 0x11
+ 377 0002 01       		.byte	0x1
+ 378 0003 25       		.uleb128 0x25
+ 379 0004 0E       		.uleb128 0xe
+ 380 0005 13       		.uleb128 0x13
+ 381 0006 0B       		.uleb128 0xb
+ 382 0007 03       		.uleb128 0x3
+ 383 0008 0E       		.uleb128 0xe
+ 384 0009 1B       		.uleb128 0x1b
+ 385 000a 0E       		.uleb128 0xe
+ 386 000b 55       		.uleb128 0x55
+ 387 000c 17       		.uleb128 0x17
+ 388 000d 11       		.uleb128 0x11
+ 389 000e 01       		.uleb128 0x1
+ 390 000f 10       		.uleb128 0x10
+ 391 0010 17       		.uleb128 0x17
+ 392 0011 00       		.byte	0
+ 393 0012 00       		.byte	0
+ 394 0013 02       		.uleb128 0x2
+ 395 0014 24       		.uleb128 0x24
+ 396 0015 00       		.byte	0
+ 397 0016 0B       		.uleb128 0xb
+ 398 0017 0B       		.uleb128 0xb
+ 399 0018 3E       		.uleb128 0x3e
+ 400 0019 0B       		.uleb128 0xb
+ 401 001a 03       		.uleb128 0x3
+ 402 001b 0E       		.uleb128 0xe
+ 403 001c 00       		.byte	0
+ 404 001d 00       		.byte	0
+ 405 001e 03       		.uleb128 0x3
+ 406 001f 24       		.uleb128 0x24
+ 407 0020 00       		.byte	0
+ 408 0021 0B       		.uleb128 0xb
+ 409 0022 0B       		.uleb128 0xb
+ 410 0023 3E       		.uleb128 0x3e
+ 411 0024 0B       		.uleb128 0xb
+ 412 0025 03       		.uleb128 0x3
+ 413 0026 08       		.uleb128 0x8
+ 414 0027 00       		.byte	0
+ 415 0028 00       		.byte	0
+ 416 0029 04       		.uleb128 0x4
+ 417 002a 16       		.uleb128 0x16
+ 418 002b 00       		.byte	0
+ 419 002c 03       		.uleb128 0x3
+ 420 002d 0E       		.uleb128 0xe
+ 421 002e 3A       		.uleb128 0x3a
+ 422 002f 0B       		.uleb128 0xb
+ 423 0030 3B       		.uleb128 0x3b
+ 424 0031 05       		.uleb128 0x5
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccAMMyed.s 			page 10
+
+
+ 425 0032 49       		.uleb128 0x49
+ 426 0033 13       		.uleb128 0x13
+ 427 0034 00       		.byte	0
+ 428 0035 00       		.byte	0
+ 429 0036 05       		.uleb128 0x5
+ 430 0037 13       		.uleb128 0x13
+ 431 0038 01       		.byte	0x1
+ 432 0039 0B       		.uleb128 0xb
+ 433 003a 0B       		.uleb128 0xb
+ 434 003b 3A       		.uleb128 0x3a
+ 435 003c 0B       		.uleb128 0xb
+ 436 003d 3B       		.uleb128 0x3b
+ 437 003e 0B       		.uleb128 0xb
+ 438 003f 01       		.uleb128 0x1
+ 439 0040 13       		.uleb128 0x13
+ 440 0041 00       		.byte	0
+ 441 0042 00       		.byte	0
+ 442 0043 06       		.uleb128 0x6
+ 443 0044 0D       		.uleb128 0xd
+ 444 0045 00       		.byte	0
+ 445 0046 03       		.uleb128 0x3
+ 446 0047 0E       		.uleb128 0xe
+ 447 0048 3A       		.uleb128 0x3a
+ 448 0049 0B       		.uleb128 0xb
+ 449 004a 3B       		.uleb128 0x3b
+ 450 004b 0B       		.uleb128 0xb
+ 451 004c 49       		.uleb128 0x49
+ 452 004d 13       		.uleb128 0x13
+ 453 004e 38       		.uleb128 0x38
+ 454 004f 0B       		.uleb128 0xb
+ 455 0050 00       		.byte	0
+ 456 0051 00       		.byte	0
+ 457 0052 07       		.uleb128 0x7
+ 458 0053 0D       		.uleb128 0xd
+ 459 0054 00       		.byte	0
+ 460 0055 03       		.uleb128 0x3
+ 461 0056 0E       		.uleb128 0xe
+ 462 0057 3A       		.uleb128 0x3a
+ 463 0058 0B       		.uleb128 0xb
+ 464 0059 3B       		.uleb128 0x3b
+ 465 005a 05       		.uleb128 0x5
+ 466 005b 49       		.uleb128 0x49
+ 467 005c 13       		.uleb128 0x13
+ 468 005d 38       		.uleb128 0x38
+ 469 005e 0B       		.uleb128 0xb
+ 470 005f 00       		.byte	0
+ 471 0060 00       		.byte	0
+ 472 0061 08       		.uleb128 0x8
+ 473 0062 13       		.uleb128 0x13
+ 474 0063 01       		.byte	0x1
+ 475 0064 0B       		.uleb128 0xb
+ 476 0065 0B       		.uleb128 0xb
+ 477 0066 3A       		.uleb128 0x3a
+ 478 0067 0B       		.uleb128 0xb
+ 479 0068 3B       		.uleb128 0x3b
+ 480 0069 05       		.uleb128 0x5
+ 481 006a 01       		.uleb128 0x1
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccAMMyed.s 			page 11
+
+
+ 482 006b 13       		.uleb128 0x13
+ 483 006c 00       		.byte	0
+ 484 006d 00       		.byte	0
+ 485 006e 09       		.uleb128 0x9
+ 486 006f 04       		.uleb128 0x4
+ 487 0070 01       		.byte	0x1
+ 488 0071 0B       		.uleb128 0xb
+ 489 0072 0B       		.uleb128 0xb
+ 490 0073 49       		.uleb128 0x49
+ 491 0074 13       		.uleb128 0x13
+ 492 0075 3A       		.uleb128 0x3a
+ 493 0076 0B       		.uleb128 0xb
+ 494 0077 3B       		.uleb128 0x3b
+ 495 0078 05       		.uleb128 0x5
+ 496 0079 01       		.uleb128 0x1
+ 497 007a 13       		.uleb128 0x13
+ 498 007b 00       		.byte	0
+ 499 007c 00       		.byte	0
+ 500 007d 0A       		.uleb128 0xa
+ 501 007e 28       		.uleb128 0x28
+ 502 007f 00       		.byte	0
+ 503 0080 03       		.uleb128 0x3
+ 504 0081 0E       		.uleb128 0xe
+ 505 0082 1C       		.uleb128 0x1c
+ 506 0083 0B       		.uleb128 0xb
+ 507 0084 00       		.byte	0
+ 508 0085 00       		.byte	0
+ 509 0086 0B       		.uleb128 0xb
+ 510 0087 2E       		.uleb128 0x2e
+ 511 0088 01       		.byte	0x1
+ 512 0089 3F       		.uleb128 0x3f
+ 513 008a 19       		.uleb128 0x19
+ 514 008b 03       		.uleb128 0x3
+ 515 008c 0E       		.uleb128 0xe
+ 516 008d 3A       		.uleb128 0x3a
+ 517 008e 0B       		.uleb128 0xb
+ 518 008f 3B       		.uleb128 0x3b
+ 519 0090 0B       		.uleb128 0xb
+ 520 0091 27       		.uleb128 0x27
+ 521 0092 19       		.uleb128 0x19
+ 522 0093 49       		.uleb128 0x49
+ 523 0094 13       		.uleb128 0x13
+ 524 0095 11       		.uleb128 0x11
+ 525 0096 01       		.uleb128 0x1
+ 526 0097 12       		.uleb128 0x12
+ 527 0098 06       		.uleb128 0x6
+ 528 0099 40       		.uleb128 0x40
+ 529 009a 18       		.uleb128 0x18
+ 530 009b 9742     		.uleb128 0x2117
+ 531 009d 19       		.uleb128 0x19
+ 532 009e 01       		.uleb128 0x1
+ 533 009f 13       		.uleb128 0x13
+ 534 00a0 00       		.byte	0
+ 535 00a1 00       		.byte	0
+ 536 00a2 0C       		.uleb128 0xc
+ 537 00a3 05       		.uleb128 0x5
+ 538 00a4 00       		.byte	0
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccAMMyed.s 			page 12
+
+
+ 539 00a5 03       		.uleb128 0x3
+ 540 00a6 0E       		.uleb128 0xe
+ 541 00a7 3A       		.uleb128 0x3a
+ 542 00a8 0B       		.uleb128 0xb
+ 543 00a9 3B       		.uleb128 0x3b
+ 544 00aa 0B       		.uleb128 0xb
+ 545 00ab 49       		.uleb128 0x49
+ 546 00ac 13       		.uleb128 0x13
+ 547 00ad 02       		.uleb128 0x2
+ 548 00ae 17       		.uleb128 0x17
+ 549 00af 00       		.byte	0
+ 550 00b0 00       		.byte	0
+ 551 00b1 0D       		.uleb128 0xd
+ 552 00b2 34       		.uleb128 0x34
+ 553 00b3 00       		.byte	0
+ 554 00b4 03       		.uleb128 0x3
+ 555 00b5 08       		.uleb128 0x8
+ 556 00b6 3A       		.uleb128 0x3a
+ 557 00b7 0B       		.uleb128 0xb
+ 558 00b8 3B       		.uleb128 0x3b
+ 559 00b9 0B       		.uleb128 0xb
+ 560 00ba 49       		.uleb128 0x49
+ 561 00bb 13       		.uleb128 0x13
+ 562 00bc 02       		.uleb128 0x2
+ 563 00bd 18       		.uleb128 0x18
+ 564 00be 00       		.byte	0
+ 565 00bf 00       		.byte	0
+ 566 00c0 0E       		.uleb128 0xe
+ 567 00c1 34       		.uleb128 0x34
+ 568 00c2 00       		.byte	0
+ 569 00c3 03       		.uleb128 0x3
+ 570 00c4 0E       		.uleb128 0xe
+ 571 00c5 3A       		.uleb128 0x3a
+ 572 00c6 0B       		.uleb128 0xb
+ 573 00c7 3B       		.uleb128 0x3b
+ 574 00c8 0B       		.uleb128 0xb
+ 575 00c9 49       		.uleb128 0x49
+ 576 00ca 13       		.uleb128 0x13
+ 577 00cb 02       		.uleb128 0x2
+ 578 00cc 18       		.uleb128 0x18
+ 579 00cd 00       		.byte	0
+ 580 00ce 00       		.byte	0
+ 581 00cf 0F       		.uleb128 0xf
+ 582 00d0 898201   		.uleb128 0x4109
+ 583 00d3 01       		.byte	0x1
+ 584 00d4 11       		.uleb128 0x11
+ 585 00d5 01       		.uleb128 0x1
+ 586 00d6 31       		.uleb128 0x31
+ 587 00d7 13       		.uleb128 0x13
+ 588 00d8 00       		.byte	0
+ 589 00d9 00       		.byte	0
+ 590 00da 10       		.uleb128 0x10
+ 591 00db 8A8201   		.uleb128 0x410a
+ 592 00de 00       		.byte	0
+ 593 00df 02       		.uleb128 0x2
+ 594 00e0 18       		.uleb128 0x18
+ 595 00e1 9142     		.uleb128 0x2111
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccAMMyed.s 			page 13
+
+
+ 596 00e3 18       		.uleb128 0x18
+ 597 00e4 00       		.byte	0
+ 598 00e5 00       		.byte	0
+ 599 00e6 11       		.uleb128 0x11
+ 600 00e7 34       		.uleb128 0x34
+ 601 00e8 00       		.byte	0
+ 602 00e9 03       		.uleb128 0x3
+ 603 00ea 0E       		.uleb128 0xe
+ 604 00eb 3A       		.uleb128 0x3a
+ 605 00ec 0B       		.uleb128 0xb
+ 606 00ed 3B       		.uleb128 0x3b
+ 607 00ee 0B       		.uleb128 0xb
+ 608 00ef 49       		.uleb128 0x49
+ 609 00f0 13       		.uleb128 0x13
+ 610 00f1 3F       		.uleb128 0x3f
+ 611 00f2 19       		.uleb128 0x19
+ 612 00f3 02       		.uleb128 0x2
+ 613 00f4 18       		.uleb128 0x18
+ 614 00f5 00       		.byte	0
+ 615 00f6 00       		.byte	0
+ 616 00f7 12       		.uleb128 0x12
+ 617 00f8 26       		.uleb128 0x26
+ 618 00f9 00       		.byte	0
+ 619 00fa 49       		.uleb128 0x49
+ 620 00fb 13       		.uleb128 0x13
+ 621 00fc 00       		.byte	0
+ 622 00fd 00       		.byte	0
+ 623 00fe 13       		.uleb128 0x13
+ 624 00ff 2E       		.uleb128 0x2e
+ 625 0100 00       		.byte	0
+ 626 0101 3F       		.uleb128 0x3f
+ 627 0102 19       		.uleb128 0x19
+ 628 0103 3C       		.uleb128 0x3c
+ 629 0104 19       		.uleb128 0x19
+ 630 0105 6E       		.uleb128 0x6e
+ 631 0106 0E       		.uleb128 0xe
+ 632 0107 03       		.uleb128 0x3
+ 633 0108 0E       		.uleb128 0xe
+ 634 0109 3A       		.uleb128 0x3a
+ 635 010a 0B       		.uleb128 0xb
+ 636 010b 3B       		.uleb128 0x3b
+ 637 010c 05       		.uleb128 0x5
+ 638 010d 00       		.byte	0
+ 639 010e 00       		.byte	0
+ 640 010f 00       		.byte	0
+ 641              		.section	.debug_loc,"",%progbits
+ 642              	.Ldebug_loc0:
+ 643              	.LLST0:
+ 644 0000 00000000 		.4byte	.LVL0
+ 645 0004 18000000 		.4byte	.LVL1
+ 646 0008 0100     		.2byte	0x1
+ 647 000a 50       		.byte	0x50
+ 648 000b 18000000 		.4byte	.LVL1
+ 649 000f 1D000000 		.4byte	.LVL2-1
+ 650 0013 0200     		.2byte	0x2
+ 651 0015 91       		.byte	0x91
+ 652 0016 74       		.sleb128 -12
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccAMMyed.s 			page 14
+
+
+ 653 0017 1D000000 		.4byte	.LVL2-1
+ 654 001b 28000000 		.4byte	.LFE0
+ 655 001f 0400     		.2byte	0x4
+ 656 0021 F3       		.byte	0xf3
+ 657 0022 01       		.uleb128 0x1
+ 658 0023 50       		.byte	0x50
+ 659 0024 9F       		.byte	0x9f
+ 660 0025 00000000 		.4byte	0
+ 661 0029 00000000 		.4byte	0
+ 662              		.section	.debug_aranges,"",%progbits
+ 663 0000 1C000000 		.4byte	0x1c
+ 664 0004 0200     		.2byte	0x2
+ 665 0006 00000000 		.4byte	.Ldebug_info0
+ 666 000a 04       		.byte	0x4
+ 667 000b 00       		.byte	0
+ 668 000c 0000     		.2byte	0
+ 669 000e 0000     		.2byte	0
+ 670 0010 00000000 		.4byte	.LFB0
+ 671 0014 28000000 		.4byte	.LFE0-.LFB0
+ 672 0018 00000000 		.4byte	0
+ 673 001c 00000000 		.4byte	0
+ 674              		.section	.debug_ranges,"",%progbits
+ 675              	.Ldebug_ranges0:
+ 676 0000 00000000 		.4byte	.LFB0
+ 677 0004 28000000 		.4byte	.LFE0
+ 678 0008 00000000 		.4byte	0
+ 679 000c 00000000 		.4byte	0
+ 680              		.section	.debug_line,"",%progbits
+ 681              	.Ldebug_line0:
+ 682 0000 84000000 		.section	.debug_str,"MS",%progbits,1
+ 682      02005500 
+ 682      00000201 
+ 682      FB0E0D00 
+ 682      01010101 
+ 683              	.LASF19:
+ 684 0000 75736572 		.ascii	"userFlashStartAddr\000"
+ 684      466C6173 
+ 684      68537461 
+ 684      72744164 
+ 684      647200
+ 685              	.LASF22:
+ 686 0013 6E756D62 		.ascii	"numberOfRows\000"
+ 686      65724F66 
+ 686      526F7773 
+ 686      00
+ 687              	.LASF3:
+ 688 0020 73686F72 		.ascii	"short unsigned int\000"
+ 688      7420756E 
+ 688      7369676E 
+ 688      65642069 
+ 688      6E7400
+ 689              	.LASF24:
+ 690 0033 63795F73 		.ascii	"cy_stc_eeprom_context_t\000"
+ 690      74635F65 
+ 690      6570726F 
+ 690      6D5F636F 
+ 690      6E746578 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccAMMyed.s 			page 15
+
+
+ 691              	.LASF35:
+ 692 004b 47656E65 		.ascii	"Generated_Source\\PSoC4\\EEPROM.c\000"
+ 692      72617465 
+ 692      645F536F 
+ 692      75726365 
+ 692      5C50536F 
+ 693              	.LASF16:
+ 694 006b 77656172 		.ascii	"wearLevelingFactor\000"
+ 694      4C657665 
+ 694      6C696E67 
+ 694      46616374 
+ 694      6F7200
+ 695              	.LASF15:
+ 696 007e 65657072 		.ascii	"eepromSize\000"
+ 696      6F6D5369 
+ 696      7A6500
+ 697              	.LASF11:
+ 698 0089 666C6F61 		.ascii	"float\000"
+ 698      7400
+ 699              	.LASF1:
+ 700 008f 756E7369 		.ascii	"unsigned char\000"
+ 700      676E6564 
+ 700      20636861 
+ 700      7200
+ 701              	.LASF29:
+ 702 009d 43595F45 		.ascii	"CY_EM_EEPROM_WRITE_FAIL\000"
+ 702      4D5F4545 
+ 702      50524F4D 
+ 702      5F575249 
+ 702      54455F46 
+ 703              	.LASF5:
+ 704 00b5 6C6F6E67 		.ascii	"long unsigned int\000"
+ 704      20756E73 
+ 704      69676E65 
+ 704      6420696E 
+ 704      7400
+ 705              	.LASF9:
+ 706 00c7 75696E74 		.ascii	"uint8\000"
+ 706      3800
+ 707              	.LASF36:
+ 708 00cd 443A5C31 		.ascii	"D:\\1_work\\my_project\\ReloadPro\\psoc42boot\\Relo"
+ 708      5F776F72 
+ 708      6B5C6D79 
+ 708      5F70726F 
+ 708      6A656374 
+ 709 00fb 61642050 		.ascii	"ad Pro.cydsn\000"
+ 709      726F2E63 
+ 709      7964736E 
+ 709      00
+ 710              	.LASF20:
+ 711 0108 63795F73 		.ascii	"cy_stc_eeprom_config_t\000"
+ 711      74635F65 
+ 711      6570726F 
+ 711      6D5F636F 
+ 711      6E666967 
+ 712              	.LASF37:
+ 713 011f 45455052 		.ascii	"EEPROM_Init\000"
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccAMMyed.s 			page 16
+
+
+ 713      4F4D5F49 
+ 713      6E697400 
+ 714              	.LASF39:
+ 715 012b 43795F45 		.ascii	"Cy_Em_EEPROM_Init\000"
+ 715      6D5F4545 
+ 715      50524F4D 
+ 715      5F496E69 
+ 715      7400
+ 716              	.LASF12:
+ 717 013d 646F7562 		.ascii	"double\000"
+ 717      6C6500
+ 718              	.LASF10:
+ 719 0144 75696E74 		.ascii	"uint32\000"
+ 719      333200
+ 720              	.LASF33:
+ 721 014b 45455052 		.ascii	"EEPROM_context\000"
+ 721      4F4D5F63 
+ 721      6F6E7465 
+ 721      787400
+ 722              	.LASF8:
+ 723 015a 756E7369 		.ascii	"unsigned int\000"
+ 723      676E6564 
+ 723      20696E74 
+ 723      00
+ 724              	.LASF28:
+ 725 0167 43595F45 		.ascii	"CY_EM_EEPROM_BAD_DATA\000"
+ 725      4D5F4545 
+ 725      50524F4D 
+ 725      5F424144 
+ 725      5F444154 
+ 726              	.LASF7:
+ 727 017d 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 727      206C6F6E 
+ 727      6720756E 
+ 727      7369676E 
+ 727      65642069 
+ 728              	.LASF32:
+ 729 0194 45455052 		.ascii	"EEPROM_config\000"
+ 729      4F4D5F63 
+ 729      6F6E6669 
+ 729      6700
+ 730              	.LASF25:
+ 731 01a2 43595F45 		.ascii	"CY_EM_EEPROM_SUCCESS\000"
+ 731      4D5F4545 
+ 731      50524F4D 
+ 731      5F535543 
+ 731      43455353 
+ 732              	.LASF18:
+ 733 01b7 626C6F63 		.ascii	"blockingWrite\000"
+ 733      6B696E67 
+ 733      57726974 
+ 733      6500
+ 734              	.LASF31:
+ 735 01c5 636F6E66 		.ascii	"config\000"
+ 735      696700
+ 736              	.LASF17:
+ 737 01cc 72656475 		.ascii	"redundantCopy\000"
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccAMMyed.s 			page 17
+
+
+ 737      6E64616E 
+ 737      74436F70 
+ 737      7900
+ 738              	.LASF34:
+ 739 01da 474E5520 		.ascii	"GNU C99 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 739      43393920 
+ 739      352E342E 
+ 739      31203230 
+ 739      31363036 
+ 740 020d 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 740      20726576 
+ 740      6973696F 
+ 740      6E203233 
+ 740      37373135 
+ 741 0240 73202D73 		.ascii	"s -std=gnu99 -ffunction-sections -ffat-lto-objects\000"
+ 741      74643D67 
+ 741      6E753939 
+ 741      202D6666 
+ 741      756E6374 
+ 742              	.LASF14:
+ 743 0273 73697A65 		.ascii	"sizetype\000"
+ 743      74797065 
+ 743      00
+ 744              	.LASF6:
+ 745 027c 6C6F6E67 		.ascii	"long long int\000"
+ 745      206C6F6E 
+ 745      6720696E 
+ 745      7400
+ 746              	.LASF38:
+ 747 028a 73746172 		.ascii	"startAddress\000"
+ 747      74416464 
+ 747      72657373 
+ 747      00
+ 748              	.LASF13:
+ 749 0297 63686172 		.ascii	"char\000"
+ 749      00
+ 750              	.LASF26:
+ 751 029c 43595F45 		.ascii	"CY_EM_EEPROM_BAD_PARAM\000"
+ 751      4D5F4545 
+ 751      50524F4D 
+ 751      5F424144 
+ 751      5F504152 
+ 752              	.LASF30:
+ 753 02b3 63795F65 		.ascii	"cy_en_em_eeprom_status_t\000"
+ 753      6E5F656D 
+ 753      5F656570 
+ 753      726F6D5F 
+ 753      73746174 
+ 754              	.LASF2:
+ 755 02cc 73686F72 		.ascii	"short int\000"
+ 755      7420696E 
+ 755      7400
+ 756              	.LASF21:
+ 757 02d6 776C456E 		.ascii	"wlEndAddr\000"
+ 757      64416464 
+ 757      7200
+ 758              	.LASF4:
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccAMMyed.s 			page 18
+
+
+ 759 02e0 6C6F6E67 		.ascii	"long int\000"
+ 759      20696E74 
+ 759      00
+ 760              	.LASF23:
+ 761 02e9 6C617374 		.ascii	"lastWrRowAddr\000"
+ 761      5772526F 
+ 761      77416464 
+ 761      7200
+ 762              	.LASF0:
+ 763 02f7 7369676E 		.ascii	"signed char\000"
+ 763      65642063 
+ 763      68617200 
+ 764              	.LASF27:
+ 765 0303 43595F45 		.ascii	"CY_EM_EEPROM_BAD_CHECKSUM\000"
+ 765      4D5F4545 
+ 765      50524F4D 
+ 765      5F424144 
+ 765      5F434845 
+ 766              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

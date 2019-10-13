@@ -1,0 +1,248 @@
+--------------- Rebuild Started: 10/12/2019 09:38:47 Project: Reload Pro, Configuration: ARM GCC 5.4-2016-q2-update Release ---------------
+Deleting file ".\CortexM0\ARM_GCC_541\Release\main.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\ui.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\utils.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\comms.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\adctask.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\calibrate.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\croutine.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\heap_1.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\list.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\port.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\queue.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\tasks.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\timers.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\cyfitter_cfg.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\cybootloader.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\cymetadata.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\IDAC_High.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\IDAC_High_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\IDAC_Low.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\IDAC_Low_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\idac_low_out.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\idac_low_out_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\idac_hi_out.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\idac_hi_out_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\opamp_pos.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\opamp_pos_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Opamp.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Opamp_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Opamp_Out.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Opamp_Out_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\opamp_neg.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\opamp_neg_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Voltage_Sense.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Voltage_Sense_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Current_Sense.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Current_Sense_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\ADC.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\ADC_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\ADC_INT.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\UART.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\UART_SPI_UART.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\UART_SPI_UART_INT.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\UART_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\UART_UART.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\UART_BOOT.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\UART_UART_BOOT.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Display.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Display_font.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\QuadratureISR.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Quadrature.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Quadrature_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\disp_reset.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\disp_reset_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\QuadButton.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\QuadButton_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Gate_Sense_Low.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Gate_Sense_Low_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\UART_Clock.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Bootloadable.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\EEPROM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Backlight.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Backlight_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\UART_ISR.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\ADC_IRQ.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\ADC_intClock.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\UART_tx.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\UART_tx_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\UART_rx.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\UART_rx_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\cy_em_eeprom.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Cm0Start.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\CyFlash.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\CyLib.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\cyPm.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\cyutils.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\CyBootAsmGnu.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\CyLFClk.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Display_I2C.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Display_I2C_I2C_INT.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Display_I2C_I2C.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Display_I2C_I2C_BOOT.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Display_I2C_I2C_MASTER.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Display_I2C_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Display_I2C_BOOT.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Display_I2C_SCBCLK.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Display_I2C_sda.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Display_I2C_sda_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Display_I2C_scl.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Display_I2C_scl_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Display_I2C_SCB_IRQ.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Temperuture.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Temperuture_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\cooler.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\cooler_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Opamp_REF.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Opamp_REF_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\ref_out.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\ref_out_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\ref_in.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\ref_in_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\cooler_sensor.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\cooler_sensor_PM.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Clock_2.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\CoolerStatusReg.o"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Reload Pro.hex"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Reload Pro.elf"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Reload Pro.map"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\Reload Pro.cyacd"
+Deleting file ".\Reload Pro.cycdx"
+Deleting file ".\Reload Pro.svd"
+Deleting file ".\Reload Pro.rpt"
+Deleting file ".\Reload Pro_timing.html"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\.deps\SOURCE_C__ARM_GCC_GENERIC.P"
+Deleting file ".\CortexM0\ARM_GCC_541\Release\.deps\SOURCE_ASM__ARM_GCC_GENERIC.P"
+cydsfit.exe -.appdatapath "C:\Users\VideoHOME\AppData\Local\Cypress Semiconductor\PSoC Creator\4.2" -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -.fdsreffile=referenced_files.txt -p "D:\1_work\my_project\ReloadPro\psoc42boot\Reload Pro.cydsn\Reload Pro.cyprj" -d CY8C4245AXI-483 -s "D:\1_work\my_project\ReloadPro\psoc42boot\Reload Pro.cydsn\Generated_Source\PSoC4" -- -yv2 -q10 -yga -o2 -v3 -.fftcfgtype=LE
+Elaborating Design...
+ADD: sdb.M0061: information: Info from component: ADC. The actual sample rate (101 SPS) differs from the desired sample rate (100 SPS) due to the clock configuration in the DWR.
+ * D:\1_work\my_project\ReloadPro\psoc42boot\Reload Pro.cydsn\TopDesign\TopDesign.cysch (Instance:ADC)
+HDL Generation...
+Synthesis...
+Tech Mapping...
+Analog Placement...
+Analog Routing...
+Analog Code Generation...
+Digital Placement...
+Digital Routing...
+Bitstream Generation...
+Bitstream Verification...
+Static timing analysis...
+API Generation...
+Dependency Generation...
+Cleanup...
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/main.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c main.c -o .\CortexM0\ARM_GCC_541\Release\main.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/ui.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c ui.c -o .\CortexM0\ARM_GCC_541\Release\ui.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/utils.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c utils.c -o .\CortexM0\ARM_GCC_541\Release\utils.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/comms.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c comms.c -o .\CortexM0\ARM_GCC_541\Release\comms.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/adctask.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c adctask.c -o .\CortexM0\ARM_GCC_541\Release\adctask.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/calibrate.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c calibrate.c -o .\CortexM0\ARM_GCC_541\Release\calibrate.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/croutine.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c freertos\src\croutine.c -o .\CortexM0\ARM_GCC_541\Release\croutine.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/heap_1.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c freertos\src\heap_1.c -o .\CortexM0\ARM_GCC_541\Release\heap_1.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/list.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c freertos\src\list.c -o .\CortexM0\ARM_GCC_541\Release\list.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/port.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c freertos\src\port.c -o .\CortexM0\ARM_GCC_541\Release\port.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/queue.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c freertos\src\queue.c -o .\CortexM0\ARM_GCC_541\Release\queue.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/tasks.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c freertos\src\tasks.c -o .\CortexM0\ARM_GCC_541\Release\tasks.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/timers.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c freertos\src\timers.c -o .\CortexM0\ARM_GCC_541\Release\timers.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/cyfitter_cfg.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\cyfitter_cfg.c -o .\CortexM0\ARM_GCC_541\Release\cyfitter_cfg.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/cybootloader.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\cybootloader.c -o .\CortexM0\ARM_GCC_541\Release\cybootloader.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/cymetadata.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\cymetadata.c -o .\CortexM0\ARM_GCC_541\Release\cymetadata.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/IDAC_High.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\IDAC_High.c -o .\CortexM0\ARM_GCC_541\Release\IDAC_High.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/IDAC_High_PM.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\IDAC_High_PM.c -o .\CortexM0\ARM_GCC_541\Release\IDAC_High_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/IDAC_Low.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\IDAC_Low.c -o .\CortexM0\ARM_GCC_541\Release\IDAC_Low.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/IDAC_Low_PM.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\IDAC_Low_PM.c -o .\CortexM0\ARM_GCC_541\Release\IDAC_Low_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/idac_low_out.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\idac_low_out.c -o .\CortexM0\ARM_GCC_541\Release\idac_low_out.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/idac_low_out_PM.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\idac_low_out_PM.c -o .\CortexM0\ARM_GCC_541\Release\idac_low_out_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/idac_hi_out.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\idac_hi_out.c -o .\CortexM0\ARM_GCC_541\Release\idac_hi_out.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/idac_hi_out_PM.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\idac_hi_out_PM.c -o .\CortexM0\ARM_GCC_541\Release\idac_hi_out_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/opamp_pos.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\opamp_pos.c -o .\CortexM0\ARM_GCC_541\Release\opamp_pos.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/opamp_pos_PM.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\opamp_pos_PM.c -o .\CortexM0\ARM_GCC_541\Release\opamp_pos_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Opamp.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Opamp.c -o .\CortexM0\ARM_GCC_541\Release\Opamp.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Opamp_PM.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Opamp_PM.c -o .\CortexM0\ARM_GCC_541\Release\Opamp_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Opamp_Out.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Opamp_Out.c -o .\CortexM0\ARM_GCC_541\Release\Opamp_Out.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Opamp_Out_PM.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Opamp_Out_PM.c -o .\CortexM0\ARM_GCC_541\Release\Opamp_Out_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/opamp_neg.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\opamp_neg.c -o .\CortexM0\ARM_GCC_541\Release\opamp_neg.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/opamp_neg_PM.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\opamp_neg_PM.c -o .\CortexM0\ARM_GCC_541\Release\opamp_neg_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Voltage_Sense.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Voltage_Sense.c -o .\CortexM0\ARM_GCC_541\Release\Voltage_Sense.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Voltage_Sense_PM.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Voltage_Sense_PM.c -o .\CortexM0\ARM_GCC_541\Release\Voltage_Sense_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Current_Sense.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Current_Sense.c -o .\CortexM0\ARM_GCC_541\Release\Current_Sense.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Current_Sense_PM.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Current_Sense_PM.c -o .\CortexM0\ARM_GCC_541\Release\Current_Sense_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/ADC.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\ADC.c -o .\CortexM0\ARM_GCC_541\Release\ADC.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/ADC_PM.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\ADC_PM.c -o .\CortexM0\ARM_GCC_541\Release\ADC_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/ADC_INT.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\ADC_INT.c -o .\CortexM0\ARM_GCC_541\Release\ADC_INT.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/UART.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\UART.c -o .\CortexM0\ARM_GCC_541\Release\UART.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/UART_SPI_UART.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\UART_SPI_UART.c -o .\CortexM0\ARM_GCC_541\Release\UART_SPI_UART.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/UART_SPI_UART_INT.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\UART_SPI_UART_INT.c -o .\CortexM0\ARM_GCC_541\Release\UART_SPI_UART_INT.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/UART_PM.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\UART_PM.c -o .\CortexM0\ARM_GCC_541\Release\UART_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/UART_UART.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\UART_UART.c -o .\CortexM0\ARM_GCC_541\Release\UART_UART.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/UART_BOOT.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\UART_BOOT.c -o .\CortexM0\ARM_GCC_541\Release\UART_BOOT.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/UART_UART_BOOT.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\UART_UART_BOOT.c -o .\CortexM0\ARM_GCC_541\Release\UART_UART_BOOT.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Display.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Display.c -o .\CortexM0\ARM_GCC_541\Release\Display.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Display_font.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Display_font.c -o .\CortexM0\ARM_GCC_541\Release\Display_font.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/QuadratureISR.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\QuadratureISR.c -o .\CortexM0\ARM_GCC_541\Release\QuadratureISR.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Quadrature.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Quadrature.c -o .\CortexM0\ARM_GCC_541\Release\Quadrature.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Quadrature_PM.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Quadrature_PM.c -o .\CortexM0\ARM_GCC_541\Release\Quadrature_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/disp_reset.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\disp_reset.c -o .\CortexM0\ARM_GCC_541\Release\disp_reset.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/disp_reset_PM.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\disp_reset_PM.c -o .\CortexM0\ARM_GCC_541\Release\disp_reset_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/QuadButton.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\QuadButton.c -o .\CortexM0\ARM_GCC_541\Release\QuadButton.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/QuadButton_PM.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\QuadButton_PM.c -o .\CortexM0\ARM_GCC_541\Release\QuadButton_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Gate_Sense_Low.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Gate_Sense_Low.c -o .\CortexM0\ARM_GCC_541\Release\Gate_Sense_Low.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Gate_Sense_Low_PM.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Gate_Sense_Low_PM.c -o .\CortexM0\ARM_GCC_541\Release\Gate_Sense_Low_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/UART_Clock.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\UART_Clock.c -o .\CortexM0\ARM_GCC_541\Release\UART_Clock.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Bootloadable.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Bootloadable.c -o .\CortexM0\ARM_GCC_541\Release\Bootloadable.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/EEPROM.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\EEPROM.c -o .\CortexM0\ARM_GCC_541\Release\EEPROM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Backlight.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Backlight.c -o .\CortexM0\ARM_GCC_541\Release\Backlight.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Backlight_PM.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Backlight_PM.c -o .\CortexM0\ARM_GCC_541\Release\Backlight_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/UART_ISR.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\UART_ISR.c -o .\CortexM0\ARM_GCC_541\Release\UART_ISR.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/ADC_IRQ.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\ADC_IRQ.c -o .\CortexM0\ARM_GCC_541\Release\ADC_IRQ.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/ADC_intClock.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\ADC_intClock.c -o .\CortexM0\ARM_GCC_541\Release\ADC_intClock.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/UART_tx.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\UART_tx.c -o .\CortexM0\ARM_GCC_541\Release\UART_tx.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/UART_tx_PM.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\UART_tx_PM.c -o .\CortexM0\ARM_GCC_541\Release\UART_tx_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/UART_rx.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\UART_rx.c -o .\CortexM0\ARM_GCC_541\Release\UART_rx.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/UART_rx_PM.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\UART_rx_PM.c -o .\CortexM0\ARM_GCC_541\Release\UART_rx_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/cy_em_eeprom.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\cy_em_eeprom.c -o .\CortexM0\ARM_GCC_541\Release\cy_em_eeprom.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Cm0Start.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Cm0Start.c -o .\CortexM0\ARM_GCC_541\Release\Cm0Start.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/CyFlash.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\CyFlash.c -o .\CortexM0\ARM_GCC_541\Release\CyFlash.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/CyLib.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\CyLib.c -o .\CortexM0\ARM_GCC_541\Release\CyLib.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/cyPm.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\cyPm.c -o .\CortexM0\ARM_GCC_541\Release\cyPm.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/cyutils.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\cyutils.c -o .\CortexM0\ARM_GCC_541\Release\cyutils.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/CyLFClk.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\CyLFClk.c -o .\CortexM0\ARM_GCC_541\Release\CyLFClk.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Display_I2C.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Display_I2C.c -o .\CortexM0\ARM_GCC_541\Release\Display_I2C.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Display_I2C_I2C_INT.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Display_I2C_I2C_INT.c -o .\CortexM0\ARM_GCC_541\Release\Display_I2C_I2C_INT.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Display_I2C_I2C.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Display_I2C_I2C.c -o .\CortexM0\ARM_GCC_541\Release\Display_I2C_I2C.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Display_I2C_I2C_BOOT.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Display_I2C_I2C_BOOT.c -o .\CortexM0\ARM_GCC_541\Release\Display_I2C_I2C_BOOT.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Display_I2C_I2C_MASTER.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Display_I2C_I2C_MASTER.c -o .\CortexM0\ARM_GCC_541\Release\Display_I2C_I2C_MASTER.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Display_I2C_PM.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Display_I2C_PM.c -o .\CortexM0\ARM_GCC_541\Release\Display_I2C_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Display_I2C_BOOT.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Display_I2C_BOOT.c -o .\CortexM0\ARM_GCC_541\Release\Display_I2C_BOOT.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Display_I2C_SCBCLK.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Display_I2C_SCBCLK.c -o .\CortexM0\ARM_GCC_541\Release\Display_I2C_SCBCLK.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Display_I2C_sda.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Display_I2C_sda.c -o .\CortexM0\ARM_GCC_541\Release\Display_I2C_sda.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Display_I2C_sda_PM.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Display_I2C_sda_PM.c -o .\CortexM0\ARM_GCC_541\Release\Display_I2C_sda_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Display_I2C_scl.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Display_I2C_scl.c -o .\CortexM0\ARM_GCC_541\Release\Display_I2C_scl.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Display_I2C_scl_PM.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Display_I2C_scl_PM.c -o .\CortexM0\ARM_GCC_541\Release\Display_I2C_scl_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Display_I2C_SCB_IRQ.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Display_I2C_SCB_IRQ.c -o .\CortexM0\ARM_GCC_541\Release\Display_I2C_SCB_IRQ.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Temperuture.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Temperuture.c -o .\CortexM0\ARM_GCC_541\Release\Temperuture.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Temperuture_PM.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Temperuture_PM.c -o .\CortexM0\ARM_GCC_541\Release\Temperuture_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/cooler.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\cooler.c -o .\CortexM0\ARM_GCC_541\Release\cooler.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/cooler_PM.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\cooler_PM.c -o .\CortexM0\ARM_GCC_541\Release\cooler_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Opamp_REF.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Opamp_REF.c -o .\CortexM0\ARM_GCC_541\Release\Opamp_REF.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Opamp_REF_PM.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Opamp_REF_PM.c -o .\CortexM0\ARM_GCC_541\Release\Opamp_REF_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/ref_out.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\ref_out.c -o .\CortexM0\ARM_GCC_541\Release\ref_out.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/ref_out_PM.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\ref_out_PM.c -o .\CortexM0\ARM_GCC_541\Release\ref_out_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/ref_in.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\ref_in.c -o .\CortexM0\ARM_GCC_541\Release\ref_in.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/ref_in_PM.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\ref_in_PM.c -o .\CortexM0\ARM_GCC_541\Release\ref_in_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/cooler_sensor.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\cooler_sensor.c -o .\CortexM0\ARM_GCC_541\Release\cooler_sensor.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/cooler_sensor_PM.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\cooler_sensor_PM.c -o .\CortexM0\ARM_GCC_541\Release\cooler_sensor_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Clock_2.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\Clock_2.c -o .\CortexM0\ARM_GCC_541\Release\Clock_2.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I.\freertos\include -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/CoolerStatusReg.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -std=gnu99 -c Generated_Source\PSoC4\CoolerStatusReg.c -o .\CortexM0\ARM_GCC_541\Release\CoolerStatusReg.o
+arm-none-eabi-as.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -alh=.\CortexM0\ARM_GCC_541\Release/CyBootAsmGnu.lst -g -o .\CortexM0\ARM_GCC_541\Release\CyBootAsmGnu.o Generated_Source\PSoC4\CyBootAsmGnu.s
+arm-none-eabi-ar.exe -rs ".\CortexM0\ARM_GCC_541\Release\Reload Pro.a" .\CortexM0\ARM_GCC_541\Release\IDAC_High.o .\CortexM0\ARM_GCC_541\Release\IDAC_High_PM.o .\CortexM0\ARM_GCC_541\Release\IDAC_Low.o .\CortexM0\ARM_GCC_541\Release\IDAC_Low_PM.o .\CortexM0\ARM_GCC_541\Release\idac_low_out.o .\CortexM0\ARM_GCC_541\Release\idac_low_out_PM.o .\CortexM0\ARM_GCC_541\Release\idac_hi_out.o .\CortexM0\ARM_GCC_541\Release\idac_hi_out_PM.o .\CortexM0\ARM_GCC_541\Release\opamp_pos.o .\CortexM0\ARM_GCC_541\Release\opamp_pos_PM.o .\CortexM0\ARM_GCC_541\Release\Opamp.o .\CortexM0\ARM_GCC_541\Release\Opamp_PM.o .\CortexM0\ARM_GCC_541\Release\Opamp_Out.o .\CortexM0\ARM_GCC_541\Release\Opamp_Out_PM.o .\CortexM0\ARM_GCC_541\Release\opamp_neg.o .\CortexM0\ARM_GCC_541\Release\opamp_neg_PM.o .\CortexM0\ARM_GCC_541\Release\Voltage_Sense.o .\CortexM0\ARM_GCC_541\Release\Voltage_Sense_PM.o .\CortexM0\ARM_GCC_541\Release\Current_Sense.o .\CortexM0\ARM_GCC_541\Release\Current_Sense_PM.o .\CortexM0\ARM_GCC_541\Release\ADC.o .\CortexM0\ARM_GCC_541\Release\ADC_PM.o .\CortexM0\ARM_GCC_541\Release\ADC_INT.o .\CortexM0\ARM_GCC_541\Release\UART.o .\CortexM0\ARM_GCC_541\Release\UART_SPI_UART.o .\CortexM0\ARM_GCC_541\Release\UART_SPI_UART_INT.o .\CortexM0\ARM_GCC_541\Release\UART_PM.o .\CortexM0\ARM_GCC_541\Release\UART_UART.o .\CortexM0\ARM_GCC_541\Release\UART_BOOT.o .\CortexM0\ARM_GCC_541\Release\UART_UART_BOOT.o .\CortexM0\ARM_GCC_541\Release\Display.o .\CortexM0\ARM_GCC_541\Release\Display_font.o .\CortexM0\ARM_GCC_541\Release\QuadratureISR.o .\CortexM0\ARM_GCC_541\Release\Quadrature.o .\CortexM0\ARM_GCC_541\Release\Quadrature_PM.o .\CortexM0\ARM_GCC_541\Release\disp_reset.o .\CortexM0\ARM_GCC_541\Release\disp_reset_PM.o .\CortexM0\ARM_GCC_541\Release\QuadButton.o .\CortexM0\ARM_GCC_541\Release\QuadButton_PM.o .\CortexM0\ARM_GCC_541\Release\Gate_Sense_Low.o .\CortexM0\ARM_GCC_541\Release\Gate_Sense_Low_PM.o .\CortexM0\ARM_GCC_541\Release\UART_Clock.o .\CortexM0\ARM_GCC_541\Release\Bootloadable.o .\CortexM0\ARM_GCC_541\Release\EEPROM.o .\CortexM0\ARM_GCC_541\Release\Backlight.o .\CortexM0\ARM_GCC_541\Release\Backlight_PM.o .\CortexM0\ARM_GCC_541\Release\UART_ISR.o .\CortexM0\ARM_GCC_541\Release\ADC_IRQ.o .\CortexM0\ARM_GCC_541\Release\ADC_intClock.o .\CortexM0\ARM_GCC_541\Release\UART_tx.o .\CortexM0\ARM_GCC_541\Release\UART_tx_PM.o .\CortexM0\ARM_GCC_541\Release\UART_rx.o .\CortexM0\ARM_GCC_541\Release\UART_rx_PM.o .\CortexM0\ARM_GCC_541\Release\cy_em_eeprom.o .\CortexM0\ARM_GCC_541\Release\CyFlash.o .\CortexM0\ARM_GCC_541\Release\CyLib.o .\CortexM0\ARM_GCC_541\Release\cyPm.o .\CortexM0\ARM_GCC_541\Release\cyutils.o .\CortexM0\ARM_GCC_541\Release\CyLFClk.o .\CortexM0\ARM_GCC_541\Release\Display_I2C.o .\CortexM0\ARM_GCC_541\Release\Display_I2C_I2C_INT.o .\CortexM0\ARM_GCC_541\Release\Display_I2C_I2C.o .\CortexM0\ARM_GCC_541\Release\Display_I2C_I2C_BOOT.o .\CortexM0\ARM_GCC_541\Release\Display_I2C_I2C_MASTER.o .\CortexM0\ARM_GCC_541\Release\Display_I2C_PM.o .\CortexM0\ARM_GCC_541\Release\Display_I2C_BOOT.o .\CortexM0\ARM_GCC_541\Release\Display_I2C_SCBCLK.o .\CortexM0\ARM_GCC_541\Release\Display_I2C_sda.o .\CortexM0\ARM_GCC_541\Release\Display_I2C_sda_PM.o .\CortexM0\ARM_GCC_541\Release\Display_I2C_scl.o .\CortexM0\ARM_GCC_541\Release\Display_I2C_scl_PM.o .\CortexM0\ARM_GCC_541\Release\Display_I2C_SCB_IRQ.o .\CortexM0\ARM_GCC_541\Release\Temperuture.o .\CortexM0\ARM_GCC_541\Release\Temperuture_PM.o .\CortexM0\ARM_GCC_541\Release\cooler.o .\CortexM0\ARM_GCC_541\Release\cooler_PM.o .\CortexM0\ARM_GCC_541\Release\Opamp_REF.o .\CortexM0\ARM_GCC_541\Release\Opamp_REF_PM.o .\CortexM0\ARM_GCC_541\Release\ref_out.o .\CortexM0\ARM_GCC_541\Release\ref_out_PM.o .\CortexM0\ARM_GCC_541\Release\ref_in.o .\CortexM0\ARM_GCC_541\Release\ref_in_PM.o .\CortexM0\ARM_GCC_541\Release\cooler_sensor.o .\CortexM0\ARM_GCC_541\Release\cooler_sensor_PM.o .\CortexM0\ARM_GCC_541\Release\Clock_2.o .\CortexM0\ARM_GCC_541\Release\CoolerStatusReg.o .\CortexM0\ARM_GCC_541\Release\CyBootAsmGnu.o
+arm-none-eabi-ar.exe: creating .\CortexM0\ARM_GCC_541\Release\Reload Pro.a
+arm-none-eabi-gcc.exe -Wl,--start-group -o "D:\1_work\my_project\ReloadPro\psoc42boot\Reload Pro.cydsn\CortexM0\ARM_GCC_541\Release\Reload Pro.elf" .\CortexM0\ARM_GCC_541\Release\main.o .\CortexM0\ARM_GCC_541\Release\ui.o .\CortexM0\ARM_GCC_541\Release\utils.o .\CortexM0\ARM_GCC_541\Release\comms.o .\CortexM0\ARM_GCC_541\Release\adctask.o .\CortexM0\ARM_GCC_541\Release\calibrate.o .\CortexM0\ARM_GCC_541\Release\croutine.o .\CortexM0\ARM_GCC_541\Release\heap_1.o .\CortexM0\ARM_GCC_541\Release\list.o .\CortexM0\ARM_GCC_541\Release\port.o .\CortexM0\ARM_GCC_541\Release\queue.o .\CortexM0\ARM_GCC_541\Release\tasks.o .\CortexM0\ARM_GCC_541\Release\timers.o .\CortexM0\ARM_GCC_541\Release\cyfitter_cfg.o .\CortexM0\ARM_GCC_541\Release\cybootloader.o .\CortexM0\ARM_GCC_541\Release\cymetadata.o .\CortexM0\ARM_GCC_541\Release\Cm0Start.o ".\CortexM0\ARM_GCC_541\Release\Reload Pro.a" -mcpu=cortex-m0 -mthumb -L Generated_Source\PSoC4 "-Wl,-Map,.\CortexM0\ARM_GCC_541\Release/Reload Pro.map" -T Generated_Source\PSoC4\cm0gcc.ld -specs=nano.specs -Wl,--gc-sections -g -ffunction-sections -Os -ffat-lto-objects -Wl,--end-group
+cyelftool.exe -B "D:\1_work\my_project\ReloadPro\psoc42boot\Reload Pro.cydsn\CortexM0\ARM_GCC_541\Release\Reload Pro.elf" --flash_row_size 128 --flash_size 32768 --flash_offset 0x00000000 --flash_array_size 32768
+No ELF section .cychecksum found, creating one
+Application checksum calculated and stored in ELF section .cychecksum
+Checksum calculated and stored in ELF section .cymeta
+cyelftool.exe -S "D:\1_work\my_project\ReloadPro\psoc42boot\Reload Pro.cydsn\CortexM0\ARM_GCC_541\Release\Reload Pro.elf"
+Flash used: 32254 of 32768 bytes (98,4%). Bootloader: 3968 bytes. Application: 28158 bytes. Metadata: 128 bytes.
+SRAM used: 4084 of 4096 bytes (99,7%). Stack: 512 bytes. Heap: 256 bytes.
+--------------- Rebuild Succeeded: 10/12/2019 09:39:48 ---------------

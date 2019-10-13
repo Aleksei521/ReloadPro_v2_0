@@ -1,0 +1,862 @@
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccbTS6Va.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"IDAC_High_PM.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.IDAC_High_SaveConfig,"ax",%progbits
+  20              		.align	1
+  21              		.global	IDAC_High_SaveConfig
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	IDAC_High_SaveConfig, %function
+  25              	IDAC_High_SaveConfig:
+  26              	.LFB5:
+  27              		.cfi_startproc
+  28              		@ args = 0, pretend = 0, frame = 0
+  29              		@ frame_needed = 0, uses_anonymous_args = 0
+  30              		@ link register save eliminated.
+  31              		@ sp needed
+  32 0000 7047     		bx	lr
+  33              		.cfi_endproc
+  34              	.LFE5:
+  35              		.size	IDAC_High_SaveConfig, .-IDAC_High_SaveConfig
+  36              		.section	.text.IDAC_High_Sleep,"ax",%progbits
+  37              		.align	1
+  38              		.global	IDAC_High_Sleep
+  39              		.code	16
+  40              		.thumb_func
+  41              		.type	IDAC_High_Sleep, %function
+  42              	IDAC_High_Sleep:
+  43              	.LFB1:
+  44              		.file 1 "Generated_Source\\PSoC4\\IDAC_High_PM.c"
+   1:Generated_Source\PSoC4/IDAC_High_PM.c **** /*******************************************************************************
+   2:Generated_Source\PSoC4/IDAC_High_PM.c **** * File Name: IDAC_High_PM.c
+   3:Generated_Source\PSoC4/IDAC_High_PM.c **** * Version 1.10
+   4:Generated_Source\PSoC4/IDAC_High_PM.c **** *
+   5:Generated_Source\PSoC4/IDAC_High_PM.c **** * Description:
+   6:Generated_Source\PSoC4/IDAC_High_PM.c **** *  This file provides Low power mode APIs for IDAC_P4 component.
+   7:Generated_Source\PSoC4/IDAC_High_PM.c **** *
+   8:Generated_Source\PSoC4/IDAC_High_PM.c **** ********************************************************************************
+   9:Generated_Source\PSoC4/IDAC_High_PM.c **** * Copyright 2013-2015, Cypress Semiconductor Corporation.  All rights reserved.
+  10:Generated_Source\PSoC4/IDAC_High_PM.c **** * You may use this file only in accordance with the license, terms, conditions,
+  11:Generated_Source\PSoC4/IDAC_High_PM.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  12:Generated_Source\PSoC4/IDAC_High_PM.c **** * the software package with which this file was provided.
+  13:Generated_Source\PSoC4/IDAC_High_PM.c **** *******************************************************************************/
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccbTS6Va.s 			page 2
+
+
+  14:Generated_Source\PSoC4/IDAC_High_PM.c **** 
+  15:Generated_Source\PSoC4/IDAC_High_PM.c **** #include "IDAC_High.h"
+  16:Generated_Source\PSoC4/IDAC_High_PM.c **** 
+  17:Generated_Source\PSoC4/IDAC_High_PM.c **** 
+  18:Generated_Source\PSoC4/IDAC_High_PM.c **** static IDAC_High_BACKUP_STRUCT IDAC_High_backup;
+  19:Generated_Source\PSoC4/IDAC_High_PM.c **** 
+  20:Generated_Source\PSoC4/IDAC_High_PM.c **** 
+  21:Generated_Source\PSoC4/IDAC_High_PM.c **** /*******************************************************************************
+  22:Generated_Source\PSoC4/IDAC_High_PM.c **** * Function Name: IDAC_High_SaveConfig
+  23:Generated_Source\PSoC4/IDAC_High_PM.c **** ********************************************************************************
+  24:Generated_Source\PSoC4/IDAC_High_PM.c **** *
+  25:Generated_Source\PSoC4/IDAC_High_PM.c **** * Summary:
+  26:Generated_Source\PSoC4/IDAC_High_PM.c **** *  Saves component state before sleep
+  27:Generated_Source\PSoC4/IDAC_High_PM.c **** * Parameters:
+  28:Generated_Source\PSoC4/IDAC_High_PM.c **** *  None
+  29:Generated_Source\PSoC4/IDAC_High_PM.c **** *
+  30:Generated_Source\PSoC4/IDAC_High_PM.c **** * Return:
+  31:Generated_Source\PSoC4/IDAC_High_PM.c **** *  None
+  32:Generated_Source\PSoC4/IDAC_High_PM.c **** *
+  33:Generated_Source\PSoC4/IDAC_High_PM.c **** * Global Variables:
+  34:Generated_Source\PSoC4/IDAC_High_PM.c **** *  None
+  35:Generated_Source\PSoC4/IDAC_High_PM.c **** *
+  36:Generated_Source\PSoC4/IDAC_High_PM.c **** *******************************************************************************/
+  37:Generated_Source\PSoC4/IDAC_High_PM.c **** void IDAC_High_SaveConfig(void)
+  38:Generated_Source\PSoC4/IDAC_High_PM.c **** {
+  39:Generated_Source\PSoC4/IDAC_High_PM.c ****     /* All registers are retention - nothing to save */
+  40:Generated_Source\PSoC4/IDAC_High_PM.c **** }
+  41:Generated_Source\PSoC4/IDAC_High_PM.c **** 
+  42:Generated_Source\PSoC4/IDAC_High_PM.c **** 
+  43:Generated_Source\PSoC4/IDAC_High_PM.c **** /*******************************************************************************
+  44:Generated_Source\PSoC4/IDAC_High_PM.c **** * Function Name: IDAC_High_Sleep
+  45:Generated_Source\PSoC4/IDAC_High_PM.c **** ********************************************************************************
+  46:Generated_Source\PSoC4/IDAC_High_PM.c **** *
+  47:Generated_Source\PSoC4/IDAC_High_PM.c **** * Summary:
+  48:Generated_Source\PSoC4/IDAC_High_PM.c **** *  Calls _SaveConfig() function
+  49:Generated_Source\PSoC4/IDAC_High_PM.c **** * Parameters:
+  50:Generated_Source\PSoC4/IDAC_High_PM.c **** *  None
+  51:Generated_Source\PSoC4/IDAC_High_PM.c **** *
+  52:Generated_Source\PSoC4/IDAC_High_PM.c **** * Return:
+  53:Generated_Source\PSoC4/IDAC_High_PM.c **** *  None
+  54:Generated_Source\PSoC4/IDAC_High_PM.c **** *
+  55:Generated_Source\PSoC4/IDAC_High_PM.c **** *******************************************************************************/
+  56:Generated_Source\PSoC4/IDAC_High_PM.c **** void IDAC_High_Sleep(void)
+  57:Generated_Source\PSoC4/IDAC_High_PM.c **** {
+  45              		.loc 1 57 0
+  46              		.cfi_startproc
+  47              		@ args = 0, pretend = 0, frame = 0
+  48              		@ frame_needed = 0, uses_anonymous_args = 0
+  58:Generated_Source\PSoC4/IDAC_High_PM.c ****         if(0u != (IDAC_High_IDAC_CONTROL_REG & ((uint32)IDAC_High_IDAC_MODE_MASK <<
+  49              		.loc 1 58 0
+  50 0000 064B     		ldr	r3, .L6
+  57:Generated_Source\PSoC4/IDAC_High_PM.c ****         if(0u != (IDAC_High_IDAC_CONTROL_REG & ((uint32)IDAC_High_IDAC_MODE_MASK <<
+  51              		.loc 1 57 0
+  52 0002 10B5     		push	{r4, lr}
+  53              		.cfi_def_cfa_offset 8
+  54              		.cfi_offset 4, -8
+  55              		.cfi_offset 14, -4
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccbTS6Va.s 			page 3
+
+
+  56              		.loc 1 58 0
+  57 0004 1A68     		ldr	r2, [r3]
+  58 0006 C023     		movs	r3, #192
+  59 0008 9B00     		lsls	r3, r3, #2
+  60 000a 1340     		ands	r3, r2
+  61 000c 044A     		ldr	r2, .L6+4
+  62 000e 00D0     		beq	.L3
+  59:Generated_Source\PSoC4/IDAC_High_PM.c ****         IDAC_High_IDAC_MODE_POSITION)))
+  60:Generated_Source\PSoC4/IDAC_High_PM.c ****         {
+  61:Generated_Source\PSoC4/IDAC_High_PM.c ****             IDAC_High_backup.enableState = 1u;
+  63              		.loc 1 61 0
+  64 0010 0123     		movs	r3, #1
+  65              	.L3:
+  62:Generated_Source\PSoC4/IDAC_High_PM.c ****         }
+  63:Generated_Source\PSoC4/IDAC_High_PM.c ****         else
+  64:Generated_Source\PSoC4/IDAC_High_PM.c ****         {
+  65:Generated_Source\PSoC4/IDAC_High_PM.c ****             IDAC_High_backup.enableState = 0u;
+  66              		.loc 1 65 0
+  67 0012 1370     		strb	r3, [r2]
+  66:Generated_Source\PSoC4/IDAC_High_PM.c ****         }
+  67:Generated_Source\PSoC4/IDAC_High_PM.c **** 
+  68:Generated_Source\PSoC4/IDAC_High_PM.c ****     IDAC_High_Stop();
+  69:Generated_Source\PSoC4/IDAC_High_PM.c ****     IDAC_High_SaveConfig();
+  70:Generated_Source\PSoC4/IDAC_High_PM.c **** }
+  68              		.loc 1 70 0
+  69              		@ sp needed
+  68:Generated_Source\PSoC4/IDAC_High_PM.c ****     IDAC_High_SaveConfig();
+  70              		.loc 1 68 0
+  71 0014 FFF7FEFF 		bl	IDAC_High_Stop
+  72              	.LVL0:
+  73              		.loc 1 70 0
+  74 0018 10BD     		pop	{r4, pc}
+  75              	.L7:
+  76 001a C046     		.align	2
+  77              	.L6:
+  78 001c 08000840 		.word	1074266120
+  79 0020 00000000 		.word	.LANCHOR0
+  80              		.cfi_endproc
+  81              	.LFE1:
+  82              		.size	IDAC_High_Sleep, .-IDAC_High_Sleep
+  83              		.section	.text.IDAC_High_RestoreConfig,"ax",%progbits
+  84              		.align	1
+  85              		.global	IDAC_High_RestoreConfig
+  86              		.code	16
+  87              		.thumb_func
+  88              		.type	IDAC_High_RestoreConfig, %function
+  89              	IDAC_High_RestoreConfig:
+  90              	.LFB2:
+  71:Generated_Source\PSoC4/IDAC_High_PM.c **** 
+  72:Generated_Source\PSoC4/IDAC_High_PM.c **** 
+  73:Generated_Source\PSoC4/IDAC_High_PM.c **** /*******************************************************************************
+  74:Generated_Source\PSoC4/IDAC_High_PM.c **** * Function Name: IDAC_High_RestoreConfig
+  75:Generated_Source\PSoC4/IDAC_High_PM.c **** ********************************************************************************
+  76:Generated_Source\PSoC4/IDAC_High_PM.c **** *
+  77:Generated_Source\PSoC4/IDAC_High_PM.c **** * Summary:
+  78:Generated_Source\PSoC4/IDAC_High_PM.c **** *  Restores component state after wakeup
+  79:Generated_Source\PSoC4/IDAC_High_PM.c **** * Parameters:
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccbTS6Va.s 			page 4
+
+
+  80:Generated_Source\PSoC4/IDAC_High_PM.c **** *  None
+  81:Generated_Source\PSoC4/IDAC_High_PM.c **** *
+  82:Generated_Source\PSoC4/IDAC_High_PM.c **** * Return:
+  83:Generated_Source\PSoC4/IDAC_High_PM.c **** *  None
+  84:Generated_Source\PSoC4/IDAC_High_PM.c **** *
+  85:Generated_Source\PSoC4/IDAC_High_PM.c **** * Global Variables:
+  86:Generated_Source\PSoC4/IDAC_High_PM.c **** *  None
+  87:Generated_Source\PSoC4/IDAC_High_PM.c **** *
+  88:Generated_Source\PSoC4/IDAC_High_PM.c **** *******************************************************************************/
+  89:Generated_Source\PSoC4/IDAC_High_PM.c **** void IDAC_High_RestoreConfig(void)
+  90:Generated_Source\PSoC4/IDAC_High_PM.c **** {
+  91              		.loc 1 90 0
+  92              		.cfi_startproc
+  93              		@ args = 0, pretend = 0, frame = 0
+  94              		@ frame_needed = 0, uses_anonymous_args = 0
+  95              		@ link register save eliminated.
+  91:Generated_Source\PSoC4/IDAC_High_PM.c ****     /* All registers are retention - nothing to save */
+  92:Generated_Source\PSoC4/IDAC_High_PM.c **** }
+  96              		.loc 1 92 0
+  97              		@ sp needed
+  98 0000 7047     		bx	lr
+  99              		.cfi_endproc
+ 100              	.LFE2:
+ 101              		.size	IDAC_High_RestoreConfig, .-IDAC_High_RestoreConfig
+ 102              		.section	.text.IDAC_High_Wakeup,"ax",%progbits
+ 103              		.align	1
+ 104              		.global	IDAC_High_Wakeup
+ 105              		.code	16
+ 106              		.thumb_func
+ 107              		.type	IDAC_High_Wakeup, %function
+ 108              	IDAC_High_Wakeup:
+ 109              	.LFB3:
+  93:Generated_Source\PSoC4/IDAC_High_PM.c **** 
+  94:Generated_Source\PSoC4/IDAC_High_PM.c **** 
+  95:Generated_Source\PSoC4/IDAC_High_PM.c **** /*******************************************************************************
+  96:Generated_Source\PSoC4/IDAC_High_PM.c **** * Function Name: IDAC_High_Wakeup
+  97:Generated_Source\PSoC4/IDAC_High_PM.c **** ********************************************************************************
+  98:Generated_Source\PSoC4/IDAC_High_PM.c **** *
+  99:Generated_Source\PSoC4/IDAC_High_PM.c **** * Summary:
+ 100:Generated_Source\PSoC4/IDAC_High_PM.c **** *  Calls _RestoreConfig() function
+ 101:Generated_Source\PSoC4/IDAC_High_PM.c **** * Parameters:
+ 102:Generated_Source\PSoC4/IDAC_High_PM.c **** *  None
+ 103:Generated_Source\PSoC4/IDAC_High_PM.c **** *
+ 104:Generated_Source\PSoC4/IDAC_High_PM.c **** * Return:
+ 105:Generated_Source\PSoC4/IDAC_High_PM.c **** *  None
+ 106:Generated_Source\PSoC4/IDAC_High_PM.c **** *
+ 107:Generated_Source\PSoC4/IDAC_High_PM.c **** *******************************************************************************/
+ 108:Generated_Source\PSoC4/IDAC_High_PM.c **** void IDAC_High_Wakeup(void)
+ 109:Generated_Source\PSoC4/IDAC_High_PM.c **** {
+ 110              		.loc 1 109 0
+ 111              		.cfi_startproc
+ 112              		@ args = 0, pretend = 0, frame = 0
+ 113              		@ frame_needed = 0, uses_anonymous_args = 0
+ 114 0000 10B5     		push	{r4, lr}
+ 115              		.cfi_def_cfa_offset 8
+ 116              		.cfi_offset 4, -8
+ 117              		.cfi_offset 14, -4
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccbTS6Va.s 			page 5
+
+
+ 110:Generated_Source\PSoC4/IDAC_High_PM.c ****     /* Restore IDAC register settings */
+ 111:Generated_Source\PSoC4/IDAC_High_PM.c ****     IDAC_High_RestoreConfig();
+ 112:Generated_Source\PSoC4/IDAC_High_PM.c ****     if(IDAC_High_backup.enableState == 1u)
+ 118              		.loc 1 112 0
+ 119 0002 034B     		ldr	r3, .L11
+ 120 0004 1B78     		ldrb	r3, [r3]
+ 121 0006 012B     		cmp	r3, #1
+ 122 0008 01D1     		bne	.L9
+ 113:Generated_Source\PSoC4/IDAC_High_PM.c ****     {
+ 114:Generated_Source\PSoC4/IDAC_High_PM.c ****         /* Enable operation */
+ 115:Generated_Source\PSoC4/IDAC_High_PM.c ****         IDAC_High_Enable();
+ 123              		.loc 1 115 0
+ 124 000a FFF7FEFF 		bl	IDAC_High_Enable
+ 125              	.LVL1:
+ 126              	.L9:
+ 116:Generated_Source\PSoC4/IDAC_High_PM.c ****     } /* Do nothing if the component was disabled before */
+ 117:Generated_Source\PSoC4/IDAC_High_PM.c **** 
+ 118:Generated_Source\PSoC4/IDAC_High_PM.c **** }
+ 127              		.loc 1 118 0
+ 128              		@ sp needed
+ 129 000e 10BD     		pop	{r4, pc}
+ 130              	.L12:
+ 131              		.align	2
+ 132              	.L11:
+ 133 0010 00000000 		.word	.LANCHOR0
+ 134              		.cfi_endproc
+ 135              	.LFE3:
+ 136              		.size	IDAC_High_Wakeup, .-IDAC_High_Wakeup
+ 137              		.bss
+ 138              		.set	.LANCHOR0,. + 0
+ 139              		.type	IDAC_High_backup, %object
+ 140              		.size	IDAC_High_backup, 1
+ 141              	IDAC_High_backup:
+ 142 0000 00       		.space	1
+ 143              		.text
+ 144              	.Letext0:
+ 145              		.file 2 "Generated_Source\\PSoC4\\cytypes.h"
+ 146              		.file 3 "Generated_Source\\PSoC4\\IDAC_High.h"
+ 147              		.section	.debug_info,"",%progbits
+ 148              	.Ldebug_info0:
+ 149 0000 51010000 		.4byte	0x151
+ 150 0004 0400     		.2byte	0x4
+ 151 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 152 000a 04       		.byte	0x4
+ 153 000b 01       		.uleb128 0x1
+ 154 000c 4E000000 		.4byte	.LASF23
+ 155 0010 0C       		.byte	0xc
+ 156 0011 33010000 		.4byte	.LASF24
+ 157 0015 F8000000 		.4byte	.LASF25
+ 158 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 159 001d 00000000 		.4byte	0
+ 160 0021 00000000 		.4byte	.Ldebug_line0
+ 161 0025 02       		.uleb128 0x2
+ 162 0026 01       		.byte	0x1
+ 163 0027 06       		.byte	0x6
+ 164 0028 04020000 		.4byte	.LASF0
+ 165 002c 02       		.uleb128 0x2
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccbTS6Va.s 			page 6
+
+
+ 166 002d 01       		.byte	0x1
+ 167 002e 08       		.byte	0x8
+ 168 002f B0010000 		.4byte	.LASF1
+ 169 0033 02       		.uleb128 0x2
+ 170 0034 02       		.byte	0x2
+ 171 0035 05       		.byte	0x5
+ 172 0036 3C020000 		.4byte	.LASF2
+ 173 003a 02       		.uleb128 0x2
+ 174 003b 02       		.byte	0x2
+ 175 003c 07       		.byte	0x7
+ 176 003d F1010000 		.4byte	.LASF3
+ 177 0041 02       		.uleb128 0x2
+ 178 0042 04       		.byte	0x4
+ 179 0043 05       		.byte	0x5
+ 180 0044 DB010000 		.4byte	.LASF4
+ 181 0048 02       		.uleb128 0x2
+ 182 0049 04       		.byte	0x4
+ 183 004a 07       		.byte	0x7
+ 184 004b 6F010000 		.4byte	.LASF5
+ 185 004f 02       		.uleb128 0x2
+ 186 0050 08       		.byte	0x8
+ 187 0051 05       		.byte	0x5
+ 188 0052 00000000 		.4byte	.LASF6
+ 189 0056 02       		.uleb128 0x2
+ 190 0057 08       		.byte	0x8
+ 191 0058 07       		.byte	0x7
+ 192 0059 81010000 		.4byte	.LASF7
+ 193 005d 03       		.uleb128 0x3
+ 194 005e 04       		.byte	0x4
+ 195 005f 05       		.byte	0x5
+ 196 0060 696E7400 		.ascii	"int\000"
+ 197 0064 02       		.uleb128 0x2
+ 198 0065 04       		.byte	0x4
+ 199 0066 07       		.byte	0x7
+ 200 0067 21000000 		.4byte	.LASF8
+ 201 006b 04       		.uleb128 0x4
+ 202 006c 69010000 		.4byte	.LASF9
+ 203 0070 02       		.byte	0x2
+ 204 0071 E401     		.2byte	0x1e4
+ 205 0073 2C000000 		.4byte	0x2c
+ 206 0077 04       		.uleb128 0x4
+ 207 0078 0E000000 		.4byte	.LASF10
+ 208 007c 02       		.byte	0x2
+ 209 007d E601     		.2byte	0x1e6
+ 210 007f 48000000 		.4byte	0x48
+ 211 0083 02       		.uleb128 0x2
+ 212 0084 04       		.byte	0x4
+ 213 0085 04       		.byte	0x4
+ 214 0086 36020000 		.4byte	.LASF11
+ 215 008a 02       		.uleb128 0x2
+ 216 008b 08       		.byte	0x8
+ 217 008c 04       		.byte	0x4
+ 218 008d E4010000 		.4byte	.LASF12
+ 219 0091 02       		.uleb128 0x2
+ 220 0092 01       		.byte	0x1
+ 221 0093 08       		.byte	0x8
+ 222 0094 BE010000 		.4byte	.LASF13
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccbTS6Va.s 			page 7
+
+
+ 223 0098 04       		.uleb128 0x4
+ 224 0099 EB010000 		.4byte	.LASF14
+ 225 009d 02       		.byte	0x2
+ 226 009e 9002     		.2byte	0x290
+ 227 00a0 A4000000 		.4byte	0xa4
+ 228 00a4 05       		.uleb128 0x5
+ 229 00a5 77000000 		.4byte	0x77
+ 230 00a9 02       		.uleb128 0x2
+ 231 00aa 04       		.byte	0x4
+ 232 00ab 07       		.byte	0x7
+ 233 00ac 46020000 		.4byte	.LASF15
+ 234 00b0 06       		.uleb128 0x6
+ 235 00b1 01       		.byte	0x1
+ 236 00b2 03       		.byte	0x3
+ 237 00b3 1D       		.byte	0x1d
+ 238 00b4 C5000000 		.4byte	0xc5
+ 239 00b8 07       		.uleb128 0x7
+ 240 00b9 15000000 		.4byte	.LASF26
+ 241 00bd 03       		.byte	0x3
+ 242 00be 1F       		.byte	0x1f
+ 243 00bf 6B000000 		.4byte	0x6b
+ 244 00c3 00       		.byte	0
+ 245 00c4 00       		.byte	0
+ 246 00c5 08       		.uleb128 0x8
+ 247 00c6 C3010000 		.4byte	.LASF16
+ 248 00ca 03       		.byte	0x3
+ 249 00cb 20       		.byte	0x20
+ 250 00cc B0000000 		.4byte	0xb0
+ 251 00d0 09       		.uleb128 0x9
+ 252 00d1 21020000 		.4byte	.LASF17
+ 253 00d5 01       		.byte	0x1
+ 254 00d6 25       		.byte	0x25
+ 255 00d7 01       		.byte	0x1
+ 256 00d8 09       		.uleb128 0x9
+ 257 00d9 98010000 		.4byte	.LASF18
+ 258 00dd 01       		.byte	0x1
+ 259 00de 59       		.byte	0x59
+ 260 00df 01       		.byte	0x1
+ 261 00e0 0A       		.uleb128 0xa
+ 262 00e1 59010000 		.4byte	.LASF19
+ 263 00e5 01       		.byte	0x1
+ 264 00e6 38       		.byte	0x38
+ 265 00e7 00000000 		.4byte	.LFB1
+ 266 00eb 24000000 		.4byte	.LFE1-.LFB1
+ 267 00ef 01       		.uleb128 0x1
+ 268 00f0 9C       		.byte	0x9c
+ 269 00f1 FF000000 		.4byte	0xff
+ 270 00f5 0B       		.uleb128 0xb
+ 271 00f6 18000000 		.4byte	.LVL0
+ 272 00fa 3E010000 		.4byte	0x13e
+ 273 00fe 00       		.byte	0
+ 274 00ff 0C       		.uleb128 0xc
+ 275 0100 D8000000 		.4byte	0xd8
+ 276 0104 00000000 		.4byte	.LFB2
+ 277 0108 02000000 		.4byte	.LFE2-.LFB2
+ 278 010c 01       		.uleb128 0x1
+ 279 010d 9C       		.byte	0x9c
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccbTS6Va.s 			page 8
+
+
+ 280 010e 0A       		.uleb128 0xa
+ 281 010f E7000000 		.4byte	.LASF20
+ 282 0113 01       		.byte	0x1
+ 283 0114 6C       		.byte	0x6c
+ 284 0115 00000000 		.4byte	.LFB3
+ 285 0119 14000000 		.4byte	.LFE3-.LFB3
+ 286 011d 01       		.uleb128 0x1
+ 287 011e 9C       		.byte	0x9c
+ 288 011f 2D010000 		.4byte	0x12d
+ 289 0123 0B       		.uleb128 0xb
+ 290 0124 0E000000 		.4byte	.LVL1
+ 291 0128 49010000 		.4byte	0x149
+ 292 012c 00       		.byte	0
+ 293 012d 0D       		.uleb128 0xd
+ 294 012e 10020000 		.4byte	.LASF27
+ 295 0132 01       		.byte	0x1
+ 296 0133 12       		.byte	0x12
+ 297 0134 C5000000 		.4byte	0xc5
+ 298 0138 05       		.uleb128 0x5
+ 299 0139 03       		.byte	0x3
+ 300 013a 00000000 		.4byte	IDAC_High_backup
+ 301 013e 0E       		.uleb128 0xe
+ 302 013f 2E000000 		.4byte	.LASF21
+ 303 0143 2E000000 		.4byte	.LASF21
+ 304 0147 03       		.byte	0x3
+ 305 0148 53       		.byte	0x53
+ 306 0149 0E       		.uleb128 0xe
+ 307 014a 3D000000 		.4byte	.LASF22
+ 308 014e 3D000000 		.4byte	.LASF22
+ 309 0152 03       		.byte	0x3
+ 310 0153 51       		.byte	0x51
+ 311 0154 00       		.byte	0
+ 312              		.section	.debug_abbrev,"",%progbits
+ 313              	.Ldebug_abbrev0:
+ 314 0000 01       		.uleb128 0x1
+ 315 0001 11       		.uleb128 0x11
+ 316 0002 01       		.byte	0x1
+ 317 0003 25       		.uleb128 0x25
+ 318 0004 0E       		.uleb128 0xe
+ 319 0005 13       		.uleb128 0x13
+ 320 0006 0B       		.uleb128 0xb
+ 321 0007 03       		.uleb128 0x3
+ 322 0008 0E       		.uleb128 0xe
+ 323 0009 1B       		.uleb128 0x1b
+ 324 000a 0E       		.uleb128 0xe
+ 325 000b 55       		.uleb128 0x55
+ 326 000c 17       		.uleb128 0x17
+ 327 000d 11       		.uleb128 0x11
+ 328 000e 01       		.uleb128 0x1
+ 329 000f 10       		.uleb128 0x10
+ 330 0010 17       		.uleb128 0x17
+ 331 0011 00       		.byte	0
+ 332 0012 00       		.byte	0
+ 333 0013 02       		.uleb128 0x2
+ 334 0014 24       		.uleb128 0x24
+ 335 0015 00       		.byte	0
+ 336 0016 0B       		.uleb128 0xb
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccbTS6Va.s 			page 9
+
+
+ 337 0017 0B       		.uleb128 0xb
+ 338 0018 3E       		.uleb128 0x3e
+ 339 0019 0B       		.uleb128 0xb
+ 340 001a 03       		.uleb128 0x3
+ 341 001b 0E       		.uleb128 0xe
+ 342 001c 00       		.byte	0
+ 343 001d 00       		.byte	0
+ 344 001e 03       		.uleb128 0x3
+ 345 001f 24       		.uleb128 0x24
+ 346 0020 00       		.byte	0
+ 347 0021 0B       		.uleb128 0xb
+ 348 0022 0B       		.uleb128 0xb
+ 349 0023 3E       		.uleb128 0x3e
+ 350 0024 0B       		.uleb128 0xb
+ 351 0025 03       		.uleb128 0x3
+ 352 0026 08       		.uleb128 0x8
+ 353 0027 00       		.byte	0
+ 354 0028 00       		.byte	0
+ 355 0029 04       		.uleb128 0x4
+ 356 002a 16       		.uleb128 0x16
+ 357 002b 00       		.byte	0
+ 358 002c 03       		.uleb128 0x3
+ 359 002d 0E       		.uleb128 0xe
+ 360 002e 3A       		.uleb128 0x3a
+ 361 002f 0B       		.uleb128 0xb
+ 362 0030 3B       		.uleb128 0x3b
+ 363 0031 05       		.uleb128 0x5
+ 364 0032 49       		.uleb128 0x49
+ 365 0033 13       		.uleb128 0x13
+ 366 0034 00       		.byte	0
+ 367 0035 00       		.byte	0
+ 368 0036 05       		.uleb128 0x5
+ 369 0037 35       		.uleb128 0x35
+ 370 0038 00       		.byte	0
+ 371 0039 49       		.uleb128 0x49
+ 372 003a 13       		.uleb128 0x13
+ 373 003b 00       		.byte	0
+ 374 003c 00       		.byte	0
+ 375 003d 06       		.uleb128 0x6
+ 376 003e 13       		.uleb128 0x13
+ 377 003f 01       		.byte	0x1
+ 378 0040 0B       		.uleb128 0xb
+ 379 0041 0B       		.uleb128 0xb
+ 380 0042 3A       		.uleb128 0x3a
+ 381 0043 0B       		.uleb128 0xb
+ 382 0044 3B       		.uleb128 0x3b
+ 383 0045 0B       		.uleb128 0xb
+ 384 0046 01       		.uleb128 0x1
+ 385 0047 13       		.uleb128 0x13
+ 386 0048 00       		.byte	0
+ 387 0049 00       		.byte	0
+ 388 004a 07       		.uleb128 0x7
+ 389 004b 0D       		.uleb128 0xd
+ 390 004c 00       		.byte	0
+ 391 004d 03       		.uleb128 0x3
+ 392 004e 0E       		.uleb128 0xe
+ 393 004f 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccbTS6Va.s 			page 10
+
+
+ 394 0050 0B       		.uleb128 0xb
+ 395 0051 3B       		.uleb128 0x3b
+ 396 0052 0B       		.uleb128 0xb
+ 397 0053 49       		.uleb128 0x49
+ 398 0054 13       		.uleb128 0x13
+ 399 0055 38       		.uleb128 0x38
+ 400 0056 0B       		.uleb128 0xb
+ 401 0057 00       		.byte	0
+ 402 0058 00       		.byte	0
+ 403 0059 08       		.uleb128 0x8
+ 404 005a 16       		.uleb128 0x16
+ 405 005b 00       		.byte	0
+ 406 005c 03       		.uleb128 0x3
+ 407 005d 0E       		.uleb128 0xe
+ 408 005e 3A       		.uleb128 0x3a
+ 409 005f 0B       		.uleb128 0xb
+ 410 0060 3B       		.uleb128 0x3b
+ 411 0061 0B       		.uleb128 0xb
+ 412 0062 49       		.uleb128 0x49
+ 413 0063 13       		.uleb128 0x13
+ 414 0064 00       		.byte	0
+ 415 0065 00       		.byte	0
+ 416 0066 09       		.uleb128 0x9
+ 417 0067 2E       		.uleb128 0x2e
+ 418 0068 00       		.byte	0
+ 419 0069 3F       		.uleb128 0x3f
+ 420 006a 19       		.uleb128 0x19
+ 421 006b 03       		.uleb128 0x3
+ 422 006c 0E       		.uleb128 0xe
+ 423 006d 3A       		.uleb128 0x3a
+ 424 006e 0B       		.uleb128 0xb
+ 425 006f 3B       		.uleb128 0x3b
+ 426 0070 0B       		.uleb128 0xb
+ 427 0071 27       		.uleb128 0x27
+ 428 0072 19       		.uleb128 0x19
+ 429 0073 20       		.uleb128 0x20
+ 430 0074 0B       		.uleb128 0xb
+ 431 0075 00       		.byte	0
+ 432 0076 00       		.byte	0
+ 433 0077 0A       		.uleb128 0xa
+ 434 0078 2E       		.uleb128 0x2e
+ 435 0079 01       		.byte	0x1
+ 436 007a 3F       		.uleb128 0x3f
+ 437 007b 19       		.uleb128 0x19
+ 438 007c 03       		.uleb128 0x3
+ 439 007d 0E       		.uleb128 0xe
+ 440 007e 3A       		.uleb128 0x3a
+ 441 007f 0B       		.uleb128 0xb
+ 442 0080 3B       		.uleb128 0x3b
+ 443 0081 0B       		.uleb128 0xb
+ 444 0082 27       		.uleb128 0x27
+ 445 0083 19       		.uleb128 0x19
+ 446 0084 11       		.uleb128 0x11
+ 447 0085 01       		.uleb128 0x1
+ 448 0086 12       		.uleb128 0x12
+ 449 0087 06       		.uleb128 0x6
+ 450 0088 40       		.uleb128 0x40
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccbTS6Va.s 			page 11
+
+
+ 451 0089 18       		.uleb128 0x18
+ 452 008a 9742     		.uleb128 0x2117
+ 453 008c 19       		.uleb128 0x19
+ 454 008d 01       		.uleb128 0x1
+ 455 008e 13       		.uleb128 0x13
+ 456 008f 00       		.byte	0
+ 457 0090 00       		.byte	0
+ 458 0091 0B       		.uleb128 0xb
+ 459 0092 898201   		.uleb128 0x4109
+ 460 0095 00       		.byte	0
+ 461 0096 11       		.uleb128 0x11
+ 462 0097 01       		.uleb128 0x1
+ 463 0098 31       		.uleb128 0x31
+ 464 0099 13       		.uleb128 0x13
+ 465 009a 00       		.byte	0
+ 466 009b 00       		.byte	0
+ 467 009c 0C       		.uleb128 0xc
+ 468 009d 2E       		.uleb128 0x2e
+ 469 009e 00       		.byte	0
+ 470 009f 31       		.uleb128 0x31
+ 471 00a0 13       		.uleb128 0x13
+ 472 00a1 11       		.uleb128 0x11
+ 473 00a2 01       		.uleb128 0x1
+ 474 00a3 12       		.uleb128 0x12
+ 475 00a4 06       		.uleb128 0x6
+ 476 00a5 40       		.uleb128 0x40
+ 477 00a6 18       		.uleb128 0x18
+ 478 00a7 9742     		.uleb128 0x2117
+ 479 00a9 19       		.uleb128 0x19
+ 480 00aa 00       		.byte	0
+ 481 00ab 00       		.byte	0
+ 482 00ac 0D       		.uleb128 0xd
+ 483 00ad 34       		.uleb128 0x34
+ 484 00ae 00       		.byte	0
+ 485 00af 03       		.uleb128 0x3
+ 486 00b0 0E       		.uleb128 0xe
+ 487 00b1 3A       		.uleb128 0x3a
+ 488 00b2 0B       		.uleb128 0xb
+ 489 00b3 3B       		.uleb128 0x3b
+ 490 00b4 0B       		.uleb128 0xb
+ 491 00b5 49       		.uleb128 0x49
+ 492 00b6 13       		.uleb128 0x13
+ 493 00b7 02       		.uleb128 0x2
+ 494 00b8 18       		.uleb128 0x18
+ 495 00b9 00       		.byte	0
+ 496 00ba 00       		.byte	0
+ 497 00bb 0E       		.uleb128 0xe
+ 498 00bc 2E       		.uleb128 0x2e
+ 499 00bd 00       		.byte	0
+ 500 00be 3F       		.uleb128 0x3f
+ 501 00bf 19       		.uleb128 0x19
+ 502 00c0 3C       		.uleb128 0x3c
+ 503 00c1 19       		.uleb128 0x19
+ 504 00c2 6E       		.uleb128 0x6e
+ 505 00c3 0E       		.uleb128 0xe
+ 506 00c4 03       		.uleb128 0x3
+ 507 00c5 0E       		.uleb128 0xe
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccbTS6Va.s 			page 12
+
+
+ 508 00c6 3A       		.uleb128 0x3a
+ 509 00c7 0B       		.uleb128 0xb
+ 510 00c8 3B       		.uleb128 0x3b
+ 511 00c9 0B       		.uleb128 0xb
+ 512 00ca 00       		.byte	0
+ 513 00cb 00       		.byte	0
+ 514 00cc 00       		.byte	0
+ 515              		.section	.debug_aranges,"",%progbits
+ 516 0000 2C000000 		.4byte	0x2c
+ 517 0004 0200     		.2byte	0x2
+ 518 0006 00000000 		.4byte	.Ldebug_info0
+ 519 000a 04       		.byte	0x4
+ 520 000b 00       		.byte	0
+ 521 000c 0000     		.2byte	0
+ 522 000e 0000     		.2byte	0
+ 523 0010 00000000 		.4byte	.LFB1
+ 524 0014 24000000 		.4byte	.LFE1-.LFB1
+ 525 0018 00000000 		.4byte	.LFB2
+ 526 001c 02000000 		.4byte	.LFE2-.LFB2
+ 527 0020 00000000 		.4byte	.LFB3
+ 528 0024 14000000 		.4byte	.LFE3-.LFB3
+ 529 0028 00000000 		.4byte	0
+ 530 002c 00000000 		.4byte	0
+ 531              		.section	.debug_ranges,"",%progbits
+ 532              	.Ldebug_ranges0:
+ 533 0000 00000000 		.4byte	.LFB1
+ 534 0004 24000000 		.4byte	.LFE1
+ 535 0008 00000000 		.4byte	.LFB2
+ 536 000c 02000000 		.4byte	.LFE2
+ 537 0010 00000000 		.4byte	.LFB3
+ 538 0014 14000000 		.4byte	.LFE3
+ 539 0018 00000000 		.4byte	0
+ 540 001c 00000000 		.4byte	0
+ 541              		.section	.debug_line,"",%progbits
+ 542              	.Ldebug_line0:
+ 543 0000 99000000 		.section	.debug_str,"MS",%progbits,1
+ 543      02005800 
+ 543      00000201 
+ 543      FB0E0D00 
+ 543      01010101 
+ 544              	.LASF6:
+ 545 0000 6C6F6E67 		.ascii	"long long int\000"
+ 545      206C6F6E 
+ 545      6720696E 
+ 545      7400
+ 546              	.LASF10:
+ 547 000e 75696E74 		.ascii	"uint32\000"
+ 547      333200
+ 548              	.LASF26:
+ 549 0015 656E6162 		.ascii	"enableState\000"
+ 549      6C655374 
+ 549      61746500 
+ 550              	.LASF8:
+ 551 0021 756E7369 		.ascii	"unsigned int\000"
+ 551      676E6564 
+ 551      20696E74 
+ 551      00
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccbTS6Va.s 			page 13
+
+
+ 552              	.LASF21:
+ 553 002e 49444143 		.ascii	"IDAC_High_Stop\000"
+ 553      5F486967 
+ 553      685F5374 
+ 553      6F7000
+ 554              	.LASF22:
+ 555 003d 49444143 		.ascii	"IDAC_High_Enable\000"
+ 555      5F486967 
+ 555      685F456E 
+ 555      61626C65 
+ 555      00
+ 556              	.LASF23:
+ 557 004e 474E5520 		.ascii	"GNU C99 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 557      43393920 
+ 557      352E342E 
+ 557      31203230 
+ 557      31363036 
+ 558 0081 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 558      20726576 
+ 558      6973696F 
+ 558      6E203233 
+ 558      37373135 
+ 559 00b4 73202D73 		.ascii	"s -std=gnu99 -ffunction-sections -ffat-lto-objects\000"
+ 559      74643D67 
+ 559      6E753939 
+ 559      202D6666 
+ 559      756E6374 
+ 560              	.LASF20:
+ 561 00e7 49444143 		.ascii	"IDAC_High_Wakeup\000"
+ 561      5F486967 
+ 561      685F5761 
+ 561      6B657570 
+ 561      00
+ 562              	.LASF25:
+ 563 00f8 443A5C31 		.ascii	"D:\\1_work\\my_project\\ReloadPro\\psoc42boot\\Relo"
+ 563      5F776F72 
+ 563      6B5C6D79 
+ 563      5F70726F 
+ 563      6A656374 
+ 564 0126 61642050 		.ascii	"ad Pro.cydsn\000"
+ 564      726F2E63 
+ 564      7964736E 
+ 564      00
+ 565              	.LASF24:
+ 566 0133 47656E65 		.ascii	"Generated_Source\\PSoC4\\IDAC_High_PM.c\000"
+ 566      72617465 
+ 566      645F536F 
+ 566      75726365 
+ 566      5C50536F 
+ 567              	.LASF19:
+ 568 0159 49444143 		.ascii	"IDAC_High_Sleep\000"
+ 568      5F486967 
+ 568      685F536C 
+ 568      65657000 
+ 569              	.LASF9:
+ 570 0169 75696E74 		.ascii	"uint8\000"
+ 570      3800
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccbTS6Va.s 			page 14
+
+
+ 571              	.LASF5:
+ 572 016f 6C6F6E67 		.ascii	"long unsigned int\000"
+ 572      20756E73 
+ 572      69676E65 
+ 572      6420696E 
+ 572      7400
+ 573              	.LASF7:
+ 574 0181 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 574      206C6F6E 
+ 574      6720756E 
+ 574      7369676E 
+ 574      65642069 
+ 575              	.LASF18:
+ 576 0198 49444143 		.ascii	"IDAC_High_RestoreConfig\000"
+ 576      5F486967 
+ 576      685F5265 
+ 576      73746F72 
+ 576      65436F6E 
+ 577              	.LASF1:
+ 578 01b0 756E7369 		.ascii	"unsigned char\000"
+ 578      676E6564 
+ 578      20636861 
+ 578      7200
+ 579              	.LASF13:
+ 580 01be 63686172 		.ascii	"char\000"
+ 580      00
+ 581              	.LASF16:
+ 582 01c3 49444143 		.ascii	"IDAC_High_BACKUP_STRUCT\000"
+ 582      5F486967 
+ 582      685F4241 
+ 582      434B5550 
+ 582      5F535452 
+ 583              	.LASF4:
+ 584 01db 6C6F6E67 		.ascii	"long int\000"
+ 584      20696E74 
+ 584      00
+ 585              	.LASF12:
+ 586 01e4 646F7562 		.ascii	"double\000"
+ 586      6C6500
+ 587              	.LASF14:
+ 588 01eb 72656733 		.ascii	"reg32\000"
+ 588      3200
+ 589              	.LASF3:
+ 590 01f1 73686F72 		.ascii	"short unsigned int\000"
+ 590      7420756E 
+ 590      7369676E 
+ 590      65642069 
+ 590      6E7400
+ 591              	.LASF0:
+ 592 0204 7369676E 		.ascii	"signed char\000"
+ 592      65642063 
+ 592      68617200 
+ 593              	.LASF27:
+ 594 0210 49444143 		.ascii	"IDAC_High_backup\000"
+ 594      5F486967 
+ 594      685F6261 
+ 594      636B7570 
+ARM GAS  C:\Users\VIDEOH~1\AppData\Local\Temp\ccbTS6Va.s 			page 15
+
+
+ 594      00
+ 595              	.LASF17:
+ 596 0221 49444143 		.ascii	"IDAC_High_SaveConfig\000"
+ 596      5F486967 
+ 596      685F5361 
+ 596      7665436F 
+ 596      6E666967 
+ 597              	.LASF11:
+ 598 0236 666C6F61 		.ascii	"float\000"
+ 598      7400
+ 599              	.LASF2:
+ 600 023c 73686F72 		.ascii	"short int\000"
+ 600      7420696E 
+ 600      7400
+ 601              	.LASF15:
+ 602 0246 73697A65 		.ascii	"sizetype\000"
+ 602      74797065 
+ 602      00
+ 603              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
